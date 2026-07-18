@@ -190,42 +190,38 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
             {/* B2B Proposal Enquiry Form */}
             <div className="lg:col-span-7">
-              <div id="enquiry-form" className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm p-6 sm:p-8 shadow-sm text-left">
-                <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
-                  <Handshake className="w-5 h-5 text-heading" />
+              <div id="enquiry-form" className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-[24px] shadow-[0_20px_45px_rgba(11,31,77,.08)] p-6 sm:p-8 text-left transition-all duration-300">
+                <div className="flex items-center gap-3 border-b-2 border-[#2563EB] pb-4 mb-6">
+                  <Handshake className="w-5 h-5 text-[#0B1F4D]" />
                   <div>
-                    <h3 className="font-display font-bold text-heading text-base">Partner Proposal Form</h3>
-                    <p className="text-[10px] text-muted font-mono">Establish a robust corporate connection</p>
+                    <h3 className="font-display font-bold text-[#0B1F4D] text-base">Partner Proposal Form</h3>
+                    <p className="text-[10px] text-[#64748B] font-mono">Establish a robust corporate connection</p>
                   </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Full Name *</label>
+                      <label className="text-[10px] font-mono text-[#334155] uppercase tracking-wider block">Full Name <span className="text-[#DC2626] font-bold">*</span></label>
                       <input
                         type="text"
                         required
                         placeholder="John Doe"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                          errors.name ? "border-red-500" : "border-slate-250"
-                        }`}
+                        className={`w-full mt-1.5 px-3 py-2 bg-[#F8FAFC] border rounded-[12px] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none transition-all duration-300 hover:border-[#93C5FD] hover:bg-[#FFFFFF] focus:bg-[#FFFFFF] ${errors.name ? "border-[#DC2626] focus:border-[#DC2626] focus:ring-4 focus:ring-[rgba(220,38,38,.15)]" : "border-[#CBD5E1] focus:border-[#2563EB] focus:ring-4 focus:ring-[rgba(37,99,235,.15)]"}`}
                       />
                       {errors.name && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.name}</span>}
                     </div>
                     <div>
-                      <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Business Email *</label>
+                      <label className="text-[10px] font-mono text-[#334155] uppercase tracking-wider block">Business Email <span className="text-[#DC2626] font-bold">*</span></label>
                       <input
                         type="email"
                         required
                         placeholder="corporate@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                          errors.email ? "border-red-500" : "border-slate-250"
-                        }`}
+                        className={`w-full mt-1.5 px-3 py-2 bg-[#F8FAFC] border rounded-[12px] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none transition-all duration-300 hover:border-[#93C5FD] hover:bg-[#FFFFFF] focus:bg-[#FFFFFF] ${errors.email ? "border-[#DC2626] focus:border-[#DC2626] focus:ring-4 focus:ring-[rgba(220,38,38,.15)]" : "border-[#CBD5E1] focus:border-[#2563EB] focus:ring-4 focus:ring-[rgba(37,99,235,.15)]"}`}
                       />
                       {errors.email && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.email}</span>}
                     </div>
@@ -233,25 +229,23 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Phone / Whatsapp *</label>
+                      <label className="text-[10px] font-mono text-[#334155] uppercase tracking-wider block">Phone / Whatsapp <span className="text-[#DC2626] font-bold">*</span></label>
                       <input
                         type="tel"
                         required
                         placeholder="+91-XXXX-XXXXXX"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                          errors.phone ? "border-red-500" : "border-slate-250"
-                        }`}
+                        className={`w-full mt-1.5 px-3 py-2 bg-[#F8FAFC] border rounded-[12px] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none transition-all duration-300 hover:border-[#93C5FD] hover:bg-[#FFFFFF] focus:bg-[#FFFFFF] ${errors.phone ? "border-[#DC2626] focus:border-[#DC2626] focus:ring-4 focus:ring-[rgba(220,38,38,.15)]" : "border-[#CBD5E1] focus:border-[#2563EB] focus:ring-4 focus:ring-[rgba(37,99,235,.15)]"}`}
                       />
                       {errors.phone && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.phone}</span>}
                     </div>
                     <div>
-                      <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Alliance Vertical Target</label>
+                      <label className="text-[10px] font-mono text-[#334155] uppercase tracking-wider block">Alliance Vertical Target</label>
                       <select
                         value={formData.partnerType}
                         onChange={(e) => setFormData({ ...formData, partnerType: e.target.value })}
-                        className="w-full mt-1.5 px-3 py-2 bg-white border border-slate-250 rounded text-xs text-heading focus:outline-none focus:border-primary transition-all appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1rem_1rem] bg-[right_0.5rem_center] bg-no-repeat"
+                        className="w-full mt-1.5 px-3 py-2 bg-[#F8FAFC] border border-[#CBD5E1] rounded-[12px] text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-4 focus:ring-[rgba(37,99,235,.15)] focus:bg-[#FFFFFF] transition-all duration-300 hover:border-[#93C5FD] hover:bg-[#FFFFFF] appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1rem_1rem] bg-[right_0.5rem_center] bg-no-repeat"
                       >
                         <option value="franchise">PCD Franchise Distributorship</option>
                         <option value="manufacturing">Third Party Contract Manufacturing</option>
@@ -263,46 +257,40 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] font-mono text-body tracking-wider uppercase block">Company Name *</label>
+                      <label className="text-[10px] font-mono text-[#334155] uppercase tracking-wider block">Company Name <span className="text-[#DC2626] font-bold">*</span></label>
                       <input
                         type="text"
                         required
                         placeholder="Company Pvt Ltd"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                          errors.company ? "border-red-500" : "border-slate-250"
-                        }`}
+                        className={`w-full mt-1.5 px-3 py-2 bg-[#F8FAFC] border rounded-[12px] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none transition-all duration-300 hover:border-[#93C5FD] hover:bg-[#FFFFFF] focus:bg-[#FFFFFF] ${errors.company ? "border-[#DC2626] focus:border-[#DC2626] focus:ring-4 focus:ring-[rgba(220,38,38,.15)]" : "border-[#CBD5E1] focus:border-[#2563EB] focus:ring-4 focus:ring-[rgba(37,99,235,.15)]"}`}
                       />
                       {errors.company && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.company}</span>}
                     </div>
                     <div>
-                      <label className="text-[10px] font-mono text-body tracking-wider uppercase block">Target Country / Territory *</label>
+                      <label className="text-[10px] font-mono text-[#334155] uppercase tracking-wider block">Target Country / Territory <span className="text-[#DC2626] font-bold">*</span></label>
                       <input
                         type="text"
                         required
                         placeholder="e.g. Kenya, India, Philippines"
                         value={formData.country}
                         onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                        className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                          errors.country ? "border-red-500" : "border-slate-250"
-                        }`}
+                        className={`w-full mt-1.5 px-3 py-2 bg-[#F8FAFC] border rounded-[12px] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none transition-all duration-300 hover:border-[#93C5FD] hover:bg-[#FFFFFF] focus:bg-[#FFFFFF] ${errors.country ? "border-[#DC2626] focus:border-[#DC2626] focus:ring-4 focus:ring-[rgba(220,38,38,.15)]" : "border-[#CBD5E1] focus:border-[#2563EB] focus:ring-4 focus:ring-[rgba(37,99,235,.15)]"}`}
                       />
                       {errors.country && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.country}</span>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[10px] font-mono text-body tracking-wider uppercase block">Describe Your Proposal / Target Market *</label>
+                    <label className="text-[10px] font-mono text-[#334155] uppercase tracking-wider block">Describe Your Proposal / Target Market <span className="text-[#DC2626] font-bold">*</span></label>
                     <textarea
                       required
                       rows={4}
                       placeholder="Include details about your current healthcare products network, doctor connections, or specific solid-oral dosing needs..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                        errors.message ? "border-red-500" : "border-slate-250"
-                      }`}
+                      className={`w-full mt-1.5 px-3 py-2 bg-[#F8FAFC] border rounded-[12px] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none transition-all duration-300 hover:border-[#93C5FD] hover:bg-[#FFFFFF] focus:bg-[#FFFFFF] ${errors.message ? "border-[#DC2626] focus:border-[#DC2626] focus:ring-4 focus:ring-[rgba(220,38,38,.15)]" : "border-[#CBD5E1] focus:border-[#2563EB] focus:ring-4 focus:ring-[rgba(37,99,235,.15)]"}`}
                     ></textarea>
                     {errors.message && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.message}</span>}
                   </div>
@@ -310,7 +298,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full py-2.5 bg-primary hover:bg-primary text-white font-medium text-xs sm:text-sm rounded border border-primary transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-2.5 text-white font-medium text-xs sm:text-sm rounded-[12px] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_12px_30px_rgba(37,99,235,.25)] hover:shadow-[0_16px_40px_rgba(37,99,235,.35)] hover:-translate-y-[2px] bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] hover:bg-[linear-gradient(135deg,#1D4ED8_0%,#0B1F4D_100%)] border-none"
                   >
                     {submitting ? (
                       <>

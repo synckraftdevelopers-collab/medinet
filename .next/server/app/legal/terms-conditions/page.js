@@ -1,0 +1,13 @@
+var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/legal/terms-conditions/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__1vxnm7p._.js")
+R.c("server/chunks/ssr/1o07_next_dist_esm_build_templates_app-page_1l_-pp4.js")
+R.c("server/chunks/ssr/[root-of-the-server]__206oe9i._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0pfndzi._.js")
+R.c("server/chunks/ssr/OneDrive_Desktop_MediNet_src_app_layout_tsx_1cqq479._.js")
+R.c("server/chunks/ssr/1o07_next_dist_client_components_0xdyxkb._.js")
+R.c("server/chunks/ssr/1o07_next_dist_client_components_builtin_forbidden_1o8qsxq.js")
+R.c("server/chunks/ssr/1o07_next_dist_client_components_builtin_unauthorized_0b5y9ep.js")
+R.c("server/chunks/ssr/1o07_next_dist_client_components_builtin_global-error_1pp3_t8.js")
+R.c("server/chunks/ssr/1fmp_MediNet__next-internal_server_app_legal_terms-conditions_page_actions_0przzwf.js")
+R.m(26094)
+module.exports=R.m(26094).exports

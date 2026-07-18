@@ -1,0 +1,772 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import { AppRoute } from "../hooks/useRoute";
+import { PRODUCTS, THERAPEUTIC_CATEGORIES } from "../data";
+import { Product } from "../types";
+import {
+  Search,
+  Menu,
+  X,
+  ChevronDown,
+  Activity,
+  Brain,
+  Droplet,
+  Sparkles,
+  ShieldAlert,
+  Wind,
+  Bone,
+  HeartHandshake,
+  ArrowRight,
+  PhoneCall,
+  Download,
+  ShieldCheck,
+  FileText,
+  Cookie,
+  Scale,
+  Copyright
+} from "lucide-react";
+
+interface NavbarProps {
+  currentRoute: AppRoute;
+  navigate: (route: string, queryParams?: Record<string, string>) => void;
+}
+
+const iconMap: Record<string, any> = {
+  Activity,
+  Brain,
+  Droplet,
+  Sparkles,
+  ShieldAlert,
+  Wind,
+  Bone,
+  HeartHandshake,
+};
+
+export default function Navbar({ currentRoute, navigate }: NavbarProps) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Search Modal State
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<"products" | "about" | "legal" | null>(null);
+
+  // Enquiry Modal State
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: ""
+  });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  const handleEnquirySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const errors: Record<string, string> = {};
+    if (!formData.name.trim()) errors.name = "Full name is required";
+    if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) errors.email = "Valid email is required";
+    if (!formData.phone.trim()) errors.phone = "Phone number is required";
+    if (!formData.message.trim()) errors.message = "Please provide enquiry details";
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setFormErrors({});
+    setFormSubmitting(true);
+    setTimeout(() => {
+      setFormSubmitting(false);
+      setIsEnquiryOpen(false);
+      setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+      alert("Thank you! Your enquiry has been submitted successfully. We will get back to you soon.");
+    }, 1500);
+  };
+
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Sync search input focus
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      setTimeout(() => searchInputRef.current?.focus(), 100);
+    }
+  }, [isSearchOpen]);
+
+  // Handle global key events for search modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      } else if (e.key === "Escape") {
+        setIsSearchOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    const filtered = PRODUCTS.filter(
+      (p) =>
+        p.name.toLowerCase().includes(query.toLowerCase()) ||
+        p.genericName.toLowerCase().includes(query.toLowerCase()) ||
+        p.description.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(filtered);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setIsSearchOpen(false);
+      navigate("products", { search: searchQuery });
+      setSearchQuery("");
+      setSearchResults([]);
+    }
+  };
+
+  const selectSearchResult = (product: Product) => {
+    setIsSearchOpen(false);
+    navigate("products", { id: product.id });
+    setSearchQuery("");
+    setSearchResults([]);
+  };
+
+  return (
+    <>
+      {/* Search Modal */}
+      {isSearchOpen && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-slate-900/40 backdrop-blur-sm">
+          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-slide-in">
+            <form onSubmit={handleSearchSubmit} className="flex items-center gap-3 px-4 py-4 border-b border-slate-200">
+              <Search className="w-5 h-5 text-slate-400 shrink-0" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="Search products by brand name or generic API..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="w-full text-slate-900 placeholder:text-slate-400 focus:outline-none text-base"
+              />
+              <span className="hidden md:inline-flex text-[10px] font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-400 border border-slate-200">
+                ESC
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsSearchOpen(false)}
+                className="p-1.5 hover:bg-slate-50 text-slate-400 hover:text-slate-600 rounded-lg shadow-sm shrink-0 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </form>
+
+            <div className="max-h-[380px] overflow-y-auto p-4">
+              {searchResults.length > 0 ? (
+                <div className="space-y-1">
+                  <p className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-2 px-2">
+                    Found {searchResults.length} Formulations
+                  </p>
+                  {searchResults.map((product) => (
+                    <button
+                      key={product.id}
+                      onClick={() => selectSearchResult(product)}
+                      className="w-full text-left flex items-start gap-3 p-3 hover:bg-blue-50/50 rounded-lg shadow-sm transition-colors group"
+                    >
+                      <div className="w-8 h-8 rounded-lg shadow-sm bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 group-hover:bg-blue-100">
+                        <Activity className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-slate-900 text-sm group-hover:text-blue-600 flex items-center gap-2">
+                          {product.name}
+                          <span className="text-xs font-normal text-slate-400 font-mono">
+                            {product.strength}
+                          </span>
+                        </div>
+                        <div className="text-xs text-slate-600 font-mono italic mt-0.5">
+                          {product.genericName}
+                        </div>
+                        <div className="text-xs text-slate-400 mt-1 line-clamp-1">
+                          {product.description}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              ) : searchQuery ? (
+                <div className="text-center py-10 px-4">
+                  <p className="text-slate-600 text-sm">No formulations found for &ldquo;{searchQuery}&rdquo;</p>
+                  <p className="text-slate-400 text-xs mt-1">Try searching for ingredients like Atorvastatin, Ramipril, Gabapentin.</p>
+                </div>
+              ) : (
+                <div className="py-6 px-2">
+                  <p className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                    Therapeutic Segments
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {THERAPEUTIC_CATEGORIES.map((cat) => {
+                      const IconComponent = iconMap[cat.iconName] || Activity;
+                      return (
+                        <button
+                          key={cat.id}
+                          onClick={() => {
+                            setIsSearchOpen(false);
+                            navigate("products", { category: cat.id });
+                          }}
+                          className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm border border-slate-200 hover:border-blue-100 hover:bg-slate-50/50 text-left transition-all"
+                        >
+                          <div className="w-8 h-8 rounded-lg shadow-sm bg-slate-50 flex items-center justify-center text-slate-600">
+                            <IconComponent className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-slate-900">{cat.name}</div>
+                            <div className="text-xs text-slate-400 line-clamp-1">{cat.description}</div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 py-3"
+            : "bg-transparent py-5"
+          }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <button
+              onClick={() => navigate("home")}
+              className="flex items-center gap-2.5 text-left focus:outline-none"
+              id="navbar-logo"
+            >
+              <div className="w-9 h-9 rounded bg-slate-900 flex items-center justify-center text-white shrink-0 font-display font-black text-lg tracking-tight">
+                M
+              </div>
+              <div>
+                <span className="block text-base font-display font-bold text-slate-900 leading-none">
+                  Medinet
+                </span>
+                <span className="block text-[9px] font-mono tracking-widest text-slate-600 uppercase mt-1">
+                  Pharmaceuticals
+                </span>
+              </div>
+            </button>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-1">
+              <button
+                onClick={() => navigate("home")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                HOME
+              </button>
+
+              {/* About dropdown triggers route page directly or via submenus */}
+              <button
+                onClick={() => navigate("about")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                ABOUT
+              </button>
+
+              {/* Products Mega Menu Trigger */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveMegaMenu("products")}
+                onMouseLeave={() => setActiveMegaMenu(null)}
+              >
+                <button
+                  onClick={() => navigate("products")}
+                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                    }`}
+                >
+                  PRODUCTS
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "products" ? "rotate-180" : ""}`} />
+                </button>
+
+                {/* Products Mega Menu Dropdown */}
+                {activeMegaMenu === "products" && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-white rounded-lg shadow-sm shadow-lg border border-slate-200 p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
+                    <div className="col-span-2 border-b border-slate-200 pb-2 mb-1">
+                      <div className="text-[10px] font-mono font-semibold uppercase text-slate-400 tracking-wider">
+                        Therapeutic Segments
+                      </div>
+                    </div>
+                    {THERAPEUTIC_CATEGORIES.map((cat) => {
+                      const IconComponent = iconMap[cat.iconName] || Activity;
+                      return (
+                        <button
+                          key={cat.id}
+                          onClick={() => {
+                            setActiveMegaMenu(null);
+                            navigate("products", { category: cat.id });
+                          }}
+                          className="flex items-start gap-2.5 p-2 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                        >
+                          <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                            <IconComponent className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-semibold text-slate-900 group-hover:text-slate-900">
+                              {cat.name}
+                            </div>
+                            <div className="text-[11px] text-slate-600 line-clamp-1 mt-0.5 font-sans">
+                              {cat.description}
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                    <div className="col-span-2 mt-2 bg-slate-50 border border-slate-200/60 p-2.5 rounded-lg shadow-sm flex items-center justify-between">
+                      <div className="text-[11px] text-slate-600 font-sans">
+                        Looking for something specific? Search our entire portfolio.
+                      </div>
+                      <button
+                        onClick={() => {
+                          setActiveMegaMenu(null);
+                          setIsSearchOpen(true);
+                        }}
+                        className="text-[11px] font-mono font-semibold text-slate-900 flex items-center gap-1 hover:text-black"
+                      >
+                        SEARCH NOW <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <button
+                onClick={() => navigate("research-development")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                R&D
+              </button>
+
+              <button
+                onClick={() => navigate("quality")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                QUALITY
+              </button>
+
+              <button
+                onClick={() => navigate("business-partners")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                PARTNERS
+              </button>
+
+              <button
+                onClick={() => navigate("careers")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                CAREERS
+              </button>
+
+              <button
+                onClick={() => navigate("news-events")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                NEWS
+              </button>
+
+              <button
+                onClick={() => navigate("contact")}
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+              >
+                CONTACT
+              </button>
+
+              {/* Legal Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveMegaMenu("legal")}
+                onMouseLeave={() => setActiveMegaMenu(null)}
+              >
+                <button
+                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${
+                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  }`}
+                >
+                  LEGAL
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "legal" ? "rotate-180" : ""}`} />
+                </button>
+
+                {activeMegaMenu === "legal" && (
+                  <div className="absolute right-0 top-full w-[300px] bg-white rounded-lg shadow-sm shadow-lg border border-slate-200 p-3 animate-fade-in mt-1 flex flex-col gap-1 z-50">
+                    <a
+                      href="/legal/privacy-policy"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                    >
+                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                        <ShieldCheck className="w-4 h-4" />
+                      </div>
+                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                        Privacy Policy
+                      </div>
+                    </a>
+                    
+                    <a
+                      href="/legal/terms-conditions"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                    >
+                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                        <FileText className="w-4 h-4" />
+                      </div>
+                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                        Terms & Conditions
+                      </div>
+                    </a>
+
+                    <a
+                      href="/legal/disclaimer"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                    >
+                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                        <Scale className="w-4 h-4" />
+                      </div>
+                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                        Disclaimer
+                      </div>
+                    </a>
+
+                    <a
+                      href="/legal/cookie-policy"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                    >
+                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                        <Cookie className="w-4 h-4" />
+                      </div>
+                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                        Cookie Policy
+                      </div>
+                    </a>
+
+                    <a
+                      href="/legal/copyright-notice"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                    >
+                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                        <Copyright className="w-4 h-4" />
+                      </div>
+                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                        Copyright Notice
+                      </div>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </nav>
+
+            {/* Right Buttons */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 hover:bg-slate-100 rounded text-slate-600 hover:text-slate-900 transition-colors focus:outline-none"
+                aria-label="Search"
+                title="Search Products (Ctrl+K)"
+              >
+                <Search className="w-4.5 h-4.5" />
+              </button>
+
+              {/* Quick Contact CTA */}
+              <button
+                type="button"
+                aria-label="Inquire Now"
+                aria-haspopup="dialog"
+                aria-expanded={isEnquiryOpen}
+                onClick={() => setIsEnquiryOpen(true)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setIsEnquiryOpen(true);
+                  }
+                }}
+                className="relative hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-black text-white font-mono text-[11px] font-medium rounded border border-slate-900 transition-all shadow-sm active:scale-98 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+              >
+                <span className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px]" aria-hidden="true"></span>
+                <PhoneCall className="w-3.5 h-3.5" />
+                INQUIRE NOW
+              </button>
+
+              {/* Mobile Burger Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2.5 hover:bg-slate-100 rounded-lg shadow-sm text-slate-600 hover:text-slate-900 transition-colors lg:hidden focus:outline-none"
+                aria-label="Toggle Menu"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-lg overflow-hidden animate-slide-in">
+            <div className="px-4 py-4 space-y-1 bg-white">
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("home");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                HOME
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("about");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                ABOUT US
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("products");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                PRODUCTS DIRECTORY
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("research-development");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                RESEARCH & DEVELOPMENT
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("quality");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                QUALITY ASSURANCE
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("business-partners");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                PARTNERS & DISTRIBUTION
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("careers");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                CAREERS & OPENINGS
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("news-events");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                NEWS & EVENTS
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("contact");
+                }}
+                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+              >
+                CONTACT & SUPPORT
+              </button>
+              <div className="pt-4 pb-2 border-t border-slate-200 flex flex-col gap-2 px-4">
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("contact");
+                  }}
+                  className="w-full py-2.5 bg-slate-900 hover:bg-black text-white rounded text-xs font-mono font-medium text-center transition-colors"
+                >
+                  GET IN TOUCH
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Enquiry Modal */}
+        {isEnquiryOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title">
+            <div className="w-full max-w-lg bg-white rounded-lg shadow-sm shadow-2xl border border-slate-200 overflow-hidden text-left flex flex-col mt-16 max-h-[85vh]">
+              {/* Header */}
+              <div className="flex items-start justify-between p-5 border-b border-slate-200 bg-slate-50">
+                <div>
+                  <span className="text-[10px] font-mono font-medium text-slate-600 uppercase tracking-widest block">
+                    // QUICK CONTACT
+                  </span>
+                  <h2 id="enquiry-modal-title" className="text-lg font-display font-medium text-slate-900 mt-1">
+                    Submit an Enquiry
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setIsEnquiryOpen(false)}
+                  className="p-1.5 hover:bg-slate-100/50 text-slate-400 hover:text-slate-600 rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Form Content */}
+              <form onSubmit={handleEnquirySubmit} className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-mono font-medium text-slate-600">Full Name <span className="text-red-500">*</span></label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.name ? "border-red-500" : "border-slate-200"}`}
+                    />
+                    {formErrors.name && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.name}</span>}
+                  </div>
+                  <div>
+                    <label className="text-xs font-mono font-medium text-slate-600">Email Address <span className="text-red-500">*</span></label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.email ? "border-red-500" : "border-slate-200"}`}
+                    />
+                    {formErrors.email && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.email}</span>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-mono font-medium text-slate-600">Phone/Whatsapp <span className="text-red-500">*</span></label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.phone ? "border-red-500" : "border-slate-200"}`}
+                    />
+                    {formErrors.phone && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.phone}</span>}
+                  </div>
+                  <div>
+                    <label className="text-xs font-mono font-medium text-slate-600">Company (Optional)</label>
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full mt-1.5 px-3 py-2 border border-slate-200 rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-mono font-medium text-slate-600">Enquiry Details <span className="text-red-500">*</span></label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.message ? "border-red-500" : "border-slate-200"}`}
+                    placeholder="Please let us know how we can help you..."
+                  ></textarea>
+                  {formErrors.message && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.message}</span>}
+                </div>
+
+                {/* Footer */}
+                <div className="pt-4 border-t border-slate-200 flex items-center justify-end gap-3 bg-white mt-4">
+                  <button
+                    type="button"
+                    onClick={() => setIsEnquiryOpen(false)}
+                    className="px-4 py-2 border border-slate-200 text-slate-600 hover:bg-slate-50 font-mono text-xs font-medium rounded-lg shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                  >
+                    CANCEL
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={formSubmitting}
+                    className="px-5 py-2 bg-slate-900 hover:bg-black text-white font-mono text-xs font-medium rounded-lg shadow-sm transition-all flex items-center justify-center gap-1.5 min-w-[140px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+                  >
+                    {formSubmitting ? (
+                      <>
+                        <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                        SUBMITTING...
+                      </>
+                    ) : (
+                      <>
+                        SUBMIT ENQUIRY
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </header>
+    </>
+  );
+}

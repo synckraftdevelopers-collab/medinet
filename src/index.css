@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-[#F9FAFB] text-slate-800 antialiased selection:bg-slate-900 selection:text-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight font-medium text-slate-900;
+  }
+}
+
+/* Clean Utility / Minimal styles: Crisp, structured, high-contrast, beautiful borders */
+.utility-panel {
+  @apply bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:border-slate-400 hover:shadow-md transition-all duration-200;
+}
+
+.utility-badge {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-mono font-medium tracking-wider uppercase;
+}
+
+.utility-badge-blue {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-50/80 border border-blue-200 text-blue-700 text-[11px] font-mono font-medium tracking-wider uppercase;
+}
+
+.utility-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-blue-600;
+}
+
+.utility-button-primary {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-950 active:bg-black text-white text-sm font-semibold rounded-lg border border-slate-950 transition-all shadow-sm active:scale-98;
+}
+
+.utility-button-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-sm font-semibold rounded-lg transition-all shadow-sm active:scale-98;
+}
+
+/* Flat sleek glassmorphism for minimal header styling */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

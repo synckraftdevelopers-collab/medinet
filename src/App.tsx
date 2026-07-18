@@ -3,11 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
+
+
 import React, { useState } from "react";
 import { useRoute } from "./hooks/useRoute";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
+
+
 
 // Pages
 import Home from "./components/pages/Home";

@@ -180,25 +180,25 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
     <>
       {/* Search Modal */}
       {isSearchOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-slate-900/40 backdrop-blur-sm">
-          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-slide-in">
-            <form onSubmit={handleSearchSubmit} className="flex items-center gap-3 px-4 py-4 border-b border-slate-200">
-              <Search className="w-5 h-5 text-slate-400 shrink-0" />
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-primary/40 backdrop-blur-sm">
+          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-border overflow-hidden animate-slide-in">
+            <form onSubmit={handleSearchSubmit} className="flex items-center gap-3 px-4 py-4 border-b border-border">
+              <Search className="w-5 h-5 text-muted shrink-0" />
               <input
                 ref={searchInputRef}
                 type="text"
                 placeholder="Search products by brand name or generic API..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="w-full text-slate-900 placeholder:text-slate-400 focus:outline-none text-base"
+                className="w-full text-heading placeholder:text-muted focus:outline-none text-base"
               />
-              <span className="hidden md:inline-flex text-[10px] font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-400 border border-slate-200">
+              <span className="hidden md:inline-flex text-[10px] font-mono bg-alt-bg px-1.5 py-0.5 rounded text-muted border border-border">
                 ESC
               </span>
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(false)}
-                className="p-1.5 hover:bg-slate-50 text-slate-400 hover:text-slate-600 rounded-lg shadow-sm shrink-0 transition-colors"
+                className="p-1.5 hover:bg-background text-muted hover:text-body rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shrink-0 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -207,29 +207,29 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
             <div className="max-h-[380px] overflow-y-auto p-4">
               {searchResults.length > 0 ? (
                 <div className="space-y-1">
-                  <p className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-2 px-2">
+                  <p className="text-xs font-mono font-semibold text-muted uppercase tracking-wider mb-2 px-2">
                     Found {searchResults.length} Formulations
                   </p>
                   {searchResults.map((product) => (
                     <button
                       key={product.id}
                       onClick={() => selectSearchResult(product)}
-                      className="w-full text-left flex items-start gap-3 p-3 hover:bg-blue-50/50 rounded-lg shadow-sm transition-colors group"
+                      className="w-full text-left flex items-start gap-3 p-3 hover:bg-blue-50/50 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-lg shadow-sm bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 group-hover:bg-blue-100">
+                      <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 group-hover:bg-blue-100">
                         <Activity className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="font-semibold text-slate-900 text-sm group-hover:text-blue-600 flex items-center gap-2">
+                        <div className="font-semibold text-heading text-sm group-hover:text-blue-600 flex items-center gap-2">
                           {product.name}
-                          <span className="text-xs font-normal text-slate-400 font-mono">
+                          <span className="text-xs font-normal text-muted font-mono">
                             {product.strength}
                           </span>
                         </div>
-                        <div className="text-xs text-slate-600 font-mono italic mt-0.5">
+                        <div className="text-xs text-body font-mono italic mt-0.5">
                           {product.genericName}
                         </div>
-                        <div className="text-xs text-slate-400 mt-1 line-clamp-1">
+                        <div className="text-xs text-muted mt-1 line-clamp-1">
                           {product.description}
                         </div>
                       </div>
@@ -238,12 +238,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </div>
               ) : searchQuery ? (
                 <div className="text-center py-10 px-4">
-                  <p className="text-slate-600 text-sm">No formulations found for &ldquo;{searchQuery}&rdquo;</p>
-                  <p className="text-slate-400 text-xs mt-1">Try searching for ingredients like Atorvastatin, Ramipril, Gabapentin.</p>
+                  <p className="text-body text-sm">No formulations found for &ldquo;{searchQuery}&rdquo;</p>
+                  <p className="text-muted text-xs mt-1">Try searching for ingredients like Atorvastatin, Ramipril, Gabapentin.</p>
                 </div>
               ) : (
                 <div className="py-6 px-2">
-                  <p className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                  <p className="text-xs font-mono font-semibold text-muted uppercase tracking-wider mb-3">
                     Therapeutic Segments
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -256,14 +256,14 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setIsSearchOpen(false);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm border border-slate-200 hover:border-blue-100 hover:bg-slate-50/50 text-left transition-all"
+                          className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm border border-border hover:border-blue-100 hover:bg-background/50 text-left transition-all"
                         >
-                          <div className="w-8 h-8 rounded-lg shadow-sm bg-slate-50 flex items-center justify-center text-slate-600">
+                          <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background flex items-center justify-center text-body">
                             <IconComponent className="w-4 h-4" />
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-slate-900">{cat.name}</div>
-                            <div className="text-xs text-slate-400 line-clamp-1">{cat.description}</div>
+                            <div className="text-sm font-semibold text-heading">{cat.name}</div>
+                            <div className="text-xs text-muted line-clamp-1">{cat.description}</div>
                           </div>
                         </button>
                       );
@@ -279,7 +279,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
       {/* Main Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 py-3"
+            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border py-3"
             : "bg-transparent py-5"
           }`}
       >
@@ -291,14 +291,14 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               className="flex items-center gap-2.5 text-left focus:outline-none"
               id="navbar-logo"
             >
-              <div className="w-9 h-9 rounded bg-slate-900 flex items-center justify-center text-white shrink-0 font-display font-black text-lg tracking-tight">
+              <div className="w-9 h-9 rounded bg-primary flex items-center justify-center text-white shrink-0 font-display font-black text-lg tracking-tight">
                 M
               </div>
               <div>
-                <span className="block text-base font-display font-bold text-slate-900 leading-none">
+                <span className="block text-base font-display font-bold text-heading leading-none">
                   Medinet
                 </span>
-                <span className="block text-[9px] font-mono tracking-widest text-slate-600 uppercase mt-1">
+                <span className="block text-[9px] font-mono tracking-widest text-body uppercase mt-1">
                   Pharmaceuticals
                 </span>
               </div>
@@ -308,7 +308,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
             <nav className="hidden lg:flex items-center gap-1">
               <button
                 onClick={() => navigate("home")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 HOME
@@ -317,7 +317,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* About dropdown triggers route page directly or via submenus */}
               <button
                 onClick={() => navigate("about")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 ABOUT
@@ -331,7 +331,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               >
                 <button
                   onClick={() => navigate("products")}
-                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                     }`}
                 >
                   PRODUCTS
@@ -340,9 +340,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                 {/* Products Mega Menu Dropdown */}
                 {activeMegaMenu === "products" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-white rounded-lg shadow-sm shadow-lg border border-slate-200 p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
-                    <div className="col-span-2 border-b border-slate-200 pb-2 mb-1">
-                      <div className="text-[10px] font-mono font-semibold uppercase text-slate-400 tracking-wider">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-lg border border-border p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
+                    <div className="col-span-2 border-b border-border pb-2 mb-1">
+                      <div className="text-[10px] font-mono font-semibold uppercase text-muted tracking-wider">
                         Therapeutic Segments
                       </div>
                     </div>
@@ -355,24 +355,24 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setActiveMegaMenu(null);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-start gap-2.5 p-2 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                          className="flex items-start gap-2.5 p-2 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
                         >
-                          <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                          <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                             <IconComponent className="w-4 h-4" />
                           </div>
                           <div>
-                            <div className="text-xs font-semibold text-slate-900 group-hover:text-slate-900">
+                            <div className="text-xs font-semibold text-heading group-hover:text-heading">
                               {cat.name}
                             </div>
-                            <div className="text-[11px] text-slate-600 line-clamp-1 mt-0.5 font-sans">
+                            <div className="text-[11px] text-body line-clamp-1 mt-0.5 font-sans">
                               {cat.description}
                             </div>
                           </div>
                         </button>
                       );
                     })}
-                    <div className="col-span-2 mt-2 bg-slate-50 border border-slate-200/60 p-2.5 rounded-lg shadow-sm flex items-center justify-between">
-                      <div className="text-[11px] text-slate-600 font-sans">
+                    <div className="col-span-2 mt-2 bg-background border border-border/60 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm flex items-center justify-between">
+                      <div className="text-[11px] text-body font-sans">
                         Looking for something specific? Search our entire portfolio.
                       </div>
                       <button
@@ -380,7 +380,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setActiveMegaMenu(null);
                           setIsSearchOpen(true);
                         }}
-                        className="text-[11px] font-mono font-semibold text-slate-900 flex items-center gap-1 hover:text-black"
+                        className="text-[11px] font-mono font-semibold text-heading flex items-center gap-1 hover:text-black"
                       >
                         SEARCH NOW <ArrowRight className="w-3.5 h-3.5" />
                       </button>
@@ -391,7 +391,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("research-development")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 R&D
@@ -399,7 +399,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("quality")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 QUALITY
@@ -407,7 +407,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("business-partners")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 PARTNERS
@@ -415,7 +415,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("careers")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 CAREERS
@@ -423,7 +423,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("news-events")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 NEWS
@@ -431,7 +431,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("contact")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
               >
                 CONTACT
@@ -445,7 +445,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               >
                 <button
                   className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${
-                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-slate-900 bg-slate-100 border border-slate-200/80" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent"
+                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
                   }`}
                 >
                   LEGAL
@@ -453,16 +453,16 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </button>
 
                 {activeMegaMenu === "legal" && (
-                  <div className="absolute right-0 top-full w-[300px] bg-white rounded-lg shadow-sm shadow-lg border border-slate-200 p-3 animate-fade-in mt-1 flex flex-col gap-1 z-50">
+                  <div className="absolute right-0 top-full w-[300px] bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-lg border border-border p-3 animate-fade-in mt-1 flex flex-col gap-1 z-50">
                     <a
                       href="/legal/privacy-policy"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
                     >
-                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                         <ShieldCheck className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                      <div className="text-sm font-medium text-heading group-hover:text-heading">
                         Privacy Policy
                       </div>
                     </a>
@@ -470,12 +470,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/terms-conditions"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
                     >
-                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                         <FileText className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                      <div className="text-sm font-medium text-heading group-hover:text-heading">
                         Terms & Conditions
                       </div>
                     </a>
@@ -483,12 +483,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/disclaimer"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
                     >
-                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                         <Scale className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                      <div className="text-sm font-medium text-heading group-hover:text-heading">
                         Disclaimer
                       </div>
                     </a>
@@ -496,12 +496,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/cookie-policy"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
                     >
-                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                         <Cookie className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                      <div className="text-sm font-medium text-heading group-hover:text-heading">
                         Cookie Policy
                       </div>
                     </a>
@@ -509,12 +509,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/copyright-notice"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-lg shadow-sm hover:bg-slate-50 text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
                     >
-                      <div className="w-8 h-8 rounded bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                         <Copyright className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-slate-900 group-hover:text-slate-900">
+                      <div className="text-sm font-medium text-heading group-hover:text-heading">
                         Copyright Notice
                       </div>
                     </a>
@@ -527,7 +527,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 hover:bg-slate-100 rounded text-slate-600 hover:text-slate-900 transition-colors focus:outline-none"
+                className="p-2 hover:bg-alt-bg rounded text-body hover:text-heading transition-colors focus:outline-none"
                 aria-label="Search"
                 title="Search Products (Ctrl+K)"
               >
@@ -547,7 +547,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="relative hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-black text-white font-mono text-[11px] font-medium rounded border border-slate-900 transition-all shadow-sm active:scale-98 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+                className="relative hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-black text-white font-mono text-[11px] font-medium rounded border border-primary transition-all shadow-sm active:scale-98 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
               >
                 <span className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px]" aria-hidden="true"></span>
                 <PhoneCall className="w-3.5 h-3.5" />
@@ -557,7 +557,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* Mobile Burger Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2.5 hover:bg-slate-100 rounded-lg shadow-sm text-slate-600 hover:text-slate-900 transition-colors lg:hidden focus:outline-none"
+                className="p-2.5 hover:bg-alt-bg rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-body hover:text-heading transition-colors lg:hidden focus:outline-none"
                 aria-label="Toggle Menu"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -576,7 +576,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="lg:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[9998]"
+                className="lg:hidden fixed inset-0 bg-primary/40 backdrop-blur-sm z-[9998]"
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-hidden="true"
               />
@@ -592,20 +592,20 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 aria-label="Mobile Navigation"
               >
                 {/* Drawer Header */}
-                <div className="flex items-center justify-between p-4 border-b border-slate-200 shrink-0">
+                <div className="flex items-center justify-between p-4 border-b border-border shrink-0">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded bg-slate-900 flex items-center justify-center text-white shrink-0 font-display font-black text-base tracking-tight">
+                    <div className="w-8 h-8 rounded bg-primary flex items-center justify-center text-white shrink-0 font-display font-black text-base tracking-tight">
                       M
                     </div>
                     <div>
-                      <span className="block text-base font-display font-bold text-slate-900 leading-none">
+                      <span className="block text-base font-display font-bold text-heading leading-none">
                         Medinet
                       </span>
                     </div>
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 hover:text-slate-900 transition-colors focus:outline-none"
+                    className="p-2 hover:bg-alt-bg rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 text-body hover:text-heading transition-colors focus:outline-none"
                     aria-label="Close menu"
                   >
                     <X className="w-6 h-6" />
@@ -631,7 +631,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                         setIsMobileMenuOpen(false);
                         navigate(item.route);
                       }}
-                      className="w-full text-left p-4 min-h-[48px] rounded-lg text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors active:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                      className="w-full text-left p-4 min-h-[48px] rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 text-xs font-mono font-medium text-body hover:bg-alt-bg hover:text-heading block transition-colors active:bg-alt-bg focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
                     >
                       {item.label}
                     </button>
@@ -641,7 +641,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                   <div className="pt-1">
                     <button
                       onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
-                      className="w-full flex items-center justify-between p-4 min-h-[48px] rounded-lg text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors active:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                      className="w-full flex items-center justify-between p-4 min-h-[48px] rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 text-xs font-mono font-medium text-body hover:bg-alt-bg hover:text-heading transition-colors active:bg-alt-bg focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
                       aria-expanded={activeMobileAccordion === "legal"}
                     >
                       LEGAL
@@ -656,7 +656,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                           transition={{ duration: 0.25 }}
                           className="overflow-hidden"
                         >
-                          <div className="pl-4 pr-2 py-2 mb-2 space-y-1 bg-slate-50 rounded-lg mt-1 border border-slate-100">
+                          <div className="pl-4 pr-2 py-2 mb-2 space-y-1 bg-background rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 mt-1 border border-border">
                             {[
                               { label: "Privacy Policy", route: "/legal/privacy-policy", icon: ShieldCheck },
                               { label: "Terms & Conditions", route: "/legal/terms-conditions", icon: FileText },
@@ -668,7 +668,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                                 key={item.route}
                                 href={item.route}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="flex items-center gap-3 p-3 min-h-[48px] rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors active:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                                className="flex items-center gap-3 p-3 min-h-[48px] rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 text-sm font-medium text-body hover:bg-alt-bg hover:text-heading transition-colors active:bg-alt-bg focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
                               >
                                 <item.icon className="w-4 h-4 shrink-0" />
                                 {item.label}
@@ -682,13 +682,13 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </div>
                 
                 {/* Pinned Bottom CTA */}
-                <div className="p-4 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-slate-200 bg-white shrink-0">
+                <div className="p-4 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-border bg-white shrink-0">
                   <button
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       navigate("contact");
                     }}
-                    className="w-full p-4 min-h-[48px] bg-slate-900 hover:bg-black active:scale-[0.98] text-white rounded-lg text-xs font-mono font-medium text-center transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+                    className="w-full p-4 min-h-[48px] bg-primary hover:bg-black active:scale-[0.98] text-white rounded-btn shadow-btn hover:shadow-btn-hover transition-all duration-300 text-xs font-mono font-medium text-center transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
                   >
                     GET IN TOUCH
                   </button>
@@ -699,21 +699,21 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
         </AnimatePresence>
         {/* Enquiry Modal */}
         {isEnquiryOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title">
-            <div className="w-full max-w-lg bg-white rounded-lg shadow-sm shadow-2xl border border-slate-200 overflow-hidden text-left flex flex-col mt-16 max-h-[85vh]">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title">
+            <div className="w-full max-w-lg bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-2xl border border-border overflow-hidden text-left flex flex-col mt-16 max-h-[85vh]">
               {/* Header */}
-              <div className="flex items-start justify-between p-5 border-b border-slate-200 bg-slate-50">
+              <div className="flex items-start justify-between p-5 border-b border-border bg-background">
                 <div>
-                  <span className="text-[10px] font-mono font-medium text-slate-600 uppercase tracking-widest block">
+                  <span className="text-[10px] font-mono font-medium text-body uppercase tracking-widest block">
                     // QUICK CONTACT
                   </span>
-                  <h2 id="enquiry-modal-title" className="text-lg font-display font-medium text-slate-900 mt-1">
+                  <h2 id="enquiry-modal-title" className="text-lg font-display font-medium text-heading mt-1">
                     Submit an Enquiry
                   </h2>
                 </div>
                 <button
                   onClick={() => setIsEnquiryOpen(false)}
-                  className="p-1.5 hover:bg-slate-100/50 text-slate-400 hover:text-slate-600 rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                  className="p-1.5 hover:bg-alt-bg/50 text-muted hover:text-body rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -724,24 +724,24 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               <form onSubmit={handleEnquirySubmit} className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-mono font-medium text-slate-600">Full Name <span className="text-red-500">*</span></label>
+                    <label className="text-xs font-mono font-medium text-body">Full Name <span className="text-red-500">*</span></label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.name ? "border-red-500" : "border-slate-200"}`}
+                      className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.name ? "border-red-500" : "border-border"}`}
                     />
                     {formErrors.name && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.name}</span>}
                   </div>
                   <div>
-                    <label className="text-xs font-mono font-medium text-slate-600">Email Address <span className="text-red-500">*</span></label>
+                    <label className="text-xs font-mono font-medium text-body">Email Address <span className="text-red-500">*</span></label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.email ? "border-red-500" : "border-slate-200"}`}
+                      className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.email ? "border-red-500" : "border-border"}`}
                     />
                     {formErrors.email && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.email}</span>}
                   </div>
@@ -749,53 +749,53 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-mono font-medium text-slate-600">Phone/Whatsapp <span className="text-red-500">*</span></label>
+                    <label className="text-xs font-mono font-medium text-body">Phone/Whatsapp <span className="text-red-500">*</span></label>
                     <input
                       type="tel"
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.phone ? "border-red-500" : "border-slate-200"}`}
+                      className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.phone ? "border-red-500" : "border-border"}`}
                     />
                     {formErrors.phone && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.phone}</span>}
                   </div>
                   <div>
-                    <label className="text-xs font-mono font-medium text-slate-600">Company (Optional)</label>
+                    <label className="text-xs font-mono font-medium text-body">Company (Optional)</label>
                     <input
                       type="text"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full mt-1.5 px-3 py-2 border border-slate-200 rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all"
+                      className="w-full mt-1.5 px-3 py-2 border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono font-medium text-slate-600">Enquiry Details <span className="text-red-500">*</span></label>
+                  <label className="text-xs font-mono font-medium text-body">Enquiry Details <span className="text-red-500">*</span></label>
                   <textarea
                     required
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 border rounded-lg shadow-sm text-sm focus:border-slate-500 focus:outline-none transition-all ${formErrors.message ? "border-red-500" : "border-slate-200"}`}
+                    className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.message ? "border-red-500" : "border-border"}`}
                     placeholder="Please let us know how we can help you..."
                   ></textarea>
                   {formErrors.message && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.message}</span>}
                 </div>
 
                 {/* Footer */}
-                <div className="pt-4 border-t border-slate-200 flex items-center justify-end gap-3 bg-white mt-4">
+                <div className="pt-4 border-t border-border flex items-center justify-end gap-3 bg-white mt-4">
                   <button
                     type="button"
                     onClick={() => setIsEnquiryOpen(false)}
-                    className="px-4 py-2 border border-slate-200 text-slate-600 hover:bg-slate-50 font-mono text-xs font-medium rounded-lg shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                    className="px-4 py-2 border border-border text-body hover:bg-background font-mono text-xs font-medium rounded-btn shadow-btn hover:shadow-btn-hover transition-all duration-300 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
                   >
                     CANCEL
                   </button>
                   <button
                     type="submit"
                     disabled={formSubmitting}
-                    className="px-5 py-2 bg-slate-900 hover:bg-black text-white font-mono text-xs font-medium rounded-lg shadow-sm transition-all flex items-center justify-center gap-1.5 min-w-[140px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+                    className="px-5 py-2 bg-primary hover:bg-black text-white font-mono text-xs font-medium rounded-btn shadow-btn hover:shadow-btn-hover transition-all duration-300 shadow-sm transition-all flex items-center justify-center gap-1.5 min-w-[140px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
                   >
                     {formSubmitting ? (
                       <>

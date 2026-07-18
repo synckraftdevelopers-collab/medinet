@@ -22,17 +22,17 @@ export default function CookiePolicyPage() {
       sections={sections}
     >
       <section id="what-are-cookies">
-        <h2 className="text-xl font-bold text-slate-900 mb-3">1. What Are Cookies?</h2>
+        <h2 className="text-xl font-bold text-heading mb-3">1. What Are Cookies?</h2>
         <p>Cookies are small text files placed on your computer or mobile device when you visit our website. They are widely used by corporate websites to make them work more efficiently, as well as to provide reporting information to the site owners.</p>
       </section>
 
       <section id="how-we-use">
-        <h2 className="text-xl font-bold text-slate-900 mb-3 mt-6">2. How We Use Cookies</h2>
+        <h2 className="text-xl font-bold text-heading mb-3 mt-6">2. How We Use Cookies</h2>
         <p>Medinet Pharmaceuticals uses cookies to understand how you interact with our content, to improve your browsing experience, and to remember your preferences (such as language or region) during future visits. We also use cookies for basic security auditing and fraud prevention.</p>
       </section>
 
       <section id="types-of-cookies">
-        <h2 className="text-xl font-bold text-slate-900 mb-3 mt-6">3. Types of Cookies Used</h2>
+        <h2 className="text-xl font-bold text-heading mb-3 mt-6">3. Types of Cookies Used</h2>
         <ul className="list-disc pl-5 mt-2 space-y-2">
           <li><strong>Strictly Necessary Cookies:</strong> Essential for the website to function properly. They cannot be switched off in our systems.</li>
           <li><strong>Performance Cookies:</strong> Allow us to count visits and traffic sources so we can measure and improve the performance of our site.</li>
@@ -41,7 +41,7 @@ export default function CookiePolicyPage() {
       </section>
 
       <section id="managing-cookies">
-        <h2 className="text-xl font-bold text-slate-900 mb-3 mt-6">4. Managing Cookies</h2>
+        <h2 className="text-xl font-bold text-heading mb-3 mt-6">4. Managing Cookies</h2>
         <p>You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. If you do this, however, you may have to manually adjust some preferences every time you visit the site, and some services and functionalities may not work.</p>
       </section>
     </LegalLayout>

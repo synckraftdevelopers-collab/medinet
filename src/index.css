@@ -5,11 +5,46 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Premium Pharmaceutical Colors */
+  --color-primary: #0B1F4D;
+  --color-primary-hover: #1D4ED8;
+  --color-secondary: #2563EB;
+  --color-accent: #0D9488;
+  --color-highlight: #38BDF8;
+
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-alt-bg: #F1F5F9;
+  --color-footer: #0B1120;
+
+  --color-heading: #0F172A;
+  --color-body: #475569;
+  --color-muted: #94A3B8;
+  --color-border: #E2E8F0;
+
+  --color-success: #16A34A;
+  --color-warning: #F59E0B;
+  --color-error: #DC2626;
+  --color-info: #0284C7;
+
+  /* Design Tokens */
+  --radius-btn: 16px;
+  --radius-card: 24px;
+  --radius-input: 16px;
+  --radius-dropdown: 20px;
+  --radius-badge: 999px;
+
+  --shadow-card: 0 20px 45px rgba(11,31,77,.08);
+  --shadow-card-hover: 0 30px 60px rgba(11,31,77,.12);
+  --shadow-dropdown: 0 12px 30px rgba(0,0,0,.08);
+  --shadow-btn: 0 12px 30px rgba(11,31,77,.15);
+  --shadow-nav: 0 2px 12px rgba(0,0,0,.05);
 }
 
 @layer base {
   body {
-    @apply font-sans bg-[#F9FAFB] text-slate-800 antialiased selection:bg-slate-900 selection:text-white;
+    @apply font-sans bg-background text-body antialiased selection:bg-primary selection:text-white;
   }
 
   h1,
@@ -18,33 +53,33 @@
   h4,
   h5,
   h6 {
-    @apply font-display tracking-tight font-medium text-slate-900;
+    @apply font-display tracking-tight font-semibold text-heading;
   }
 }
 
 /* Clean Utility / Minimal styles: Crisp, structured, high-contrast, beautiful borders */
 .utility-panel {
-  @apply bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:border-slate-400 hover:shadow-md transition-all duration-200;
+  @apply bg-surface border border-border rounded-card p-6 shadow-card hover:border-secondary hover:shadow-card-hover transition-all duration-300;
 }
 
 .utility-badge {
-  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-mono font-medium tracking-wider uppercase;
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-badge bg-alt-bg border border-border text-heading text-[11px] font-mono font-medium tracking-wider uppercase;
 }
 
 .utility-badge-blue {
-  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-50/80 border border-blue-200 text-blue-700 text-[11px] font-mono font-medium tracking-wider uppercase;
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-badge bg-secondary/10 border border-secondary/20 text-secondary text-[11px] font-mono font-medium tracking-wider uppercase;
 }
 
 .utility-dot {
-  @apply w-1.5 h-1.5 rounded-full bg-blue-600;
+  @apply w-1.5 h-1.5 rounded-full bg-accent;
 }
 
 .utility-button-primary {
-  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-950 active:bg-black text-white text-sm font-semibold rounded-lg border border-slate-950 transition-all shadow-sm active:scale-98;
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover active:-translate-y-0.5 text-white text-sm font-semibold rounded-btn border border-primary transition-all duration-300 shadow-btn hover:shadow-card-hover scale-100 hover:scale-[1.02];
 }
 
 .utility-button-secondary {
-  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-sm font-semibold rounded-lg transition-all shadow-sm active:scale-98;
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-surface hover:bg-[#EFF6FF] border border-[#CBD5E1] hover:border-secondary text-primary text-sm font-semibold rounded-btn transition-all duration-300 shadow-sm hover:shadow-md scale-100 hover:scale-[1.02];
 }
 
 /* Flat sleek glassmorphism for minimal header styling */

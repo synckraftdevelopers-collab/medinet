@@ -37,12 +37,12 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-600 mb-8">
-            <a href="/" className="hover:text-slate-900 transition-colors">HOME</a>
+          <div className="flex items-center gap-2 text-xs font-mono text-body mb-8">
+            <a href="/" className="hover:text-heading transition-colors">HOME</a>
             <ChevronRight className="w-3 h-3" />
             <span>LEGAL</span>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-slate-900 font-semibold">{title.toUpperCase()}</span>
+            <span className="text-heading font-semibold">{title.toUpperCase()}</span>
           </div>
 
           {/* Hero Section */}
@@ -52,7 +52,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <h1 className="text-3xl md:text-5xl font-display font-bold text-slate-900 tracking-tight mb-4">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-heading tracking-tight mb-4">
               {title}
             </h1>
           </motion.div>
@@ -67,8 +67,8 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
               transition={{ duration: 0.5, delay: 0.1 }}
               className="w-full lg:col-span-3 lg:sticky lg:top-32"
             >
-              <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-5 shadow-sm">
-                <h4 className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-4">
+              <div className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm p-5 shadow-sm">
+                <h4 className="text-xs font-mono font-semibold text-muted uppercase tracking-wider mb-4">
                   // Table of Contents
                 </h4>
                 <ul className="space-y-3">
@@ -76,7 +76,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
                     <li key={section.id}>
                       <a 
                         href={`#${section.id}`} 
-                        className="text-sm text-slate-600 hover:text-teal-600 transition-colors font-medium block"
+                        className="text-sm text-body hover:text-teal-600 transition-colors font-medium block"
                       >
                         {section.title}
                       </a>
@@ -91,9 +91,9 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="lg:col-span-9 bg-white border border-slate-200 rounded-2xl p-6 md:p-10 shadow-sm w-full max-w-[900px]"
+              className="lg:col-span-9 bg-white border border-border rounded-2xl p-6 md:p-10 shadow-sm w-full max-w-[900px]"
             >
-              <div className="flex flex-col gap-8 text-slate-600 leading-relaxed">
+              <div className="flex flex-col gap-8 text-body leading-relaxed">
                 {children}
               </div>
             </motion.div>

@@ -25,15 +25,15 @@ export default function SectionHeader({
       id={id}
       className={`max-w-3xl mb-12 ${centered ? "mx-auto text-center" : "text-left"}`}
     >
-      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-mono font-medium tracking-wider uppercase">
-        <span className="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[11px] font-mono font-medium tracking-wider uppercase">
+        <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
         {badge}
       </span>
-      <h2 className="mt-3 text-3xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight leading-tight">
+      <h2 className="mt-3 text-3xl sm:text-4xl font-display font-bold text-heading tracking-tight leading-tight">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
+        <p className="mt-4 text-base sm:text-lg text-body font-sans leading-relaxed">
           {description}
         </p>
       )}

@@ -74,81 +74,81 @@ export default function ResearchDevelopment() {
   return (
     <div className="pt-20">
       {/* Page Header */}
-      <section className="bg-slate-50 border-b border-slate-200 py-16 relative overflow-hidden">
+      <section className="bg-background border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
             Scientific Excellence
           </span>
-          <h1 className="text-4xl sm:text-5xl font-display font-medium text-slate-900 tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-display font-medium text-heading tracking-tight leading-tight">
             Research & Formulation Technology
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
+          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl">
             Medinet&rsquo;s R&amp;D efforts focus on mastering formulation sciences. We optimize bioavailability, ensure complete physical stability, and pioneer advanced delivery systems to maximize therapeutic outcomes.
           </p>
         </div>
       </section>
 
       {/* R&D Overview and Stats */}
-      <section className="py-20 bg-white text-left border-b border-slate-200">
+      <section className="py-20 bg-white text-left border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6">
-              <span className="text-[11px] font-mono font-medium tracking-widest text-slate-600 uppercase block mb-3">
+              <span className="text-[11px] font-mono font-medium tracking-widest text-body uppercase block mb-3">
                 // CORE COMPETENCE
               </span>
-              <h2 className="text-3xl font-display font-medium text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-3xl font-display font-medium text-heading tracking-tight leading-tight">
                 Pioneering Next-Generation Pharmaceutical Delivery
               </h2>
-              <p className="mt-6 text-slate-600 leading-relaxed text-sm">
+              <p className="mt-6 text-body leading-relaxed text-sm">
                 Formulating bioequivalent medicines is more than copying active ingredients—it is a meticulous balancing of polymorph stability, excipient biology, and gastric transit pharmacology.
               </p>
-              <p className="mt-4 text-slate-600 leading-relaxed text-sm">
+              <p className="mt-4 text-body leading-relaxed text-sm">
                 At Medinet, our R&amp;D center focuses on solid-oral modifications (like sustained-release matrices) and advanced dermatological topical formulations. Through collaborating with elite clinical investigators, we run continuous human-phase trials to lock-in comparative therapeutic benchmarks.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4">
-                <div className="border border-slate-200 p-4 rounded-lg shadow-sm bg-slate-50">
-                  <span className="block text-2xl font-display font-bold text-slate-900">85%+</span>
-                  <span className="text-xs text-slate-600 font-mono mt-1 block">Pipeline in Phase III / Filing</span>
+                <div className="border border-border p-4 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background">
+                  <span className="block text-2xl font-display font-bold text-heading">85%+</span>
+                  <span className="text-xs text-body font-mono mt-1 block">Pipeline in Phase III / Filing</span>
                 </div>
-                <div className="border border-slate-200 p-4 rounded-lg shadow-sm bg-slate-50">
-                  <span className="block text-2xl font-display font-bold text-slate-900">Zone IVB</span>
-                  <span className="text-xs text-slate-600 font-mono mt-1 block">Stability Chamber Tested</span>
+                <div className="border border-border p-4 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background">
+                  <span className="block text-2xl font-display font-bold text-heading">Zone IVB</span>
+                  <span className="text-xs text-body font-mono mt-1 block">Stability Chamber Tested</span>
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-6 relative">
-              <div className="bg-slate-900 text-slate-400 rounded-lg shadow-sm p-8 relative overflow-hidden border border-slate-900">
+              <div className="bg-primary text-muted rounded-btn shadow-btn hover:shadow-btn-hover transition-all duration-300 shadow-sm p-8 relative overflow-hidden border border-primary">
                 <div className="flex items-center gap-3 mb-6">
                   <Atom className="w-6 h-6 text-white shrink-0" />
                   <div>
                     <h3 className="font-display font-bold text-white text-sm">Analytical Excellence</h3>
-                    <p className="text-[10px] text-slate-600 font-mono">LAB STANDARD: ICH COMPLIANT</p>
+                    <p className="text-[10px] text-body font-mono">LAB STANDARD: ICH COMPLIANT</p>
                   </div>
                 </div>
 
                 <div className="space-y-4 text-xs">
-                  <div className="p-3.5 bg-slate-900 border border-slate-900 rounded flex items-start gap-3">
+                  <div className="p-3.5 bg-primary border border-primary rounded flex items-start gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white mt-1.5 shrink-0" />
                     <div>
                       <span className="font-semibold text-white block">Full CTD/eCTD Formatting</span>
-                      <p className="text-slate-600 mt-0.5 text-xs">Preparing standardized dossiers for immediate regulatory filings globally.</p>
+                      <p className="text-body mt-0.5 text-xs">Preparing standardized dossiers for immediate regulatory filings globally.</p>
                     </div>
                   </div>
-                  <div className="p-3.5 bg-slate-900 border border-slate-900 rounded flex items-start gap-3">
+                  <div className="p-3.5 bg-primary border border-primary rounded flex items-start gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white mt-1.5 shrink-0" />
                     <div>
                       <span className="font-semibold text-white block">Impurity Profile Screening</span>
-                      <p className="text-slate-600 mt-0.5 text-xs">We verify negligible genotoxic or chemical impurities under strict USP criteria.</p>
+                      <p className="text-body mt-0.5 text-xs">We verify negligible genotoxic or chemical impurities under strict USP criteria.</p>
                     </div>
                   </div>
-                  <div className="p-3.5 bg-slate-900 border border-slate-900 rounded flex items-start gap-3">
+                  <div className="p-3.5 bg-primary border border-primary rounded flex items-start gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white mt-1.5 shrink-0" />
                     <div>
                       <span className="font-semibold text-white block">Polymorphism Research</span>
-                      <p className="text-slate-600 mt-0.5 text-xs">Isolating optimized molecular crystal habits to ensure robust storage life.</p>
+                      <p className="text-body mt-0.5 text-xs">Isolating optimized molecular crystal habits to ensure robust storage life.</p>
                     </div>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Focus Areas Cards */}
-      <section className="py-20 bg-slate-50 border-t border-b border-slate-200">
+      <section className="py-20 bg-background border-t border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Research Pillars"
@@ -172,12 +172,12 @@ export default function ResearchDevelopment() {
             {focusAreas.map((area, idx) => {
               const AreaIcon = area.icon;
               return (
-                <div key={idx} className="bg-white border border-slate-200 p-6 rounded-lg shadow-sm text-left shadow-sm">
-                  <div className="w-9 h-9 bg-slate-100 rounded flex items-center justify-center text-slate-900 mb-4">
+                <div key={idx} className="bg-white border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left shadow-sm">
+                  <div className="w-9 h-9 bg-alt-bg rounded flex items-center justify-center text-heading mb-4">
                     <AreaIcon className="w-4.5 h-4.5" />
                   </div>
-                  <h3 className="font-display font-bold text-slate-900 text-sm mb-2">{area.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{area.description}</p>
+                  <h3 className="font-display font-bold text-heading text-sm mb-2">{area.title}</h3>
+                  <p className="text-xs text-body leading-relaxed">{area.description}</p>
                 </div>
               );
             })}
@@ -195,38 +195,38 @@ export default function ResearchDevelopment() {
             centered
           />
 
-          <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-lg shadow-sm p-6 md:p-8 shadow-sm">
+          <div className="max-w-4xl mx-auto bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm p-6 md:p-8 shadow-sm">
             <div className="space-y-6 text-left">
               {PIPELINE.map((pipe) => (
-                <div key={pipe.id} className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0">
+                <div key={pipe.id} className="border-b border-border pb-5 last:border-b-0 last:pb-0">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                     <div>
-                      <span className="text-[9px] font-mono bg-slate-100 text-slate-900 border border-slate-200 px-2 py-0.5 rounded font-bold uppercase">
+                      <span className="text-[9px] font-mono bg-alt-bg text-heading border border-border px-2 py-0.5 rounded font-bold uppercase">
                         {pipe.category}
                       </span>
-                      <h4 className="font-display font-bold text-slate-900 text-base mt-1.5">
+                      <h4 className="font-display font-bold text-heading text-base mt-1.5">
                         {pipe.name}
                       </h4>
                     </div>
-                    <span className="inline-flex self-start sm:self-center text-xs font-mono font-bold text-slate-900 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded">
+                    <span className="inline-flex self-start sm:self-center text-xs font-mono font-bold text-heading bg-alt-bg border border-border px-2.5 py-1 rounded">
                       {pipe.phase}
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-600 leading-relaxed mb-3">
-                    <span className="font-semibold text-slate-600">Target Indication: </span>
+                  <p className="text-xs text-body leading-relaxed mb-3">
+                    <span className="font-semibold text-body">Target Indication: </span>
                     {pipe.indication}
                   </p>
 
                   {/* Visual Progress Bar */}
                   <div className="w-full">
-                    <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-1">
+                    <div className="flex items-center justify-between text-[10px] font-mono text-muted mb-1">
                       <span>Discovery & Lab Prototype</span>
-                      <span className="font-bold text-slate-900">{pipe.progress}% Progress</span>
+                      <span className="font-bold text-heading">{pipe.progress}% Progress</span>
                     </div>
                     <div className="w-full h-1.5 bg-slate-150 rounded overflow-hidden">
                       <div
-                        className="h-full bg-slate-900 rounded transition-all duration-1000"
+                        className="h-full bg-primary rounded transition-all duration-1000"
                         style={{ width: `${pipe.progress}%` }}
                       ></div>
                     </div>
@@ -239,7 +239,7 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Timeline Infographics Section */}
-      <section className="py-20 bg-slate-50 border-t border-slate-200">
+      <section className="py-20 bg-background border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Our Protocol"
@@ -250,16 +250,16 @@ export default function ResearchDevelopment() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {innovationPhases.map((step, idx) => (
-              <div key={idx} className="bg-white border border-slate-200 p-6 rounded-lg shadow-sm text-left relative shadow-sm group">
+              <div key={idx} className="bg-white border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left relative shadow-sm group">
                 <span className="absolute top-4 right-4 text-2xl font-display font-black text-slate-150 group-hover:text-slate-250 font-mono transition-colors">
                   {step.phase}
                 </span>
-                <div className="w-8 h-8 rounded bg-slate-100 text-slate-900 flex items-center justify-center font-bold text-xs font-mono mb-4">
+                <div className="w-8 h-8 rounded bg-alt-bg text-heading flex items-center justify-center font-bold text-xs font-mono mb-4">
                   S{idx + 1}
                 </div>
-                <h4 className="font-display font-bold text-slate-900 text-sm">{step.title}</h4>
-                <span className="text-[10px] font-mono text-slate-600 block uppercase font-semibold mt-0.5">{step.subtitle}</span>
-                <p className="text-xs text-slate-600 leading-relaxed mt-3">{step.description}</p>
+                <h4 className="font-display font-bold text-heading text-sm">{step.title}</h4>
+                <span className="text-[10px] font-mono text-body block uppercase font-semibold mt-0.5">{step.subtitle}</span>
+                <p className="text-xs text-body leading-relaxed mt-3">{step.description}</p>
               </div>
             ))}
           </div>

@@ -216,25 +216,25 @@ export default function Products({ params, showToast }: ProductsProps) {
   return (
     <div className="pt-20">
       {/* Page Header */}
-      <section className="bg-slate-50 border-b border-slate-200 py-16 relative overflow-hidden">
+      <section className="bg-background border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
               Formulation Portfolio
             </span>
-            <h1 className="text-4xl sm:text-5xl font-display font-medium text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-display font-medium text-heading tracking-tight leading-tight">
               Products Directory
             </h1>
-            <p className="mt-3 text-slate-600 leading-relaxed max-w-2xl text-xs sm:text-sm">
+            <p className="mt-3 text-body leading-relaxed max-w-2xl text-xs sm:text-sm">
               Explore our comprehensive collection of therapeutic formulations. Every product is audited, verified, bioequivalent, and licensed for wholesale export.
             </p>
           </div>
           <button
             onClick={handleCatalogDownload}
             disabled={isDownloading}
-            className="md:self-end px-5 py-2.5 bg-slate-900 hover:bg-slate-850 disabled:opacity-75 text-white font-mono text-xs font-semibold rounded transition-all flex items-center justify-center gap-1.5 shadow-none shrink-0"
+            className="md:self-end px-5 py-2.5 bg-primary hover:bg-slate-850 disabled:opacity-75 text-white font-mono text-xs font-semibold rounded transition-all flex items-center justify-center gap-1.5 shadow-none shrink-0"
           >
             {isDownloading ? (
               <>
@@ -256,10 +256,10 @@ export default function Products({ params, showToast }: ProductsProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Sidebar Filters */}
-            <aside className="lg:col-span-3 text-left bg-slate-50 border border-slate-200 p-5 rounded-lg shadow-sm">
-              <div className="flex items-center gap-2 border-b border-slate-200 pb-4 mb-5">
-                <Filter className="w-4 h-4 text-slate-600" />
-                <h3 className="font-mono font-semibold text-slate-900 text-xs uppercase tracking-wider">
+            <aside className="lg:col-span-3 text-left bg-background border border-border p-5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm">
+              <div className="flex items-center gap-2 border-b border-border pb-4 mb-5">
+                <Filter className="w-4 h-4 text-body" />
+                <h3 className="font-mono font-semibold text-heading text-xs uppercase tracking-wider">
                   // Filter Segments
                 </h3>
               </div>
@@ -270,8 +270,8 @@ export default function Products({ params, showToast }: ProductsProps) {
                   onClick={() => setSelectedCategory("all")}
                   className={`w-full text-left px-3 py-2 rounded text-xs font-semibold transition-all flex items-center justify-between ${
                     selectedCategory === "all"
-                      ? "bg-slate-900 text-white shadow-none"
-                      : "text-slate-600 hover:bg-white hover:text-slate-900 border border-transparent hover:border-slate-200"
+                      ? "bg-primary text-white shadow-none"
+                      : "text-body hover:bg-white hover:text-heading border border-transparent hover:border-border"
                   }`}
                 >
                   <span>All Formulations</span>
@@ -288,8 +288,8 @@ export default function Products({ params, showToast }: ProductsProps) {
                       onClick={() => setSelectedCategory(cat.id)}
                       className={`w-full text-left px-3 py-2 rounded text-xs font-semibold transition-all flex items-center justify-between ${
                         selectedCategory === cat.id
-                          ? "bg-slate-900 text-white shadow-none"
-                          : "text-slate-600 hover:bg-white hover:text-slate-900 border border-transparent hover:border-slate-200"
+                          ? "bg-primary text-white shadow-none"
+                          : "text-body hover:bg-white hover:text-heading border border-transparent hover:border-border"
                       }`}
                     >
                       <span className="line-clamp-1 pr-2">{cat.name}</span>
@@ -301,10 +301,10 @@ export default function Products({ params, showToast }: ProductsProps) {
                 })}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-slate-200 text-left bg-slate-100 p-4 rounded border border-slate-200">
-                <Info className="w-4 h-4 text-slate-900 mb-2 shrink-0" />
-                <h4 className="font-mono font-bold text-slate-900 text-xs">// LICENSING NOTICE</h4>
-                <p className="text-[10px] text-slate-600 leading-relaxed mt-1">
+              <div className="mt-8 pt-6 border-t border-border text-left bg-alt-bg p-4 rounded border border-border">
+                <Info className="w-4 h-4 text-heading mb-2 shrink-0" />
+                <h4 className="font-mono font-bold text-heading text-xs">// LICENSING NOTICE</h4>
+                <p className="text-[10px] text-body leading-relaxed mt-1">
                   Medinet formulations are marketed to corporate licensed entities only. We do not distribute to patients directly.
                 </p>
               </div>
@@ -320,9 +320,9 @@ export default function Products({ params, showToast }: ProductsProps) {
                     placeholder="Search brand, formula or key ingredient..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 focus:border-slate-500 rounded text-xs focus:outline-none focus:ring-0 text-slate-900 transition-all placeholder:text-slate-450"
+                    className="w-full pl-10 pr-4 py-2 bg-background border border-border focus:border-secondary focus:ring-4 focus:ring-secondary/15 rounded text-xs focus:outline-none focus:ring-0 text-heading transition-all placeholder:text-slate-450"
                   />
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
                 </div>
                 <div className="text-[10px] font-mono text-slate-450 self-end sm:self-center">
                   // Showing {filteredProducts.length} of {PRODUCTS.length} formulations
@@ -335,33 +335,33 @@ export default function Products({ params, showToast }: ProductsProps) {
                   {filteredProducts.map((p) => (
                     <div
                       key={p.id}
-                      className="bg-white border border-slate-200 hover:border-slate-900 p-5 rounded-lg shadow-sm text-left shadow-sm hover:shadow-sm transition-all flex flex-col justify-between group"
+                      className="bg-white border border-border hover:border-primary p-5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left shadow-sm hover:shadow-sm transition-all flex flex-col justify-between group"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3.5">
-                          <span className="text-[9px] font-mono font-semibold bg-slate-100 text-slate-900 border border-slate-200 px-2 py-0.5 rounded uppercase">
+                          <span className="text-[9px] font-mono font-semibold bg-alt-bg text-heading border border-border px-2 py-0.5 rounded uppercase">
                             {p.dosageForm}
                           </span>
-                          <span className="text-[10px] font-mono font-medium text-slate-400">{p.strength}</span>
+                          <span className="text-[10px] font-mono font-medium text-muted">{p.strength}</span>
                         </div>
 
-                        <h3 className="font-display font-bold text-slate-900 text-base group-hover:text-slate-900 transition-colors">
+                        <h3 className="font-display font-bold text-heading text-base group-hover:text-heading transition-colors">
                           {p.name}
                         </h3>
-                        <p className="text-[10px] text-slate-400 font-mono italic mt-0.5 line-clamp-1">
+                        <p className="text-[10px] text-muted font-mono italic mt-0.5 line-clamp-1">
                           {p.genericName}
                         </p>
-                        <p className="text-xs text-slate-600 leading-relaxed mt-3 line-clamp-2">
+                        <p className="text-xs text-body leading-relaxed mt-3 line-clamp-2">
                           {p.description}
                         </p>
                       </div>
 
-                      <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                      <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-[11px] font-mono text-muted">
                         <span>{p.packaging}</span>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setSelectedProduct(p)}
-                            className="text-xs font-semibold text-slate-900 hover:underline cursor-pointer"
+                            className="text-xs font-semibold text-heading hover:underline cursor-pointer"
                           >
                             Details
                           </button>
@@ -371,16 +371,16 @@ export default function Products({ params, showToast }: ProductsProps) {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16 border border-dashed border-slate-200 rounded-lg shadow-sm bg-slate-50/20">
+                <div className="text-center py-16 border border-dashed border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background/20">
                   <HelpCircle className="w-10 h-10 text-slate-350 mx-auto mb-4" />
-                  <p className="text-slate-600 font-mono text-xs font-semibold">No formulations found matching filters</p>
-                  <p className="text-slate-400 text-[10px] mt-1">Try relaxing your search terms or choosing &ldquo;All Formulations&rdquo;.</p>
+                  <p className="text-body font-mono text-xs font-semibold">No formulations found matching filters</p>
+                  <p className="text-muted text-[10px] mt-1">Try relaxing your search terms or choosing &ldquo;All Formulations&rdquo;.</p>
                   <button
                     onClick={() => {
                       setSearchQuery("");
                       setSelectedCategory("all");
                     }}
-                    className="mt-4 px-3.5 py-1.5 bg-slate-100 hover:bg-slate-100 border border-slate-200 text-slate-600 font-mono text-[10px] font-semibold rounded transition-colors"
+                    className="mt-4 px-3.5 py-1.5 bg-alt-bg hover:bg-alt-bg border border-border text-body font-mono text-[10px] font-semibold rounded transition-colors"
                   >
                     RESET FILTERS
                   </button>
@@ -393,15 +393,15 @@ export default function Products({ params, showToast }: ProductsProps) {
 
       {/* Product Details Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto animate-fade-in">
-          <div className="w-full max-w-2xl bg-white rounded-lg shadow-sm shadow-xl border border-slate-200 overflow-hidden text-left max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in">
+          <div className="w-full max-w-2xl bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-xl border border-border overflow-hidden text-left max-h-[90vh] flex flex-col">
             {/* Modal Header */}
-            <div className="flex items-start justify-between p-6 border-b border-slate-200 bg-slate-50">
+            <div className="flex items-start justify-between p-6 border-b border-border bg-background">
               <div>
-                <span className="text-[10px] font-mono font-bold bg-slate-100 text-slate-900 border border-slate-200 px-2.5 py-1 rounded uppercase tracking-wider">
+                <span className="text-[10px] font-mono font-bold bg-alt-bg text-heading border border-border px-2.5 py-1 rounded uppercase tracking-wider">
                   {selectedProduct.dosageForm} Division
                 </span>
-                <h2 className="text-xl sm:text-2xl font-display font-medium text-slate-900 mt-2.5">
+                <h2 className="text-xl sm:text-2xl font-display font-medium text-heading mt-2.5">
                   {selectedProduct.name}
                 </h2>
                 <p className="text-xs sm:text-sm font-mono italic text-slate-550 mt-1">
@@ -410,7 +410,7 @@ export default function Products({ params, showToast }: ProductsProps) {
               </div>
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="p-1.5 hover:bg-slate-100/50 text-slate-400 hover:text-slate-600 rounded transition-colors shrink-0"
+                className="p-1.5 hover:bg-alt-bg/50 text-muted hover:text-body rounded transition-colors shrink-0"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -419,40 +419,40 @@ export default function Products({ params, showToast }: ProductsProps) {
             {/* Modal Body */}
             <div className="p-6 space-y-6 overflow-y-auto flex-1">
               {/* Info Matrix */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-50 p-4 rounded border border-slate-200 text-xs">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-background p-4 rounded border border-border text-xs">
                 <div>
-                  <span className="block text-slate-400 uppercase font-mono tracking-wider mb-0.5">Strength</span>
-                  <span className="font-semibold text-slate-900 text-xs">{selectedProduct.strength}</span>
+                  <span className="block text-muted uppercase font-mono tracking-wider mb-0.5">Strength</span>
+                  <span className="font-semibold text-heading text-xs">{selectedProduct.strength}</span>
                 </div>
                 <div>
-                  <span className="block text-slate-400 uppercase font-mono tracking-wider mb-0.5">Packaging</span>
-                  <span className="font-semibold text-slate-900 text-xs">{selectedProduct.packaging}</span>
+                  <span className="block text-muted uppercase font-mono tracking-wider mb-0.5">Packaging</span>
+                  <span className="font-semibold text-heading text-xs">{selectedProduct.packaging}</span>
                 </div>
                 <div>
-                  <span className="block text-slate-400 uppercase font-mono tracking-wider mb-0.5">Segment</span>
-                  <span className="font-semibold text-slate-900 text-xs capitalize">{selectedProduct.category}</span>
+                  <span className="block text-muted uppercase font-mono tracking-wider mb-0.5">Segment</span>
+                  <span className="font-semibold text-heading text-xs capitalize">{selectedProduct.category}</span>
                 </div>
                 <div>
-                  <span className="block text-slate-400 uppercase font-mono tracking-wider mb-0.5">Regulatory Status</span>
-                  <span className="font-semibold text-slate-900 text-xs font-mono">// BIOEQUIVALENT</span>
+                  <span className="block text-muted uppercase font-mono tracking-wider mb-0.5">Regulatory Status</span>
+                  <span className="font-semibold text-heading text-xs font-mono">// BIOEQUIVALENT</span>
                 </div>
               </div>
 
               {/* Description */}
               <div>
-                <h4 className="text-xs font-mono font-bold text-slate-600 uppercase tracking-wider mb-2">// PHARMACOLOGY OVERVIEW</h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 className="text-xs font-mono font-bold text-body uppercase tracking-wider mb-2">// PHARMACOLOGY OVERVIEW</h4>
+                <p className="text-xs sm:text-sm text-body leading-relaxed">
                   {selectedProduct.description}
                 </p>
               </div>
 
               {/* Indications */}
               <div>
-                <h4 className="text-xs font-mono font-bold text-slate-600 uppercase tracking-wider mb-3">// THERAPEUTIC INDICATIONS</h4>
-                <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
+                <h4 className="text-xs font-mono font-bold text-body uppercase tracking-wider mb-3">// THERAPEUTIC INDICATIONS</h4>
+                <ul className="space-y-2 text-xs sm:text-sm text-body">
                   {selectedProduct.indications.map((ind, i) => (
-                    <li key={i} className="flex items-start gap-2 bg-slate-50 p-2.5 rounded border border-slate-200">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-900 mt-1.5 shrink-0" />
+                    <li key={i} className="flex items-start gap-2 bg-background p-2.5 rounded border border-border">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
                       <span>{ind}</span>
                     </li>
                   ))}
@@ -461,12 +461,12 @@ export default function Products({ params, showToast }: ProductsProps) {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-6 border-t border-slate-200 flex items-center justify-between gap-4 bg-slate-50">
-              <span className="text-[10px] font-mono text-slate-400">ESTD 1998 | B2B Commercial Only</span>
+            <div className="p-6 border-t border-border flex items-center justify-between gap-4 bg-background">
+              <span className="text-[10px] font-mono text-muted">ESTD 1998 | B2B Commercial Only</span>
               <div className="flex gap-2.5">
                 <button
                   onClick={() => setSelectedProduct(null)}
-                  className="px-4 py-2 border border-slate-200 text-slate-600 hover:bg-slate-100 font-mono text-xs font-medium rounded transition-all"
+                  className="px-4 py-2 border border-border text-body hover:bg-alt-bg font-mono text-xs font-medium rounded transition-all"
                 >
                   CLOSE
                 </button>
@@ -475,7 +475,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                     setSelectedProduct(null);
                     openProductEnquiry(selectedProduct);
                   }}
-                  className="px-5 py-2 bg-slate-900 hover:bg-slate-850 text-white font-mono text-xs font-semibold rounded transition-all flex items-center gap-1.5"
+                  className="px-5 py-2 bg-primary hover:bg-slate-850 text-white font-mono text-xs font-semibold rounded transition-all flex items-center gap-1.5"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   SUBMIT INQUIRY
@@ -488,19 +488,19 @@ export default function Products({ params, showToast }: ProductsProps) {
 
       {/* Product Inquiry Form Drawer/Modal */}
       {isEnquiryOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto animate-fade-in">
-          <div className="w-full max-w-xl bg-white rounded-lg shadow-sm shadow-xl border border-slate-200 overflow-hidden text-left max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in">
+          <div className="w-full max-w-xl bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-xl border border-border overflow-hidden text-left max-h-[90vh] flex flex-col">
             {/* Header */}
-            <div className="flex items-start justify-between p-6 border-b border-slate-200 bg-slate-50">
+            <div className="flex items-start justify-between p-6 border-b border-border bg-background">
               <div>
-                <span className="text-[10px] font-mono font-medium text-slate-600 uppercase tracking-widest block">
+                <span className="text-[10px] font-mono font-medium text-body uppercase tracking-widest block">
                   // B2B PRODUCT ENQUIRY
                 </span>
-                <h2 className="text-lg sm:text-xl font-display font-medium text-slate-900 mt-1">
+                <h2 className="text-lg sm:text-xl font-display font-medium text-heading mt-1">
                   Enquire: {enquiryProduct ? enquiryProduct.name : "Bulk Licensing"}
                 </h2>
                 {enquiryProduct && (
-                  <p className="text-xs text-slate-400 font-mono italic mt-0.5">{enquiryProduct.genericName}</p>
+                  <p className="text-xs text-muted font-mono italic mt-0.5">{enquiryProduct.genericName}</p>
                 )}
               </div>
               <button
@@ -508,7 +508,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                   setIsEnquiryOpen(false);
                   setEnquiryProduct(null);
                 }}
-                className="p-1.5 hover:bg-slate-100/50 text-slate-400 hover:text-slate-600 rounded transition-colors"
+                className="p-1.5 hover:bg-alt-bg/50 text-muted hover:text-body rounded transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -518,24 +518,24 @@ export default function Products({ params, showToast }: ProductsProps) {
             <form onSubmit={handleEnquirySubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-mono font-medium text-slate-600">Full Name <span className="text-red-500">*</span></label>
+                  <label className="text-xs font-mono font-medium text-body">Full Name <span className="text-red-500">*</span></label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-slate-500 focus:outline-none transition-all ${formErrors.name ? "border-red-500" : "border-slate-200"}`}
+                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.name ? "border-red-500" : "border-border"}`}
                   />
                   {formErrors.name && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.name}</span>}
                 </div>
                 <div>
-                  <label className="text-xs font-mono font-medium text-slate-600">Email Address <span className="text-red-500">*</span></label>
+                  <label className="text-xs font-mono font-medium text-body">Email Address <span className="text-red-500">*</span></label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-slate-500 focus:outline-none transition-all ${formErrors.email ? "border-red-500" : "border-slate-200"}`}
+                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.email ? "border-red-500" : "border-border"}`}
                   />
                   {formErrors.email && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.email}</span>}
                 </div>
@@ -543,22 +543,22 @@ export default function Products({ params, showToast }: ProductsProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-mono font-medium text-slate-600">Phone/Whatsapp <span className="text-red-500">*</span></label>
+                  <label className="text-xs font-mono font-medium text-body">Phone/Whatsapp <span className="text-red-500">*</span></label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-slate-500 focus:outline-none transition-all ${formErrors.phone ? "border-red-500" : "border-slate-200"}`}
+                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.phone ? "border-red-500" : "border-border"}`}
                   />
                   {formErrors.phone && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.phone}</span>}
                 </div>
                 <div>
-                  <label className="text-xs font-mono font-medium text-slate-600">Target Category</label>
+                  <label className="text-xs font-mono font-medium text-body">Target Category</label>
                   <select
                     value={formData.quantity}
                     onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                    className="w-full mt-1.5 px-3 py-2 bg-white border border-slate-200 rounded text-xs appearance-none focus:border-slate-500 focus:outline-none transition-all bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1rem_1rem] bg-[right_0.5rem_center] bg-no-repeat"
+                    className="w-full mt-1.5 px-3 py-2 bg-white border border-border rounded text-xs appearance-none focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1rem_1rem] bg-[right_0.5rem_center] bg-no-repeat"
                   >
                     <option value="commercial">Commercial Supply (Wholesale)</option>
                     <option value="licensing">Territorial Licensing & Rights</option>
@@ -570,57 +570,57 @@ export default function Products({ params, showToast }: ProductsProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-mono font-medium text-slate-600">Company Name <span className="text-red-500">*</span></label>
+                  <label className="text-xs font-mono font-medium text-body">Company Name <span className="text-red-500">*</span></label>
                   <input
                     type="text"
                     required
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-slate-500 focus:outline-none transition-all ${formErrors.company ? "border-red-500" : "border-slate-200"}`}
+                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.company ? "border-red-500" : "border-border"}`}
                   />
                   {formErrors.company && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.company}</span>}
                 </div>
                 <div>
-                  <label className="text-xs font-mono font-medium text-slate-600">Country of Operations <span className="text-red-500">*</span></label>
+                  <label className="text-xs font-mono font-medium text-body">Country of Operations <span className="text-red-500">*</span></label>
                   <input
                     type="text"
                     required
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-slate-500 focus:outline-none transition-all ${formErrors.country ? "border-red-500" : "border-slate-200"}`}
+                    className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.country ? "border-red-500" : "border-border"}`}
                   />
                   {formErrors.country && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.country}</span>}
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-mono font-medium text-slate-600">Target Message / Sourcing Specifications <span className="text-red-500">*</span></label>
+                <label className="text-xs font-mono font-medium text-body">Target Message / Sourcing Specifications <span className="text-red-500">*</span></label>
                 <textarea
                   required
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-slate-500 focus:outline-none transition-all ${formErrors.message ? "border-red-500" : "border-slate-200"}`}
+                  className={`w-full mt-1.5 px-3 py-2 border rounded text-xs focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.message ? "border-red-500" : "border-border"}`}
                 ></textarea>
                 {formErrors.message && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.message}</span>}
               </div>
 
               {/* Footer */}
-              <div className="pt-4 border-t border-slate-200 flex items-center justify-end gap-3 bg-white">
+              <div className="pt-4 border-t border-border flex items-center justify-end gap-3 bg-white">
                 <button
                   type="button"
                   onClick={() => {
                     setIsEnquiryOpen(false);
                     setEnquiryProduct(null);
                   }}
-                  className="px-4 py-2 border border-slate-200 text-slate-600 hover:bg-slate-50 font-mono text-xs font-medium rounded transition-all"
+                  className="px-4 py-2 border border-border text-body hover:bg-background font-mono text-xs font-medium rounded transition-all"
                 >
                   CANCEL
                 </button>
                 <button
                   type="submit"
                   disabled={formSubmitting}
-                  className="px-5 py-2 bg-slate-900 hover:bg-slate-850 text-white font-mono text-xs font-semibold rounded transition-all flex items-center gap-1.5"
+                  className="px-5 py-2 bg-primary hover:bg-slate-850 text-white font-mono text-xs font-semibold rounded transition-all flex items-center gap-1.5"
                 >
                   {formSubmitting ? (
                     <>

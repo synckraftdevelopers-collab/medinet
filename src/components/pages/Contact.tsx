@@ -91,17 +91,17 @@ export default function Contact({ showToast }: ContactProps) {
   return (
     <div className="pt-20">
       {/* Page Header */}
-      <section className="bg-slate-50 border-b border-slate-200 py-16 relative overflow-hidden">
+      <section className="bg-background border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
             Connect With Us
           </span>
-          <h1 className="text-4xl sm:text-5xl font-display font-medium text-slate-900 tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-display font-medium text-heading tracking-tight leading-tight">
             Contact Our Global Offices
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
+          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl">
             Have questions regarding wholesale sourcing, territorial licensing rights, or adverse drug event reporting? Reach out to our dedicated corporate departments globally.
           </p>
         </div>
@@ -124,10 +124,10 @@ export default function Contact({ showToast }: ContactProps) {
                 <div
                   key={idx}
                   onClick={() => setSelectedOffice(off)}
-                  className={`border p-6 rounded-lg shadow-sm text-left cursor-pointer transition-all flex flex-col justify-between ${
+                  className={`border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left cursor-pointer transition-all flex flex-col justify-between ${
                     selectedOffice.name === off.name
-                      ? "bg-slate-900 text-slate-400 border-slate-900 shadow-sm"
-                      : "bg-white border-slate-200 hover:border-slate-900 text-slate-600"
+                      ? "bg-primary text-muted border-primary shadow-sm"
+                      : "bg-white border-border hover:border-primary text-body"
                   }`}
                 >
                   <div>
@@ -135,26 +135,26 @@ export default function Contact({ showToast }: ContactProps) {
                       <span className={`text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded ${
                         selectedOffice.name === off.name
                           ? "bg-white/10 text-white"
-                          : "bg-slate-100 text-slate-850 border border-slate-200"
+                          : "bg-alt-bg text-slate-850 border border-border"
                       }`}>
                         {off.type}
                       </span>
                     </div>
 
                     <h3 className={`font-display font-bold text-base ${
-                      selectedOffice.name === off.name ? "text-white" : "text-slate-900"
+                      selectedOffice.name === off.name ? "text-white" : "text-heading"
                     }`}>
                       {off.name}
                     </h3>
 
                     <p className="text-xs mt-3 leading-relaxed flex items-start gap-2">
-                      <MapPin className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                      <MapPin className="w-4 h-4 text-muted shrink-0 mt-0.5" />
                       <span>{off.address}</span>
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-800/40 sm:border-slate-200/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
-                    <div className="space-y-1 text-[10px] uppercase text-slate-400">
+                  <div className="mt-6 pt-4 border-t border-slate-800/40 sm:border-border/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
+                    <div className="space-y-1 text-[10px] uppercase text-muted">
                       <span className="block">Ph: {off.phone}</span>
                       <span className="block truncate max-w-[200px]">{off.email}</span>
                     </div>
@@ -165,8 +165,8 @@ export default function Contact({ showToast }: ContactProps) {
                       }}
                       className={`px-3 py-1.5 rounded flex items-center justify-center gap-1 font-semibold border transition-all ${
                         selectedOffice.name === off.name
-                          ? "bg-white hover:bg-slate-100 border-transparent text-slate-900"
-                          : "bg-white hover:bg-slate-50 border-slate-200 text-slate-600 shadow-sm"
+                          ? "bg-white hover:bg-alt-bg border-transparent text-heading"
+                          : "bg-white hover:bg-background border-border text-body shadow-sm"
                       }`}
                     >
                       <Navigation className="w-3.5 h-3.5" />
@@ -178,7 +178,7 @@ export default function Contact({ showToast }: ContactProps) {
             </div>
 
             {/* Live Interactive Map Frame */}
-            <div className="lg:col-span-7 h-[420px] lg:h-auto min-h-[360px] rounded-lg shadow-sm overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+            <div className="lg:col-span-7 h-[420px] lg:h-auto min-h-[360px] rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm overflow-hidden border border-border shadow-sm bg-alt-bg">
               {selectedOffice.mapEmbedUrl ? (
                 <iframe
                   title={`Map: ${selectedOffice.name}`}
@@ -191,7 +191,7 @@ export default function Contact({ showToast }: ContactProps) {
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-slate-400 bg-slate-100 p-8 text-center text-sm font-mono uppercase">
+                <div className="w-full h-full flex items-center justify-center text-muted bg-alt-bg p-8 text-center text-sm font-mono uppercase">
                   Locator Map Not Available for this Office.
                 </div>
               )}
@@ -201,42 +201,42 @@ export default function Contact({ showToast }: ContactProps) {
       </section>
 
       {/* Corporate Communications Form */}
-      <section className="py-20 bg-slate-50 border-t border-b border-slate-200 text-left">
+      <section className="py-20 bg-background border-t border-b border-border text-left">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 sm:p-8 shadow-sm">
-            <div className="flex items-center gap-3 border-b border-slate-200 pb-4 mb-6">
-              <MessageSquare className="w-5 h-5 text-slate-900" />
+          <div className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
+              <MessageSquare className="w-5 h-5 text-heading" />
               <div>
-                <h3 className="font-display font-bold text-slate-900 text-base">Send Corporate Message</h3>
-                <p className="text-[10px] font-mono uppercase text-slate-400">// Directly routed to specialized department heads</p>
+                <h3 className="font-display font-bold text-heading text-base">Send Corporate Message</h3>
+                <p className="text-[10px] font-mono uppercase text-muted">// Directly routed to specialized department heads</p>
               </div>
             </div>
 
             <form onSubmit={handleFormSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block">Full Name *</label>
+                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Full Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="Enter your full name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 transition-all ${
+                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
                       errors.name ? "border-red-500" : "border-slate-250"
                     }`}
                   />
                   {errors.name && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.name}</span>}
                 </div>
                 <div>
-                  <label className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block">Email Address *</label>
+                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Email Address *</label>
                   <input
                     type="email"
                     required
                     placeholder="Enter email address"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 transition-all ${
+                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
                       errors.email ? "border-red-500" : "border-slate-250"
                     }`}
                   />
@@ -246,25 +246,25 @@ export default function Contact({ showToast }: ContactProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block">Phone Number *</label>
+                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Phone Number *</label>
                   <input
                     type="tel"
                     required
                     placeholder="Enter contact number"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-955 transition-all ${
+                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-slate-955 transition-all ${
                       errors.phone ? "border-red-500" : "border-slate-250"
                     }`}
                   />
                   {errors.phone && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.phone}</span>}
                 </div>
                 <div>
-                  <label className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block">Subject of Inquiry</label>
+                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Subject of Inquiry</label>
                   <select
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full mt-1.5 px-3 py-2 bg-white border border-slate-250 rounded text-xs text-slate-850 focus:outline-none focus:border-slate-900 transition-all appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1rem_1rem] bg-[right_0.75rem_center] bg-no-repeat"
+                    className="w-full mt-1.5 px-3 py-2 bg-white border border-slate-250 rounded text-xs text-slate-850 focus:outline-none focus:border-primary transition-all appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1rem_1rem] bg-[right_0.75rem_center] bg-no-repeat"
                   >
                     <option value="general">General Sourcing / Wholesaling</option>
                     <option value="licensing">Territorial Rights & Franchising</option>
@@ -276,14 +276,14 @@ export default function Contact({ showToast }: ContactProps) {
               </div>
 
               <div>
-                <label className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block">Message Content *</label>
+                <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Message Content *</label>
                 <textarea
                   required
                   rows={4}
                   placeholder="Enter the full content of your corporate message here..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-slate-805 focus:outline-none focus:border-slate-900 transition-all ${
+                  className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-slate-805 focus:outline-none focus:border-primary transition-all ${
                     errors.message ? "border-red-500" : "border-slate-250"
                   }`}
                 ></textarea>
@@ -293,7 +293,7 @@ export default function Contact({ showToast }: ContactProps) {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-2.5 bg-slate-900 hover:bg-slate-900 text-white font-medium text-xs sm:text-sm rounded border border-slate-900 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2.5 bg-primary hover:bg-primary text-white font-medium text-xs sm:text-sm rounded border border-primary transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 {submitting ? (
                   <>
@@ -326,22 +326,22 @@ export default function Contact({ showToast }: ContactProps) {
             {FAQS.map((faq, idx) => (
               <div
                 key={idx}
-                className="border border-slate-200 rounded-lg shadow-sm overflow-hidden bg-slate-50"
+                className="border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm overflow-hidden bg-background"
               >
                 <button
                   onClick={() => toggleFaq(idx)}
-                  className="w-full px-6 py-4 flex items-center justify-between gap-4 text-left font-display font-bold text-slate-900 hover:text-slate-900 transition-colors focus:outline-none"
+                  className="w-full px-6 py-4 flex items-center justify-between gap-4 text-left font-display font-bold text-heading hover:text-heading transition-colors focus:outline-none"
                 >
                   <span className="text-sm">{faq.question}</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${
-                      openFaqIndex === idx ? "rotate-180 text-slate-900" : ""
+                    className={`w-4 h-4 text-muted shrink-0 transition-transform duration-300 ${
+                      openFaqIndex === idx ? "rotate-180 text-heading" : ""
                     }`}
                   />
                 </button>
 
                 {openFaqIndex === idx && (
-                  <div className="px-6 pb-5 text-xs text-slate-650 leading-relaxed border-t border-slate-200 pt-4 bg-white animate-fade-in">
+                  <div className="px-6 pb-5 text-xs text-slate-650 leading-relaxed border-t border-border pt-4 bg-white animate-fade-in">
                     {faq.answer}
                   </div>
                 )}

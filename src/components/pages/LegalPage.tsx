@@ -122,21 +122,21 @@ export default function LegalPage({ type }: LegalPageProps) {
   return (
     <div className="pt-20">
       {/* Header */}
-      <section className="bg-slate-50 border-b border-slate-200 py-16 relative overflow-hidden text-left">
+      <section className="bg-background border-b border-border py-16 relative overflow-hidden text-left">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
             {data.badge}
           </span>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded bg-slate-100 text-slate-900 flex items-center justify-center shrink-0 border border-slate-200">
+            <div className="w-10 h-10 rounded bg-alt-bg text-heading flex items-center justify-center shrink-0 border border-border">
               <PageIcon className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-3xl sm:text-4xl font-display font-medium text-slate-900 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl font-display font-medium text-heading tracking-tight leading-tight">
                 {data.title}
               </h1>
-              <p className="text-[10px] text-slate-400 mt-1 font-mono uppercase">{data.date} | ESTD 1998</p>
+              <p className="text-[10px] text-muted mt-1 font-mono uppercase">{data.date} | ESTD 1998</p>
             </div>
           </div>
         </div>
@@ -145,25 +145,25 @@ export default function LegalPage({ type }: LegalPageProps) {
       {/* Content */}
       <section className="py-20 bg-white text-left">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="space-y-10 prose prose-slate max-w-none text-slate-600 text-xs sm:text-sm leading-relaxed">
+          <div className="space-y-10 prose prose-slate max-w-none text-body text-xs sm:text-sm leading-relaxed">
             {data.sections.map((sec, idx) => (
-              <div key={idx} className="space-y-3.5 border-b border-slate-200 pb-8 last:border-b-0 last:pb-0">
-                <h2 className="text-lg font-display font-bold text-slate-900 tracking-tight leading-snug">
+              <div key={idx} className="space-y-3.5 border-b border-border pb-8 last:border-b-0 last:pb-0">
+                <h2 className="text-lg font-display font-bold text-heading tracking-tight leading-snug">
                   {sec.heading}
                 </h2>
-                <p className="font-sans leading-relaxed text-slate-600">
+                <p className="font-sans leading-relaxed text-body">
                   {sec.text}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 bg-slate-50 border border-slate-200 rounded-lg shadow-sm p-6 flex items-start gap-4">
-            <Heart className="w-5 h-5 text-slate-900 shrink-0 mt-0.5" />
+          <div className="mt-12 bg-background border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm p-6 flex items-start gap-4">
+            <Heart className="w-5 h-5 text-heading shrink-0 mt-0.5" />
             <div>
-              <h4 className="font-bold text-slate-900 text-xs uppercase font-mono tracking-wider">Patient Care Priority</h4>
-              <p className="text-slate-600 text-xs mt-1 leading-relaxed">
-                Medinet Pharmaceutical Marketing Company remains fully dedicated to transparent regulatory operations. If you have questions regarding our compliance practices, please contact our legal desk at <a href="mailto:corporate@medinetpharma.com" className="text-slate-900 hover:underline font-semibold">corporate@medinetpharma.com</a>.
+              <h4 className="font-bold text-heading text-xs uppercase font-mono tracking-wider">Patient Care Priority</h4>
+              <p className="text-body text-xs mt-1 leading-relaxed">
+                Medinet Pharmaceutical Marketing Company remains fully dedicated to transparent regulatory operations. If you have questions regarding our compliance practices, please contact our legal desk at <a href="mailto:corporate@medinetpharma.com" className="text-heading hover:underline font-semibold">corporate@medinetpharma.com</a>.
               </p>
             </div>
           </div>

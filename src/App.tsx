@@ -12,8 +12,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
 
-
-
 // Pages
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";

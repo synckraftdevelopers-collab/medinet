@@ -6,6 +6,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { AppRoute } from "../hooks/useRoute";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES } from "../data";
 import { Product } from "../types";
@@ -50,6 +51,7 @@ const iconMap: Record<string, any> = {
 
 export default function Navbar({ currentRoute, navigate }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeMobileAccordion, setActiveMobileAccordion] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -113,6 +115,18 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
     }
   }, [isSearchOpen]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   // Handle global key events for search modal
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -121,6 +135,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
         setIsSearchOpen((prev) => !prev);
       } else if (e.key === "Escape") {
         setIsSearchOpen(false);
+        setIsMobileMenuOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -552,104 +567,136 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
         </div>
 
         {/* Mobile Navigation Drawer */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-lg overflow-hidden animate-slide-in">
-            <div className="px-4 py-4 space-y-1 bg-white">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("home");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <>
+              {/* Overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="lg:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[9998]"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-hidden="true"
+              />
+              {/* Drawer */}
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="lg:hidden fixed top-0 left-0 h-[100vh] w-[90%] max-w-[380px] bg-white shadow-2xl z-[9999] flex flex-col overflow-hidden"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile Navigation"
               >
-                HOME
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("about");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                ABOUT US
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("products");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                PRODUCTS DIRECTORY
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("research-development");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                RESEARCH & DEVELOPMENT
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("quality");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                QUALITY ASSURANCE
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("business-partners");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                PARTNERS & DISTRIBUTION
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("careers");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                CAREERS & OPENINGS
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("news-events");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                NEWS & EVENTS
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  navigate("contact");
-                }}
-                className="w-full text-left px-4 py-2.5 rounded text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors"
-              >
-                CONTACT & SUPPORT
-              </button>
-              <div className="pt-4 pb-2 border-t border-slate-200 flex flex-col gap-2 px-4">
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    navigate("contact");
-                  }}
-                  className="w-full py-2.5 bg-slate-900 hover:bg-black text-white rounded text-xs font-mono font-medium text-center transition-colors"
-                >
-                  GET IN TOUCH
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between p-4 border-b border-slate-200 shrink-0">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded bg-slate-900 flex items-center justify-center text-white shrink-0 font-display font-black text-base tracking-tight">
+                      M
+                    </div>
+                    <div>
+                      <span className="block text-base font-display font-bold text-slate-900 leading-none">
+                        Medinet
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 hover:text-slate-900 transition-colors focus:outline-none"
+                    aria-label="Close menu"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+                
+                {/* Scrollable Navigation */}
+                <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+                  {[
+                    { label: "HOME", route: "home" },
+                    { label: "ABOUT US", route: "about" },
+                    { label: "PRODUCTS DIRECTORY", route: "products" },
+                    { label: "RESEARCH & DEVELOPMENT", route: "research-development" },
+                    { label: "QUALITY ASSURANCE", route: "quality" },
+                    { label: "PARTNERS & DISTRIBUTION", route: "business-partners" },
+                    { label: "CAREERS & OPENINGS", route: "careers" },
+                    { label: "NEWS & EVENTS", route: "news-events" },
+                    { label: "CONTACT & SUPPORT", route: "contact" }
+                  ].map((item) => (
+                    <button
+                      key={item.route}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        navigate(item.route);
+                      }}
+                      className="w-full text-left p-4 min-h-[48px] rounded-lg text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 block transition-colors active:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                  
+                  {/* Legal Accordion */}
+                  <div className="pt-1">
+                    <button
+                      onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
+                      className="w-full flex items-center justify-between p-4 min-h-[48px] rounded-lg text-xs font-mono font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors active:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                      aria-expanded={activeMobileAccordion === "legal"}
+                    >
+                      LEGAL
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeMobileAccordion === "legal" ? "rotate-180" : ""}`} />
+                    </button>
+                    <AnimatePresence>
+                      {activeMobileAccordion === "legal" && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-4 pr-2 py-2 mb-2 space-y-1 bg-slate-50 rounded-lg mt-1 border border-slate-100">
+                            {[
+                              { label: "Privacy Policy", route: "/legal/privacy-policy", icon: ShieldCheck },
+                              { label: "Terms & Conditions", route: "/legal/terms-conditions", icon: FileText },
+                              { label: "Disclaimer", route: "/legal/disclaimer", icon: Scale },
+                              { label: "Cookie Policy", route: "/legal/cookie-policy", icon: Cookie },
+                              { label: "Copyright Notice", route: "/legal/copyright-notice", icon: Copyright }
+                            ].map((item) => (
+                              <a
+                                key={item.route}
+                                href={item.route}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="flex items-center gap-3 p-3 min-h-[48px] rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors active:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                              >
+                                <item.icon className="w-4 h-4 shrink-0" />
+                                {item.label}
+                              </a>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+                
+                {/* Pinned Bottom CTA */}
+                <div className="p-4 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-slate-200 bg-white shrink-0">
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      navigate("contact");
+                    }}
+                    className="w-full p-4 min-h-[48px] bg-slate-900 hover:bg-black active:scale-[0.98] text-white rounded-lg text-xs font-mono font-medium text-center transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+                  >
+                    GET IN TOUCH
+                  </button>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
         {/* Enquiry Modal */}
         {isEnquiryOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title">

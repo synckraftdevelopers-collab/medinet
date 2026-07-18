@@ -65,7 +65,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="hidden lg:block lg:col-span-3 sticky top-32"
+              className="w-full lg:col-span-3 lg:sticky lg:top-32"
             >
               <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-5 shadow-sm">
                 <h4 className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-4">

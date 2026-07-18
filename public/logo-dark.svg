@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38BDF8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0284C7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon: Abstract medical cross/capsule -->
+  <g transform="translate(10, 15)">
+    <path d="M 20 0 L 50 0 A 20 20 0 0 1 70 20 L 70 50 A 20 20 0 0 1 50 70 L 20 70 A 20 20 0 0 1 0 50 L 0 20 A 20 20 0 0 1 20 0 Z" fill="url(#grad2)" />
+    <rect x="25" y="15" width="20" height="40" rx="10" fill="#0B1120" />
+    <rect x="15" y="25" width="40" height="20" rx="10" fill="#0B1120" />
+  </g>
+
+  <!-- Text -->
+  <text x="95" y="65" font-family="'Space Grotesk', 'Inter', sans-serif" font-weight="700" font-size="44" fill="#FFFFFF">Medi<tspan fill="#38BDF8">Net</tspan></text>
+</svg>

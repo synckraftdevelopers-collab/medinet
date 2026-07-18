@@ -9,6 +9,11 @@ import { motion } from "motion/react";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES, STATS, NEWS_ITEMS, BRAND_INFO } from "../../data";
 import SectionHeader from "../SectionHeader";
 import {
+  HeartPulse,
+  ShieldPlus,
+  FlaskConical,
+  Handshake,
+  BadgeCheck,
   ArrowRight,
   Shield,
   Activity,
@@ -32,6 +37,8 @@ interface HomeProps {
 }
 
 const iconMap: Record<string, any> = {
+  HeartPulse,
+  ShieldPlus,
   Activity,
   Brain,
   Droplet,
@@ -108,8 +115,12 @@ export default function Home({ navigate }: HomeProps) {
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] rounded flex items-center justify-center text-white shrink-0 shadow-[0_12px_28px_rgba(37,99,235,.25)] p-2.5">
-                    <Image src="/logo.svg" alt="Medinet Logo" width={36} height={36} className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display='none'; if(e.currentTarget.nextElementSibling) e.currentTarget.nextElementSibling.classList.remove('hidden'); }} />
-                    <Shield className="w-6 h-6 hidden" />
+                    <svg className="w-[30px] h-[30px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2.5L4 6V11C4 16.5 7.5 21 12 23C16.5 21 20 16.5 20 11V6L12 2.5Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M8 12.5L11 15.5L16 9.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 5V8M10.5 6.5H13.5" stroke="#38BDF8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="12" cy="19.5" r="1.5" fill="#0D9488"/>
+                    </svg>
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-[#0B1F4D] text-base">Guaranteed Efficacy</h3>
@@ -160,17 +171,19 @@ export default function Home({ navigate }: HomeProps) {
       <section className="py-20 bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5">
-              <span className="text-[11px] font-mono font-medium tracking-widest text-body uppercase block mb-3">
-                // CORPORATE PROFILE
+            <div className="lg:col-span-5 relative z-10">
+              <div className="absolute top-[-20%] -left-10 w-[150%] h-[150%] bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.03)_0%,transparent_70%)] -z-10 pointer-events-none"></div>
+              <span className="inline-flex items-center px-3 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[11px] font-mono font-medium tracking-widest uppercase mb-4">
+                <span className="text-[#0D9488] mr-1.5">//</span> <span className="text-[#2563EB]">CORPORATE PROFILE</span>
               </span>
-              <h2 className="text-3xl sm:text-4xl font-display font-medium text-heading tracking-tight leading-tight">
-                About Medinet Pharmaceutical Marketing
+              <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0B1F4D] tracking-tight leading-tight relative pl-6">
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[80px] rounded-full bg-[linear-gradient(to_bottom,#2563EB,#0D9488)]"></span>
+                About <span className="text-[#2563EB]">Medinet</span> <span className="text-[#2563EB]">Pharmaceutical</span> Marketing
               </h2>
-              <p className="mt-6 text-body leading-relaxed text-sm">
+              <p className="mt-6 text-[#475569] leading-relaxed text-sm">
                 Established in {BRAND_INFO.established}, {BRAND_INFO.name} has built a highly reputable position in global pharmaceutical marketing by offering premium, affordable, and bioequivalent healthcare products.
               </p>
-              <p className="mt-4 text-body leading-relaxed text-sm">
+              <p className="mt-4 text-[#475569] leading-relaxed text-sm">
                 We manage therapeutic formulation delivery across intensive clinical segments including Cardiology, Neurology, Gastroenterology, Dermatology, and Respiratory sciences. By bridging manufacturing excellence with robust commercial execution, we ensure quality medicines are always within patient reach.
               </p>
               <div className="mt-8">
@@ -186,42 +199,42 @@ export default function Home({ navigate }: HomeProps) {
 
             {/* Feature Highlights Grid */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="bg-background border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left">
-                <div className="w-9 h-9 bg-primary rounded flex items-center justify-center text-white mb-4">
-                  <Award className="w-4.5 h-4.5" />
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] p-6 rounded-[24px] shadow-[0_18px_40px_rgba(11,31,77,.08)] transition-all duration-300 text-left hover:border-[#2563EB] hover:-translate-y-[6px] hover:shadow-[0_28px_60px_rgba(37,99,235,.15)]">
+                <div className="w-9 h-9 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] rounded-[16px] flex items-center justify-center text-white mb-4 shadow-[0_10px_25px_rgba(37,99,235,.18)]">
+                  <FlaskConical className="w-4.5 h-4.5 text-white" />
                 </div>
-                <h3 className="font-display font-bold text-heading text-sm mb-2">Scientific Integrity</h3>
-                <p className="text-xs text-body leading-relaxed">
+                <h3 className="font-display font-bold text-[#0B1F4D] text-sm mb-2">Scientific Integrity</h3>
+                <p className="text-xs text-[#475569] leading-relaxed">
                   We base all formulations on validated clinical trials, ensuring comparative bioequivalence matches original innovator drug standards.
                 </p>
               </div>
 
-              <div className="bg-background border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left">
-                <div className="w-9 h-9 bg-primary rounded flex items-center justify-center text-white mb-4">
-                  <Users className="w-4.5 h-4.5" />
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] p-6 rounded-[24px] shadow-[0_18px_40px_rgba(11,31,77,.08)] transition-all duration-300 text-left hover:border-[#2563EB] hover:-translate-y-[6px] hover:shadow-[0_28px_60px_rgba(37,99,235,.15)]">
+                <div className="w-9 h-9 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] rounded-[16px] flex items-center justify-center text-white mb-4 shadow-[0_10px_25px_rgba(37,99,235,.18)]">
+                  <Handshake className="w-4.5 h-4.5 text-white" />
                 </div>
-                <h3 className="font-display font-bold text-heading text-sm mb-2">Ethical Partnerships</h3>
-                <p className="text-xs text-body leading-relaxed">
+                <h3 className="font-display font-bold text-[#0B1F4D] text-sm mb-2">Ethical Partnerships</h3>
+                <p className="text-xs text-[#475569] leading-relaxed">
                   Our manufacturing partners run state-of-the-art facilities compliant with WHO-GMP, USFDA, or EU-GMP specifications.
                 </p>
               </div>
 
-              <div className="bg-background border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left">
-                <div className="w-9 h-9 bg-primary rounded flex items-center justify-center text-white mb-4">
-                  <Shield className="w-4.5 h-4.5" />
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] p-6 rounded-[24px] shadow-[0_18px_40px_rgba(11,31,77,.08)] transition-all duration-300 text-left hover:border-[#2563EB] hover:-translate-y-[6px] hover:shadow-[0_28px_60px_rgba(37,99,235,.15)]">
+                <div className="w-9 h-9 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] rounded-[16px] flex items-center justify-center text-white mb-4 shadow-[0_10px_25px_rgba(37,99,235,.18)]">
+                  <BadgeCheck className="w-4.5 h-4.5 text-white" />
                 </div>
-                <h3 className="font-display font-bold text-heading text-sm mb-2">Quality Assurance</h3>
-                <p className="text-xs text-body leading-relaxed">
+                <h3 className="font-display font-bold text-[#0B1F4D] text-sm mb-2">Quality Assurance</h3>
+                <p className="text-xs text-[#475569] leading-relaxed">
                   Batch traceability is maintained from raw API synthesis up to final dispatch, keeping product consistency uncompromised.
                 </p>
               </div>
 
-              <div className="bg-background border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left">
-                <div className="w-9 h-9 bg-primary rounded flex items-center justify-center text-white mb-4">
-                  <Clock className="w-4.5 h-4.5" />
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] p-6 rounded-[24px] shadow-[0_18px_40px_rgba(11,31,77,.08)] transition-all duration-300 text-left hover:border-[#2563EB] hover:-translate-y-[6px] hover:shadow-[0_28px_60px_rgba(37,99,235,.15)]">
+                <div className="w-9 h-9 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] rounded-[16px] flex items-center justify-center text-white mb-4 shadow-[0_10px_25px_rgba(37,99,235,.18)]">
+                  <Activity className="w-4.5 h-4.5 text-white" />
                 </div>
-                <h3 className="font-display font-bold text-heading text-sm mb-2">Pharmacovigilance</h3>
-                <p className="text-xs text-body leading-relaxed">
+                <h3 className="font-display font-bold text-[#0B1F4D] text-sm mb-2">Pharmacovigilance</h3>
+                <p className="text-xs text-[#475569] leading-relaxed">
                   We proactively maintain safety logs and clinical feedback mechanisms to respond immediately to any drug safety queries.
                 </p>
               </div>
@@ -252,12 +265,23 @@ export default function Home({ navigate }: HomeProps) {
       {/* Therapeutic Segments Section */}
       <section className="py-20 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Therapeutic Segments"
-            title="Comprehensive Healthcare Formulations"
-            description="We develop and distribute highly effective medicines covering a broad array of therapeutic disciplines, backed by targeted formulation research."
-            centered
-          />
+          <div className="relative z-10 max-w-3xl mb-12 mx-auto text-center flex flex-col items-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03)_0%,transparent_60%)] -z-10 pointer-events-none rounded-full"></div>
+            
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] text-[11px] font-mono font-medium tracking-wider uppercase mb-5 hover:bg-[#DBEAFE] transition-colors duration-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
+              Therapeutic Segments
+            </span>
+            
+            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0B1F4D] tracking-tight leading-tight flex flex-col items-center">
+              <span>Comprehensive <span className="text-[#2563EB]">Healthcare</span> <span className="text-[#2563EB]">Formulations</span></span>
+              <span className="mt-5 block w-[180px] h-[4px] rounded-full bg-[linear-gradient(90deg,#2563EB,#0D9488)]"></span>
+            </h2>
+            
+            <p className="mt-5 text-sm text-[#475569] leading-relaxed max-w-2xl mx-auto">
+              We develop and distribute highly effective medicines covering a broad array of therapeutic disciplines, backed by targeted formulation research.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {THERAPEUTIC_CATEGORIES.map((cat) => {
@@ -266,22 +290,22 @@ export default function Home({ navigate }: HomeProps) {
                 <div
                   key={cat.id}
                   onClick={() => navigate("products", { category: cat.id })}
-                  className="bg-white border border-border hover:border-primary hover:shadow-sm p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left cursor-pointer transition-all duration-200 group flex flex-col justify-between"
+                  className="bg-[#FFFFFF] border border-[#E2E8F0] p-6 rounded-[24px] shadow-[0_20px_45px_rgba(11,31,77,.08)] transition-all duration-300 ease-[ease] text-left cursor-pointer group flex flex-col justify-between hover:border-[#2563EB] hover:-translate-y-[6px] hover:shadow-[0_28px_60px_rgba(37,99,235,.18)]"
                 >
                   <div>
-                    <div className="w-9 h-9 rounded bg-alt-bg text-body flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all">
+                    <div className="w-9 h-9 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] rounded-[16px] text-white flex items-center justify-center mb-4 shadow-[0_12px_28px_rgba(37,99,235,.2)]">
                       <IconComp className="w-4.5 h-4.5" />
                     </div>
-                    <h3 className="font-display font-bold text-heading text-base group-hover:text-heading transition-colors">
+                    <h3 className="font-display font-bold text-[#0B1F4D] text-base">
                       {cat.name}
                     </h3>
-                    <p className="mt-2 text-xs text-body leading-relaxed line-clamp-3">
+                    <p className="mt-2 text-xs text-[#475569] leading-relaxed line-clamp-3">
                       {cat.description}
                     </p>
                   </div>
-                  <div className="mt-5 pt-4 border-t border-border flex items-center justify-between text-[11px] font-mono font-semibold text-muted group-hover:text-heading transition-colors">
-                    <span>VIEW FORMULATIONS</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <div className="mt-5 pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-[11px] font-mono font-semibold text-[#2563EB] group-hover:text-[#0D9488] transition-colors duration-300">
+                    <span className="relative after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:bg-[#2563EB] after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">VIEW FORMULATIONS</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#2563EB] group-hover:text-[#0D9488] group-hover:translate-x-[6px] transition-all duration-300" />
                   </div>
                 </div>
               );

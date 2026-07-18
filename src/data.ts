@@ -20,7 +20,7 @@ export const THERAPEUTIC_CATEGORIES: TherapeuticCategory[] = [
     id: "cardiovascular",
     name: "Cardiovascular",
     description: "Advanced cardioselective therapies, lipid-lowering agents, and anti-hypertensives designed to manage coronary artery disease and heart failure.",
-    iconName: "Activity"
+    iconName: "HeartPulse"
   },
   {
     id: "neurology-cns",
@@ -44,7 +44,7 @@ export const THERAPEUTIC_CATEGORIES: TherapeuticCategory[] = [
     id: "anti-infectives",
     name: "Anti-infectives & Antibiotics",
     description: "Broad-spectrum cephalosporins, macrolides, and fluoroquinolones addressing drug-resistant bacterial strains and acute infections.",
-    iconName: "ShieldAlert"
+    iconName: "ShieldPlus"
   },
   {
     id: "respiratory",

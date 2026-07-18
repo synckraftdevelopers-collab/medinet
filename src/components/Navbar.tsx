@@ -280,7 +280,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
       {/* Main Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border h-[72px] md:h-[80px] lg:h-[88px]"
+            ? "bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,.04)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
             : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
           }`}
       >
@@ -308,7 +308,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
             <nav className="hidden lg:flex flex-1 items-center justify-center min-w-0 gap-[24px] xl:gap-[32px] min-[1440px]:gap-[36px]">
               <button
                 onClick={() => navigate("home")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 HOME
@@ -317,7 +317,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* About dropdown triggers route page directly or via submenus */}
               <button
                 onClick={() => navigate("about")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 ABOUT
@@ -331,7 +331,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               >
                 <button
                   onClick={() => navigate("products")}
-                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                     }`}
                 >
                   PRODUCTS
@@ -340,7 +340,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                 {/* Products Mega Menu Dropdown */}
                 {activeMegaMenu === "products" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-lg border border-border p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-[#FFFFFF] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
                     <div className="col-span-2 border-b border-border pb-2 mb-1">
                       <div className="text-[10px] font-mono font-semibold uppercase text-muted tracking-wider">
                         Therapeutic Segments
@@ -355,13 +355,13 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setActiveMegaMenu(null);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-start gap-2.5 p-2 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
+                          className="flex items-start gap-2.5 p-2 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
                         >
-                          <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                          <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
                             <IconComponent className="w-4 h-4" />
                           </div>
                           <div>
-                            <div className="text-xs font-semibold text-heading group-hover:text-heading">
+                            <div className="text-xs font-semibold text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
                               {cat.name}
                             </div>
                             <div className="text-[11px] text-body line-clamp-1 mt-0.5 font-sans">
@@ -371,8 +371,8 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                         </button>
                       );
                     })}
-                    <div className="col-span-2 mt-2 bg-background border border-border/60 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm flex items-center justify-between">
-                      <div className="text-[11px] text-body font-sans">
+                    <div className="col-span-2 mt-2 bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-[12px] flex items-center justify-between">
+                      <div className="text-[11px] text-[#64748B] font-sans">
                         Looking for something specific? Search our entire portfolio.
                       </div>
                       <button
@@ -380,7 +380,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setActiveMegaMenu(null);
                           setIsSearchOpen(true);
                         }}
-                        className="text-[11px] font-mono font-semibold text-heading flex items-center gap-1 hover:text-black"
+                        className="text-[11px] font-mono font-semibold text-[#334155] flex items-center gap-1 hover:text-[#2563EB] transition-colors duration-300"
                       >
                         SEARCH NOW <ArrowRight className="w-3.5 h-3.5" />
                       </button>
@@ -391,7 +391,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("research-development")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 R&D
@@ -399,7 +399,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("quality")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 QUALITY
@@ -407,7 +407,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("business-partners")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 PARTNERS
@@ -415,7 +415,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("careers")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 CAREERS
@@ -423,7 +423,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("news-events")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 NEWS
@@ -431,7 +431,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("contact")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
               >
                 CONTACT
@@ -448,7 +448,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               >
                 <button
                   className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${
-                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
+                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
                   }`}
                 >
                   LEGAL
@@ -456,16 +456,16 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </button>
 
                 {activeMegaMenu === "legal" && (
-                  <div className="absolute right-0 top-full w-[300px] bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-lg border border-border p-3 animate-fade-in mt-1 flex flex-col gap-1 z-50">
+                  <div className="absolute right-0 top-full w-[300px] bg-[#FFFFFF] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-3 animate-fade-in mt-1 flex flex-col gap-1 z-50">
                     <a
                       href="/legal/privacy-policy"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
                     >
-                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
                         <ShieldCheck className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-heading group-hover:text-heading">
+                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
                         Privacy Policy
                       </div>
                     </a>
@@ -473,12 +473,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/terms-conditions"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
                     >
-                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
                         <FileText className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-heading group-hover:text-heading">
+                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
                         Terms & Conditions
                       </div>
                     </a>
@@ -486,12 +486,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/disclaimer"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
                     >
-                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
                         <Scale className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-heading group-hover:text-heading">
+                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
                         Disclaimer
                       </div>
                     </a>
@@ -499,12 +499,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/cookie-policy"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
                     >
-                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
                         <Cookie className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-heading group-hover:text-heading">
+                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
                         Cookie Policy
                       </div>
                     </a>
@@ -512,12 +512,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <a
                       href="/legal/copyright-notice"
                       onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm hover:bg-background text-left transition-all group"
+                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
                     >
-                      <div className="w-8 h-8 rounded bg-alt-bg text-body flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
                         <Copyright className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-medium text-heading group-hover:text-heading">
+                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
                         Copyright Notice
                       </div>
                     </a>
@@ -526,7 +526,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               </div>
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 hover:bg-alt-bg rounded text-body hover:text-heading transition-colors focus:outline-none"
+                className="p-2 rounded text-[#334155] hover:text-[#2563EB] hover:bg-[#F8FAFC] transition-colors duration-300 focus:outline-none"
                 aria-label="Search"
                 title="Search Products (Ctrl+K)"
               >
@@ -546,7 +546,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="relative hidden md:inline-flex items-center gap-1.5 px-3 lg:px-2 min-[1440px]:px-3 py-1.5 bg-primary hover:bg-black text-white font-mono text-[11px] font-medium rounded border border-primary transition-all shadow-sm active:scale-98 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900 shrink-0"
+                className="relative hidden md:inline-flex items-center gap-1.5 px-3 lg:px-2 min-[1440px]:px-3 py-1.5 text-white font-mono text-[11px] font-medium rounded-[12px] border-none cursor-pointer focus:outline-none shrink-0 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] shadow-[0_12px_24px_rgba(37,99,235,.18)] hover:bg-[linear-gradient(135deg,#1D4ED8_0%,#0B1F4D_100%)] hover:-translate-y-[2px] transition-all duration-300"
               >
                 <span className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px]" aria-hidden="true"></span>
                 <PhoneCall className="w-3.5 h-3.5" />
@@ -556,7 +556,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* Mobile Burger Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2.5 hover:bg-alt-bg rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-body hover:text-heading transition-colors lg:hidden focus:outline-none"
+                className="p-2.5 hover:bg-[#F8FAFC] rounded-[12px] text-[#334155] hover:text-[#2563EB] transition-colors duration-300 lg:hidden focus:outline-none"
                 aria-label="Toggle Menu"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

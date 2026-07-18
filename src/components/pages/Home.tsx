@@ -9,6 +9,10 @@ import { motion } from "motion/react";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES, STATS, NEWS_ITEMS, BRAND_INFO } from "../../data";
 import SectionHeader from "../SectionHeader";
 import {
+  Quote,
+  CircleUserRound,
+  Newspaper,
+  Presentation,
   HeartPulse,
   ShieldPlus,
   FlaskConical,
@@ -315,7 +319,7 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Featured Products Showcase */}
-      <section className="py-20 bg-white border-b border-border">
+      <section className="py-20 bg-[#F1F5F9] border-b border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12">
             <div>
@@ -329,9 +333,9 @@ export default function Home({ navigate }: HomeProps) {
             </div>
             <button
               onClick={() => navigate("products")}
-              className="mt-4 sm:mt-0 px-4 py-2 bg-white border border-border hover:bg-background text-body font-mono text-xs font-semibold rounded transition-all shadow-sm flex items-center gap-1.5"
+              className="mt-4 sm:mt-0 px-4 py-2 bg-[#FFFFFF] border border-[#CBD5E1] text-[#0B1F4D] rounded-[14px] shadow-[0_8px_20px_rgba(11,31,77,.06)] font-mono text-xs font-semibold transition-all duration-300 ease-[ease] flex items-center gap-1.5 group/browse hover:bg-[linear-gradient(135deg,#EFF6FF_0%,#DBEAFE_100%)] hover:border-[#2563EB] hover:text-[#2563EB] hover:shadow-[0_15px_35px_rgba(37,99,235,.18)] hover:-translate-y-[2px] active:!bg-none active:!bg-[#DBEAFE] active:!text-[#0B1F4D] focus:outline-none focus-visible:ring-[4px] focus-visible:ring-[rgba(37,99,235,.15)]"
             >
-              BROWSE FULL CATALOGUE <ArrowRight className="w-3.5 h-3.5" />
+              BROWSE FULL CATALOGUE <ArrowRight className="w-3.5 h-3.5 text-[#2563EB] transition-all duration-300 ease-[ease] group-hover/browse:text-[#0D9488] group-hover/browse:translate-x-[6px]" />
             </button>
           </div>
 
@@ -339,34 +343,34 @@ export default function Home({ navigate }: HomeProps) {
             {featuredProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-white border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left flex flex-col justify-between shadow-sm hover:border-primary transition-all duration-200 group relative"
+                className="bg-[#FFFFFF] border border-[#CBD5E1] border-t-4 border-t-[#2563EB] p-6 rounded-[24px] shadow-[0_20px_50px_rgba(11,31,77,.10)] transition-all duration-300 ease-[ease] text-left flex flex-col justify-between group relative hover:border-[#2563EB] hover:border-t-[#0D9488] hover:-translate-y-[6px] hover:shadow-[0_30px_70px_rgba(37,99,235,.18)]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-mono bg-alt-bg text-body border border-border px-2 py-0.5 rounded font-semibold uppercase">
+                    <span className="text-[10px] font-mono bg-[#DBEAFE] text-[#1D4ED8] border border-[#93C5FD] px-2 py-0.5 rounded-[10px] font-semibold uppercase">
                       {product.dosageForm}
                     </span>
-                    <span className="text-xs font-mono text-muted">{product.strength}</span>
+                    <span className="text-xs font-mono text-[#2563EB] font-semibold">{product.strength}</span>
                   </div>
 
-                  <h3 className="font-display font-bold text-heading text-lg group-hover:text-heading transition-colors">
+                  <h3 className="font-display font-bold text-[#081F3A] text-lg">
                     {product.name}
                   </h3>
-                  <div className="text-xs text-body font-mono italic mt-1 line-clamp-1">
+                  <div className="text-xs text-[#2563EB] font-mono italic mt-1 line-clamp-1 opacity-100">
                     {product.genericName}
                   </div>
-                  <p className="mt-3.5 text-sm text-body leading-relaxed line-clamp-3">
+                  <p className="mt-3.5 text-sm text-[#334155] leading-relaxed line-clamp-3">
                     {product.description}
                   </p>
 
                   <div className="mt-4 space-y-1.5">
-                    <span className="block text-[10px] font-semibold text-muted font-mono uppercase tracking-wider">
+                    <span className="block text-[10px] font-semibold text-[#2563EB] font-mono uppercase tracking-wider">
                       Key Indications:
                     </span>
-                    <ul className="space-y-1 text-xs text-body">
+                    <ul className="space-y-1 text-xs text-[#334155]">
                       {product.indications.slice(0, 2).map((ind, i) => (
                         <li key={i} className="line-clamp-1 flex items-start gap-1">
-                          <span className="text-heading shrink-0">•</span>
+                          <span className="text-[#0D9488] shrink-0">•</span>
                           {ind}
                         </li>
                       ))}
@@ -374,15 +378,13 @@ export default function Home({ navigate }: HomeProps) {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
-                  <span className="text-xs text-muted font-mono">
-                    Pack: {product.packaging}
-                  </span>
+                <div className="mt-6 pt-4 border-t border-[#CBD5E1] flex items-center justify-between">
+                  <span className="text-xs font-mono"><span className="text-[#64748B]">Pack:</span> <span className="text-[#334155]">{product.packaging}</span></span>
                   <button
                     onClick={() => navigate("products", { id: product.id })}
-                    className="text-xs font-mono font-semibold text-heading hover:text-black flex items-center gap-1 uppercase"
+                    className="text-[11px] font-mono font-semibold text-[#0B1F4D] hover:text-[#2563EB] flex items-center gap-1 uppercase group/btn transition-colors duration-300 relative after:absolute after:-bottom-[2px] after:left-0 after:w-full after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
                   >
-                    DETAILS <ArrowUpRight className="w-3.5 h-3.5" />
+                    DETAILS <ArrowRight className="w-3.5 h-3.5 text-[#0B1F4D] group-hover/btn:text-[#0D9488] group-hover/btn:translate-x-[6px] transition-all duration-300" />
                   </button>
                 </div>
               </div>
@@ -392,57 +394,66 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Testimonials Endorsement Section */}
-      <section className="py-20 bg-background border-t border-b border-border">
+      <section className="py-20 bg-[#F8FAFC] border-t border-b border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Medical Feedback"
-            title="Trusted by Healthcare Professionals"
-            description="Leading clinicians, institutional pharmacists, and global distributors share their experiences in partnering with Medinet Pharmaceuticals."
-            centered
-          />
+          <div className="max-w-3xl mb-12 mx-auto text-center flex flex-col items-center">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] text-[11px] font-mono font-medium tracking-wider uppercase mb-5">
+              <span className="w-2 h-2 rounded-full bg-[#0D9488]"></span>
+              Medical Feedback
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#081F3A] tracking-tight leading-tight flex flex-col items-center">
+              <span>Trusted by <span className="text-[#2563EB]">Healthcare</span> <span className="text-[#2563EB]">Professionals</span></span>
+            </h2>
+            <p className="mt-5 text-sm text-[#475569] leading-relaxed max-w-2xl mx-auto">
+              Leading clinicians, institutional pharmacists, and global distributors share their experiences in partnering with Medinet Pharmaceuticals.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-sm text-left flex flex-col justify-between">
-              <p className="text-xs text-body leading-relaxed italic mb-6">
-                &ldquo;We have prescription records for over 2,500 cardiovascular patients on Medivastin 20. The comparative clinical response has been absolutely identical to innovator lipid regulators with excellent compliance.&rdquo;
+            <div className="bg-[#FFFFFF] border border-[#CBD5E1] p-6 rounded-[24px] shadow-[0_20px_45px_rgba(11,31,77,.08)] transition-all duration-300 ease-[ease] text-left flex flex-col justify-between hover:border-[#2563EB] hover:shadow-[0_28px_60px_rgba(37,99,235,.16)] hover:-translate-y-[5px]">
+              <Quote className="w-8 h-8 text-[#2563EB] opacity-[0.15] mb-3" />
+              <p className="text-xs text-[#475569] leading-relaxed italic mb-6">
+                We have prescription records for over 2,500 cardiovascular patients on Medivastin 20. The comparative clinical response has been absolutely identical to innovator lipid regulators with excellent compliance.
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded bg-primary text-white flex items-center justify-center font-mono font-bold text-xs">
-                  DK
+                <div className="w-12 h-12 rounded-full bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] text-white flex items-center justify-center shrink-0">
+                  <CircleUserRound className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-heading text-sm">Dr. Ketan Mehta, MD</h4>
-                  <p className="text-[11px] text-muted font-mono">Consulting Cardiologist, Mumbai</p>
+                  <h4 className="font-display font-bold text-[#081F3A] text-sm">Dr. Ketan Mehta, MD</h4>
+                  <p className="text-[11px] text-[#2563EB] font-mono font-medium">Consulting Cardiologist, Mumbai</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-sm text-left flex flex-col justify-between">
-              <p className="text-xs text-body leading-relaxed italic mb-6">
-                &ldquo;As a regional distributor in South India, logistical reliability and uncompromised batch records are critical. Medinet provides complete CTD dossiers and maintains perfect batch stability indices.&rdquo;
+            <div className="bg-[#FFFFFF] border border-[#CBD5E1] p-6 rounded-[24px] shadow-[0_20px_45px_rgba(11,31,77,.08)] transition-all duration-300 ease-[ease] text-left flex flex-col justify-between hover:border-[#2563EB] hover:shadow-[0_28px_60px_rgba(37,99,235,.16)] hover:-translate-y-[5px]">
+              <Quote className="w-8 h-8 text-[#2563EB] opacity-[0.15] mb-3" />
+              <p className="text-xs text-[#475569] leading-relaxed italic mb-6">
+                As a regional distributor in South India, logistical reliability and uncompromised batch records are critical. Medinet provides complete CTD dossiers and maintains perfect batch stability indices.
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded bg-primary text-white flex items-center justify-center font-mono font-bold text-xs">
-                  RI
+                <div className="w-12 h-12 rounded-full bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] text-white flex items-center justify-center shrink-0">
+                  <CircleUserRound className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-heading text-sm">Ramanathan Iyer</h4>
-                  <p className="text-[11px] text-muted font-mono">Chief Executive, South Dist. Hub</p>
+                  <h4 className="font-display font-bold text-[#081F3A] text-sm">Ramanathan Iyer</h4>
+                  <p className="text-[11px] text-[#2563EB] font-mono font-medium">Chief Executive, South Dist. Hub</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-sm text-left flex flex-col justify-between">
-              <p className="text-xs text-body leading-relaxed italic mb-6">
-                &ldquo;Formulating products with Gabax NT has given our neurological clinic a stellar therapeutic weapon for diabetic neuropathic pain management. Patient compliance rates are extremely high.&rdquo;
+            <div className="bg-[#FFFFFF] border border-[#CBD5E1] p-6 rounded-[24px] shadow-[0_20px_45px_rgba(11,31,77,.08)] transition-all duration-300 ease-[ease] text-left flex flex-col justify-between hover:border-[#2563EB] hover:shadow-[0_28px_60px_rgba(37,99,235,.16)] hover:-translate-y-[5px]">
+              <Quote className="w-8 h-8 text-[#2563EB] opacity-[0.15] mb-3" />
+              <p className="text-xs text-[#475569] leading-relaxed italic mb-6">
+                Formulating products with Gabax NT has given our neurological clinic a stellar therapeutic weapon for diabetic neuropathic pain management. Patient compliance rates are extremely high.
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded bg-primary text-white flex items-center justify-center font-mono font-bold text-xs">
-                  SA
+                <div className="w-12 h-12 rounded-full bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] text-white flex items-center justify-center shrink-0">
+                  <CircleUserRound className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-heading text-sm">Dr. Sarah Al-Dossari</h4>
-                  <p className="text-[11px] text-muted font-mono">Head of Neurology Unit, Clinical Partner</p>
+                  <h4 className="font-display font-bold text-[#081F3A] text-sm">Dr. Sarah Al-Dossari</h4>
+                  <p className="text-[11px] text-[#2563EB] font-mono font-medium">Head of Neurology Unit, Clinical Partner</p>
                 </div>
               </div>
             </div>
@@ -451,7 +462,7 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Latest Corporate Updates Section */}
-      <section className="py-20 bg-white border-b border-border">
+      <section className="py-20 bg-[#F8FAFC] border-b border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12">
             <div>
@@ -465,73 +476,91 @@ export default function Home({ navigate }: HomeProps) {
             </div>
             <button
               onClick={() => navigate("news-events")}
-              className="mt-4 sm:mt-0 px-4 py-2 bg-white border border-border hover:bg-background text-body font-mono text-xs font-semibold rounded transition-all shadow-sm flex items-center gap-1.5"
+              className="mt-4 sm:mt-0 px-4 py-2 bg-[#FFFFFF] border border-[#CBD5E1] text-[#0B1F4D] font-mono text-xs font-semibold rounded-[8px] transition-all duration-300 ease-[ease] flex items-center gap-1.5 group/press hover:bg-[linear-gradient(135deg,#EFF6FF_0%,#DBEAFE_100%)] hover:border-[#2563EB] hover:text-[#2563EB] hover:shadow-[0_12px_28px_rgba(37,99,235,.18)]"
             >
-              VIEW ALL PRESS RELEASES <ArrowRight className="w-3.5 h-3.5" />
+              VIEW ALL PRESS RELEASES <ArrowRight className="w-3.5 h-3.5 text-[#2563EB] group-hover/press:text-[#0D9488] transition-colors duration-300" />
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {latestNews.map((news) => (
+            {latestNews.map((news) => {
+              let badgeBg = "bg-[#DBEAFE]";
+              let badgeText = "text-[#1D4ED8]";
+              let BadgeIcon = Presentation;
+              
+              if (news.category === "News") {
+                badgeBg = "bg-[#EFF6FF]";
+                badgeText = "text-[#2563EB]";
+                BadgeIcon = Newspaper;
+              } else if (news.category === "CSR") {
+                badgeBg = "bg-[#DCFCE7]";
+                badgeText = "text-[#16A34A]";
+                BadgeIcon = HeartHandshake;
+              }
+
+              return (
               <div
                 key={news.id}
-                className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary transition-all duration-200 group"
+                className="bg-[#FFFFFF] border border-[#CBD5E1] border-t-4 border-t-transparent rounded-[24px] shadow-[0_20px_45px_rgba(11,31,77,.08)] transition-all duration-300 ease-[ease] text-left flex flex-col justify-between overflow-hidden hover:border-[#2563EB] hover:border-t-[#2563EB] hover:shadow-[0_30px_70px_rgba(37,99,235,.18)] hover:-translate-y-[6px] group/news"
               >
                 <div className="p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-[9px] font-mono uppercase tracking-wider bg-alt-bg text-body border border-border px-2 py-0.5 rounded font-semibold">
+                  <div className="flex items-center gap-2 mb-5">
+                    <span className={`flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider ${badgeBg} ${badgeText} px-2.5 py-1 rounded-[10px] font-semibold`}>
+                      <BadgeIcon className="w-3.5 h-3.5" />
                       {news.category}
                     </span>
-                    <span className="text-xs text-muted font-mono">{news.date}</span>
+                    <span className="text-xs text-[#64748B] font-mono">{news.date}</span>
                   </div>
 
-                  <h3 className="font-display font-bold text-heading text-base group-hover:text-heading transition-colors line-clamp-2">
+                  <h3 className="font-display font-bold text-[#081F3A] text-lg group-hover/news:text-[#2563EB] transition-colors line-clamp-2 mt-2">
                     {news.title}
                   </h3>
-                  <p className="mt-3 text-xs text-body leading-relaxed line-clamp-3">
+                  <p className="mt-3.5 text-sm text-[#475569] leading-relaxed line-clamp-3">
                     {news.excerpt}
                   </p>
                 </div>
 
-                <div className="p-5 pt-0 border-t border-border mt-4 flex justify-between items-center bg-background/50">
-                  <span className="text-[11px] text-muted font-mono">Read complete release</span>
+                <div className="px-6 py-4 border-t border-[#E2E8F0] mt-auto flex justify-between items-center bg-[#F8FAFC]">
+                  <span className="text-[11px] text-[#2563EB] font-mono font-semibold group-hover/news:text-[#0D9488] transition-colors">Read complete release</span>
                   <button
                     onClick={() => navigate("news-events", { id: news.id })}
-                    className="w-7 h-7 rounded border border-border text-body hover:text-heading hover:border-primary flex items-center justify-center transition-all bg-white shadow-none"
+                    className="flex items-center justify-center transition-transform duration-300 ease-[ease]"
                   >
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-4 h-4 text-[#2563EB] group-hover/news:text-[#0D9488] group-hover/news:translate-x-[6px] transition-all duration-300" />
                   </button>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </section>
 
+
       {/* Global B2B Call To Action Section */}
-      <section className="py-20 bg-primary text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] opacity-25"></div>
+      <section className="py-20 bg-[linear-gradient(135deg,#0B1F4D_0%,#12326B_50%,#1B4D96_100%)] text-white text-center relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] aspect-square bg-[rgba(59,130,246,0.12)] blur-[180px] rounded-full pointer-events-none"></div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary border border-primary text-muted text-[10px] font-mono font-medium tracking-wider uppercase mb-6">
-            // PARTNER WITH MEDINET
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.18)] text-[#93C5FD] text-[10px] font-mono font-medium tracking-wider uppercase mb-6 relative z-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
+            PARTNER WITH MEDINET
           </span>
-          <h2 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight leading-tight">
-            Scale Your Pharmaceutical Distribution Globally
+          <h2 className="text-3xl sm:text-5xl font-display font-medium text-[#FFFFFF] tracking-tight leading-tight relative z-10">
+            Scale Your <span className="text-[#93C5FD]">Pharmaceutical</span> Distribution <span className="text-[#93C5FD]">Globally</span>
           </h2>
-          <p className="mt-6 text-xs sm:text-sm text-muted leading-relaxed max-w-xl mx-auto">
+          <p className="mt-6 text-xs sm:text-sm text-[#CBD5E1] leading-relaxed max-w-xl mx-auto relative z-10">
             Leverage our premium bioequivalent product portfolio, dedicated regulatory support, and flexible third-party manufacturing arrangements to boost your market dominance.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center relative z-10">
             <button
               onClick={() => navigate("business-partners")}
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white hover:bg-alt-bg text-heading font-mono text-xs font-semibold rounded transition-all shadow-sm active:scale-98"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#FFFFFF] hover:bg-[#DBEAFE] text-[#0B1F4D] hover:text-[#2563EB] hover:shadow-[0_15px_35px_rgba(255,255,255,.18)] font-mono text-xs font-semibold rounded-[8px] transition-all duration-300 ease-[ease] hover:-translate-y-[2px] active:scale-98 group/primary"
             >
-              PARTNER INQUIRY FORM <ArrowRight className="w-3.5 h-3.5" />
+              PARTNER INQUIRY FORM <ArrowRight className="w-3.5 h-3.5 text-[#2563EB] group-hover/primary:text-[#0D9488] transition-colors duration-300" />
             </button>
             <button
               onClick={() => navigate("contact")}
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary hover:bg-slate-850 border border-slate-800 text-white font-mono text-xs font-semibold rounded transition-all active:scale-98"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] border border-[rgba(255,255,255,0.22)] hover:border-[#38BDF8] text-[#FFFFFF] font-mono text-xs font-semibold rounded-[8px] transition-all duration-300 ease-[ease] hover:-translate-y-[2px] active:scale-98"
             >
               CONTACT OFFICES
             </button>

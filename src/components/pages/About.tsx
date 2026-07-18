@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { BRAND_INFO, LEADERSHIP } from "../../data";
 import SectionHeader from "../SectionHeader";
@@ -111,10 +112,12 @@ export default function About() {
                     &ldquo;{BRAND_INFO.ceoMessage}&rdquo;
                   </p>
                   <div className="mt-8 flex items-center gap-4">
-                    <img
+                    <Image
                       src={LEADERSHIP[1].image}
                       alt={LEADERSHIP[1].name}
-                      className="w-11 h-11 rounded object-cover border border-border"
+                      width={44}
+                      height={44}
+                      className="rounded object-cover border border-border"
                     />
                     <div>
                       <h4 className="font-display font-bold text-heading text-xs">{LEADERSHIP[1].name}</h4>
@@ -230,10 +233,12 @@ export default function About() {
                 className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm overflow-hidden shadow-sm hover:border-primary transition-all duration-200 group text-left"
               >
                 <div className="relative aspect-square overflow-hidden bg-alt-bg">
-                  <img
+                  <Image
                     src={leader.image}
                     alt={leader.name}
-                    className="w-full h-full object-cover transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                     <p className="text-xs text-white leading-relaxed line-clamp-3">

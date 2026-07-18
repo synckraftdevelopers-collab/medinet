@@ -94,17 +94,7 @@ export default function Footer({ navigate, showToast }: FooterProps) {
               onClick={() => navigate("home")}
               className="flex items-center gap-2.5 text-left mb-6 focus:outline-none animate-none"
             >
-              <div className="w-8 h-8 rounded bg-white flex items-center justify-center text-heading font-display font-black text-lg tracking-tight shrink-0">
-                M
-              </div>
-              <div>
-                <span className="block text-base font-display font-bold text-white leading-none">
-                  Medinet
-                </span>
-                <span className="block text-[9px] font-mono tracking-widest text-muted uppercase mt-0.5">
-                  Pharmaceuticals
-                </span>
-              </div>
+              <img src="/logo-dark.svg" alt="Medinet Pharmaceuticals Logo" className="h-12 w-auto" />
             </button>
             <p className="text-xs text-muted leading-relaxed pr-4">
               Medinet Pharmaceutical Marketing Company is a world-class marketer of high-quality, bioequivalent advanced therapeutics. Bridging research and accessibility for over 25 years.

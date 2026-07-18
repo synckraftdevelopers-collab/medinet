@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { NEWS_ITEMS } from "../../data";
 import { NewsItem } from "../../types";
 import SectionHeader from "../SectionHeader";
@@ -268,11 +269,13 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                     key={idx}
                     className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm overflow-hidden shadow-sm group"
                   >
-                    <div className="aspect-[3/2] overflow-hidden bg-alt-bg">
-                      <img
+                    <div className="aspect-[3/2] overflow-hidden bg-alt-bg relative">
+                      <Image
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-102 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
                     </div>

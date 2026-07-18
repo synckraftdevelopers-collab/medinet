@@ -11,6 +11,7 @@ import { useRoute } from "./hooks/useRoute";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
+import SEOManager from "./components/SEOManager";
 
 // Pages
 import Home from "./components/pages/Home";
@@ -64,6 +65,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FCFCFD] flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
+      <SEOManager currentRoute={currentRoute} params={params} />
       <Navbar currentRoute={currentRoute} navigate={navigate} />
 
       <main className="flex-1">

@@ -7,6 +7,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 import { AppRoute } from "../hooks/useRoute";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES } from "../data";
 import { Product } from "../types";
@@ -279,33 +280,32 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
       {/* Main Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border py-3"
-            : "bg-transparent py-5"
+            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border h-[72px] md:h-[80px] lg:h-[88px]"
+            : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
           }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-[24px] min-[1440px]:px-[32px] h-full">
+          <div className="flex items-center justify-between h-full">
             {/* Logo */}
-            <button
-              onClick={() => navigate("home")}
-              className="flex items-center gap-2.5 text-left focus:outline-none"
-              id="navbar-logo"
-            >
-              <div className="w-9 h-9 rounded bg-primary flex items-center justify-center text-white shrink-0 font-display font-black text-lg tracking-tight">
-                M
-              </div>
-              <div>
-                <span className="block text-base font-display font-bold text-heading leading-none">
-                  Medinet
-                </span>
-                <span className="block text-[9px] font-mono tracking-widest text-body uppercase mt-1">
-                  Pharmaceuticals
-                </span>
-              </div>
-            </button>
+            <div className="flex items-center shrink-0">
+              <button
+                onClick={() => navigate("home")}
+                className="flex items-center text-left focus:outline-none hover:opacity-90 transition-opacity"
+                id="navbar-logo"
+              >
+                <Image 
+                  src="/logo.svg" 
+                  alt="Medinet Pharmaceuticals Logo" 
+                  width={260} 
+                  height={64}
+                  priority
+                  className="w-auto object-contain h-10 md:h-[44px] lg:h-[48px] min-[1440px]:h-[56px]" 
+                />
+              </button>
+            </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex flex-1 items-center justify-center min-w-0 gap-[24px] xl:gap-[32px] min-[1440px]:gap-[36px]">
               <button
                 onClick={() => navigate("home")}
                 className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-heading bg-alt-bg border border-border/80" : "text-body hover:text-heading hover:bg-background border border-transparent"
@@ -436,10 +436,13 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               >
                 CONTACT
               </button>
+            </nav>
 
+            {/* Right Buttons */}
+            <div className="flex items-center justify-end shrink-0 gap-3 xl:gap-5 min-[1440px]:gap-6">
               {/* Legal Dropdown */}
               <div
-                className="relative"
+                className="hidden lg:block relative"
                 onMouseEnter={() => setActiveMegaMenu("legal")}
                 onMouseLeave={() => setActiveMegaMenu(null)}
               >
@@ -521,10 +524,6 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                   </div>
                 )}
               </div>
-            </nav>
-
-            {/* Right Buttons */}
-            <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsSearchOpen(true)}
                 className="p-2 hover:bg-alt-bg rounded text-body hover:text-heading transition-colors focus:outline-none"
@@ -547,7 +546,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="relative hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-black text-white font-mono text-[11px] font-medium rounded border border-primary transition-all shadow-sm active:scale-98 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+                className="relative hidden md:inline-flex items-center gap-1.5 px-3 lg:px-2 min-[1440px]:px-3 py-1.5 bg-primary hover:bg-black text-white font-mono text-[11px] font-medium rounded border border-primary transition-all shadow-sm active:scale-98 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900 shrink-0"
               >
                 <span className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px]" aria-hidden="true"></span>
                 <PhoneCall className="w-3.5 h-3.5" />
@@ -594,14 +593,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between p-4 border-b border-border shrink-0">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded bg-primary flex items-center justify-center text-white shrink-0 font-display font-black text-base tracking-tight">
-                      M
-                    </div>
-                    <div>
-                      <span className="block text-base font-display font-bold text-heading leading-none">
-                        Medinet
-                      </span>
-                    </div>
+                    <img src="/logo.svg" alt="Medinet Logo" className="h-8 w-auto" />
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}

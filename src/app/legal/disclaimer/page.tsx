@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LegalLayout from "../../../components/LegalLayout";
+import LegalLayout, { LegalSection, LegalCallout } from "../../../components/LegalLayout";
 
 export const metadata: Metadata = {
   title: "Disclaimer | Medinet Pharmaceuticals",
@@ -21,26 +21,24 @@ export default function DisclaimerPage() {
       currentRoute="disclaimer"
       sections={sections}
     >
-      <section id="medical-disclaimer">
-        <h2 className="text-xl font-bold text-heading mb-3">1. Medical Disclaimer</h2>
+      <LegalSection id="medical-disclaimer" title="1. Medical Disclaimer" icon="ShieldCheck">
         <p>The contents of this website, including text, graphics, images, and other materials, are intended for informational and corporate purposes only. Nothing on this site should be construed as providing medical advice, diagnosing a condition, or recommending a treatment plan.</p>
-        <p className="mt-3 font-semibold text-heading">Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
-      </section>
+        <p className="mt-3 font-semibold text-[#0F172A]">Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+        <LegalCallout>This platform provides B2B legal information, not direct medical counsel.</LegalCallout>
+      </LegalSection>
 
-      <section id="product-info">
-        <h2 className="text-xl font-bold text-heading mb-3 mt-6">2. Product Information</h2>
+      <LegalSection id="product-info" title="2. Product Information" icon="Database">
         <p>The pharmaceutical products mentioned on this website are available by prescription only through licensed healthcare professionals. Information provided about our therapeutic segments is intended primarily for B2B partners, distributors, and medical practitioners, not for end-consumer self-medication.</p>
-      </section>
+      </LegalSection>
 
-      <section id="liability">
-        <h2 className="text-xl font-bold text-heading mb-3 mt-6">3. Limitation of Liability</h2>
+      <LegalSection id="liability" title="3. Limitation of Liability" icon="Scale">
         <p>While Medinet Pharmaceuticals strives to ensure that all information on this website is accurate and up-to-date, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the website or the information contained on the website.</p>
-      </section>
+        <LegalCallout>Limitation of liability is subject to specific local legal frameworks.</LegalCallout>
+      </LegalSection>
 
-      <section id="external-links">
-        <h2 className="text-xl font-bold text-heading mb-3 mt-6">4. External Links</h2>
+      <LegalSection id="external-links" title="4. External Links" icon="Handshake">
         <p>This website may contain links to external clinical research sites, regulatory bodies, or partner portals that are not operated by Medinet Pharmaceuticals. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.</p>
-      </section>
+      </LegalSection>
     </LegalLayout>
   );
 }

@@ -159,7 +159,7 @@ export default function About() {
               <p className="mt-4 text-[#475569] leading-relaxed text-sm">
                 We believe that premium, life-restoring pharmaceuticals should not carry prohibitive costs. Through optimizing distribution channels, standardizing dossiers, and leveraging economies of scale, we succeed in making modern pharmacology reachable to patients globally.
               </p>
-              
+
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
@@ -260,7 +260,7 @@ export default function About() {
             {LEADERSHIP.map((leader) => {
               let accentClass = "border-t-[#2563EB]";
               let badgeText = "MD";
-              
+
               const roleLower = leader.role.toLowerCase();
               if (roleLower.includes("founder")) {
                 accentClass = "border-t-[#2563EB]";
@@ -360,9 +360,8 @@ export default function About() {
                 return (
                   <div
                     key={idx}
-                    className={`flex flex-col md:flex-row items-center gap-8 md:gap-0 group ${
-                      isEven ? "md:flex-row-reverse" : ""
-                    }`}
+                    className={`flex flex-col md:flex-row items-center gap-8 md:gap-0 group ${isEven ? "md:flex-row-reverse" : ""
+                      }`}
                   >
                     {/* Left/Right content block */}
                     <div className="w-full md:w-[45%] text-left">

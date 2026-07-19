@@ -19,7 +19,23 @@ import {
   Flame,
   Award,
   Globe,
-  Heart
+  Heart,
+  Newspaper,
+  Presentation,
+  ShieldCheck,
+  FlaskConical,
+  Globe2,
+  CalendarDays,
+  Microscope,
+  Building2,
+  HeartHandshake,
+  CalendarPlus,
+  Handshake,
+  ArrowRight,
+  PhoneCall,
+  BadgeCheck,
+  ImageIcon,
+  GraduationCap
 } from "lucide-react";
 
 interface NewsEventsProps {
@@ -136,162 +152,367 @@ export default function NewsEvents({ params }: NewsEventsProps) {
         /* Regular News Grid & Events Schedule State */
         <>
           {/* Page Header */}
-          <section className="bg-background border-b border-border py-16 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"></div>
+          <section className="py-16 relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F3F7FC_55%,#FFFFFF_100%)] border-b border-[#E2E8F0]">
+            {/* Subtle blurred radial glows */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+
+            {/* Optional Decoration: Soft blurred circle behind heading */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
+
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                Corporate Media
-              </span>
-              <h1 className="text-4xl sm:text-5xl font-display font-medium text-heading tracking-tight leading-tight">
-                News &amp; Scientific Events
-              </h1>
-              <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl">
-                Stay updated with Medinet&rsquo;s global academic conferences, WHO-GMP facility validations, community healthcare campaigns, and upcoming therapeutic licensing sessions.
-              </p>
+              <div className="animate-fade-in">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_8px_20px_rgba(37,99,235,.08)]">
+                  <Newspaper className="w-3 h-3 text-[#2563EB]" />
+                  Corporate Media
+                </span>
+              </div>
+              
+              <div className="animate-fade-in">
+                <h1 className="text-4xl sm:text-5xl font-display font-medium text-[#0F172A] tracking-tight leading-tight [text-shadow:0_2px_10px_rgba(15,23,42,0.06)]">
+                  News &amp; <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Scientific Events</span>
+                </h1>
+                <p className="mt-6 text-sm sm:text-base text-[#475569] leading-[1.8] max-w-[760px]">
+                  Stay updated with Medinet&rsquo;s global academic conferences, WHO-GMP facility validations, community healthcare campaigns, and upcoming therapeutic licensing sessions.
+                </p>
+              </div>
+
+              {/* Optional Info Badges Below Description */}
+              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default group">
+                  <div className="bg-[#DBEAFE] p-1 rounded-full flex items-center justify-center">
+                    <Presentation className="w-3 h-3 text-[#2563EB] group-hover:scale-[1.08] transition-transform duration-[300ms] ease-out" />
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#0F172A]">Conference</span>
+                </div>
+                
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default group">
+                  <div className="bg-[#DCFCE7] p-1 rounded-full flex items-center justify-center">
+                    <ShieldCheck className="w-3 h-3 text-[#0D9488] group-hover:scale-[1.08] transition-transform duration-[300ms] ease-out" />
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#0F172A]">WHO-GMP</span>
+                </div>
+                
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default group">
+                  <div className="bg-[#FEF3C7] p-1 rounded-full flex items-center justify-center">
+                    <FlaskConical className="w-3 h-3 text-[#D97706] group-hover:scale-[1.08] transition-transform duration-[300ms] ease-out" />
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#0F172A]">Research</span>
+                </div>
+                
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default group">
+                  <div className="bg-[#EDE9FE] p-1 rounded-full flex items-center justify-center">
+                    <Globe2 className="w-3 h-3 text-[#7C3AED] group-hover:scale-[1.08] transition-transform duration-[300ms] ease-out" />
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#0F172A]">Global Events</span>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Latest News & CSR Grid */}
-          <section className="py-20 bg-white text-left">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeader
-                badge="Latest Updates"
-                title="Press Releases & CSR Actions"
-                description="Browse through our recent corporate highlights, research sponsorings, and rural community medicine distributions."
-                centered
-              />
+          <section className="py-20 relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_55%,#FFFFFF_100%)] text-left">
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="text-center max-w-3xl mx-auto mb-16 relative">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_10px_24px_rgba(37,99,235,.08)]">
+                  <Newspaper className="w-3 h-3 text-[#2563EB]" />
+                  Latest Updates
+                </span>
+                
+                <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">
+                  Press Releases &amp; <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">CSR Actions</span>
+                </h2>
+                
+                <p className="mt-4 text-[#475569] text-sm sm:text-base leading-[1.8] max-w-[720px] mx-auto">
+                  Browse through our recent corporate highlights, research sponsorings, and rural community medicine distributions.
+                </p>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                {NEWS_ITEMS.map((news) => (
-                  <div
-                    key={news.id}
-                    className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm overflow-hidden shadow-sm flex flex-col justify-between animate-fade-in"
-                  >
-                    <div className="p-6 sm:p-8">
-                      <div className="flex items-center gap-3 text-[10px] font-mono mb-4 text-body">
-                        <span className="bg-alt-bg text-heading border border-border px-2 py-0.5 rounded font-bold uppercase">
-                          {news.category}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5" />
+                {NEWS_ITEMS.map((news) => {
+                  let BadgeIcon = Newspaper;
+                  let CardIcon = Building2;
+                  let badgeBg = "bg-[#F1F5F9]";
+                  let badgeText = "text-[#64748B]";
+
+                  if (news.category === "Conference") {
+                    BadgeIcon = Presentation;
+                    CardIcon = Presentation;
+                    badgeBg = "bg-[#DBEAFE]";
+                    badgeText = "text-[#2563EB]";
+                  } else if (news.category === "News") {
+                    BadgeIcon = Newspaper;
+                    CardIcon = Building2;
+                    badgeBg = "bg-[#DCFCE7]";
+                    badgeText = "text-[#0D9488]";
+                  } else if (news.category === "CSR") {
+                    BadgeIcon = HeartHandshake;
+                    CardIcon = HeartHandshake;
+                    badgeBg = "bg-[#FEF3C7]";
+                    badgeText = "text-[#D97706]";
+                  } else if (news.category === "Event") {
+                    BadgeIcon = CalendarDays;
+                    CardIcon = Microscope;
+                    badgeBg = "bg-[#EDE9FE]";
+                    badgeText = "text-[#7C3AED]";
+                  }
+
+                  return (
+                    <div
+                      key={news.id}
+                      className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-[22px] shadow-[0_18px_40px_rgba(15,23,42,.06)] hover:-translate-y-[8px] hover:border-[#93C5FD] hover:shadow-[0_30px_70px_rgba(37,99,235,.12)] transition-all duration-[300ms] ease-out overflow-hidden flex flex-col justify-between group/card"
+                    >
+                      <div className="p-6 sm:p-8">
+                        <div className="flex items-center justify-between mb-6">
+                          <span className={`inline-flex items-center gap-1.5 px-[14px] py-[6px] rounded-full ${badgeBg} ${badgeText} text-[10px] font-mono font-[600] uppercase tracking-wide`}>
+                            <BadgeIcon className="w-3 h-3" />
+                            {news.category}
+                          </span>
+                          
+                          <div className="w-[40px] h-[40px] rounded-full bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center shrink-0 group-hover/card:scale-[1.1] transition-transform duration-[300ms] ease-out">
+                            <CardIcon className={`w-4 h-4 ${badgeText}`} />
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 text-[11px] font-mono mb-4 text-[#64748B] uppercase tracking-wide">
+                          <CalendarDays className="w-3.5 h-3.5" />
                           {news.date}
-                        </span>
+                        </div>
+
+                        <h3 className="font-display font-[700] text-[#0F172A] text-lg sm:text-xl leading-tight hover:text-[#2563EB] transition-colors cursor-pointer" onClick={() => setSelectedNews(news)}>
+                          {news.title}
+                        </h3>
+                        <p className="mt-4 text-sm text-[#475569] leading-[1.75] line-clamp-3">
+                          {news.excerpt}
+                        </p>
                       </div>
 
-                      <h3 className="font-display font-bold text-heading text-base hover:text-heading transition-colors">
-                        {news.title}
-                      </h3>
-                      <p className="mt-4 text-xs text-body leading-relaxed line-clamp-3">
-                        {news.excerpt}
-                      </p>
+                      <div className="p-6 sm:p-8 pt-5 border-t border-[#E2E8F0] bg-[#F8FAFC] flex justify-between items-center group-hover/card:bg-white transition-colors duration-[300ms]">
+                        <button
+                          onClick={() => setSelectedNews(news)}
+                          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors cursor-pointer group/link border-none bg-transparent p-0"
+                        >
+                          Read Full Release
+                          <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5 transition-transform duration-[300ms]" />
+                        </button>
+                        
+                        <button
+                          onClick={() => setSelectedNews(news)}
+                          className="w-[42px] h-[42px] rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] flex items-center justify-center transition-all duration-[300ms] cursor-pointer group-hover/link:bg-[#2563EB] group-hover/link:text-white hover:bg-[#2563EB] hover:text-white"
+                        >
+                          <ArrowUpRight className="w-4 h-4 hover:scale-[1.08]" />
+                        </button>
+                      </div>
                     </div>
-
-                    <div className="p-6 sm:p-8 pt-0 border-t border-border mt-4 flex justify-between items-center bg-background">
-                      <span className="text-[10px] font-mono uppercase text-muted">Read complete release</span>
-                      <button
-                        onClick={() => setSelectedNews(news)}
-                        className="w-8 h-8 rounded border border-border text-body hover:text-heading hover:border-primary bg-white flex items-center justify-center shadow-sm transition-colors cursor-pointer"
-                      >
-                        <ArrowUpRight className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
 
           {/* Upcoming Conferences/Symposiums */}
-          <section className="py-20 bg-background border-t border-b border-border text-left">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeader
-                badge="On The Horizon"
-                title="Upcoming Scientific Conferences"
-                description="We participate in high-profile pharmaceutical summits. Schedule a direct meet with our licensing heads at these locations."
-                centered
-              />
+          <section className="py-20 relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F5F9FF_55%,#FFFFFF_100%)] text-left">
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="text-center max-w-3xl mx-auto mb-16 relative">
+                <span className="inline-flex items-center gap-1.5 px-[18px] py-[8px] rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_10px_24px_rgba(37,99,235,.08)]">
+                  <CalendarDays className="w-3 h-3 text-[#2563EB]" />
+                  On The Horizon
+                </span>
+                
+                <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">
+                  Upcoming <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Scientific Conferences</span>
+                </h2>
+                
+                <p className="mt-4 text-[#475569] text-sm sm:text-base leading-[1.8] max-w-[720px] mx-auto">
+                  We participate in high-profile pharmaceutical summits. Schedule a direct meet with our licensing heads at these locations.
+                </p>
+              </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {upcomingEvents.map((event, i) => (
-                  <div
-                    key={i}
-                    className="bg-white border border-border p-6 sm:p-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-sm text-left flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="text-[10px] font-mono font-bold uppercase bg-alt-bg text-heading border border-border px-2.5 py-0.5 rounded">
-                          {event.type}
-                        </span>
-                      </div>
-                      <h3 className="font-display font-bold text-heading text-base">
-                        {event.title}
-                      </h3>
-                      <div className="mt-3 space-y-1.5 text-[10px] font-mono text-muted">
-                        <p className="flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-slate-550 shrink-0" />
-                          {event.date}
+                {upcomingEvents.map((event, i) => {
+                  let BadgeIcon = Presentation;
+                  let badgeBg = "bg-[#DBEAFE]";
+                  let badgeText = "text-[#2563EB]";
+
+                  if (event.type === "Symposium") {
+                    BadgeIcon = Microscope;
+                    badgeBg = "bg-[#EDE9FE]";
+                    badgeText = "text-[#7C3AED]";
+                  } else if (event.type === "B2B Summit") {
+                    BadgeIcon = Handshake;
+                    badgeBg = "bg-[#DCFCE7]";
+                    badgeText = "text-[#0D9488]";
+                  }
+                  
+                  // Optional Status Tag logic
+                  let statusTag = null;
+                  if (i === 0) statusTag = { text: "Upcoming", bg: "bg-[#DBEAFE]", color: "text-[#2563EB]" };
+                  if (i === 1) statusTag = { text: "Featured", bg: "bg-[#FEF3C7]", color: "text-[#D97706]" };
+                  if (i === 2) statusTag = { text: "Confirmed", bg: "bg-[#DCFCE7]", color: "text-[#0D9488]" };
+
+                  return (
+                    <div
+                      key={i}
+                      className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-[24px] shadow-[0_20px_45px_rgba(15,23,42,.06)] hover:-translate-y-[8px] hover:border-[#93C5FD] hover:shadow-[0_35px_80px_rgba(37,99,235,.12)] transition-all duration-[300ms] ease-out p-6 sm:p-8 text-left flex flex-col justify-between group/card relative"
+                    >
+                      {statusTag && (
+                        <div className="absolute top-6 right-6">
+                          <span className={`inline-block px-2.5 py-0.5 rounded-full ${statusTag.bg} ${statusTag.color} text-[9px] font-mono font-medium uppercase tracking-wider`}>
+                            {statusTag.text}
+                          </span>
+                        </div>
+                      )}
+
+                      <div>
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-[40px] h-[40px] rounded-[12px] bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center shrink-0 group-hover/card:scale-[1.1] transition-transform duration-[300ms] ease-out">
+                            <BadgeIcon className={`w-4 h-4 ${badgeText}`} />
+                          </div>
+                          <span className={`inline-flex items-center gap-1.5 px-[14px] py-[6px] rounded-full ${badgeBg} ${badgeText} text-[10px] font-mono font-[600] uppercase tracking-wide`}>
+                            {event.type}
+                          </span>
+                        </div>
+                        
+                        <h3 className="font-display font-[700] text-[#0F172A] text-lg sm:text-xl leading-tight hover:text-[#2563EB] transition-colors pr-16">
+                          {event.title}
+                        </h3>
+                        
+                        <div className="mt-4 space-y-2.5 text-[11px] font-mono">
+                          <p className="flex items-center gap-2 text-[#475569]">
+                            <CalendarDays className="w-4 h-4 text-[#2563EB] shrink-0" />
+                            {event.date}
+                          </p>
+                          <p className="flex items-center gap-2 text-[#64748B]">
+                            <MapPin className="w-4 h-4 text-[#0D9488] shrink-0" />
+                            {event.location}
+                          </p>
+                        </div>
+                        
+                        <p className="mt-5 text-sm text-[#475569] leading-[1.75]">
+                          {event.desc}
                         </p>
-                        <p className="flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-slate-550 shrink-0" />
-                          {event.location}
-                        </p>
                       </div>
-                      <p className="mt-4 text-xs text-body leading-relaxed">
-                        {event.desc}
-                      </p>
+                      
+                      <div className="mt-8 pt-5 border-t border-[#E2E8F0] bg-[#F8FAFC] -mx-6 sm:-mx-8 px-6 sm:px-8 -mb-6 sm:-mb-8 pb-6 sm:pb-8 flex items-center justify-between">
+                        <a href="#contact" className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors group/link">
+                          <CalendarPlus className="w-4 h-4 group-hover/link:scale-[1.1] transition-transform duration-[300ms]" />
+                          Schedule Meeting
+                        </a>
+                        <a href="#contact" className="inline-flex items-center gap-2 h-[42px] px-[18px] bg-[#EFF6FF] border border-[#BFDBFE] rounded-full text-xs font-semibold text-[#2563EB] hover:bg-[linear-gradient(90deg,#2563EB,#1D4ED8)] hover:text-white hover:border-transparent transition-all duration-[300ms] group/btn shadow-[0_4px_14px_rgba(37,99,235,0)] hover:shadow-[0_8px_20px_rgba(37,99,235,.2)]">
+                          Contact Sales 
+                          <ArrowRight className="w-4 h-4 text-[#2563EB] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform duration-[300ms]" />
+                        </a>
+                      </div>
                     </div>
-                    <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-muted">
-                      <span className="text-[10px] font-mono uppercase">Schedule a meeting</span>
-                      <a href="#contact" className="font-semibold text-heading hover:underline flex items-center gap-1">
-                        Contact Sales <ChevronRight className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
 
           {/* Corporate Event Gallery */}
-          <section className="py-20 bg-white text-left">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeader
-                badge="Corporate Gallery"
-                title="Medinet in Action"
-                description="Visual logs of our rural diagnostics missions, regulatory audit passes, and therapeutic research debates."
-                centered
-              />
+          <section className="py-20 relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_55%,#FFFFFF_100%)] text-left">
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="text-center max-w-3xl mx-auto mb-16 relative">
+                <span className="inline-flex items-center gap-1.5 px-[18px] py-[8px] rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_12px_30px_rgba(37,99,235,.08)]">
+                  <ImageIcon className="w-3 h-3 text-[#2563EB]" />
+                  Corporate Gallery
+                </span>
+                
+                <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">
+                  <span className="bg-[linear-gradient(180deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Medinet in Action</span>
+                </h2>
+                
+                <p className="mt-4 text-[#475569] text-sm sm:text-base leading-[1.8] max-w-[760px] mx-auto">
+                  Visual logs of our rural diagnostics missions, regulatory audit passes, and therapeutic research debates.
+                </p>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {galleryPlaceholders.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm overflow-hidden shadow-sm group"
-                  >
-                    <div className="aspect-[3/2] overflow-hidden bg-alt-bg relative">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-102 transition-transform duration-500"
-                        referrerPolicy="no-referrer"
-                      />
+                {galleryPlaceholders.map((item, idx) => {
+                  let BadgeIcon = HeartHandshake;
+                  let badgeBg = "bg-[#F1F5F9]";
+                  let badgeText = "text-[#64748B]";
+                  
+                  if (item.tag === "CSR") {
+                    BadgeIcon = HeartHandshake;
+                    badgeBg = "bg-[#DCFCE7]";
+                    badgeText = "text-[#0D9488]";
+                  } else if (item.tag === "Quality") {
+                    BadgeIcon = BadgeCheck;
+                    badgeBg = "bg-[#DBEAFE]";
+                    badgeText = "text-[#2563EB]";
+                  } else if (item.tag === "Academic") {
+                    BadgeIcon = GraduationCap;
+                    badgeBg = "bg-[#EDE9FE]";
+                    badgeText = "text-[#7C3AED]";
+                  }
+
+                  let statusTag = null;
+                  if (item.tag === "CSR") statusTag = { text: "Completed", bg: "bg-[#DCFCE7]", color: "text-[#10B981]" }; // Using emerald text based on design system mapping usually #10B981 or similar green
+                  if (item.tag === "Quality") statusTag = { text: "WHO-GMP Passed", bg: "bg-[#DBEAFE]", color: "text-[#2563EB]" };
+                  if (item.tag === "Academic") statusTag = { text: "Live Event", bg: "bg-[#EDE9FE]", color: "text-[#7C3AED]" };
+
+                  return (
+                    <div
+                      key={idx}
+                      className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-[24px] shadow-[0_18px_45px_rgba(15,23,42,.06)] hover:-translate-y-[10px] hover:border-[#93C5FD] hover:shadow-[0_35px_80px_rgba(37,99,235,.12)] transition-all duration-[300ms] ease-out overflow-hidden flex flex-col justify-between group/card relative"
+                    >
+                      <div className="aspect-[3/2] overflow-hidden bg-alt-bg relative">
+                        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,31,77,.25),transparent_40%)] z-10 pointer-events-none"></div>
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover group-hover/card:scale-[1.05] transition-transform duration-[500ms]"
+                          referrerPolicy="no-referrer"
+                        />
+                        {statusTag && (
+                          <div className="absolute top-4 right-4 z-20">
+                            <span className={`inline-block px-2.5 py-1 rounded-full ${statusTag.bg} ${statusTag.color} text-[9px] font-mono font-bold uppercase tracking-wider shadow-sm`}>
+                              {statusTag.text}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-[40px] h-[40px] rounded-[12px] bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center shrink-0 group-hover/card:scale-[1.1] transition-transform duration-[300ms] ease-out">
+                            <BadgeIcon className={`w-4 h-4 ${badgeText}`} />
+                          </div>
+                          <span className={`inline-flex items-center gap-1.5 px-[14px] py-[6px] rounded-full ${badgeBg} ${badgeText} text-[10px] font-mono font-[600] uppercase tracking-wide`}>
+                            {item.tag}
+                          </span>
+                        </div>
+                        
+                        <h4 className="font-display font-[700] text-[#0F172A] text-base hover:text-[#2563EB] transition-colors cursor-pointer">
+                          {item.title}
+                        </h4>
+                        <p className="text-sm text-[#475569] mt-2 leading-[1.75]">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-4 border-t border-[#E2E8F0] bg-[#F8FAFC] p-[18px] flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase text-[#64748B]">View Full Details</span>
+                        <button className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] transition-all duration-[300ms] cursor-pointer group-hover/card:bg-[linear-gradient(90deg,#2563EB,#1D4ED8)] group-hover/card:text-white hover:shadow-[0_4px_12px_rgba(37,99,235,.3)]">
+                          <ArrowRight className="w-3.5 h-3.5 group-hover/card:translate-x-0.5 transition-transform duration-[300ms]" />
+                        </button>
+                      </div>
                     </div>
-                    <div className="p-5">
-                      <span className="text-[10px] font-mono font-medium bg-alt-bg text-heading border border-border px-2 py-0.5 rounded uppercase">
-                        {item.tag}
-                      </span>
-                      <h4 className="font-display font-bold text-heading text-sm mt-2">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-body mt-1 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>

@@ -19,12 +19,21 @@ import {
   FileText,
   X,
   CheckCircle,
-  Heart,
+  HeartHandshake,
+  GraduationCap,
+  BriefcaseBusiness,
   TrendingUp,
-  Brain,
-  Coffee,
   Globe,
-  Plus
+  Plus,
+  ShieldCheck,
+  ClipboardCheck,
+  FlaskConical,
+  Clock3,
+  CalendarDays,
+  CheckCircle2,
+  ArrowRight,
+  Lock,
+  Building2
 } from "lucide-react";
 
 interface CareersProps {
@@ -52,22 +61,42 @@ export default function Careers({ showToast }: CareersProps) {
     {
       title: "Health & Wellbeing",
       description: "Comprehensive medical insurance policies for employees and dependent family members, plus routine health camps.",
-      icon: Heart
+      icon: HeartHandshake,
+      iconBg: "bg-[linear-gradient(135deg,#DBEAFE,#EFF6FF)]",
+      iconColor: "text-[#2563EB]",
+      accent: "bg-[#2563EB]",
+      badge: "Employee Care",
+      badgeColor: "text-[#2563EB] bg-[#EFF6FF] border-[#BFDBFE]"
     },
     {
       title: "Scientific Training",
       description: "Continuous corporate sponsorships for pharma certifications, regulatory seminars, and global research conventions.",
-      icon: Brain
+      icon: GraduationCap,
+      iconBg: "bg-[linear-gradient(135deg,#DCFCE7,#F0FDF4)]",
+      iconColor: "text-[#0D9488]",
+      accent: "bg-[#0D9488]",
+      badge: "Learning",
+      badgeColor: "text-[#0D9488] bg-[#F0FDF4] border-[#A7F3D0]"
     },
     {
       title: "Career Growth",
       description: "Fast-track performance evaluation plans allowing rapid transitions from junior executive to divisional heads.",
-      icon: TrendingUp
+      icon: TrendingUp,
+      iconBg: "bg-[linear-gradient(135deg,#FEF3C7,#FFF8E1)]",
+      iconColor: "text-[#D97706]",
+      accent: "bg-[#38BDF8]",
+      badge: "Promotion",
+      badgeColor: "text-[#D97706] bg-[#FFF8E1] border-[#FDE68A]"
     },
     {
       title: "Work-Life Synergy",
       description: "Flexible regional marketing timings, comprehensive maternal/paternal leave plans, and collaborative office layouts.",
-      icon: Coffee
+      icon: BriefcaseBusiness,
+      iconBg: "bg-[linear-gradient(135deg,#EDE9FE,#F5F3FF)]",
+      iconColor: "text-[#7C3AED]",
+      accent: "bg-[#8B5CF6]",
+      badge: "Flexible",
+      badgeColor: "text-[#7C3AED] bg-[#F5F3FF] border-[#DDD6FE]"
     }
   ];
 
@@ -163,42 +192,88 @@ export default function Careers({ showToast }: CareersProps) {
   return (
     <div className="pt-20">
       {/* Page Header */}
-      <section className="bg-background border-b border-border py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"></div>
+      <section className="py-16 relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F3F7FC_55%,#FFFFFF_100%)] border-b border-[#E2E8F0]">
+        {/* Soft radial glows */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.06)_0%,transparent_60%)] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+
+        {/* Optional Decoration: Soft blurred circle behind heading */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-            Join Our Team
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-display font-medium text-heading tracking-tight leading-tight">
-            Careers at Medinet
-          </h1>
-          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl">
-            At Medinet, we believe our people are our strongest formulation. We provide a workspace that cherishes scientific integrity, ethical dedication, and continuous professional progression.
-          </p>
+          <div className="animate-fade-in">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_8px_22px_rgba(37,99,235,.08)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
+              Join Our Team
+            </span>
+          </div>
+          
+          <div className="animate-fade-in">
+            <h1 className="text-4xl sm:text-5xl font-display font-medium text-[#0F172A] tracking-tight leading-tight [text-shadow:0_2px_8px_rgba(15,23,42,0.06)]">
+              <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Careers</span> at <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Medinet</span>
+            </h1>
+            <p className="mt-6 text-sm sm:text-base text-[#475569] leading-[1.8] max-w-[760px]">
+              At Medinet, we believe our people are our strongest formulation. We provide a workspace that cherishes scientific integrity, ethical dedication, and continuous professional progression.
+            </p>
+          </div>
+
+          {/* Optional Small Badges Below Description */}
+          <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default">
+              <ShieldCheck className="w-4 h-4 text-[#2563EB]" />
+              <span className="text-[11px] font-semibold text-[#0F172A]">WHO-GMP Certified</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default">
+              <TrendingUp className="w-4 h-4 text-[#0D9488]" />
+              <span className="text-[11px] font-semibold text-[#0F172A]">Career Growth</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default">
+              <GraduationCap className="w-4 h-4 text-[#38BDF8]" />
+              <span className="text-[11px] font-semibold text-[#0F172A]">Learning Culture</span>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Careers Work Culture & Benefits */}
-      <section className="py-20 bg-white text-left">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Medinet Life"
-            title="A Rewarding Work Environment"
-            description="We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters."
-            centered
-          />
+      <section className="py-20 bg-[linear-gradient(180deg,#F8FAFC,#F4F8FC,#FFFFFF)] relative overflow-hidden text-left border-b border-[#E2E8F0]">
+        {/* Soft radial glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 relative">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_8px_20px_rgba(37,99,235,.08)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
+              Medinet Life
+            </span>
+            
+            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">
+              A <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Rewarding</span> <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Work Environment</span>
+            </h2>
+            
+            <p className="mt-4 text-[#475569] text-sm sm:text-base leading-[1.8] max-w-[760px] mx-auto">
+              We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((ben, idx) => {
               const BenIcon = ben.icon;
               return (
-                <div key={idx} className="bg-white border border-border p-6 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-sm text-left">
-                  <div className="w-9 h-9 bg-alt-bg rounded flex items-center justify-center text-heading mb-4">
-                    <BenIcon className="w-4.5 h-4.5" />
+                <div key={idx} className="bg-[#FFFFFF] border border-[#E2E8F0] p-6 sm:p-8 rounded-[24px] shadow-[0_18px_45px_rgba(15,23,42,.08)] hover:-translate-y-[8px] hover:border-[#93C5FD] hover:shadow-[0_28px_65px_rgba(37,99,235,.14)] transition-all duration-[350ms] text-left relative overflow-hidden group">
+                  {/* Top gradient accent line */}
+                  <div className={`absolute top-0 left-0 right-0 h-[3px] rounded-full ${ben.accent}`}></div>
+
+                  <div className="flex justify-between items-start mb-6">
+                    <div className={`w-[52px] h-[52px] rounded-2xl ${ben.iconBg} flex items-center justify-center shrink-0 shadow-[0_10px_24px_rgba(37,99,235,.10)] group-hover:shadow-[0_0_15px_rgba(37,99,235,.20)] transition-shadow duration-[300ms]`}>
+                      <BenIcon className={`w-6 h-6 ${ben.iconColor} group-hover:scale-[1.08] group-hover:rotate-[3deg] transition-transform duration-[300ms] ease-out`} />
+                    </div>
+                    <span className={`inline-block border ${ben.badgeColor} text-[9px] font-mono font-medium tracking-wide uppercase px-2 py-0.5 rounded-full`}>
+                      {ben.badge}
+                    </span>
                   </div>
-                  <h3 className="font-display font-bold text-heading text-sm mb-2">{ben.title}</h3>
-                  <p className="text-xs text-body leading-relaxed">{ben.description}</p>
+                  <h3 className="font-display font-[700] text-[#0F172A] text-sm sm:text-base mb-2">{ben.title}</h3>
+                  <p className="text-xs text-[#475569] leading-[1.8]">{ben.description}</p>
                 </div>
               );
             })}
@@ -207,72 +282,153 @@ export default function Careers({ showToast }: CareersProps) {
       </section>
 
       {/* Current Openings */}
-      <section className="py-20 bg-background border-t border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Active Positions"
-            title="Explore Open Opportunities"
-            description="We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance."
-            centered
-          />
+      <section className="py-20 bg-[linear-gradient(180deg,#F8FAFC,#F4F8FC,#FFFFFF)] relative overflow-hidden border-t border-b border-[#E2E8F0]">
+        {/* Soft radial glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
+          <div className="text-center max-w-3xl mx-auto mb-16 relative">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_8px_18px_rgba(37,99,235,.08)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
+              Active Positions
+            </span>
+            
+            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">
+              Explore <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Open</span> <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Opportunities</span>
+            </h2>
+            
+            <p className="mt-4 text-[#475569] text-sm sm:text-base leading-[1.8] max-w-[700px] mx-auto">
+              We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {JOBS.map((job) => (
-              <div
-                key={job.id}
-                className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm p-6 sm:p-8 text-left shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 text-[10px] font-mono mb-4 text-body">
-                    <span className="bg-alt-bg text-heading border border-border px-2 py-0.5 rounded font-bold uppercase">
-                      {job.department}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5" />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
-                      {job.type}
-                    </span>
+            {JOBS.map((job) => {
+              // Determine styles based on department
+              let Icon = Building2;
+              let iconBg = "bg-[#F1F5F9]";
+              let iconColor = "text-[#64748B]";
+              let accent = "bg-[#64748B]";
+              let badgeColor = "text-[#64748B] bg-[#F8FAFC] border-[#E2E8F0]";
+
+              if (job.department === "Quality Assurance") {
+                Icon = ShieldCheck;
+                iconBg = "bg-[#DBEAFE]";
+                iconColor = "text-[#2563EB]";
+                accent = "bg-[#2563EB]";
+                badgeColor = "text-[#2563EB] bg-[#EFF6FF] border-[#BFDBFE]";
+              } else if (job.department === "Sales & Marketing") {
+                Icon = BriefcaseBusiness;
+                iconBg = "bg-[#DCFCE7]";
+                iconColor = "text-[#0D9488]";
+                accent = "bg-[#0D9488]";
+                badgeColor = "text-[#0D9488] bg-[#F0FDF4] border-[#A7F3D0]";
+              } else if (job.department === "Medical & Regulatory") {
+                Icon = ClipboardCheck;
+                iconBg = "bg-[#EDE9FE]";
+                iconColor = "text-[#7C3AED]";
+                accent = "bg-[#7C3AED]";
+                badgeColor = "text-[#7C3AED] bg-[#F5F3FF] border-[#DDD6FE]";
+              } else if (job.department === "Research & Development") {
+                Icon = FlaskConical;
+                iconBg = "bg-[#FEF3C7]";
+                iconColor = "text-[#D97706]";
+                accent = "bg-[#D97706]";
+                badgeColor = "text-[#D97706] bg-[#FFF8E1] border-[#FDE68A]";
+              }
+
+              return (
+                <div
+                  key={job.id}
+                  className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-[24px] shadow-[0_18px_45px_rgba(15,23,42,.08)] hover:-translate-y-[8px] hover:border-[#93C5FD] hover:shadow-[0_28px_65px_rgba(37,99,235,.14)] transition-all duration-[350ms] ease-out p-6 sm:p-8 text-left relative overflow-hidden group flex flex-col justify-between"
+                >
+                  {/* Top Accent Bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-[3px] rounded-full ${accent}`}></div>
+
+                  <div>
+                    <div className="flex justify-between items-start mb-6">
+                      <div className={`w-[52px] h-[52px] rounded-2xl ${iconBg} flex items-center justify-center shrink-0 shadow-[0_8px_20px_rgba(37,99,235,.12)] group-hover:shadow-[0_0_15px_rgba(37,99,235,.20)] transition-shadow duration-[300ms]`}>
+                        <Icon className={`w-6 h-6 ${iconColor} group-hover:scale-[1.08] transition-transform duration-[300ms] ease-out`} />
+                      </div>
+                      
+                      {/* Optional Status Badges */}
+                      {job.department === "Quality Assurance" && (
+                        <span className="inline-block border border-[#BBF7D0] bg-[#F0FDF4] text-[#16A34A] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                          Urgent Hiring
+                        </span>
+                      )}
+                      {job.department === "Research & Development" && (
+                        <span className="inline-block border border-[#BFDBFE] bg-[#EFF6FF] text-[#2563EB] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                          Featured
+                        </span>
+                      )}
+                      {job.department === "Sales & Marketing" && (
+                        <span className="inline-block border border-[#FDE68A] bg-[#FFF8E1] text-[#D97706] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                          New
+                        </span>
+                      )}
+                      {job.department === "Medical & Regulatory" && (
+                        <span className="inline-block border border-[#DDD6FE] bg-[#F5F3FF] text-[#7C3AED] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                          Remote Eligible
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                      <span className={`inline-block border ${badgeColor} text-[10px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full`}>
+                        {job.department}
+                      </span>
+                      <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#64748B] uppercase">
+                        <MapPin className="w-3.5 h-3.5" />
+                        {job.location}
+                      </span>
+                      <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#64748B] uppercase">
+                        <Clock3 className="w-3.5 h-3.5" />
+                        {job.type}
+                      </span>
+                    </div>
+
+                    <h3 className="font-display font-[700] text-[#0F172A] text-lg sm:text-xl leading-tight">
+                      {job.title}
+                    </h3>
+                    
+                    <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#64748B] mt-2 uppercase">
+                      <CalendarDays className="w-3.5 h-3.5" />
+                      Experience: {job.experience} Required
+                    </div>
+
+                    <p className="mt-4 text-[#475569] leading-[1.8] text-sm">
+                      {job.description}
+                    </p>
+
+                    <div className="mt-6 space-y-2.5">
+                      <ul className="space-y-2 text-sm text-[#475569]">
+                        {job.requirements.map((req, idx) => (
+                          <li key={idx} className="flex items-start gap-2.5">
+                            <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0 mt-0.5" />
+                            <span className="leading-relaxed">{req}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <h3 className="font-display font-bold text-heading text-base">
-                    {job.title}
-                  </h3>
-                  <p className="text-[10px] font-mono text-muted mt-1 uppercase">
-                    EXP: {job.experience} REQUIRED
-                  </p>
-                  <p className="mt-4 text-xs text-body leading-relaxed">
-                    {job.description}
-                  </p>
-
-                  <div className="mt-6 space-y-2">
-                    <span className="block text-[10px] font-mono text-body uppercase tracking-wider">
-                      // CANDIDATE REQUIREMENTS:
+                  <div className="mt-8 pt-6 border-t border-[#E2E8F0] flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-[11px] text-[#94A3B8] font-medium font-mono uppercase tracking-wide">
+                      <Lock className="w-3.5 h-3.5" />
+                      Secure Opportunity
                     </span>
-                    <ul className="space-y-1.5 text-xs text-body">
-                      {job.requirements.map((req, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5">
-                          <span className="text-muted shrink-0">•</span>
-                          {req}
-                        </li>
-                      ))}
-                    </ul>
+                    <button
+                      onClick={() => handleApplyClick(job)}
+                      className="px-5 py-2.5 bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-white font-medium text-xs sm:text-sm rounded-[12px] shadow-[0_14px_35px_rgba(37,99,235,.25)] hover:bg-[linear-gradient(90deg,#2563EB,#38BDF8)] hover:-translate-y-[2px] hover:shadow-[0_16px_40px_rgba(37,99,235,.35)] transition-all duration-[300ms] cursor-pointer group/btn flex items-center gap-2 border-none"
+                    >
+                      Apply Now
+                      <ArrowRight className="w-4 h-4 text-white group-hover/btn:translate-x-1 transition-transform duration-[300ms]" />
+                    </button>
                   </div>
                 </div>
-
-                <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
-                  <span className="text-[10px] text-muted font-mono uppercase">Secure Opportunity</span>
-                  <button
-                    onClick={() => handleApplyClick(job)}
-                    className="px-4 py-2 bg-primary hover:bg-primary text-white font-medium text-xs sm:text-sm rounded border border-primary transition-colors cursor-pointer"
-                  >
-                    Apply Now
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>      {/* Application Form Modal */}

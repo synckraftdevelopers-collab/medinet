@@ -18,7 +18,8 @@ export type AppRoute =
   | "privacy-policy"
   | "terms"
   | "disclaimer"
-  | "cookies";
+  | "cookies"
+  | "copyright-notice";
 
 export function useRoute() {
   const [currentRoute, setCurrentRoute] = useState<AppRoute>("home");
@@ -71,6 +72,8 @@ export function useRoute() {
         setCurrentRoute("disclaimer");
       } else if (cleanPath === "legal/cookies" || cleanPath === "cookies") {
         setCurrentRoute("cookies");
+      } else if (cleanPath === "legal/copyright-notice" || cleanPath === "copyright-notice") {
+        setCurrentRoute("copyright-notice");
       } else {
         // Fallback for 404
         setCurrentRoute("home");

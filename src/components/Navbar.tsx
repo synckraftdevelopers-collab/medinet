@@ -32,6 +32,8 @@ import {
   Cookie,
   Scale,
   Copyright,
+  BadgeCheck,
+  Info,
   HeartPulse,
   Pill,
   ShieldPlus,
@@ -470,71 +472,117 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </button>
 
                 {activeMegaMenu === "legal" && (
-                  <div className="absolute right-0 top-full w-[300px] bg-[#FFFFFF] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-3 animate-fade-in mt-1 flex flex-col gap-1 z-50">
-                    <a
-                      href="/legal/privacy-policy"
-                      onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
-                    >
-                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
-                        <ShieldCheck className="w-4 h-4" />
-                      </div>
-                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
-                        Privacy Policy
-                      </div>
-                    </a>
+                  <div className="absolute right-0 top-[calc(100%+8px)] w-[420px] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(37,99,235,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]">
                     
-                    <a
-                      href="/legal/terms-conditions"
-                      onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
-                    >
-                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
-                        <FileText className="w-4 h-4" />
+                    {/* Top Header */}
+                    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#E2E8F0] px-2">
+                      <div className="w-10 h-10 rounded-[12px] bg-[linear-gradient(135deg,#F8FAFC,#F1F5F9)] border border-[#E2E8F0] flex items-center justify-center shrink-0">
+                        <Scale className="w-5 h-5 text-[#0B1F4D]" />
                       </div>
-                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
-                        Terms & Conditions
+                      <div>
+                        <h4 className="font-display font-[700] text-[#0F172A] text-[15px]">Legal & Compliance</h4>
+                        <p className="text-[#64748B] text-[11px] font-medium mt-0.5">Policies, Security & Corporate Information</p>
                       </div>
-                    </a>
+                    </div>
 
-                    <a
-                      href="/legal/disclaimer"
-                      onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
-                    >
-                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
-                        <Scale className="w-4 h-4" />
-                      </div>
-                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
-                        Disclaimer
-                      </div>
-                    </a>
+                    <div className="flex flex-col gap-1">
+                      <a
+                        href="/legal/privacy-policy"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                      >
+                        <div className="flex items-center gap-[18px]">
+                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
+                            <ShieldCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Privacy Policy</span>
+                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Protecting your information</span>
+                          </div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                      </a>
+                      
+                      <a
+                        href="/legal/terms-conditions"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                      >
+                        <div className="flex items-center gap-[18px]">
+                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#0D9488,#2DD4BF)] shadow-[0_10px_24px_rgba(13,148,136,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
+                            <FileText className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Terms & Conditions</span>
+                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Usage guidelines</span>
+                          </div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                      </a>
 
-                    <a
-                      href="/legal/cookie-policy"
-                      onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
-                    >
-                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
-                        <Cookie className="w-4 h-4" />
-                      </div>
-                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
-                        Cookie Policy
-                      </div>
-                    </a>
+                      <a
+                        href="/legal/disclaimer"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                      >
+                        <div className="flex items-center gap-[18px]">
+                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#F59E0B,#FBBF24)] shadow-[0_10px_24px_rgba(245,158,11,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
+                            <Scale className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Disclaimer</span>
+                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Legal information</span>
+                          </div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                      </a>
 
-                    <a
-                      href="/legal/copyright-notice"
-                      onClick={() => setActiveMegaMenu(null)}
-                      className="flex items-center gap-3 p-2.5 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
-                    >
-                      <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
-                        <Copyright className="w-4 h-4" />
+                      <a
+                        href="/legal/cookie-policy"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                      >
+                        <div className="flex items-center gap-[18px]">
+                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#8B5CF6,#A78BFA)] shadow-[0_10px_24px_rgba(139,92,246,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
+                            <Cookie className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Cookie Policy</span>
+                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Tracking preferences</span>
+                          </div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                      </a>
+
+                      <a
+                        href="/legal/copyright-notice"
+                        onClick={() => setActiveMegaMenu(null)}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                      >
+                        <div className="flex items-center gap-[18px]">
+                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#0EA5E9)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
+                            <BadgeCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Copyright Notice</span>
+                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Ownership & licensing</span>
+                          </div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                      </a>
+                    </div>
+                    
+                    {/* Bottom Area */}
+                    <div className="mt-4 pt-4 border-t border-[#E2E8F0] bg-[#F8FAFC] rounded-b-[24px] -mx-5 -mb-5 p-[18px] flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-[13px] font-[500] text-[#0F172A]">
+                        <Info className="w-[18px] h-[18px] text-[#2563EB]" />
+                        Need legal assistance?
                       </div>
-                      <div className="text-sm font-medium text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
-                        Copyright Notice
-                      </div>
-                    </a>
+                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#0B1F4D] hover:bg-[#2563EB] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(11,31,77,.15)]">
+                        Contact Legal Team
+                      </a>
+                    </div>
+
                   </div>
                 )}
               </div>

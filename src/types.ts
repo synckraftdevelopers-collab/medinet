@@ -64,7 +64,7 @@ export interface PipelineProduct {
 
 export interface Office {
   name: string;
-  type: "Corporate" | "Regional" | "Manufacturing";
+  type: string;
   address: string;
   phone: string;
   email: string;

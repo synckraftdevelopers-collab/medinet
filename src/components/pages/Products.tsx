@@ -21,13 +21,29 @@ import {
   HelpCircle,
   Briefcase,
   Layers,
-  ChevronRight
+  ChevronRight,
+  ShieldCheck,
+  Pill,
+  Droplets,
+  BadgePlus,
+  Syringe,
+  Droplet
 } from "lucide-react";
 
 interface ProductsProps {
   params: Record<string, string>;
   showToast: (message: string, type: "success" | "error") => void;
 }
+
+const getDosageIcon = (form: string) => {
+  const f = form.toLowerCase();
+  if (f.includes('tablet') || f.includes('capsule')) return <Pill className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
+  if (f.includes('gel')) return <Droplets className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
+  if (f.includes('cream') || f.includes('ointment')) return <BadgePlus className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
+  if (f.includes('inject') || f.includes('vial') || f.includes('syring')) return <Syringe className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
+  if (f.includes('syrup') || f.includes('drop') || f.includes('suspension')) return <Droplet className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
+  return <Pill className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
+};
 
 export default function Products({ params, showToast }: ProductsProps) {
   // Filters state
@@ -216,35 +232,41 @@ export default function Products({ params, showToast }: ProductsProps) {
   return (
     <div className="pt-20">
       {/* Page Header */}
-      <section className="bg-background border-b border-border py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"></div>
+      <section className="bg-[linear-gradient(180deg,#F8FAFC_0%,#F3F8FE_45%,#FFFFFF_100%)] border-b border-[#DBEAFE] py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(37,99,235,.02))] pointer-events-none"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-alt-bg border border-border text-body text-[10px] font-mono font-medium tracking-wider uppercase mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[linear-gradient(135deg,#EFF6FF,#FFFFFF)] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-4 shadow-[0_8px_20px_rgba(37,99,235,.08)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
               Formulation Portfolio
             </span>
-            <h1 className="text-4xl sm:text-5xl font-display font-medium text-heading tracking-tight leading-tight">
-              Products Directory
+            <h1 className="text-4xl sm:text-5xl font-display font-medium text-[#0B1F4D] tracking-tight leading-tight">
+              <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Products</span> Directory
             </h1>
-            <p className="mt-3 text-body leading-relaxed max-w-2xl text-xs sm:text-sm">
+            <p className="mt-3 text-[#475569] leading-[1.8] max-w-[720px] text-xs sm:text-sm">
               Explore our comprehensive collection of therapeutic formulations. Every product is audited, verified, bioequivalent, and licensed for wholesale export.
             </p>
           </div>
           <button
             onClick={handleCatalogDownload}
             disabled={isDownloading}
-            className="md:self-end px-5 py-2.5 bg-primary hover:bg-slate-850 disabled:opacity-75 text-white font-mono text-xs font-semibold rounded transition-all flex items-center justify-center gap-1.5 shadow-none shrink-0"
+            className="md:self-end px-5 py-2.5 bg-[linear-gradient(135deg,#0B1F4D,#1D4ED8)] disabled:opacity-75 text-white font-mono text-xs font-semibold rounded-[16px] shadow-[0_14px_35px_rgba(29,78,216,.22)] hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:-translate-y-[3px] hover:scale-[1.03] hover:shadow-[0_20px_45px_rgba(37,99,235,.30)] transition-all duration-300 ease-[ease] flex items-center justify-center gap-3 shrink-0 border-none group"
           >
             {isDownloading ? (
               <>
-                <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                <div className="w-[28px] h-[28px] rounded-full bg-[rgba(255,255,255,0.18)] flex items-center justify-center shrink-0">
+                  <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                </div>
                 GENERATING PDF...
               </>
             ) : (
               <>
-                <Download className="w-3.5 h-3.5" />
+                <div className="w-[28px] h-[28px] rounded-full bg-[rgba(255,255,255,0.18)] flex items-center justify-center shrink-0 group-hover:rotate-[8deg] transition-transform duration-300">
+                  <FileText className="w-3.5 h-3.5 text-white" />
+                </div>
                 DOWNLOAD CATALOGUE PDF
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-[6px] transition-transform duration-300" />
               </>
             )}
           </button>
@@ -252,14 +274,14 @@ export default function Products({ params, showToast }: ProductsProps) {
       </section>
 
       {/* Directory Grid */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_50%,#FFFFFF_100%)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Sidebar Filters */}
-            <aside className="lg:col-span-3 text-left bg-background border border-border p-5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm">
-              <div className="flex items-center gap-2 border-b border-border pb-4 mb-5">
-                <Filter className="w-4 h-4 text-body" />
-                <h3 className="font-mono font-semibold text-heading text-xs uppercase tracking-wider">
+            <aside className="lg:col-span-3 text-left bg-[linear-gradient(180deg,#FFFFFF,#F8FAFC)] border border-[#DCE7F5] p-5 rounded-[28px] shadow-[0_20px_45px_rgba(11,31,77,.08)]">
+              <div className="flex items-center gap-3 border-b border-[#DCE7F5] pb-4 mb-5">
+                <Filter className="w-5 h-5 text-[#2563EB]" />
+                <h3 className="font-mono font-semibold text-[#0B1F4D] text-xs uppercase tracking-[0.1em]">
                   // Filter Segments
                 </h3>
               </div>
@@ -268,14 +290,18 @@ export default function Products({ params, showToast }: ProductsProps) {
               <div className="space-y-1.5">
                 <button
                   onClick={() => setSelectedCategory("all")}
-                  className={`w-full text-left px-3 py-2 rounded text-xs font-semibold transition-all flex items-center justify-between ${
+                  className={`w-full text-left px-3 py-2 text-xs font-semibold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-[12px] border-l-[4px] ${
                     selectedCategory === "all"
-                      ? "bg-primary text-white shadow-none"
-                      : "text-body hover:bg-white hover:text-heading border border-transparent hover:border-border"
+                      ? "bg-[linear-gradient(135deg,#0B1F4D,#1D4ED8)] text-[#FFFFFF] shadow-[0_10px_24px_rgba(37,99,235,.28)] border-transparent"
+                      : "bg-transparent text-[#334155] border-transparent hover:bg-[#EFF6FF] hover:text-[#2563EB] hover:border-l-[#2563EB]"
                   }`}
                 >
                   <span>All Formulations</span>
-                  <span className="text-[10px] font-mono font-normal opacity-70">
+                  <span className={`rounded-full px-[10px] py-[4px] font-semibold text-[10px] transition-colors duration-300 ${
+                    selectedCategory === "all"
+                      ? "bg-[rgba(255,255,255,0.18)] text-[#FFFFFF]"
+                      : "bg-[#F1F5F9] text-[#64748B] group-hover:bg-[#EFF6FF] group-hover:text-[#2563EB]"
+                  }`}>
                     {PRODUCTS.length}
                   </span>
                 </button>
@@ -286,14 +312,18 @@ export default function Products({ params, showToast }: ProductsProps) {
                     <button
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`w-full text-left px-3 py-2 rounded text-xs font-semibold transition-all flex items-center justify-between ${
+                      className={`w-full text-left px-3 py-2 text-xs font-semibold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-[12px] border-l-[4px] ${
                         selectedCategory === cat.id
-                          ? "bg-primary text-white shadow-none"
-                          : "text-body hover:bg-white hover:text-heading border border-transparent hover:border-border"
+                          ? "bg-[linear-gradient(135deg,#0B1F4D,#1D4ED8)] text-[#FFFFFF] shadow-[0_10px_24px_rgba(37,99,235,.28)] border-transparent"
+                          : "bg-transparent text-[#334155] border-transparent hover:bg-[#EFF6FF] hover:text-[#2563EB] hover:border-l-[#2563EB]"
                       }`}
                     >
                       <span className="line-clamp-1 pr-2">{cat.name}</span>
-                      <span className="text-[10px] font-mono font-normal opacity-70">
+                      <span className={`rounded-full px-[10px] py-[4px] font-semibold text-[10px] transition-colors duration-300 ${
+                        selectedCategory === cat.id
+                          ? "bg-[rgba(255,255,255,0.18)] text-[#FFFFFF]"
+                          : "bg-[#F1F5F9] text-[#64748B] group-hover:bg-[#EFF6FF] group-hover:text-[#2563EB]"
+                      }`}>
                         {count}
                       </span>
                     </button>
@@ -301,12 +331,16 @@ export default function Products({ params, showToast }: ProductsProps) {
                 })}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-border text-left bg-alt-bg p-4 rounded border border-border">
-                <Info className="w-4 h-4 text-heading mb-2 shrink-0" />
-                <h4 className="font-mono font-bold text-heading text-xs">// LICENSING NOTICE</h4>
-                <p className="text-[10px] text-body leading-relaxed mt-1">
-                  Medinet formulations are marketed to corporate licensed entities only. We do not distribute to patients directly.
-                </p>
+              <div className="mt-8 pt-6 border-t border-[#DCE7F5]">
+                <div className="text-left bg-[linear-gradient(180deg,#F8FAFC,#F1F5F9)] p-5 rounded-[20px] border border-[#DBEAFE] hover:-translate-y-[3px] hover:shadow-[0_18px_40px_rgba(13,148,136,.10)] transition-all duration-300">
+                  <div className="w-[44px] h-[44px] bg-[rgba(13,148,136,0.10)] rounded-[12px] flex items-center justify-center mb-4">
+                    <ShieldCheck className="w-5 h-5 text-[#0D9488]" />
+                  </div>
+                  <h4 className="font-mono font-bold text-[#0B1F4D] text-xs tracking-wider mb-2">// LICENSING NOTICE</h4>
+                  <p className="text-[10px] text-[#64748B] leading-[1.7]">
+                    Medinet formulations are marketed to corporate licensed entities only. We do not distribute to patients directly.
+                  </p>
+                </div>
               </div>
             </aside>
 
@@ -320,12 +354,12 @@ export default function Products({ params, showToast }: ProductsProps) {
                     placeholder="Search brand, formula or key ingredient..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-background border border-border focus:border-secondary focus:ring-4 focus:ring-secondary/15 rounded text-xs focus:outline-none focus:ring-0 text-heading transition-all placeholder:text-slate-450"
+                    className="w-full pl-10 pr-4 py-2 bg-[#FFFFFF] border border-[#DBEAFE] focus:border-[#2563EB] focus:ring-[4px] focus:ring-[rgba(37,99,235,.10)] rounded-[16px] text-xs focus:outline-none text-[#0B1F4D] transition-all placeholder:text-[#94A3B8] shadow-[0_10px_24px_rgba(11,31,77,.05)]"
                   />
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
+                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#2563EB]" />
                 </div>
-                <div className="text-[10px] font-mono text-slate-450 self-end sm:self-center">
-                  // Showing {filteredProducts.length} of {PRODUCTS.length} formulations
+                <div className="text-[10px] font-mono text-[#64748B] self-end sm:self-center">
+                  // Showing <span className="text-[#2563EB] font-bold">{filteredProducts.length}</span> of <span className="text-[#2563EB] font-bold">{PRODUCTS.length}</span> formulations
                 </div>
               </div>
 
@@ -335,35 +369,36 @@ export default function Products({ params, showToast }: ProductsProps) {
                   {filteredProducts.map((p) => (
                     <div
                       key={p.id}
-                      className="bg-white border border-border hover:border-primary p-5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-left shadow-sm hover:shadow-sm transition-all flex flex-col justify-between group"
+                      className="bg-[linear-gradient(180deg,#FFFFFF,#FDFEFF)] border border-[#E2E8F0] p-5 rounded-[22px] shadow-[0_16px_35px_rgba(15,23,42,.06)] hover:-translate-y-[8px] hover:border-[#BFDBFE] hover:shadow-[0_28px_55px_rgba(37,99,235,.15)] transition-all duration-[350ms] ease-[ease] text-left flex flex-col justify-between group cursor-pointer"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3.5">
-                          <span className="text-[9px] font-mono font-semibold bg-alt-bg text-heading border border-border px-2 py-0.5 rounded uppercase">
+                          <span className="text-[9px] font-mono font-bold bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] px-2 py-0.5 rounded-full uppercase transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(37,99,235,.2)]">
                             {p.dosageForm}
                           </span>
-                          <span className="text-[10px] font-mono font-medium text-muted">{p.strength}</span>
+                          <span className="text-[10px] font-mono font-semibold text-[#64748B]">{p.strength}</span>
                         </div>
 
-                        <h3 className="font-display font-bold text-heading text-base group-hover:text-heading transition-colors">
+                        <h3 className="font-display font-bold text-[#0B1F4D] text-base group-hover:text-[#2563EB] transition-colors duration-300 flex items-center gap-1.5">
+                          {getDosageIcon(p.dosageForm)}
                           {p.name}
                         </h3>
-                        <p className="text-[10px] text-muted font-mono italic mt-0.5 line-clamp-1">
+                        <p className="text-[10px] text-[#64748B] font-mono italic mt-1 line-clamp-1">
                           {p.genericName}
                         </p>
-                        <p className="text-xs text-body leading-relaxed mt-3 line-clamp-2">
+                        <p className="text-xs text-[#475569] leading-[1.75] mt-3 line-clamp-2">
                           {p.description}
                         </p>
                       </div>
 
-                      <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-[11px] font-mono text-muted">
-                        <span>{p.packaging}</span>
+                      <div className="mt-6 pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-[#94A3B8]">{p.packaging}</span>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setSelectedProduct(p)}
-                            className="text-xs font-semibold text-heading hover:underline cursor-pointer"
+                            className="text-xs font-bold text-[#0B1F4D] group-hover:text-[#2563EB] transition-colors duration-300 cursor-pointer flex items-center gap-1"
                           >
-                            Details
+                            Details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-[6px] transition-transform duration-300" />
                           </button>
                         </div>
                       </div>

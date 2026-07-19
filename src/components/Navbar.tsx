@@ -31,7 +31,11 @@ import {
   FileText,
   Cookie,
   Scale,
-  Copyright
+  Copyright,
+  HeartPulse,
+  Pill,
+  ShieldPlus,
+  Leaf
 } from "lucide-react";
 
 interface NavbarProps {
@@ -340,14 +344,24 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                 {/* Products Mega Menu Dropdown */}
                 {activeMegaMenu === "products" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-[#FFFFFF] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
-                    <div className="col-span-2 border-b border-border pb-2 mb-1">
-                      <div className="text-[10px] font-mono font-semibold uppercase text-muted tracking-wider">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
+                    <div className="col-span-2 border-b border-[#DBEAFE] pb-3 mb-2 flex">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(37,99,235,.08)]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
                         Therapeutic Segments
-                      </div>
+                      </span>
                     </div>
                     {THERAPEUTIC_CATEGORIES.map((cat) => {
-                      const IconComponent = iconMap[cat.iconName] || Activity;
+                      let IconComponent = Activity;
+                      if (cat.name.includes("Cardio")) IconComponent = HeartPulse;
+                      else if (cat.name.includes("Neuro")) IconComponent = Brain;
+                      else if (cat.name.includes("Gastro")) IconComponent = Pill;
+                      else if (cat.name.includes("Derma")) IconComponent = Sparkles;
+                      else if (cat.name.includes("Anti-infect") || cat.name.includes("Antibiotic")) IconComponent = ShieldPlus;
+                      else if (cat.name.includes("Respir")) IconComponent = Wind;
+                      else if (cat.name.includes("Ortho") || cat.name.includes("Pain")) IconComponent = Bone;
+                      else if (cat.name.includes("Nutra") || cat.name.includes("Wellness")) IconComponent = Leaf;
+
                       return (
                         <button
                           key={cat.id}
@@ -355,24 +369,24 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setActiveMegaMenu(null);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-start gap-2.5 p-2 rounded-[12px] hover:bg-[#F8FAFC] text-left transition-all duration-300 group"
+                          className="flex items-start gap-3 p-[14px] rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F8FBFF,#EFF6FF)] hover:border-[#BFDBFE] hover:translate-x-[6px] hover:-translate-y-[3px] hover:shadow-[0_12px_30px_rgba(37,99,235,.10)] text-left transition-all duration-300 ease-[ease] cursor-pointer group"
                         >
-                          <div className="w-8 h-8 rounded bg-[#F1F5F9] text-[#64748B] flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
-                            <IconComponent className="w-4 h-4" />
+                          <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#EFF6FF,#DBEAFE)] border border-[#BFDBFE] text-[#2563EB] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] group-hover:text-white transition-all duration-300">
+                            <IconComponent className="w-5 h-5 group-hover:rotate-[5deg] transition-transform duration-300" />
                           </div>
                           <div>
-                            <div className="text-xs font-semibold text-[#334155] group-hover:text-[#2563EB] transition-colors duration-300">
+                            <div className="text-sm font-bold text-[#0F172A] group-hover:text-[#2563EB] transition-colors duration-300">
                               {cat.name}
                             </div>
-                            <div className="text-[11px] text-body line-clamp-1 mt-0.5 font-sans">
+                            <div className="text-[11px] text-[#64748B] line-clamp-1 mt-0.5 font-sans">
                               {cat.description}
                             </div>
                           </div>
                         </button>
                       );
                     })}
-                    <div className="col-span-2 mt-2 bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-[12px] flex items-center justify-between">
-                      <div className="text-[11px] text-[#64748B] font-sans">
+                    <div className="col-span-2 mt-3 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#DBEAFE] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(11,31,77,.06)]">
+                      <div className="text-[11px] text-[#64748B] font-sans ml-2">
                         Looking for something specific? Search our entire portfolio.
                       </div>
                       <button
@@ -380,9 +394,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setActiveMegaMenu(null);
                           setIsSearchOpen(true);
                         }}
-                        className="text-[11px] font-mono font-semibold text-[#334155] flex items-center gap-1 hover:text-[#2563EB] transition-colors duration-300"
+                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:shadow-[0_12px_28px_rgba(37,99,235,.30)] hover:scale-[1.03] transition-all duration-300"
                       >
-                        SEARCH NOW <ArrowRight className="w-3.5 h-3.5" />
+                        SEARCH NOW <ArrowRight className="w-3.5 h-3.5 text-white" />
                       </button>
                     </div>
                   </div>

@@ -33,7 +33,10 @@ import {
   Users,
   Award,
   Clock,
-  ArrowUpRight
+  ArrowUpRight,
+  Pill,
+  Globe,
+  ShieldCheck
 } from "lucide-react";
 
 interface HomeProps {
@@ -248,20 +251,45 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Stats Board Section */}
-      <section className="bg-primary py-12 text-white text-center relative overflow-hidden border-b border-primary">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
+      <section className="bg-[linear-gradient(135deg,#0B1F4D_0%,#163A78_45%,#1E4FA8_100%)] py-16 text-center relative overflow-hidden">
+        {/* Soft radial glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(56,189,248,.08),transparent_70%)] pointer-events-none z-0"></div>
+        {/* Subtle glowing line bottom border */}
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-[linear-gradient(90deg,transparent,#38BDF8,transparent)] opacity-20 pointer-events-none"></div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-8 gap-x-6">
-            {STATS.map((stat, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <span className="block text-3xl sm:text-4xl font-display font-medium text-white tracking-tight">
-                  {stat.value}
-                </span>
-                <span className="mt-2 text-[10px] font-mono tracking-wider text-muted uppercase max-w-[140px]">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
+            {STATS.map((stat, idx) => {
+              const Icon = idx === 0 ? Award : idx === 1 ? Pill : idx === 2 ? Globe : idx === 3 ? Users : idx === 4 ? ShieldCheck : HeartHandshake;
+              return (
+                <div key={idx} className="flex flex-col items-center justify-center p-6 bg-[rgba(255,255,255,.03)] border border-[rgba(255,255,255,.06)] backdrop-blur-[8px] rounded-[20px] hover:-translate-y-[6px] hover:bg-[rgba(255,255,255,.05)] hover:border-[rgba(56,189,248,.35)] hover:shadow-[0_20px_50px_rgba(11,31,77,.30)] transition-all duration-[300ms] group relative cursor-default">
+                  
+                  {/* Vertical dividers */}
+                  {idx !== 0 && <div className="hidden lg:block absolute left-[-12px] top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-[rgba(56,189,248,.20)]"></div>}
+                  {(idx === 1 || idx === 3 || idx === 5) && <div className="lg:hidden absolute left-[-12px] top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-[rgba(56,189,248,.20)]"></div>}
+                  {(idx === 2 || idx === 5) && <div className="hidden md:block lg:hidden absolute left-[-12px] top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-[rgba(56,189,248,.20)]"></div>}
+
+                  <div className="w-8 h-8 rounded-[14px] bg-[rgba(255,255,255,.08)] flex items-center justify-center mb-4 transition-transform duration-[300ms] group-hover:scale-[1.15] group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] animate-fade-in">
+                    <Icon className="w-4 h-4 text-[#38BDF8]" />
+                  </div>
+
+                  <span className="block text-3xl sm:text-4xl font-display font-[800] text-[#FFFFFF] tracking-tight drop-shadow-[0_0_18px_rgba(56,189,248,0.18)] transition-all duration-[300ms] animate-fade-in group-hover:drop-shadow-[0_0_24px_rgba(56,189,248,0.4)]">
+                    {stat.value.replace('M+', '').replace('%', '').replace('+', '')}
+                    {stat.value.includes('M+') ? (
+                      <span className="text-[#38BDF8]">M+</span>
+                    ) : stat.value.includes('+') ? (
+                      <span className="text-[#38BDF8]">+</span>
+                    ) : stat.value.includes('%') ? (
+                      <span className="text-[#38BDF8]">%</span>
+                    ) : null}
+                  </span>
+                  
+                  <span className="mt-3 text-[10px] font-mono tracking-[3px] font-[600] text-[#BFDBFE] uppercase leading-relaxed text-center w-full block break-words max-w-[140px]">
+                    {stat.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

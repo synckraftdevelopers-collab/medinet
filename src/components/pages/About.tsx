@@ -1,5 +1,7 @@
 /**
  * @license
+/**
+ * @license
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -22,7 +24,12 @@ import {
   FlaskConical,
   ShieldCheck,
   HeartHandshake,
-  Handshake
+  Handshake,
+  Rocket,
+  Building2,
+  Globe,
+  Factory,
+  Brain
 } from "lucide-react";
 
 export default function About() {
@@ -315,39 +322,63 @@ export default function About() {
       </section>
 
       {/* Corporate Timeline Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_60%,#F1F5F9_100%)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Corporate Timeline"
-            title="Our Path of Progress"
-            description="Review the critical milestones that defined our transition from a local marketer to a globally trusted pharmaceutical exporter."
-            centered
-          />
+          <div className="max-w-3xl mb-12 mx-auto text-center">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-4 shadow-[0_4px_12px_rgba(37,99,235,.08)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
+              Corporate Timeline
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight relative w-fit mx-auto mb-3">
+              Our Path of Progress
+              <span className="absolute -bottom-2 left-0 w-full h-[4px] bg-[linear-gradient(90deg,#2563EB,#38BDF8)] opacity-70 rounded-full"></span>
+            </h2>
+            <p className="mt-4 text-sm sm:text-base text-[#475569] leading-[1.8] font-sans max-w-3xl mx-auto">
+              Review the critical milestones that defined our transition from a local marketer to a globally trusted pharmaceutical exporter.
+            </p>
+          </div>
 
           <div className="relative max-w-4xl mx-auto">
             {/* Center spine on desktop */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-alt-bg -translate-x-1/2"></div>
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-[linear-gradient(180deg,#DBEAFE,#60A5FA,#DBEAFE)] opacity-80 -translate-x-1/2"></div>
 
             <div className="space-y-12">
               {timelineMilestones.map((milestone, idx) => {
                 const isEven = idx % 2 === 0;
+                const timelineIcons = [Rocket, Building2, Globe, Factory, Brain, Award];
+                const timelineAccents = [
+                  "border-l-[#2563EB]",
+                  "border-l-[#0D9488]",
+                  "border-l-[#38BDF8]",
+                  "border-l-[#2563EB]",
+                  "border-l-[#0D9488]",
+                  "border-l-[#38BDF8]"
+                ];
+                const Icon = timelineIcons[idx];
+                const accentClass = timelineAccents[idx];
+
                 return (
                   <div
                     key={idx}
-                    className={`flex flex-col md:flex-row items-center gap-8 md:gap-0 ${
+                    className={`flex flex-col md:flex-row items-center gap-8 md:gap-0 group ${
                       isEven ? "md:flex-row-reverse" : ""
                     }`}
                   >
                     {/* Left/Right content block */}
                     <div className="w-full md:w-[45%] text-left">
-                      <div className="bg-white border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm p-6 shadow-sm hover:border-slate-450 transition-all">
-                        <span className="inline-block text-lg font-display font-bold text-heading font-mono mb-2">
-                          {milestone.year}
-                        </span>
-                        <h3 className="font-display font-bold text-heading text-base mb-2">
+                      <div className={`bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] border border-[#DBEAFE] border-l-[4px] ${accentClass} rounded-[20px] shadow-[0_18px_40px_rgba(11,31,77,.08)] hover:border-[#60A5FA] hover:shadow-[0_24px_55px_rgba(37,99,235,.15)] hover:-translate-y-[6px] transition-all duration-300 ease-[ease] p-6 text-left relative overflow-hidden`}>
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="w-[40px] h-[40px] rounded-[12px] bg-[#EFF6FF] border border-[#BFDBFE] flex items-center justify-center shrink-0">
+                            <Icon className="w-5 h-5 text-[#2563EB]" />
+                          </div>
+                          <span className="inline-block text-lg font-display font-bold text-[#2563EB] font-mono">
+                            {milestone.year}
+                          </span>
+                        </div>
+                        <h3 className="font-display font-bold text-[#0F172A] text-base mb-2">
                           {milestone.title}
                         </h3>
-                        <p className="text-xs text-body leading-relaxed">
+                        <p className="text-xs text-[#64748B] leading-[1.75]">
                           {milestone.description}
                         </p>
                       </div>
@@ -355,7 +386,7 @@ export default function About() {
 
                     {/* Timeline Node Center Indicator */}
                     <div className="hidden md:flex w-[10%] items-center justify-center relative z-10">
-                      <div className="w-8 h-8 rounded bg-alt-bg border border-border shadow-sm flex items-center justify-center text-heading font-mono text-[10px] font-bold">
+                      <div className="w-8 h-8 rounded-[12px] bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_25px_rgba(37,99,235,.30)] flex items-center justify-center text-[#FFFFFF] font-mono text-[10px] font-bold group-hover:bg-[linear-gradient(135deg,#38BDF8,#2563EB)] group-hover:scale-[1.08] transition-all duration-300">
                         {idx + 1}
                       </div>
                     </div>

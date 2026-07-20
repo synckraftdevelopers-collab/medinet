@@ -150,21 +150,21 @@ export default function LegalPage({ type }: LegalPageProps) {
   const PageIcon = data.icon;
 
   return (
-    <div className="w-full relative overflow-hidden text-left font-sans">
+    <div className="w-full relative overflow-hidden text-left font-sans bg-background">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.03)_0%,transparent_60%)] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 relative z-10">
         
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-[13px] font-mono text-[#64748B] mb-12">
-          <a href="/" className="hover:text-[#2563EB] transition-colors flex items-center gap-1.5">
+        <div className="flex items-center gap-2 text-[13px] font-mono text-muted mb-12 uppercase tracking-wider font-bold">
+          <a href="/" className="hover:text-primary transition-colors flex items-center gap-1.5">
             HOME
           </a>
           <ChevronRight className="w-3.5 h-3.5" />
           <span>LEGAL</span>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-[#0F172A] font-semibold">{data.title.toUpperCase()}</span>
+          <span className="text-heading font-bold">{data.title}</span>
         </div>
 
         {/* Hero Section */}
@@ -174,10 +174,10 @@ export default function LegalPage({ type }: LegalPageProps) {
           transition={{ duration: 0.5 }}
           className="mb-14 flex items-center gap-5"
         >
-          <div className="w-[52px] h-[52px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] rounded-[16px] shadow-[0_12px_24px_rgba(37,99,235,.20)] flex items-center justify-center shrink-0">
+          <div className="w-[52px] h-[52px] bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-md flex items-center justify-center shrink-0">
             <PageIcon className="w-6 h-6 text-white" />
           </div>
-          <h1 className="text-3xl md:text-5xl font-display font-[800] text-[#0F172A] tracking-tight">
+          <h1 className="text-3xl md:text-5xl font-display font-bold text-heading tracking-tight">
             {data.title}
           </h1>
         </motion.div>
@@ -192,10 +192,10 @@ export default function LegalPage({ type }: LegalPageProps) {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="w-full lg:col-span-3 lg:sticky lg:top-32"
           >
-            <div className="bg-[rgba(255,255,255,.90)] backdrop-blur-[18px] border border-[#E2E8F0] rounded-[24px] shadow-[0_18px_40px_rgba(15,23,42,.08)] p-6">
+            <div className="bg-white/90 backdrop-blur-md border border-border rounded-3xl shadow-sm p-6">
               <div className="flex items-center gap-2.5 mb-5">
-                <ListTree className="w-5 h-5 text-[#2563EB]" />
-                <h4 className="text-[15px] font-[700] text-[#0F172A] uppercase tracking-wide">
+                <ListTree className="w-5 h-5 text-primary" />
+                <h4 className="text-[15px] font-bold text-heading uppercase tracking-wide">
                   Table of Contents
                 </h4>
               </div>
@@ -204,10 +204,10 @@ export default function LegalPage({ type }: LegalPageProps) {
                   <li key={idx}>
                     <a 
                       href={`#section-${idx}`} 
-                      className="flex items-center gap-[10px] text-[14px] text-[#475569] hover:text-[#2563EB] hover:bg-[#EFF6FF] rounded-[12px] p-[10px] transition-all duration-[300ms] group hover:translate-x-[4px]"
+                      className="flex items-center gap-3 text-sm text-body hover:text-primary hover:bg-primary/5 rounded-xl p-2.5 transition-all duration-300 group hover:translate-x-1"
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1] group-hover:bg-[#2563EB] transition-colors duration-[300ms]"></div>
-                      <span className="font-medium">{section.heading}</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-primary transition-colors duration-300"></div>
+                      <span className="font-semibold">{section.heading}</span>
                     </a>
                   </li>
                 ))}
@@ -220,9 +220,9 @@ export default function LegalPage({ type }: LegalPageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-9 bg-[#FFFFFF] border border-[#E2E8F0] rounded-[28px] p-8 md:p-[48px] shadow-[0_25px_60px_rgba(15,23,42,.08)] w-full max-w-[900px]"
+            className="lg:col-span-9 utility-card p-8 md:p-12 w-full max-w-[900px]"
           >
-            <div className="flex flex-col gap-[48px] text-[#475569] leading-[2] text-[17px] max-w-[72ch]">
+            <div className="flex flex-col gap-[48px] text-body leading-loose text-base max-w-[72ch]">
               {data.sections.map((sec, idx) => {
                 let SecIcon = ShieldCheck;
                 if (sec.heading.includes("Collection") || sec.heading.includes("Product") || sec.heading.includes("Use of Cookies")) SecIcon = Database;
@@ -238,18 +238,18 @@ export default function LegalPage({ type }: LegalPageProps) {
                 return (
                   <section id={`section-${idx}`} key={idx} className="animate-fade-in group">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-[42px] h-[42px] rounded-[12px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] shadow-[0_10px_24px_rgba(37,99,235,.20)] flex items-center justify-center shrink-0 transition-transform duration-[300ms] group-hover:scale-[1.05]">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary shadow-sm flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                         <SecIcon className="w-5 h-5 text-white" />
                       </div>
-                      <h2 className="text-[28px] font-display font-[700] text-[#0F172A] tracking-tight">{sec.heading}</h2>
+                      <h2 className="text-2xl font-display font-bold text-heading tracking-tight">{sec.heading}</h2>
                     </div>
-                    <div className="w-full h-px bg-[#EFF6FF] mb-6"></div>
+                    <div className="w-full h-px bg-primary/10 mb-6"></div>
                     <div className="space-y-4">
                       <p>{sec.text}</p>
                       {hasCallout && (
-                        <div className="my-6 bg-[#EFF6FF] border-l-[4px] border-[#2563EB] p-4 rounded-r-[12px] flex gap-3 items-start">
-                          <Info className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
-                          <div className="text-[15px] text-[#0F172A] font-medium leading-[1.6]">
+                        <div className="my-6 bg-primary/5 border-l-4 border-primary p-4 rounded-r-xl flex gap-3 items-start">
+                          <Info className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                          <div className="text-sm text-heading font-semibold leading-relaxed">
                             This section contains important information regarding corporate {sec.text.match(/privacy|security|compliance|legal|cookies|copyright/i)?.[0].toLowerCase()} policies.
                           </div>
                         </div>
@@ -268,20 +268,20 @@ export default function LegalPage({ type }: LegalPageProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 max-w-[1240px] mx-auto bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[24px] p-8 md:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_20px_45px_rgba(11,31,77,.2)] relative z-10"
+          className="mt-16 max-w-[1240px] mx-auto bg-gradient-to-br from-heading to-primary rounded-3xl p-8 md:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg relative z-10"
         >
           <div className="flex items-center gap-5 text-white">
-            <div className="w-[54px] h-[54px] rounded-[16px] bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+            <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
               <LifeBuoy className="w-7 h-7 text-white" />
             </div>
             <div>
-              <h4 className="font-display font-[700] text-xl sm:text-2xl">Need Assistance?</h4>
-              <p className="text-[15px] text-white/80 mt-1.5 leading-relaxed">Our legal team is available to help clarify our policies and agreements.</p>
+              <h4 className="font-display font-bold text-xl sm:text-2xl">Need Assistance?</h4>
+              <p className="text-sm text-white/80 mt-1.5 leading-relaxed">Our legal team is available to help clarify our policies and agreements.</p>
             </div>
           </div>
-          <a href="mailto:corporate@medinetpharma.com" className="shrink-0 px-8 py-3.5 bg-white text-[#0B1F4D] font-[700] text-[15px] rounded-[16px] hover:bg-[#2563EB] hover:text-white transition-all duration-[300ms] flex items-center gap-2 shadow-[0_8px_20px_rgba(0,0,0,.15)] group hover:-translate-y-1">
+          <a href="mailto:corporate@medinetpharma.com" className="shrink-0 px-8 py-3.5 bg-white text-heading font-bold text-sm rounded-2xl hover:bg-gray-50 transition-all duration-300 flex items-center gap-2 shadow-sm group hover:-translate-y-1">
             Contact Legal Team
-            <ArrowRight className="w-4.5 h-4.5 transition-transform duration-[300ms] group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </motion.div>
 

@@ -205,7 +205,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(false)}
-                className="p-1.5 hover:bg-background text-muted hover:text-body rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shrink-0 transition-colors"
+                className="p-1.5 bg-alt-bg/50 hover:bg-alt-bg text-muted hover:text-body rounded-card shadow-sm hover:shadow-md transition-all duration-300 shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -314,7 +314,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
             <nav className="hidden lg:flex flex-1 items-center justify-center min-w-0 gap-[24px] xl:gap-[32px] min-[1440px]:gap-[36px]">
               <button
                 onClick={() => navigate("home")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 HOME
@@ -323,7 +323,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* About dropdown triggers route page directly or via submenus */}
               <button
                 onClick={() => navigate("about")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 ABOUT
@@ -337,7 +337,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               >
                 <button
                   onClick={() => navigate("products")}
-                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                     }`}
                 >
                   PRODUCTS
@@ -407,7 +407,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("research-development")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 R&D
@@ -415,7 +415,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("quality")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 QUALITY
@@ -423,7 +423,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("business-partners")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 PARTNERS
@@ -431,7 +431,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("careers")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 CAREERS
@@ -439,7 +439,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("news-events")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 NEWS
@@ -447,7 +447,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("contact")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
               >
                 CONTACT
@@ -464,7 +464,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               >
                 <button
                   className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${
-                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-[#0B1F4D] bg-[#EAF2FF] border border-[#BFDBFE] rounded-[12px] shadow-[0_4px_12px_rgba(37,99,235,.08)]" : "text-[#334155] hover:text-[#2563EB] relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-[#2563EB] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] transition-all duration-300 border border-transparent"
+                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
                   }`}
                 >
                   LEGAL
@@ -608,9 +608,8 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="relative hidden md:inline-flex items-center gap-1.5 px-3 lg:px-2 min-[1440px]:px-3 py-1.5 text-white font-mono text-[11px] font-medium rounded-[12px] border-none cursor-pointer focus:outline-none shrink-0 bg-[linear-gradient(135deg,#0B1F4D_0%,#2563EB_100%)] shadow-[0_12px_24px_rgba(37,99,235,.18)] hover:bg-[linear-gradient(135deg,#1D4ED8_0%,#0B1F4D_100%)] hover:-translate-y-[2px] transition-all duration-300"
+                className="utility-button-primary hidden md:inline-flex py-2 px-4"
               >
-                <span className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px]" aria-hidden="true"></span>
                 <PhoneCall className="w-3.5 h-3.5" />
                 INQUIRE NOW
               </button>
@@ -618,7 +617,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* Mobile Burger Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2.5 hover:bg-[#F8FAFC] rounded-[12px] text-[#334155] hover:text-[#2563EB] transition-colors duration-300 lg:hidden focus:outline-none"
+                className="p-2.5 hover:bg-alt-bg rounded-lg text-body hover:text-secondary transition-colors duration-300 lg:hidden focus-visible:ring-2 focus-visible:ring-secondary"
                 aria-label="Toggle Menu"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

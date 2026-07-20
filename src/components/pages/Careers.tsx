@@ -62,41 +62,41 @@ export default function Careers({ showToast }: CareersProps) {
       title: "Health & Wellbeing",
       description: "Comprehensive medical insurance policies for employees and dependent family members, plus routine health camps.",
       icon: HeartHandshake,
-      iconBg: "bg-[linear-gradient(135deg,#DBEAFE,#EFF6FF)]",
-      iconColor: "text-[#2563EB]",
-      accent: "bg-[#2563EB]",
+      iconBg: "bg-primary/10",
+      iconColor: "text-primary",
+      accent: "bg-primary",
       badge: "Employee Care",
-      badgeColor: "text-[#2563EB] bg-[#EFF6FF] border-[#BFDBFE]"
+      badgeColor: "text-primary bg-primary/5 border-primary/20"
     },
     {
       title: "Scientific Training",
       description: "Continuous corporate sponsorships for pharma certifications, regulatory seminars, and global research conventions.",
       icon: GraduationCap,
-      iconBg: "bg-[linear-gradient(135deg,#DCFCE7,#F0FDF4)]",
-      iconColor: "text-[#0D9488]",
-      accent: "bg-[#0D9488]",
+      iconBg: "bg-accent/10",
+      iconColor: "text-accent",
+      accent: "bg-accent",
       badge: "Learning",
-      badgeColor: "text-[#0D9488] bg-[#F0FDF4] border-[#A7F3D0]"
+      badgeColor: "text-accent bg-accent/5 border-accent/20"
     },
     {
       title: "Career Growth",
       description: "Fast-track performance evaluation plans allowing rapid transitions from junior executive to divisional heads.",
       icon: TrendingUp,
-      iconBg: "bg-[linear-gradient(135deg,#FEF3C7,#FFF8E1)]",
-      iconColor: "text-[#D97706]",
-      accent: "bg-[#38BDF8]",
+      iconBg: "bg-secondary/10",
+      iconColor: "text-secondary",
+      accent: "bg-secondary",
       badge: "Promotion",
-      badgeColor: "text-[#D97706] bg-[#FFF8E1] border-[#FDE68A]"
+      badgeColor: "text-secondary bg-secondary/5 border-secondary/20"
     },
     {
       title: "Work-Life Synergy",
       description: "Flexible regional marketing timings, comprehensive maternal/paternal leave plans, and collaborative office layouts.",
       icon: BriefcaseBusiness,
-      iconBg: "bg-[linear-gradient(135deg,#EDE9FE,#F5F3FF)]",
+      iconBg: "bg-[#7C3AED]/10",
       iconColor: "text-[#7C3AED]",
-      accent: "bg-[#8B5CF6]",
+      accent: "bg-[#7C3AED]",
       badge: "Flexible",
-      badgeColor: "text-[#7C3AED] bg-[#F5F3FF] border-[#DDD6FE]"
+      badgeColor: "text-[#7C3AED] bg-[#7C3AED]/5 border-[#7C3AED]/20"
     }
   ];
 
@@ -192,7 +192,7 @@ export default function Careers({ showToast }: CareersProps) {
   return (
     <div className="pt-20">
       {/* Page Header */}
-      <section className="py-16 relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F3F7FC_55%,#FFFFFF_100%)] border-b border-[#E2E8F0]">
+      <section className="py-16 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white border-b border-border">
         {/* Soft radial glows */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.06)_0%,transparent_60%)] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.05)_0%,transparent_60%)] pointer-events-none"></div>
@@ -202,78 +202,70 @@ export default function Careers({ showToast }: CareersProps) {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
           <div className="animate-fade-in">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_8px_22px_rgba(37,99,235,.08)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
+            <span className="utility-badge-blue mb-5">
+              <span className="utility-dot"></span>
               Join Our Team
             </span>
           </div>
           
           <div className="animate-fade-in">
-            <h1 className="text-4xl sm:text-5xl font-display font-medium text-[#0F172A] tracking-tight leading-tight [text-shadow:0_2px_8px_rgba(15,23,42,0.06)]">
-              <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Careers</span> at <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Medinet</span>
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+              <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Careers</span> at <span className="bg-gradient-to-r from-secondary to-primary text-transparent bg-clip-text">Medinet</span>
             </h1>
-            <p className="mt-6 text-sm sm:text-base text-[#475569] leading-[1.8] max-w-[760px]">
+            <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px]">
               At Medinet, we believe our people are our strongest formulation. We provide a workspace that cherishes scientific integrity, ethical dedication, and continuous professional progression.
             </p>
           </div>
 
           {/* Optional Small Badges Below Description */}
           <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default">
-              <ShieldCheck className="w-4 h-4 text-[#2563EB]" />
-              <span className="text-[11px] font-semibold text-[#0F172A]">WHO-GMP Certified</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
+              <ShieldCheck className="w-4 h-4 text-primary" />
+              <span className="text-xs font-semibold text-heading">WHO-GMP Certified</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default">
-              <TrendingUp className="w-4 h-4 text-[#0D9488]" />
-              <span className="text-[11px] font-semibold text-[#0F172A]">Career Growth</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
+              <TrendingUp className="w-4 h-4 text-accent" />
+              <span className="text-xs font-semibold text-heading">Career Growth</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-full shadow-[0_10px_24px_rgba(15,23,42,.06)] hover:-translate-y-1 transition-transform duration-[300ms] ease-out cursor-default">
-              <GraduationCap className="w-4 h-4 text-[#38BDF8]" />
-              <span className="text-[11px] font-semibold text-[#0F172A]">Learning Culture</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
+              <GraduationCap className="w-4 h-4 text-secondary" />
+              <span className="text-xs font-semibold text-heading">Learning Culture</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Careers Work Culture & Benefits */}
-      <section className="py-20 bg-[linear-gradient(180deg,#F8FAFC,#F4F8FC,#FFFFFF)] relative overflow-hidden text-left border-b border-[#E2E8F0]">
+      <section className="py-20 bg-gradient-to-b from-background via-alt-bg to-white relative overflow-hidden text-left border-b border-border">
         {/* Soft radial glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 relative">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_8px_20px_rgba(37,99,235,.08)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
-              Medinet Life
-            </span>
-            
-            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">
-              A <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Rewarding</span> <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Work Environment</span>
-            </h2>
-            
-            <p className="mt-4 text-[#475569] text-sm sm:text-base leading-[1.8] max-w-[760px] mx-auto">
-              We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters.
-            </p>
-          </div>
+          <SectionHeader
+            badge="Medinet Life"
+            title="A Culture of Clinical Excellence"
+            description="We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters."
+            centered
+          />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {benefits.map((ben, idx) => {
               const BenIcon = ben.icon;
               return (
-                <div key={idx} className="bg-[#FFFFFF] border border-[#E2E8F0] p-6 sm:p-8 rounded-[24px] shadow-[0_18px_45px_rgba(15,23,42,.08)] hover:-translate-y-[8px] hover:border-[#93C5FD] hover:shadow-[0_28px_65px_rgba(37,99,235,.14)] transition-all duration-[350ms] text-left relative overflow-hidden group">
+                <div key={idx} className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group hover:border-secondary transition-all duration-300">
                   {/* Top gradient accent line */}
-                  <div className={`absolute top-0 left-0 right-0 h-[3px] rounded-full ${ben.accent}`}></div>
+                  <div className={`absolute top-0 left-0 right-0 h-1 rounded-full ${ben.accent}`}></div>
 
                   <div className="flex justify-between items-start mb-6">
-                    <div className={`w-[52px] h-[52px] rounded-2xl ${ben.iconBg} flex items-center justify-center shrink-0 shadow-[0_10px_24px_rgba(37,99,235,.10)] group-hover:shadow-[0_0_15px_rgba(37,99,235,.20)] transition-shadow duration-[300ms]`}>
-                      <BenIcon className={`w-6 h-6 ${ben.iconColor} group-hover:scale-[1.08] group-hover:rotate-[3deg] transition-transform duration-[300ms] ease-out`} />
+                    <div className={`w-[52px] h-[52px] rounded-2xl ${ben.iconBg} flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
+                      <BenIcon className={`w-6 h-6 ${ben.iconColor} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out`} />
                     </div>
-                    <span className={`inline-block border ${ben.badgeColor} text-[9px] font-mono font-medium tracking-wide uppercase px-2 py-0.5 rounded-full`}>
+                    <span className={`inline-block border ${ben.badgeColor} text-[10px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full`}>
                       {ben.badge}
                     </span>
                   </div>
-                  <h3 className="font-display font-[700] text-[#0F172A] text-sm sm:text-base mb-2">{ben.title}</h3>
-                  <p className="text-xs text-[#475569] leading-[1.8]">{ben.description}</p>
+                  <h3 className="font-display font-bold text-heading text-lg mb-3">{ben.title}</h3>
+                  <p className="text-sm text-body leading-relaxed">{ben.description}</p>
                 </div>
               );
             })}
@@ -282,56 +274,48 @@ export default function Careers({ showToast }: CareersProps) {
       </section>
 
       {/* Current Openings */}
-      <section className="py-20 bg-[linear-gradient(180deg,#F8FAFC,#F4F8FC,#FFFFFF)] relative overflow-hidden border-t border-b border-[#E2E8F0]">
+      <section className="py-20 bg-background relative overflow-hidden border-t border-b border-border">
         {/* Soft radial glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
-          <div className="text-center max-w-3xl mx-auto mb-16 relative">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-5 shadow-[0_8px_18px_rgba(37,99,235,.08)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
-              Active Positions
-            </span>
-            
-            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">
-              Explore <span className="bg-[linear-gradient(90deg,#2563EB,#38BDF8)] text-transparent bg-clip-text">Open</span> <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Opportunities</span>
-            </h2>
-            
-            <p className="mt-4 text-[#475569] text-sm sm:text-base leading-[1.8] max-w-[700px] mx-auto">
-              We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance.
-            </p>
-          </div>
+          <SectionHeader
+            badge="Active Positions"
+            title="Explore Open Opportunities"
+            description="We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance."
+            centered
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12">
             {JOBS.map((job) => {
               // Determine styles based on department
               let Icon = Building2;
-              let iconBg = "bg-[#F1F5F9]";
-              let iconColor = "text-[#64748B]";
-              let accent = "bg-[#64748B]";
-              let badgeColor = "text-[#64748B] bg-[#F8FAFC] border-[#E2E8F0]";
+              let iconBg = "bg-alt-bg";
+              let iconColor = "text-muted";
+              let accent = "bg-muted";
+              let badgeColor = "text-muted bg-background border-border";
 
               if (job.department === "Quality Assurance") {
                 Icon = ShieldCheck;
-                iconBg = "bg-[#DBEAFE]";
-                iconColor = "text-[#2563EB]";
-                accent = "bg-[#2563EB]";
-                badgeColor = "text-[#2563EB] bg-[#EFF6FF] border-[#BFDBFE]";
+                iconBg = "bg-primary/10";
+                iconColor = "text-primary";
+                accent = "bg-primary";
+                badgeColor = "text-primary bg-primary/5 border-primary/20";
               } else if (job.department === "Sales & Marketing") {
                 Icon = BriefcaseBusiness;
-                iconBg = "bg-[#DCFCE7]";
-                iconColor = "text-[#0D9488]";
-                accent = "bg-[#0D9488]";
-                badgeColor = "text-[#0D9488] bg-[#F0FDF4] border-[#A7F3D0]";
+                iconBg = "bg-accent/10";
+                iconColor = "text-accent";
+                accent = "bg-accent";
+                badgeColor = "text-accent bg-accent/5 border-accent/20";
               } else if (job.department === "Medical & Regulatory") {
                 Icon = ClipboardCheck;
-                iconBg = "bg-[#EDE9FE]";
-                iconColor = "text-[#7C3AED]";
-                accent = "bg-[#7C3AED]";
-                badgeColor = "text-[#7C3AED] bg-[#F5F3FF] border-[#DDD6FE]";
+                iconBg = "bg-secondary/10";
+                iconColor = "text-secondary";
+                accent = "bg-secondary";
+                badgeColor = "text-secondary bg-secondary/5 border-secondary/20";
               } else if (job.department === "Research & Development") {
                 Icon = FlaskConical;
-                iconBg = "bg-[#FEF3C7]";
+                iconBg = "bg-[#D97706]/10";
                 iconColor = "text-[#D97706]";
                 accent = "bg-[#D97706]";
                 badgeColor = "text-[#D97706] bg-[#FFF8E1] border-[#FDE68A]";
@@ -340,72 +324,72 @@ export default function Careers({ showToast }: CareersProps) {
               return (
                 <div
                   key={job.id}
-                  className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-[24px] shadow-[0_18px_45px_rgba(15,23,42,.08)] hover:-translate-y-[8px] hover:border-[#93C5FD] hover:shadow-[0_28px_65px_rgba(37,99,235,.14)] transition-all duration-[350ms] ease-out p-6 sm:p-8 text-left relative overflow-hidden group flex flex-col justify-between"
+                  className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group flex flex-col justify-between hover:border-secondary transition-all duration-300"
                 >
                   {/* Top Accent Bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-[3px] rounded-full ${accent}`}></div>
+                  <div className={`absolute top-0 left-0 right-0 h-1 rounded-full ${accent}`}></div>
 
                   <div>
                     <div className="flex justify-between items-start mb-6">
-                      <div className={`w-[52px] h-[52px] rounded-2xl ${iconBg} flex items-center justify-center shrink-0 shadow-[0_8px_20px_rgba(37,99,235,.12)] group-hover:shadow-[0_0_15px_rgba(37,99,235,.20)] transition-shadow duration-[300ms]`}>
-                        <Icon className={`w-6 h-6 ${iconColor} group-hover:scale-[1.08] transition-transform duration-[300ms] ease-out`} />
+                      <div className={`w-[52px] h-[52px] rounded-2xl ${iconBg} flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
+                        <Icon className={`w-6 h-6 ${iconColor} group-hover:scale-110 transition-transform duration-300 ease-out`} />
                       </div>
                       
                       {/* Optional Status Badges */}
                       {job.department === "Quality Assurance" && (
-                        <span className="inline-block border border-[#BBF7D0] bg-[#F0FDF4] text-[#16A34A] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                        <span className="inline-block border border-success/20 bg-success/10 text-success text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
                           Urgent Hiring
                         </span>
                       )}
                       {job.department === "Research & Development" && (
-                        <span className="inline-block border border-[#BFDBFE] bg-[#EFF6FF] text-[#2563EB] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                        <span className="inline-block border border-primary/20 bg-primary/10 text-primary text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
                           Featured
                         </span>
                       )}
                       {job.department === "Sales & Marketing" && (
-                        <span className="inline-block border border-[#FDE68A] bg-[#FFF8E1] text-[#D97706] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                        <span className="inline-block border border-accent/20 bg-accent/10 text-accent text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
                           New
                         </span>
                       )}
                       {job.department === "Medical & Regulatory" && (
-                        <span className="inline-block border border-[#DDD6FE] bg-[#F5F3FF] text-[#7C3AED] text-[9px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full">
+                        <span className="inline-block border border-secondary/20 bg-secondary/10 text-secondary text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
                           Remote Eligible
                         </span>
                       )}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-3 mb-4">
-                      <span className={`inline-block border ${badgeColor} text-[10px] font-mono font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-full`}>
+                    <div className="flex flex-wrap items-center gap-3 mb-5">
+                      <span className={`inline-block border ${badgeColor} text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full`}>
                         {job.department}
                       </span>
-                      <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#64748B] uppercase">
-                        <MapPin className="w-3.5 h-3.5" />
+                      <span className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted uppercase tracking-wider">
+                        <MapPin className="w-4 h-4" />
                         {job.location}
                       </span>
-                      <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#64748B] uppercase">
-                        <Clock3 className="w-3.5 h-3.5" />
+                      <span className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted uppercase tracking-wider">
+                        <Clock3 className="w-4 h-4" />
                         {job.type}
                       </span>
                     </div>
 
-                    <h3 className="font-display font-[700] text-[#0F172A] text-lg sm:text-xl leading-tight">
+                    <h3 className="font-display font-bold text-heading text-lg sm:text-xl leading-tight">
                       {job.title}
                     </h3>
                     
-                    <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#64748B] mt-2 uppercase">
-                      <CalendarDays className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted mt-3 uppercase tracking-wider">
+                      <CalendarDays className="w-4 h-4" />
                       Experience: {job.experience} Required
                     </div>
 
-                    <p className="mt-4 text-[#475569] leading-[1.8] text-sm">
+                    <p className="mt-5 text-body leading-relaxed text-sm">
                       {job.description}
                     </p>
 
-                    <div className="mt-6 space-y-2.5">
-                      <ul className="space-y-2 text-sm text-[#475569]">
+                    <div className="mt-6 space-y-3">
+                      <ul className="space-y-3 text-sm text-body">
                         {job.requirements.map((req, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5">
-                            <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0 mt-0.5" />
+                          <li key={idx} className="flex items-start gap-3">
+                            <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
                             <span className="leading-relaxed">{req}</span>
                           </li>
                         ))}
@@ -413,17 +397,17 @@ export default function Careers({ showToast }: CareersProps) {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-[#E2E8F0] flex items-center justify-between">
-                    <span className="flex items-center gap-1.5 text-[11px] text-[#94A3B8] font-medium font-mono uppercase tracking-wide">
-                      <Lock className="w-3.5 h-3.5" />
+                  <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-xs text-muted font-bold font-mono uppercase tracking-widest">
+                      <Lock className="w-4 h-4" />
                       Secure Opportunity
                     </span>
                     <button
                       onClick={() => handleApplyClick(job)}
-                      className="px-5 py-2.5 bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-white font-medium text-xs sm:text-sm rounded-[12px] shadow-[0_14px_35px_rgba(37,99,235,.25)] hover:bg-[linear-gradient(90deg,#2563EB,#38BDF8)] hover:-translate-y-[2px] hover:shadow-[0_16px_40px_rgba(37,99,235,.35)] transition-all duration-[300ms] cursor-pointer group/btn flex items-center gap-2 border-none"
+                      className="utility-button-primary"
                     >
                       Apply Now
-                      <ArrowRight className="w-4 h-4 text-white group-hover/btn:translate-x-1 transition-transform duration-[300ms]" />
+                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
                     </button>
                   </div>
                 </div>
@@ -434,17 +418,17 @@ export default function Careers({ showToast }: CareersProps) {
       </section>      {/* Application Form Modal */}
       {isApplying && selectedJob && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto">
-          <div className="w-full max-w-xl bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-xl border border-border overflow-hidden text-left my-8 max-h-[90vh] flex flex-col">
+          <div className="w-full max-w-xl bg-white rounded-[24px] shadow-card hover:shadow-card-hover transition-all duration-300 border border-border overflow-hidden text-left my-8 max-h-[90vh] flex flex-col">
             {/* Header */}
-            <div className="flex items-start justify-between p-6 border-b border-border bg-background">
+            <div className="flex items-start justify-between p-6 sm:p-8 border-b border-border bg-alt-bg">
               <div>
-                <span className="text-[10px] font-mono font-medium text-body uppercase tracking-widest block">
+                <span className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">
                   // APPLICATION PORTAL
                 </span>
-                <h2 className="text-lg font-display font-bold text-heading mt-1">
+                <h2 className="text-xl sm:text-2xl font-display font-bold text-heading mt-2">
                   Apply: {selectedJob.title}
                 </h2>
-                <p className="text-[10px] text-muted mt-0.5 font-mono uppercase">{selectedJob.department} | {selectedJob.location}</p>
+                <p className="text-xs text-body mt-1.5 font-mono uppercase font-semibold">{selectedJob.department} | {selectedJob.location}</p>
               </div>
               <button
                 onClick={() => {
@@ -452,110 +436,112 @@ export default function Careers({ showToast }: CareersProps) {
                   setSelectedJob(null);
                   removeFile();
                 }}
-                className="p-1 hover:bg-alt-bg/50 text-body hover:text-heading rounded transition-colors"
+                className="p-2 bg-white hover:bg-background border border-border text-body hover:text-primary rounded-full transition-colors"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Full Name *</label>
+                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Full Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="John Doe"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                      errors.name ? "border-red-500" : "border-slate-250"
+                    className={`utility-input mt-2 ${
+                      errors.name ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.name && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.name}</span>}
+                  {errors.name && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.name}</span>}
                 </div>
                 <div>
-                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Email Address *</label>
+                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Email Address *</label>
                   <input
                     type="email"
                     required
                     placeholder="johndoe@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                      errors.email ? "border-red-500" : "border-slate-255"
+                    className={`utility-input mt-2 ${
+                      errors.email ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.email && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.email}</span>}
+                  {errors.email && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.email}</span>}
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Phone Number *</label>
+                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Phone Number *</label>
                   <input
                     type="tel"
                     required
                     placeholder="+91-XXXX-XXXXXX"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-slate-955 transition-all ${
-                      errors.phone ? "border-red-500" : "border-slate-250"
+                    className={`utility-input mt-2 ${
+                      errors.phone ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.phone && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.phone}</span>}
+                  {errors.phone && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.phone}</span>}
                 </div>
                 <div>
-                  <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Total Work Experience *</label>
+                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Total Work Experience *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g., 5 years in QC wet lab"
                     value={formData.experience}
                     onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 bg-white border rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-primary transition-all ${
-                      errors.experience ? "border-red-500" : "border-slate-250"
+                    className={`utility-input mt-2 ${
+                      errors.experience ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.experience && <span className="text-[10px] text-red-500 font-semibold mt-0.5 block">{errors.experience}</span>}
+                  {errors.experience && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.experience}</span>}
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] font-mono text-body uppercase tracking-wider block">Message / Cover Letter Note</label>
+                <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Message / Cover Letter Note</label>
                 <textarea
-                  rows={3}
+                  rows={4}
                   placeholder="Summarize your key qualifications or motivation to join Medinet..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full mt-1.5 px-3 py-2 bg-white border border-slate-250 rounded text-xs text-heading placeholder:text-muted focus:outline-none focus:border-slate-955 transition-all"
+                  className="utility-input mt-2 resize-y"
                 ></textarea>
               </div>
 
               {/* Resume Upload Box */}
               <div>
-                <label className="text-[10px] font-mono text-body uppercase tracking-wider block mb-2">
+                <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">
                   Upload Resume (PDF or DOCX, max 5MB) *
                 </label>
 
                 {uploadedFile ? (
-                  <div className="flex items-center justify-between p-3 border border-border rounded bg-background">
-                    <div className="flex items-center gap-3">
-                      <FileText className="w-8 h-8 text-heading shrink-0" />
+                  <div className="flex items-center justify-between p-4 border border-border rounded-xl bg-alt-bg">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 border border-border">
+                        <FileText className="w-5 h-5 text-primary" />
+                      </div>
                       <div>
-                        <span className="block text-heading font-semibold text-xs truncate max-w-[240px] sm:max-w-xs">
+                        <span className="block text-heading font-bold text-sm truncate max-w-[200px] sm:max-w-[300px]">
                           {uploadedFile.name}
                         </span>
-                        <span className="text-[9px] text-muted font-mono block">
-                          Size: {uploadedFile.size}
+                        <span className="text-[10px] text-muted font-mono font-bold block mt-1">
+                          SIZE: {uploadedFile.size}
                         </span>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={removeFile}
-                      className="p-1 hover:bg-alt-bg/50 text-body hover:text-red-600 rounded transition-colors cursor-pointer"
+                      className="p-2 bg-white hover:bg-background border border-border text-body hover:text-red-500 rounded-lg transition-colors cursor-pointer shadow-sm"
                       title="Remove file"
                     >
                       <X className="w-4 h-4" />
@@ -566,8 +552,8 @@ export default function Careers({ showToast }: CareersProps) {
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed border-border hover:border-primary hover:bg-background rounded p-6 text-center cursor-pointer transition-all ${
-                      errors.file ? "border-red-400 bg-red-50/5" : ""
+                    className={`border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 rounded-[16px] p-8 text-center cursor-pointer transition-all duration-300 ${
+                      errors.file ? "border-red-400 bg-red-50/5" : "bg-alt-bg"
                     }`}
                   >
                     <input
@@ -577,11 +563,13 @@ export default function Careers({ showToast }: CareersProps) {
                       onChange={handleFileChange}
                       className="hidden"
                     />
-                    <Upload className="w-6 h-6 text-slate-450 mx-auto mb-2" />
-                    <span className="block text-xs font-semibold text-body">
-                      Drag &amp; drop your resume here, or <span className="text-heading hover:underline">browse</span>
+                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm">
+                      <Upload className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="block text-sm font-bold text-heading">
+                      Drag &amp; drop your resume here, or <span className="text-primary hover:underline">browse</span>
                     </span>
-                    <span className="block text-[9px] text-muted mt-1 font-mono">
+                    <span className="block text-[10px] font-bold text-muted mt-2 font-mono uppercase tracking-widest">
                       Accepts PDF, DOCX up to 5MB
                     </span>
                   </div>
@@ -590,7 +578,7 @@ export default function Careers({ showToast }: CareersProps) {
               </div>
 
               {/* Form Footer */}
-              <div className="pt-4 border-t border-border flex items-center justify-end gap-3 bg-white">
+              <div className="pt-6 mt-4 border-t border-border flex flex-col sm:flex-row items-center justify-end gap-3 bg-white">
                 <button
                   type="button"
                   onClick={() => {
@@ -598,23 +586,24 @@ export default function Careers({ showToast }: CareersProps) {
                     setSelectedJob(null);
                     removeFile();
                   }}
-                  className="px-4 py-2 border border-slate-250 text-slate-650 hover:bg-background font-medium text-xs sm:text-sm rounded transition-colors"
+                  className="w-full sm:w-auto px-6 py-2.5 border border-border text-body font-bold hover:bg-background hover:text-heading text-xs sm:text-sm rounded-[12px] transition-colors uppercase tracking-wider font-mono"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-6 py-2 bg-primary hover:bg-primary text-white font-medium text-xs sm:text-sm rounded border border-primary transition-colors flex items-center gap-2 cursor-pointer"
+                  className="w-full sm:w-auto utility-button-primary"
                 >
                   {submitting ? (
                     <>
-                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></span>
                       Submitting CV...
                     </>
                   ) : (
                     <>
                       Submit Application
+                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300 ml-2" />
                     </>
                   )}
                 </button>

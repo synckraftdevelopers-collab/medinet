@@ -37,12 +37,12 @@ interface ProductsProps {
 
 const getDosageIcon = (form: string) => {
   const f = form.toLowerCase();
-  if (f.includes('tablet') || f.includes('capsule')) return <Pill className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
-  if (f.includes('gel')) return <Droplets className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
-  if (f.includes('cream') || f.includes('ointment')) return <BadgePlus className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
-  if (f.includes('inject') || f.includes('vial') || f.includes('syring')) return <Syringe className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
-  if (f.includes('syrup') || f.includes('drop') || f.includes('suspension')) return <Droplet className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
-  return <Pill className="w-[16px] h-[16px] text-[#2563EB] shrink-0" />;
+  if (f.includes('tablet') || f.includes('capsule')) return <Pill className="w-4 h-4 text-secondary shrink-0" />;
+  if (f.includes('gel')) return <Droplets className="w-4 h-4 text-secondary shrink-0" />;
+  if (f.includes('cream') || f.includes('ointment')) return <BadgePlus className="w-4 h-4 text-secondary shrink-0" />;
+  if (f.includes('inject') || f.includes('vial') || f.includes('syring')) return <Syringe className="w-4 h-4 text-secondary shrink-0" />;
+  if (f.includes('syrup') || f.includes('drop') || f.includes('suspension')) return <Droplet className="w-4 h-4 text-secondary shrink-0" />;
+  return <Pill className="w-4 h-4 text-secondary shrink-0" />;
 };
 
 export default function Products({ params, showToast }: ProductsProps) {
@@ -232,37 +232,37 @@ export default function Products({ params, showToast }: ProductsProps) {
   return (
     <div className="pt-20">
       {/* Page Header */}
-      <section className="bg-[linear-gradient(180deg,#F8FAFC_0%,#F3F8FE_45%,#FFFFFF_100%)] border-b border-[#DBEAFE] py-16 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(37,99,235,.02))] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[linear-gradient(135deg,#EFF6FF,#FFFFFF)] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase mb-4 shadow-[0_8px_20px_rgba(37,99,235,.08)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
+            <span className="utility-badge-blue mb-4">
+              <span className="utility-dot"></span>
               Formulation Portfolio
             </span>
-            <h1 className="text-4xl sm:text-5xl font-display font-medium text-[#0B1F4D] tracking-tight leading-tight">
-              <span className="bg-[linear-gradient(90deg,#0B1F4D,#2563EB)] text-transparent bg-clip-text">Products</span> Directory
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+              <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Products</span> Directory
             </h1>
-            <p className="mt-3 text-[#475569] leading-[1.8] max-w-[720px] text-xs sm:text-sm">
+            <p className="mt-4 text-body leading-relaxed max-w-[720px] text-sm sm:text-base">
               Explore our comprehensive collection of therapeutic formulations. Every product is audited, verified, bioequivalent, and licensed for wholesale export.
             </p>
           </div>
           <button
             onClick={handleCatalogDownload}
             disabled={isDownloading}
-            className="md:self-end px-5 py-2.5 bg-[linear-gradient(135deg,#0B1F4D,#1D4ED8)] disabled:opacity-75 text-white font-mono text-xs font-semibold rounded-[16px] shadow-[0_14px_35px_rgba(29,78,216,.22)] hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:-translate-y-[3px] hover:scale-[1.03] hover:shadow-[0_20px_45px_rgba(37,99,235,.30)] transition-all duration-300 ease-[ease] flex items-center justify-center gap-3 shrink-0 border-none group"
+            className="utility-button-primary md:self-end px-6 py-3.5"
           >
             {isDownloading ? (
               <>
-                <div className="w-[28px] h-[28px] rounded-full bg-[rgba(255,255,255,0.18)] flex items-center justify-center shrink-0">
+                <div className="w-[28px] h-[28px] rounded-full bg-white/20 flex items-center justify-center shrink-0">
                   <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                 </div>
                 GENERATING PDF...
               </>
             ) : (
               <>
-                <div className="w-[28px] h-[28px] rounded-full bg-[rgba(255,255,255,0.18)] flex items-center justify-center shrink-0 group-hover:rotate-[8deg] transition-transform duration-300">
+                <div className="w-[28px] h-[28px] rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:rotate-[8deg] transition-transform duration-300">
                   <FileText className="w-3.5 h-3.5 text-white" />
                 </div>
                 DOWNLOAD CATALOGUE PDF
@@ -278,29 +278,29 @@ export default function Products({ params, showToast }: ProductsProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Sidebar Filters */}
-            <aside className="lg:col-span-3 text-left bg-[linear-gradient(180deg,#FFFFFF,#F8FAFC)] border border-[#DCE7F5] p-5 rounded-[28px] shadow-[0_20px_45px_rgba(11,31,77,.08)]">
-              <div className="flex items-center gap-3 border-b border-[#DCE7F5] pb-4 mb-5">
-                <Filter className="w-5 h-5 text-[#2563EB]" />
-                <h3 className="font-mono font-semibold text-[#0B1F4D] text-xs uppercase tracking-[0.1em]">
+            <aside className="lg:col-span-3 text-left bg-gradient-to-b from-white to-background border border-border p-6 rounded-3xl shadow-sm">
+              <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
+                <Filter className="w-5 h-5 text-secondary" />
+                <h3 className="font-mono font-bold text-heading text-xs uppercase tracking-widest">
                   // Filter Segments
                 </h3>
               </div>
 
               {/* Category buttons list */}
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 <button
                   onClick={() => setSelectedCategory("all")}
-                  className={`w-full text-left px-3 py-2 text-xs font-semibold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-[12px] border-l-[4px] ${
+                  className={`w-full text-left px-4 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-xl border-l-[4px] ${
                     selectedCategory === "all"
-                      ? "bg-[linear-gradient(135deg,#0B1F4D,#1D4ED8)] text-[#FFFFFF] shadow-[0_10px_24px_rgba(37,99,235,.28)] border-transparent"
-                      : "bg-transparent text-[#334155] border-transparent hover:bg-[#EFF6FF] hover:text-[#2563EB] hover:border-l-[#2563EB]"
+                      ? "bg-gradient-to-br from-primary to-secondary text-white shadow-md border-transparent"
+                      : "bg-transparent text-body border-transparent hover:bg-secondary/5 hover:text-secondary hover:border-l-secondary"
                   }`}
                 >
                   <span>All Formulations</span>
-                  <span className={`rounded-full px-[10px] py-[4px] font-semibold text-[10px] transition-colors duration-300 ${
+                  <span className={`rounded-full px-2.5 py-1 font-bold text-[10px] transition-colors duration-300 ${
                     selectedCategory === "all"
-                      ? "bg-[rgba(255,255,255,0.18)] text-[#FFFFFF]"
-                      : "bg-[#F1F5F9] text-[#64748B] group-hover:bg-[#EFF6FF] group-hover:text-[#2563EB]"
+                      ? "bg-white/20 text-white"
+                      : "bg-alt-bg text-muted group-hover:bg-secondary/10 group-hover:text-secondary"
                   }`}>
                     {PRODUCTS.length}
                   </span>
@@ -312,17 +312,17 @@ export default function Products({ params, showToast }: ProductsProps) {
                     <button
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`w-full text-left px-3 py-2 text-xs font-semibold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-[12px] border-l-[4px] ${
+                      className={`w-full text-left px-4 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-xl border-l-[4px] ${
                         selectedCategory === cat.id
-                          ? "bg-[linear-gradient(135deg,#0B1F4D,#1D4ED8)] text-[#FFFFFF] shadow-[0_10px_24px_rgba(37,99,235,.28)] border-transparent"
-                          : "bg-transparent text-[#334155] border-transparent hover:bg-[#EFF6FF] hover:text-[#2563EB] hover:border-l-[#2563EB]"
+                          ? "bg-gradient-to-br from-primary to-secondary text-white shadow-md border-transparent"
+                          : "bg-transparent text-body border-transparent hover:bg-secondary/5 hover:text-secondary hover:border-l-secondary"
                       }`}
                     >
                       <span className="line-clamp-1 pr-2">{cat.name}</span>
-                      <span className={`rounded-full px-[10px] py-[4px] font-semibold text-[10px] transition-colors duration-300 ${
+                      <span className={`rounded-full px-2.5 py-1 font-bold text-[10px] transition-colors duration-300 ${
                         selectedCategory === cat.id
-                          ? "bg-[rgba(255,255,255,0.18)] text-[#FFFFFF]"
-                          : "bg-[#F1F5F9] text-[#64748B] group-hover:bg-[#EFF6FF] group-hover:text-[#2563EB]"
+                          ? "bg-white/20 text-white"
+                          : "bg-alt-bg text-muted group-hover:bg-secondary/10 group-hover:text-secondary"
                       }`}>
                         {count}
                       </span>
@@ -331,13 +331,13 @@ export default function Products({ params, showToast }: ProductsProps) {
                 })}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-[#DCE7F5]">
-                <div className="text-left bg-[linear-gradient(180deg,#F8FAFC,#F1F5F9)] p-5 rounded-[20px] border border-[#DBEAFE] hover:-translate-y-[3px] hover:shadow-[0_18px_40px_rgba(13,148,136,.10)] transition-all duration-300">
-                  <div className="w-[44px] h-[44px] bg-[rgba(13,148,136,0.10)] rounded-[12px] flex items-center justify-center mb-4">
-                    <ShieldCheck className="w-5 h-5 text-[#0D9488]" />
+              <div className="mt-8 pt-6 border-t border-border">
+                <div className="text-left bg-gradient-to-b from-background to-alt-bg p-5 rounded-[20px] border border-secondary/10 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
+                    <ShieldCheck className="w-6 h-6 text-accent" />
                   </div>
-                  <h4 className="font-mono font-bold text-[#0B1F4D] text-xs tracking-wider mb-2">// LICENSING NOTICE</h4>
-                  <p className="text-[10px] text-[#64748B] leading-[1.7]">
+                  <h4 className="font-mono font-bold text-heading text-xs tracking-widest mb-2">// LICENSING NOTICE</h4>
+                  <p className="text-[11px] text-body leading-relaxed">
                     Medinet formulations are marketed to corporate licensed entities only. We do not distribute to patients directly.
                   </p>
                 </div>
@@ -354,52 +354,50 @@ export default function Products({ params, showToast }: ProductsProps) {
                     placeholder="Search brand, formula or key ingredient..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-[#FFFFFF] border border-[#DBEAFE] focus:border-[#2563EB] focus:ring-[4px] focus:ring-[rgba(37,99,235,.10)] rounded-[16px] text-xs focus:outline-none text-[#0B1F4D] transition-all placeholder:text-[#94A3B8] shadow-[0_10px_24px_rgba(11,31,77,.05)]"
+                    className="w-full pl-11 pr-4 py-3 bg-white border border-border focus:border-secondary focus:ring-[4px] focus:ring-secondary/10 rounded-xl text-sm focus:outline-none text-heading transition-all placeholder:text-muted shadow-sm"
                   />
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#2563EB]" />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
                 </div>
-                <div className="text-[10px] font-mono text-[#64748B] self-end sm:self-center">
-                  // Showing <span className="text-[#2563EB] font-bold">{filteredProducts.length}</span> of <span className="text-[#2563EB] font-bold">{PRODUCTS.length}</span> formulations
+                <div className="text-xs font-mono text-muted self-end sm:self-center">
+                  // Showing <span className="text-secondary font-bold">{filteredProducts.length}</span> of <span className="text-secondary font-bold">{PRODUCTS.length}</span> formulations
                 </div>
               </div>
 
               {/* Grid of Product Cards */}
               {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProducts.map((p) => (
                     <div
                       key={p.id}
-                      className="bg-[linear-gradient(180deg,#FFFFFF,#FDFEFF)] border border-[#E2E8F0] p-5 rounded-[22px] shadow-[0_16px_35px_rgba(15,23,42,.06)] hover:-translate-y-[8px] hover:border-[#BFDBFE] hover:shadow-[0_28px_55px_rgba(37,99,235,.15)] transition-all duration-[350ms] ease-[ease] text-left flex flex-col justify-between group cursor-pointer"
+                      className="utility-card p-6 flex flex-col justify-between group cursor-pointer hover:border-secondary/30"
+                      onClick={() => setSelectedProduct(p)}
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-3.5">
-                          <span className="text-[9px] font-mono font-bold bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] px-2 py-0.5 rounded-full uppercase transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(37,99,235,.2)]">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="utility-badge-blue">
                             {p.dosageForm}
                           </span>
-                          <span className="text-[10px] font-mono font-semibold text-[#64748B]">{p.strength}</span>
+                          <span className="text-[10px] font-mono font-bold text-muted">{p.strength}</span>
                         </div>
 
-                        <h3 className="font-display font-bold text-[#0B1F4D] text-base group-hover:text-[#2563EB] transition-colors duration-300 flex items-center gap-1.5">
+                        <h3 className="font-display font-bold text-heading text-lg group-hover:text-secondary transition-colors duration-300 flex items-center gap-2">
                           {getDosageIcon(p.dosageForm)}
                           {p.name}
                         </h3>
-                        <p className="text-[10px] text-[#64748B] font-mono italic mt-1 line-clamp-1">
+                        <p className="text-[11px] text-muted font-mono italic mt-1 line-clamp-1">
                           {p.genericName}
                         </p>
-                        <p className="text-xs text-[#475569] leading-[1.75] mt-3 line-clamp-2">
+                        <p className="text-sm text-body leading-relaxed mt-4 line-clamp-2">
                           {p.description}
                         </p>
                       </div>
 
-                      <div className="mt-6 pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-[11px] font-mono">
-                        <span className="text-[#94A3B8]">{p.packaging}</span>
+                      <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs font-mono">
+                        <span className="text-muted">{p.packaging}</span>
                         <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => setSelectedProduct(p)}
-                            className="text-xs font-bold text-[#0B1F4D] group-hover:text-[#2563EB] transition-colors duration-300 cursor-pointer flex items-center gap-1"
-                          >
-                            Details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-[6px] transition-transform duration-300" />
-                          </button>
+                          <span className="text-xs font-bold text-heading group-hover:text-secondary transition-colors duration-300 flex items-center gap-1.5 uppercase tracking-wider relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-secondary after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
+                            Details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -501,7 +499,7 @@ export default function Products({ params, showToast }: ProductsProps) {
               <div className="flex gap-2.5">
                 <button
                   onClick={() => setSelectedProduct(null)}
-                  className="px-4 py-2 border border-border text-body hover:bg-alt-bg font-mono text-xs font-medium rounded transition-all"
+                  className="utility-button-secondary px-5 py-2.5"
                 >
                   CLOSE
                 </button>
@@ -510,9 +508,9 @@ export default function Products({ params, showToast }: ProductsProps) {
                     setSelectedProduct(null);
                     openProductEnquiry(selectedProduct);
                   }}
-                  className="px-5 py-2 bg-primary hover:bg-slate-850 text-white font-mono text-xs font-semibold rounded transition-all flex items-center gap-1.5"
+                  className="utility-button-primary px-6 py-2.5"
                 >
-                  <Mail className="w-3.5 h-3.5" />
+                  <Mail className="w-4 h-4" />
                   SUBMIT INQUIRY
                 </button>
               </div>
@@ -641,25 +639,25 @@ export default function Products({ params, showToast }: ProductsProps) {
               </div>
 
               {/* Footer */}
-              <div className="pt-4 border-t border-border flex items-center justify-end gap-3 bg-white">
+              <div className="pt-5 border-t border-border flex items-center justify-end gap-3 bg-white">
                 <button
                   type="button"
                   onClick={() => {
                     setIsEnquiryOpen(false);
                     setEnquiryProduct(null);
                   }}
-                  className="px-4 py-2 border border-border text-body hover:bg-background font-mono text-xs font-medium rounded transition-all"
+                  className="utility-button-secondary px-5 py-2.5"
                 >
                   CANCEL
                 </button>
                 <button
                   type="submit"
                   disabled={formSubmitting}
-                  className="px-5 py-2 bg-primary hover:bg-slate-850 text-white font-mono text-xs font-semibold rounded transition-all flex items-center gap-1.5"
+                  className="utility-button-primary px-6 py-2.5"
                 >
                   {formSubmitting ? (
                     <>
-                      <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                       SUBMITTING...
                     </>
                   ) : (

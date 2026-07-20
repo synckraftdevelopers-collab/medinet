@@ -22,16 +22,16 @@ export default function Toast({ message, type, onClose, duration = 4000 }: Toast
   }, [onClose, duration]);
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex items-center gap-3 px-4 py-3 bg-white rounded-btn shadow-btn hover:shadow-btn-hover transition-all duration-300 shadow-sm shadow-lg border border-border animate-slide-in max-w-sm">
+    <div className="fixed bottom-5 right-5 z-50 flex items-center gap-3 px-5 py-4 bg-surface rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 border border-border animate-slide-in max-w-sm" role="alert" aria-live="assertive">
       {type === "success" ? (
-        <CheckCircle className="w-5 h-5 text-emerald-600 shrink-0" />
+        <CheckCircle className="w-5 h-5 text-success shrink-0" />
       ) : (
-        <XCircle className="w-5 h-5 text-red-600 shrink-0" />
+        <XCircle className="w-5 h-5 text-error shrink-0" />
       )}
-      <span className="text-sm font-medium text-body">{message}</span>
+      <span className="text-sm font-medium text-body flex-1">{message}</span>
       <button
         onClick={onClose}
-        className="p-1 hover:bg-background rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-muted hover:text-body transition-colors"
+        className="p-1.5 hover:bg-alt-bg rounded-full transition-colors duration-300 text-muted hover:text-heading focus-visible:ring-2 focus-visible:ring-secondary focus-visible:outline-none"
         aria-label="Close notification"
       >
         <X className="w-4 h-4" />
@@ -39,3 +39,4 @@ export default function Toast({ message, type, onClose, duration = 4000 }: Toast
     </div>
   );
 }
+

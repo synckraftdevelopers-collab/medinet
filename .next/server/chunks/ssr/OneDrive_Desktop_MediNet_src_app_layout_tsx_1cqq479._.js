@@ -1,3 +1,0 @@
-module.exports=[6867,a=>{"use strict";var b=a.i(35793);a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"en",children:(0,b.jsx)("body",{className:"antialiased",children:(0,b.jsx)("div",{id:"root",children:a})})})},"metadata",0,{title:"Medinet Pharmaceuticals",description:"Enterprise-grade corporate website for Medinet Pharmaceutical Marketing Company, featuring product catalog, R&D innovations, quality assurance, careers, and partnership models."}])},87047,a=>{a.n(a.i(6867))}];
-
-//# sourceMappingURL=OneDrive_Desktop_MediNet_src_app_layout_tsx_1cqq479._.js.map

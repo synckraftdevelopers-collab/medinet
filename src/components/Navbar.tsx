@@ -294,8 +294,8 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
       {/* Main Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-            ? "bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,.04)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
-            : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
+          ? "bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,.04)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
+          : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
           }`}
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-[24px] min-[1440px]:px-[32px] h-full">
@@ -307,13 +307,13 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 className="flex items-center text-left focus:outline-none hover:opacity-90 transition-opacity"
                 id="navbar-logo"
               >
-                <Image 
-                  src="/logo.svg" 
-                  alt="Medinet Pharmaceuticals Logo" 
-                  width={260} 
+                <Image
+                  src="/logo.svg"
+                  alt="Medinet Pharmaceuticals Logo"
+                  width={260}
                   height={64}
                   priority
-                  className="w-auto object-contain h-10 md:h-[44px] lg:h-[48px] min-[1440px]:h-[56px]" 
+                  className="w-auto object-contain h-10 md:h-[44px] lg:h-[48px] min-[1440px]:h-[56px]"
                 />
               </button>
             </div>
@@ -471,9 +471,8 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 onMouseLeave={() => setActiveMegaMenu(null)}
               >
                 <button
-                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${
-                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
+                    }`}
                 >
                   LEGAL
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "legal" ? "rotate-180" : ""}`} />
@@ -481,7 +480,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                 {activeMegaMenu === "legal" && (
                   <div className="absolute right-0 top-[calc(100%+8px)] w-[420px] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(37,99,235,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]">
-                    
+
                     {/* Top Header */}
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#E2E8F0] px-2">
                       <div className="w-10 h-10 rounded-[12px] bg-[linear-gradient(135deg,#F8FAFC,#F1F5F9)] border border-[#E2E8F0] flex items-center justify-center shrink-0">
@@ -510,7 +509,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                         </div>
                         <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
                       </a>
-                      
+
                       <a
                         href="/legal/terms-conditions"
                         onClick={() => setActiveMegaMenu(null)}
@@ -579,7 +578,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                         <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
                       </a>
                     </div>
-                    
+
                     {/* Bottom Area */}
                     <div className="mt-4 pt-4 border-t border-[#E2E8F0] bg-[#F8FAFC] rounded-b-[24px] -mx-5 -mb-5 p-[18px] flex items-center justify-between">
                       <div className="flex items-center gap-2 text-[13px] font-[500] text-[#0F172A]">
@@ -675,7 +674,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </button>
               </div>
               <div className="h-px w-full bg-[#E2E8F0] shrink-0" />
-              
+
               {/* Navigation Items */}
               <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-[16px]">
                 {[
@@ -702,11 +701,10 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setIsMobileMenuOpen(false);
                           if (item.route) navigate(item.route);
                         }}
-                        className={`w-full flex items-center gap-3 px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 shrink-0 ${
-                          isActive
+                        className={`w-full flex items-center gap-3 px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 shrink-0 ${isActive
                             ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
                             : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
-                        }`}
+                          }`}
                       >
                         <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.04 + 0.1 }}>
                           {item.icon && <item.icon className={`w-5 h-5 transition-transform duration-[250ms] group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />}
@@ -722,11 +720,10 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <motion.div key="products-accordion" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.04 }} className="relative shrink-0 flex flex-col">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "products" ? null : "products")}
-                          className={`w-full flex items-center justify-between px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 ${
-                            isActive
-                                ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
-                                : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
-                          }`}
+                          className={`w-full flex items-center justify-between px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 ${isActive
+                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
+                              : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
+                            }`}
                           aria-expanded={activeMobileAccordion === "products"}
                         >
                           <div className="flex items-center gap-3">
@@ -781,11 +778,10 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <motion.div key="legal-accordion" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.04 }} className="relative shrink-0 flex flex-col">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
-                          className={`w-full flex items-center justify-between px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 ${
-                            isActive
-                                ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
-                                : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
-                          }`}
+                          className={`w-full flex items-center justify-between px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 ${isActive
+                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
+                              : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
+                            }`}
                           aria-expanded={activeMobileAccordion === "legal"}
                         >
                           <div className="flex items-center gap-3">
@@ -832,7 +828,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                   }
                 })}
               </div>
-              
+
               {/* Pinned Bottom CTA */}
               <div className="p-4 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-[#E2E8F0] bg-white shrink-0 flex flex-col gap-3">
                 <button

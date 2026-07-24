@@ -1,3 +1,0 @@
-module.exports=[74600,(a,b,c)=>{"use strict";c._=function(a){return a&&a.__esModule?a:{default:a}}},8802,a=>{a.v(b=>Promise.all(["server/chunks/ssr/[externals]_path_1ulxq_v._.js","server/chunks/ssr/[root-of-the-server]__1g2i433._.js"].map(b=>a.l(b))).then(()=>b(89632)))},72264,a=>{a.v(b=>Promise.all(["server/chunks/ssr/1o07_jspdf-autotable_dist_jspdf_plugin_autotable_mjs_03ewyzl._.js"].map(b=>a.l(b))).then(()=>b(68966)))}];
-
-//# sourceMappingURL=1o07_1zaedg3._.js.map

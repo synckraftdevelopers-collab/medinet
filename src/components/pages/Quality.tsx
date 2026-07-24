@@ -139,10 +139,10 @@ export default function Quality() {
                 <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6 relative z-10">
                   <Award className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <h3 className="font-display font-bold text-white text-xl relative z-10">WHO-GMP Recertified</h3>
                 <p className="text-xs text-accent font-mono mt-2 uppercase tracking-wider font-bold relative z-10">Allied Production Hubs</p>
-                
+
                 <p className="mt-5 text-sm leading-relaxed text-white/80 relative z-10">
                   Our strategic partner formulation centers have successfully passed the triennial WHO-GMP recertification audits with zero critical non-conformances. This verifies our strict alignment with global pharmaceutical practices.
                 </p>
@@ -268,7 +268,7 @@ export default function Quality() {
                 <p className="text-body text-sm mt-1">Submit a formal report to our Drug Safety desk immediately.</p>
               </div>
             </div>
-            
+
             <a
               href="#contact"
               className="utility-button-primary px-6 py-3.5 shrink-0"

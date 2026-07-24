@@ -148,7 +148,7 @@ export default function Contact({ showToast }: ContactProps) {
                 let badgeBg = "bg-primary/10";
                 let badgeText = "text-primary";
                 let BadgeIcon = Building2;
-                
+
                 if (off.type === "Manufacturing") {
                   badgeBg = "bg-success/10";
                   badgeText = "text-success";
@@ -169,11 +169,10 @@ export default function Contact({ showToast }: ContactProps) {
                   <div
                     key={idx}
                     onClick={() => setSelectedOffice(off)}
-                    className={`rounded-[24px] transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden group/card ${
-                      isActive 
-                        ? "bg-gradient-to-br from-heading to-primary border-none shadow-lg hover:-translate-y-2" 
+                    className={`rounded-[24px] transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden group/card ${isActive
+                        ? "bg-gradient-to-br from-heading to-primary border-none shadow-lg hover:-translate-y-2"
                         : "bg-white border border-border shadow-sm hover:border-secondary hover:shadow-md hover:-translate-y-2"
-                    }`}
+                      }`}
                   >
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-4">
@@ -211,11 +210,10 @@ export default function Contact({ showToast }: ContactProps) {
                           e.stopPropagation();
                           openDirections(off);
                         }}
-                        className={`shrink-0 rounded-full px-[18px] py-[12px] flex items-center justify-center gap-1.5 font-bold transition-all duration-300 group/btn ${
-                          isActive
+                        className={`shrink-0 rounded-full px-[18px] py-[12px] flex items-center justify-center gap-1.5 font-bold transition-all duration-300 group/btn ${isActive
                             ? "bg-white text-primary hover:bg-gray-50 shadow-sm"
                             : "utility-button-primary"
-                        }`}
+                          }`}
                       >
                         <Navigation className={`w-3.5 h-3.5 ${isActive ? '' : 'text-white'}`} />
                         Directions
@@ -252,7 +250,7 @@ export default function Contact({ showToast }: ContactProps) {
                   </div>
                 )}
               </div>
-              
+
               {/* Optional Quick Info */}
               <div className="utility-card p-5 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-2">
                 <div className="flex flex-col gap-1">
@@ -292,7 +290,7 @@ export default function Contact({ showToast }: ContactProps) {
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="utility-card overflow-hidden transition-all duration-300 shadow-md">
-            
+
             <div className="p-8 sm:p-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0">
@@ -320,14 +318,13 @@ export default function Contact({ showToast }: ContactProps) {
                         placeholder="Enter your full name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={`utility-input pl-11 h-[54px] ${
-                          errors.name ? "border-red-500" : ""
-                        }`}
+                        className={`utility-input pl-11 h-[54px] ${errors.name ? "border-red-500" : ""
+                          }`}
                       />
                     </div>
                     {errors.name && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.name}</span>}
                   </div>
-                  
+
                   <div className="group/input">
                     <label className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Email Address *</label>
                     <div className="relative">
@@ -340,9 +337,8 @@ export default function Contact({ showToast }: ContactProps) {
                         placeholder="Enter email address"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className={`utility-input pl-11 h-[54px] ${
-                          errors.email ? "border-red-500" : ""
-                        }`}
+                        className={`utility-input pl-11 h-[54px] ${errors.email ? "border-red-500" : ""
+                          }`}
                       />
                     </div>
                     {errors.email && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.email}</span>}
@@ -362,14 +358,13 @@ export default function Contact({ showToast }: ContactProps) {
                         placeholder="Enter contact number"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className={`utility-input pl-11 h-[54px] ${
-                          errors.phone ? "border-red-500" : ""
-                        }`}
+                        className={`utility-input pl-11 h-[54px] ${errors.phone ? "border-red-500" : ""
+                          }`}
                       />
                     </div>
                     {errors.phone && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.phone}</span>}
                   </div>
-                  
+
                   <div className="group/input">
                     <label className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Subject of Inquiry</label>
                     <div className="relative">
@@ -405,9 +400,8 @@ export default function Contact({ showToast }: ContactProps) {
                       placeholder="Enter the full content of your corporate message here..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className={`utility-input pl-11 min-h-[150px] py-[18px] resize-y ${
-                        errors.message ? "border-red-500" : ""
-                      }`}
+                      className={`utility-input pl-11 min-h-[150px] py-[18px] resize-y ${errors.message ? "border-red-500" : ""
+                        }`}
                     ></textarea>
                   </div>
                   {errors.message && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.message}</span>}
@@ -431,7 +425,7 @@ export default function Contact({ showToast }: ContactProps) {
                   )}
                 </button>
               </form>
-              
+
               <div className="mt-8 bg-alt-bg border border-border rounded-[16px] p-4 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-2 text-[11px] font-mono font-bold tracking-wider uppercase text-heading">
                   <div className="w-7 h-7 rounded-full bg-white border border-border flex items-center justify-center">
@@ -468,7 +462,7 @@ export default function Contact({ showToast }: ContactProps) {
       <section className="py-20 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white text-left">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-        
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <SectionHeader
             badge="Frequently Asked Queries"
@@ -485,17 +479,16 @@ export default function Contact({ showToast }: ContactProps) {
               else if (faq.question.includes("PCD") || faq.question.includes("Franchise") || faq.question.includes("monopoly")) FaqIcon = Handshake;
               else if (faq.question.includes("ADR") || faq.question.includes("reporting") || faq.question.includes("Adverse")) FaqIcon = ShieldAlert;
               else if (faq.question.includes("Retail") || faq.question.includes("availability") || faq.question.includes("wholesale")) FaqIcon = ShoppingBag;
-              
+
               const isOpen = openFaqIndex === idx;
 
               return (
                 <div
                   key={idx}
-                  className={`border rounded-[18px] overflow-hidden transition-all duration-300 group/faq ${
-                    isOpen
+                  className={`border rounded-[18px] overflow-hidden transition-all duration-300 group/faq ${isOpen
                       ? "bg-gradient-to-r from-primary/5 to-white border-primary border-l-[4px] shadow-md"
                       : "bg-white border-border hover:bg-alt-bg hover:border-secondary hover:shadow-sm hover:-translate-y-[2px]"
-                  }`}
+                    }`}
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
@@ -508,9 +501,8 @@ export default function Contact({ showToast }: ContactProps) {
                       <span className="font-display font-bold text-heading text-sm sm:text-base leading-snug">{faq.question}</span>
                     </div>
                     <ChevronDown
-                      className={`w-5 h-5 shrink-0 transition-transform duration-300 ${
-                        isOpen ? "rotate-180 text-primary" : "text-muted"
-                      }`}
+                      className={`w-5 h-5 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-primary" : "text-muted"
+                        }`}
                     />
                   </button>
 
@@ -523,7 +515,7 @@ export default function Contact({ showToast }: ContactProps) {
               );
             })}
           </div>
-          
+
           {/* Optional Support Box */}
           <div className="max-w-[820px] mx-auto mt-12 bg-gradient-to-br from-heading to-primary rounded-[24px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
             <div className="flex items-center gap-5 text-white">

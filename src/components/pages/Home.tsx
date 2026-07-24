@@ -96,10 +96,15 @@ export default function Home({ navigate }: HomeProps) {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
-                    onClick={() => navigate("products")}
+                    onClick={() => {
+                      navigate("products");
+                      setTimeout(() => {
+                        document.getElementById("formulations")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }, 150);
+                    }}
                     className="utility-button-primary group/btn1 px-6 py-3"
                   >
-                    EXPLORE DIRECTORY
+                    VIEW FORMULATIONS
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn1:translate-x-1" />
                   </button>
                   <button

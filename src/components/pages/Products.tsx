@@ -274,7 +274,7 @@ export default function Products({ params, showToast }: ProductsProps) {
       </section>
 
       {/* Directory Grid */}
-      <section className="py-12 bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_50%,#FFFFFF_100%)]">
+      <section id="formulations" className="py-12 scroll-mt-24 bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_50%,#FFFFFF_100%)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Sidebar Filters */}

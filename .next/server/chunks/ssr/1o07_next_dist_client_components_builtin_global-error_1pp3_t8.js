@@ -1,0 +1,3 @@
+module.exports=[72445,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(18680);a.n(d("[project]/OneDrive/Desktop/MediNet/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},87317,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(18680);a.n(d("[project]/OneDrive/Desktop/MediNet/node_modules/next/dist/client/components/builtin/global-error.js"))},29436,a=>{"use strict";a.i(72445);var b=a.i(87317);a.n(b)},81235,a=>{a.n(a.i(29436))}];
+
+//# sourceMappingURL=1o07_next_dist_client_components_builtin_global-error_1pp3_t8.js.map

@@ -33,7 +33,9 @@ import {
   CheckCircle2,
   ArrowRight,
   Lock,
-  Building2
+  Building2,
+  Loader2,
+  AlertCircle
 } from "lucide-react";
 
 interface CareersProps {
@@ -55,6 +57,7 @@ export default function Careers({ showToast }: CareersProps) {
   const [uploadedFile, setUploadedFile] = useState<{ name: string; size: string } | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const benefits = [
@@ -102,6 +105,8 @@ export default function Careers({ showToast }: CareersProps) {
 
   const handleApplyClick = (job: Job) => {
     setSelectedJob(job);
+    setFormSuccess(false);
+    setErrors({});
     setIsApplying(true);
   };
 
@@ -147,20 +152,48 @@ export default function Careers({ showToast }: CareersProps) {
     }
   };
 
-  const validateForm = () => {
-    const errs: Record<string, string> = {};
-    if (!formData.name.trim()) errs.name = "Full name is required";
-    if (!formData.email.trim()) {
-      errs.email = "Email is required";
-    } else if (!formData.email.includes("@")) {
-      errs.email = "Invalid email address";
+  const validateCareerField = (field: string, value: string) => {
+    switch (field) {
+      case "name":
+        return !value.trim() ? "Full name is required" : "";
+      case "email":
+        return !value.trim() ? "Email address is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid email address" : "";
+      case "phone":
+        return !value.trim() ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
+      case "experience":
+        return !value.trim() ? "Work experience detail is required" : "";
+      default:
+        return "";
     }
-    if (!formData.phone.trim()) errs.phone = "Phone number is required";
-    if (!formData.experience.trim()) errs.experience = "Work experience detail is required";
+  };
+
+  const handleCareerFieldChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      const err = validateCareerField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
+  const handleCareerFieldBlur = (field: string, value: string) => {
+    if (value.trim() || errors[field]) {
+      const err = validateCareerField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
+  const validateForm = () => {
+    const errs: Record<string, string> = {
+      name: validateCareerField("name", formData.name),
+      email: validateCareerField("email", formData.email),
+      phone: validateCareerField("phone", formData.phone),
+      experience: validateCareerField("experience", formData.experience),
+    };
     if (!uploadedFile) errs.file = "Please upload your resume (PDF/DOCX)";
 
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
+    const activeErrors = Object.fromEntries(Object.entries(errs).filter(([_, v]) => v !== ""));
+    setErrors(activeErrors);
+    return Object.keys(activeErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -173,6 +206,7 @@ export default function Careers({ showToast }: CareersProps) {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
+      setFormSuccess(true);
       showToast("Application submitted successfully! Our HR team will evaluate your CV.", "success");
       
       // Reset
@@ -184,9 +218,7 @@ export default function Careers({ showToast }: CareersProps) {
         message: ""
       });
       setUploadedFile(null);
-      setIsApplying(false);
-      setSelectedJob(null);
-    }, 1500);
+    }, 1200);
   };
 
   return (
@@ -443,172 +475,258 @@ export default function Careers({ showToast }: CareersProps) {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Full Name *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`utility-input mt-2 ${
-                      errors.name ? "border-red-500" : ""
-                    }`}
-                  />
-                  {errors.name && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.name}</span>}
+            {formSuccess ? (
+              <div className="p-8 text-center space-y-4 my-auto animate-fade-in">
+                <div className="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mx-auto border border-green-200">
+                  <CheckCircle2 className="w-8 h-8 text-green-600" />
                 </div>
-                <div>
-                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Email Address *</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="johndoe@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`utility-input mt-2 ${
-                      errors.email ? "border-red-500" : ""
-                    }`}
-                  />
-                  {errors.email && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.email}</span>}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Phone Number *</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+91-XXXX-XXXXXX"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`utility-input mt-2 ${
-                      errors.phone ? "border-red-500" : ""
-                    }`}
-                  />
-                  {errors.phone && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.phone}</span>}
-                </div>
-                <div>
-                  <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Total Work Experience *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g., 5 years in QC wet lab"
-                    value={formData.experience}
-                    onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                    className={`utility-input mt-2 ${
-                      errors.experience ? "border-red-500" : ""
-                    }`}
-                  />
-                  {errors.experience && <span className="text-[10px] text-red-500 font-semibold mt-1 block">{errors.experience}</span>}
-                </div>
-              </div>
-
-              <div>
-                <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">Message / Cover Letter Note</label>
-                <textarea
-                  rows={4}
-                  placeholder="Summarize your key qualifications or motivation to join Medinet..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="utility-input mt-2 resize-y"
-                ></textarea>
-              </div>
-
-              {/* Resume Upload Box */}
-              <div>
-                <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">
-                  Upload Resume (PDF or DOCX, max 5MB) *
-                </label>
-
-                {uploadedFile ? (
-                  <div className="flex items-center justify-between p-4 border border-border rounded-xl bg-alt-bg">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 border border-border">
-                        <FileText className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <span className="block text-heading font-bold text-sm truncate max-w-[200px] sm:max-w-[300px]">
-                          {uploadedFile.name}
-                        </span>
-                        <span className="text-[10px] text-muted font-mono font-bold block mt-1">
-                          SIZE: {uploadedFile.size}
-                        </span>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={removeFile}
-                      className="p-2 bg-white hover:bg-background border border-border text-body hover:text-red-500 rounded-lg transition-colors cursor-pointer shadow-sm"
-                      title="Remove file"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                ) : (
-                  <div
-                    onDragOver={handleDragOver}
-                    onDrop={handleDrop}
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 rounded-[16px] p-8 text-center cursor-pointer transition-all duration-300 ${
-                      errors.file ? "border-red-400 bg-red-50/5" : "bg-alt-bg"
-                    }`}
+                <h3 className="text-xl font-display font-medium text-heading">Application Received!</h3>
+                <p className="text-xs text-muted max-w-sm mx-auto leading-relaxed">
+                  Your CV and details for <strong className="text-body font-semibold">{selectedJob?.title}</strong> have been submitted to our talent acquisition team. We will contact you if your qualifications match our current requirements.
+                </p>
+                <div className="pt-4 flex justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormSuccess(false);
+                      setIsApplying(false);
+                      setSelectedJob(null);
+                    }}
+                    className="utility-button-primary px-6 py-2.5"
                   >
+                    CLOSE WINDOW
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFormSuccess(false)}
+                    className="utility-button-secondary px-6 py-2.5"
+                  >
+                    APPLY FOR ANOTHER ROLE
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-5" noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="career-name" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
                     <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      onChange={handleFileChange}
-                      className="hidden"
+                      id="career-name"
+                      type="text"
+                      required
+                      disabled={submitting}
+                      aria-required="true"
+                      autoComplete="name"
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={(e) => handleCareerFieldChange("name", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("name", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.name}
+                      aria-describedby={errors.name ? "car-name-err" : undefined}
                     />
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm">
-                      <Upload className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="block text-sm font-bold text-heading">
-                      Drag &amp; drop your resume here, or <span className="text-primary hover:underline">browse</span>
-                    </span>
-                    <span className="block text-[10px] font-bold text-muted mt-2 font-mono uppercase tracking-widest">
-                      Accepts PDF, DOCX up to 5MB
+                    {errors.name && (
+                      <span id="car-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {errors.name}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="career-email" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Email Address <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      id="career-email"
+                      type="email"
+                      required
+                      disabled={submitting}
+                      aria-required="true"
+                      autoComplete="email"
+                      placeholder="johndoe@example.com"
+                      value={formData.email}
+                      onChange={(e) => handleCareerFieldChange("email", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("email", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "car-email-err" : undefined}
+                    />
+                    {errors.email && (
+                      <span id="car-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {errors.email}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="career-phone" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Phone Number <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      id="career-phone"
+                      type="tel"
+                      required
+                      disabled={submitting}
+                      aria-required="true"
+                      autoComplete="tel"
+                      placeholder="+1 (555) 000-0000"
+                      value={formData.phone}
+                      onChange={(e) => handleCareerFieldChange("phone", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("phone", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.phone}
+                      aria-describedby={errors.phone ? "car-phone-err" : undefined}
+                    />
+                    {errors.phone && (
+                      <span id="car-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {errors.phone}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="career-experience" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Total Work Experience <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      id="career-experience"
+                      type="text"
+                      required
+                      disabled={submitting}
+                      aria-required="true"
+                      placeholder="e.g., 5 years in QC wet lab"
+                      value={formData.experience}
+                      onChange={(e) => handleCareerFieldChange("experience", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("experience", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.experience ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.experience}
+                      aria-describedby={errors.experience ? "car-exp-err" : undefined}
+                    />
+                    {errors.experience && (
+                      <span id="car-exp-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {errors.experience}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label htmlFor="career-message" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest">Message / Cover Letter Note</label>
+                    <span className={`text-[10px] font-mono ${formData.message.length > 700 ? "text-amber-500 font-bold" : "text-muted"}`}>
+                      {formData.message.length}/800 chars
                     </span>
                   </div>
-                )}
-                {errors.file && <span className="text-[10px] text-red-500 font-semibold mt-1.5 block">{errors.file}</span>}
-              </div>
+                  <textarea
+                    id="career-message"
+                    rows={4}
+                    disabled={submitting}
+                    maxLength={800}
+                    placeholder="Summarize your key qualifications or motivation to join Medinet..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="utility-input mt-1.5 resize-y"
+                  ></textarea>
+                </div>
 
-              {/* Form Footer */}
-              <div className="pt-6 mt-4 border-t border-border flex flex-col sm:flex-row items-center justify-end gap-3 bg-white">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsApplying(false);
-                    setSelectedJob(null);
-                    removeFile();
-                  }}
-                  className="w-full sm:w-auto px-6 py-2.5 border border-border text-body font-bold hover:bg-background hover:text-heading text-xs sm:text-sm rounded-[12px] transition-colors uppercase tracking-wider font-mono"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full sm:w-auto utility-button-primary"
-                >
-                  {submitting ? (
-                    <>
-                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></span>
-                      Submitting CV...
-                    </>
+                {/* Resume Upload Box */}
+                <div>
+                  <label htmlFor="career-resume" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">
+                    Upload Resume (PDF or DOCX, max 5MB) <span className="text-red-500" aria-hidden="true">*</span>
+                  </label>
+
+                  {uploadedFile ? (
+                    <div className="flex items-center justify-between p-4 border border-border rounded-xl bg-alt-bg">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 border border-border">
+                          <FileText className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <span className="block text-heading font-bold text-sm truncate max-w-[200px] sm:max-w-[300px]">
+                            {uploadedFile.name}
+                          </span>
+                          <span className="text-[10px] text-muted font-mono font-bold block mt-1">
+                            SIZE: {uploadedFile.size}
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        disabled={submitting}
+                        onClick={removeFile}
+                        className="p-2 bg-white hover:bg-background border border-border text-body hover:text-red-500 rounded-lg transition-colors cursor-pointer shadow-sm disabled:opacity-50"
+                        title="Remove file"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
                   ) : (
-                    <>
-                      Submit Application
-                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300 ml-2" />
-                    </>
+                    <div
+                      onDragOver={handleDragOver}
+                      onDrop={handleDrop}
+                      onClick={() => !submitting && fileInputRef.current?.click()}
+                      className={`border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 rounded-[16px] p-8 text-center cursor-pointer transition-all duration-300 ${errors.file ? "border-red-400 bg-red-50/5" : "bg-alt-bg"} ${submitting ? "opacity-50 pointer-events-none" : ""}`}
+                    >
+                      <input
+                        id="career-resume"
+                        ref={fileInputRef}
+                        type="file"
+                        disabled={submitting}
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileChange}
+                        className="hidden"
+                      />
+                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm">
+                        <Upload className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="block text-sm font-bold text-heading">
+                        Drag &amp; drop your resume here, or <span className="text-primary hover:underline">browse</span>
+                      </span>
+                      <span className="block text-[10px] font-bold text-muted mt-2 font-mono uppercase tracking-widest">
+                        Accepts PDF, DOCX up to 5MB
+                      </span>
+                    </div>
                   )}
-                </button>
-              </div>
-            </form>
+                  {errors.file && (
+                    <span className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      {errors.file}
+                    </span>
+                  )}
+                </div>
+
+                {/* Form Footer */}
+                <div className="pt-6 mt-4 border-t border-border flex flex-col sm:flex-row items-center justify-end gap-3 bg-white">
+                  <button
+                    type="button"
+                    disabled={submitting}
+                    onClick={() => {
+                      setIsApplying(false);
+                      setSelectedJob(null);
+                      removeFile();
+                    }}
+                    className="w-full sm:w-auto px-6 py-2.5 border border-border text-body font-bold hover:bg-background hover:text-heading text-xs sm:text-sm rounded-[12px] transition-colors uppercase tracking-wider font-mono disabled:opacity-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full sm:w-auto utility-button-primary flex items-center justify-center gap-2 min-w-[180px]"
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Submitting CV...
+                      </>
+                    ) : (
+                      <>
+                        Submit Application
+                        <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       )}

@@ -43,6 +43,11 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth !important;
+    scroll-padding-top: 104px !important;
+  }
+
   body {
     @apply font-sans bg-background text-body antialiased selection:bg-secondary selection:text-white;
   }
@@ -51,9 +56,11 @@
     @apply font-display tracking-tight font-semibold text-heading;
   }
 
-  /* Accessible Focus States */
+  /* Accessible Focus States (High Contrast Visible Focus Rings) */
   *:focus-visible {
-    @apply outline-none ring-2 ring-secondary ring-offset-2 ring-offset-background;
+    outline: 2px solid var(--color-secondary) !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
   }
 }
 
@@ -85,11 +92,15 @@
 }
 
 .utility-button-primary {
-  @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover active:scale-[0.98] text-white text-sm font-medium rounded-btn border border-primary transition-all duration-300 shadow-btn hover:shadow-card-hover disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] min-w-[44px] cursor-pointer select-none bg-primary hover:bg-primary-hover active:scale-[0.98] text-white text-sm font-medium rounded-btn border border-primary transition-all duration-300 shadow-btn hover:shadow-card-hover disabled:opacity-60 disabled:cursor-not-allowed disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2;
 }
 
 .utility-button-secondary {
-  @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-surface hover:bg-alt-bg active:scale-[0.98] border border-border hover:border-secondary text-primary text-sm font-medium rounded-btn transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] min-w-[44px] cursor-pointer select-none bg-surface hover:bg-alt-bg active:scale-[0.98] border border-border hover:border-secondary text-primary text-sm font-medium rounded-btn transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2;
+}
+
+.utility-input {
+  @apply w-full px-3.5 py-2.5 bg-white border border-border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:bg-alt-bg disabled:text-muted disabled:cursor-not-allowed disabled:border-border/50 disabled:opacity-75;
 }
 
 /* Flat sleek glassmorphism for minimal header styling */
@@ -135,13 +146,138 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Micro Interactions & Transitions */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+/* ==========================================================================
+   PREMIUM MICRO INTERACTIONS (Subtle, Sophisticated & Non-Disruptive)
+   ========================================================================== */
+
+/* 1. Cards Micro Interaction */
+.utility-panel,
+.utility-card,
+.card,
+.hover-lift,
+[class*="rounded-[20px]"],
+[class*="rounded-card"],
+[class*="shadow-card"] {
+  transition: transform 250ms ease-out, box-shadow 250ms ease-out, border-color 250ms ease-out !important;
 }
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+
+.utility-panel:hover,
+.utility-card:hover,
+.card:hover,
+.hover-lift:hover,
+[class*="rounded-[20px]"]:hover,
+[class*="rounded-card"]:hover,
+[class*="shadow-card"]:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  box-shadow: 0 24px 48px -12px rgba(11, 31, 77, 0.18), 0 12px 24px -6px rgba(37, 99, 235, 0.10) !important;
+}
+
+/* 2. Buttons Micro Interaction & Accessibility */
+button,
+a.utility-button-primary,
+a.utility-button-secondary,
+[role="button"] {
+  transition: all 250ms ease-out !important;
+  cursor: pointer;
+}
+
+button:disabled,
+a[aria-disabled="true"],
+[role="button"][aria-disabled="true"],
+button[aria-busy="true"],
+a[aria-busy="true"],
+[role="button"][aria-busy="true"] {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.65 !important;
+}
+
+button:focus-visible,
+a.utility-button-primary:focus-visible,
+a.utility-button-secondary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-secondary) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Gradient hover and soft glow for primary buttons */
+.utility-button-primary:hover,
+button[class*="bg-primary"]:hover,
+button[class*="bg-[#0B1F4D]"]:hover {
+  background-image: linear-gradient(135deg, var(--color-secondary), var(--color-primary-hover)) !important;
+  box-shadow: 0 0 22px rgba(37, 99, 235, 0.42), 0 8px 24px -4px rgba(11, 31, 77, 0.25) !important;
+}
+
+/* Subtle gradient hover and soft glow for secondary buttons */
+.utility-button-secondary:hover,
+button[class*="bg-surface"]:hover,
+button[class*="bg-white"][class*="border"]:hover {
+  background-image: linear-gradient(135deg, #F8FBFF, #EFF6FF) !important;
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.22), 0 6px 16px -4px rgba(11, 31, 77, 0.12) !important;
+}
+
+/* Arrow Slide Animation */
+button:hover svg[class*="lucide-arrow-right"],
+a:hover svg[class*="lucide-arrow-right"],
+.utility-panel:hover svg[class*="lucide-arrow-right"],
+.utility-card:hover svg[class*="lucide-arrow-right"],
+.card:hover svg[class*="lucide-arrow-right"],
+.group:hover svg[class*="lucide-arrow-right"],
+[class*="group"]:hover svg[class*="lucide-arrow-right"] {
+  transform: translateX(4px) !important;
+  transition: transform 250ms ease-out !important;
+}
+
+/* 3. Icons Micro Interaction (Rotate 6° & Scale 1.05) */
+button:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
+a:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
+.utility-panel:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
+.utility-card:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
+.card:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
+.group:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
+[class*="group"]:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]) {
+  transform: rotate(6deg) scale(1.05) !important;
+  transition: transform 250ms ease-out !important;
+}
+
+/* 4. Images Micro Interaction (Zoom 1.03) */
+img {
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.utility-panel:hover img:not([src*="logo"]),
+.utility-card:hover img:not([src*="logo"]),
+.card:hover img:not([src*="logo"]),
+.group:hover img:not([src*="logo"]),
+[class*="group"]:hover img:not([src*="logo"]),
+a:hover img:not([src*="logo"]),
+button:hover img:not([src*="logo"]) {
+  transform: scale(1.03) !important;
+}
+
+/* 5. Navigation Micro Interactions */
+nav button::after,
+nav a::after {
+  transition: transform 250ms ease-out, opacity 250ms ease-out !important;
+}
+
+/* Dropdown Fade Animation */
+[role="menu"],
+[class*="absolute"][class*="top-full"],
+.animate-fade-in {
+  animation: dropdownFade 200ms ease-out forwards !important;
+}
+
+@keyframes dropdownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Touch Targets & Mobile Optimizations */

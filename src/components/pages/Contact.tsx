@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { OFFICES, FAQS } from "../../data";
 import { Office } from "../../types";
 import SectionHeader from "../SectionHeader";
@@ -41,14 +41,18 @@ import {
   ShieldAlert,
   ShoppingBag,
   LifeBuoy,
-  ArrowRight
+  ArrowRight,
+  Loader2,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 
 interface ContactProps {
   showToast: (message: string, type: "success" | "error") => void;
+  params?: Record<string, string>;
 }
 
-export default function Contact({ showToast }: ContactProps) {
+export default function Contact({ showToast, params }: ContactProps) {
   // Map Selection State
   const [selectedOffice, setSelectedOffice] = useState<Office>(OFFICES[0]);
 
@@ -65,24 +69,64 @@ export default function Contact({ showToast }: ContactProps) {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
+
+  useEffect(() => {
+    if (params?.subject) {
+      setFormData((prev) => ({ ...prev, subject: params.subject }));
+    }
+    if (params?.section || params?.scrollTo) {
+      const targetId = params.section || params.scrollTo;
+      setTimeout(() => {
+        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+    }
+  }, [params]);
 
   const toggleFaq = (idx: number) => {
     setOpenFaqIndex(openFaqIndex === idx ? null : idx);
   };
 
-  const validate = () => {
-    const errs: Record<string, string> = {};
-    if (!formData.name.trim()) errs.name = "Full name is required";
-    if (!formData.email.trim()) {
-      errs.email = "Email is required";
-    } else if (!formData.email.includes("@")) {
-      errs.email = "Invalid email address";
+  const validateContactField = (field: string, value: string) => {
+    switch (field) {
+      case "name":
+        return !value.trim() ? "Full name is required" : "";
+      case "email":
+        return !value.trim() ? "Email address is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid corporate email" : "";
+      case "phone":
+        return !value.trim() ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
+      case "message":
+        return !value.trim() ? "Message content is required" : value.trim().length < 10 ? "Please enter at least 10 characters" : "";
+      default:
+        return "";
     }
-    if (!formData.phone.trim()) errs.phone = "Phone number is required";
-    if (!formData.message.trim()) errs.message = "Message content is required";
+  };
 
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
+  const handleContactFieldChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      const err = validateContactField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
+  const handleContactFieldBlur = (field: string, value: string) => {
+    if (value.trim() || errors[field]) {
+      const err = validateContactField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
+  const validate = () => {
+    const errs: Record<string, string> = {
+      name: validateContactField("name", formData.name),
+      email: validateContactField("email", formData.email),
+      phone: validateContactField("phone", formData.phone),
+      message: validateContactField("message", formData.message),
+    };
+    const activeErrors = Object.fromEntries(Object.entries(errs).filter(([_, v]) => v !== ""));
+    setErrors(activeErrors);
+    return Object.keys(activeErrors).length === 0;
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -95,6 +139,7 @@ export default function Contact({ showToast }: ContactProps) {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
+      setFormSuccess(true);
       showToast("Thank you! Your message has been routed to our corporate relations team.", "success");
       setFormData({
         name: "",
@@ -103,7 +148,7 @@ export default function Contact({ showToast }: ContactProps) {
         subject: "general",
         message: ""
       });
-    }, 1500);
+    }, 1200);
   };
 
   const openDirections = (office: Office) => {
@@ -284,7 +329,7 @@ export default function Contact({ showToast }: ContactProps) {
       </section>
 
       {/* Corporate Communications Form */}
-      <section className="py-20 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white text-left">
+      <section id="contact-form" className="py-20 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white text-left">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
@@ -304,127 +349,199 @@ export default function Contact({ showToast }: ContactProps) {
 
               <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent mb-8"></div>
 
-              <form onSubmit={handleFormSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="group/input">
-                    <label className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Full Name *</label>
-                    <div className="relative">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
-                        <UserRound className="w-4 h-4" />
-                      </div>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Enter your full name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={`utility-input pl-11 h-[54px] ${errors.name ? "border-red-500" : ""
-                          }`}
-                      />
-                    </div>
-                    {errors.name && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.name}</span>}
+              {formSuccess ? (
+                <div className="p-10 bg-green-50/50 border border-green-200 rounded-card text-center space-y-4 my-6 animate-fade-in">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto border border-green-300">
+                    <CheckCircle2 className="w-9 h-9 text-green-600" />
                   </div>
-
-                  <div className="group/input">
-                    <label className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Email Address *</label>
-                    <div className="relative">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
-                        <Mail className="w-4 h-4" />
-                      </div>
-                      <input
-                        type="email"
-                        required
-                        placeholder="Enter email address"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className={`utility-input pl-11 h-[54px] ${errors.email ? "border-red-500" : ""
-                          }`}
-                      />
-                    </div>
-                    {errors.email && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.email}</span>}
+                  <h3 className="text-2xl font-display font-semibold text-heading">Message Sent Successfully!</h3>
+                  <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
+                    Thank you for contacting MediNet. Your inquiry has been routed to our corporate relations team. A regional representative will reach out within 24 business hours.
+                  </p>
+                  <div className="pt-4">
+                    <button
+                      type="button"
+                      onClick={() => setFormSuccess(false)}
+                      className="utility-button-primary px-8 py-3"
+                    >
+                      SEND ANOTHER MESSAGE
+                    </button>
                   </div>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="group/input">
-                    <label className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Phone Number *</label>
-                    <div className="relative">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
-                        <PhoneCall className="w-4 h-4" />
+              ) : (
+                <form onSubmit={handleFormSubmit} className="space-y-6" noValidate>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="group/input">
+                      <label htmlFor="contact-name" className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <div className="relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
+                          <UserRound className="w-4 h-4" />
+                        </div>
+                        <input
+                          id="contact-name"
+                          type="text"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="name"
+                          placeholder="Enter your full name"
+                          value={formData.name}
+                          onChange={(e) => handleContactFieldChange("name", e.target.value)}
+                          onBlur={(e) => handleContactFieldBlur("name", e.target.value)}
+                          className={`utility-input pl-11 h-[54px] ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.name}
+                          aria-describedby={errors.name ? "cnt-name-err" : undefined}
+                        />
                       </div>
-                      <input
-                        type="tel"
+                      {errors.name && (
+                        <span id="cnt-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {errors.name}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="group/input">
+                      <label htmlFor="contact-email" className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Email Address <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <div className="relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
+                          <Mail className="w-4 h-4" />
+                        </div>
+                        <input
+                          id="contact-email"
+                          type="email"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="email"
+                          placeholder="Enter email address"
+                          value={formData.email}
+                          onChange={(e) => handleContactFieldChange("email", e.target.value)}
+                          onBlur={(e) => handleContactFieldBlur("email", e.target.value)}
+                          className={`utility-input pl-11 h-[54px] ${errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.email}
+                          aria-describedby={errors.email ? "cnt-email-err" : undefined}
+                        />
+                      </div>
+                      {errors.email && (
+                        <span id="cnt-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {errors.email}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="group/input">
+                      <label htmlFor="contact-phone" className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Phone Number <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <div className="relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
+                          <PhoneCall className="w-4 h-4" />
+                        </div>
+                        <input
+                          id="contact-phone"
+                          type="tel"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="tel"
+                          placeholder="Enter contact number"
+                          value={formData.phone}
+                          onChange={(e) => handleContactFieldChange("phone", e.target.value)}
+                          onBlur={(e) => handleContactFieldBlur("phone", e.target.value)}
+                          className={`utility-input pl-11 h-[54px] ${errors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.phone}
+                          aria-describedby={errors.phone ? "cnt-phone-err" : undefined}
+                        />
+                      </div>
+                      {errors.phone && (
+                        <span id="cnt-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {errors.phone}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="group/input">
+                      <label htmlFor="contact-subject" className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Subject of Inquiry</label>
+                      <div className="relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
+                          <ClipboardList className="w-4 h-4" />
+                        </div>
+                        <select
+                          id="contact-subject"
+                          disabled={submitting}
+                          value={formData.subject}
+                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                          className="utility-input pl-11 h-[54px] appearance-none pr-10"
+                        >
+                          <option value="general">General Sourcing / Wholesaling</option>
+                          <option value="licensing">Territorial Rights & Franchising</option>
+                          <option value="pve">Pharmacovigilance (ADR Reporting)</option>
+                          <option value="contract">Contract Manufacturing Services</option>
+                          <option value="careers">Careers & Human Resources</option>
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="group/input">
+                    <div className="flex items-center justify-between mb-2">
+                      <label htmlFor="contact-message" className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest">Message Content <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <span className={`text-[10px] font-mono ${formData.message.length > 900 ? "text-amber-500 font-bold" : "text-muted"}`}>
+                        {formData.message.length}/1000 chars
+                      </span>
+                    </div>
+                    <div className="relative">
+                      <div className="absolute left-4 top-[18px] text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
+                        <MessageSquareText className="w-4 h-4" />
+                      </div>
+                      <textarea
+                        id="contact-message"
                         required
-                        placeholder="Enter contact number"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className={`utility-input pl-11 h-[54px] ${errors.phone ? "border-red-500" : ""
-                          }`}
-                      />
+                        disabled={submitting}
+                        aria-required="true"
+                        maxLength={1000}
+                        placeholder="Enter the full content of your corporate message here..."
+                        value={formData.message}
+                        onChange={(e) => handleContactFieldChange("message", e.target.value)}
+                        onBlur={(e) => handleContactFieldBlur("message", e.target.value)}
+                        className={`utility-input pl-11 min-h-[150px] py-[18px] resize-y ${errors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? "cnt-msg-err" : undefined}
+                      ></textarea>
                     </div>
-                    {errors.phone && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.phone}</span>}
+                    {errors.message && (
+                      <span id="cnt-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {errors.message}
+                      </span>
+                    )}
                   </div>
 
-                  <div className="group/input">
-                    <label className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Subject of Inquiry</label>
-                    <div className="relative">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
-                        <ClipboardList className="w-4 h-4" />
-                      </div>
-                      <select
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="utility-input pl-11 h-[54px] appearance-none pr-10"
-                      >
-                        <option value="general">General Sourcing / Wholesaling</option>
-                        <option value="licensing">Territorial Rights & Franchising</option>
-                        <option value="pve">Pharmacovigilance (ADR Reporting)</option>
-                        <option value="contract">Contract Manufacturing Services</option>
-                        <option value="careers">Careers & Human Resources</option>
-                      </select>
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">
-                        <ChevronDown className="w-4 h-4" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="group/input">
-                  <label className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Message Content *</label>
-                  <div className="relative">
-                    <div className="absolute left-4 top-[18px] text-muted group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all duration-300">
-                      <MessageSquareText className="w-4 h-4" />
-                    </div>
-                    <textarea
-                      required
-                      placeholder="Enter the full content of your corporate message here..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className={`utility-input pl-11 min-h-[150px] py-[18px] resize-y ${errors.message ? "border-red-500" : ""
-                        }`}
-                    ></textarea>
-                  </div>
-                  {errors.message && <span className="text-[10px] text-red-500 font-bold tracking-wider uppercase mt-1 block">{errors.message}</span>}
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full utility-button-primary h-[58px] text-sm sm:text-base font-bold flex items-center justify-center gap-2 mt-4"
-                >
-                  {submitting ? (
-                    <>
-                      <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                      Routing Message...
-                    </>
-                  ) : (
-                    <>
-                      <SendHorizontal className="w-5 h-5" />
-                      Submit Corporate Message
-                    </>
-                  )}
-                </button>
-              </form>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full utility-button-primary h-[58px] text-sm sm:text-base font-bold flex items-center justify-center gap-2 mt-4"
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Routing Message...
+                      </>
+                    ) : (
+                      <>
+                        <SendHorizontal className="w-5 h-5" />
+                        Submit Corporate Message
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
 
               <div className="mt-8 bg-alt-bg border border-border rounded-[16px] p-4 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-2 text-[11px] font-mono font-bold tracking-wider uppercase text-heading">

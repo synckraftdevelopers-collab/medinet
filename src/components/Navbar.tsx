@@ -45,7 +45,10 @@ import {
   Handshake,
   Briefcase,
   Newspaper,
-  Phone
+  Phone,
+  Loader2,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 
 interface NavbarProps {
@@ -80,6 +83,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
   // Enquiry Modal State
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
   const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -89,16 +93,47 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
+  const validateEnquiryField = (field: string, value: string) => {
+    switch (field) {
+      case "name":
+        return !value.trim() ? "Full name is required" : "";
+      case "email":
+        return !value.trim() ? "Email address is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid corporate email" : "";
+      case "phone":
+        return !value.trim() ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number (min 7 digits)" : "";
+      case "message":
+        return !value.trim() ? "Enquiry details are required" : value.trim().length < 10 ? "Please enter at least 10 characters" : "";
+      default:
+        return "";
+    }
+  };
+
+  const handleEnquiryFieldChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (formErrors[field]) {
+      const err = validateEnquiryField(field, value);
+      setFormErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
+  const handleEnquiryFieldBlur = (field: string, value: string) => {
+    if (value.trim() || formErrors[field]) {
+      const err = validateEnquiryField(field, value);
+      setFormErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const errors: Record<string, string> = {};
-    if (!formData.name.trim()) errors.name = "Full name is required";
-    if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) errors.email = "Valid email is required";
-    if (!formData.phone.trim()) errors.phone = "Phone number is required";
-    if (!formData.message.trim()) errors.message = "Please provide enquiry details";
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
+    const errors: Record<string, string> = {
+      name: validateEnquiryField("name", formData.name),
+      email: validateEnquiryField("email", formData.email),
+      phone: validateEnquiryField("phone", formData.phone),
+      message: validateEnquiryField("message", formData.message),
+    };
+    const activeErrors = Object.fromEntries(Object.entries(errors).filter(([_, v]) => v !== ""));
+    if (Object.keys(activeErrors).length > 0) {
+      setFormErrors(activeErrors);
       return;
     }
 
@@ -106,13 +141,13 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
     setFormSubmitting(true);
     setTimeout(() => {
       setFormSubmitting(false);
-      setIsEnquiryOpen(false);
+      setFormSuccess(true);
       setFormData({ name: "", email: "", phone: "", company: "", message: "" });
-      alert("Thank you! Your enquiry has been submitted successfully. We will get back to you soon.");
-    }, 1500);
+    }, 1200);
   };
 
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const mobileDrawerRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -130,16 +165,74 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
     }
   }, [isSearchOpen]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll and prevent touch scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
     } else {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     };
+  }, [isMobileMenuOpen]);
+
+  // Handle outside click to close mobile menu
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (isMobileMenuOpen && mobileDrawerRef.current && !mobileDrawerRef.current.contains(e.target as Node)) {
+        const burgerBtn = document.getElementById("mobile-burger-button");
+        if (burgerBtn && burgerBtn.contains(e.target as Node)) return;
+        setIsMobileMenuOpen(false);
+      }
+    };
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Focus trap and keyboard navigation for mobile drawer
+  useEffect(() => {
+    if (!isMobileMenuOpen || !mobileDrawerRef.current) {
+      return;
+    }
+
+    const drawerNode = mobileDrawerRef.current;
+    const focusableElements = drawerNode.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (firstElement) {
+      setTimeout(() => firstElement.focus(), 50);
+    }
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement?.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement?.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    drawerNode.addEventListener("keydown", handleTabKey);
+    return () => drawerNode.removeEventListener("keydown", handleTabKey);
   }, [isMobileMenuOpen]);
 
   // Handle global key events for search modal
@@ -151,6 +244,8 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
       } else if (e.key === "Escape") {
         setIsSearchOpen(false);
         setIsMobileMenuOpen(false);
+        setIsEnquiryOpen(false);
+        setActiveMegaMenu(null);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -195,11 +290,13 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
     <>
       {/* Search Modal */}
       {isSearchOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-primary/40 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-primary/40 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Search Products Modal">
           <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-border overflow-hidden animate-slide-in">
             <form onSubmit={handleSearchSubmit} className="flex items-center gap-3 px-4 py-4 border-b border-border">
               <Search className="w-5 h-5 text-muted shrink-0" />
+              <label htmlFor="navbar-search-input" className="sr-only">Search products</label>
               <input
+                id="navbar-search-input"
                 ref={searchInputRef}
                 type="text"
                 placeholder="Search products by brand name or generic API..."
@@ -212,6 +309,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               </span>
               <button
                 type="button"
+                aria-label="Close search modal"
                 onClick={() => setIsSearchOpen(false)}
                 className="p-1.5 bg-alt-bg/50 hover:bg-alt-bg text-muted hover:text-body rounded-card shadow-sm hover:shadow-md transition-all duration-300 shrink-0"
               >
@@ -297,15 +395,17 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
           ? "bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,.04)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
           : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
           }`}
+        aria-label="Main Navigation"
       >
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-[24px] min-[1440px]:px-[32px] h-full">
-          <div className="flex items-center justify-between h-full">
-            {/* Logo */}
-            <div className="flex items-center shrink-0">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8 min-[1440px]:px-10 h-full w-full">
+          <div className="flex items-center justify-between h-full w-full">
+            {/* Logo - Left Column (Equal flex basis for exact desktop centering) */}
+            <div className="flex-1 flex items-center justify-start min-w-max h-full shrink-0">
               <button
                 onClick={() => navigate("home")}
-                className="flex items-center text-left focus:outline-none hover:opacity-90 transition-opacity"
+                className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary rounded-lg hover:opacity-90 transition-opacity"
                 id="navbar-logo"
+                aria-label="Medinet Pharmaceuticals - Home"
               >
                 <Image
                   src="/logo.svg"
@@ -313,48 +413,83 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                   width={260}
                   height={64}
                   priority
-                  className="w-auto object-contain h-10 md:h-[44px] lg:h-[48px] min-[1440px]:h-[56px]"
+                  className="block my-auto w-auto object-contain h-10 md:h-[44px] lg:h-[48px] min-[1440px]:h-[56px] transition-all duration-300"
                 />
               </button>
             </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex flex-1 items-center justify-center min-w-0 gap-[24px] xl:gap-[32px] min-[1440px]:gap-[36px]">
+            {/* Desktop Navigation - Center Column */}
+            <nav
+              aria-label="Desktop Navigation Links"
+              className="hidden lg:flex items-center justify-center shrink-0 gap-1 lg:gap-1.5 xl:gap-3 min-[1440px]:gap-5 h-full"
+            >
               <button
                 onClick={() => navigate("home")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "home" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "home" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "home"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 HOME
               </button>
 
-              {/* About dropdown triggers route page directly or via submenus */}
               <button
                 onClick={() => navigate("about")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "about" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "about" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "about"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 ABOUT
               </button>
 
               {/* Products Mega Menu Trigger */}
               <div
-                className="relative"
+                className="relative flex items-center h-full"
                 onMouseEnter={() => setActiveMegaMenu("products")}
                 onMouseLeave={() => setActiveMegaMenu(null)}
               >
                 <button
                   onClick={() => navigate("products")}
-                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute === "products" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                    }`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+                      e.preventDefault();
+                      const nextState = activeMegaMenu === "products" ? null : "products";
+                      setActiveMegaMenu(nextState);
+                      if (nextState === "products") {
+                        setTimeout(() => {
+                          const firstItem = document.getElementById("products-mega-menu")?.querySelector<HTMLElement>("button, a");
+                          firstItem?.focus();
+                        }, 50);
+                      }
+                    }
+                  }}
+                  aria-haspopup="true"
+                  aria-expanded={activeMegaMenu === "products"}
+                  aria-controls="products-mega-menu"
+                  aria-current={currentRoute === "products" ? "page" : undefined}
+                  className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                    currentRoute === "products"
+                      ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                      : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                  }`}
                 >
                   PRODUCTS
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "products" ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "products" ? "rotate-180 text-secondary" : ""}`} />
                 </button>
 
                 {/* Products Mega Menu Dropdown */}
                 {activeMegaMenu === "products" && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[640px] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3 animate-fade-in mt-1">
+                  <div
+                    id="products-mega-menu"
+                    role="menu"
+                    aria-label="Products therapeutic segments"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-0 w-[640px] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3 animate-fade-in z-50 origin-top"
+                  >
                     <div className="col-span-2 border-b border-[#DBEAFE] pb-3 mb-2 flex">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(37,99,235,.08)]">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
@@ -375,11 +510,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                       return (
                         <button
                           key={cat.id}
+                          role="menuitem"
                           onClick={() => {
                             setActiveMegaMenu(null);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-start gap-3 p-[14px] rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F8FBFF,#EFF6FF)] hover:border-[#BFDBFE] hover:translate-x-[6px] hover:-translate-y-[3px] hover:shadow-[0_12px_30px_rgba(37,99,235,.10)] text-left transition-all duration-300 ease-[ease] cursor-pointer group"
+                          className="flex items-start gap-3 p-[14px] rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F8FBFF,#EFF6FF)] hover:border-[#BFDBFE] hover:translate-x-[6px] hover:-translate-y-[3px] hover:shadow-[0_12px_30px_rgba(37,99,235,.10)] text-left transition-all duration-300 ease-[ease] cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                         >
                           <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#EFF6FF,#DBEAFE)] border border-[#BFDBFE] text-[#2563EB] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] group-hover:text-white transition-all duration-300">
                             <IconComponent className="w-5 h-5 group-hover:rotate-[5deg] transition-transform duration-300" />
@@ -404,7 +540,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setActiveMegaMenu(null);
                           setIsSearchOpen(true);
                         }}
-                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:shadow-[0_12px_28px_rgba(37,99,235,.30)] hover:scale-[1.03] transition-all duration-300"
+                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:shadow-[0_12px_28px_rgba(37,99,235,.30)] hover:scale-[1.03] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                       >
                         SEARCH NOW <ArrowRight className="w-3.5 h-3.5 text-white" />
                       </button>
@@ -415,72 +551,117 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               <button
                 onClick={() => navigate("research-development")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "research-development" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "research-development" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "research-development"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 R&D
               </button>
 
               <button
                 onClick={() => navigate("quality")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "quality" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "quality" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "quality"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 QUALITY
               </button>
 
               <button
                 onClick={() => navigate("business-partners")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "business-partners" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "business-partners" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "business-partners"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 PARTNERS
               </button>
 
               <button
                 onClick={() => navigate("careers")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "careers" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "careers" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "careers"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 CAREERS
               </button>
 
               <button
                 onClick={() => navigate("news-events")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "news-events" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "news-events" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "news-events"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 NEWS
               </button>
 
               <button
                 onClick={() => navigate("contact")}
-                className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all ${currentRoute === "contact" ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                  }`}
+                aria-current={currentRoute === "contact" ? "page" : undefined}
+                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                  currentRoute === "contact"
+                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                }`}
               >
                 CONTACT
               </button>
-            </nav>
 
-            {/* Right Buttons */}
-            <div className="flex items-center justify-end shrink-0 gap-3 xl:gap-5 min-[1440px]:gap-6">
-              {/* Legal Dropdown */}
+              {/* Legal Dropdown in Navigation with Equal Spacing */}
               <div
-                className="hidden lg:block relative"
+                className="relative flex items-center h-full"
                 onMouseEnter={() => setActiveMegaMenu("legal")}
                 onMouseLeave={() => setActiveMegaMenu(null)}
               >
                 <button
-                  className={`px-3.5 py-1.5 text-xs font-mono font-medium rounded transition-all flex items-center gap-1 ${currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "text-primary bg-secondary/10 border border-secondary/20 rounded-xl shadow-sm" : "text-body hover:text-secondary relative after:absolute after:bottom-[2px] after:left-[10%] after:w-[80%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02] border border-transparent"
-                    }`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+                      e.preventDefault();
+                      const nextState = activeMegaMenu === "legal" ? null : "legal";
+                      setActiveMegaMenu(nextState);
+                      if (nextState === "legal") {
+                        setTimeout(() => {
+                          const firstItem = document.getElementById("legal-mega-menu")?.querySelector<HTMLElement>("button, a");
+                          firstItem?.focus();
+                        }, 50);
+                      }
+                    }
+                  }}
+                  aria-haspopup="true"
+                  aria-expanded={activeMegaMenu === "legal"}
+                  aria-controls="legal-mega-menu"
+                  aria-current={currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "page" : undefined}
+                  className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright")
+                      ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
+                      : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+                  }`}
                 >
                   LEGAL
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "legal" ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "legal" ? "rotate-180 text-secondary" : ""}`} />
                 </button>
 
                 {activeMegaMenu === "legal" && (
-                  <div className="absolute right-0 top-[calc(100%+8px)] w-[420px] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(37,99,235,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]">
-
+                  <div
+                    id="legal-mega-menu"
+                    role="menu"
+                    aria-label="Legal documents and policies"
+                    className="absolute right-0 top-full mt-0 pt-2 w-[420px] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(37,99,235,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
+                  >
                     {/* Top Header */}
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#E2E8F0] px-2">
                       <div className="w-10 h-10 rounded-[12px] bg-[linear-gradient(135deg,#F8FAFC,#F1F5F9)] border border-[#E2E8F0] flex items-center justify-center shrink-0">
@@ -495,8 +676,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <div className="flex flex-col gap-1">
                       <a
                         href="/legal/privacy-policy"
+                        role="menuitem"
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -512,8 +694,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                       <a
                         href="/legal/terms-conditions"
+                        role="menuitem"
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#0D9488,#2DD4BF)] shadow-[0_10px_24px_rgba(13,148,136,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -529,8 +712,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                       <a
                         href="/legal/disclaimer"
+                        role="menuitem"
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#F59E0B,#FBBF24)] shadow-[0_10px_24px_rgba(245,158,11,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -546,8 +730,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                       <a
                         href="/legal/cookie-policy"
+                        role="menuitem"
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#8B5CF6,#A78BFA)] shadow-[0_10px_24px_rgba(139,92,246,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -563,8 +748,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
                       <a
                         href="/legal/copyright-notice"
+                        role="menuitem"
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#0EA5E9)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -585,27 +771,32 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                         <Info className="w-[18px] h-[18px] text-[#2563EB]" />
                         Need legal assistance?
                       </div>
-                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#0B1F4D] hover:bg-[#2563EB] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(11,31,77,.15)]">
+                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#0B1F4D] hover:bg-[#2563EB] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(11,31,77,.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
                         Contact Legal Team
                       </a>
                     </div>
-
                   </div>
                 )}
               </div>
+            </nav>
+
+            {/* Right Buttons - Right Column (Equal flex basis for exact desktop centering) */}
+            <div className="flex-1 flex items-center justify-end min-w-max gap-2 sm:gap-3 xl:gap-4 h-full shrink-0">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 rounded text-[#334155] hover:text-[#2563EB] hover:bg-[#F8FAFC] transition-colors duration-300 focus:outline-none"
-                aria-label="Search"
+                className="p-2 lg:px-2.5 lg:py-1.5 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary flex items-center justify-center gap-1 text-xs font-mono font-medium"
+                aria-label="Search products"
+                aria-haspopup="dialog"
                 title="Search Products (Ctrl+K)"
               >
-                <Search className="w-4.5 h-4.5" />
+                <Search className="w-4 h-4 text-body hover:text-secondary transition-colors" />
+                <span className="hidden xl:inline-block font-semibold">SEARCH</span>
               </button>
 
               {/* Quick Contact CTA */}
               <button
                 type="button"
-                aria-label="Inquire Now"
+                aria-label="Inquire Now Contact Form"
                 aria-haspopup="dialog"
                 aria-expanded={isEnquiryOpen}
                 onClick={() => setIsEnquiryOpen(true)}
@@ -615,7 +806,7 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="utility-button-primary hidden md:inline-flex py-2 px-4"
+                className="utility-button-primary hidden md:inline-flex py-2.5 px-5 my-auto shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 INQUIRE NOW
@@ -623,9 +814,12 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               {/* Mobile Burger Menu Button */}
               <button
+                id="mobile-burger-button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] hover:text-[#2563EB] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] active:scale-[0.95]"
-                aria-label="Toggle Menu"
+                aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation-drawer"
               >
                 {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
               </button>
@@ -641,8 +835,8 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden fixed inset-0 z-[9998] bg-[#0F172A]/45 backdrop-blur-[12px]"
+              transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+              className="lg:hidden fixed inset-0 z-[9998] bg-[#0F172A]/70 backdrop-blur-md"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
             />
@@ -650,33 +844,34 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
           {isMobileMenuOpen && (
             <motion.div
               key="drawer"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden fixed top-0 right-0 h-[100vh] w-[320px] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-[0_25px_80px_rgba(15,23,42,.25)] border-l border-[#E2E8F0]"
+              ref={mobileDrawerRef}
+              initial={{ x: "100%", opacity: 0.8 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.8 }}
+              transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+              className="lg:hidden fixed inset-0 w-full h-[100dvh] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-2xl"
               role="dialog"
               aria-modal="true"
-              aria-label="Mobile Navigation"
+              id="mobile-navigation-drawer"
+              aria-label="Mobile Navigation Drawer"
             >
-              {/* Top of Drawer */}
-              <div className="flex items-center justify-between p-4 shrink-0">
+              {/* Top Header */}
+              <div className="flex items-center justify-between p-6 border-b border-[#E2E8F0] bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] shrink-0 min-h-[76px]">
                 <div className="flex flex-col">
-                  <img src="/logo.svg" alt="Medinet Logo" className="h-8 w-auto object-contain object-left mb-1" />
+                  <Image src="/logo.svg" alt="Medinet Logo" width={180} height={44} className="h-8 w-auto object-contain object-left mb-1" />
                   <span className="text-[#64748B] text-xs font-medium font-sans">Medinet Pharmaceuticals</span>
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 hover:bg-[#F1F5F9] rounded-full text-[#0F172A] transition-colors focus:outline-none"
+                  className="p-3 hover:bg-[#F1F5F9] active:bg-[#E2E8F0] rounded-2xl text-[#0F172A] hover:text-[#2563EB] transition-all min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                   aria-label="Close menu"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-7 h-7" />
                 </button>
               </div>
-              <div className="h-px w-full bg-[#E2E8F0] shrink-0" />
 
-              {/* Navigation Items */}
-              <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-[16px]">
+              {/* Navigation List with Large Touch Targets and Proper Spacing */}
+              <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-3.5">
                 {[
                   { type: "link", label: "Home", route: "home", icon: House },
                   { type: "link", label: "About", route: "about", icon: Building2 },
@@ -694,45 +889,53 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                     return (
                       <motion.button
                         key={item.route || item.label}
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.04 }}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.25, delay: index * 0.03 }}
                         onClick={() => {
                           setIsMobileMenuOpen(false);
                           if (item.route) navigate(item.route);
                         }}
-                        className={`w-full flex items-center gap-3 px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 shrink-0 ${isActive
-                            ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
-                            : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
-                          }`}
+                        className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] shrink-0 font-sans ${
+                          isActive
+                            ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
+                            : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#DBEAFE] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] font-semibold"
+                        }`}
                       >
-                        <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.04 + 0.1 }}>
-                          {item.icon && <item.icon className={`w-5 h-5 transition-transform duration-[250ms] group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />}
-                        </motion.div>
-                        <span className="font-semibold text-[15px]">
-                          {item.label}
-                        </span>
+                        <div className="flex items-center gap-4">
+                          <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
+                            {item.icon && <item.icon className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />}
+                          </motion.div>
+                          <span className="text-[16px]">
+                            {item.label}
+                          </span>
+                        </div>
+                        {isActive && <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />}
                       </motion.button>
                     );
                   } else if (item.id === "products") {
                     const isActive = currentRoute === "products";
                     return (
-                      <motion.div key="products-accordion" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.04 }} className="relative shrink-0 flex flex-col">
+                      <motion.div key="products-accordion" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25, delay: index * 0.03 }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "products" ? null : "products")}
-                          className={`w-full flex items-center justify-between px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 ${isActive
-                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
-                              : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
-                            }`}
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
+                            isActive
+                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
+                              : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#DBEAFE] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] font-semibold"
+                          }`}
                           aria-expanded={activeMobileAccordion === "products"}
                         >
-                          <div className="flex items-center gap-3">
-                            <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.04 + 0.1 }}>
-                              <Package className={`w-5 h-5 transition-transform duration-[250ms] group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />
+                          <div className="flex items-center gap-4">
+                            <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
+                              <Package className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />
                             </motion.div>
-                            <span className="font-semibold text-[15px]">Products</span>
+                            <span className="text-[16px]">Products</span>
                           </div>
-                          <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeMobileAccordion === "products" ? "rotate-180" : ""}`} />
+                          <div className="flex items-center gap-2">
+                            {isActive && <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />}
+                            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${activeMobileAccordion === "products" ? "rotate-180" : ""}`} />
+                          </div>
                         </button>
                         <AnimatePresence>
                           {activeMobileAccordion === "products" && (
@@ -744,15 +947,20 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-2 pt-3 pb-1 pl-[48px] pr-4">
+                              <div className="flex flex-col gap-1.5 pt-2 pb-3 pl-12 pr-4">
                                 <button
                                   onClick={() => {
                                     setIsMobileMenuOpen(false);
                                     navigate("products");
                                   }}
-                                  className="text-left py-1 text-[#64748B] hover:text-[#2563EB] text-[15px] font-medium transition-colors"
+                                  className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
+                                    currentRoute === "products"
+                                      ? "text-[#2563EB] font-bold bg-[#EFF6FF] border-l-4 border-[#2563EB]"
+                                      : "text-[#64748B] hover:text-[#2563EB] hover:bg-slate-50 font-medium"
+                                  }`}
                                 >
-                                  All Products
+                                  <span>All Products</span>
+                                  {currentRoute === "products" && <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />}
                                 </button>
                                 {PRODUCTS.map((product) => (
                                   <button
@@ -761,9 +969,9 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                                       setIsMobileMenuOpen(false);
                                       navigate("products", { id: product.id });
                                     }}
-                                    className="text-left py-1 text-[#64748B] hover:text-[#2563EB] text-[15px] font-medium transition-colors"
+                                    className="w-full text-left min-h-[48px] py-3 px-4 text-[#64748B] hover:text-[#2563EB] hover:bg-slate-50 text-[15px] font-medium transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                                   >
-                                    {product.name}
+                                    <span>{product.name}</span>
                                   </button>
                                 ))}
                               </div>
@@ -775,22 +983,26 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                   } else if (item.id === "legal") {
                     const isActive = currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright");
                     return (
-                      <motion.div key="legal-accordion" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.04 }} className="relative shrink-0 flex flex-col">
+                      <motion.div key="legal-accordion" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25, delay: index * 0.03 }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
-                          className={`w-full flex items-center justify-between px-[16px] h-[56px] rounded-[14px] transition-all duration-[250ms] group focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 ${isActive
-                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-[0_10px_30px_rgba(37,99,235,.25)] text-white"
-                              : "bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A]"
-                            }`}
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
+                            isActive
+                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
+                              : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#DBEAFE] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] font-semibold"
+                          }`}
                           aria-expanded={activeMobileAccordion === "legal"}
                         >
-                          <div className="flex items-center gap-3">
-                            <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.04 + 0.1 }}>
-                              <Scale className={`w-5 h-5 transition-transform duration-[250ms] group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />
+                          <div className="flex items-center gap-4">
+                            <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
+                              <Scale className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />
                             </motion.div>
-                            <span className="font-semibold text-[15px]">Legal</span>
+                            <span className="text-[16px]">Legal</span>
                           </div>
-                          <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeMobileAccordion === "legal" ? "rotate-180" : ""}`} />
+                          <div className="flex items-center gap-2">
+                            {isActive && <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />}
+                            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${activeMobileAccordion === "legal" ? "rotate-180" : ""}`} />
+                          </div>
                         </button>
                         <AnimatePresence>
                           {activeMobileAccordion === "legal" && (
@@ -802,23 +1014,31 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-2 pt-3 pb-1 pl-[48px] pr-4">
+                              <div className="flex flex-col gap-1.5 pt-2 pb-3 pl-12 pr-4">
                                 {[
-                                  { label: "Privacy Policy", route: "/legal/privacy-policy" },
-                                  { label: "Terms & Conditions", route: "/legal/terms-conditions" },
-                                  { label: "Disclaimer", route: "/legal/disclaimer" },
-                                  { label: "Cookie Policy", route: "/legal/cookie-policy" },
-                                  { label: "Copyright Notice", route: "/legal/copyright-notice" }
-                                ].map((lItem) => (
-                                  <a
-                                    key={lItem.route}
-                                    href={lItem.route}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="py-1 text-[#64748B] hover:text-[#2563EB] text-[15px] font-medium transition-colors block"
-                                  >
-                                    {lItem.label}
-                                  </a>
-                                ))}
+                                  { label: "Privacy Policy", route: "/legal/privacy-policy", key: "privacy" },
+                                  { label: "Terms & Conditions", route: "/legal/terms-conditions", key: "terms" },
+                                  { label: "Disclaimer", route: "/legal/disclaimer", key: "disclaimer" },
+                                  { label: "Cookie Policy", route: "/legal/cookie-policy", key: "cookie" },
+                                  { label: "Copyright Notice", route: "/legal/copyright-notice", key: "copyright" }
+                                ].map((lItem) => {
+                                  const isSubActive = currentRoute.includes(lItem.key);
+                                  return (
+                                    <a
+                                      key={lItem.route}
+                                      href={lItem.route}
+                                      onClick={() => setIsMobileMenuOpen(false)}
+                                      className={`min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] block ${
+                                        isSubActive
+                                          ? "text-[#2563EB] font-bold bg-[#EFF6FF] border-l-4 border-[#2563EB]"
+                                          : "text-[#64748B] hover:text-[#2563EB] hover:bg-slate-50 font-medium"
+                                      }`}
+                                    >
+                                      <span>{lItem.label}</span>
+                                      {isSubActive && <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />}
+                                    </a>
+                                  );
+                                })}
                               </div>
                             </motion.div>
                           )}
@@ -829,27 +1049,27 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
                 })}
               </div>
 
-              {/* Pinned Bottom CTA */}
-              <div className="p-4 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-[#E2E8F0] bg-white shrink-0 flex flex-col gap-3">
+              {/* Pinned Bottom CTA Section */}
+              <div className="p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] border-t border-[#E2E8F0] bg-slate-50/70 shrink-0 flex flex-col gap-3.5">
                 <button
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     setIsEnquiryOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-2 h-[56px] bg-[#0B1F4D] hover:bg-[#2563EB] text-white rounded-[14px] font-semibold text-[15px] transition-all duration-[300ms] shadow-[0_10px_20px_rgba(11,31,77,.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900 group shrink-0"
+                  className="w-full flex items-center justify-center gap-3 min-h-[58px] bg-[#0B1F4D] hover:bg-[#2563EB] active:scale-[0.98] text-white rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2563EB] group shrink-0"
                 >
-                  <PhoneCall className="w-5 h-5 group-hover:rotate-12 transition-transform duration-[300ms]" />
-                  Inquire Now
+                  <PhoneCall className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+                  INQUIRE NOW
                 </button>
                 <button
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     setIsSearchOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-2 h-[56px] bg-transparent hover:bg-[#EFF6FF] border border-[#E2E8F0] hover:border-[#BFDBFE] text-[#0F172A] rounded-[14px] font-semibold text-[15px] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 group shrink-0"
+                  className="w-full flex items-center justify-center gap-3 min-h-[54px] bg-white hover:bg-blue-50/50 active:bg-blue-100/50 border border-[#E2E8F0] hover:border-[#BFDBFE] text-[#0F172A] rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] group shrink-0"
                 >
                   <Search className="w-5 h-5 text-[#64748B] group-hover:text-[#2563EB] transition-colors" />
-                  Search
+                  SEARCH PRODUCTS
                 </button>
               </div>
             </motion.div>
@@ -879,95 +1099,187 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
               </div>
 
               {/* Form Content */}
-              <form onSubmit={handleEnquirySubmit} className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-mono font-medium text-body">Full Name <span className="text-red-500">*</span></label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.name ? "border-red-500" : "border-border"}`}
-                    />
-                    {formErrors.name && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.name}</span>}
+              {formSuccess ? (
+                <div className="p-8 text-center space-y-4 my-auto animate-fade-in">
+                  <div className="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mx-auto border border-green-200">
+                    <CheckCircle2 className="w-8 h-8 text-green-600" />
                   </div>
-                  <div>
-                    <label className="text-xs font-mono font-medium text-body">Email Address <span className="text-red-500">*</span></label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.email ? "border-red-500" : "border-border"}`}
-                    />
-                    {formErrors.email && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.email}</span>}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-mono font-medium text-body">Phone/Whatsapp <span className="text-red-500">*</span></label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.phone ? "border-red-500" : "border-border"}`}
-                    />
-                    {formErrors.phone && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.phone}</span>}
-                  </div>
-                  <div>
-                    <label className="text-xs font-mono font-medium text-body">Company (Optional)</label>
-                    <input
-                      type="text"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full mt-1.5 px-3 py-2 border border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all"
-                    />
+                  <h3 className="text-xl font-display font-medium text-heading">Enquiry Submitted Successfully!</h3>
+                  <p className="text-xs text-muted max-w-sm mx-auto leading-relaxed">
+                    Thank you for contacting MediNet. Your inquiry has been routed to our corporate sourcing team. We will respond within 24 business hours.
+                  </p>
+                  <div className="pt-4 flex justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormSuccess(false);
+                        setIsEnquiryOpen(false);
+                      }}
+                      className="px-6 py-2.5 bg-primary text-white font-mono text-xs font-medium rounded-btn shadow-btn hover:bg-black transition-all"
+                    >
+                      CLOSE WINDOW
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFormSuccess(false)}
+                      className="px-6 py-2.5 border border-border bg-surface hover:bg-alt-bg text-heading font-mono text-xs font-medium rounded-btn transition-all"
+                    >
+                      SEND ANOTHER
+                    </button>
                   </div>
                 </div>
+              ) : (
+                <form onSubmit={handleEnquirySubmit} className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4" noValidate>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="enquiry-name" className="text-xs font-mono font-medium text-body block mb-1.5">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <input
+                        id="enquiry-name"
+                        type="text"
+                        required
+                        disabled={formSubmitting}
+                        aria-required="true"
+                        autoComplete="name"
+                        value={formData.name}
+                        onChange={(e) => handleEnquiryFieldChange("name", e.target.value)}
+                        onBlur={(e) => handleEnquiryFieldBlur("name", e.target.value)}
+                        className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
+                        placeholder="John Doe"
+                        aria-invalid={!!formErrors.name}
+                        aria-describedby={formErrors.name ? "enq-name-err" : undefined}
+                      />
+                      {formErrors.name && (
+                        <span id="enq-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {formErrors.name}
+                        </span>
+                      )}
+                    </div>
+                    <div>
+                      <label htmlFor="enquiry-email" className="text-xs font-mono font-medium text-body block mb-1.5">Email Address <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <input
+                        id="enquiry-email"
+                        type="email"
+                        required
+                        disabled={formSubmitting}
+                        aria-required="true"
+                        autoComplete="email"
+                        value={formData.email}
+                        onChange={(e) => handleEnquiryFieldChange("email", e.target.value)}
+                        onBlur={(e) => handleEnquiryFieldBlur("email", e.target.value)}
+                        className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
+                        placeholder="corporate@example.com"
+                        aria-invalid={!!formErrors.email}
+                        aria-describedby={formErrors.email ? "enq-email-err" : undefined}
+                      />
+                      {formErrors.email && (
+                        <span id="enq-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {formErrors.email}
+                        </span>
+                      )}
+                    </div>
+                  </div>
 
-                <div>
-                  <label className="text-xs font-mono font-medium text-body">Enquiry Details <span className="text-red-500">*</span></label>
-                  <textarea
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className={`w-full mt-1.5 px-3 py-2 border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm text-sm focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all ${formErrors.message ? "border-red-500" : "border-border"}`}
-                    placeholder="Please let us know how we can help you..."
-                  ></textarea>
-                  {formErrors.message && <span className="text-[10px] text-red-500 font-mono mt-0.5 block">{formErrors.message}</span>}
-                </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="enquiry-phone" className="text-xs font-mono font-medium text-body block mb-1.5">Phone/Whatsapp <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <input
+                        id="enquiry-phone"
+                        type="tel"
+                        required
+                        disabled={formSubmitting}
+                        aria-required="true"
+                        autoComplete="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleEnquiryFieldChange("phone", e.target.value)}
+                        onBlur={(e) => handleEnquiryFieldBlur("phone", e.target.value)}
+                        className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
+                        placeholder="+1 (555) 000-0000"
+                        aria-invalid={!!formErrors.phone}
+                        aria-describedby={formErrors.phone ? "enq-phone-err" : undefined}
+                      />
+                      {formErrors.phone && (
+                        <span id="enq-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {formErrors.phone}
+                        </span>
+                      )}
+                    </div>
+                    <div>
+                      <label htmlFor="enquiry-company" className="text-xs font-mono font-medium text-body block mb-1.5">Company (Optional)</label>
+                      <input
+                        id="enquiry-company"
+                        type="text"
+                        disabled={formSubmitting}
+                        autoComplete="organization"
+                        value={formData.company}
+                        onChange={(e) => handleEnquiryFieldChange("company", e.target.value)}
+                        className="w-full px-3.5 py-2.5 bg-white border border-border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        placeholder="Company Name Ltd."
+                      />
+                    </div>
+                  </div>
 
-                {/* Footer */}
-                <div className="pt-4 border-t border-border flex items-center justify-end gap-3 bg-white mt-4">
-                  <button
-                    type="button"
-                    onClick={() => setIsEnquiryOpen(false)}
-                    className="px-4 py-2 border border-border text-body hover:bg-background font-mono text-xs font-medium rounded-btn shadow-btn hover:shadow-btn-hover transition-all duration-300 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
-                  >
-                    CANCEL
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={formSubmitting}
-                    className="px-5 py-2 bg-primary hover:bg-black text-white font-mono text-xs font-medium rounded-btn shadow-btn hover:shadow-btn-hover transition-all duration-300 shadow-sm transition-all flex items-center justify-center gap-1.5 min-w-[140px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-900"
-                  >
-                    {formSubmitting ? (
-                      <>
-                        <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                        SUBMITTING...
-                      </>
-                    ) : (
-                      <>
-                        SUBMIT ENQUIRY
-                      </>
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label htmlFor="enquiry-message" className="text-xs font-mono font-medium text-body">Enquiry Details <span className="text-red-500" aria-hidden="true">*</span></label>
+                      <span className={`text-[10px] font-mono ${formData.message.length > 450 ? "text-amber-500 font-bold" : "text-muted"}`}>
+                        {formData.message.length}/500 chars
+                      </span>
+                    </div>
+                    <textarea
+                      id="enquiry-message"
+                      required
+                      disabled={formSubmitting}
+                      aria-required="true"
+                      maxLength={500}
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => handleEnquiryFieldChange("message", e.target.value)}
+                      onBlur={(e) => handleEnquiryFieldBlur("message", e.target.value)}
+                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed resize-y ${formErrors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
+                      placeholder="Please provide specifics regarding product sourcing, dosage forms, or target quantities..."
+                      aria-invalid={!!formErrors.message}
+                      aria-describedby={formErrors.message ? "enq-msg-err" : undefined}
+                    ></textarea>
+                    {formErrors.message && (
+                      <span id="enq-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {formErrors.message}
+                      </span>
                     )}
-                  </button>
-                </div>
-              </form>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="pt-4 border-t border-border flex items-center justify-end gap-3 bg-white mt-4">
+                    <button
+                      type="button"
+                      disabled={formSubmitting}
+                      onClick={() => setIsEnquiryOpen(false)}
+                      className="px-4 py-2.5 border border-border text-body hover:bg-background font-mono text-xs font-medium rounded-btn shadow-sm hover:border-secondary transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                    >
+                      CANCEL
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={formSubmitting}
+                      className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white font-mono text-xs font-medium rounded-btn shadow-btn hover:shadow-card-hover transition-all duration-200 flex items-center justify-center gap-2 min-w-[150px] disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+                    >
+                      {formSubmitting ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          SUBMITTING...
+                        </>
+                      ) : (
+                        <>
+                          SUBMIT ENQUIRY
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         )}

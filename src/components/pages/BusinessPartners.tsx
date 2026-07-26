@@ -24,7 +24,10 @@ import {
   Building2,
   ArrowRight,
   BookOpen,
-  MapPinned
+  MapPinned,
+  Loader2,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 
 interface BusinessPartnersProps {
@@ -45,6 +48,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
 
   const verticals = [
     {
@@ -79,21 +83,53 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
     }
   ];
 
-  const validate = () => {
-    const errs: Record<string, string> = {};
-    if (!formData.name.trim()) errs.name = "Full name is required";
-    if (!formData.email.trim()) {
-      errs.email = "Email is required";
-    } else if (!formData.email.includes("@")) {
-      errs.email = "Invalid email address";
+  const validatePartnerField = (field: string, value: string) => {
+    switch (field) {
+      case "name":
+        return !value.trim() ? "Full name is required" : "";
+      case "email":
+        return !value.trim() ? "Business email is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid business email" : "";
+      case "phone":
+        return !value.trim() ? "Phone / Whatsapp is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
+      case "company":
+        return !value.trim() ? "Company name is required" : "";
+      case "country":
+        return !value.trim() ? "Target country / territory is required" : "";
+      case "message":
+        return !value.trim() ? "Please describe your proposal or target market" : "";
+      default:
+        return "";
     }
-    if (!formData.phone.trim()) errs.phone = "Phone number is required";
-    if (!formData.company.trim()) errs.company = "Company name is required";
-    if (!formData.country.trim()) errs.country = "Country is required";
-    if (!formData.message.trim()) errs.message = "Please describe your proposal or target market";
+  };
 
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
+  const handlePartnerFieldChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      const err = validatePartnerField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
+  const handlePartnerFieldBlur = (field: string, value: string) => {
+    if (value.trim() || errors[field]) {
+      const err = validatePartnerField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: err }));
+    }
+  };
+
+  const validate = () => {
+    const errs: Record<string, string> = {
+      name: validatePartnerField("name", formData.name),
+      email: validatePartnerField("email", formData.email),
+      phone: validatePartnerField("phone", formData.phone),
+      company: validatePartnerField("company", formData.company),
+      country: validatePartnerField("country", formData.country),
+      message: validatePartnerField("message", formData.message),
+    };
+
+    const activeErrors = Object.fromEntries(Object.entries(errs).filter(([_, v]) => v !== ""));
+    setErrors(activeErrors);
+    return Object.keys(activeErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -106,6 +142,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
+      setFormSuccess(true);
       showToast("Partnership proposal submitted successfully! Our commercial alliances head will contact you.", "success");
       setFormData({
         name: "",
@@ -118,7 +155,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
         investment: "5-10lakhs",
         message: ""
       });
-    }, 1500);
+    }, 1200);
   };
 
   return (
@@ -311,119 +348,225 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Full Name <span className="text-red-500">*</span></label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="John Doe"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="utility-input"
-                      />
+                {formSuccess ? (
+                  <div className="p-10 bg-green-50/50 border border-green-200 rounded-card text-center space-y-4 my-6 animate-fade-in">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto border border-green-300">
+                      <CheckCircle2 className="w-9 h-9 text-green-600" />
                     </div>
-                    <div>
-                      <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Business Email <span className="text-red-500">*</span></label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="corporate@example.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="utility-input"
-                      />
+                    <h3 className="text-2xl font-display font-semibold text-heading">Proposal Submitted Successfully!</h3>
+                    <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
+                      Thank you for your interest in partnering with MediNet. Our commercial alliances head will review your company credentials and reach out within 24–48 business hours.
+                    </p>
+                    <div className="pt-4">
+                      <button
+                        type="button"
+                        onClick={() => setFormSuccess(false)}
+                        className="utility-button-primary px-8 py-3"
+                      >
+                        SUBMIT ANOTHER PROPOSAL
+                      </button>
                     </div>
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Phone / Whatsapp <span className="text-red-500">*</span></label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+91-XXXX-XXXXXX"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="utility-input"
-                      />
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="partner-name" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <input
+                          id="partner-name"
+                          type="text"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="name"
+                          placeholder="John Doe"
+                          value={formData.name}
+                          onChange={(e) => handlePartnerFieldChange("name", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("name", e.target.value)}
+                          className={`utility-input ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.name}
+                          aria-describedby={errors.name ? "prt-name-err" : undefined}
+                        />
+                        {errors.name && (
+                          <span id="prt-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.name}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="partner-email" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Business Email <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <input
+                          id="partner-email"
+                          type="email"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="email"
+                          placeholder="corporate@example.com"
+                          value={formData.email}
+                          onChange={(e) => handlePartnerFieldChange("email", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("email", e.target.value)}
+                          className={`utility-input ${errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.email}
+                          aria-describedby={errors.email ? "prt-email-err" : undefined}
+                        />
+                        {errors.email && (
+                          <span id="prt-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.email}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Alliance Vertical Target</label>
-                      <div className="relative">
-                        <select
-                          value={formData.partnerType}
-                          onChange={(e) => setFormData({ ...formData, partnerType: e.target.value })}
-                          className="utility-input appearance-none pr-10"
-                        >
-                          <option value="franchise">PCD Franchise Distributorship</option>
-                          <option value="manufacturing">Third Party Contract Manufacturing</option>
-                          <option value="institutional">Bulk Institutional Supply</option>
-                          <option value="distributor">Regional Wholesale Distributor</option>
-                        </select>
-                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
-                          <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="partner-phone" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Phone / Whatsapp <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <input
+                          id="partner-phone"
+                          type="tel"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="tel"
+                          placeholder="+1 (555) 000-0000"
+                          value={formData.phone}
+                          onChange={(e) => handlePartnerFieldChange("phone", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("phone", e.target.value)}
+                          className={`utility-input ${errors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.phone}
+                          aria-describedby={errors.phone ? "prt-phone-err" : undefined}
+                        />
+                        {errors.phone && (
+                          <span id="prt-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.phone}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="partner-type" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Alliance Vertical Target</label>
+                        <div className="relative">
+                          <select
+                            id="partner-type"
+                            disabled={submitting}
+                            value={formData.partnerType}
+                            onChange={(e) => setFormData({ ...formData, partnerType: e.target.value })}
+                            className="utility-input appearance-none pr-10"
+                          >
+                            <option value="franchise">PCD Franchise Distributorship</option>
+                            <option value="manufacturing">Third Party Contract Manufacturing</option>
+                            <option value="institutional">Bulk Institutional Supply</option>
+                            <option value="distributor">Regional Wholesale Distributor</option>
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+                            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Company Name <span className="text-red-500">*</span></label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Company Pvt Ltd"
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="utility-input"
-                      />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="partner-company" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Company Name <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <input
+                          id="partner-company"
+                          type="text"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="organization"
+                          placeholder="Company Pvt Ltd"
+                          value={formData.company}
+                          onChange={(e) => handlePartnerFieldChange("company", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("company", e.target.value)}
+                          className={`utility-input ${errors.company ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.company}
+                          aria-describedby={errors.company ? "prt-comp-err" : undefined}
+                        />
+                        {errors.company && (
+                          <span id="prt-comp-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.company}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="partner-country" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Target Country / Territory <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <input
+                          id="partner-country"
+                          type="text"
+                          required
+                          disabled={submitting}
+                          aria-required="true"
+                          autoComplete="country-name"
+                          placeholder="e.g. Kenya, India, Philippines"
+                          value={formData.country}
+                          onChange={(e) => handlePartnerFieldChange("country", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("country", e.target.value)}
+                          className={`utility-input ${errors.country ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          aria-invalid={!!errors.country}
+                          aria-describedby={errors.country ? "prt-ctry-err" : undefined}
+                        />
+                        {errors.country && (
+                          <span id="prt-ctry-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.country}
+                          </span>
+                        )}
+                      </div>
                     </div>
+
                     <div>
-                      <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Target Country / Territory <span className="text-red-500">*</span></label>
-                      <input
-                        type="text"
+                      <div className="flex items-center justify-between mb-2">
+                        <label htmlFor="partner-message" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest">Describe Your Proposal / Target Market <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <span className={`text-[10px] font-mono ${formData.message.length > 900 ? "text-amber-500 font-bold" : "text-muted"}`}>
+                          {formData.message.length}/1000 chars
+                        </span>
+                      </div>
+                      <textarea
+                        id="partner-message"
                         required
-                        placeholder="e.g. Kenya, India, Philippines"
-                        value={formData.country}
-                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                        className="utility-input"
-                      />
+                        disabled={submitting}
+                        aria-required="true"
+                        rows={4}
+                        maxLength={1000}
+                        placeholder="Include details about your current healthcare products network, doctor connections, or specific solid-oral dosing needs..."
+                        value={formData.message}
+                        onChange={(e) => handlePartnerFieldChange("message", e.target.value)}
+                        onBlur={(e) => handlePartnerFieldBlur("message", e.target.value)}
+                        className={`utility-input resize-y ${errors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? "prt-msg-err" : undefined}
+                      ></textarea>
+                      {errors.message && (
+                        <span id="prt-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {errors.message}
+                        </span>
+                      )}
                     </div>
-                  </div>
 
-                  <div>
-                    <label className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Describe Your Proposal / Target Market <span className="text-red-500">*</span></label>
-                    <textarea
-                      required
-                      rows={4}
-                      placeholder="Include details about your current healthcare products network, doctor connections, or specific solid-oral dosing needs..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="utility-input resize-y"
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full utility-button-primary mt-4 py-3.5 text-sm"
-                  >
-                    {submitting ? (
-                      <span className="relative z-10 flex items-center gap-2">
-                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                        Submitting Proposal...
-                      </span>
-                    ) : (
-                      <span className="relative z-10 flex items-center gap-2">
-                        Submit Partnership Enquiry
-                        <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                      </span>
-                    )}
-                  </button>
-                </form>
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full utility-button-primary mt-4 py-3.5 text-sm font-bold flex items-center justify-center gap-2"
+                    >
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Submitting Proposal...
+                        </>
+                      ) : (
+                        <>
+                          Submit Partnership Enquiry
+                          <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
           </div>

@@ -96,12 +96,7 @@ export default function Home({ navigate }: HomeProps) {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
-                    onClick={() => {
-                      navigate("products");
-                      setTimeout(() => {
-                        document.getElementById("formulations")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }, 150);
-                    }}
+                    onClick={() => navigate("products", { section: "formulations" })}
                     className="utility-button-primary group/btn1 px-6 py-3"
                   >
                     VIEW FORMULATIONS

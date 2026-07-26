@@ -52,7 +52,7 @@ export default function App() {
       case "news-events":
         return <NewsEvents params={params} />;
       case "contact":
-        return <Contact showToast={showToast} />;
+        return <Contact showToast={showToast} params={params} />;
       case "privacy-policy":
       case "terms":
       case "disclaimer":
@@ -66,9 +66,15 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FCFCFD] flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
       <SEOManager currentRoute={currentRoute} params={params} />
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-5 focus:py-2.5 focus:bg-white focus:text-[#0B1F4D] focus:shadow-2xl focus:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2563EB] font-mono text-xs tracking-wider font-bold"
+      >
+        SKIP TO MAIN CONTENT
+      </a>
       <Navbar currentRoute={currentRoute} navigate={navigate} />
 
-      <main className="flex-1">
+      <main id="main-content" role="main" className="flex-1" tabIndex={-1}>
         {renderActivePage()}
       </main>
 

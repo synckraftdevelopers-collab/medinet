@@ -16,7 +16,9 @@ import {
   ArrowUpRight,
   Send,
   Globe,
-  Award
+  Award,
+  Loader2,
+  AlertCircle
 } from "lucide-react";
 
 interface FooterProps {
@@ -26,12 +28,31 @@ interface FooterProps {
 
 export default function Footer({ navigate, showToast }: FooterProps) {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const validateEmail = (val: string) => {
+    if (!val.trim()) return "Email address is required";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return "Please enter a valid corporate email address";
+    return "";
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setEmail(val);
+    if (emailError) setEmailError(validateEmail(val));
+  };
+
+  const handleEmailBlur = () => {
+    if (email.trim()) setEmailError(validateEmail(email));
+  };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) {
-      showToast("Please enter a valid email address.", "error");
+    const err = validateEmail(email);
+    if (err) {
+      setEmailError(err);
+      showToast(err, "error");
       return;
     }
 
@@ -40,6 +61,7 @@ export default function Footer({ navigate, showToast }: FooterProps) {
       setLoading(false);
       showToast("Thank you for subscribing to our corporate newsletter!", "success");
       setEmail("");
+      setEmailError("");
     }, 1200);
   };
 
@@ -58,27 +80,52 @@ export default function Footer({ navigate, showToast }: FooterProps) {
             </p>
           </div>
           <div className="lg:col-span-6">
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2.5">
-              <div className="relative flex-1">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your corporate email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-secondary/20 rounded-input text-white text-xs shadow-card focus:outline-none focus:border-highlight focus:bg-white/10 focus:ring-2 focus:ring-highlight/30 placeholder:text-muted transition-all duration-300"
-                  aria-label="Email address for newsletter"
-                />
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-1.5" noValidate>
+              <div className="flex flex-col sm:flex-row gap-2.5">
+                <div className="relative flex-1">
+                  <input
+                    id="newsletter-email"
+                    type="email"
+                    required
+                    disabled={loading}
+                    autoComplete="email"
+                    placeholder="Enter your corporate email address"
+                    value={email}
+                    onChange={handleEmailChange}
+                    onBlur={handleEmailBlur}
+                    className={`w-full pl-10 pr-4 py-2.5 bg-white/5 border rounded-input text-white text-xs shadow-card focus:outline-none focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
+                      emailError ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/30" : "border-secondary/20 focus:border-highlight focus:ring-2 focus:ring-highlight/30"
+                    }`}
+                    aria-label="Email address for newsletter"
+                    aria-invalid={!!emailError}
+                    aria-describedby={emailError ? "newsletter-email-err" : undefined}
+                  />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
+                </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="px-6 py-2.5 bg-white text-primary hover:bg-alt-bg hover:text-secondary font-mono text-xs font-semibold rounded-btn transition-all duration-300 flex items-center justify-center gap-1.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-btn hover:shadow-card hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-secondary" />
+                      SUBSCRIBING...
+                    </>
+                  ) : (
+                    <>
+                      SUBSCRIBE
+                      <Send className="w-3.5 h-3.5 text-secondary group-hover/sub:text-accent transition-colors duration-300" />
+                    </>
+                  )}
+                </button>
               </div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-6 py-2.5 bg-white text-primary hover:bg-alt-bg hover:text-secondary font-mono text-xs font-semibold rounded-btn transition-all duration-300 flex items-center justify-center gap-1.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-btn hover:shadow-card hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white"
-              >
-                {loading ? "SUBSCRIBING..." : "SUBSCRIBE"}
-                <Send className="w-3.5 h-3.5 text-secondary group-hover/sub:text-accent transition-colors duration-300" />
-              </button>
+              {emailError && (
+                <span id="newsletter-email-err" className="text-[11px] text-red-400 font-mono font-medium flex items-center gap-1 pl-1">
+                  <AlertCircle className="w-3 h-3 shrink-0" />
+                  {emailError}
+                </span>
+              )}
             </form>
           </div>
         </div>

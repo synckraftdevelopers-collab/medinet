@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export type AppRoute =
   | "home"
@@ -23,6 +23,7 @@ export type AppRoute =
 
 export function useRoute() {
   const [currentRoute, setCurrentRoute] = useState<AppRoute>("home");
+  const currentRouteRef = useRef<AppRoute>("home");
   const [params, setParams] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -43,44 +44,67 @@ export function useRoute() {
         });
       }
 
+      let targetSection = queryParams.section || queryParams.scrollTo;
+      if (cleanPath.includes("#")) {
+        const hashParts = cleanPath.split("#");
+        cleanPath = hashParts[0];
+        if (hashParts[1]) {
+          targetSection = hashParts[1];
+        }
+      }
+
       setParams(queryParams);
 
       // Map cleanPath to AppRoute
+      let nextRoute: AppRoute = "home";
       if (!cleanPath || cleanPath === "home" || cleanPath === "/") {
-        setCurrentRoute("home");
+        nextRoute = "home";
       } else if (cleanPath === "about") {
-        setCurrentRoute("about");
+        nextRoute = "about";
       } else if (cleanPath === "products") {
-        setCurrentRoute("products");
+        nextRoute = "products";
       } else if (cleanPath === "research-development" || cleanPath === "research") {
-        setCurrentRoute("research-development");
+        nextRoute = "research-development";
       } else if (cleanPath === "quality") {
-        setCurrentRoute("quality");
+        nextRoute = "quality";
       } else if (cleanPath === "business-partners" || cleanPath === "partners") {
-        setCurrentRoute("business-partners");
+        nextRoute = "business-partners";
       } else if (cleanPath === "careers") {
-        setCurrentRoute("careers");
+        nextRoute = "careers";
       } else if (cleanPath === "news-events" || cleanPath === "news") {
-        setCurrentRoute("news-events");
+        nextRoute = "news-events";
       } else if (cleanPath === "contact") {
-        setCurrentRoute("contact");
+        nextRoute = "contact";
       } else if (cleanPath === "legal/privacy-policy" || cleanPath === "privacy-policy") {
-        setCurrentRoute("privacy-policy");
+        nextRoute = "privacy-policy";
       } else if (cleanPath === "legal/terms" || cleanPath === "terms") {
-        setCurrentRoute("terms");
+        nextRoute = "terms";
       } else if (cleanPath === "legal/disclaimer" || cleanPath === "disclaimer") {
-        setCurrentRoute("disclaimer");
+        nextRoute = "disclaimer";
       } else if (cleanPath === "legal/cookies" || cleanPath === "cookies") {
-        setCurrentRoute("cookies");
+        nextRoute = "cookies";
       } else if (cleanPath === "legal/copyright-notice" || cleanPath === "copyright-notice") {
-        setCurrentRoute("copyright-notice");
+        nextRoute = "copyright-notice";
       } else {
         // Fallback for 404
-        setCurrentRoute("home");
+        nextRoute = "home";
       }
 
-      // Smooth scroll to top on page change
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const isSameRoute = currentRouteRef.current === nextRoute;
+      currentRouteRef.current = nextRoute;
+      setCurrentRoute(nextRoute);
+
+      // Handle smooth scrolling to target sections or top without jumping
+      if (targetSection) {
+        setTimeout(() => {
+          const element = document.getElementById(targetSection);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 120);
+      } else {
+        window.scrollTo({ top: 0, behavior: isSameRoute ? "smooth" : "instant" });
+      }
     }
 
     // Run once on load

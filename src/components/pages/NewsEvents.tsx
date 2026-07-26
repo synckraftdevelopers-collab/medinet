@@ -384,11 +384,11 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                       </div>
                       
                       <div className="mt-8 pt-5 border-t border-border bg-alt-bg/50 -mx-6 sm:-mx-8 px-6 sm:px-8 -mb-6 sm:-mb-8 pb-6 sm:pb-8 flex items-center justify-between group-hover:bg-white transition-colors duration-300">
-                        <a href="#contact" className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-secondary transition-colors group/link">
+                        <a href="#contact?section=contact-form" role="button" aria-label="Schedule Meeting at this Event" className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-secondary transition-colors group/link cursor-pointer min-h-[44px] py-2">
                           <CalendarPlus className="w-4 h-4 group-hover/link:scale-110 transition-transform duration-300" />
                           Schedule Meeting
                         </a>
-                        <a href="#contact" className="inline-flex items-center gap-2 h-10 px-4 bg-primary/5 border border-primary/20 rounded-full text-xs font-semibold text-primary hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 group/btn shadow-sm hover:shadow-md">
+                        <a href="#contact?section=contact-form" role="button" aria-label="Contact Corporate Sales regarding this Event" className="inline-flex items-center gap-2 min-h-[44px] px-5 bg-primary/5 border border-primary/20 rounded-full text-xs font-semibold text-primary hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 group/btn shadow-sm hover:shadow-md cursor-pointer">
                           Contact Sales 
                           <ArrowRight className="w-4 h-4 text-primary group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
                         </a>

@@ -67,7 +67,7 @@ const iconMap: Record<string, any> = {
   HeartHandshake,
 };
 
-export default function Navbar({ currentRoute, navigate }: NavbarProps) {
+function Navbar({ currentRoute, navigate }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileAccordion, setActiveMobileAccordion] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -1287,3 +1287,5 @@ export default function Navbar({ currentRoute, navigate }: NavbarProps) {
     </>
   );
 }
+
+export default React.memo(Navbar);

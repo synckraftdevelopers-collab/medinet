@@ -6,34 +6,46 @@
 
 
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
+import dynamic from "next/dynamic";
 import { useRoute } from "./hooks/useRoute";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
 import SEOManager from "./components/SEOManager";
 
-// Pages
+// Keep Home statically imported for instant initial LCP on landing page
 import Home from "./components/pages/Home";
-import About from "./components/pages/About";
-import Products from "./components/pages/Products";
-import ResearchDevelopment from "./components/pages/ResearchDevelopment";
-import Quality from "./components/pages/Quality";
-import BusinessPartners from "./components/pages/BusinessPartners";
-import Careers from "./components/pages/Careers";
-import NewsEvents from "./components/pages/NewsEvents";
-import Contact from "./components/pages/Contact";
-import LegalPage from "./components/pages/LegalPage";
+
+// Dynamically import offscreen pages for bundle code splitting
+const PageLoader = () => (
+  <div className="min-h-[70vh] flex items-center justify-center bg-background">
+    <div className="flex flex-col items-center gap-3">
+      <div className="w-8 h-8 rounded-full border-2 border-secondary/20 border-t-secondary animate-spin" />
+      <span className="text-xs text-muted font-mono tracking-widest uppercase">Loading...</span>
+    </div>
+  </div>
+);
+
+const About = dynamic(() => import("./components/pages/About"), { loading: () => <PageLoader /> });
+const Products = dynamic(() => import("./components/pages/Products"), { loading: () => <PageLoader /> });
+const ResearchDevelopment = dynamic(() => import("./components/pages/ResearchDevelopment"), { loading: () => <PageLoader /> });
+const Quality = dynamic(() => import("./components/pages/Quality"), { loading: () => <PageLoader /> });
+const BusinessPartners = dynamic(() => import("./components/pages/BusinessPartners"), { loading: () => <PageLoader /> });
+const Careers = dynamic(() => import("./components/pages/Careers"), { loading: () => <PageLoader /> });
+const NewsEvents = dynamic(() => import("./components/pages/NewsEvents"), { loading: () => <PageLoader /> });
+const Contact = dynamic(() => import("./components/pages/Contact"), { loading: () => <PageLoader /> });
+const LegalPage = dynamic(() => import("./components/pages/LegalPage"), { loading: () => <PageLoader /> });
 
 export default function App() {
   const { currentRoute, params, navigate } = useRoute();
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
-  const showToast = (message: string, type: "success" | "error") => {
+  const showToast = useCallback((message: string, type: "success" | "error") => {
     setToast({ message, type });
-  };
+  }, []);
 
-  const renderActivePage = () => {
+  const activePage = useMemo(() => {
     switch (currentRoute) {
       case "home":
         return <Home navigate={navigate} />;
@@ -61,7 +73,7 @@ export default function App() {
       default:
         return <Home navigate={navigate} />;
     }
-  };
+  }, [currentRoute, params, navigate, showToast]);
 
   return (
     <div className="min-h-screen bg-[#FCFCFD] flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
@@ -75,7 +87,7 @@ export default function App() {
       <Navbar currentRoute={currentRoute} navigate={navigate} />
 
       <main id="main-content" role="main" className="flex-1" tabIndex={-1}>
-        {renderActivePage()}
+        {activePage}
       </main>
 
       <Footer navigate={navigate} showToast={showToast} />

@@ -26,7 +26,7 @@ interface FooterProps {
   showToast: (message: string, type: "success" | "error") => void;
 }
 
-export default function Footer({ navigate, showToast }: FooterProps) {
+function Footer({ navigate, showToast }: FooterProps) {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -315,3 +315,5 @@ export default function Footer({ navigate, showToast }: FooterProps) {
     </footer>
   );
 }
+
+export default React.memo(Footer);

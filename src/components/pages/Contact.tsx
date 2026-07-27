@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { OFFICES, FAQS } from "../../data";
 import { Office } from "../../types";
 import SectionHeader from "../SectionHeader";
@@ -71,6 +71,27 @@ export default function Contact({ showToast, params }: ContactProps) {
   const [submitting, setSubmitting] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
 
+  // Refs for async cleanup and accessibility focus management
+  const submitTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const successHeadingRef = useRef<HTMLDivElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    return () => {
+      if (submitTimerRef.current) {
+        clearTimeout(submitTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (formSuccess) {
+      setTimeout(() => {
+        successHeadingRef.current?.focus();
+      }, 50);
+    }
+  }, [formSuccess]);
+
   useEffect(() => {
     if (params?.subject) {
       setFormData((prev) => ({ ...prev, subject: params.subject }));
@@ -87,33 +108,59 @@ export default function Contact({ showToast, params }: ContactProps) {
     setOpenFaqIndex(openFaqIndex === idx ? null : idx);
   };
 
-  const validateContactField = (field: string, value: string) => {
+  const validateContactField = (field: string, rawValue: string) => {
+    const value = rawValue.trim();
     switch (field) {
       case "name":
-        return !value.trim() ? "Full name is required" : "";
+        return !value ? "Full name is required" : value.length < 2 ? "Please enter at least 2 characters" : value.length > 60 ? "Name cannot exceed 60 characters" : "";
       case "email":
-        return !value.trim() ? "Email address is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid corporate email" : "";
+        return !value ? "Email address is required" : !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ? "Please enter a valid corporate email" : "";
       case "phone":
-        return !value.trim() ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
+        return !value ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,20}$/.test(value) ? "Please enter a valid phone number (7-20 digits)" : "";
       case "message":
-        return !value.trim() ? "Message content is required" : value.trim().length < 10 ? "Please enter at least 10 characters" : "";
+        return !value ? "Message content is required" : value.length < 10 ? "Please enter at least 10 characters" : value.length > 1000 ? "Message cannot exceed 1000 characters" : "";
       default:
         return "";
     }
   };
 
   const handleContactFieldChange = (field: string, value: string) => {
+    // Prevent invalid characters where appropriate for phone number
+    if (field === "phone" && value !== "" && !/^[0-9\s\+\-\(\)\.]*$/.test(value)) {
+      return;
+    }
+
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
       const err = validateContactField(field, value);
-      setErrors((prev) => ({ ...prev, [field]: err }));
+      setErrors((prev) => {
+        const next = { ...prev };
+        if (!err) {
+          delete next[field];
+        } else {
+          next[field] = err;
+        }
+        return next;
+      });
     }
   };
 
   const handleContactFieldBlur = (field: string, value: string) => {
-    if (value.trim() || errors[field]) {
-      const err = validateContactField(field, value);
-      setErrors((prev) => ({ ...prev, [field]: err }));
+    const trimmed = value.trim();
+    if (trimmed !== value) {
+      setFormData((prev) => ({ ...prev, [field]: trimmed }));
+    }
+    if (trimmed || errors[field]) {
+      const err = validateContactField(field, trimmed);
+      setErrors((prev) => {
+        const next = { ...prev };
+        if (!err) {
+          delete next[field];
+        } else {
+          next[field] = err;
+        }
+        return next;
+      });
     }
   };
 
@@ -126,18 +173,36 @@ export default function Contact({ showToast, params }: ContactProps) {
     };
     const activeErrors = Object.fromEntries(Object.entries(errs).filter(([_, v]) => v !== ""));
     setErrors(activeErrors);
-    return Object.keys(activeErrors).length === 0;
+    return { isValid: Object.keys(activeErrors).length === 0, activeErrors };
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) {
+    if (submitting) return;
+
+    const trimmedData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      subject: formData.subject,
+      message: formData.message.trim(),
+    };
+    setFormData(trimmedData);
+
+    const { isValid, activeErrors } = validate();
+    if (!isValid) {
       showToast("Please fix the validation errors before submitting.", "error");
+      const firstInvalidField = Object.keys(activeErrors)[0];
+      if (firstInvalidField) {
+        setTimeout(() => {
+          document.getElementById(`contact-${firstInvalidField}`)?.focus();
+        }, 10);
+      }
       return;
     }
 
     setSubmitting(true);
-    setTimeout(() => {
+    submitTimerRef.current = setTimeout(() => {
       setSubmitting(false);
       setFormSuccess(true);
       showToast("Thank you! Your message has been routed to our corporate relations team.", "success");
@@ -148,6 +213,7 @@ export default function Contact({ showToast, params }: ContactProps) {
         subject: "general",
         message: ""
       });
+      setErrors({});
     }, 1200);
   };
 
@@ -255,6 +321,7 @@ export default function Contact({ showToast, params }: ContactProps) {
                           e.stopPropagation();
                           openDirections(off);
                         }}
+                        aria-label={`Get directions to ${off.name} office in Google Maps`}
                         className={`shrink-0 rounded-full px-[18px] py-[12px] flex items-center justify-center gap-1.5 font-bold transition-all duration-300 group/btn ${isActive
                             ? "bg-white text-primary hover:bg-gray-50 shadow-sm"
                             : "utility-button-primary"
@@ -350,7 +417,13 @@ export default function Contact({ showToast, params }: ContactProps) {
               <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent mb-8"></div>
 
               {formSuccess ? (
-                <div className="p-10 bg-green-50/50 border border-green-200 rounded-card text-center space-y-4 my-6 animate-fade-in">
+                <div
+                  ref={successHeadingRef}
+                  tabIndex={-1}
+                  role="status"
+                  aria-live="polite"
+                  className="p-10 bg-green-50/50 border border-green-200 rounded-card text-center space-y-4 my-6 animate-fade-in focus:outline-none"
+                >
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto border border-green-300">
                     <CheckCircle2 className="w-9 h-9 text-green-600" />
                   </div>
@@ -361,7 +434,10 @@ export default function Contact({ showToast, params }: ContactProps) {
                   <div className="pt-4">
                     <button
                       type="button"
-                      onClick={() => setFormSuccess(false)}
+                      onClick={() => {
+                        setFormSuccess(false);
+                        setTimeout(() => firstInputRef.current?.focus(), 50);
+                      }}
                       className="utility-button-primary px-8 py-3"
                     >
                       SEND ANOTHER MESSAGE
@@ -369,8 +445,8 @@ export default function Contact({ showToast, params }: ContactProps) {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-6" noValidate>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <form onSubmit={handleFormSubmit} className="space-y-2" noValidate>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                     <div className="group/input">
                       <label htmlFor="contact-name" className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
                       <div className="relative">
@@ -378,12 +454,14 @@ export default function Contact({ showToast, params }: ContactProps) {
                           <UserRound className="w-4 h-4" />
                         </div>
                         <input
+                          ref={firstInputRef}
                           id="contact-name"
                           type="text"
                           required
                           disabled={submitting}
                           aria-required="true"
                           autoComplete="name"
+                          maxLength={60}
                           placeholder="Enter your full name"
                           value={formData.name}
                           onChange={(e) => handleContactFieldChange("name", e.target.value)}
@@ -393,12 +471,14 @@ export default function Contact({ showToast, params }: ContactProps) {
                           aria-describedby={errors.name ? "cnt-name-err" : undefined}
                         />
                       </div>
-                      {errors.name && (
-                        <span id="cnt-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          {errors.name}
-                        </span>
-                      )}
+                      <div className="min-h-[20px] pt-1 flex items-start">
+                        {errors.name ? (
+                          <span id="cnt-name-err" role="alert" className="text-[11px] text-red-500 font-mono font-medium flex items-center gap-1 animate-fade-in">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.name}
+                          </span>
+                        ) : null}
+                      </div>
                     </div>
 
                     <div className="group/input">
@@ -414,6 +494,7 @@ export default function Contact({ showToast, params }: ContactProps) {
                           disabled={submitting}
                           aria-required="true"
                           autoComplete="email"
+                          maxLength={100}
                           placeholder="Enter email address"
                           value={formData.email}
                           onChange={(e) => handleContactFieldChange("email", e.target.value)}
@@ -423,16 +504,18 @@ export default function Contact({ showToast, params }: ContactProps) {
                           aria-describedby={errors.email ? "cnt-email-err" : undefined}
                         />
                       </div>
-                      {errors.email && (
-                        <span id="cnt-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          {errors.email}
-                        </span>
-                      )}
+                      <div className="min-h-[20px] pt-1 flex items-start">
+                        {errors.email ? (
+                          <span id="cnt-email-err" role="alert" className="text-[11px] text-red-500 font-mono font-medium flex items-center gap-1 animate-fade-in">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.email}
+                          </span>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                     <div className="group/input">
                       <label htmlFor="contact-phone" className="text-[10px] font-mono text-muted font-bold uppercase tracking-widest block mb-2">Phone Number <span className="text-red-500" aria-hidden="true">*</span></label>
                       <div className="relative">
@@ -446,6 +529,7 @@ export default function Contact({ showToast, params }: ContactProps) {
                           disabled={submitting}
                           aria-required="true"
                           autoComplete="tel"
+                          maxLength={20}
                           placeholder="Enter contact number"
                           value={formData.phone}
                           onChange={(e) => handleContactFieldChange("phone", e.target.value)}
@@ -455,12 +539,14 @@ export default function Contact({ showToast, params }: ContactProps) {
                           aria-describedby={errors.phone ? "cnt-phone-err" : undefined}
                         />
                       </div>
-                      {errors.phone && (
-                        <span id="cnt-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          {errors.phone}
-                        </span>
-                      )}
+                      <div className="min-h-[20px] pt-1 flex items-start">
+                        {errors.phone ? (
+                          <span id="cnt-phone-err" role="alert" className="text-[11px] text-red-500 font-mono font-medium flex items-center gap-1 animate-fade-in">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.phone}
+                          </span>
+                        ) : null}
+                      </div>
                     </div>
 
                     <div className="group/input">
@@ -471,6 +557,7 @@ export default function Contact({ showToast, params }: ContactProps) {
                         </div>
                         <select
                           id="contact-subject"
+                          aria-label="Subject of Inquiry"
                           disabled={submitting}
                           value={formData.subject}
                           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -486,6 +573,7 @@ export default function Contact({ showToast, params }: ContactProps) {
                           <ChevronDown className="w-4 h-4" />
                         </div>
                       </div>
+                      <div className="min-h-[20px] pt-1"></div>
                     </div>
                   </div>
 
@@ -515,27 +603,29 @@ export default function Contact({ showToast, params }: ContactProps) {
                         aria-describedby={errors.message ? "cnt-msg-err" : undefined}
                       ></textarea>
                     </div>
-                    {errors.message && (
-                      <span id="cnt-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.message}
-                      </span>
-                    )}
+                    <div className="min-h-[20px] pt-1 flex items-start">
+                      {errors.message ? (
+                        <span id="cnt-msg-err" role="alert" className="text-[11px] text-red-500 font-mono font-medium flex items-center gap-1 animate-fade-in">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          {errors.message}
+                        </span>
+                      ) : null}
+                    </div>
                   </div>
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full utility-button-primary h-[58px] text-sm sm:text-base font-bold flex items-center justify-center gap-2 mt-4"
+                    className={`w-full utility-button-primary h-[58px] text-sm sm:text-base font-bold flex items-center justify-center gap-2 mt-2 transition-all duration-300 ${submitting ? "opacity-80 cursor-not-allowed" : ""}`}
                   >
                     {submitting ? (
                       <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Routing Message...
+                        <Loader2 className="w-5 h-5 animate-spin shrink-0" />
+                        Sending...
                       </>
                     ) : (
                       <>
-                        <SendHorizontal className="w-5 h-5" />
+                        <SendHorizontal className="w-5 h-5 shrink-0" />
                         Submit Corporate Message
                       </>
                     )}
@@ -609,6 +699,9 @@ export default function Contact({ showToast, params }: ContactProps) {
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${idx}`}
+                    id={`faq-btn-${idx}`}
                     className="w-full p-[22px] flex items-center justify-between gap-4 text-left focus:outline-none"
                   >
                     <div className="flex items-center gap-4">
@@ -624,7 +717,12 @@ export default function Contact({ showToast, params }: ContactProps) {
                   </button>
 
                   {isOpen && (
-                    <div className="px-[22px] pb-[22px] pl-[78px] text-sm sm:text-base text-body leading-relaxed border-t border-border/50 pt-4 animate-fade-in">
+                    <div
+                      id={`faq-answer-${idx}`}
+                      role="region"
+                      aria-labelledby={`faq-btn-${idx}`}
+                      className="px-[22px] pb-[22px] pl-[78px] text-sm sm:text-base text-body leading-relaxed border-t border-border/50 pt-4 animate-fade-in"
+                    >
                       {faq.answer}
                     </div>
                   )}
@@ -644,7 +742,13 @@ export default function Contact({ showToast, params }: ContactProps) {
                 <p className="text-sm text-white/80 mt-1 leading-relaxed">Our regulatory and sourcing specialists are available to assist your business inquiries.</p>
               </div>
             </div>
-            <button className="shrink-0 px-6 py-3 bg-white text-heading font-bold text-sm rounded-[14px] hover:bg-gray-50 transition-colors flex items-center gap-2 shadow-sm group">
+            <button
+              onClick={() => {
+                document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              aria-label="Scroll to Contact Our Team form"
+              className="shrink-0 px-6 py-3 bg-white text-heading font-bold text-sm rounded-[14px] hover:bg-gray-50 transition-colors flex items-center gap-2 shadow-sm group"
+            >
               Contact Our Team
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>

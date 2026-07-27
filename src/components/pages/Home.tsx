@@ -4,7 +4,6 @@
  */
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "motion/react";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES, STATS, NEWS_ITEMS, BRAND_INFO } from "../../data";
 import SectionHeader from "../SectionHeader";
@@ -94,17 +93,17 @@ export default function Home({ navigate }: HomeProps) {
                 <p className="text-base sm:text-lg text-body leading-relaxed max-w-xl mb-8">
                   Medinet Pharmaceutical Marketing Company drives the global commercialization of bioequivalent, advanced therapeutics, delivering trust to doctors and life-saving remedies to millions.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
                   <button
                     onClick={() => navigate("products", { section: "formulations" })}
-                    className="utility-button-primary group/btn1 px-6 py-3"
+                    className="utility-button-primary group/btn1 px-7 py-3.5 flex items-center justify-center gap-2 font-bold text-sm min-h-[48px]"
                   >
                     VIEW FORMULATIONS
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn1:translate-x-1" />
                   </button>
                   <button
                     onClick={() => navigate("business-partners")}
-                    className="utility-button-secondary px-6 py-3"
+                    className="utility-button-secondary px-7 py-3.5 flex items-center justify-center font-bold text-sm min-h-[48px]"
                   >
                     B2B PARTNERSHIPS
                   </button>
@@ -171,11 +170,31 @@ export default function Home({ navigate }: HomeProps) {
               </motion.div>
             </div>
           </div>
+
+          {/* Scroll Indicator */}
+          <div className="mt-12 lg:mt-16 pt-4 flex justify-center w-full">
+            <button
+              onClick={() => {
+                document.getElementById("corporate-overview")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              aria-label="Scroll to Corporate Profile section"
+              className="group/scroll flex flex-col items-center gap-2 text-muted hover:text-secondary transition-colors duration-300 focus:outline-none"
+            >
+              <span className="text-[10px] font-mono font-bold tracking-widest uppercase opacity-80 group-hover/scroll:opacity-100 transition-opacity">Explore Medinet</span>
+              <div className="w-8 h-12 rounded-full border-2 border-border group-hover/scroll:border-secondary flex justify-center pt-2 p-1 transition-colors duration-300 shadow-sm bg-white/50 backdrop-blur-sm">
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-1.5 h-3 bg-secondary rounded-full"
+                />
+              </div>
+            </button>
+          </div>
         </div>
       </section>
 
       {/* Corporate Overview Section */}
-      <section className="py-20 bg-white border-b border-border">
+      <section id="corporate-overview" className="py-20 bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 relative z-10">
@@ -355,27 +374,29 @@ export default function Home({ navigate }: HomeProps) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {featuredProducts.map((product) => (
               <div
                 key={product.id}
-                className="utility-card border-t-[4px] border-t-secondary p-8 flex flex-col justify-between group hover:border-t-accent"
+                onClick={() => navigate("products", { id: product.id })}
+                className="utility-card border-t-[4px] border-t-secondary p-6 sm:p-7 h-full flex flex-col justify-between group hover:border-t-accent hover:-translate-y-[4px] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-4">
                     <span className="utility-badge-blue">
                       {product.dosageForm}
                     </span>
                     <span className="text-sm font-mono text-secondary font-bold">{product.strength}</span>
                   </div>
 
-                  <h3 className="font-display font-bold text-heading text-xl">
+                  <h3 className="mt-3 mb-1.5 font-display font-bold text-heading text-lg sm:text-xl flex items-center gap-2.5 group-hover:text-secondary transition-colors duration-300">
+                    <Pill className="w-5 h-5 text-secondary shrink-0" />
                     {product.name}
                   </h3>
                   <div className="text-xs text-secondary font-mono italic mt-1 line-clamp-1">
                     {product.genericName}
                   </div>
-                  <p className="mt-4 text-sm text-body leading-relaxed line-clamp-3">
+                  <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
                     {product.description}
                   </p>
 
@@ -394,14 +415,11 @@ export default function Home({ navigate }: HomeProps) {
                   </div>
                 </div>
 
-                <div className="mt-8 pt-5 border-t border-border flex items-center justify-between">
+                <div className="mt-6 pt-5 border-t border-border flex items-center justify-between">
                   <span className="text-xs font-mono"><span className="text-muted">Pack:</span> <span className="text-heading font-bold">{product.packaging}</span></span>
-                  <button
-                    onClick={() => navigate("products", { id: product.id })}
-                    className="text-xs font-mono font-bold text-heading hover:text-secondary flex items-center gap-1.5 uppercase group/btn transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
-                  >
-                    DETAILS <ArrowRight className="w-4 h-4 text-heading group-hover/btn:text-accent group-hover/btn:translate-x-1 transition-transform duration-300" />
-                  </button>
+                  <span className="text-xs font-mono font-bold text-heading group-hover:text-secondary flex items-center gap-1.5 uppercase group/btn transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-secondary after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
+                    DETAILS <ArrowRight className="w-4 h-4 text-heading group-hover:text-accent group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
                 </div>
               </div>
             ))}
@@ -492,7 +510,7 @@ export default function Home({ navigate }: HomeProps) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {latestNews.map((news) => {
               let badgeBg = "bg-secondary/10 border-secondary/20";
               let badgeText = "text-secondary";
@@ -511,10 +529,11 @@ export default function Home({ navigate }: HomeProps) {
               return (
               <div
                 key={news.id}
-                className="utility-card p-0 flex flex-col justify-between overflow-hidden group/news"
+                onClick={() => navigate("news-events", { id: news.id })}
+                className="utility-card p-0 h-full flex flex-col justify-between overflow-hidden group/news hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
               >
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
+                  <div className="flex items-center gap-3 mb-4">
                     <span className={`flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider border ${badgeBg} ${badgeText} px-3 py-1 rounded-full font-bold`}>
                       <BadgeIcon className="w-4 h-4" />
                       {news.category}
@@ -522,22 +541,19 @@ export default function Home({ navigate }: HomeProps) {
                     <span className="text-xs text-muted font-mono font-bold">{news.date}</span>
                   </div>
 
-                  <h3 className="font-display font-bold text-heading text-xl group-hover/news:text-secondary transition-colors line-clamp-2 mt-2">
+                  <h3 className="mt-2 font-display font-bold text-heading text-lg sm:text-xl group-hover/news:text-secondary transition-colors line-clamp-2">
                     {news.title}
                   </h3>
-                  <p className="mt-4 text-sm text-body leading-relaxed line-clamp-3">
+                  <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
                     {news.excerpt}
                   </p>
                 </div>
 
-                <div className="px-8 py-5 border-t border-border mt-auto flex justify-between items-center bg-background/50">
+                <div className="px-6 sm:px-7 py-4.5 border-t border-border mt-auto flex justify-between items-center bg-background/50 group-hover/news:bg-white transition-colors duration-300">
                   <span className="text-xs text-secondary font-mono font-bold group-hover/news:text-accent transition-colors">Read complete release</span>
-                  <button
-                    onClick={() => navigate("news-events", { id: news.id })}
-                    className="flex items-center justify-center transition-transform duration-300"
-                  >
+                  <span className="flex items-center justify-center transition-transform duration-300">
                     <ArrowUpRight className="w-5 h-5 text-secondary group-hover/news:text-accent group-hover/news:translate-x-1 transition-all duration-300" />
-                  </button>
+                  </span>
                 </div>
               </div>
             )})}
@@ -547,7 +563,7 @@ export default function Home({ navigate }: HomeProps) {
 
 
       {/* Global B2B Call To Action Section */}
-      <section className="py-24 bg-gradient-to-br from-secondary via-primary to-secondary text-white text-center relative overflow-hidden">
+      <section className="py-20 md:py-24 bg-gradient-to-br from-secondary via-primary to-secondary text-white text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
@@ -555,22 +571,22 @@ export default function Home({ navigate }: HomeProps) {
             <span className="w-2 h-2 rounded-full bg-success"></span>
             PARTNER WITH MEDINET
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-[1.15]">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white tracking-tight leading-[1.15] mb-6">
             Scale Your <span className="text-accent">Pharmaceutical</span> Distribution <span className="text-accent">Globally</span>
           </h2>
-          <p className="mt-6 text-sm sm:text-base text-white/80 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto mb-10">
             Leverage our premium bioequivalent product portfolio, dedicated regulatory support, and flexible third-party manufacturing arrangements to boost your market dominance.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center w-full sm:w-auto max-w-md sm:max-w-none mx-auto">
             <button
               onClick={() => navigate("business-partners")}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-alt-bg text-primary font-mono text-sm font-bold rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group/primary"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-alt-bg text-primary font-mono text-sm font-bold rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group/primary min-h-[52px]"
             >
               PARTNER INQUIRY FORM <ArrowRight className="w-4 h-4 text-primary group-hover/primary:translate-x-1 transition-transform duration-300" />
             </button>
             <button
               onClick={() => navigate("contact")}
-              className="inline-flex items-center justify-center px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-sm font-bold rounded-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-sm font-bold rounded-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg min-h-[52px]"
             >
               CONTACT OFFICES
             </button>

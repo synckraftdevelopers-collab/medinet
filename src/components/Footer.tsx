@@ -81,8 +81,8 @@ function Footer({ navigate, showToast }: FooterProps) {
           </div>
           <div className="lg:col-span-6">
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-1.5" noValidate>
-              <div className="flex flex-col sm:flex-row gap-2.5">
-                <div className="relative flex-1">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-2.5">
+                <div className="relative flex-1 min-w-0">
                   <input
                     id="newsletter-email"
                     type="email"
@@ -93,19 +93,19 @@ function Footer({ navigate, showToast }: FooterProps) {
                     value={email}
                     onChange={handleEmailChange}
                     onBlur={handleEmailBlur}
-                    className={`w-full pl-10 pr-4 py-2.5 bg-white/5 border rounded-input text-white text-xs shadow-card focus:outline-none focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`w-full pl-10 pr-4 py-3 bg-white/5 border rounded-input text-white text-xs shadow-card focus:outline-none focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] ${
                       emailError ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/30" : "border-secondary/20 focus:border-highlight focus:ring-2 focus:ring-highlight/30"
                     }`}
                     aria-label="Email address for newsletter"
                     aria-invalid={!!emailError}
                     aria-describedby={emailError ? "newsletter-email-err" : undefined}
                   />
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary pointer-events-none" />
                 </div>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2.5 bg-white text-primary hover:bg-alt-bg hover:text-secondary font-mono text-xs font-semibold rounded-btn transition-all duration-300 flex items-center justify-center gap-1.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-btn hover:shadow-card hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white"
+                  className="px-6 py-3 bg-white text-primary hover:bg-alt-bg hover:text-secondary font-mono text-xs font-semibold rounded-btn transition-all duration-300 flex items-center justify-center gap-1.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-btn hover:shadow-card hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white min-h-[44px] w-full sm:w-auto"
                 >
                   {loading ? (
                     <>
@@ -133,9 +133,9 @@ function Footer({ navigate, showToast }: FooterProps) {
 
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 items-start">
           {/* Brand Info */}
-          <div className="lg:col-span-4">
+          <div className="sm:col-span-2 lg:col-span-4 lg:pr-6 mb-4 sm:mb-0">
             <button
               onClick={() => navigate("home")}
               className="flex items-center gap-2.5 text-left mb-6 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white rounded-lg p-1 -ml-1 transition-all"
@@ -147,12 +147,12 @@ function Footer({ navigate, showToast }: FooterProps) {
             <p className="text-xs text-muted leading-relaxed pr-4">
               Medinet Pharmaceutical Marketing Company is a world-class marketer of high-quality, bioequivalent advanced therapeutics. Bridging research and accessibility for over 25 years.
             </p>
-            <div className="mt-6 flex items-center gap-2.5">
+            <div className="mt-6 flex items-center gap-3">
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-white/5 border border-secondary/20 hover:bg-secondary text-white hover:shadow-card hover:scale-105 flex items-center justify-center transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white"
+                className="w-9 h-9 rounded-lg bg-white/5 border border-secondary/20 hover:bg-secondary text-white hover:shadow-card hover:scale-110 flex items-center justify-center transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white shrink-0"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -161,7 +161,7 @@ function Footer({ navigate, showToast }: FooterProps) {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-white/5 border border-secondary/20 hover:bg-secondary text-white hover:shadow-card hover:scale-105 flex items-center justify-center transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white"
+                className="w-9 h-9 rounded-lg bg-white/5 border border-secondary/20 hover:bg-secondary text-white hover:shadow-card hover:scale-110 flex items-center justify-center transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white shrink-0"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
@@ -170,7 +170,7 @@ function Footer({ navigate, showToast }: FooterProps) {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-white/5 border border-secondary/20 hover:bg-secondary text-white hover:shadow-card hover:scale-105 flex items-center justify-center transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white"
+                className="w-9 h-9 rounded-lg bg-white/5 border border-secondary/20 hover:bg-secondary text-white hover:shadow-card hover:scale-110 flex items-center justify-center transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-white shrink-0"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -186,38 +186,38 @@ function Footer({ navigate, showToast }: FooterProps) {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-1 lg:col-span-2">
             <h4 className="text-xs font-mono font-semibold text-white uppercase tracking-widest mb-6">
               <span className="text-highlight">//</span> CORPORATE
             </h4>
             <ul className="space-y-3.5 text-xs">
               <li>
-                <button onClick={() => navigate("home")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 flex items-center gap-1 w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <button onClick={() => navigate("home")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   Home
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("about")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 flex items-center gap-1 w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <button onClick={() => navigate("about")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   About Profile
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("research-development")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 flex items-center gap-1 w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <button onClick={() => navigate("research-development")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   Research Focus
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("quality")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 flex items-center gap-1 w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <button onClick={() => navigate("quality")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   Quality & Safety
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("careers")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 flex items-center gap-1 w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <button onClick={() => navigate("careers")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   Join Our Team
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("news-events")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 flex items-center gap-1 w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <button onClick={() => navigate("news-events")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   News & Events
                 </button>
               </li>
@@ -225,7 +225,7 @@ function Footer({ navigate, showToast }: FooterProps) {
           </div>
 
           {/* Product Links */}
-          <div className="lg:col-span-3">
+          <div className="sm:col-span-1 lg:col-span-3">
             <h4 className="text-xs font-mono font-semibold text-white uppercase tracking-widest mb-6">
               <span className="text-highlight">//</span> THERAPEUTICS
             </h4>
@@ -234,22 +234,22 @@ function Footer({ navigate, showToast }: FooterProps) {
                 <li key={cat.id}>
                   <button
                     onClick={() => navigate("products", { category: cat.id })}
-                    className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 block text-left w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1"
+                    className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 text-left w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1"
                   >
                     {cat.name} Division
                   </button>
                 </li>
               ))}
               <li>
-                <button onClick={() => navigate("products")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 font-mono text-xs font-semibold flex items-center gap-1 w-fit group focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
-                  All Segments <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <button onClick={() => navigate("products")} className="text-muted hover:text-highlight transition-all duration-300 hover:translate-x-1 font-mono text-xs font-semibold inline-flex items-center gap-1 w-fit py-0.5 group focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                  All Segments <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </button>
               </li>
             </ul>
           </div>
 
           {/* Contact Details */}
-          <div className="lg:col-span-3">
+          <div className="sm:col-span-2 lg:col-span-3">
             <h4 className="text-xs font-mono font-semibold text-white uppercase tracking-widest mb-6">
               <span className="text-highlight">//</span> GLOBAL SUPPORT
             </h4>
@@ -262,19 +262,19 @@ function Footer({ navigate, showToast }: FooterProps) {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-highlight shrink-0" />
-                <a href="tel:+912249823300" className="text-white/90 hover:text-highlight transition-all duration-300 hover:translate-x-1 font-mono inline-block w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <a href="tel:+912249823300" className="text-white/90 hover:text-highlight transition-all duration-300 hover:translate-x-1 font-mono inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   +91-22-4982-3300
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-highlight shrink-0" />
-                <a href="mailto:corporate@medinetpharma.com" className="text-white/90 hover:text-highlight transition-all duration-300 hover:translate-x-1 break-all font-mono inline-block w-fit focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
+                <a href="mailto:corporate@medinetpharma.com" className="text-white/90 hover:text-highlight transition-all duration-300 hover:translate-x-1 break-words font-mono inline-flex items-center gap-1.5 w-fit py-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-footer focus-visible:ring-highlight rounded px-1 -ml-1">
                   corporate@medinetpharma.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Globe className="w-4 h-4 text-highlight shrink-0" />
-                <span className="text-white/90 font-mono hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-block w-fit cursor-pointer">www.medinetpharma.com</span>
+                <span className="text-white/90 font-mono hover:text-highlight transition-all duration-300 hover:translate-x-1 inline-flex items-center gap-1.5 w-fit py-0.5 cursor-pointer">www.medinetpharma.com</span>
               </li>
             </ul>
           </div>

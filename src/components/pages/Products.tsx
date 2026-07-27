@@ -40,12 +40,12 @@ interface ProductsProps {
 
 const getDosageIcon = (form: string) => {
   const f = form.toLowerCase();
-  if (f.includes('tablet') || f.includes('capsule')) return <Pill className="w-4 h-4 text-secondary shrink-0" />;
-  if (f.includes('gel')) return <Droplets className="w-4 h-4 text-secondary shrink-0" />;
-  if (f.includes('cream') || f.includes('ointment')) return <BadgePlus className="w-4 h-4 text-secondary shrink-0" />;
-  if (f.includes('inject') || f.includes('vial') || f.includes('syring')) return <Syringe className="w-4 h-4 text-secondary shrink-0" />;
-  if (f.includes('syrup') || f.includes('drop') || f.includes('suspension')) return <Droplet className="w-4 h-4 text-secondary shrink-0" />;
-  return <Pill className="w-4 h-4 text-secondary shrink-0" />;
+  if (f.includes('tablet') || f.includes('capsule')) return <Pill className="w-5 h-5 text-secondary shrink-0" />;
+  if (f.includes('gel')) return <Droplets className="w-5 h-5 text-secondary shrink-0" />;
+  if (f.includes('cream') || f.includes('ointment')) return <BadgePlus className="w-5 h-5 text-secondary shrink-0" />;
+  if (f.includes('inject') || f.includes('vial') || f.includes('syring')) return <Syringe className="w-5 h-5 text-secondary shrink-0" />;
+  if (f.includes('syrup') || f.includes('drop') || f.includes('suspension')) return <Droplet className="w-5 h-5 text-secondary shrink-0" />;
+  return <Pill className="w-5 h-5 text-secondary shrink-0" />;
 };
 
 export default function Products({ params, showToast }: ProductsProps) {
@@ -408,11 +408,11 @@ export default function Products({ params, showToast }: ProductsProps) {
 
               {/* Grid of Product Cards */}
               {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                   {filteredProducts.map((p) => (
                     <div
                       key={p.id}
-                      className="utility-card p-6 flex flex-col justify-between group cursor-pointer hover:border-secondary/30"
+                      className="utility-card p-6 sm:p-7 h-full flex flex-col justify-between group cursor-pointer hover:border-secondary/30 hover:-translate-y-[4px] transition-all duration-300 shadow-sm hover:shadow-md"
                       onClick={() => setSelectedProduct(p)}
                     >
                       <div>
@@ -423,14 +423,14 @@ export default function Products({ params, showToast }: ProductsProps) {
                           <span className="text-[10px] font-mono font-bold text-muted">{p.strength}</span>
                         </div>
 
-                        <h3 className="font-display font-bold text-heading text-lg group-hover:text-secondary transition-colors duration-300 flex items-center gap-2">
+                        <h3 className="mt-3 mb-1.5 font-display font-bold text-heading text-lg sm:text-xl group-hover:text-secondary transition-colors duration-300 flex items-center gap-2.5">
                           {getDosageIcon(p.dosageForm)}
                           {p.name}
                         </h3>
                         <p className="text-[11px] text-muted font-mono italic mt-1 line-clamp-1">
                           {p.genericName}
                         </p>
-                        <p className="text-sm text-body leading-relaxed mt-4 line-clamp-2">
+                        <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
                           {p.description}
                         </p>
                       </div>

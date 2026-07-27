@@ -73,6 +73,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastActiveElementRef = useRef<HTMLElement | null>(null);
+  const [activeSection, setActiveSection] = useState<string>(currentRoute);
 
   // Search Modal State
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -149,14 +151,89 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const mobileDrawerRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll effect
+  // Sync activeSection when currentRoute prop updates
   useEffect(() => {
+    setActiveSection(currentRoute);
+  }, [currentRoute]);
+
+  // Capture previous focus before modals/drawers open and restore focus cleanly upon closing
+  useEffect(() => {
+    if (isMobileMenuOpen || isSearchOpen || isEnquiryOpen) {
+      if (document.activeElement && document.activeElement !== document.body) {
+        lastActiveElementRef.current = document.activeElement as HTMLElement;
+      }
+    } else if (lastActiveElementRef.current) {
+      const elToFocus = lastActiveElementRef.current;
+      setTimeout(() => {
+        try {
+          if (document.contains(elToFocus)) {
+            elToFocus.focus();
+          } else {
+            const burgerBtn = document.getElementById("mobile-burger-button");
+            burgerBtn?.focus();
+          }
+        } catch (e) {
+          // ignore if focus fails
+        }
+      }, 50);
+    }
+  }, [isMobileMenuOpen, isSearchOpen, isEnquiryOpen]);
+
+  // Handle sticky scroll effect with hysteresis and requestAnimationFrame to eliminate flickering
+  useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setIsScrolled((prev) => {
+            if (!prev && scrollY > 20) return true;
+            if (prev && scrollY < 10) return false;
+            return prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Highlight active navigation section while scrolling
+  useEffect(() => {
+    let ticking = false;
+    const handleScrollSection = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const sectionIds = ["home", "about", "products", "research-development", "quality", "business-partners", "careers", "news-events", "contact", "legal", "formulations", "contact-form", "enquiry-form"];
+          let found: string | null = null;
+          for (const secId of sectionIds) {
+            const el = document.getElementById(secId) || document.querySelector(`[data-section="${secId}"]`);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= 250 && rect.bottom >= 150) {
+                if (secId === "formulations") found = "products";
+                else if (secId === "contact-form" || secId === "enquiry-form") found = "contact";
+                else found = secId;
+                break;
+              }
+            }
+          }
+          if (found && found !== activeSection) {
+            setActiveSection(found);
+          } else if (!found && window.scrollY < 100 && activeSection !== currentRoute) {
+            setActiveSection(currentRoute);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScrollSection, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollSection);
+  }, [activeSection, currentRoute]);
 
   // Sync search input focus
   useEffect(() => {
@@ -165,22 +242,36 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
     }
   }, [isSearchOpen]);
 
-  // Lock body scroll and prevent touch scrolling when mobile menu is open
+  // Lock body scroll with scrollbar width compensation to prevent CLS / layout shifts
   useEffect(() => {
-    if (isMobileMenuOpen) {
+    if (isMobileMenuOpen || isSearchOpen || isEnquiryOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        const headerEl = document.querySelector("header");
+        if (headerEl) headerEl.style.paddingRight = `${scrollbarWidth}px`;
+      }
+      if (isMobileMenuOpen) {
+        document.body.style.touchAction = "none";
+      }
     } else {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
       document.body.style.touchAction = "";
+      const headerEl = document.querySelector("header");
+      if (headerEl) headerEl.style.paddingRight = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
       document.body.style.touchAction = "";
+      const headerEl = document.querySelector("header");
+      if (headerEl) headerEl.style.paddingRight = "";
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isSearchOpen, isEnquiryOpen]);
 
-  // Handle outside click to close mobile menu
+  // Handle outside click to close mobile menu or active mega menus
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       if (isMobileMenuOpen && mobileDrawerRef.current && !mobileDrawerRef.current.contains(e.target as Node)) {
@@ -188,8 +279,23 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
         if (burgerBtn && burgerBtn.contains(e.target as Node)) return;
         setIsMobileMenuOpen(false);
       }
+      if (activeMegaMenu) {
+        const prodMenu = document.getElementById("products-mega-menu");
+        const legalMenu = document.getElementById("legal-mega-menu");
+        const triggerBtns = document.querySelectorAll('[aria-haspopup="true"]');
+        let clickedTrigger = false;
+        triggerBtns.forEach((btn) => {
+          if (btn.contains(e.target as Node)) clickedTrigger = true;
+        });
+        if (!clickedTrigger && prodMenu && !prodMenu.contains(e.target as Node) && activeMegaMenu === "products") {
+          setActiveMegaMenu(null);
+        }
+        if (!clickedTrigger && legalMenu && !legalMenu.contains(e.target as Node) && activeMegaMenu === "legal") {
+          setActiveMegaMenu(null);
+        }
+      }
     };
-    if (isMobileMenuOpen) {
+    if (isMobileMenuOpen || activeMegaMenu) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("touchstart", handleClickOutside);
     }
@@ -197,7 +303,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, activeMegaMenu]);
 
   // Focus trap and keyboard navigation for mobile drawer
   useEffect(() => {
@@ -235,22 +341,77 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
     return () => drawerNode.removeEventListener("keydown", handleTabKey);
   }, [isMobileMenuOpen]);
 
-  // Handle global key events for search modal
+  // Handle global key events for modals and menus
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setIsSearchOpen((prev) => !prev);
       } else if (e.key === "Escape") {
-        setIsSearchOpen(false);
-        setIsMobileMenuOpen(false);
-        setIsEnquiryOpen(false);
-        setActiveMegaMenu(null);
+        if (isSearchOpen) setIsSearchOpen(false);
+        else if (isEnquiryOpen) setIsEnquiryOpen(false);
+        else if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+        else if (activeMegaMenu) setActiveMegaMenu(null);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isSearchOpen, isEnquiryOpen, isMobileMenuOpen, activeMegaMenu]);
+
+  // Mega menu hover timeout handlers
+  const handleMegaMenuEnter = (menu: "products" | "about" | "legal") => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+    setActiveMegaMenu(menu);
+  };
+
+  const handleMegaMenuLeave = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveMegaMenu(null);
+    }, 150);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
   }, []);
+
+  const handleMenuKeyDown = (e: React.KeyboardEvent, menuId: string) => {
+    const menuEl = document.getElementById(menuId);
+    if (!menuEl) return;
+    const items = Array.from(menuEl.querySelectorAll<HTMLElement>('[role="menuitem"], button, a'));
+    const currentIndex = items.indexOf(document.activeElement as HTMLElement);
+
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % items.length;
+      items[nextIndex]?.focus();
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      const prevIndex = (currentIndex - 1 + items.length) % items.length;
+      items[prevIndex]?.focus();
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      setActiveMegaMenu(null);
+      const trigger = document.querySelector(`[aria-controls="${menuId}"]`) as HTMLElement;
+      trigger?.focus();
+    }
+  };
+
+  const getNavItemClass = (isActive: boolean) =>
+    `px-1.5 lg:px-1.5 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] select-none shrink-0 ${
+      isActive
+        ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold scale-[1.02]"
+        : "text-body font-medium hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+    }`;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
@@ -391,19 +552,20 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
 
       {/* Main Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-          ? "bg-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,.04)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
-          : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${
+          isScrolled
+            ? "bg-white/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,.06)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
+            : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
+        }`}
         aria-label="Main Navigation"
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8 min-[1440px]:px-10 h-full w-full">
           <div className="flex items-center justify-between h-full w-full">
             {/* Logo - Left Column (Equal flex basis for exact desktop centering) */}
-            <div className="flex-1 flex items-center justify-start min-w-max h-full shrink-0">
+            <div className="flex-1 flex items-center justify-start min-w-0 sm:min-w-max h-full shrink-0">
               <button
                 onClick={() => navigate("home")}
-                className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary rounded-lg hover:opacity-90 transition-opacity"
+                className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] rounded-lg hover:opacity-90 transition-opacity"
                 id="navbar-logo"
                 aria-label="Medinet Pharmaceuticals - Home"
               >
@@ -413,7 +575,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   width={260}
                   height={64}
                   priority
-                  className="block my-auto w-auto object-contain h-10 md:h-[44px] lg:h-[48px] min-[1440px]:h-[56px] transition-all duration-300"
+                  className="block my-auto w-auto object-contain h-8 sm:h-10 md:h-[44px] lg:h-[40px] xl:h-[48px] min-[1440px]:h-[56px] transition-all duration-300"
                 />
               </button>
             </div>
@@ -421,16 +583,12 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             {/* Desktop Navigation - Center Column */}
             <nav
               aria-label="Desktop Navigation Links"
-              className="hidden lg:flex items-center justify-center shrink-0 gap-1 lg:gap-1.5 xl:gap-3 min-[1440px]:gap-5 h-full"
+              className="hidden lg:flex items-center justify-center shrink-0 gap-0.5 lg:gap-1 xl:gap-3 min-[1440px]:gap-5 h-full"
             >
               <button
                 onClick={() => navigate("home")}
                 aria-current={currentRoute === "home" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "home"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "home" || activeSection === "home")}
               >
                 HOME
               </button>
@@ -438,11 +596,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 onClick={() => navigate("about")}
                 aria-current={currentRoute === "about" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "about"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "about" || activeSection === "about")}
               >
                 ABOUT
               </button>
@@ -450,8 +604,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* Products Mega Menu Trigger */}
               <div
                 className="relative flex items-center h-full"
-                onMouseEnter={() => setActiveMegaMenu("products")}
-                onMouseLeave={() => setActiveMegaMenu(null)}
+                onMouseEnter={() => handleMegaMenuEnter("products")}
+                onMouseLeave={handleMegaMenuLeave}
               >
                 <button
                   onClick={() => navigate("products")}
@@ -462,7 +616,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       setActiveMegaMenu(nextState);
                       if (nextState === "products") {
                         setTimeout(() => {
-                          const firstItem = document.getElementById("products-mega-menu")?.querySelector<HTMLElement>("button, a");
+                          const firstItem = document.getElementById("products-mega-menu")?.querySelector<HTMLElement>('[role="menuitem"], button, a');
                           firstItem?.focus();
                         }, 50);
                       }
@@ -472,11 +626,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   aria-expanded={activeMegaMenu === "products"}
                   aria-controls="products-mega-menu"
                   aria-current={currentRoute === "products" ? "page" : undefined}
-                  className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                    currentRoute === "products"
-                      ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                      : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                  }`}
+                  className={getNavItemClass(currentRoute === "products" || activeSection === "products")}
                 >
                   PRODUCTS
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "products" ? "rotate-180 text-secondary" : ""}`} />
@@ -488,9 +638,10 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     id="products-mega-menu"
                     role="menu"
                     aria-label="Products therapeutic segments"
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-0 w-[640px] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3 animate-fade-in z-50 origin-top"
+                    onKeyDown={(e) => handleMenuKeyDown(e, "products-mega-menu")}
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-0 w-[640px] max-w-[90vw] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3.5 animate-fade-in z-50 origin-top"
                   >
-                    <div className="col-span-2 border-b border-[#DBEAFE] pb-3 mb-2 flex">
+                    <div className="col-span-2 border-b border-[#DBEAFE] pb-3 mb-1 flex">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(37,99,235,.08)]">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
                         Therapeutic Segments
@@ -511,11 +662,12 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         <button
                           key={cat.id}
                           role="menuitem"
+                          tabIndex={0}
                           onClick={() => {
                             setActiveMegaMenu(null);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-start gap-3 p-[14px] rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F8FBFF,#EFF6FF)] hover:border-[#BFDBFE] hover:translate-x-[6px] hover:-translate-y-[3px] hover:shadow-[0_12px_30px_rgba(37,99,235,.10)] text-left transition-all duration-300 ease-[ease] cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                          className="flex items-start gap-3.5 p-3.5 rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F8FBFF,#EFF6FF)] hover:border-[#BFDBFE] hover:translate-x-1 hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] text-left transition-all duration-300 ease-out cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                         >
                           <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#EFF6FF,#DBEAFE)] border border-[#BFDBFE] text-[#2563EB] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] group-hover:text-white transition-all duration-300">
                             <IconComponent className="w-5 h-5 group-hover:rotate-[5deg] transition-transform duration-300" />
@@ -531,16 +683,18 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         </button>
                       );
                     })}
-                    <div className="col-span-2 mt-3 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#DBEAFE] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(11,31,77,.06)]">
+                    <div className="col-span-2 mt-2 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#DBEAFE] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(11,31,77,.06)]">
                       <div className="text-[11px] text-[#64748B] font-sans ml-2">
                         Looking for something specific? Search our entire portfolio.
                       </div>
                       <button
+                        role="menuitem"
+                        tabIndex={0}
                         onClick={() => {
                           setActiveMegaMenu(null);
                           setIsSearchOpen(true);
                         }}
-                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:shadow-[0_12px_28px_rgba(37,99,235,.30)] hover:scale-[1.03] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:shadow-[0_12px_28px_rgba(37,99,235,.30)] hover:scale-[1.03] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                       >
                         SEARCH NOW <ArrowRight className="w-3.5 h-3.5 text-white" />
                       </button>
@@ -552,11 +706,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 onClick={() => navigate("research-development")}
                 aria-current={currentRoute === "research-development" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "research-development"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "research-development" || activeSection === "research-development")}
               >
                 R&D
               </button>
@@ -564,11 +714,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 onClick={() => navigate("quality")}
                 aria-current={currentRoute === "quality" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "quality"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "quality" || activeSection === "quality")}
               >
                 QUALITY
               </button>
@@ -576,11 +722,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 onClick={() => navigate("business-partners")}
                 aria-current={currentRoute === "business-partners" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "business-partners"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "business-partners" || activeSection === "business-partners")}
               >
                 PARTNERS
               </button>
@@ -588,11 +730,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 onClick={() => navigate("careers")}
                 aria-current={currentRoute === "careers" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "careers"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "careers" || activeSection === "careers")}
               >
                 CAREERS
               </button>
@@ -600,11 +738,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 onClick={() => navigate("news-events")}
                 aria-current={currentRoute === "news-events" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "news-events"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "news-events" || activeSection === "news-events")}
               >
                 NEWS
               </button>
@@ -612,11 +746,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 onClick={() => navigate("contact")}
                 aria-current={currentRoute === "contact" ? "page" : undefined}
-                className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                  currentRoute === "contact"
-                    ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                    : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                }`}
+                className={getNavItemClass(currentRoute === "contact" || activeSection === "contact")}
               >
                 CONTACT
               </button>
@@ -624,8 +754,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* Legal Dropdown in Navigation with Equal Spacing */}
               <div
                 className="relative flex items-center h-full"
-                onMouseEnter={() => setActiveMegaMenu("legal")}
-                onMouseLeave={() => setActiveMegaMenu(null)}
+                onMouseEnter={() => handleMegaMenuEnter("legal")}
+                onMouseLeave={handleMegaMenuLeave}
               >
                 <button
                   onKeyDown={(e) => {
@@ -635,7 +765,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       setActiveMegaMenu(nextState);
                       if (nextState === "legal") {
                         setTimeout(() => {
-                          const firstItem = document.getElementById("legal-mega-menu")?.querySelector<HTMLElement>("button, a");
+                          const firstItem = document.getElementById("legal-mega-menu")?.querySelector<HTMLElement>('[role="menuitem"], button, a');
                           firstItem?.focus();
                         }, 50);
                       }
@@ -645,11 +775,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   aria-expanded={activeMegaMenu === "legal"}
                   aria-controls="legal-mega-menu"
                   aria-current={currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "page" : undefined}
-                  className={`px-2 lg:px-2 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono font-medium rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                    currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright")
-                      ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold"
-                      : "text-body hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
-                  }`}
+                  className={getNavItemClass(currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") || activeSection === "legal")}
                 >
                   LEGAL
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "legal" ? "rotate-180 text-secondary" : ""}`} />
@@ -660,7 +786,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     id="legal-mega-menu"
                     role="menu"
                     aria-label="Legal documents and policies"
-                    className="absolute right-0 top-full mt-0 pt-2 w-[420px] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(37,99,235,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
+                    onKeyDown={(e) => handleMenuKeyDown(e, "legal-mega-menu")}
+                    className="absolute right-0 top-full mt-0 pt-2 w-[420px] max-w-[90vw] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(37,99,235,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
                   >
                     {/* Top Header */}
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#E2E8F0] px-2">
@@ -673,12 +800,20 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1.5">
                       <a
                         href="/legal/privacy-policy"
                         role="menuitem"
+                        tabIndex={0}
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                        onKeyDown={(e) => {
+                          if (e.key === " ") {
+                            e.preventDefault();
+                            setActiveMegaMenu(null);
+                            navigate("privacy-policy");
+                          }
+                        }}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -695,8 +830,16 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <a
                         href="/legal/terms-conditions"
                         role="menuitem"
+                        tabIndex={0}
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                        onKeyDown={(e) => {
+                          if (e.key === " ") {
+                            e.preventDefault();
+                            setActiveMegaMenu(null);
+                            navigate("terms");
+                          }
+                        }}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#0D9488,#2DD4BF)] shadow-[0_10px_24px_rgba(13,148,136,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -713,8 +856,16 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <a
                         href="/legal/disclaimer"
                         role="menuitem"
+                        tabIndex={0}
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                        onKeyDown={(e) => {
+                          if (e.key === " ") {
+                            e.preventDefault();
+                            setActiveMegaMenu(null);
+                            navigate("disclaimer");
+                          }
+                        }}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#F59E0B,#FBBF24)] shadow-[0_10px_24px_rgba(245,158,11,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -731,8 +882,16 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <a
                         href="/legal/cookie-policy"
                         role="menuitem"
+                        tabIndex={0}
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                        onKeyDown={(e) => {
+                          if (e.key === " ") {
+                            e.preventDefault();
+                            setActiveMegaMenu(null);
+                            navigate("cookies");
+                          }
+                        }}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#8B5CF6,#A78BFA)] shadow-[0_10px_24px_rgba(139,92,246,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -749,8 +908,16 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <a
                         href="/legal/copyright-notice"
                         role="menuitem"
+                        tabIndex={0}
                         onClick={() => setActiveMegaMenu(null)}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_12px_28px_rgba(37,99,235,.10)] hover:translate-x-[6px] active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-[300ms] group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                        onKeyDown={(e) => {
+                          if (e.key === " ") {
+                            e.preventDefault();
+                            setActiveMegaMenu(null);
+                            navigate("copyright-notice");
+                          }
+                        }}
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#0EA5E9)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
@@ -771,7 +938,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         <Info className="w-[18px] h-[18px] text-[#2563EB]" />
                         Need legal assistance?
                       </div>
-                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#0B1F4D] hover:bg-[#2563EB] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(11,31,77,.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
+                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#0B1F4D] hover:bg-[#2563EB] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(11,31,77,.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]">
                         Contact Legal Team
                       </a>
                     </div>
@@ -779,12 +946,11 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 )}
               </div>
             </nav>
-
             {/* Right Buttons - Right Column (Equal flex basis for exact desktop centering) */}
-            <div className="flex-1 flex items-center justify-end min-w-max gap-2 sm:gap-3 xl:gap-4 h-full shrink-0">
+            <div className="flex-1 flex items-center justify-end min-w-0 sm:min-w-max gap-1 sm:gap-2.5 xl:gap-4 h-full shrink-0">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 lg:px-2.5 lg:py-1.5 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary flex items-center justify-center gap-1 text-xs font-mono font-medium"
+                className="p-2 lg:px-2 lg:py-1.5 xl:px-2.5 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] flex items-center justify-center gap-1 text-xs font-mono font-medium shrink-0"
                 aria-label="Search products"
                 aria-haspopup="dialog"
                 title="Search Products (Ctrl+K)"
@@ -806,7 +972,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="utility-button-primary hidden md:inline-flex py-2.5 px-5 my-auto shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+                className="utility-button-primary hidden md:inline-flex py-2 px-3.5 lg:py-2 lg:px-4 xl:py-2.5 xl:px-5 my-auto shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 INQUIRE NOW
@@ -816,7 +982,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 id="mobile-burger-button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] hover:text-[#2563EB] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] active:scale-[0.95]"
+                className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] hover:text-[#2563EB] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] active:scale-[0.95] shrink-0"
                 aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-navigation-drawer"
@@ -845,9 +1011,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             <motion.div
               key="drawer"
               ref={mobileDrawerRef}
-              initial={{ x: "100%", opacity: 0.8 }}
+              initial={{ x: "100%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0.8 }}
+              exit={{ x: "100%", opacity: 0 }}
               transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
               className="lg:hidden fixed inset-0 w-full h-[100dvh] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-2xl"
               role="dialog"

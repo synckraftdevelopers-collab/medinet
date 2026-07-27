@@ -223,7 +223,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                 centered
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12 items-stretch">
                 {NEWS_ITEMS.map((news) => {
                   let BadgeIcon = Newspaper;
                   let CardIcon = Building2;
@@ -255,10 +255,11 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   return (
                     <div
                       key={news.id}
-                      className="utility-card hover:border-secondary transition-all duration-300 ease-out overflow-hidden flex flex-col justify-between group"
+                      onClick={() => setSelectedNews(news)}
+                      className="utility-card p-0 hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group shadow-sm hover:shadow-md cursor-pointer"
                     >
-                      <div className="p-6 sm:p-8">
-                        <div className="flex items-center justify-between mb-6">
+                      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
+                        <div className="flex items-center justify-between mb-5">
                           <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full ${badgeBg} ${badgeText} text-[10px] font-mono font-bold uppercase tracking-widest`}>
                             <BadgeIcon className="w-3 h-3" />
                             {news.category}
@@ -269,34 +270,28 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-1.5 text-xs font-mono font-semibold mb-4 text-muted uppercase tracking-widest">
+                        <div className="flex items-center gap-1.5 text-xs font-mono font-semibold mb-3 text-muted uppercase tracking-widest">
                           <CalendarDays className="w-3.5 h-3.5" />
                           {news.date}
                         </div>
 
-                        <h3 className="font-display font-bold text-heading text-lg sm:text-xl leading-tight hover:text-primary transition-colors cursor-pointer" onClick={() => setSelectedNews(news)}>
+                        <h3 className="mt-2 font-display font-bold text-heading text-lg sm:text-xl leading-tight group-hover:text-primary transition-colors">
                           {news.title}
                         </h3>
-                        <p className="mt-4 text-sm text-body leading-relaxed line-clamp-3">
+                        <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
                           {news.excerpt}
                         </p>
                       </div>
 
-                      <div className="p-6 sm:p-8 pt-5 border-t border-border bg-alt-bg/50 flex justify-between items-center group-hover:bg-white transition-colors duration-300">
-                        <button
-                          onClick={() => setSelectedNews(news)}
-                          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary hover:text-secondary transition-colors cursor-pointer group/link border-none bg-transparent p-0"
-                        >
+                      <div className="p-6 sm:p-7 pt-4.5 border-t border-border bg-alt-bg/50 flex justify-between items-center group-hover:bg-white transition-colors duration-300 mt-auto">
+                        <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary group-hover:text-secondary transition-colors">
                           Read Full Release
-                          <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
-                        </button>
+                          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                        </span>
                         
-                        <button
-                          onClick={() => setSelectedNews(news)}
-                          className="w-[42px] h-[42px] rounded-full bg-primary/5 border border-primary/20 text-primary flex items-center justify-center transition-all duration-300 cursor-pointer group-hover/link:bg-primary group-hover/link:text-white hover:bg-primary hover:text-white hover:shadow-md"
-                        >
+                        <span className="w-[42px] h-[42px] rounded-full bg-primary/5 border border-primary/20 text-primary flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:text-white hover:shadow-md">
                           <ArrowUpRight className="w-4 h-4" />
-                        </button>
+                        </span>
                       </div>
                     </div>
                   );
@@ -413,7 +408,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                 centered
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 items-stretch">
                 {galleryPlaceholders.map((item, idx) => {
                   let BadgeIcon = HeartHandshake;
                   let badgeBg = "bg-alt-bg";
@@ -441,9 +436,9 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   return (
                     <div
                       key={idx}
-                      className="utility-card hover:border-secondary transition-all duration-300 ease-out overflow-hidden flex flex-col justify-between group relative p-0"
+                      className="utility-card hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group relative p-0 shadow-sm hover:shadow-md"
                     >
-                      <div className="aspect-[3/2] overflow-hidden bg-alt-bg relative rounded-t-[24px]">
+                      <div className="aspect-[3/2] w-full overflow-hidden bg-alt-bg relative shrink-0 rounded-t-[24px]">
                         <div className="absolute inset-0 bg-gradient-to-t from-heading/40 to-transparent z-10 pointer-events-none"></div>
                         <Image
                           src={item.image}
@@ -462,8 +457,8 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                         )}
                       </div>
                       
-                      <div className="p-6 sm:p-8">
-                        <div className="flex items-center gap-4 mb-5">
+                      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
+                        <div className="flex items-center gap-4 mb-4">
                           <div className="w-10 h-10 rounded-xl bg-alt-bg border border-border flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm">
                             <BadgeIcon className={`w-4 h-4 ${badgeText}`} />
                           </div>
@@ -472,15 +467,15 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                           </span>
                         </div>
                         
-                        <h4 className="font-display font-bold text-heading text-lg hover:text-primary transition-colors cursor-pointer">
+                        <h4 className="mt-2 font-display font-bold text-heading text-lg hover:text-primary transition-colors cursor-pointer">
                           {item.title}
                         </h4>
-                        <p className="text-sm text-body mt-3 leading-relaxed">
+                        <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
                           {item.desc}
                         </p>
                       </div>
 
-                      <div className="mt-2 pt-4 border-t border-border bg-alt-bg/50 p-6 sm:px-8 flex items-center justify-between group-hover:bg-white transition-colors duration-300">
+                      <div className="mt-auto pt-4 border-t border-border bg-alt-bg/50 p-6 sm:px-7 flex items-center justify-between group-hover:bg-white transition-colors duration-300">
                         <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-muted">View Full Details</span>
                         <button className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/5 border border-primary/20 text-primary transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:text-white hover:shadow-md">
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />

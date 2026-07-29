@@ -407,7 +407,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
   };
 
   const getNavItemClass = (isActive: boolean) =>
-    `px-1.5 lg:px-1.5 xl:px-2.5 min-[1440px]:px-3 py-1.5 text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] select-none shrink-0 ${
+    `px-2 xl:px-3 py-1.5 text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] select-none shrink-0 ${
       isActive
         ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold scale-[1.02]"
         : "text-body font-medium hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
@@ -562,7 +562,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8 min-[1440px]:px-10 h-full w-full">
           <div className="flex items-center justify-between h-full w-full">
             {/* Logo - Left Column (Equal flex basis for exact desktop centering) */}
-            <div className="flex-1 flex items-center justify-start min-w-0 sm:min-w-max h-full shrink-0">
+            <div className="flex-1 flex items-center justify-start h-full">
               <button
                 onClick={() => navigate("home")}
                 className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] rounded-lg hover:opacity-90 transition-opacity"
@@ -583,7 +583,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             {/* Desktop Navigation - Center Column */}
             <nav
               aria-label="Desktop Navigation Links"
-              className="hidden lg:flex items-center justify-center shrink-0 gap-0.5 lg:gap-1 xl:gap-3 min-[1440px]:gap-5 h-full"
+              className="hidden lg:flex flex-none items-center justify-center gap-1 xl:gap-2 min-[1440px]:gap-4 h-full"
             >
               <button
                 onClick={() => navigate("home")}
@@ -947,10 +947,10 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               </div>
             </nav>
             {/* Right Buttons - Right Column (Equal flex basis for exact desktop centering) */}
-            <div className="flex-1 flex items-center justify-end min-w-0 sm:min-w-max gap-1 sm:gap-2.5 xl:gap-4 h-full shrink-0">
+            <div className="flex-1 flex items-center justify-end gap-1.5 sm:gap-3 xl:gap-4 h-full">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 lg:px-2 lg:py-1.5 xl:px-2.5 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] flex items-center justify-center gap-1 text-xs font-mono font-medium shrink-0"
+                className="h-[36px] lg:h-[40px] px-2 lg:px-3 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] flex items-center justify-center gap-1.5 text-xs font-mono font-medium shrink-0 my-auto"
                 aria-label="Search products"
                 aria-haspopup="dialog"
                 title="Search Products (Ctrl+K)"
@@ -972,7 +972,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="utility-button-primary hidden md:inline-flex py-2 px-3.5 lg:py-2 lg:px-4 xl:py-2.5 xl:px-5 my-auto shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
+                className="utility-button-primary hidden md:inline-flex h-[36px] lg:h-[40px] px-4 xl:px-5 my-auto items-center justify-center gap-1.5 shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 rounded-xl"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 INQUIRE NOW
@@ -1014,7 +1014,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               initial={{ x: "100%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="lg:hidden fixed inset-0 w-full h-[100dvh] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-2xl"
               role="dialog"
               aria-modal="true"
@@ -1029,7 +1029,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-3 hover:bg-[#F1F5F9] active:bg-[#E2E8F0] rounded-2xl text-[#0F172A] hover:text-[#2563EB] transition-all min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                  className="p-3 hover:bg-[#F1F5F9] active:bg-[#E2E8F0] rounded-2xl text-[#0F172A] hover:text-[#2563EB] hover:rotate-90 transition-all duration-300 min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                   aria-label="Close menu"
                 >
                   <X className="w-7 h-7" />

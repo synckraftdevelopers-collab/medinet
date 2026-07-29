@@ -45,7 +45,12 @@
 @layer base {
   html {
     scroll-behavior: smooth !important;
-    scroll-padding-top: 104px !important;
+    scroll-padding-top: 110px !important;
+  }
+
+  /* Global scroll offset for all sections to prevent sticky header overlap */
+  section[id], div[id], h1[id], h2[id], h3[id] {
+    scroll-margin-top: 110px;
   }
 
   body {

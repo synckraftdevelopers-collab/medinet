@@ -273,7 +273,7 @@ export default function Quality() {
               href="#contact?subject=pve&section=contact-form"
               role="button"
               aria-label="Report Adverse Event - Open Pharmacovigilance ADR Form"
-              className="utility-button-primary px-6 py-3.5 shrink-0 min-h-[48px] cursor-pointer"
+              className="utility-button-primary px-6 py-3.5 shrink-0 min-h-[48px] cursor-pointer group/btn"
             >
               Report Adverse Event
               <FileWarning className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform duration-300" />

@@ -1241,7 +1241,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             </motion.div>
           )}
         </AnimatePresence>
-        {/* Enquiry Modal */}
+      </header>
+
+      {/* Enquiry Modal */}
         {isEnquiryOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title">
             <div className="w-full max-w-lg bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-2xl border border-border overflow-hidden text-left flex flex-col mt-16 max-h-[85vh]">
@@ -1449,7 +1451,6 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             </div>
           </div>
         )}
-      </header>
     </>
   );
 }

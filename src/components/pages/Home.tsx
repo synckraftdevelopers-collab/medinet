@@ -35,7 +35,9 @@ import {
   ArrowUpRight,
   Pill,
   Globe,
-  ShieldCheck
+  ShieldCheck,
+  Megaphone,
+  Briefcase
 } from "lucide-react";
 
 interface HomeProps {
@@ -724,6 +726,85 @@ export default function Home({ navigate }: HomeProps) {
         </div>
       </section>
 
+
+      {/* Latest Updates Section */}
+      <section className="py-24 bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="utility-badge-green mb-4 inline-flex">
+                <span className="utility-dot"></span>
+                Company Updates
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15]">
+                Latest Updates
+              </h2>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "New Product Launches", icon: Sparkles, desc: "Explore our latest innovative formulations and therapeutic additions.", color: "text-emerald-600", bg: "bg-emerald-50" },
+              { title: "Medical Conferences", icon: Presentation, desc: "Join our experts at upcoming global medical symposiums and events.", color: "text-blue-600", bg: "bg-blue-50" },
+              { title: "Company Announcements", icon: Megaphone, desc: "Stay informed with the latest corporate news and business developments.", color: "text-purple-600", bg: "bg-purple-50" },
+              { title: "Career Opportunities", icon: Briefcase, desc: "Discover new roles and build your career with Medinet Pharmaceuticals.", color: "text-amber-600", bg: "bg-amber-50" }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                onClick={() => navigate("news-events")}
+                className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between overflow-hidden group hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:border-emerald-200 cursor-pointer h-full"
+              >
+                <div>
+                  <div className={`w-12 h-12 rounded-2xl ${item.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <item.icon className={`w-6 h-6 ${item.color}`} />
+                  </div>
+                  <h3 className="font-display font-bold text-slate-900 text-lg sm:text-xl group-hover:text-emerald-700 transition-colors mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+                <div className="mt-6 flex items-center gap-2 text-emerald-600 font-mono text-xs font-bold uppercase tracking-wider group-hover:text-emerald-700 transition-colors">
+                  Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Corporate Quote Section */}
+      <section className="py-24 bg-white text-center border-b border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 mb-8 tracking-tight leading-tight">
+              &ldquo;Reliable Care, <span className="text-emerald-600">Every Time.</span>&rdquo;
+            </h2>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-slate-500 font-mono text-sm sm:text-base font-medium tracking-wide">
+              <span>Committed to quality.</span>
+              <span className="hidden sm:block text-slate-300">•</span>
+              <span>Driven by innovation.</span>
+              <span className="hidden sm:block text-slate-300">•</span>
+              <span>Trusted by healthcare professionals.</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Global B2B Call To Action Section */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-primary via-secondary to-primary text-white text-center relative overflow-hidden">

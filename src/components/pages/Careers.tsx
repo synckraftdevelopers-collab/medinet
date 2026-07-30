@@ -288,8 +288,8 @@ export default function Careers({ showToast }: CareersProps) {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <SectionHeader
-            badge="Medinet Life"
-            title="A Culture of Clinical Excellence"
+            badge="Culture & Values"
+            title="Life at Medinet"
             description="We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters."
             centered
           />
@@ -327,7 +327,7 @@ export default function Careers({ showToast }: CareersProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
           <SectionHeader
             badge="Active Positions"
-            title="Explore Open Opportunities"
+            title="Current Openings"
             description="We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance."
             centered
           />

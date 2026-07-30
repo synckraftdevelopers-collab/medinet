@@ -181,7 +181,7 @@ export default function ResearchDevelopment() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <SectionHeader
             badge="Research Pillars"
-            title="Sectors of Innovation"
+            title="Innovation & Technology"
             description="Our technological frameworks span both biochemical methods and mechanical design to support top-tier formulation integrity."
             centered
           />
@@ -214,7 +214,7 @@ export default function ResearchDevelopment() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <SectionHeader
             badge="Product Pipeline"
-            title="Formulations in Development"
+            title="Pipeline Products"
             description="Our active pipelines highlight upcoming therapeutic releases. We maintain high R&amp;D transparency from clinical evaluation up to final filing phases."
             centered
           />
@@ -298,7 +298,7 @@ export default function ResearchDevelopment() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <SectionHeader
             badge="Our Protocol"
-            title="The Lifecycle of Formulation"
+            title="Product Development Process"
             description="We adhere to a thorough scientific protocol to take a molecule from theoretical assessment to actual therapeutic distribution."
             centered
           />

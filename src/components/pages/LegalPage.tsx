@@ -63,7 +63,7 @@ export default function LegalPage({ type }: LegalPageProps) {
 
       case "terms":
         return {
-          title: "Terms of Use",
+          title: "Terms of Service",
           icon: FileText,
           badge: "B2B Standard Terms",
           date: "Last Updated: June 15, 2026",
@@ -89,7 +89,7 @@ export default function LegalPage({ type }: LegalPageProps) {
 
       case "disclaimer":
         return {
-          title: "Corporate Disclaimer",
+          title: "Medical Disclaimer",
           icon: ShieldAlert,
           badge: "Regulatory Notice",
           date: "Last Updated: June 15, 2026",

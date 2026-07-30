@@ -123,7 +123,7 @@ export default function Quality() {
                 // CORPORATE QUALITY CREED
               </span>
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-heading tracking-tight leading-[1.15]">
-                Our Pledge: Uncompromised Integrity in Every Batch
+                Our Quality Commitment
               </h2>
               <p className="mt-6 text-body leading-relaxed text-sm">
                 Medinet Pharmaceutical Marketing Company operates under a strict &ldquo;Quality First&rdquo; corporate doctrine. We believe that a drug product represents a patient&rsquo;s hope for restoration, which makes any compromise in quality an ethical failure.
@@ -162,6 +162,9 @@ export default function Quality() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-5 relative group"
             >
+              <span className="text-xs font-mono font-bold tracking-widest text-secondary uppercase block mb-4 lg:hidden">
+                // CERTIFICATIONS
+              </span>
               <div className="bg-gradient-to-br from-primary to-secondary border border-white/10 border-t-[4px] border-t-accent rounded-3xl shadow-xl p-8 lg:p-10 relative overflow-hidden text-center hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
                 {/* Optional glow for animation */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -170,8 +173,8 @@ export default function Quality() {
                   <Award className="w-8 h-8 text-white" />
                 </div>
 
-                <h3 className="font-display font-bold text-white text-xl relative z-10">WHO-GMP Recertified</h3>
-                <p className="text-xs text-accent font-mono mt-2 uppercase tracking-wider font-bold relative z-10">Allied Production Hubs</p>
+                <h3 className="font-display font-bold text-white text-xl relative z-10">Global Certifications</h3>
+                <p className="text-xs text-accent font-mono mt-2 uppercase tracking-wider font-bold relative z-10">WHO-GMP & ISO 9001</p>
 
                 <p className="mt-5 text-sm leading-relaxed text-white/80 relative z-10">
                   Our strategic partner formulation centers have successfully passed the triennial WHO-GMP recertification audits with zero critical non-conformances. This verifies our strict alignment with global pharmaceutical practices.
@@ -272,10 +275,10 @@ export default function Quality() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-left relative z-10">
           <span className="utility-badge-blue mb-4">
             <span className="utility-dot"></span>
-            Pharmacovigilance Program
+            Safety Standards
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15]">
-            <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Drug Safety</span> & Adverse Reaction Reporting (<span className="text-accent">ADR</span>)
+            <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Pharmacovigilance</span> Timeline
           </h2>
           <p className="mt-6 text-sm sm:text-base text-body leading-relaxed">
             As an enterprise pharmaceutical marketer, our responsibility to patients extends far beyond commercial launch. Under our dedicated Global Safety Program, we maintain a 24/7 adverse events log.
@@ -311,18 +314,36 @@ export default function Quality() {
             </a>
           </div>
 
-          <div className="mt-6 bg-alt-bg border border-border rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-            <div className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-secondary shrink-0" />
-              <span className="text-sm font-bold text-heading">Reviewed within 24 Hours</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-secondary shrink-0" />
-              <span className="text-sm font-bold text-heading">WHO-GMP Safety Process</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Database className="w-5 h-5 text-secondary shrink-0" />
-              <span className="text-sm font-bold text-heading">Global Safety Database</span>
+          <div className="mt-8 relative max-w-2xl mx-auto pt-8 border-t border-border">
+            <div className="hidden sm:block absolute left-4 top-8 bottom-4 w-0.5 bg-secondary/20"></div>
+            <div className="space-y-6 relative">
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 shadow-md relative z-10">
+                  <FileWarning className="w-4 h-4" />
+                </div>
+                <div className="flex-1 bg-alt-bg border border-border rounded-xl p-4">
+                  <h4 className="text-sm font-bold text-heading">Event Reported</h4>
+                  <p className="text-xs text-muted mt-1 leading-relaxed">ADR report submitted via online form or helpline.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-white border border-secondary text-secondary flex items-center justify-center shrink-0 shadow-sm relative z-10">
+                  <Clock className="w-4 h-4" />
+                </div>
+                <div className="flex-1 bg-alt-bg border border-border rounded-xl p-4">
+                  <h4 className="text-sm font-bold text-heading">24H Clinical Review</h4>
+                  <p className="text-xs text-muted mt-1 leading-relaxed">Toxicology team assesses report severity and causality.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-white border border-secondary text-secondary flex items-center justify-center shrink-0 shadow-sm relative z-10">
+                  <Database className="w-4 h-4" />
+                </div>
+                <div className="flex-1 bg-alt-bg border border-border rounded-xl p-4">
+                  <h4 className="text-sm font-bold text-heading">Database Integration & Regulatory Filing</h4>
+                  <p className="text-xs text-muted mt-1 leading-relaxed">Data logged into global safety database; national authorities notified if necessary.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

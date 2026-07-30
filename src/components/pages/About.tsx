@@ -150,18 +150,26 @@ export default function About() {
                   <p className="text-body leading-relaxed italic text-sm">
                     &ldquo;{BRAND_INFO.ceoMessage}&rdquo;
                   </p>
-                  <div className="mt-8 flex items-center gap-4">
-                    <Image
-                      src={LEADERSHIP[1].image}
-                      alt={LEADERSHIP[1].name}
-                      width={48}
-                      height={48}
-                      className="rounded-full object-cover border border-border shadow-sm"
-                    />
-                    <div>
-                      <h4 className="font-display font-bold text-heading text-sm">{LEADERSHIP[1].name}</h4>
-                      <p className="text-xs text-muted font-mono">{LEADERSHIP[1].role}</p>
-                      <p className="text-[10px] text-heading font-mono mt-0.5">{LEADERSHIP[1].qualification}</p>
+                  <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <Image
+                        src={LEADERSHIP[1].image}
+                        alt={LEADERSHIP[1].name}
+                        width={48}
+                        height={48}
+                        className="rounded-full object-cover border border-border shadow-sm"
+                      />
+                      <div>
+                        <h4 className="font-display font-bold text-heading text-sm">{LEADERSHIP[1].name}</h4>
+                        <p className="text-[11px] font-mono text-secondary uppercase tracking-widest">{LEADERSHIP[1].role}</p>
+                        <p className="text-[10px] text-muted font-mono mt-0.5">{LEADERSHIP[1].qualification}</p>
+                      </div>
+                    </div>
+                    {/* Signature Area */}
+                    <div className="text-right">
+                      <div className="font-serif italic text-xl text-slate-400 opacity-80 -rotate-3 select-none">
+                        J. Doe
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -174,30 +182,29 @@ export default function About() {
                 // CORPORATE PHILOSOPHY
               </span>
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-heading tracking-tight leading-[1.15]">
-                <span className="text-secondary">Quality</span>, <span className="text-secondary">Ethics</span>, and Patient Efficacy
+                Our Core Philosophy
               </h2>
-              <p className="mt-6 text-body leading-relaxed text-base max-w-2xl">
-                Our organizational ethos is structured entirely around the <span className="text-secondary font-semibold">safety of the end patient</span>. By maintaining a highly selective licensing pipeline, Medinet works exclusively with active pharmaceutical ingredients (APIs) validated in certified <span className="text-secondary font-semibold">bioequivalence</span> clinical studies.
-              </p>
-              <p className="mt-4 text-body leading-relaxed text-base max-w-2xl">
-                We believe that premium, life-restoring pharmaceuticals should not carry prohibitive costs. Through optimizing distribution channels, standardizing dossiers, and leveraging economies of scale, we succeed in making modern pharmacology reachable to patients globally.
+              <p className="mt-4 text-body leading-relaxed text-sm max-w-2xl">
+                We believe that premium, life-restoring pharmaceuticals should be built upon unyielding pillars of ethics and care.
               </p>
 
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl lg:max-w-none text-left">
-                <div className="flex items-start gap-3 bg-alt-bg/50 p-4 rounded-card border border-border/50 hover-lift">
-                  <CheckCircle className="w-5 h-5 text-success shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-heading text-sm">Bioequivalence Certified</h4>
-                    <p className="text-xs text-muted mt-1 leading-relaxed">Matching reference innovator drug PK curves.</p>
+                {[
+                  { title: "Quality", desc: "Uncompromising standards in every formulation we produce.", icon: ShieldCheck, color: "text-blue-600", bg: "bg-blue-50" },
+                  { title: "Trust", desc: "Building long-term reliability with our global partners.", icon: HeartHandshake, color: "text-emerald-600", bg: "bg-emerald-50" },
+                  { title: "Affordability", desc: "Accessible and equitable pricing for healthcare worldwide.", icon: Handshake, color: "text-purple-600", bg: "bg-purple-50" },
+                  { title: "Compassion", desc: "A patient-first approach embedded in all our decisions.", icon: Heart, color: "text-rose-600", bg: "bg-rose-50" }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-4 bg-white p-5 rounded-2xl border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 group cursor-default">
+                    <div className={`w-12 h-12 rounded-xl ${item.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                      <item.icon className={`w-6 h-6 ${item.color}`} />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-slate-900 text-sm mb-1">{item.title}</h4>
+                      <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3 bg-alt-bg/50 p-4 rounded-card border border-border/50 hover-lift">
-                  <CheckCircle className="w-5 h-5 text-success shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-heading text-sm">WHO-GMP Standard</h4>
-                    <p className="text-xs text-muted mt-1 leading-relaxed">Manufactured strictly in certified plants.</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </motion.div>
           </div>

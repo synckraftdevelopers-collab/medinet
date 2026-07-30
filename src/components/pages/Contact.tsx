@@ -261,7 +261,7 @@ export default function Contact({ showToast, params }: ContactProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Global Coordinates"
-            title="Our Corporate Locations"
+            title="Global Offices"
             description="Select an office coordinate card below to update the live locator map embed and view localized contacts."
             centered
           />
@@ -410,6 +410,42 @@ export default function Contact({ showToast, params }: ContactProps) {
         </div>
       </section>
 
+      {/* Department Contacts */}
+      <section className="py-20 bg-white border-t border-border text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            badge="Direct Lines"
+            title="Department Contacts"
+            description="Reach out directly to our specialized department heads for faster resolution of your queries."
+            centered
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            {[
+              { name: "Global Sales & Sourcing", email: "sales@medinet.com", phone: "+1 (800) 123-4567", icon: ShoppingBag },
+              { name: "Licensing & Franchise", email: "partner@medinet.com", phone: "+1 (800) 123-4568", icon: Handshake },
+              { name: "Pharmacovigilance (ADR)", email: "safety@medinet.com", phone: "+1 (800) 123-4569", icon: ShieldAlert },
+              { name: "Media & Press", email: "media@medinet.com", phone: "+1 (800) 123-4570", icon: MessageSquareText }
+            ].map((dept, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="utility-card p-6 flex flex-col items-center group hover:border-secondary hover:-translate-y-1 transition-all duration-300 shadow-sm"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_4px_12px_rgba(37,99,235,0.1)]">
+                  <dept.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h4 className="font-display font-bold text-heading mb-3 text-center text-sm">{dept.name}</h4>
+                <a href={`mailto:${dept.email}`} className="text-xs font-mono text-muted hover:text-primary transition-colors block mb-1">{dept.email}</a>
+                <a href={`tel:${dept.phone}`} className="text-xs font-mono font-bold text-secondary hover:text-primary transition-colors block">{dept.phone}</a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Corporate Communications Form */}
       <section id="contact-form" className="py-20 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white text-left">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
@@ -424,7 +460,7 @@ export default function Contact({ showToast, params }: ContactProps) {
                   <MessageSquareMore className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-heading text-xl sm:text-2xl">Send Corporate Message</h3>
+                  <h3 className="font-display font-bold text-heading text-xl sm:text-2xl">Enquiry Form</h3>
                   <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase text-muted tracking-widest mt-1">DIRECTLY ROUTED TO SPECIALIZED DEPARTMENT HEADS</p>
                 </div>
               </div>

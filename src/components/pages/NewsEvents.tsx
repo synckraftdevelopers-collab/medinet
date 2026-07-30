@@ -232,7 +232,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <SectionHeader
                 badge="Latest Updates"
-                title="Press Releases & CSR Actions"
+                title="Press Releases & Corporate Announcements"
                 description="Browse through our recent corporate highlights, research sponsorings, and rural community medicine distributions."
                 centered
               />
@@ -323,7 +323,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <SectionHeader
                 badge="On The Horizon"
-                title="Upcoming Scientific Conferences"
+                title="Upcoming Conferences"
                 description="We participate in high-profile pharmaceutical summits. Schedule a direct meet with our licensing heads at these locations."
                 centered
               />
@@ -419,7 +419,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <SectionHeader
                 badge="Corporate Gallery"
-                title="Medinet in Action"
+                title="Media Gallery"
                 description="Visual logs of our rural diagnostics missions, regulatory audit passes, and therapeutic research debates."
                 centered
               />

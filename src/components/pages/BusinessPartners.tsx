@@ -309,6 +309,54 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
         </div>
       </section>
 
+      {/* Distribution Network */}
+      <section className="py-20 bg-white border-b border-border overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <SectionHeader
+            badge="Global Reach"
+            title="Our Distribution Network"
+            description="Medinet's formulations are trusted across international borders, supported by an expansive supply chain and regional distribution hubs."
+            centered
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-12 relative max-w-4xl mx-auto"
+          >
+            {/* Animated map illustration using icons and stats */}
+            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden">
+              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                <div className="text-center group">
+                  <div className="w-16 h-16 mx-auto bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_4px_12px_rgba(37,99,235,0.1)]">
+                    <Globe className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-3xl font-display font-bold text-slate-900">18+</h3>
+                  <p className="text-sm font-mono text-slate-500 uppercase tracking-widest mt-1 font-bold">Countries</p>
+                </div>
+                <div className="text-center group">
+                  <div className="w-16 h-16 mx-auto bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_4px_12px_rgba(16,185,129,0.1)]">
+                    <MapPin className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-3xl font-display font-bold text-slate-900">250+</h3>
+                  <p className="text-sm font-mono text-slate-500 uppercase tracking-widest mt-1 font-bold">Regional Hubs</p>
+                </div>
+                <div className="text-center group">
+                  <div className="w-16 h-16 mx-auto bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_4px_12px_rgba(147,51,234,0.1)]">
+                    <Boxes className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-3xl font-display font-bold text-slate-900">10M+</h3>
+                  <p className="text-sm font-mono text-slate-500 uppercase tracking-widest mt-1 font-bold">Units Delivered</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Corporate Alliances Benefits Grid */}
       <section className="py-20 bg-gradient-to-b from-background via-alt-bg to-white relative overflow-hidden border-t border-b border-border">
         {/* Subtle radial glow */}

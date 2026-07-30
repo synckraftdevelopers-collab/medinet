@@ -482,6 +482,113 @@ export default function Products({ params, showToast }: ProductsProps) {
         </div>
       </section>
 
+      {/* New Launches Section */}
+      <section className="py-20 bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            badge="Innovation Pipeline"
+            title="Recent New Launches"
+            description="Discover our newest therapeutic formulations recently introduced to the market."
+            centered
+          />
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { name: "MediGastro XR", form: "Extended Release Tablets", category: "Gastroenterology" },
+              { name: "NeuroPlus Forte", form: "Dual-Action Capsules", category: "Neurology" },
+              { name: "CardioProtect CR", form: "Controlled Release", category: "Cardiology" }
+            ].map((launch, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.15, duration: 0.5 }}
+                className="utility-card p-6 border-t-[3px] border-t-emerald-500 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(16,185,129,0.12)] transition-all duration-300 group cursor-pointer"
+              >
+                <span className="inline-block px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-mono font-bold uppercase tracking-widest rounded-full mb-4">
+                  {launch.category}
+                </span>
+                <h3 className="font-display font-bold text-xl text-slate-900 group-hover:text-emerald-700 transition-colors mb-1">
+                  {launch.name}
+                </h3>
+                <p className="text-sm font-mono text-slate-500">{launch.form}</p>
+                <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
+                  <span className="text-[11px] font-mono font-bold text-slate-400 uppercase">Available Now</span>
+                  <ArrowRight className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Brands Section */}
+      <section className="py-20 bg-slate-50 border-b border-border overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <SectionHeader
+            badge="Market Leaders"
+            title="Featured Brands"
+            description="Our flagship brands trusted by millions of patients globally."
+            centered
+          />
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-12 flex flex-wrap justify-center gap-4 sm:gap-6"
+          >
+            {[
+              "MedZole-D", "CardioLife", "NeuroSync", "GastroHeal", "Immunex", "OsteoCare"
+            ].map((brand, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, type: "spring", stiffness: 200 }}
+                className="px-8 py-5 bg-white rounded-2xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.02)] hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default"
+              >
+                <span className="font-display font-bold text-xl text-slate-700">{brand}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Download Product Catalogue CTA */}
+      <section className="py-24 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px] opacity-20"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-8 backdrop-blur-md border border-white/20 shadow-lg">
+              <Download className="w-10 h-10 text-white" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
+              Download Full Product Catalogue
+            </h2>
+            <p className="text-emerald-100/90 mb-10 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+              Get detailed insights into our complete range of formulations, therapeutic segments, and packaging specifications in our latest corporate catalogue.
+            </p>
+            <a 
+              href="#"
+              onClick={(e) => { e.preventDefault(); setIsDownloading(true); setTimeout(() => setIsDownloading(false), 2000); }}
+              className="inline-flex items-center gap-3 px-10 py-5 bg-white text-emerald-900 rounded-xl font-bold font-mono text-sm tracking-wider shadow-[0_15px_40px_rgba(0,0,0,0.2)] hover:scale-105 transition-all duration-300 group"
+            >
+              {isDownloading ? (
+                <>DOWNLOADING... <Loader2 className="w-5 h-5 animate-spin" /></>
+              ) : (
+                <>DOWNLOAD PDF <Download className="w-5 h-5 group-hover:-translate-y-1 transition-transform" /></>
+              )}
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Product Details Modal */}
       {selectedProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in">

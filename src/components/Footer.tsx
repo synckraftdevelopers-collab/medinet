@@ -85,8 +85,8 @@ function Footer({ navigate, showToast }: FooterProps) {
       {/* Top Newsletter Section */}
       <div className="relative z-10 border-b border-white/10 bg-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 max-w-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center text-center lg:text-left">
+            <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 max-w-xl mx-auto lg:mx-0">
               <h3 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight mb-3">
                 Stay Informed on <span className="text-secondary">Advancements</span>
               </h3>
@@ -95,7 +95,7 @@ function Footer({ navigate, showToast }: FooterProps) {
               </p>
             </motion.div>
             
-            <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6">
+            <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 w-full max-w-md mx-auto lg:max-w-none">
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2" noValidate>
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <div className="relative flex-1 w-full">
@@ -153,13 +153,13 @@ function Footer({ navigate, showToast }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 items-start">
           
           {/* Column 1: Brand Info */}
-          <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-4 flex flex-col gap-8 lg:pr-8">
+          <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-4 flex flex-col items-center md:items-start gap-8 lg:pr-8 text-center md:text-left">
             <button
               onClick={() => navigate("home")}
-              className="text-left focus:outline-none group/logo w-fit"
+              className="focus:outline-none group/logo w-fit"
               aria-label="Go to Medinet Home"
             >
-              <img src="/logo-dark.svg" alt="Medinet Pharmaceuticals Logo" className="h-14 w-auto drop-shadow-md group-hover/logo:scale-105 transition-transform duration-500 origin-left" />
+              <img src="/logo-dark.svg" alt="Medinet Pharmaceuticals Logo" className="h-14 w-auto drop-shadow-md group-hover/logo:scale-105 transition-transform duration-500 origin-center md:origin-left" />
             </button>
             
             <p className="text-sm text-white/70 leading-relaxed">
@@ -190,9 +190,9 @@ function Footer({ navigate, showToast }: FooterProps) {
           </motion.div>
 
           {/* Column 2: Corporate Links */}
-          <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-2">
+          <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-2 text-center md:text-left">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-8">Corporate</h4>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col items-center md:items-start gap-4">
               {[
                 { name: "Home", route: "home" },
                 { name: "About Profile", route: "about" },
@@ -212,9 +212,9 @@ function Footer({ navigate, showToast }: FooterProps) {
           </motion.div>
 
           {/* Column 3: Therapeutics */}
-          <motion.div custom={3} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3">
+          <motion.div custom={3} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-8">Therapeutics</h4>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col items-center md:items-start gap-4">
               {THERAPEUTIC_CATEGORIES.slice(0, 5).map((cat) => (
                 <li key={cat.id}>
                   <button onClick={() => navigate("products", { category: cat.id })} className="text-sm text-white/70 hover:text-white transition-colors duration-300 group flex items-center relative w-fit pb-1 focus:outline-none text-left">
@@ -232,18 +232,18 @@ function Footer({ navigate, showToast }: FooterProps) {
           </motion.div>
 
           {/* Column 4: Contact Details */}
-          <motion.div custom={4} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3">
+          <motion.div custom={4} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left flex flex-col items-center md:items-start">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-8">Global Support</h4>
-            <ul className="flex flex-col gap-6">
-              <li className="flex items-start gap-4">
+            <ul className="flex flex-col items-center md:items-start gap-6">
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-3.5 h-3.5 text-secondary" />
                 </div>
-                <span className="text-sm text-white/70 leading-relaxed">
+                <span className="text-sm text-white/70 leading-relaxed text-center md:text-left">
                   Bandra-Kurla Complex (BKC), Mumbai, MH, 400051, India
                 </span>
               </li>
-              <li className="flex items-center gap-4">
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <Phone className="w-3.5 h-3.5 text-secondary" />
                 </div>
@@ -252,16 +252,16 @@ function Footer({ navigate, showToast }: FooterProps) {
                   <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
-              <li className="flex items-center gap-4">
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <Mail className="w-3.5 h-3.5 text-secondary" />
                 </div>
-                <a href="mailto:corporate@medinetpharma.com" className="text-sm text-white/70 hover:text-white transition-colors duration-300 relative group pb-1 break-all">
+                <a href="mailto:corporate@medinetpharma.com" className="text-sm text-white/70 hover:text-white transition-colors duration-300 relative group pb-1 break-all text-center md:text-left">
                   corporate@medinetpharma.com
                   <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
-              <li className="flex items-center gap-4">
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <Globe className="w-3.5 h-3.5 text-secondary" />
                 </div>

@@ -212,7 +212,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
           </svg>
         </div>
 
-        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
           <div>
             <span className="utility-badge-blue mb-5">
               <span className="utility-dot"></span>
@@ -221,10 +221,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
           </div>
 
           <div>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5 mx-auto lg:mx-0">
               <span className="bg-gradient-to-r from-heading to-primary text-transparent bg-clip-text">Corporate Partnerships</span> & <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">PCD Franchise</span>
             </h1>
-            <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[720px]">
+            <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[720px] mx-auto lg:mx-0">
               Leverage Medinet&rsquo;s global supply channels, multi-segment formulation portfolio, and thorough regulatory compliance to expand your pharmaceutical market presence.
             </p>
           </div>

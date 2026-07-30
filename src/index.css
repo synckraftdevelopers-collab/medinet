@@ -46,6 +46,8 @@
   html {
     scroll-behavior: smooth !important;
     scroll-padding-top: 110px !important;
+    overflow-x: hidden;
+    width: 100vw;
   }
 
   /* Global scroll offset for all sections to prevent sticky header overlap */
@@ -55,6 +57,8 @@
 
   body {
     @apply font-sans bg-background text-body antialiased selection:bg-secondary selection:text-white;
+    overflow-x: hidden;
+    width: 100vw;
   }
 
   /* Typography Hierarchy, Responsive Font Scaling, Line-Height & Letter Spacing */

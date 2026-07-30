@@ -157,25 +157,30 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
   }, [currentRoute]);
 
   // Capture previous focus before modals/drawers open and restore focus cleanly upon closing
+  // Also lock body scroll when mobile menu or modals are open
   useEffect(() => {
     if (isMobileMenuOpen || isSearchOpen || isEnquiryOpen) {
+      document.body.style.overflow = "hidden";
       if (document.activeElement && document.activeElement !== document.body) {
         lastActiveElementRef.current = document.activeElement as HTMLElement;
       }
-    } else if (lastActiveElementRef.current) {
-      const elToFocus = lastActiveElementRef.current;
-      setTimeout(() => {
-        try {
-          if (document.contains(elToFocus)) {
-            elToFocus.focus();
-          } else {
-            const burgerBtn = document.getElementById("mobile-burger-button");
-            burgerBtn?.focus();
+    } else {
+      document.body.style.overflow = "";
+      if (lastActiveElementRef.current) {
+        const elToFocus = lastActiveElementRef.current;
+        setTimeout(() => {
+          try {
+            if (document.contains(elToFocus)) {
+              elToFocus.focus();
+            } else {
+              const burgerBtn = document.getElementById("mobile-burger-button");
+              burgerBtn?.focus();
+            }
+          } catch (e) {
+            // ignore if focus fails
           }
-        } catch (e) {
-          // ignore if focus fails
-        }
-      }, 50);
+        }, 50);
+      }
     }
   }, [isMobileMenuOpen, isSearchOpen, isEnquiryOpen]);
 

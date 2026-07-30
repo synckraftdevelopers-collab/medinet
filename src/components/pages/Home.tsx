@@ -101,7 +101,7 @@ export default function Home({ navigate }: HomeProps) {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
             {/* Hero Text */}
-            <div className="lg:col-span-7 text-left">
+            <div className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -115,6 +115,7 @@ export default function Home({ navigate }: HomeProps) {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
+                  className="flex justify-center lg:justify-start"
                 >
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-secondary/20 text-secondary text-xs font-bold tracking-widest uppercase shadow-sm mb-6">
                     <span className="relative flex h-2 w-2">
@@ -137,14 +138,14 @@ export default function Home({ navigate }: HomeProps) {
                     ></motion.span>
                   </span> Globally
                 </h1>
-                <p className="text-base sm:text-lg text-body leading-relaxed max-w-xl mb-8">
+                <p className="text-base sm:text-lg text-body leading-relaxed max-w-xl mb-8 mx-auto lg:mx-0">
                   Medinet Pharmaceutical Marketing Company drives the global commercialization of bioequivalent, advanced therapeutics, delivering trust to doctors and life-saving remedies to millions.
                 </p>
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 pt-2 w-full max-w-md mx-auto lg:mx-0"
                 >
                   <button
                     onClick={() => navigate("products", { section: "formulations" })}

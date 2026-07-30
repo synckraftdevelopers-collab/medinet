@@ -242,15 +242,15 @@ export default function Contact({ showToast, params }: ContactProps) {
       <section className="py-16 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white border-b border-border">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
           <span className="utility-badge-blue mb-5">
             <Globe2 className="w-3 h-3 text-primary" />
             Connect With Us
           </span>
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5">
+          <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5 mx-auto lg:mx-0">
             Contact Our <span className="bg-gradient-to-b from-primary to-secondary text-transparent bg-clip-text">Global Offices</span>
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl">
+          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl mx-auto lg:mx-0">
             Have questions regarding wholesale sourcing, territorial licensing rights, or adverse drug event reporting? Reach out to our dedicated corporate departments globally.
           </p>
         </motion.div>

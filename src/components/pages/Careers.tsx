@@ -246,7 +246,7 @@ export default function Careers({ showToast }: CareersProps) {
         {/* Optional Decoration: Soft blurred circle behind heading */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
 
-        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
           <div>
             <span className="utility-badge-blue mb-5">
               <span className="utility-dot"></span>
@@ -255,16 +255,16 @@ export default function Careers({ showToast }: CareersProps) {
           </div>
           
           <div>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mx-auto lg:mx-0">
               <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Careers</span> at <span className="bg-gradient-to-r from-secondary to-primary text-transparent bg-clip-text">Medinet</span>
             </h1>
-            <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px]">
+            <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px] mx-auto lg:mx-0">
               At Medinet, we believe our people are our strongest formulation. We provide a workspace that cherishes scientific integrity, ethical dedication, and continuous professional progression.
             </p>
           </div>
 
           {/* Optional Small Badges Below Description */}
-          <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
               <ShieldCheck className="w-4 h-4 text-primary" />
               <span className="text-xs font-semibold text-heading">WHO-GMP Certified</span>

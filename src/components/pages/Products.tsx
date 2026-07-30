@@ -292,23 +292,23 @@ export default function Products({ params, showToast }: ProductsProps) {
       <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none"></div>
-        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div>
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex flex-col items-center md:items-start">
             <span className="utility-badge-blue mb-4">
               <span className="utility-dot"></span>
               Formulation Portfolio
             </span>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mx-auto md:mx-0">
               <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Products</span> Directory
             </h1>
-            <p className="mt-4 text-body leading-relaxed max-w-[720px] text-sm sm:text-base">
+            <p className="mt-4 text-body leading-relaxed max-w-[720px] text-sm sm:text-base mx-auto md:mx-0">
               Explore our comprehensive collection of therapeutic formulations. Every product is audited, verified, bioequivalent, and licensed for wholesale export.
             </p>
           </div>
           <button
             onClick={handleCatalogDownload}
             disabled={isDownloading}
-            className="utility-button-primary md:self-end px-6 py-3.5"
+            className="utility-button-primary md:self-end px-6 py-3.5 mx-auto md:mx-0 w-full sm:w-auto flex justify-center"
           >
             {isDownloading ? (
               <>

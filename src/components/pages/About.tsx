@@ -121,16 +121,16 @@ export default function About() {
       {/* Page Header Banner */}
       <section className="bg-gradient-to-b from-white via-background to-alt-bg border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(37,99,235,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(37,99,235,0.06)_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-10"></div>
-        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
           <span className="utility-badge-blue mb-4">
             <span className="utility-dot"></span>
             Corporate Profile
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-heading tracking-tight leading-[1.15] relative w-fit mb-4">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-heading tracking-tight leading-[1.15] relative w-fit mb-4 mx-auto lg:mx-0">
             About Medinet Pharmaceuticals
             <motion.span initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, delay: 0.5 }} className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-secondary to-accent opacity-70 rounded-full"></motion.span>
           </h1>
-          <p className="mt-5 text-base sm:text-lg text-body font-sans leading-relaxed max-w-3xl">
+          <p className="mt-5 text-base sm:text-lg text-body font-sans leading-relaxed max-w-3xl mx-auto lg:mx-0">
             Established with a deep commitment to patient care, Medinet Pharmaceutical Marketing Company serves as a vital bridge between complex formulation chemistry and accessible healthcare delivery.
           </p>
         </motion.div>
@@ -169,21 +169,21 @@ export default function About() {
             </motion.div>
 
             {/* Corporate Philosophy */}
-            <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-7 text-left">
+            <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
               <span className="text-xs font-mono font-medium tracking-widest text-secondary uppercase block mb-3">
                 // CORPORATE PHILOSOPHY
               </span>
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-heading tracking-tight leading-[1.15]">
                 <span className="text-secondary">Quality</span>, <span className="text-secondary">Ethics</span>, and Patient Efficacy
               </h2>
-              <p className="mt-6 text-body leading-relaxed text-base">
+              <p className="mt-6 text-body leading-relaxed text-base max-w-2xl">
                 Our organizational ethos is structured entirely around the <span className="text-secondary font-semibold">safety of the end patient</span>. By maintaining a highly selective licensing pipeline, Medinet works exclusively with active pharmaceutical ingredients (APIs) validated in certified <span className="text-secondary font-semibold">bioequivalence</span> clinical studies.
               </p>
-              <p className="mt-4 text-body leading-relaxed text-base">
+              <p className="mt-4 text-body leading-relaxed text-base max-w-2xl">
                 We believe that premium, life-restoring pharmaceuticals should not carry prohibitive costs. Through optimizing distribution channels, standardizing dossiers, and leveraging economies of scale, we succeed in making modern pharmacology reachable to patients globally.
               </p>
 
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl lg:max-w-none text-left">
                 <div className="flex items-start gap-3 bg-alt-bg/50 p-4 rounded-card border border-border/50 hover-lift">
                   <CheckCircle className="w-5 h-5 text-success shrink-0 mt-0.5" />
                   <div>

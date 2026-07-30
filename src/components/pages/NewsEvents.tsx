@@ -174,7 +174,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
             {/* Optional Decoration: Soft blurred circle behind heading */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
 
-            <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+            <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
               <div>
                 <span className="utility-badge-blue mb-5">
                   <Newspaper className="w-3 h-3 text-primary" />
@@ -183,16 +183,16 @@ export default function NewsEvents({ params }: NewsEventsProps) {
               </div>
               
               <div>
-                <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5">
+                <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5 mx-auto lg:mx-0">
                   News &amp; <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Scientific Events</span>
                 </h1>
-                <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px]">
+                <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px] mx-auto lg:mx-0">
                   Stay updated with Medinet&rsquo;s global academic conferences, WHO-GMP facility validations, community healthcare campaigns, and upcoming therapeutic licensing sessions.
                 </p>
               </div>
 
               {/* Optional Info Badges Below Description */}
-              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+              <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
                   <div className="bg-primary/10 p-1.5 rounded-full flex items-center justify-center">
                     <Presentation className="w-3 h-3 text-primary group-hover:scale-110 transition-transform duration-300 ease-out" />

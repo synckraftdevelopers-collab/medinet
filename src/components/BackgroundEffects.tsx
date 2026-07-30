@@ -7,47 +7,47 @@ const BackgroundEffects = () => {
       {/* Soft Animated Gradient Mesh */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(16,185,129,0.06)_0%,transparent_50%),radial-gradient(circle_at_80%_70%,rgba(5,150,105,0.04)_0%,transparent_50%)]"></div>
       
-      {/* Blurred Glowing Blobs (Bokeh) */}
+      {/* Blurred Glowing Blobs (Bokeh) - Optimized for Performance */}
       <motion.div 
         animate={{ 
           scale: [1, 1.1, 1], 
-          opacity: [0.3, 0.5, 0.3],
-          x: [0, 50, 0],
-          y: [0, -50, 0]
+          opacity: [0.15, 0.25, 0.15],
+          x: [0, 20, 0],
+          y: [0, -20, 0]
         }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]"
+        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        className="hidden md:block absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(5,150,105,0.1)_0%,transparent_70%)] rounded-full"
       />
       <motion.div 
         animate={{ 
-          scale: [1, 1.2, 1], 
-          opacity: [0.2, 0.4, 0.2],
-          x: [0, -40, 0],
-          y: [0, 60, 0]
+          scale: [1, 1.1, 1], 
+          opacity: [0.1, 0.2, 0.1],
+          x: [0, -20, 0],
+          y: [0, 20, 0]
         }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-        className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-success/10 rounded-full blur-[120px]"
+        transition={{ duration: 40, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+        className="hidden md:block absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1)_0%,transparent_70%)] rounded-full"
       />
 
       {/* Floating Medical Plus (+) Icons */}
-      {[...Array(6)].map((_, i) => (
+      {[...Array(3)].map((_, i) => (
         <motion.div
           key={`plus-${i}`}
           initial={{ opacity: 0 }}
           animate={{ 
-            opacity: [0.1, 0.3, 0.1],
-            y: [0, -100, 0],
+            opacity: [0.05, 0.15, 0.05],
+            y: [0, -50, 0],
             rotate: [0, 90, 0]
           }}
           transition={{ 
-            duration: 15 + i * 2, 
+            duration: 25 + i * 5, 
             repeat: Infinity, 
             ease: "linear",
             delay: i * 2
           }}
-          className="absolute text-secondary/20"
+          className="hidden md:block absolute text-secondary/10"
           style={{
-            left: `${15 + i * 15}%`,
+            left: `${15 + i * 30}%`,
             top: `${20 + (i % 3) * 25}%`,
           }}
         >
@@ -59,24 +59,24 @@ const BackgroundEffects = () => {
       ))}
 
       {/* Floating Tiny Dots / Particles */}
-      {[...Array(15)].map((_, i) => (
+      {[...Array(6)].map((_, i) => (
         <motion.div
           key={`dot-${i}`}
           animate={{ 
-            y: [0, -150, 0],
-            x: [0, (i % 2 === 0 ? 30 : -30), 0],
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.5, 1]
+            y: [0, -100, 0],
+            x: [0, (i % 2 === 0 ? 20 : -20), 0],
+            opacity: [0.1, 0.3, 0.1],
+            scale: [1, 1.2, 1]
           }}
           transition={{ 
-            duration: 10 + i * 3, 
+            duration: 15 + i * 4, 
             repeat: Infinity, 
             ease: "easeInOut",
             delay: i
           }}
-          className="absolute w-1.5 h-1.5 rounded-full bg-success/30"
+          className="hidden md:block absolute w-1.5 h-1.5 rounded-full bg-success/20"
           style={{
-            left: `${5 + i * 6}%`,
+            left: `${5 + i * 15}%`,
             bottom: `${-(10 + i * 2)}%`,
           }}
         />
@@ -84,9 +84,9 @@ const BackgroundEffects = () => {
 
       {/* DNA-Inspired Line Graphics (Subtle Paths) */}
       <motion.svg
-        animate={{ y: [0, 20, 0], opacity: [0.05, 0.1, 0.05] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[30%] right-[10%] w-64 h-64 text-secondary opacity-10"
+        animate={{ y: [0, 10, 0], opacity: [0.03, 0.08, 0.03] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="hidden lg:block absolute top-[30%] right-[10%] w-64 h-64 text-secondary opacity-5"
         viewBox="0 0 100 100"
         fill="none"
         stroke="currentColor"
@@ -102,9 +102,9 @@ const BackgroundEffects = () => {
 
       {/* Hexagon Outlines (Molecules) */}
       <motion.svg
-        animate={{ rotate: 360, opacity: [0.03, 0.08, 0.03] }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[20%] left-[15%] w-48 h-48 text-primary opacity-5"
+        animate={{ rotate: 360, opacity: [0.02, 0.05, 0.02] }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        className="hidden lg:block absolute bottom-[20%] left-[15%] w-48 h-48 text-primary opacity-5"
         viewBox="0 0 100 100"
         fill="none"
         stroke="currentColor"

@@ -268,7 +268,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
             centered
           />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
             {verticals.map((vert, idx) => {
               const VertIcon = vert.icon;
               return (
@@ -316,7 +316,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start overflow-hidden">
-            <motion.div variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } } }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-5 text-left pt-2">
+            <motion.div variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } } }} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-5 text-left pt-2">
               <span className="utility-badge-blue mb-5">
                 <span className="utility-dot"></span>
                 Why Partner With Us?
@@ -351,7 +351,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
             </motion.div>
 
             {/* B2B Proposal Enquiry Form */}
-            <motion.div variants={{ hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } } }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-7">
+            <motion.div variants={{ hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } } }} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-7">
               <div className="flex flex-wrap items-center gap-3 mb-4 pl-2">
                 <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-primary/20">
                   <ShieldCheck className="w-3 h-3" /> Verified Partner

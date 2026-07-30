@@ -118,7 +118,7 @@ export default function Quality() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* QA Message */}
-            <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-7">
+            <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-7">
               <span className="text-xs font-mono font-bold tracking-widest text-muted uppercase block mb-4">
                 // CORPORATE QUALITY CREED
               </span>
@@ -158,7 +158,7 @@ export default function Quality() {
             <motion.div 
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-5 relative group"
             >
@@ -231,7 +231,7 @@ export default function Quality() {
             centered
           />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             {qualityPillars.map((pillar, idx) => {
               const PillarIcon = pillar.icon;
               return (

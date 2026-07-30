@@ -266,7 +266,7 @@ export default function Contact({ showToast, params }: ContactProps) {
             centered
           />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch mt-12">
             {/* Address Cards List */}
             <div className="lg:col-span-5 space-y-4">
               {OFFICES.map((off, idx) => {
@@ -416,7 +416,7 @@ export default function Contact({ showToast, params }: ContactProps) {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="utility-card overflow-hidden transition-all duration-300 shadow-md">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="utility-card overflow-hidden transition-all duration-300 shadow-md">
 
             <div className="p-8 sm:p-12">
               <div className="flex items-center gap-4 mb-8">
@@ -693,7 +693,7 @@ export default function Contact({ showToast, params }: ContactProps) {
             centered
           />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="max-w-[820px] mx-auto space-y-4 mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="max-w-[820px] mx-auto space-y-4 mt-12">
             {FAQS.map((faq, idx) => {
               let FaqIcon = HelpCircle;
               if (faq.question.includes("Third Party") || faq.question.includes("Manufacturing") || faq.question.includes("manufacturing")) FaqIcon = Factory;

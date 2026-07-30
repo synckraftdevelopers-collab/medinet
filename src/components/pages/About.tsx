@@ -141,7 +141,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* CEO Portrait & Sign-off */}
-            <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-5">
+            <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-5">
               <div className="relative">
                 <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.3, type: "spring" }} viewport={{ once: true }} className="absolute -top-3 -left-3 w-10 h-10 bg-gradient-to-br from-secondary to-primary text-white font-serif text-2xl rounded-xl flex items-center justify-center shadow-md z-10">
                   &ldquo;
@@ -169,7 +169,7 @@ export default function About() {
             </motion.div>
 
             {/* Corporate Philosophy */}
-            <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
+            <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
               <span className="text-xs font-mono font-medium tracking-widest text-secondary uppercase block mb-3">
                 // CORPORATE PHILOSOPHY
               </span>
@@ -207,7 +207,7 @@ export default function About() {
       {/* Mission, Vision, Values */}
       <section className="py-20 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {/* Mission Card */}
             <motion.div variants={fadeUp} className="utility-card p-8 border-t-[4px] border-t-secondary group hover-lift">
               <div className="w-14 h-14 bg-gradient-to-br from-secondary to-primary group-hover:from-accent group-hover:to-secondary rounded-2xl shadow-md flex items-center justify-center text-white mb-6 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-6">
@@ -238,7 +238,7 @@ export default function About() {
             centered
           />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {coreValues.map((val, idx) => {
               const ValueIcon = val.icon;
               return (
@@ -265,7 +265,7 @@ export default function About() {
             centered
           />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {LEADERSHIP.map((leader) => {
               let accentClass = "border-t-secondary";
               let badgeText = "MD";
@@ -345,7 +345,7 @@ export default function About() {
             {/* Center spine on desktop */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-border via-secondary/30 to-border opacity-80 -translate-x-1/2"></div>
 
-            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="space-y-12">
+            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-12">
               {timelineMilestones.map((milestone, idx) => {
                 const isEven = idx % 2 === 0;
                 const timelineIcons = [Rocket, Building2, Globe, Factory, Brain, Award];

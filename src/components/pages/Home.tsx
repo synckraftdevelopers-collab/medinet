@@ -73,7 +73,7 @@ export default function Home({ navigate }: HomeProps) {
           <motion.div 
             animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[20%] right-[15%] w-16 h-16 rounded-3xl bg-gradient-to-tr from-secondary/10 to-accent/10 border border-white/40 backdrop-blur-md flex items-center justify-center shadow-lg"
+            className="hidden md:flex absolute top-[20%] right-[15%] w-16 h-16 rounded-3xl bg-gradient-to-tr from-secondary/10 to-accent/10 border border-white/40 backdrop-blur-md items-center justify-center shadow-lg"
           >
             <Pill className="w-8 h-8 text-secondary/50" />
           </motion.div>
@@ -81,7 +81,7 @@ export default function Home({ navigate }: HomeProps) {
           <motion.div 
             animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[25%] left-[10%] w-20 h-20 rounded-full bg-gradient-to-tr from-primary/5 to-success/10 border border-white/40 backdrop-blur-md flex items-center justify-center shadow-lg"
+            className="hidden md:flex absolute bottom-[25%] left-[10%] w-20 h-20 rounded-full bg-gradient-to-tr from-primary/5 to-success/10 border border-white/40 backdrop-blur-md items-center justify-center shadow-lg"
           >
             <FlaskConical className="w-10 h-10 text-success/40" />
           </motion.div>
@@ -89,12 +89,12 @@ export default function Home({ navigate }: HomeProps) {
           <motion.div 
             animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[10%] left-[20%] w-[400px] h-[400px] bg-secondary/5 rounded-full blur-3xl"
+            className="hidden md:block absolute top-[10%] left-[20%] w-[400px] h-[400px] bg-secondary/5 rounded-full"
           ></motion.div>
           <motion.div 
             animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl"
+            className="hidden md:block absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-accent/5 rounded-full"
           ></motion.div>
         </div>
 
@@ -272,7 +272,7 @@ export default function Home({ navigate }: HomeProps) {
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
               className="relative z-10"
             >

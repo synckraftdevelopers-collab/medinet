@@ -247,8 +247,8 @@
 .hover-lift:hover,
 [class*="rounded-card"]:hover,
 [class*="shadow-card"]:hover {
-  transform: translateY(-6px) scale(1.01) !important;
-  box-shadow: 0 24px 48px -12px rgba(20, 83, 45, 0.18), 0 12px 24px -6px rgba(5, 150, 105, 0.10) !important;
+  transform: translateY(-4px) scale(1.01) !important;
+  box-shadow: 0 16px 32px -8px rgba(20, 83, 45, 0.12), 0 8px 16px -6px rgba(5, 150, 105, 0.08) !important;
 }
 
 /* 2. Buttons Micro Interaction & Accessibility */
@@ -308,7 +308,7 @@ a:hover svg[class*="lucide-arrow-right"],
   transition: transform 250ms ease-out !important;
 }
 
-/* 3. Icons Micro Interaction (Rotate 6° & Scale 1.05) */
+/* 3. Icons Micro Interaction (Scale 1.03) */
 button:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
 a:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
 .utility-panel:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
@@ -316,13 +316,13 @@ a:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="me
 .card:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
 .group:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]),
 [class*="group"]:hover svg.lucide:not([class*="arrow"]):not([class*="chevron"]):not([class*="menu"]):not([class*="x"]):not([class*="search"]) {
-  transform: rotate(6deg) scale(1.05) !important;
+  transform: scale(1.03) !important;
   transition: transform 250ms ease-out !important;
 }
 
-/* 4. Images Micro Interaction (Zoom 1.03) */
+/* 4. Images Micro Interaction (Zoom 1.01) */
 img {
-  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 300ms ease-out !important;
 }
 
 .utility-panel:hover img:not([src*="logo"]),
@@ -332,7 +332,7 @@ img {
 [class*="group"]:hover img:not([src*="logo"]),
 a:hover img:not([src*="logo"]),
 button:hover img:not([src*="logo"]) {
-  transform: scale(1.03) !important;
+  transform: scale(1.01) !important;
 }
 
 /* 5. Navigation Micro Interactions */
@@ -568,8 +568,8 @@ header[class*="sticky"], header[class*="fixed"] {
 
 /* Hover Shadow Elevation (Multi-layered ambient + direct light shadow) */
 .utility-card:not([class*="bg-"]):hover, .utility-panel:not([class*="bg-"]):hover, .card:not([class*="bg-"]):hover, .hover-lift:not([class*="bg-"]):hover {
-  border-color: rgba(5, 150, 105, 0.35);
-  box-shadow: 0 24px 48px -12px rgba(20, 83, 45, 0.14), 0 12px 24px -8px rgba(5, 150, 105, 0.12), 0 0 0 1px rgba(5, 150, 105, 0.08);
+  border-color: rgba(5, 150, 105, 0.25);
+  box-shadow: 0 16px 32px -12px rgba(20, 83, 45, 0.1), 0 8px 16px -8px rgba(5, 150, 105, 0.08), 0 0 0 1px rgba(5, 150, 105, 0.05);
 }
 
 /* 3. Glossy Sheen & Optical Polish on Badges, Tags, and Status Pills */

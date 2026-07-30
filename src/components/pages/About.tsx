@@ -256,8 +256,28 @@ export default function About() {
       </section>
 
       {/* Leadership Team Section */}
-      <section className="py-20 bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-white border-b border-border relative overflow-hidden">
+        {/* Subtle Decorative Background Elements */}
+        <div className="absolute inset-0 pointer-events-none flex justify-center items-center overflow-hidden">
+          {/* Subtle Grid / DNA Line Hint */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(5,150,105,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(5,150,105,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+          {/* Floating Blobs for Depth */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-secondary/5 to-transparent rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
+          {/* Low Opacity Floating Dots */}
+          <div className="absolute inset-0 bg-[radial-gradient(#059669_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-[0.03]"></div>
+        </div>
+
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
+          }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        >
           <SectionHeader
             badge="Executive Leadership"
             title="Guiding Our Scientific Vision"
@@ -265,70 +285,86 @@ export default function About() {
             centered
           />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
+          >
             {LEADERSHIP.map((leader) => {
-              let accentClass = "border-t-secondary";
+              let accentGradient = "from-secondary to-primary";
               let badgeText = "MD";
 
               const roleLower = leader.role.toLowerCase();
               if (roleLower.includes("founder")) {
-                accentClass = "border-t-secondary";
+                accentGradient = "from-secondary to-primary";
                 badgeText = "MD";
               } else if (roleLower.includes("ceo") || roleLower.includes("chief")) {
-                accentClass = "border-t-primary";
+                accentGradient = "from-primary to-blue-600";
                 badgeText = "CEO";
               } else if (roleLower.includes("research") || roleLower.includes("r&d")) {
-                accentClass = "border-t-accent";
+                accentGradient = "from-accent to-secondary";
                 badgeText = "R&D";
               } else if (roleLower.includes("quality") || roleLower.includes("qa") || roleLower.includes("compliance")) {
-                accentClass = "border-t-secondary";
+                accentGradient = "from-emerald-500 to-secondary";
                 badgeText = "QA";
               }
 
               return (
                 <motion.div
-                  variants={fadeUp}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, scale: 0.95 },
+                    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+                  }}
                   key={leader.id}
-                  className={`utility-card border-t-[4px] ${accentClass} group overflow-hidden hover-lift p-0`}
+                  className="group relative bg-white rounded-[24px] border border-border/60 p-6 flex flex-col h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(5,150,105,0.12)] hover:-translate-y-2 hover:scale-[1.02] hover:border-secondary/30 transition-all duration-500 ease-out cursor-pointer"
                 >
-                  <div className="relative aspect-square overflow-hidden bg-alt-bg z-10 border-b border-border/30">
-                    <Image
-                      src={leader.image}
-                      alt={leader.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                      <p className="text-xs text-white leading-relaxed line-clamp-4">
+                  {/* Subtle top accent border glow on hover */}
+                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r ${accentGradient} rounded-b-full opacity-0 group-hover:w-1/2 group-hover:opacity-100 transition-all duration-500 ease-out`}></div>
+                  
+                  {/* Image Container */}
+                  <div className="relative w-32 h-32 mx-auto mb-6 shrink-0">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-border/50 to-border/10 animate-pulse"></div>
+                    <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white shadow-[0_8px_25px_rgba(0,0,0,0.08)] group-hover:shadow-[0_12px_30px_rgba(5,150,105,0.2)] group-hover:border-secondary/10 transition-all duration-500">
+                      <Image
+                        src={leader.image}
+                        alt={leader.name}
+                        fill
+                        sizes="128px"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    {/* Floating badge effect */}
+                    <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r ${accentGradient} text-white text-[10px] font-bold tracking-[0.1em] shadow-md group-hover:shadow-[0_0_15px_rgba(5,150,105,0.4)] transition-all duration-300 transform group-hover:-translate-y-1`}>
+                      {badgeText}
+                    </div>
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="text-center flex-grow flex flex-col justify-start">
+                    <span className="text-[11px] font-mono font-bold text-secondary uppercase tracking-[0.15em] block mb-2 opacity-90">
+                      {leader.role}
+                    </span>
+                    <h3 className="font-display font-extrabold text-heading text-xl mb-1.5 text-slate-900 group-hover:text-secondary transition-colors duration-300 line-clamp-1">
+                      {leader.name}
+                    </h3>
+                    <p className="text-sm text-slate-500 font-medium leading-relaxed mb-4">
+                      {leader.qualification}
+                    </p>
+                    
+                    {/* Bio */}
+                    <div className="mt-auto pt-4 border-t border-border/40 overflow-hidden">
+                      <p className="text-[13px] text-body leading-relaxed line-clamp-3 transition-all duration-300">
                         {leader.bio}
                       </p>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span className="text-xs font-mono font-bold text-secondary uppercase tracking-widest block">
-                        {leader.role}
-                      </span>
-                      <span className="utility-badge-blue">
-                        {badgeText}
-                      </span>
-                    </div>
-                    <h3 className="font-display font-bold text-heading text-lg mt-1 line-clamp-1">
-                      {leader.name}
-                    </h3>
-                    <p className="text-xs text-muted font-mono mt-1.5 leading-relaxed">
-                      {leader.qualification}
-                    </p>
-                    <p className="text-sm text-body leading-relaxed mt-4 line-clamp-3 sm:hidden block">
-                      {leader.bio}
-                    </p>
                   </div>
                 </motion.div>
               );
             })}
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Corporate Timeline Section */}

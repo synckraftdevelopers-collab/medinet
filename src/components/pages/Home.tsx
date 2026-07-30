@@ -402,8 +402,25 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Therapeutic Segments Section */}
-      <section className="py-24 bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-[#FAFCFB] border-b border-border relative overflow-hidden">
+        {/* Subtle Premium Background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(5,150,105,0.03)_0%,transparent_60%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(5,150,105,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(5,150,105,0.015)_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
+          {/* Floating minimal particles */}
+          <motion.div 
+            animate={{ y: [0, -20, 0], opacity: [0.1, 0.3, 0.1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[80px]"
+          ></motion.div>
+          <motion.div 
+            animate={{ y: [0, 20, 0], opacity: [0.1, 0.2, 0.1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]"
+          ></motion.div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeader
             badge="Therapeutic Segments"
             title="Comprehensive Healthcare Formulations"
@@ -411,38 +428,64 @@ export default function Home({ navigate }: HomeProps) {
             centered
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16"
+          >
             {THERAPEUTIC_CATEGORIES.map((cat, idx) => {
               const IconComp = iconMap[cat.iconName] || Activity;
               return (
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.6 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, scale: 0.95 },
+                    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" } }
+                  }}
                   key={cat.id}
                   onClick={() => navigate("products", { category: cat.id })}
-                  className="utility-card p-6 group flex flex-col justify-between hover:border-secondary/50 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                  className="group relative flex flex-col justify-between bg-white rounded-2xl border border-secondary/15 p-7 cursor-pointer shadow-[0_8px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(5,150,105,0.12)] hover:-translate-y-2 hover:scale-[1.02] hover:border-secondary/40 transition-all duration-[250ms] ease-out overflow-hidden z-10"
                 >
-                  <div>
-                    <div className="w-12 h-12 bg-gradient-to-br from-secondary/10 to-primary/5 rounded-xl text-secondary flex items-center justify-center mb-5 shadow-sm group-hover:from-secondary group-hover:to-primary group-hover:text-white transition-colors duration-500">
-                      <IconComp className="w-6 h-6 group-hover:rotate-12 transition-transform duration-500" />
-                    </div>
-                    <h3 className="font-display font-bold text-heading text-lg mb-2 group-hover:text-primary transition-colors duration-300">
+                  {/* Subtle inner gradient (White -> Soft Mint -> White) */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white via-emerald-50/40 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"></div>
+                  
+                  {/* Premium top accent strip */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary/50 via-primary/60 to-secondary/50 opacity-80 group-hover:opacity-100 group-hover:from-secondary group-hover:via-accent group-hover:to-secondary transition-all duration-[250ms]"></div>
+
+                  <div className="relative z-10">
+                    <motion.div 
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
+                      className="w-14 h-14 bg-gradient-to-br from-white to-emerald-50/80 border border-secondary/15 rounded-[16px] text-secondary flex items-center justify-center mb-6 shadow-[0_4px_15px_rgba(5,150,105,0.06)] group-hover:shadow-[0_8px_25px_rgba(5,150,105,0.25)] group-hover:scale-[1.08] group-hover:from-secondary group-hover:to-primary group-hover:text-white transition-all duration-[250ms] relative"
+                    >
+                      <div className="absolute inset-0 rounded-[16px] bg-secondary/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-[250ms] -z-10"></div>
+                      <IconComp className="w-6 h-6 relative z-10" />
+                    </motion.div>
+                    
+                    <h3 className="font-display font-extrabold text-slate-900 text-[19px] mb-3 group-hover:text-secondary transition-colors duration-[250ms]">
                       {cat.name}
                     </h3>
-                    <p className="text-sm text-body leading-relaxed line-clamp-3">
+                    
+                    <p className="text-[14px] text-slate-600 leading-loose line-clamp-3">
                       {cat.description}
                     </p>
                   </div>
-                  <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs font-mono font-bold text-secondary group-hover:text-primary transition-colors duration-300">
-                    <span className="relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-secondary after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">VIEW FORMULATIONS</span>
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  
+                  <div className="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-500 group-hover:text-secondary transition-colors duration-[250ms] relative z-10">
+                    <span className="relative overflow-hidden py-1">
+                      VIEW FORMULATIONS
+                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-[250ms] ease-out"></span>
+                    </span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-[250ms] group-hover:translate-x-1.5" />
                   </div>
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -523,8 +566,8 @@ export default function Home({ navigate }: HomeProps) {
 
                 <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
                   <span className="text-xs font-mono"><span className="text-muted">Pack:</span> <span className="text-heading font-bold">{product.packaging}</span></span>
-                  <span className="text-xs font-mono font-bold text-heading group-hover:text-secondary flex items-center gap-2 uppercase group/btn transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-secondary after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
-                    DETAILS <ArrowRight className="w-4 h-4 text-heading group-hover:text-accent group-hover:translate-x-1 transition-transform duration-300" />
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-white to-slate-50 border border-emerald-200 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wider shadow-sm group-hover:from-emerald-600 group-hover:to-emerald-500 group-hover:text-white group-hover:border-emerald-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
+                    DETAILS <ArrowRight className="w-3.5 h-3.5 text-emerald-600 group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
                   </span>
                 </div>
               </motion.div>

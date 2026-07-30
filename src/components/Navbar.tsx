@@ -48,7 +48,9 @@ import {
   Phone,
   Loader2,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  User,
+  Mail
 } from "lucide-react";
 
 interface NavbarProps {
@@ -1270,22 +1272,49 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
       </header>
 
       {/* Enquiry Modal */}
+      <AnimatePresence>
         {isEnquiryOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title">
-            <div className="w-full max-w-lg bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-2xl border border-border overflow-hidden text-left flex flex-col mt-16 max-h-[85vh]">
+          <motion.div 
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/40 overflow-y-auto" 
+            role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title"
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+              className="w-full max-w-2xl bg-white/95 backdrop-blur-2xl rounded-[24px] border border-white/40 shadow-[0_30px_60px_-15px_rgba(5,150,105,0.2)] overflow-hidden text-left flex flex-col mt-6 sm:mt-12 max-h-[95vh] relative"
+            >
+              {/* Background Decorative Graphics */}
+              <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden rounded-[24px]">
+                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.05),transparent_60%)]"></div>
+                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_bottom_left,rgba(5,150,105,0.05),transparent_60%)]"></div>
+                {/* Medical molecule / floating circles pattern */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 border border-emerald-500/10 rounded-full blur-[1px]"></div>
+                <div className="absolute top-20 -right-5 w-20 h-20 border border-emerald-500/10 rounded-full blur-[1px]"></div>
+              </div>
+              
               {/* Header */}
-              <div className="flex items-start justify-between p-5 border-b border-border bg-background">
+              <div className="relative z-10 flex items-start justify-between p-5 sm:p-6 border-b border-slate-200/50 bg-white/50">
                 <div>
-                  <span className="text-[10px] font-mono font-medium text-body uppercase tracking-widest block">
-                    // QUICK CONTACT
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-mono font-bold tracking-widest uppercase rounded-full mb-3 shadow-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Corporate Support
                   </span>
-                  <h2 id="enquiry-modal-title" className="text-lg font-display font-medium text-heading mt-1">
-                    Submit an Enquiry
+                  <h2 id="enquiry-modal-title" className="text-xl sm:text-2xl font-display font-extrabold text-slate-900 tracking-tight">
+                    Enterprise Business Enquiry
                   </h2>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1.5 max-w-md leading-relaxed">
+                    Connect with our pharmaceutical marketing team for product partnerships and business enquiries.
+                  </p>
                 </div>
                 <button
                   onClick={() => setIsEnquiryOpen(false)}
-                  className="p-1.5 hover:bg-alt-bg/50 text-muted hover:text-body rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                  className="p-2 bg-slate-50 hover:bg-slate-100 text-slate-400 hover:text-slate-600 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 shadow-sm border border-slate-200/50"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -1294,12 +1323,17 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
 
               {/* Form Content */}
               {formSuccess ? (
-                <div className="p-8 text-center space-y-4 my-auto animate-fade-in">
-                  <div className="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mx-auto border border-green-200">
-                    <CheckCircle2 className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="text-xl font-display font-medium text-heading">Enquiry Submitted Successfully!</h3>
-                  <p className="text-xs text-muted max-w-sm mx-auto leading-relaxed">
+                <div className="relative z-10 p-8 text-center space-y-4 my-auto">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                    className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-full flex items-center justify-center mx-auto border border-emerald-200 shadow-[0_0_30px_rgba(16,185,129,0.2)]"
+                  >
+                    <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+                  </motion.div>
+                  <h3 className="text-xl font-display font-extrabold text-slate-900">Enquiry Submitted!</h3>
+                  <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
                     Thank you for contacting MediNet. Your inquiry has been routed to our corporate sourcing team. We will respond within 24 business hours.
                   </p>
                   <div className="pt-4 flex justify-center gap-3">
@@ -1309,24 +1343,16 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         setFormSuccess(false);
                         setIsEnquiryOpen(false);
                       }}
-                      className="px-6 py-2.5 bg-primary text-white font-mono text-xs font-medium rounded-btn shadow-btn hover:bg-black transition-all"
+                      className="px-8 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-mono text-xs font-bold tracking-wider rounded-xl shadow-[0_8px_20px_rgba(16,185,129,0.25)] hover:shadow-[0_12px_25px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 transition-all duration-300"
                     >
                       CLOSE WINDOW
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setFormSuccess(false)}
-                      className="px-6 py-2.5 border border-border bg-surface hover:bg-alt-bg text-heading font-mono text-xs font-medium rounded-btn transition-all"
-                    >
-                      SEND ANOTHER
                     </button>
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleEnquirySubmit} className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4" noValidate>
+                <form onSubmit={handleEnquirySubmit} className="relative z-10 flex-1 overflow-y-auto p-5 sm:p-6 space-y-4" noValidate>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="enquiry-name" className="text-xs font-mono font-medium text-body block mb-1.5">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <div className="relative group/field">
                       <input
                         id="enquiry-name"
                         type="text"
@@ -1337,20 +1363,26 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         value={formData.name}
                         onChange={(e) => handleEnquiryFieldChange("name", e.target.value)}
                         onBlur={(e) => handleEnquiryFieldBlur("name", e.target.value)}
-                        className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                        placeholder="John Doe"
+                        placeholder=" "
+                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                         aria-invalid={!!formErrors.name}
                         aria-describedby={formErrors.name ? "enq-name-err" : undefined}
                       />
+                      <label htmlFor="enquiry-name" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
+                        <User className={`w-4 h-4 transition-all duration-300 ${formErrors.name ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
+                      </div>
                       {formErrors.name && (
-                        <span id="enq-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <span id="enq-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
                           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                           {formErrors.name}
                         </span>
                       )}
                     </div>
-                    <div>
-                      <label htmlFor="enquiry-email" className="text-xs font-mono font-medium text-body block mb-1.5">Email Address <span className="text-red-500" aria-hidden="true">*</span></label>
+                    
+                    <div className="relative group/field">
                       <input
                         id="enquiry-email"
                         type="email"
@@ -1361,13 +1393,19 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         value={formData.email}
                         onChange={(e) => handleEnquiryFieldChange("email", e.target.value)}
                         onBlur={(e) => handleEnquiryFieldBlur("email", e.target.value)}
-                        className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                        placeholder="corporate@example.com"
+                        placeholder=" "
+                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                         aria-invalid={!!formErrors.email}
                         aria-describedby={formErrors.email ? "enq-email-err" : undefined}
                       />
+                      <label htmlFor="enquiry-email" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
+                        <Mail className={`w-4 h-4 transition-all duration-300 ${formErrors.email ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
+                      </div>
                       {formErrors.email && (
-                        <span id="enq-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <span id="enq-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
                           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                           {formErrors.email}
                         </span>
@@ -1376,8 +1414,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="enquiry-phone" className="text-xs font-mono font-medium text-body block mb-1.5">Phone/Whatsapp <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <div className="relative group/field">
                       <input
                         id="enquiry-phone"
                         type="tel"
@@ -1388,20 +1425,26 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         value={formData.phone}
                         onChange={(e) => handleEnquiryFieldChange("phone", e.target.value)}
                         onBlur={(e) => handleEnquiryFieldBlur("phone", e.target.value)}
-                        className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder=" "
+                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                         aria-invalid={!!formErrors.phone}
                         aria-describedby={formErrors.phone ? "enq-phone-err" : undefined}
                       />
+                      <label htmlFor="enquiry-phone" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                        Phone/Whatsapp <span className="text-red-500">*</span>
+                      </label>
+                      <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
+                        <Phone className={`w-4 h-4 transition-all duration-300 ${formErrors.phone ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
+                      </div>
                       {formErrors.phone && (
-                        <span id="enq-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <span id="enq-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
                           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                           {formErrors.phone}
                         </span>
                       )}
                     </div>
-                    <div>
-                      <label htmlFor="enquiry-company" className="text-xs font-mono font-medium text-body block mb-1.5">Company (Optional)</label>
+                    
+                    <div className="relative group/field">
                       <input
                         id="enquiry-company"
                         type="text"
@@ -1409,18 +1452,21 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         autoComplete="organization"
                         value={formData.company}
                         onChange={(e) => handleEnquiryFieldChange("company", e.target.value)}
-                        className="w-full px-3.5 py-2.5 bg-white border border-border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                        placeholder="Company Name Ltd."
+                        placeholder=" "
+                        className="peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border border-slate-200 rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed"
                       />
+                      <label htmlFor="enquiry-company" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                        Company (Optional)
+                      </label>
+                      <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
+                        <Building2 className="w-4 h-4 text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110 transition-all duration-300" />
+                      </div>
                     </div>
                   </div>
 
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label htmlFor="enquiry-message" className="text-xs font-mono font-medium text-body">Enquiry Details <span className="text-red-500" aria-hidden="true">*</span></label>
-                      <span className={`text-[10px] font-mono ${formData.message.length > 450 ? "text-amber-500 font-bold" : "text-muted"}`}>
-                        {formData.message.length}/500 chars
-                      </span>
+                  <div className="relative group/field">
+                    <div className="absolute top-3.5 left-3.5 pointer-events-none">
+                      <FileText className={`w-4 h-4 transition-all duration-300 ${formErrors.message ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
                     </div>
                     <textarea
                       id="enquiry-message"
@@ -1428,17 +1474,25 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       disabled={formSubmitting}
                       aria-required="true"
                       maxLength={500}
-                      rows={4}
+                      rows={3}
                       value={formData.message}
                       onChange={(e) => handleEnquiryFieldChange("message", e.target.value)}
                       onBlur={(e) => handleEnquiryFieldBlur("message", e.target.value)}
-                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed resize-y ${formErrors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                      placeholder="Please provide specifics regarding product sourcing, dosage forms, or target quantities..."
+                      placeholder=" "
+                      className={`peer w-full min-h-[96px] pl-11 pr-3 pt-6 pb-2 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 placeholder:text-transparent focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed resize-y ${formErrors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                       aria-invalid={!!formErrors.message}
                       aria-describedby={formErrors.message ? "enq-msg-err" : undefined}
                     ></textarea>
+                    <label htmlFor="enquiry-message" className="absolute left-11 top-3 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                      Enquiry Details <span className="text-red-500">*</span>
+                    </label>
+                    
+                    <div className={`absolute bottom-2 right-2 px-2 py-0.5 rounded-full text-[9px] font-mono font-bold transition-colors ${formData.message.length > 450 ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-500"}`}>
+                      {formData.message.length}/500 chars
+                    </div>
+                    
                     {formErrors.message && (
-                      <span id="enq-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                      <span id="enq-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
                         <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                         {formErrors.message}
                       </span>
@@ -1446,37 +1500,40 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   </div>
 
                   {/* Footer */}
-                  <div className="pt-4 border-t border-border flex items-center justify-end gap-3 bg-white mt-4">
+                  <div className="pt-4 border-t border-slate-200/50 flex flex-col-reverse sm:flex-row items-center justify-end gap-3 mt-1">
                     <button
                       type="button"
                       disabled={formSubmitting}
                       onClick={() => setIsEnquiryOpen(false)}
-                      className="px-4 py-2.5 border border-border text-body hover:bg-background font-mono text-xs font-medium rounded-btn shadow-sm hover:border-secondary transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                      className="w-full sm:w-auto px-5 py-2.5 bg-white/50 backdrop-blur-md border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 font-mono text-xs font-bold tracking-wider rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                     >
                       CANCEL
                     </button>
                     <button
                       type="submit"
                       disabled={formSubmitting}
-                      className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white font-mono text-xs font-medium rounded-btn shadow-btn hover:shadow-card-hover transition-all duration-200 flex items-center justify-center gap-2 min-w-[150px] disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+                      className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-mono text-xs font-bold tracking-wider rounded-xl shadow-[0_8px_20px_rgba(16,185,129,0.25)] hover:shadow-[0_12px_25px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500 relative overflow-hidden group/submit"
                     >
+                      <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover/submit:translate-x-full transition-transform duration-700 ease-in-out"></div>
                       {formSubmitting ? (
                         <>
-                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                          SUBMITTING...
+                          <Loader2 className="w-4 h-4 animate-spin relative z-10" />
+                          <span className="relative z-10">SUBMITTING...</span>
                         </>
                       ) : (
                         <>
-                          SUBMIT ENQUIRY
+                          <span className="relative z-10">SUBMIT ENQUIRY</span>
+                          <ArrowRight className="w-4 h-4 group-hover/submit:translate-x-1 transition-transform relative z-10" />
                         </>
                       )}
                     </button>
                   </div>
                 </form>
               )}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
+      </AnimatePresence>
     </>
   );
 }

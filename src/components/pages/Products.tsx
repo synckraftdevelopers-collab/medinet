@@ -453,8 +453,8 @@ export default function Products({ params, showToast }: ProductsProps) {
                       <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs font-mono">
                         <span className="text-muted">{p.packaging}</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold text-heading group-hover:text-secondary transition-colors duration-300 flex items-center gap-1.5 uppercase tracking-wider relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-secondary after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
-                            Details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+                          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-white to-slate-50 border border-emerald-200 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wider shadow-sm group-hover:from-emerald-600 group-hover:to-emerald-500 group-hover:text-white group-hover:border-emerald-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
+                            DETAILS <ArrowRight className="w-3.5 h-3.5 text-emerald-600 group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
                           </span>
                         </div>
                       </div>

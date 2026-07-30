@@ -78,26 +78,26 @@ function Footer({ navigate, showToast }: FooterProps) {
   };
 
   return (
-    <footer className="bg-primary text-muted font-sans border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-primary text-muted font-sans border-t border-white/20 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       {/* Top Newsletter Section */}
-      <div className="relative z-10 border-b border-white/10 bg-black/10">
+      <div className="relative z-10 border-b border-white/20 bg-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center text-center lg:text-left">
             <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 max-w-xl mx-auto lg:mx-0">
-              <h3 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight mb-3">
+              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-3">
                 Stay Informed on <span className="text-secondary">Advancements</span>
               </h3>
-              <p className="text-sm text-white/70 leading-relaxed">
+              <p className="text-sm text-gray-200 leading-relaxed">
                 Subscribe to receive quarterly scientific updates, new product launches, therapeutic pipelines, and regulatory compliance reports.
               </p>
             </motion.div>
             
-            <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 w-full max-w-md mx-auto lg:max-w-none">
+            <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 w-full max-w-[360px] sm:max-w-[380px] mx-auto lg:max-w-[420px] lg:mx-0">
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2" noValidate>
-                <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center gap-3">
                   <div className="relative flex-1 w-full">
                     <input
                       id="newsletter-email"
@@ -110,18 +110,18 @@ function Footer({ navigate, showToast }: FooterProps) {
                       onChange={handleEmailChange}
                       onFocus={() => setIsFocused(true)}
                       onBlur={handleEmailBlur}
-                      className={`w-full pl-12 pr-4 h-14 bg-white/5 border rounded-xl text-white text-sm shadow-sm focus:outline-none focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
-                        emailError ? "border-red-500 focus:border-red-500" : isFocused ? "border-secondary ring-2 ring-secondary/20" : "border-white/10 hover:border-white/20"
+                      className={`w-full pl-11 pr-4 h-12 bg-white/10 border rounded-xl text-white placeholder:text-gray-400 text-sm shadow-sm focus:outline-none focus:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
+                        emailError ? "border-red-500 focus:border-red-500" : isFocused ? "border-secondary ring-2 ring-secondary/20" : "border-white/20 hover:border-white/30"
                       }`}
                       aria-label="Email address for newsletter"
                       aria-invalid={!!emailError}
                     />
-                    <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${isFocused ? 'text-secondary' : 'text-white/40'}`} />
+                    <Mail className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors duration-300 ${isFocused ? 'text-secondary' : 'text-gray-300'}`} />
                   </div>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="h-14 px-8 bg-white text-primary hover:bg-secondary hover:text-white font-mono text-sm font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-lg hover:shadow-[0_0_20px_rgba(5,150,105,0.4)] hover:-translate-y-0.5 w-full sm:w-auto"
+                    className="h-12 px-6 bg-white text-primary hover:bg-secondary hover:text-white font-mono text-sm font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-lg hover:shadow-[0_0_20px_rgba(5,150,105,0.4)] hover:-translate-y-0.5 w-full sm:w-auto"
                   >
                     {loading ? (
                       <>
@@ -162,36 +162,36 @@ function Footer({ navigate, showToast }: FooterProps) {
               <img src="/logo-dark.svg" alt="Medinet Pharmaceuticals Logo" className="h-14 w-auto drop-shadow-md group-hover/logo:scale-105 transition-transform duration-500 origin-center md:origin-left" />
             </button>
             
-            <p className="text-sm text-white/70 leading-relaxed">
+            <p className="text-sm text-gray-200 leading-relaxed">
               Medinet Pharmaceutical Marketing Company is a world-class marketer of high-quality, bioequivalent advanced therapeutics. Bridging research and accessibility for over 25 years.
             </p>
             
             <div className="flex items-center gap-4">
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.4)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="LinkedIn">
-                <Linkedin className="w-4 h-4" />
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="LinkedIn">
+                <Linkedin className="w-4 h-4 brightness-125" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.4)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Twitter">
-                <Twitter className="w-4 h-4" />
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Twitter">
+                <Twitter className="w-4 h-4 brightness-125" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.4)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Facebook">
-                <Facebook className="w-4 h-4" />
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Facebook">
+                <Facebook className="w-4 h-4 brightness-125" />
               </a>
             </div>
 
-            <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.2)] w-full transition-colors hover:border-secondary/30">
-              <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
-                <Award className="w-5 h-5 text-secondary" />
+            <div className="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.2)] w-full transition-colors hover:border-secondary/50">
+              <div className="w-10 h-10 rounded-full bg-secondary/30 flex items-center justify-center shrink-0">
+                <Award className="w-5 h-5 text-secondary brightness-110" />
               </div>
               <div>
-                <span className="block font-bold text-white text-sm">WHO-GMP Compliant</span>
-                <span className="block text-xs text-white/50 mt-0.5">Global manufacturing standards</span>
+                <span className="block font-extrabold text-white text-sm">WHO-GMP Compliant</span>
+                <span className="block text-xs text-gray-300 mt-0.5">Global manufacturing standards</span>
               </div>
             </div>
           </motion.div>
 
           {/* Column 2: Corporate Links */}
           <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-2 text-center md:text-left">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-8">Corporate</h4>
+            <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-8">Corporate</h4>
             <ul className="flex flex-col items-center md:items-start gap-4">
               {[
                 { name: "Home", route: "home" },
@@ -202,9 +202,9 @@ function Footer({ navigate, showToast }: FooterProps) {
                 { name: "News & Events", route: "news-events" }
               ].map((link, idx) => (
                 <li key={idx}>
-                  <button onClick={() => navigate(link.route)} className="text-sm text-white/70 hover:text-white transition-colors duration-300 group flex items-center relative w-fit pb-1 focus:outline-none">
+                  <button onClick={() => navigate(link.route)} className="text-sm text-gray-200 hover:text-white transition-colors duration-300 group flex items-center relative w-fit pb-1 focus:outline-none">
                     {link.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
                   </button>
                 </li>
               ))}
@@ -213,13 +213,13 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 3: Therapeutics */}
           <motion.div custom={3} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-8">Therapeutics</h4>
+            <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-8">Therapeutics</h4>
             <ul className="flex flex-col items-center md:items-start gap-4">
               {THERAPEUTIC_CATEGORIES.slice(0, 5).map((cat) => (
                 <li key={cat.id}>
-                  <button onClick={() => navigate("products", { category: cat.id })} className="text-sm text-white/70 hover:text-white transition-colors duration-300 group flex items-center relative w-fit pb-1 focus:outline-none text-left">
+                  <button onClick={() => navigate("products", { category: cat.id })} className="text-sm text-gray-200 hover:text-white transition-colors duration-300 group flex items-center relative w-fit pb-1 focus:outline-none text-left">
                     {cat.name} Division
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
                   </button>
                 </li>
               ))}
@@ -233,41 +233,41 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 4: Contact Details */}
           <motion.div custom={4} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left flex flex-col items-center md:items-start">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-8">Global Support</h4>
+            <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-8">Global Support</h4>
             <ul className="flex flex-col items-center md:items-start gap-6">
               <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
-                <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <MapPin className="w-3.5 h-3.5 text-secondary" />
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-white/20 transition-colors">
+                  <MapPin className="w-3.5 h-3.5 text-secondary brightness-125" />
                 </div>
-                <span className="text-sm text-white/70 leading-relaxed text-center md:text-left">
+                <span className="text-sm text-gray-200 leading-relaxed text-center md:text-left">
                   Bandra-Kurla Complex (BKC), Mumbai, MH, 400051, India
                 </span>
               </li>
-              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
-                <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                  <Phone className="w-3.5 h-3.5 text-secondary" />
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 group">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-secondary brightness-125" />
                 </div>
-                <a href="tel:+912249823300" className="text-sm text-white/70 hover:text-white transition-colors duration-300 relative group pb-1">
+                <a href="tel:+912249823300" className="text-sm text-gray-200 group-hover:text-white transition-colors duration-300 relative pb-1">
                   +91-22-4982-3300
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
-              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
-                <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                  <Mail className="w-3.5 h-3.5 text-secondary" />
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 group">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-secondary brightness-125" />
                 </div>
-                <a href="mailto:corporate@medinetpharma.com" className="text-sm text-white/70 hover:text-white transition-colors duration-300 relative group pb-1 break-all text-center md:text-left">
+                <a href="mailto:corporate@medinetpharma.com" className="text-sm text-gray-200 group-hover:text-white transition-colors duration-300 relative pb-1 break-all text-center md:text-left">
                   corporate@medinetpharma.com
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
-              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
-                <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                  <Globe className="w-3.5 h-3.5 text-secondary" />
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 group">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
+                  <Globe className="w-3.5 h-3.5 text-secondary brightness-125" />
                 </div>
-                <span className="text-sm text-white/70 hover:text-white transition-colors duration-300 relative group pb-1 cursor-pointer">
+                <span className="text-sm text-gray-200 group-hover:text-white transition-colors duration-300 relative pb-1 cursor-pointer">
                   www.medinetpharma.com
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </li>
             </ul>
@@ -276,13 +276,13 @@ function Footer({ navigate, showToast }: FooterProps) {
       </div>
 
       {/* Legal Sub Footer */}
-      <div className="relative z-10 bg-black/20 border-t border-white/10 py-6">
+      <div className="relative z-10 bg-black/20 border-t border-white/20 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             
             <div className="text-center md:text-left flex flex-col gap-1">
-              <p className="text-xs text-white/60">&copy; {new Date().getFullYear()} Medinet Pharmaceutical Marketing Company. All rights reserved.</p>
-              <p className="text-[10px] text-white/40 font-mono tracking-wider uppercase">ESTD 1998 | WHO-GMP Certified Operations</p>
+              <p className="text-sm font-medium text-gray-300">&copy; {new Date().getFullYear()} Medinet Pharmaceutical Marketing Company. All rights reserved.</p>
+              <p className="text-xs text-gray-400 font-mono tracking-wider uppercase">ESTD 1998 | WHO-GMP Certified Operations</p>
             </div>
             
             <div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-3">
@@ -292,9 +292,9 @@ function Footer({ navigate, showToast }: FooterProps) {
                 { name: "Cookie Policy", route: "/legal/cookie-policy" },
                 { name: "Disclaimer", route: "/legal/disclaimer" }
               ].map((legal, i) => (
-                <a key={i} href={legal.route} className="text-xs text-white/50 hover:text-white transition-colors duration-300 relative group pb-0.5">
+                <a key={i} href={legal.route} className="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300 relative group pb-0.5">
                   {legal.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white/50 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
             </div>
@@ -302,8 +302,8 @@ function Footer({ navigate, showToast }: FooterProps) {
           </div>
           
           {/* Subtle separator for disclaimer */}
-          <div className="mt-8 pt-6 border-t border-white/5 text-center">
-            <p className="text-[10px] text-white/30 leading-relaxed max-w-5xl mx-auto">
+          <div className="mt-8 pt-8 border-t border-white/20 text-center">
+            <p className="text-xs text-gray-300 leading-loose max-w-7xl mx-auto">
               Disclaimer: The information provided on this website is for corporate marketing, business-to-business (B2B) partnership discussions, and educational purposes only. It should not be used for self-diagnosis or as a substitute for professional medical advice, diagnosis, or treatment. Medinet formulations are prescription-only medicines, distributed exclusively via registered pharmaceutical supply chain networks.
             </p>
           </div>

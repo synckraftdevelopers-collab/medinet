@@ -1,0 +1,3 @@
+module.exports=[85737,a=>{"use strict";let b=(0,a.i(74090).default)("database",[["ellipse",{cx:"12",cy:"5",rx:"9",ry:"3",key:"msslwz"}],["path",{d:"M3 5V19A9 3 0 0 0 21 19V5",key:"1wlel7"}],["path",{d:"M3 12A9 3 0 0 0 21 12",key:"mv7ke4"}]]);a.s(["Database",0,b],85737)},57702,a=>{"use strict";let b=(0,a.i(74090).default)("clipboard-check",[["rect",{width:"8",height:"4",x:"8",y:"2",rx:"1",ry:"1",key:"tgr4d6"}],["path",{d:"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",key:"116196"}],["path",{d:"m9 14 2 2 4-4",key:"df797q"}]]);a.s(["ClipboardCheck",0,b],57702)}];
+
+//# sourceMappingURL=1o07_lucide-react_dist_esm_icons_1gyizo1._.js.map

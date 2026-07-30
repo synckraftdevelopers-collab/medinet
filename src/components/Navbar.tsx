@@ -638,74 +638,95 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </button>
 
                 {/* Products Mega Menu Dropdown */}
-                {activeMegaMenu === "products" && (
-                  <div
-                    id="products-mega-menu"
-                    role="menu"
-                    aria-label="Products therapeutic segments"
-                    onKeyDown={(e) => handleMenuKeyDown(e, "products-mega-menu")}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-0 w-[640px] max-w-[90vw] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3.5 animate-fade-in z-50 origin-top"
-                  >
-                    <div className="col-span-2 border-b border-[#D1FAE5] pb-3 mb-1 flex">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#ECFDF5] border border-[#A7F3D0] text-[#14532D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(5,150,105,.08)]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#059669]"></span>
-                        Therapeutic Segments
-                      </span>
-                    </div>
-                    {THERAPEUTIC_CATEGORIES.map((cat) => {
-                      let IconComponent = Activity;
-                      if (cat.name.includes("Cardio")) IconComponent = HeartPulse;
-                      else if (cat.name.includes("Neuro")) IconComponent = Brain;
-                      else if (cat.name.includes("Gastro")) IconComponent = Pill;
-                      else if (cat.name.includes("Derma")) IconComponent = Sparkles;
-                      else if (cat.name.includes("Anti-infect") || cat.name.includes("Antibiotic")) IconComponent = ShieldPlus;
-                      else if (cat.name.includes("Respir")) IconComponent = Wind;
-                      else if (cat.name.includes("Ortho") || cat.name.includes("Pain")) IconComponent = Bone;
-                      else if (cat.name.includes("Nutra") || cat.name.includes("Wellness")) IconComponent = Leaf;
+                <AnimatePresence>
+                  {activeMegaMenu === "products" && (
+                    <motion.div
+                      id="products-mega-menu"
+                      role="menu"
+                      aria-label="Products therapeutic segments"
+                      onKeyDown={(e) => handleMenuKeyDown(e, "products-mega-menu")}
+                      initial={{ opacity: 0, scale: 0.96, y: 5 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.96, y: 5 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[640px] max-w-[90vw] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 z-50 origin-top overflow-hidden will-change-transform"
+                    >
+                      {/* Background Effects */}
+                      <div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-multiply"></div>
+                      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.12)_0%,transparent_60%)] pointer-events-none"></div>
+                      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_bottom_left,rgba(5,150,105,0.08)_0%,transparent_60%)] pointer-events-none"></div>
 
-                      return (
-                        <button
-                          key={cat.id}
-                          role="menuitem"
-                          tabIndex={0}
-                          onClick={() => {
-                            setActiveMegaMenu(null);
-                            navigate("products", { category: cat.id });
-                          }}
-                          className="flex items-start gap-3.5 p-3.5 rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F0FDF4,#ECFDF5)] hover:border-[#A7F3D0] hover:translate-x-1 hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] text-left transition-all duration-300 ease-out cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                      <div className="relative z-10 grid grid-cols-2 gap-3.5">
+                        <div className="col-span-2 border-b border-[#D1FAE5] pb-3 mb-1 flex">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#ECFDF5] border border-[#A7F3D0] text-[#14532D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(5,150,105,.08)]">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#059669]"></span>
+                            Therapeutic Segments
+                          </span>
+                        </div>
+                        {THERAPEUTIC_CATEGORIES.map((cat, index) => {
+                          let IconComponent = Activity;
+                          if (cat.name.includes("Cardio")) IconComponent = HeartPulse;
+                          else if (cat.name.includes("Neuro")) IconComponent = Brain;
+                          else if (cat.name.includes("Gastro")) IconComponent = Pill;
+                          else if (cat.name.includes("Derma")) IconComponent = Sparkles;
+                          else if (cat.name.includes("Anti-infect") || cat.name.includes("Antibiotic")) IconComponent = ShieldPlus;
+                          else if (cat.name.includes("Respir")) IconComponent = Wind;
+                          else if (cat.name.includes("Ortho") || cat.name.includes("Pain")) IconComponent = Bone;
+                          else if (cat.name.includes("Nutra") || cat.name.includes("Wellness")) IconComponent = Leaf;
+
+                          return (
+                            <motion.button
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.25, delay: index * 0.025, ease: "easeOut" }}
+                              key={cat.id}
+                              role="menuitem"
+                              tabIndex={0}
+                              onClick={() => {
+                                setActiveMegaMenu(null);
+                                navigate("products", { category: cat.id });
+                              }}
+                              className="flex items-start gap-3.5 p-3.5 rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F0FDF4,#ECFDF5)] hover:border-emerald-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_12px_30px_rgba(5,150,105,.12)] text-left transition-all duration-250 ease-out cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                            >
+                              <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#ECFDF5,#D1FAE5)] border border-[#A7F3D0] text-[#059669] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#059669,#34D399)] group-hover:text-white group-hover:shadow-[0_0_15px_rgba(5,150,105,0.4)] transition-all duration-250">
+                                <IconComponent className="w-5 h-5 group-hover:scale-[1.08] group-hover:rotate-[4deg] transition-transform duration-250" />
+                              </div>
+                              <div>
+                                <div className="text-sm font-bold text-[#0F172A] group-hover:text-[#059669] transition-colors duration-250">
+                                  {cat.name}
+                                </div>
+                                <div className="text-[11px] text-[#64748B] line-clamp-1 mt-0.5 font-sans">
+                                  {cat.description}
+                                </div>
+                              </div>
+                            </motion.button>
+                          );
+                        })}
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.25, delay: THERAPEUTIC_CATEGORIES.length * 0.025, ease: "easeOut" }}
+                          className="col-span-2 mt-2 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#D1FAE5] hover:border-emerald-300 hover:shadow-[0_12px_35px_rgba(5,150,105,.12)] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(20,83,45,.06)] transition-all duration-300 group/search"
                         >
-                          <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#ECFDF5,#D1FAE5)] border border-[#A7F3D0] text-[#059669] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#059669,#34D399)] group-hover:text-white transition-all duration-300">
-                            <IconComponent className="w-5 h-5 group-hover:rotate-[5deg] transition-transform duration-300" />
+                          <div className="text-[11px] text-[#64748B] group-hover/search:text-emerald-700 font-sans ml-2 transition-colors duration-300">
+                            Looking for something specific? Search our entire portfolio.
                           </div>
-                          <div>
-                            <div className="text-sm font-bold text-[#0F172A] group-hover:text-[#059669] transition-colors duration-300">
-                              {cat.name}
-                            </div>
-                            <div className="text-[11px] text-[#64748B] line-clamp-1 mt-0.5 font-sans">
-                              {cat.description}
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    })}
-                    <div className="col-span-2 mt-2 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#D1FAE5] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(20,83,45,.06)]">
-                      <div className="text-[11px] text-[#64748B] font-sans ml-2">
-                        Looking for something specific? Search our entire portfolio.
+                          <button
+                            role="menuitem"
+                            tabIndex={0}
+                            onClick={() => {
+                              setActiveMegaMenu(null);
+                              setIsSearchOpen(true);
+                            }}
+                            className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#14532D,#059669)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#059669,#34D399)] group-hover/search:shadow-[0_0_16px_rgba(5,150,105,.4)] group-hover/search:scale-[1.03] hover:scale-[1.05] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                          >
+                            SEARCH NOW <ArrowRight className="w-3.5 h-3.5 text-white" />
+                          </button>
+                        </motion.div>
                       </div>
-                      <button
-                        role="menuitem"
-                        tabIndex={0}
-                        onClick={() => {
-                          setActiveMegaMenu(null);
-                          setIsSearchOpen(true);
-                        }}
-                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#14532D,#059669)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#059669,#34D399)] hover:shadow-[0_12px_28px_rgba(5,150,105,.30)] hover:scale-[1.03] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
-                      >
-                        SEARCH NOW <ArrowRight className="w-3.5 h-3.5 text-white" />
-                      </button>
-                    </div>
-                  </div>
-                )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               <button
@@ -1006,8 +1027,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-              className="lg:hidden fixed inset-0 z-[9998] bg-[#0F172A]/70 backdrop-blur-md"
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="lg:hidden fixed inset-0 z-[9998] bg-[#0F172A]/80"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
             />
@@ -1017,10 +1038,10 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               key="drawer"
               ref={mobileDrawerRef}
               initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              animate={{ x: "0%", opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:hidden fixed inset-0 w-full h-[100dvh] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-2xl"
+              transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+              className="lg:hidden fixed inset-0 w-full h-[100dvh] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-2xl will-change-transform"
               role="dialog"
               aria-modal="true"
               id="mobile-navigation-drawer"
@@ -1060,9 +1081,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     return (
                       <motion.button
                         key={item.route || item.label}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.25, delay: index * 0.03 }}
+                        initial={{ opacity: 0, y: 10, x: 10 }}
+                        animate={{ opacity: 1, y: 0, x: 0 }}
+                        transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }}
                         onClick={() => {
                           setIsMobileMenuOpen(false);
                           if (item.route) navigate(item.route);
@@ -1087,7 +1108,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   } else if (item.id === "products") {
                     const isActive = currentRoute === "products";
                     return (
-                      <motion.div key="products-accordion" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25, delay: index * 0.03 }} className="relative shrink-0 flex flex-col font-sans">
+                      <motion.div key="products-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "products" ? null : "products")}
                           className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
@@ -1154,7 +1175,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   } else if (item.id === "legal") {
                     const isActive = currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright");
                     return (
-                      <motion.div key="legal-accordion" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25, delay: index * 0.03 }} className="relative shrink-0 flex flex-col font-sans">
+                      <motion.div key="legal-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
                           className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${

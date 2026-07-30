@@ -1,25 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { AppRoute } from "../hooks/useRoute";
-import { motion } from "motion/react";
-import { 
-  ChevronRight, 
-  ShieldCheck, 
-  FileText, 
-  Scale, 
-  Cookie, 
-  BadgeCheck, 
-  ListTree, 
-  LifeBuoy, 
+import { motion, AnimatePresence } from "motion/react";
+import {
+  ChevronRight,
+  ShieldCheck,
+  FileText,
+  Scale,
+  Cookie,
+  BadgeCheck,
+  ListTree,
+  LifeBuoy,
   ArrowRight,
   Info,
   Database,
   Building2,
   Handshake,
-  Copyright
+  Copyright,
+  ChevronDown
 } from "lucide-react";
 
 interface LegalLayoutProps {
@@ -30,7 +31,10 @@ interface LegalLayoutProps {
 }
 
 export default function LegalLayout({ title, currentRoute, sections, children }: LegalLayoutProps) {
-  // Mock navigate function that redirects to root hash router
+  const [activeSection, setActiveSection] = useState<string>(sections[0]?.id || "");
+  const [isTocOpen, setIsTocOpen] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
   const navigate = (route: string, queryParams?: Record<string, string>) => {
     let url = `/#${route}`;
     if (queryParams) {
@@ -44,113 +48,232 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
     alert(`${type.toUpperCase()}: ${message}`);
   };
 
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+    );
+
+    sections.forEach((sec) => {
+      const el = document.getElementById(sec.id);
+      if (el) observerRef.current?.observe(el);
+    });
+
+    return () => observerRef.current?.disconnect();
+  }, [sections]);
+
   let PageIcon = ShieldCheck;
   if (currentRoute === "terms") PageIcon = FileText;
   else if (currentRoute === "disclaimer") PageIcon = Scale;
   else if (currentRoute === "cookies") PageIcon = Cookie;
   else if (currentRoute === "copyright-notice") PageIcon = BadgeCheck;
 
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setIsTocOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#F8FAFC,#F4F8FD,#FFFFFF)] relative overflow-hidden flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900 font-sans">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.03)_0%,transparent_60%)] pointer-events-none"></div>
+    <div className="min-h-screen bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_40%,#FFFFFF_100%)] relative overflow-x-hidden flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-900 font-sans">
+      <div className="fixed top-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.04)_0%,transparent_65%)] pointer-events-none z-0" />
+      <div className="fixed bottom-0 left-0 w-[700px] h-[700px] bg-[radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.03)_0%,transparent_65%)] pointer-events-none z-0" />
 
       <Navbar currentRoute={currentRoute} navigate={navigate} />
 
-      <main className="flex-1 pt-28 pb-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-[13px] font-mono text-[#64748B] mb-12">
-            <a href="/" className="hover:text-[#2563EB] transition-colors flex items-center gap-1.5">
-              HOME
-            </a>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span>LEGAL</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#0F172A] font-semibold">{title.toUpperCase()}</span>
-          </div>
+      <main className="flex-1 pt-24 pb-16 relative z-10">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
 
-          {/* Hero Section */}
-          <motion.div 
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center gap-2 text-[12px] font-mono text-slate-500 mb-6 uppercase tracking-widest font-bold"
+          >
+            <a href="/" className="hover:text-secondary transition-colors">Home</a>
+            <ChevronRight className="w-3 h-3 text-slate-400" />
+            <span>Legal</span>
+            <ChevronRight className="w-3 h-3 text-slate-400" />
+            <span className="text-slate-800">{title}</span>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-14 flex items-center gap-5"
+            className="mb-8 flex items-center gap-5"
           >
-            <div className="w-[52px] h-[52px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] rounded-[16px] shadow-[0_12px_24px_rgba(37,99,235,.20)] flex items-center justify-center shrink-0">
-              <PageIcon className="w-6 h-6 text-white" />
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="w-[58px] h-[58px] bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-[0_12px_28px_rgba(5,150,105,0.22)] flex items-center justify-center shrink-0"
+            >
+              <PageIcon className="w-7 h-7 text-white" />
+            </motion.div>
+            <div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-secondary/25 bg-secondary/5 text-secondary text-[10px] font-mono font-bold uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+                  Legal Document
+                </span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-display font-extrabold text-slate-900 tracking-tight leading-tight">
+                {title}
+              </h1>
             </div>
-            <h1 className="text-3xl md:text-5xl font-display font-[800] text-[#0F172A] tracking-tight">
-              {title}
-            </h1>
           </motion.div>
 
-          {/* Two Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            
-            {/* Sticky Sidebar (Table of Contents) */}
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="w-full lg:col-span-3 lg:sticky lg:top-32"
+          {/* Mobile TOC */}
+          <div className="lg:hidden mb-6">
+            <button
+              onClick={() => setIsTocOpen(!isTocOpen)}
+              className="w-full flex items-center justify-between px-5 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-secondary/30 transition-all duration-300"
             >
-              <div className="bg-[rgba(255,255,255,.90)] backdrop-blur-[18px] border border-[#E2E8F0] rounded-[24px] shadow-[0_18px_40px_rgba(15,23,42,.08)] p-6">
-                <div className="flex items-center gap-2.5 mb-5">
-                  <ListTree className="w-5 h-5 text-[#2563EB]" />
-                  <h4 className="text-[15px] font-[700] text-[#0F172A] uppercase tracking-wide">
-                    Table of Contents
-                  </h4>
-                </div>
-                <ul className="space-y-1">
-                  {sections.map((section) => (
-                    <li key={section.id}>
-                      <a 
-                        href={`#${section.id}`} 
-                        className="flex items-center gap-[10px] text-[14px] text-[#475569] hover:text-[#2563EB] hover:bg-[#EFF6FF] rounded-[12px] p-[10px] transition-all duration-[300ms] group hover:translate-x-[4px]"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1] group-hover:bg-[#2563EB] transition-colors duration-[300ms]"></div>
-                        <span className="font-medium">{section.title}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex items-center gap-3">
+                <ListTree className="w-4 h-4 text-secondary" />
+                <span className="text-[13px] font-bold text-slate-800 uppercase tracking-wider font-mono">Table of Contents</span>
               </div>
-            </motion.div>
+              <motion.div animate={{ rotate: isTocOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
+                <ChevronDown className="w-5 h-5 text-slate-500" />
+              </motion.div>
+            </button>
 
-            {/* Main Content Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="lg:col-span-9 bg-[#FFFFFF] border border-[#E2E8F0] rounded-[28px] p-8 md:p-[48px] shadow-[0_25px_60px_rgba(15,23,42,.08)] w-full max-w-[900px]"
-            >
-              <div className="flex flex-col gap-[48px] text-[#475569] leading-[2] text-[17px] max-w-[72ch]">
-                {children}
-              </div>
-            </motion.div>
+            <AnimatePresence>
+              {isTocOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <div className="bg-white border border-slate-200 border-t-0 rounded-b-2xl px-4 py-3 flex flex-col gap-1">
+                    {sections.map((sec) => (
+                      <button
+                        key={sec.id}
+                        onClick={() => scrollToSection(sec.id)}
+                        className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-xl transition-all duration-200 text-[13px] font-semibold ${
+                          activeSection === sec.id
+                            ? "text-secondary bg-secondary/5 border-l-[3px] border-secondary pl-2.5"
+                            : "text-slate-600 hover:text-secondary hover:bg-secondary/5"
+                        }`}
+                      >
+                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 transition-colors ${activeSection === sec.id ? "bg-secondary" : "bg-slate-300"}`} />
+                        {sec.title}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* Bottom Information Card */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-16 max-w-[1240px] mx-auto bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[24px] p-8 md:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_20px_45px_rgba(11,31,77,.2)] relative z-10"
-          >
-            <div className="flex items-center gap-5 text-white">
-              <div className="w-[54px] h-[54px] rounded-[16px] bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
-                <LifeBuoy className="w-7 h-7 text-white" />
+          {/* Two-Column Layout 30/70 */}
+          <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] xl:grid-cols-[280px_1fr] gap-6 xl:gap-8 items-start">
+
+            {/* Sidebar */}
+            <motion.aside
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="hidden lg:block lg:sticky lg:top-24 self-start"
+            >
+              <div className="bg-white/95 backdrop-blur-xl border border-slate-200/80 rounded-3xl shadow-[0_8px_32px_rgba(15,23,42,0.07)] p-4 xl:p-5 overflow-hidden">
+                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100">
+                  <div className="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                    <ListTree className="w-4 h-4 text-secondary" />
+                  </div>
+                  <h4 className="text-[12px] font-mono font-extrabold text-slate-800 uppercase tracking-[0.12em]">Table of Contents</h4>
+                </div>
+
+                <nav className="flex flex-col gap-0.5">
+                  {sections.map((sec, idx) => {
+                    const isActive = activeSection === sec.id;
+                    return (
+                      <motion.button
+                        key={sec.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.15 + idx * 0.05 }}
+                        onClick={() => scrollToSection(sec.id)}
+                        className={`relative flex items-center gap-3 w-full text-left px-3 py-2 rounded-xl transition-all duration-250 group focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                          isActive ? "text-secondary font-bold" : "text-slate-600 hover:text-secondary font-semibold"
+                        }`}
+                        style={{ backgroundColor: isActive ? "rgba(5,150,105,0.07)" : undefined }}
+                      >
+                        {isActive && (
+                          <motion.div
+                            layoutId="toc-active-bar"
+                            className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-r-full bg-secondary"
+                          />
+                        )}
+                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 transition-colors duration-250 ${isActive ? "bg-secondary" : "bg-slate-300 group-hover:bg-secondary/50"}`} />
+                        <span className="text-[12px] leading-snug">{sec.title}</span>
+                      </motion.button>
+                    );
+                  })}
+                </nav>
+
+                <div className="mt-4 pt-3 border-t border-slate-100">
+                  <p className="text-[11px] text-slate-400 font-mono">Last updated: July 2025</p>
+                  <p className="text-[11px] text-slate-400 font-mono mt-0.5">Medinet Pharmaceuticals</p>
+                </div>
               </div>
+            </motion.aside>
+
+            {/* Main Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="w-full min-w-0"
+            >
+              <div className="bg-white border border-slate-200/80 rounded-3xl shadow-[0_8px_40px_rgba(15,23,42,0.07)] p-6 sm:p-8 xl:p-10">
+                <div className="flex flex-col gap-8 text-slate-700 leading-[1.75] text-[15px]">
+                  {children}
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-10 bg-gradient-to-br from-slate-900 via-primary to-secondary rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_20px_50px_rgba(5,150,105,0.18)] relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.25),transparent_60%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.15),transparent_60%)] pointer-events-none" />
+
+            <div className="flex items-center gap-5 text-white relative z-10">
+              <motion.div
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="w-[56px] h-[56px] rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/20"
+              >
+                <LifeBuoy className="w-7 h-7 text-white" />
+              </motion.div>
               <div>
-                <h4 className="font-display font-[700] text-xl sm:text-2xl">Need Assistance?</h4>
-                <p className="text-[15px] text-white/80 mt-1.5 leading-relaxed">Our legal team is available to help clarify our policies and agreements.</p>
+                <h4 className="text-white font-display font-extrabold text-xl sm:text-2xl mb-1">Need Legal Assistance?</h4>
+                <p className="text-[14px] text-white/90 leading-relaxed max-w-md">Our legal team is available to help clarify our policies and agreements.</p>
               </div>
             </div>
-            <a href="mailto:corporate@medinetpharma.com" className="shrink-0 px-8 py-3.5 bg-white text-[#0B1F4D] font-[700] text-[15px] rounded-[16px] hover:bg-[#2563EB] hover:text-white transition-all duration-[300ms] flex items-center gap-2 shadow-[0_8px_20px_rgba(0,0,0,.15)] group hover:-translate-y-1">
+
+            <a
+              href="mailto:corporate@medinetpharma.com"
+              className="relative z-10 shrink-0 px-8 py-4 bg-white hover:bg-secondary hover:text-white text-slate-900 font-bold text-[14px] rounded-2xl transition-all duration-300 flex items-center gap-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_32px_rgba(5,150,105,0.3)] hover:-translate-y-1 group/cta"
+            >
               Contact Legal Team
-              <ArrowRight className="w-4.5 h-4.5 transition-transform duration-[300ms] group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
             </a>
           </motion.div>
 
@@ -162,41 +285,75 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
   );
 }
 
-// Reusable Sub-components for Legal Pages
-export function LegalSection({ id, title, icon, children }: { id: string; title: string; icon: string; children: React.ReactNode }) {
-  let Icon = ShieldCheck;
-  if (icon === "Database") Icon = Database;
-  else if (icon === "Building2") Icon = Building2;
-  else if (icon === "Handshake") Icon = Handshake;
-  else if (icon === "BadgeCheck") Icon = BadgeCheck;
-  else if (icon === "Cookie") Icon = Cookie;
-  else if (icon === "Scale") Icon = Scale;
-  else if (icon === "Copyright") Icon = Copyright;
-  else if (icon === "ListTree") Icon = ListTree;
+// ─── Sub-components ───────────────────────────────────────────────
+
+const iconMap: Record<string, React.FC<{ className?: string }>> = {
+  ShieldCheck, Database, Building2, Handshake, BadgeCheck,
+  Cookie, Scale, Copyright, FileText, ListTree
+};
+
+export function LegalSection({
+  id,
+  title,
+  icon,
+  children,
+  index = 0
+}: {
+  id: string;
+  title: string;
+  icon: string;
+  children: React.ReactNode;
+  index?: number;
+}) {
+  const Icon = iconMap[icon] || ShieldCheck;
 
   return (
-    <section id={id} className="animate-fade-in group">
-      <div className="flex items-center gap-4 mb-6">
-        <div className="w-[42px] h-[42px] rounded-[12px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] shadow-[0_10px_24px_rgba(37,99,235,.20)] flex items-center justify-center shrink-0 transition-transform duration-[300ms] group-hover:scale-[1.05]">
+    <motion.section
+      id={id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="group scroll-mt-36"
+    >
+      <div className="flex items-start gap-3 mb-4">
+        <motion.div
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+          className="w-[40px] h-[40px] rounded-[12px] bg-gradient-to-br from-primary to-secondary shadow-[0_8px_20px_rgba(5,150,105,0.22)] flex items-center justify-center shrink-0 group-hover:scale-[1.08] group-hover:shadow-[0_12px_28px_rgba(5,150,105,0.3)] transition-all duration-300"
+        >
           <Icon className="w-5 h-5 text-white" />
+        </motion.div>
+        <div className="pt-1">
+          <h2 className="text-[20px] sm:text-[22px] font-display font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-secondary transition-colors duration-300">
+            {title}
+          </h2>
         </div>
-        <h2 className="text-[28px] font-display font-[700] text-[#0F172A] tracking-tight">{title}</h2>
       </div>
-      <div className="w-full h-px bg-[#EFF6FF] mb-6"></div>
-      <div className="space-y-4">
+
+      <div className="w-full h-px bg-gradient-to-r from-secondary/25 via-primary/15 to-transparent mb-5 rounded-full" />
+
+      <div className="space-y-3 sm:pl-[52px]">
         {children}
       </div>
-    </section>
+    </motion.section>
   );
 }
 
 export function LegalCallout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="my-6 bg-[#EFF6FF] border-l-[4px] border-[#2563EB] p-4 rounded-r-[12px] flex gap-3 items-start">
-      <Info className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
-      <div className="text-[15px] text-[#0F172A] font-medium leading-[1.6]">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      whileHover={{ y: -3 }}
+      className="my-4 bg-gradient-to-r from-secondary/5 via-emerald-50/60 to-transparent border-l-[3px] border-secondary p-4 sm:p-5 rounded-r-2xl flex gap-3.5 items-start cursor-default"
+    >
+      <Info className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+      <div className="text-[14px] sm:text-[15px] text-slate-800 font-semibold leading-[1.65]">
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 }

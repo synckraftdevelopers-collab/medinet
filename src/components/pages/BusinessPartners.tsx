@@ -34,7 +34,9 @@ import {
   Cross,
   Syringe,
   Microscope,
-  Pill
+  Pill,
+  Rocket,
+  HeartHandshake
 } from "lucide-react";
 
 interface BusinessPartnersProps {
@@ -326,32 +328,53 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
             className="mt-12 relative max-w-4xl mx-auto"
           >
             {/* Animated map illustration using icons and stats */}
-            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden">
+            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden flex flex-col md:flex-row items-center gap-10 text-left">
               <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                <div className="text-center group">
-                  <div className="w-16 h-16 mx-auto bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_4px_12px_rgba(37,99,235,0.1)]">
-                    <Globe className="w-8 h-8" />
+              <div className="flex-1 relative z-10 space-y-5">
+                {[
+                  { title: "Nationwide Product Availability", icon: MapPin },
+                  { title: "Reliable Supply Chain", icon: Boxes },
+                  { title: "Strong Distributor Network", icon: Globe },
+                  { title: "Efficient Logistics", icon: Rocket },
+                  { title: "Customer Support", icon: HeartHandshake }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-4 group">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-border flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:border-secondary transition-all duration-300">
+                      <item.icon className="w-5 h-5 text-secondary" />
+                    </div>
+                    <span className="font-bold text-heading group-hover:text-secondary transition-colors duration-300">
+                      {item.title}
+                    </span>
                   </div>
-                  <h3 className="text-3xl font-display font-bold text-slate-900">18+</h3>
-                  <p className="text-sm font-mono text-slate-500 uppercase tracking-widest mt-1 font-bold">Countries</p>
+                ))}
+              </div>
+
+              {/* India Coverage Static Visual */}
+              <div className="flex-1 relative z-10 w-full h-[300px] flex items-center justify-center">
+                <div className="relative w-full max-w-[250px] aspect-square rounded-full border border-dashed border-secondary/30 flex items-center justify-center animate-[spin_60s_linear_infinite]">
+                  <div className="absolute w-[80%] h-[80%] rounded-full border border-dashed border-primary/20 flex items-center justify-center animate-[spin_40s_linear_infinite_reverse]">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary shadow-[0_0_30px_rgba(37,99,235,0.3)] flex items-center justify-center">
+                       <MapPin className="w-8 h-8 text-white animate-bounce" />
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center group">
-                  <div className="w-16 h-16 mx-auto bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_4px_12px_rgba(16,185,129,0.1)]">
-                    <MapPin className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-3xl font-display font-bold text-slate-900">250+</h3>
-                  <p className="text-sm font-mono text-slate-500 uppercase tracking-widest mt-1 font-bold">Regional Hubs</p>
-                </div>
-                <div className="text-center group">
-                  <div className="w-16 h-16 mx-auto bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_4px_12px_rgba(147,51,234,0.1)]">
-                    <Boxes className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-3xl font-display font-bold text-slate-900">10M+</h3>
-                  <p className="text-sm font-mono text-slate-500 uppercase tracking-widest mt-1 font-bold">Units Delivered</p>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20">
+                  <span className="text-[10px] font-mono font-bold text-heading bg-white/90 px-3 py-1 rounded-full shadow-md backdrop-blur-sm border border-border tracking-widest uppercase block mt-16">
+                    PAN India
+                  </span>
                 </div>
               </div>
+            </div>
+
+            <div className="mt-12">
+              <a
+                href="#enquiry-form"
+                className="utility-button-primary px-8 py-4 inline-flex shadow-lg hover:shadow-xl"
+              >
+                Become a Distribution Partner
+                <ArrowRight className="w-5 h-5 text-white ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </motion.div>
         </div>

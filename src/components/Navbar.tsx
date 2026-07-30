@@ -815,160 +815,150 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     role="menu"
                     aria-label="Legal documents and policies"
                     onKeyDown={(e) => handleMenuKeyDown(e, "legal-mega-menu")}
-                    className="absolute right-0 top-full mt-0 pt-2 w-[420px] max-w-[90vw] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(5,150,105,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
+                    className="absolute right-0 top-full mt-0 pt-2 w-[520px] max-w-[95vw] bg-[rgba(250,252,251,.97)] backdrop-blur-[20px] rounded-[28px] border border-secondary/15 shadow-[0_30px_80px_rgba(5,150,105,0.14),0_0_0_1px_rgba(5,150,105,0.04)] p-6 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
                   >
-                    {/* Top Header */}
-                    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#E2E8F0] px-2">
-                      <div className="w-10 h-10 rounded-[12px] bg-[linear-gradient(135deg,#F8FAFC,#F1F5F9)] border border-[#E2E8F0] flex items-center justify-center shrink-0">
-                        <Scale className="w-5 h-5 text-[#14532D]" />
+                    {/* Section Header — matches Therapeutic Segments style */}
+                    <div className="mb-5">
+                      <div className="flex items-center gap-2.5 mb-3">
+                        {/* Glowing dot badge pill */}
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-secondary/25 bg-secondary/5 text-secondary text-[10px] font-mono font-bold uppercase tracking-[0.12em]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse shrink-0"></span>
+                          Legal &amp; Compliance
+                        </span>
                       </div>
-                      <div>
-                        <h4 className="font-display font-[700] text-[#0F172A] text-[15px]">Legal & Compliance</h4>
-                        <p className="text-[#64748B] text-[11px] font-medium mt-0.5">Policies, Security & Corporate Information</p>
-                      </div>
+                      <h4 className="text-[18px] font-display font-extrabold text-slate-900 leading-tight mb-1">
+                        Policy &amp; Compliance Hub
+                      </h4>
+                      <p className="text-[12px] text-slate-500 font-medium leading-relaxed">
+                        Protecting your privacy, ensuring transparency and maintaining regulatory compliance.
+                      </p>
+                      {/* Subtle animated divider */}
+                      <div className="mt-3 h-px bg-gradient-to-r from-secondary/30 via-primary/20 to-transparent rounded-full"></div>
                     </div>
 
-                    <div className="flex flex-col gap-1.5">
-                      <a
-                        href="/legal/privacy-policy"
-                        role="menuitem"
-                        tabIndex={0}
-                        onClick={() => setActiveMegaMenu(null)}
-                        onKeyDown={(e) => {
-                          if (e.key === " ") {
-                            e.preventDefault();
-                            setActiveMegaMenu(null);
-                            navigate("privacy-policy");
-                          }
-                        }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
-                      >
-                        <div className="flex items-center gap-[18px]">
-                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#059669,#34D399)] shadow-[0_10px_24px_rgba(5,150,105,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <ShieldCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
-                          </div>
-                          <div className="flex flex-col gap-0.5">
-                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Privacy Policy</span>
-                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Protecting your information</span>
-                          </div>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
-                      </a>
+                    {/* Cards Grid — 2×3 matching Therapeutic Segments stagger */}
+                    <div className="grid grid-cols-1 gap-2">
+                      {[
+                        {
+                          href: "/legal/privacy-policy",
+                          label: "Privacy Policy",
+                          sub: "Protecting your information",
+                          icon: ShieldCheck,
+                          gradient: "from-[#059669] to-[#34D399]",
+                          shadow: "rgba(5,150,105,.25)",
+                          nav: "privacy-policy",
+                          delay: 0
+                        },
+                        {
+                          href: "/legal/terms-conditions",
+                          label: "Terms & Conditions",
+                          sub: "Usage guidelines & responsibilities",
+                          icon: FileText,
+                          gradient: "from-[#0D9488] to-[#2DD4BF]",
+                          shadow: "rgba(13,148,136,.25)",
+                          nav: "terms",
+                          delay: 0.04
+                        },
+                        {
+                          href: "/legal/disclaimer",
+                          label: "Medical Disclaimer",
+                          sub: "Legal limitations & medical notices",
+                          icon: Scale,
+                          gradient: "from-[#D97706] to-[#FBBF24]",
+                          shadow: "rgba(245,158,11,.25)",
+                          nav: "disclaimer",
+                          delay: 0.08
+                        },
+                        {
+                          href: "/legal/cookie-policy",
+                          label: "Cookie Policy",
+                          sub: "Tracking & browser preferences",
+                          icon: Cookie,
+                          gradient: "from-[#7C3AED] to-[#A78BFA]",
+                          shadow: "rgba(124,58,237,.25)",
+                          nav: "cookies",
+                          delay: 0.12
+                        },
+                        {
+                          href: "/legal/copyright-notice",
+                          label: "Copyright Notice",
+                          sub: "Ownership, IP & licensing terms",
+                          icon: BadgeCheck,
+                          gradient: "from-[#059669] to-[#10B981]",
+                          shadow: "rgba(5,150,105,.25)",
+                          nav: "copyright-notice",
+                          delay: 0.16
+                        }
+                      ].map((item, idx) => (
+                        <a
+                          key={idx}
+                          href={item.href}
+                          role="menuitem"
+                          tabIndex={0}
+                          onClick={() => setActiveMegaMenu(null)}
+                          onKeyDown={(e) => {
+                            if (e.key === " ") {
+                              e.preventDefault();
+                              setActiveMegaMenu(null);
+                              navigate(item.nav);
+                            }
+                          }}
+                          className="group/item relative flex items-center justify-between p-3.5 rounded-[16px] bg-transparent hover:bg-gradient-to-r hover:from-white hover:via-emerald-50/60 hover:to-white border border-transparent hover:border-secondary/20 hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:-translate-y-[2px] active:bg-gradient-to-br active:from-secondary active:to-primary active:border-secondary active:text-white transition-all duration-[250ms] ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary overflow-hidden"
+                          style={{ transitionDelay: `${item.delay}s` }}
+                        >
+                          {/* Subtle inner glow on hover */}
+                          <div className="absolute inset-0 rounded-[16px] bg-gradient-to-b from-white/60 via-emerald-50/20 to-white/60 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"></div>
+                          {/* Top accent strip */}
+                          <div className={`absolute top-0 left-3 right-3 h-[2px] rounded-b-full bg-gradient-to-r ${item.gradient} opacity-0 group-hover/item:opacity-60 transition-opacity duration-[250ms]`}></div>
 
-                      <a
-                        href="/legal/terms-conditions"
-                        role="menuitem"
-                        tabIndex={0}
-                        onClick={() => setActiveMegaMenu(null)}
-                        onKeyDown={(e) => {
-                          if (e.key === " ") {
-                            e.preventDefault();
-                            setActiveMegaMenu(null);
-                            navigate("terms");
-                          }
-                        }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
-                      >
-                        <div className="flex items-center gap-[18px]">
-                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#0D9488,#2DD4BF)] shadow-[0_10px_24px_rgba(13,148,136,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <FileText className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
+                          <div className="flex items-center gap-3.5">
+                            {/* Floating animated icon container */}
+                            <div
+                              className={`w-[46px] h-[46px] rounded-[14px] bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0 group-hover/item:scale-[1.08] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[250ms] relative`}
+                              style={{ boxShadow: `0 8px 20px ${item.shadow}` }}
+                            >
+                              <div className={`absolute inset-0 rounded-[14px] bg-gradient-to-br ${item.gradient} blur-md opacity-0 group-hover/item:opacity-40 transition-opacity duration-[250ms] -z-10`}></div>
+                              <item.icon className="w-[20px] h-[20px] text-white group-active/item:text-secondary relative z-10" />
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[14px] font-display font-extrabold text-slate-900 group-hover/item:text-secondary group-active/item:text-white transition-colors duration-[250ms]">
+                                {item.label}
+                              </span>
+                              <span className="text-[11px] font-medium text-slate-500 group-active/item:text-white/80 transition-colors duration-[250ms]">
+                                {item.sub}
+                              </span>
+                            </div>
                           </div>
-                          <div className="flex flex-col gap-0.5">
-                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Terms & Conditions</span>
-                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Usage guidelines</span>
+                          {/* Animated arrow */}
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 group-hover/item:text-secondary group-active/item:text-white opacity-0 group-hover/item:opacity-100 transition-all duration-[250ms] -translate-x-2 group-hover/item:translate-x-0">
+                              VIEW
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-slate-300 group-hover/item:text-secondary group-hover/item:translate-x-1 group-active/item:text-white transition-all duration-[250ms]" />
                           </div>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
-                      </a>
-
-                      <a
-                        href="/legal/disclaimer"
-                        role="menuitem"
-                        tabIndex={0}
-                        onClick={() => setActiveMegaMenu(null)}
-                        onKeyDown={(e) => {
-                          if (e.key === " ") {
-                            e.preventDefault();
-                            setActiveMegaMenu(null);
-                            navigate("disclaimer");
-                          }
-                        }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
-                      >
-                        <div className="flex items-center gap-[18px]">
-                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#F59E0B,#FBBF24)] shadow-[0_10px_24px_rgba(245,158,11,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <Scale className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
-                          </div>
-                          <div className="flex flex-col gap-0.5">
-                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Disclaimer</span>
-                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Legal information</span>
-                          </div>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
-                      </a>
-
-                      <a
-                        href="/legal/cookie-policy"
-                        role="menuitem"
-                        tabIndex={0}
-                        onClick={() => setActiveMegaMenu(null)}
-                        onKeyDown={(e) => {
-                          if (e.key === " ") {
-                            e.preventDefault();
-                            setActiveMegaMenu(null);
-                            navigate("cookies");
-                          }
-                        }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
-                      >
-                        <div className="flex items-center gap-[18px]">
-                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#8B5CF6,#A78BFA)] shadow-[0_10px_24px_rgba(139,92,246,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <Cookie className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
-                          </div>
-                          <div className="flex flex-col gap-0.5">
-                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Cookie Policy</span>
-                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Tracking preferences</span>
-                          </div>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
-                      </a>
-
-                      <a
-                        href="/legal/copyright-notice"
-                        role="menuitem"
-                        tabIndex={0}
-                        onClick={() => setActiveMegaMenu(null)}
-                        onKeyDown={(e) => {
-                          if (e.key === " ") {
-                            e.preventDefault();
-                            setActiveMegaMenu(null);
-                            navigate("copyright-notice");
-                          }
-                        }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
-                      >
-                        <div className="flex items-center gap-[18px]">
-                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#059669,#10B981)] shadow-[0_10px_24px_rgba(5,150,105,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <BadgeCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
-                          </div>
-                          <div className="flex flex-col gap-0.5">
-                            <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Copyright Notice</span>
-                            <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Ownership & licensing</span>
-                          </div>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
-                      </a>
+                        </a>
+                      ))}
                     </div>
 
-                    {/* Bottom Area */}
-                    <div className="mt-4 pt-4 border-t border-[#E2E8F0] bg-[#F8FAFC] rounded-b-[24px] -mx-5 -mb-5 p-[18px] flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-[13px] font-[500] text-[#0F172A]">
-                        <Info className="w-[18px] h-[18px] text-[#059669]" />
-                        Need legal assistance?
+                    {/* Bottom CTA — premium style */}
+                    <div className="mt-4 pt-4 border-t border-secondary/10">
+                      <div className="flex items-center justify-between bg-gradient-to-br from-slate-900 to-primary rounded-2xl px-5 py-4 relative overflow-hidden group/cta">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.3),transparent_60%)] pointer-events-none"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <Info className="w-3.5 h-3.5 text-secondary" />
+                            <span className="text-white text-[12px] font-bold">Need Legal Assistance?</span>
+                          </div>
+                          <p className="text-white/60 text-[10px] font-medium">Our team is available to clarify any policy.</p>
+                        </div>
+                        <a
+                          href="mailto:corporate@medinetpharma.com"
+                          className="relative z-10 shrink-0 px-5 py-2.5 bg-white hover:bg-secondary hover:text-white text-slate-900 text-[11px] font-bold rounded-full transition-all duration-300 flex items-center gap-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_20px_rgba(5,150,105,0.3)] hover:-translate-y-0.5 group/btn focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                        >
+                          Contact Legal Team
+                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
+                        </a>
                       </div>
-                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#14532D] hover:bg-[#059669] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(20,83,45,.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]">
-                        Contact Legal Team
-                      </a>
                     </div>
                   </div>
                 )}
@@ -1208,29 +1198,89 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-1.5 pt-2 pb-3 pl-12 pr-4">
+                              <div className="flex flex-col gap-2 pt-3 pb-3 px-1">
                                 {[
-                                  { label: "Privacy Policy", route: "/legal/privacy-policy", key: "privacy" },
-                                  { label: "Terms & Conditions", route: "/legal/terms-conditions", key: "terms" },
-                                  { label: "Disclaimer", route: "/legal/disclaimer", key: "disclaimer" },
-                                  { label: "Cookie Policy", route: "/legal/cookie-policy", key: "cookie" },
-                                  { label: "Copyright Notice", route: "/legal/copyright-notice", key: "copyright" }
-                                ].map((lItem) => {
+                                  {
+                                    label: "Privacy Policy",
+                                    sub: "Protecting your information",
+                                    route: "/legal/privacy-policy",
+                                    key: "privacy",
+                                    icon: ShieldCheck,
+                                    gradient: "from-[#059669] to-[#34D399]",
+                                    shadow: "rgba(5,150,105,.25)"
+                                  },
+                                  {
+                                    label: "Terms & Conditions",
+                                    sub: "Usage guidelines & responsibilities",
+                                    route: "/legal/terms-conditions",
+                                    key: "terms",
+                                    icon: FileText,
+                                    gradient: "from-[#0D9488] to-[#2DD4BF]",
+                                    shadow: "rgba(13,148,136,.25)"
+                                  },
+                                  {
+                                    label: "Medical Disclaimer",
+                                    sub: "Legal limitations & medical notices",
+                                    route: "/legal/disclaimer",
+                                    key: "disclaimer",
+                                    icon: Scale,
+                                    gradient: "from-[#D97706] to-[#FBBF24]",
+                                    shadow: "rgba(245,158,11,.25)"
+                                  },
+                                  {
+                                    label: "Cookie Policy",
+                                    sub: "Tracking & browser preferences",
+                                    route: "/legal/cookie-policy",
+                                    key: "cookie",
+                                    icon: Cookie,
+                                    gradient: "from-[#7C3AED] to-[#A78BFA]",
+                                    shadow: "rgba(124,58,237,.25)"
+                                  },
+                                  {
+                                    label: "Copyright Notice",
+                                    sub: "Ownership, IP & licensing terms",
+                                    route: "/legal/copyright-notice",
+                                    key: "copyright",
+                                    icon: BadgeCheck,
+                                    gradient: "from-[#059669] to-[#10B981]",
+                                    shadow: "rgba(5,150,105,.25)"
+                                  }
+                                ].map((lItem, idx) => {
                                   const isSubActive = currentRoute.includes(lItem.key);
                                   return (
-                                    <a
+                                    <motion.a
                                       key={lItem.route}
                                       href={lItem.route}
+                                      initial={{ opacity: 0, x: -10, y: 5 }}
+                                      animate={{ opacity: 1, x: 0, y: 0 }}
+                                      transition={{ duration: 0.25, delay: idx * 0.04, ease: "easeOut" }}
                                       onClick={() => setIsMobileMenuOpen(false)}
-                                      className={`min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] block ${
+                                      className={`group/litem flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-250 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
                                         isSubActive
-                                          ? "text-[#059669] font-bold bg-[#ECFDF5] border-l-4 border-[#059669]"
-                                          : "text-[#64748B] hover:text-[#059669] hover:bg-slate-50 font-medium"
+                                          ? "bg-gradient-to-r from-emerald-50 to-teal-50/60 border border-secondary/25 shadow-sm"
+                                          : "bg-white/60 hover:bg-gradient-to-r hover:from-white hover:via-emerald-50/50 hover:to-white border border-slate-100 hover:border-secondary/20 hover:shadow-[0_4px_16px_rgba(5,150,105,.06)]"
                                       }`}
                                     >
-                                      <span>{lItem.label}</span>
-                                      {isSubActive && <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />}
-                                    </a>
+                                      <div className="flex items-center gap-3.5">
+                                        {/* Premium icon container — matches Therapeutic Segments */}
+                                        <div
+                                          className={`w-[46px] h-[46px] rounded-[14px] bg-gradient-to-br ${lItem.gradient} flex items-center justify-center shrink-0 group-hover/litem:scale-[1.08] group-hover/litem:rotate-[4deg] transition-all duration-[250ms] relative`}
+                                          style={{ boxShadow: `0 8px 20px ${lItem.shadow}` }}
+                                        >
+                                          <div className={`absolute inset-0 rounded-[14px] bg-gradient-to-br ${lItem.gradient} blur-md opacity-0 group-hover/litem:opacity-40 transition-opacity duration-[250ms] -z-10`}></div>
+                                          <lItem.icon className="w-[20px] h-[20px] text-white relative z-10" />
+                                        </div>
+                                        <div className="flex flex-col gap-0.5 min-w-0">
+                                          <span className={`text-[14px] font-display font-extrabold transition-colors duration-[250ms] truncate ${isSubActive ? "text-secondary" : "text-slate-900 group-hover/litem:text-secondary"}`}>
+                                            {lItem.label}
+                                          </span>
+                                          <span className="text-[11px] font-medium text-slate-500 truncate">
+                                            {lItem.sub}
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <ArrowRight className={`w-4 h-4 shrink-0 ml-2 transition-all duration-[250ms] group-hover/litem:translate-x-1 ${isSubActive ? "text-secondary" : "text-slate-300 group-hover/litem:text-secondary"}`} />
+                                    </motion.a>
                                   );
                                 })}
                               </div>

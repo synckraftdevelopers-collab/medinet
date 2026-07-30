@@ -24,7 +24,9 @@ import {
   ShieldAlert,
   FileWarning,
   Clock,
-  Database
+  Database,
+  Eye,
+  Heart
 } from "lucide-react";
 
 const fadeUp: Variants = {
@@ -272,79 +274,50 @@ export default function Quality() {
       <section className="py-24 bg-white relative overflow-hidden">
         {/* Subtle radial medical glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-left relative z-10">
-          <span className="utility-badge-blue mb-4">
-            <span className="utility-dot"></span>
-            Safety Standards
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15]">
-            <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Pharmacovigilance</span> Timeline
-          </h2>
-          <p className="mt-6 text-sm sm:text-base text-body leading-relaxed">
-            As an enterprise pharmaceutical marketer, our responsibility to patients extends far beyond commercial launch. Under our dedicated Global Safety Program, we maintain a 24/7 adverse events log.
-          </p>
-          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed">
-            In compliance with international drug safety laws (ICH E2A guidelines), healthcare practitioners, pharmacies, distributors, or patients are requested to report any suspected side effects or adverse drug reactions. Reports are reviewed by clinical toxicologists within 24 hours of submission and uploaded into therapeutic databases.
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left relative z-10">
+          <SectionHeader
+            badge="Safety Standards"
+            title="Pharmacovigilance"
+            description="As an enterprise pharmaceutical marketer, our responsibility to patients extends far beyond commercial launch. Under our dedicated Global Safety Program, we maintain a 24/7 adverse events log."
+            centered
+          />
 
-          <div className="mt-12 utility-card p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 group hover:-translate-y-1">
-            <div className="flex items-start sm:items-center gap-5">
-              <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                <ShieldAlert className="w-6 h-6 text-secondary" />
-              </div>
-              <div>
-                <div className="mb-2">
-                  <span className="inline-block bg-success/10 border border-success/20 text-success text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
-                    24/7 Pharmacovigilance
-                  </span>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Adverse Event Reporting", icon: FileWarning, color: "text-rose-600", bg: "bg-rose-50" },
+              { title: "Product Safety Monitoring", icon: ShieldAlert, color: "text-secondary", bg: "bg-secondary/10" },
+              { title: "Risk Assessment", icon: Activity, color: "text-amber-600", bg: "bg-amber-50" },
+              { title: "Regulatory Reporting Support", icon: FileCheck, color: "text-primary", bg: "bg-primary/10" },
+              { title: "Continuous Safety Surveillance", icon: Eye, color: "text-emerald-600", bg: "bg-emerald-50" },
+              { title: "Promotion of Safe Medicine Use", icon: Heart, color: "text-accent", bg: "bg-accent/10" }
+            ].map((item, idx) => (
+              <div key={idx} className="utility-card p-6 flex items-start gap-5 group hover:border-secondary hover:-translate-y-1 transition-all duration-300">
+                <div className={`w-14 h-14 rounded-2xl ${item.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
+                  <item.icon className={`w-6 h-6 ${item.color}`} />
                 </div>
-                <h4 className="font-display font-bold text-heading text-lg">Suspected Drug Side Effect?</h4>
-                <p className="text-body text-sm mt-1">Submit a formal report to our Drug Safety desk immediately.</p>
+                <div>
+                  <h4 className="font-display font-bold text-heading text-lg group-hover:text-secondary transition-colors duration-300 mb-1">{item.title}</h4>
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
 
+          {/* Information Panel */}
+          <div className="mt-12 utility-card p-8 md:p-10 bg-gradient-to-br from-background via-white to-alt-bg border-l-[6px] border-l-secondary flex flex-col md:flex-row items-center justify-between gap-8 group">
+            <div className="flex-1">
+              <h4 className="font-display font-bold text-heading text-2xl mb-3">Our Commitment to Patient Safety</h4>
+              <p className="text-body leading-relaxed text-sm md:text-base">
+                In compliance with international drug safety laws (ICH E2A guidelines), healthcare practitioners, pharmacies, distributors, or patients are requested to report any suspected side effects or adverse drug reactions. Reports are reviewed by clinical toxicologists within 24 hours of submission and uploaded into therapeutic databases. We prioritize patient wellbeing above all commercial metrics.
+              </p>
+            </div>
             <a
               href="#contact?subject=pve&section=contact-form"
               role="button"
-              aria-label="Report Adverse Event - Open Pharmacovigilance ADR Form"
-              className="utility-button-primary px-6 py-3.5 shrink-0 min-h-[48px] cursor-pointer group/btn"
+              className="utility-button-primary px-8 py-4 shrink-0 min-h-[56px] cursor-pointer group/btn shadow-lg hover:shadow-xl"
             >
               Report Adverse Event
-              <FileWarning className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform duration-300" />
+              <FileWarning className="w-5 h-5 text-white group-hover/btn:scale-110 group-hover/btn:-rotate-12 transition-transform duration-300" />
             </a>
-          </div>
-
-          <div className="mt-8 relative max-w-2xl mx-auto pt-8 border-t border-border">
-            <div className="hidden sm:block absolute left-4 top-8 bottom-4 w-0.5 bg-secondary/20"></div>
-            <div className="space-y-6 relative">
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 shadow-md relative z-10">
-                  <FileWarning className="w-4 h-4" />
-                </div>
-                <div className="flex-1 bg-alt-bg border border-border rounded-xl p-4">
-                  <h4 className="text-sm font-bold text-heading">Event Reported</h4>
-                  <p className="text-xs text-muted mt-1 leading-relaxed">ADR report submitted via online form or helpline.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-white border border-secondary text-secondary flex items-center justify-center shrink-0 shadow-sm relative z-10">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div className="flex-1 bg-alt-bg border border-border rounded-xl p-4">
-                  <h4 className="text-sm font-bold text-heading">24H Clinical Review</h4>
-                  <p className="text-xs text-muted mt-1 leading-relaxed">Toxicology team assesses report severity and causality.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-white border border-secondary text-secondary flex items-center justify-center shrink-0 shadow-sm relative z-10">
-                  <Database className="w-4 h-4" />
-                </div>
-                <div className="flex-1 bg-alt-bg border border-border rounded-xl p-4">
-                  <h4 className="text-sm font-bold text-heading">Database Integration & Regulatory Filing</h4>
-                  <p className="text-xs text-muted mt-1 leading-relaxed">Data logged into global safety database; national authorities notified if necessary.</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

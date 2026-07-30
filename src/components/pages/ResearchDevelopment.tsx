@@ -52,27 +52,45 @@ export default function ResearchDevelopment() {
   const innovationPhases = [
     {
       phase: "01",
-      title: "Active Molecule Screening",
+      title: "Market & Therapeutic Need Assessment",
       subtitle: "Target Identification",
-      description: "Evaluating global APIs for purity profiles, therapeutic efficacy gaps, polymorph stability, and territorial intellectual property boundaries."
+      description: "Evaluating global APIs for purity profiles, therapeutic efficacy gaps, polymorph stability, and territorial intellectual property boundaries.",
+      icon: BarChart
     },
     {
       phase: "02",
-      title: "Formulation Prototyping",
+      title: "Scientific Formulation Development",
       subtitle: "Pilot Batches",
-      description: "Optimizing excipient compatibility, granulation profiles, coating durability, and dissolution factors in clean trial labs."
+      description: "Optimizing excipient compatibility, granulation profiles, coating durability, and dissolution factors in clean trial labs.",
+      icon: FlaskConical
     },
     {
       phase: "03",
-      title: "Bioequivalence Validation",
-      subtitle: "Comparative PK Studies",
-      description: "Verifying standard pharmacokinetic coefficients (Cmax, Tmax, AUC) in human volunteers in accredited clinical pharmacology units."
+      title: "Ingredient Selection & Quality Evaluation",
+      subtitle: "Raw Material Sourcing",
+      description: "Stringent vetting of active pharmaceutical ingredients and excipients to guarantee absolute molecular integrity.",
+      icon: Microscope
     },
     {
       phase: "04",
-      title: "Dossier Filing & Launch",
-      subtitle: "Regulatory CTD Dossiers",
-      description: "Compiling full dossiers in Common Technical Document (CTD) formats for submissions to national FDA or global health ministries."
+      title: "Stability & Compatibility Studies",
+      subtitle: "Accelerated Testing",
+      description: "Conducting long-term and intermediate indexing in climatic chambers following ICH zone IVB parameters.",
+      icon: Database
+    },
+    {
+      phase: "05",
+      title: "Regulatory Compliance",
+      subtitle: "Dossier Preparation",
+      description: "Compiling full dossiers in Common Technical Document (CTD) formats for submissions to national FDA or global health ministries.",
+      icon: ShieldCheck
+    },
+    {
+      phase: "06",
+      title: "Product Validation & Commercialization",
+      subtitle: "Market Launch",
+      description: "Final scale-up of manufacturing batches, WHO-GMP verification, and transition to global commercial distribution.",
+      icon: FileCheck
     }
   ];
 
@@ -219,74 +237,70 @@ export default function ResearchDevelopment() {
             centered
           />
 
-          <div className="max-w-4xl mx-auto utility-card p-6 md:p-8 mt-12 hover:border-secondary transition-all duration-300">
-            <div className="space-y-8 text-left">
-              {PIPELINE.map((pipe) => {
-                const getAccentColor = (category: string) => {
-                  const cat = category.toLowerCase();
-                  if (cat.includes('cardio')) return '#2563EB'; // secondary
-                  if (cat.includes('neuro')) return '#7C3AED';
-                  if (cat.includes('gastro')) return '#0D9488'; // accent
-                  if (cat.includes('derm')) return '#EC4899';
-                  if (cat.includes('respir')) return '#14B8A6';
-                  return '#2563EB';
-                };
-                const accentColor = getAccentColor(pipe.category);
-
-                return (
-                  <div key={pipe.id} className="border-b border-border pb-8 last:border-b-0 last:pb-0 relative group">
-                    <div className="absolute left-[-16px] md:left-[-24px] top-1 bottom-8 w-1 rounded-full transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                      <div>
-                        <span className="utility-badge-blue">
-                          {pipe.category}
-                        </span>
-                        <h4 className="font-display font-bold text-heading text-lg mt-2 group-hover:text-secondary transition-colors duration-300">
-                          {pipe.name}
-                        </h4>
-                      </div>
-                      {(() => {
-                        let bg = 'bg-alt-bg', text = 'text-muted', border = 'border-border';
-                        const p = pipe.phase.toLowerCase();
-                        if (p.includes('filing') || p.includes('regulatory')) { bg = 'bg-secondary/10'; text = 'text-secondary'; border = 'border-secondary/20'; }
-                        else if (p.includes('iii')) { bg = 'bg-success/10'; text = 'text-success'; border = 'border-success/20'; }
-                        else if (p.includes('ii')) { bg = 'bg-primary/10'; text = 'text-primary'; border = 'border-primary/20'; }
-                        else if (p.includes('i')) { bg = 'bg-accent/10'; text = 'text-accent'; border = 'border-accent/20'; }
-                        return (
-                          <span 
-                            className={`inline-flex self-start sm:self-center text-xs font-mono font-bold px-3 py-1.5 rounded-full border tracking-widest uppercase ${bg} ${text} ${border}`}
-                          >
-                            {pipe.phase}
-                          </span>
-                        );
-                      })()}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            {[
+              {
+                title: "Advanced Pharmaceutical Formulations",
+                desc: "High-end engineered solid oral and topical therapeutics.",
+                icon: Layers,
+                color: "text-primary",
+                bg: "bg-primary/10"
+              },
+              {
+                title: "Novel Fixed-Dose Combinations",
+                desc: "Optimized multi-API dosages to boost patient compliance.",
+                icon: Activity,
+                color: "text-secondary",
+                bg: "bg-secondary/10"
+              },
+              {
+                title: "Specialty Therapeutic Products",
+                desc: "Focused treatments for complex CNS and cardiovascular disorders.",
+                icon: Atom,
+                color: "text-accent",
+                bg: "bg-accent/10"
+              },
+              {
+                title: "Patient-Friendly Dosage Forms",
+                desc: "Chewable tablets, effervescents, and sustained-release pellets.",
+                icon: Pill,
+                color: "text-[#EC4899]",
+                bg: "bg-[#EC4899]/10"
+              },
+              {
+                title: "Expanded Therapeutic Portfolio",
+                desc: "Scaling into specialized metabolic and immunology care.",
+                icon: Sparkles,
+                color: "text-[#7C3AED]",
+                bg: "bg-[#7C3AED]/10"
+              }
+            ].map((pipe, idx) => (
+              <div key={idx} className="utility-card p-6 flex flex-col justify-between group hover:border-secondary transition-all duration-300 shadow-sm relative overflow-hidden">
+                <div className={`absolute top-0 left-0 right-0 h-1 ${pipe.bg}`}></div>
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className={`w-12 h-12 rounded-2xl ${pipe.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
+                      <pipe.icon className={`w-6 h-6 ${pipe.color}`} />
                     </div>
-
-                    <p className="text-sm leading-relaxed mb-4">
-                      <span className="font-bold text-muted">Target Indication: </span>
-                      <span className="text-body font-medium">{pipe.indication}</span>
-                    </p>
-
-                    {/* Visual Progress Bar */}
-                    <div className="w-full">
-                      <div className="flex items-center justify-between text-xs font-mono mb-2">
-                        <span className="text-muted font-bold tracking-widest uppercase">Discovery & Lab Prototype</span>
-                        <span className="font-bold text-heading">{pipe.progress}% Progress</span>
-                      </div>
-                      <div className="w-full h-2.5 bg-border rounded-full overflow-hidden relative">
-                        <div
-                          className="h-full rounded-full transition-all duration-1000 ease-out relative bg-gradient-to-r from-primary to-secondary"
-                          style={{ width: `${pipe.progress}%` }}
-                        >
-                          {/* Glossy highlight */}
-                          <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/30 to-transparent rounded-t-full"></div>
-                        </div>
-                      </div>
-                    </div>
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-700 border border-amber-200">
+                      Under Development
+                    </span>
                   </div>
-                );
-              })}
-            </div>
+                  <h4 className="font-display font-bold text-heading text-lg mb-3 group-hover:text-primary transition-colors">
+                    {pipe.title}
+                  </h4>
+                  <p className="text-sm text-body leading-relaxed mb-6">
+                    {pipe.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center max-w-2xl mx-auto">
+            <p className="text-xs font-mono text-muted uppercase tracking-widest bg-alt-bg py-2 px-4 rounded-full border border-border inline-block">
+              Pipeline products are currently under development and subject to regulatory approvals.
+            </p>
           </div>
         </div>
       </section>
@@ -303,38 +317,32 @@ export default function ResearchDevelopment() {
             centered
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mt-12">
             {innovationPhases.map((step, idx) => {
-              const accentColorClass = idx === 0 ? 'bg-secondary' : idx === 1 ? 'bg-accent' : idx === 2 ? 'bg-[#7C3AED]' : 'bg-success';
+              const accentColorClass = idx % 2 === 0 ? 'bg-secondary' : 'bg-primary';
+              const StepIcon = step.icon;
               return (
-                <div key={idx} className="utility-card p-8 text-left relative group hover:border-secondary">
+                <div key={idx} className="utility-card p-6 text-left relative group hover:border-secondary flex flex-col justify-start">
                   {/* Left Accent Border */}
-                  <div className={`absolute left-[-1px] top-8 bottom-8 w-1 rounded-r-full transition-colors duration-300 ${accentColorClass}`}></div>
+                  <div className={`absolute left-[-1px] top-6 bottom-6 w-1 rounded-r-full transition-colors duration-300 ${accentColorClass}`}></div>
                   
                   {/* Horizontal Connector for Desktop */}
-                  {idx < 3 && (
-                    <div className="hidden lg:block absolute top-[48px] right-[-32px] w-[32px] h-[2px] bg-gradient-to-r from-primary to-secondary opacity-25 z-0 pointer-events-none"></div>
+                  {idx < 5 && (
+                    <div className="hidden lg:block absolute top-[44px] right-[-24px] w-[24px] h-[2px] bg-gradient-to-r from-primary to-secondary opacity-25 z-0 pointer-events-none"></div>
                   )}
 
-                  <span className="absolute top-6 right-6 text-4xl font-display font-black text-heading opacity-10 font-mono transition-opacity duration-300 group-hover:opacity-20">
+                  <span className="absolute top-4 right-4 text-3xl font-display font-black text-heading opacity-10 font-mono transition-opacity duration-300 group-hover:opacity-20">
                     {step.phase}
                   </span>
                   
-                  <div className="flex items-center gap-3 mb-5 relative z-10">
-                    <div className="w-10 h-10 rounded-xl bg-alt-bg flex items-center justify-center border border-border shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                      {idx === 0 && <Microscope className="w-5 h-5 text-secondary" />}
-                      {idx === 1 && <FlaskConical className="w-5 h-5 text-secondary" />}
-                      {idx === 2 && <ShieldCheck className="w-5 h-5 text-secondary" />}
-                      {idx === 3 && <FileCheck className="w-5 h-5 text-secondary" />}
+                  <div className="flex items-center gap-2 mb-4 relative z-10">
+                    <div className="w-8 h-8 rounded-lg bg-alt-bg flex items-center justify-center border border-border shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                      <StepIcon className="w-4 h-4 text-secondary" />
                     </div>
-                    <span className="bg-secondary/5 border border-secondary/20 text-secondary font-bold text-[10px] font-mono tracking-widest uppercase px-3 py-1 rounded-full">
-                      STEP {step.phase}
-                    </span>
                   </div>
                   
-                  <h4 className="font-display font-bold text-heading text-lg group-hover:text-secondary transition-colors duration-300">{step.title}</h4>
-                  <span className="text-[10px] font-mono text-muted block uppercase font-bold mt-1.5 tracking-widest">{step.subtitle}</span>
-                  <p className="text-sm text-body leading-relaxed mt-4">{step.description}</p>
+                  <h4 className="font-display font-bold text-heading text-sm mb-1.5 group-hover:text-secondary transition-colors duration-300">{step.title}</h4>
+                  <p className="text-xs text-body leading-relaxed mt-2">{step.description}</p>
                 </div>
               );
             })}

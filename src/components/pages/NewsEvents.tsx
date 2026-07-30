@@ -124,7 +124,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
           <button
             onClick={() => {
               setSelectedNews(null);
-              window.location.hash = "#news-events";
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="inline-flex items-center gap-1.5 text-xs font-mono uppercase text-body hover:text-heading mb-8 cursor-pointer"
           >
@@ -270,7 +270,10 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                     <motion.div
                       variants={fadeUp}
                       key={news.id}
-                      onClick={() => setSelectedNews(news)}
+                      onClick={() => {
+                        setSelectedNews(news);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                       className="utility-card p-0 hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group shadow-sm hover:shadow-md cursor-pointer hover-lift"
                     >
                       <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
@@ -395,14 +398,32 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                       </div>
                       
                       <div className="mt-8 pt-5 border-t border-border bg-alt-bg/50 -mx-6 sm:-mx-8 px-6 sm:px-8 -mb-6 sm:-mb-8 pb-6 sm:pb-8 flex items-center justify-between group-hover:bg-white transition-colors duration-300">
-                        <a href="#contact?section=contact-form" role="button" aria-label="Schedule Meeting at this Event" className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-secondary transition-colors group/link cursor-pointer min-h-[44px] py-2">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const el = document.getElementById("contact-form");
+                            if (el) el.scrollIntoView({ behavior: "smooth" });
+                          }}
+                          aria-label="Schedule Meeting at this Event"
+                          className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-secondary transition-colors group/link cursor-pointer min-h-[44px] py-2"
+                        >
                           <CalendarPlus className="w-4 h-4 group-hover/link:scale-110 transition-transform duration-300" />
                           Schedule Meeting
-                        </a>
-                        <a href="#contact?section=contact-form" role="button" aria-label="Contact Corporate Sales regarding this Event" className="inline-flex items-center gap-2 min-h-[44px] px-5 bg-primary/5 border border-primary/20 rounded-full text-xs font-semibold text-primary hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 group/btn shadow-sm hover:shadow-md cursor-pointer">
-                          Contact Sales 
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const el = document.getElementById("contact-form");
+                            if (el) el.scrollIntoView({ behavior: "smooth" });
+                          }}
+                          aria-label="Contact Corporate Sales regarding this Event"
+                          className="inline-flex items-center gap-2 min-h-[44px] px-5 bg-primary/5 border border-primary/20 rounded-full text-xs font-semibold text-primary hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 group/btn shadow-sm hover:shadow-md cursor-pointer"
+                        >
+                          Contact Sales
                           <ArrowRight className="w-4 h-4 text-primary group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
-                        </a>
+                        </button>
                       </div>
                     </motion.div>
                   );

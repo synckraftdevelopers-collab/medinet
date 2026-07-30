@@ -139,45 +139,9 @@ export default function About() {
       {/* Corporate Philosophy & CEO Message */}
       <section className="py-20 bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* CEO Portrait & Sign-off */}
-            <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-5">
-              <div className="relative">
-                <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.3, type: "spring" }} viewport={{ once: true }} className="absolute -top-3 -left-3 w-10 h-10 bg-gradient-to-br from-secondary to-primary text-white font-serif text-2xl rounded-xl flex items-center justify-center shadow-md z-10">
-                  &ldquo;
-                </motion.div>
-                <div className="utility-card p-8 hover-lift">
-                  <p className="text-body leading-relaxed italic text-sm">
-                    &ldquo;{BRAND_INFO.ceoMessage}&rdquo;
-                  </p>
-                  <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <Image
-                        src={LEADERSHIP[1].image}
-                        alt={LEADERSHIP[1].name}
-                        width={48}
-                        height={48}
-                        className="rounded-full object-cover border border-border shadow-sm"
-                      />
-                      <div>
-                        <h4 className="font-display font-bold text-heading text-sm">{LEADERSHIP[1].name}</h4>
-                        <p className="text-[11px] font-mono text-secondary uppercase tracking-widest">{LEADERSHIP[1].role}</p>
-                        <p className="text-[10px] text-muted font-mono mt-0.5">{LEADERSHIP[1].qualification}</p>
-                      </div>
-                    </div>
-                    {/* Signature Area */}
-                    <div className="text-right">
-                      <div className="font-serif italic text-xl text-slate-400 opacity-80 -rotate-3 select-none">
-                        J. Doe
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
+          <div className="grid grid-cols-1 items-center justify-center text-center">
             {/* Corporate Philosophy */}
-            <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
+            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center">
               <span className="text-xs font-mono font-medium tracking-widest text-secondary uppercase block mb-3">
                 // CORPORATE PHILOSOPHY
               </span>
@@ -188,7 +152,7 @@ export default function About() {
                 We believe that premium, life-restoring pharmaceuticals should be built upon unyielding pillars of ethics and care.
               </p>
 
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl lg:max-w-none text-left">
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left">
                 {[
                   { title: "Quality", desc: "Uncompromising standards in every formulation we produce.", icon: ShieldCheck, color: "text-blue-600", bg: "bg-blue-50" },
                   { title: "Trust", desc: "Building long-term reliability with our global partners.", icon: HeartHandshake, color: "text-emerald-600", bg: "bg-emerald-50" },
@@ -372,6 +336,59 @@ export default function About() {
             })}
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* Message from the CEO & Founder */}
+      <section className="py-24 bg-gradient-to-b from-background via-alt-bg to-white border-b border-border overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="utility-card p-0 overflow-hidden shadow-lg border border-border/80"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              <motion.div 
+                variants={fadeLeft}
+                className="lg:col-span-5 relative min-h-[400px] lg:min-h-full bg-slate-100"
+              >
+                <Image
+                  src={LEADERSHIP[1].image}
+                  alt={LEADERSHIP[1].name}
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+              <motion.div 
+                variants={fadeRight}
+                className="lg:col-span-7 p-10 lg:p-16 flex flex-col justify-center"
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 shadow-sm">
+                  <span className="font-serif text-3xl text-primary mt-3">&ldquo;</span>
+                </div>
+                
+                <h2 className="text-3xl font-display font-bold text-heading mb-2">Message from the CEO &amp; Founder</h2>
+                <div className="w-16 h-1 bg-gradient-to-r from-secondary to-primary rounded-full mb-8"></div>
+                
+                <p className="text-body text-base lg:text-lg leading-relaxed italic mb-8">
+                  &ldquo;{BRAND_INFO.ceoMessage}&rdquo;
+                </p>
+                
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-8 border-t border-border/60">
+                  <div>
+                    <h4 className="font-display font-bold text-heading text-lg">{LEADERSHIP[1].name}</h4>
+                    <p className="text-sm font-mono text-secondary uppercase tracking-widest mt-1">Founder &amp; Chief Executive Officer</p>
+                    <p className="text-xs text-muted font-bold tracking-widest uppercase mt-3">Reliable Care, Every Time.</p>
+                  </div>
+                  <div className="font-serif italic text-3xl text-slate-300 -rotate-3 select-none">
+                    J. Doe
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Corporate Timeline Section */}

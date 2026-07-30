@@ -142,9 +142,6 @@ export default function About() {
           <div className="grid grid-cols-1 items-center justify-center text-center">
             {/* Corporate Philosophy */}
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center">
-              <span className="text-xs font-mono font-medium tracking-widest text-secondary uppercase block mb-3">
-                // CORPORATE PHILOSOPHY
-              </span>
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-heading tracking-tight leading-[1.15]">
                 Our Core Philosophy
               </h2>

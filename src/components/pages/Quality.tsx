@@ -121,9 +121,6 @@ export default function Quality() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* QA Message */}
             <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-7">
-              <span className="text-xs font-mono font-bold tracking-widest text-muted uppercase block mb-4">
-                // CORPORATE QUALITY CREED
-              </span>
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-heading tracking-tight leading-[1.15]">
                 Our Quality Commitment
               </h2>

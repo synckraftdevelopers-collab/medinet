@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useRef } from "react";
+import { motion, Variants } from "framer-motion";
 import { JOBS } from "../../data";
 import { Job } from "../../types";
 import SectionHeader from "../SectionHeader";
@@ -41,6 +42,19 @@ import {
 interface CareersProps {
   showToast: (message: string, type: "success" | "error") => void;
 }
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
 
 export default function Careers({ showToast }: CareersProps) {
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
@@ -222,7 +236,7 @@ export default function Careers({ showToast }: CareersProps) {
   };
 
   return (
-    <div className="pt-20">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
       <section className="py-16 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white border-b border-border">
         {/* Soft radial glows */}
@@ -232,15 +246,15 @@ export default function Careers({ showToast }: CareersProps) {
         {/* Optional Decoration: Soft blurred circle behind heading */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
-          <div className="animate-fade-in">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+          <div>
             <span className="utility-badge-blue mb-5">
               <span className="utility-dot"></span>
               Join Our Team
             </span>
           </div>
           
-          <div className="animate-fade-in">
+          <div>
             <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
               <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Careers</span> at <span className="bg-gradient-to-r from-secondary to-primary text-transparent bg-clip-text">Medinet</span>
             </h1>
@@ -250,7 +264,7 @@ export default function Careers({ showToast }: CareersProps) {
           </div>
 
           {/* Optional Small Badges Below Description */}
-          <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in">
+          <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
               <ShieldCheck className="w-4 h-4 text-primary" />
               <span className="text-xs font-semibold text-heading">WHO-GMP Certified</span>
@@ -264,7 +278,7 @@ export default function Careers({ showToast }: CareersProps) {
               <span className="text-xs font-semibold text-heading">Learning Culture</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Careers Work Culture & Benefits */}
@@ -280,11 +294,11 @@ export default function Careers({ showToast }: CareersProps) {
             centered
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {benefits.map((ben, idx) => {
               const BenIcon = ben.icon;
               return (
-                <div key={idx} className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group hover:border-secondary transition-all duration-300">
+                <motion.div variants={fadeUp} key={idx} className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group hover:border-secondary transition-all duration-300 hover-lift">
                   {/* Top gradient accent line */}
                   <div className={`absolute top-0 left-0 right-0 h-1 rounded-full ${ben.accent}`}></div>
 
@@ -298,10 +312,10 @@ export default function Careers({ showToast }: CareersProps) {
                   </div>
                   <h3 className="font-display font-bold text-heading text-lg mb-3">{ben.title}</h3>
                   <p className="text-sm text-body leading-relaxed">{ben.description}</p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -318,7 +332,7 @@ export default function Careers({ showToast }: CareersProps) {
             centered
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12">
             {JOBS.map((job) => {
               // Determine styles based on department
               let Icon = Building2;
@@ -354,9 +368,10 @@ export default function Careers({ showToast }: CareersProps) {
               }
 
               return (
-                <div
+                <motion.div
+                  variants={fadeUp}
                   key={job.id}
-                  className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group flex flex-col justify-between hover:border-secondary transition-all duration-300"
+                  className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group flex flex-col justify-between hover:border-secondary transition-all duration-300 hover-lift"
                 >
                   {/* Top Accent Bar */}
                   <div className={`absolute top-0 left-0 right-0 h-1 rounded-full ${accent}`}></div>
@@ -442,10 +457,10 @@ export default function Careers({ showToast }: CareersProps) {
                       <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
                     </button>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>      {/* Application Form Modal */}
       {isApplying && selectedJob && (
@@ -730,6 +745,6 @@ export default function Careers({ showToast }: CareersProps) {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

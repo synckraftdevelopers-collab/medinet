@@ -136,6 +136,21 @@
   }
 }
 
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Clean Utility / Minimal styles: Crisp, structured, high-contrast, beautiful borders */
 .utility-panel {
   @apply bg-surface border border-border rounded-card p-8 shadow-card hover:shadow-card-hover transition-all duration-300;

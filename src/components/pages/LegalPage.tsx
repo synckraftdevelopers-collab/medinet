@@ -9,7 +9,20 @@ import {
   ShieldAlert, Eye, FileText, Cookie, Heart, ChevronRight,
   Database, Building2, ShieldCheck, Handshake, BadgeCheck, ListTree, LifeBuoy, ArrowRight, Info, Scale, Copyright
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
 
 interface LegalPageProps {
   type: "privacy-policy" | "terms" | "disclaimer" | "cookies" | "copyright-notice";
@@ -169,9 +182,9 @@ export default function LegalPage({ type }: LegalPageProps) {
 
         {/* Hero Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
           className="mb-14 flex items-center gap-5"
         >
           <div className="w-[52px] h-[52px] bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-md flex items-center justify-center shrink-0">
@@ -187,9 +200,9 @@ export default function LegalPage({ type }: LegalPageProps) {
           
           {/* Sticky Sidebar (Table of Contents) */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
             className="w-full lg:col-span-3 lg:sticky lg:top-32"
           >
             <div className="bg-white/90 backdrop-blur-md border border-border rounded-3xl shadow-sm p-6">
@@ -217,9 +230,9 @@ export default function LegalPage({ type }: LegalPageProps) {
 
           {/* Main Content Card */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
             className="lg:col-span-9 utility-card p-8 md:p-12 w-full max-w-[900px]"
           >
             <div className="flex flex-col gap-[48px] text-body leading-loose text-base max-w-[72ch]">
@@ -236,7 +249,7 @@ export default function LegalPage({ type }: LegalPageProps) {
                 const hasCallout = sec.text.match(/privacy|security|compliance|legal|cookies|copyright/i);
 
                 return (
-                  <section id={`section-${idx}`} key={idx} className="animate-fade-in group">
+                  <motion.section variants={fadeUp} id={`section-${idx}`} key={idx} className="group hover-lift transition-all duration-300">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary shadow-sm flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                         <SecIcon className="w-5 h-5 text-white" />
@@ -255,7 +268,7 @@ export default function LegalPage({ type }: LegalPageProps) {
                         </div>
                       )}
                     </div>
-                  </section>
+                  </motion.section>
                 );
               })}
             </div>
@@ -265,10 +278,11 @@ export default function LegalPage({ type }: LegalPageProps) {
 
         {/* Bottom Information Card */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 max-w-[1240px] mx-auto bg-gradient-to-br from-heading to-primary rounded-3xl p-8 md:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg relative z-10"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="mt-16 max-w-[1240px] mx-auto bg-gradient-to-br from-heading to-primary rounded-3xl p-8 md:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg relative z-10 hover-lift transition-all duration-300"
         >
           <div className="flex items-center gap-5 text-white">
             <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/20">

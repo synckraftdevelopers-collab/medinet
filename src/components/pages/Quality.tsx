@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import { motion } from "motion/react";
+import { motion, Variants } from "framer-motion";
 import SectionHeader from "../SectionHeader";
 import {
   ShieldCheck,
@@ -26,6 +26,29 @@ import {
   Clock,
   Database
 } from "lucide-react";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const fadeLeft: Variants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const fadeRight: Variants = {
+  hidden: { opacity: 0, x: 30 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 export default function Quality() {
   const qualityPillars = [
@@ -71,33 +94,23 @@ export default function Quality() {
   ];
 
   return (
-    <div className="pt-20">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
       <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 relative overflow-hidden">
         {/* Soft radial medical glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.03),transparent_60%)] pointer-events-none"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
           <span className="utility-badge-blue mb-4">
             <span className="utility-dot"></span>
             Zero-Defect Standards
           </span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight"
-          >
+          <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
             <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Quality Assurance</span> & Safety Policy
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl relative"
-          >
+          </h1>
+          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl relative">
             At Medinet, quality is our primary pledge. We maintain absolute compliance with WHO-GMP specifications, ensuring every pill and topical gel meets international bioequivalence, purity, and clinical criteria.
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </section>
 
       {/* Quality Policy Overview */}
@@ -105,7 +118,7 @@ export default function Quality() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* QA Message */}
-            <div className="lg:col-span-7">
+            <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-7">
               <span className="text-xs font-mono font-bold tracking-widest text-muted uppercase block mb-4">
                 // CORPORATE QUALITY CREED
               </span>
@@ -119,7 +132,7 @@ export default function Quality() {
                 To fulfill this creed, our Quality Assurance heads govern every step of our allied supply lines. From checking chemical impurity indices of raw APIs up to validating climatic logistics (such as cold-chain integrity for temperature-sensitive compounds), we secure double-audited validation parameters before releasing any batch.
               </p>
 
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5 utility-card p-6 border-border hover:border-secondary transition-all duration-300">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5 utility-card p-6 border-border hover:border-secondary transition-all duration-300 hover-lift">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center shrink-0">
                     <ShieldCheck className="w-5 h-5 text-success" />
@@ -139,7 +152,7 @@ export default function Quality() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Certification Badge Box */}
             <motion.div 
@@ -218,15 +231,16 @@ export default function Quality() {
             centered
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             {qualityPillars.map((pillar, idx) => {
               const PillarIcon = pillar.icon;
               return (
-                <div
+                <motion.div
+                  variants={fadeUp}
                   key={idx}
-                  className={`utility-card border-l-[4px] ${pillar.accent} p-8 flex gap-5 items-start group hover:border-l-secondary`}
+                  className={`utility-card border-l-[4px] ${pillar.accent} p-8 flex gap-5 items-start group hover:border-l-secondary hover-lift`}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-alt-bg border border-border flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-[4deg] group-hover:shadow-md">
+                  <div className="w-14 h-14 rounded-xl bg-alt-bg border border-border flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-[8deg] group-hover:shadow-md">
                     <PillarIcon className={`w-6 h-6 ${pillar.iconColor}`} />
                   </div>
                   <div className="flex-1">
@@ -244,10 +258,10 @@ export default function Quality() {
                       {pillar.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -313,6 +327,6 @@ export default function Quality() {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

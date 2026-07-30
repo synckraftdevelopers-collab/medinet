@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
 import SEOManager from "./components/SEOManager";
+import BackgroundEffects from "./components/BackgroundEffects";
 
 // Keep Home statically imported for instant initial LCP on landing page
 import Home from "./components/pages/Home";
@@ -76,7 +77,8 @@ export default function App() {
   }, [currentRoute, params, navigate, showToast]);
 
   return (
-    <div className="min-h-screen bg-[#FCFCFD] flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-[#FCFCFD] flex flex-col justify-between selection:bg-secondary selection:text-white relative overflow-hidden">
+      <BackgroundEffects />
       <SEOManager currentRoute={currentRoute} params={params} />
       <a
         href="#main-content"

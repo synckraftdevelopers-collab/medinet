@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, Variants } from "framer-motion";
 import { NEWS_ITEMS } from "../../data";
 import { NewsItem } from "../../types";
 import SectionHeader from "../SectionHeader";
@@ -41,6 +42,19 @@ import {
 interface NewsEventsProps {
   params: Record<string, string>;
 }
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
 
 export default function NewsEvents({ params }: NewsEventsProps) {
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
@@ -103,7 +117,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
   ];
 
   return (
-    <div className="pt-20">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Article Detail View State */}
       {selectedNews ? (
         <article className="max-w-4xl mx-auto px-4 sm:px-6 py-16 text-left">
@@ -160,16 +174,16 @@ export default function NewsEvents({ params }: NewsEventsProps) {
             {/* Optional Decoration: Soft blurred circle behind heading */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
-              <div className="animate-fade-in">
+            <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+              <div>
                 <span className="utility-badge-blue mb-5">
                   <Newspaper className="w-3 h-3 text-primary" />
                   Corporate Media
                 </span>
               </div>
               
-              <div className="animate-fade-in">
-                <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+              <div>
+                <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5">
                   News &amp; <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Scientific Events</span>
                 </h1>
                 <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px]">
@@ -178,7 +192,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
               </div>
 
               {/* Optional Info Badges Below Description */}
-              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in">
+              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
                   <div className="bg-primary/10 p-1.5 rounded-full flex items-center justify-center">
                     <Presentation className="w-3 h-3 text-primary group-hover:scale-110 transition-transform duration-300 ease-out" />
@@ -207,7 +221,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   <span className="text-xs font-semibold text-heading">Global Events</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </section>
 
           {/* Latest News & CSR Grid */}
@@ -223,7 +237,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                 centered
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12 items-stretch">
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12 items-stretch">
                 {NEWS_ITEMS.map((news) => {
                   let BadgeIcon = Newspaper;
                   let CardIcon = Building2;
@@ -253,10 +267,11 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   }
 
                   return (
-                    <div
+                    <motion.div
+                      variants={fadeUp}
                       key={news.id}
                       onClick={() => setSelectedNews(news)}
-                      className="utility-card p-0 hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group shadow-sm hover:shadow-md cursor-pointer"
+                      className="utility-card p-0 hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group shadow-sm hover:shadow-md cursor-pointer hover-lift"
                     >
                       <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
                         <div className="flex items-center justify-between mb-5">
@@ -293,10 +308,10 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                           <ArrowUpRight className="w-4 h-4" />
                         </span>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
             </div>
           </section>
 
@@ -313,7 +328,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                 centered
               />
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
                 {upcomingEvents.map((event, i) => {
                   let BadgeIcon = Presentation;
                   let badgeBg = "bg-primary/10";
@@ -336,9 +351,10 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   if (i === 2) statusTag = { text: "Confirmed", bg: "bg-accent/10", color: "text-accent" };
 
                   return (
-                    <div
+                    <motion.div
+                      variants={fadeUp}
                       key={i}
-                      className="utility-card p-6 sm:p-8 text-left flex flex-col justify-between group relative hover:border-secondary transition-all duration-300"
+                      className="utility-card p-6 sm:p-8 text-left flex flex-col justify-between group relative hover:border-secondary transition-all duration-300 hover-lift"
                     >
                       {statusTag && (
                         <div className="absolute top-6 right-6">
@@ -388,10 +404,10 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                           <ArrowRight className="w-4 h-4 text-primary group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
                         </a>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
             </div>
           </section>
 
@@ -408,7 +424,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                 centered
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 items-stretch">
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 items-stretch">
                 {galleryPlaceholders.map((item, idx) => {
                   let BadgeIcon = HeartHandshake;
                   let badgeBg = "bg-alt-bg";
@@ -434,9 +450,10 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   if (item.tag === "Academic") statusTag = { text: "Live Event", bg: "bg-secondary/10", color: "text-secondary" };
 
                   return (
-                    <div
+                    <motion.div
+                      variants={fadeUp}
                       key={idx}
-                      className="utility-card hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group relative p-0 shadow-sm hover:shadow-md"
+                      className="utility-card hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group relative p-0 shadow-sm hover:shadow-md hover-lift"
                     >
                       <div className="aspect-[3/2] w-full overflow-hidden bg-alt-bg relative shrink-0 rounded-t-[24px]">
                         <div className="absolute inset-0 bg-gradient-to-t from-heading/40 to-transparent z-10 pointer-events-none"></div>
@@ -481,14 +498,14 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
                         </button>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
             </div>
           </section>
         </>
       )}
-    </div>
+    </motion.div>
   );
 }

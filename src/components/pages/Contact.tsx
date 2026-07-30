@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
+import { motion, Variants } from "framer-motion";
 import { OFFICES, FAQS } from "../../data";
 import { Office } from "../../types";
 import SectionHeader from "../SectionHeader";
@@ -51,6 +52,19 @@ interface ContactProps {
   showToast: (message: string, type: "success" | "error") => void;
   params?: Record<string, string>;
 }
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
 
 export default function Contact({ showToast, params }: ContactProps) {
   // Map Selection State
@@ -223,23 +237,23 @@ export default function Contact({ showToast, params }: ContactProps) {
   };
 
   return (
-    <div className="pt-20">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
       <section className="py-16 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white border-b border-border">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
           <span className="utility-badge-blue mb-5">
             <Globe2 className="w-3 h-3 text-primary" />
             Connect With Us
           </span>
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5">
             Contact Our <span className="bg-gradient-to-b from-primary to-secondary text-transparent bg-clip-text">Global Offices</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl">
             Have questions regarding wholesale sourcing, territorial licensing rights, or adverse drug event reporting? Reach out to our dedicated corporate departments globally.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Offices and Interactive Map Selector */}
@@ -252,7 +266,7 @@ export default function Contact({ showToast, params }: ContactProps) {
             centered
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch mt-12">
             {/* Address Cards List */}
             <div className="lg:col-span-5 space-y-4">
               {OFFICES.map((off, idx) => {
@@ -277,10 +291,11 @@ export default function Contact({ showToast, params }: ContactProps) {
                 const isActive = selectedOffice.name === off.name;
 
                 return (
-                  <div
+                  <motion.div
+                    variants={fadeUp}
                     key={idx}
                     onClick={() => setSelectedOffice(off)}
-                    className={`rounded-[24px] transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden group/card ${isActive
+                    className={`rounded-[24px] transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden group/card hover-lift ${isActive
                         ? "bg-gradient-to-br from-heading to-primary border-none shadow-lg hover:-translate-y-2"
                         : "bg-white border border-border shadow-sm hover:border-secondary hover:shadow-md hover:-translate-y-2"
                       }`}
@@ -331,13 +346,13 @@ export default function Contact({ showToast, params }: ContactProps) {
                         Directions
                       </button>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
 
             {/* Live Interactive Map Frame */}
-            <div className="lg:col-span-7 flex flex-col gap-4">
+            <motion.div variants={fadeUp} className="lg:col-span-7 flex flex-col gap-4">
               <div className="relative flex items-center gap-2 mb-2">
                 <span className="utility-badge-blue">
                   <MapPinned className="w-3 h-3 text-primary" />
@@ -390,8 +405,8 @@ export default function Contact({ showToast, params }: ContactProps) {
                   <span className="text-xs font-bold text-heading">Active Line</span>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -401,7 +416,7 @@ export default function Contact({ showToast, params }: ContactProps) {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="utility-card overflow-hidden transition-all duration-300 shadow-md">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="utility-card overflow-hidden transition-all duration-300 shadow-md">
 
             <div className="p-8 sm:p-12">
               <div className="flex items-center gap-4 mb-8">
@@ -661,7 +676,7 @@ export default function Contact({ showToast, params }: ContactProps) {
               </div>
 
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -678,7 +693,7 @@ export default function Contact({ showToast, params }: ContactProps) {
             centered
           />
 
-          <div className="max-w-[820px] mx-auto space-y-4 mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="max-w-[820px] mx-auto space-y-4 mt-12">
             {FAQS.map((faq, idx) => {
               let FaqIcon = HelpCircle;
               if (faq.question.includes("Third Party") || faq.question.includes("Manufacturing") || faq.question.includes("manufacturing")) FaqIcon = Factory;
@@ -690,9 +705,10 @@ export default function Contact({ showToast, params }: ContactProps) {
               const isOpen = openFaqIndex === idx;
 
               return (
-                <div
+                <motion.div
+                  variants={fadeUp}
                   key={idx}
-                  className={`border rounded-[18px] overflow-hidden transition-all duration-300 group/faq ${isOpen
+                  className={`border rounded-[18px] overflow-hidden transition-all duration-300 group/faq hover-lift ${isOpen
                       ? "bg-gradient-to-r from-primary/5 to-white border-primary border-l-[4px] shadow-md"
                       : "bg-white border-border hover:bg-alt-bg hover:border-secondary hover:shadow-sm hover:-translate-y-[2px]"
                     }`}
@@ -726,10 +742,10 @@ export default function Contact({ showToast, params }: ContactProps) {
                       {faq.answer}
                     </div>
                   )}
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
           {/* Optional Support Box */}
           <div className="max-w-[820px] mx-auto mt-12 bg-gradient-to-br from-heading to-primary rounded-[24px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
@@ -756,6 +772,6 @@ export default function Contact({ showToast, params }: ContactProps) {
 
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

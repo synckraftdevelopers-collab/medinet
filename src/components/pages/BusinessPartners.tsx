@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from "react";
+import { motion, Variants } from "framer-motion";
 import SectionHeader from "../SectionHeader";
 import {
   Handshake,
@@ -27,12 +28,31 @@ import {
   MapPinned,
   Loader2,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Stethoscope,
+  ActivitySquare,
+  Cross,
+  Syringe,
+  Microscope,
+  Pill
 } from "lucide-react";
 
 interface BusinessPartnersProps {
   showToast: (message: string, type: "success" | "error") => void;
 }
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
 
 export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
   const [formData, setFormData] = useState({
@@ -81,6 +101,15 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       badge: "B2B",
       badgeColor: "text-secondary bg-secondary/5 border-secondary/20"
     }
+  ];
+
+  const PARTNER_LOGOS = [
+    { name: "Global Pharma", icon: ActivitySquare },
+    { name: "EuroMed Alliance", icon: Cross },
+    { name: "MediTech Supplies", icon: Microscope },
+    { name: "HealthCare Plus", icon: Stethoscope },
+    { name: "BioGen Research", icon: Syringe },
+    { name: "Lifeline Formulations", icon: Pill }
   ];
 
   const validatePartnerField = (field: string, value: string) => {
@@ -159,7 +188,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
   };
 
   return (
-    <div className="pt-20">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
       <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 sm:py-20 relative overflow-hidden">
         {/* Subtle radial medical glow */}
@@ -183,16 +212,16 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
           </svg>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
-          <div className="animate-fade-in">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
+          <div>
             <span className="utility-badge-blue mb-5">
               <span className="utility-dot"></span>
               B2B Commercial Alliances
             </span>
           </div>
 
-          <div className="animate-fade-in">
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5">
               <span className="bg-gradient-to-r from-heading to-primary text-transparent bg-clip-text">Corporate Partnerships</span> & <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">PCD Franchise</span>
             </h1>
             <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[720px]">
@@ -200,7 +229,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
             </p>
           </div>
 
-          <div className="mt-10 animate-fade-in cursor-default">
+          <div className="mt-10 cursor-default">
             <div className="inline-flex flex-wrap items-center gap-4 sm:gap-6 bg-white border border-border rounded-full shadow-sm px-6 py-4 hover:-translate-y-1 transition-transform duration-300">
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
@@ -223,7 +252,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Business Verticals Overview */}
@@ -239,13 +268,14 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
             centered
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
             {verticals.map((vert, idx) => {
               const VertIcon = vert.icon;
               return (
-                <div
+                <motion.div
+                  variants={fadeUp}
                   key={idx}
-                  className="utility-card p-6 sm:p-8 text-left flex flex-col justify-between group relative overflow-hidden hover:border-secondary transition-all duration-300"
+                  className="utility-card p-6 sm:p-8 text-left flex flex-col justify-between group relative overflow-hidden hover:border-secondary transition-all duration-300 hover-lift"
                 >
                   {/* Top gradient accent line */}
                   <div className={`absolute top-0 left-0 right-0 h-1 ${vert.accent}`}></div>
@@ -253,7 +283,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   <div>
                     <div className="flex justify-between items-start mb-6">
                       <div className={`w-[52px] h-[52px] rounded-2xl ${vert.iconBg} flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
-                        <VertIcon className={`w-6 h-6 ${vert.iconColor} group-hover:scale-110 transition-transform duration-300 ease-out`} />
+                        <VertIcon className={`w-6 h-6 ${vert.iconColor} group-hover:scale-110 group-hover:rotate-[8deg] transition-transform duration-300 ease-out`} />
                       </div>
                       <span className={`inline-block border ${vert.badgeColor} text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full`}>
                         {vert.badge}
@@ -272,10 +302,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                     <span>Enquire About This Channel</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -285,8 +315,8 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 text-left pt-2">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start overflow-hidden">
+            <motion.div variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } } }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-5 text-left pt-2">
               <span className="utility-badge-blue mb-5">
                 <span className="utility-dot"></span>
                 Why Partner With Us?
@@ -318,10 +348,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   <span className="mt-2 font-bold text-heading">Territory Protection</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* B2B Proposal Enquiry Form */}
-            <div className="lg:col-span-7">
+            <motion.div variants={{ hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } } }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="lg:col-span-7">
               <div className="flex flex-wrap items-center gap-3 mb-4 pl-2">
                 <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-primary/20">
                   <ShieldCheck className="w-3 h-3" /> Verified Partner
@@ -568,10 +598,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   </form>
                 )}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

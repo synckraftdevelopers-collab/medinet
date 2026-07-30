@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES } from "../../data";
 import { Product } from "../../types";
 import SectionHeader from "../SectionHeader";
@@ -46,6 +47,19 @@ const getDosageIcon = (form: string) => {
   if (f.includes('inject') || f.includes('vial') || f.includes('syring')) return <Syringe className="w-5 h-5 text-secondary shrink-0" />;
   if (f.includes('syrup') || f.includes('drop') || f.includes('suspension')) return <Droplet className="w-5 h-5 text-secondary shrink-0" />;
   return <Pill className="w-5 h-5 text-secondary shrink-0" />;
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
 };
 
 export default function Products({ params, showToast }: ProductsProps) {
@@ -273,12 +287,12 @@ export default function Products({ params, showToast }: ProductsProps) {
   };
 
   return (
-    <div className="pt-20">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
       <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <span className="utility-badge-blue mb-4">
               <span className="utility-dot"></span>
@@ -313,7 +327,7 @@ export default function Products({ params, showToast }: ProductsProps) {
               </>
             )}
           </button>
-        </div>
+        </motion.div>
       </section>
 
       {/* Directory Grid */}
@@ -408,11 +422,12 @@ export default function Products({ params, showToast }: ProductsProps) {
 
               {/* Grid of Product Cards */}
               {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                   {filteredProducts.map((p) => (
-                    <div
+                    <motion.div
+                      variants={fadeUp}
                       key={p.id}
-                      className="utility-card p-6 sm:p-7 h-full flex flex-col justify-between group cursor-pointer hover:border-secondary/30 hover:-translate-y-[4px] transition-all duration-300 shadow-sm hover:shadow-md"
+                      className="utility-card p-6 sm:p-7 h-full flex flex-col justify-between group cursor-pointer hover:border-secondary/30 hover:-translate-y-[6px] transition-all duration-300 shadow-sm hover:shadow-[0_24px_48px_-12px_rgba(20,83,45,0.18)]"
                       onClick={() => setSelectedProduct(p)}
                     >
                       <div>
@@ -443,11 +458,11 @@ export default function Products({ params, showToast }: ProductsProps) {
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               ) : (
-                <div className="text-center py-16 border border-dashed border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background/20">
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" className="text-center py-16 border border-dashed border-border rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background/20">
                   <HelpCircle className="w-10 h-10 text-slate-350 mx-auto mb-4" />
                   <p className="text-body font-mono text-xs font-semibold">No formulations found matching filters</p>
                   <p className="text-muted text-[10px] mt-1">Try relaxing your search terms or choosing &ldquo;All Formulations&rdquo;.</p>
@@ -460,7 +475,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                   >
                     RESET FILTERS
                   </button>
-                </div>
+                </motion.div>
               )}
             </main>
           </div>
@@ -832,6 +847,6 @@ export default function Products({ params, showToast }: ProductsProps) {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -407,7 +407,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
   };
 
   const getNavItemClass = (isActive: boolean) =>
-    `px-2 xl:px-3 py-1.5 text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] select-none shrink-0 ${
+    `px-2 xl:px-3 py-1.5 text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] select-none shrink-0 ${
       isActive
         ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold scale-[1.02]"
         : "text-body font-medium hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
@@ -488,13 +488,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <button
                       key={product.id}
                       onClick={() => selectSearchResult(product)}
-                      className="w-full text-left flex items-start gap-3 p-3 hover:bg-blue-50/50 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm transition-colors group"
+                      className="w-full text-left flex items-start gap-3 p-3 hover:bg-emerald-50/50 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 group-hover:bg-blue-100">
+                      <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-100">
                         <Activity className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="font-semibold text-heading text-sm group-hover:text-blue-600 flex items-center gap-2">
+                        <div className="font-semibold text-heading text-sm group-hover:text-emerald-600 flex items-center gap-2">
                           {product.name}
                           <span className="text-xs font-normal text-muted font-mono">
                             {product.strength}
@@ -530,7 +530,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setIsSearchOpen(false);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm border border-border hover:border-blue-100 hover:bg-background/50 text-left transition-all"
+                          className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm border border-border hover:border-emerald-100 hover:bg-background/50 text-left transition-all"
                         >
                           <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background flex items-center justify-center text-body">
                             <IconComponent className="w-4 h-4" />
@@ -565,7 +565,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             <div className="flex-1 flex items-center justify-start h-full">
               <button
                 onClick={() => navigate("home")}
-                className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] rounded-lg hover:opacity-90 transition-opacity"
+                className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] rounded-lg hover:opacity-90 transition-opacity"
                 id="navbar-logo"
                 aria-label="Medinet Pharmaceuticals - Home"
               >
@@ -641,9 +641,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     onKeyDown={(e) => handleMenuKeyDown(e, "products-mega-menu")}
                     className="absolute left-1/2 -translate-x-1/2 top-full mt-0 w-[640px] max-w-[90vw] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-5 grid grid-cols-2 gap-3.5 animate-fade-in z-50 origin-top"
                   >
-                    <div className="col-span-2 border-b border-[#DBEAFE] pb-3 mb-1 flex">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#BFDBFE] text-[#0B1F4D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(37,99,235,.08)]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]"></span>
+                    <div className="col-span-2 border-b border-[#D1FAE5] pb-3 mb-1 flex">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#ECFDF5] border border-[#A7F3D0] text-[#14532D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(5,150,105,.08)]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#059669]"></span>
                         Therapeutic Segments
                       </span>
                     </div>
@@ -667,13 +667,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setActiveMegaMenu(null);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-start gap-3.5 p-3.5 rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F8FBFF,#EFF6FF)] hover:border-[#BFDBFE] hover:translate-x-1 hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] text-left transition-all duration-300 ease-out cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                          className="flex items-start gap-3.5 p-3.5 rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F0FDF4,#ECFDF5)] hover:border-[#A7F3D0] hover:translate-x-1 hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] text-left transition-all duration-300 ease-out cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                         >
-                          <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#EFF6FF,#DBEAFE)] border border-[#BFDBFE] text-[#2563EB] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] group-hover:text-white transition-all duration-300">
+                          <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#ECFDF5,#D1FAE5)] border border-[#A7F3D0] text-[#059669] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#059669,#34D399)] group-hover:text-white transition-all duration-300">
                             <IconComponent className="w-5 h-5 group-hover:rotate-[5deg] transition-transform duration-300" />
                           </div>
                           <div>
-                            <div className="text-sm font-bold text-[#0F172A] group-hover:text-[#2563EB] transition-colors duration-300">
+                            <div className="text-sm font-bold text-[#0F172A] group-hover:text-[#059669] transition-colors duration-300">
                               {cat.name}
                             </div>
                             <div className="text-[11px] text-[#64748B] line-clamp-1 mt-0.5 font-sans">
@@ -683,7 +683,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         </button>
                       );
                     })}
-                    <div className="col-span-2 mt-2 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#DBEAFE] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(11,31,77,.06)]">
+                    <div className="col-span-2 mt-2 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#D1FAE5] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(20,83,45,.06)]">
                       <div className="text-[11px] text-[#64748B] font-sans ml-2">
                         Looking for something specific? Search our entire portfolio.
                       </div>
@@ -694,7 +694,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setActiveMegaMenu(null);
                           setIsSearchOpen(true);
                         }}
-                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#0B1F4D,#2563EB)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#2563EB,#38BDF8)] hover:shadow-[0_12px_28px_rgba(37,99,235,.30)] hover:scale-[1.03] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                        className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#14532D,#059669)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#059669,#34D399)] hover:shadow-[0_12px_28px_rgba(5,150,105,.30)] hover:scale-[1.03] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                       >
                         SEARCH NOW <ArrowRight className="w-3.5 h-3.5 text-white" />
                       </button>
@@ -787,12 +787,12 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     role="menu"
                     aria-label="Legal documents and policies"
                     onKeyDown={(e) => handleMenuKeyDown(e, "legal-mega-menu")}
-                    className="absolute right-0 top-full mt-0 pt-2 w-[420px] max-w-[90vw] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(37,99,235,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
+                    className="absolute right-0 top-full mt-0 pt-2 w-[420px] max-w-[90vw] bg-[rgba(255,255,255,.96)] backdrop-blur-[18px] rounded-[28px] border border-[rgba(5,150,105,.12)] shadow-[0_30px_80px_rgba(15,23,42,.16)] p-5 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
                   >
                     {/* Top Header */}
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#E2E8F0] px-2">
                       <div className="w-10 h-10 rounded-[12px] bg-[linear-gradient(135deg,#F8FAFC,#F1F5F9)] border border-[#E2E8F0] flex items-center justify-center shrink-0">
-                        <Scale className="w-5 h-5 text-[#0B1F4D]" />
+                        <Scale className="w-5 h-5 text-[#14532D]" />
                       </div>
                       <div>
                         <h4 className="font-display font-[700] text-[#0F172A] text-[15px]">Legal & Compliance</h4>
@@ -813,18 +813,18 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             navigate("privacy-policy");
                           }
                         }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                       >
                         <div className="flex items-center gap-[18px]">
-                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#38BDF8)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <ShieldCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#059669,#34D399)] shadow-[0_10px_24px_rgba(5,150,105,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
+                            <ShieldCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
                           </div>
                           <div className="flex flex-col gap-0.5">
                             <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Privacy Policy</span>
                             <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Protecting your information</span>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
                       </a>
 
                       <a
@@ -839,18 +839,18 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             navigate("terms");
                           }
                         }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#0D9488,#2DD4BF)] shadow-[0_10px_24px_rgba(13,148,136,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <FileText className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                            <FileText className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
                           </div>
                           <div className="flex flex-col gap-0.5">
                             <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Terms & Conditions</span>
                             <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Usage guidelines</span>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
                       </a>
 
                       <a
@@ -865,18 +865,18 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             navigate("disclaimer");
                           }
                         }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#F59E0B,#FBBF24)] shadow-[0_10px_24px_rgba(245,158,11,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <Scale className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                            <Scale className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
                           </div>
                           <div className="flex flex-col gap-0.5">
                             <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Disclaimer</span>
                             <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Legal information</span>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
                       </a>
 
                       <a
@@ -891,18 +891,18 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             navigate("cookies");
                           }
                         }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                       >
                         <div className="flex items-center gap-[18px]">
                           <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#8B5CF6,#A78BFA)] shadow-[0_10px_24px_rgba(139,92,246,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <Cookie className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                            <Cookie className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
                           </div>
                           <div className="flex flex-col gap-0.5">
                             <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Cookie Policy</span>
                             <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Tracking preferences</span>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
                       </a>
 
                       <a
@@ -917,28 +917,28 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             navigate("copyright-notice");
                           }
                         }}
-                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#EFF6FF,#F8FBFF)] hover:border hover:border-[#BFDBFE] hover:shadow-[0_8px_24px_rgba(37,99,235,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                        className="flex items-center justify-between h-[76px] p-4 rounded-[18px] bg-transparent hover:bg-[linear-gradient(90deg,#ECFDF5,#F0FDF4)] hover:border hover:border-[#A7F3D0] hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:translate-x-1 active:bg-[linear-gradient(135deg,#059669,#047857)] active:text-white border border-transparent transition-all duration-300 ease-out group/item focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                       >
                         <div className="flex items-center gap-[18px]">
-                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#2563EB,#0EA5E9)] shadow-[0_10px_24px_rgba(37,99,235,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
-                            <BadgeCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#2563EB]" />
+                          <div className="w-[54px] h-[54px] rounded-[16px] bg-[linear-gradient(135deg,#059669,#10B981)] shadow-[0_10px_24px_rgba(5,150,105,.22)] flex items-center justify-center shrink-0 group-hover/item:scale-[1.1] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[300ms]">
+                            <BadgeCheck className="w-[22px] h-[22px] text-white group-active/item:text-[#059669]" />
                           </div>
                           <div className="flex flex-col gap-0.5">
                             <span className="text-[18px] font-[700] text-[#0F172A] group-active/item:text-white transition-colors duration-[300ms]">Copyright Notice</span>
                             <span className="text-[13px] font-[500] text-[#64748B] group-active/item:text-white/80 transition-colors duration-[300ms]">Ownership & licensing</span>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#2563EB] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
+                        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover/item:text-[#059669] group-hover/item:translate-x-[4px] group-active/item:text-white transition-all duration-[300ms]" />
                       </a>
                     </div>
 
                     {/* Bottom Area */}
                     <div className="mt-4 pt-4 border-t border-[#E2E8F0] bg-[#F8FAFC] rounded-b-[24px] -mx-5 -mb-5 p-[18px] flex items-center justify-between">
                       <div className="flex items-center gap-2 text-[13px] font-[500] text-[#0F172A]">
-                        <Info className="w-[18px] h-[18px] text-[#2563EB]" />
+                        <Info className="w-[18px] h-[18px] text-[#059669]" />
                         Need legal assistance?
                       </div>
-                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#0B1F4D] hover:bg-[#2563EB] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(11,31,77,.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]">
+                      <a href="mailto:corporate@medinetpharma.com" className="px-4 py-2 bg-[#14532D] hover:bg-[#059669] text-white text-xs font-[600] rounded-full transition-colors duration-[300ms] shadow-[0_4px_12px_rgba(20,83,45,.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]">
                         Contact Legal Team
                       </a>
                     </div>
@@ -950,7 +950,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             <div className="flex-1 flex items-center justify-end gap-1.5 sm:gap-3 xl:gap-4 h-full">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="h-[36px] lg:h-[40px] px-2 lg:px-3 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] flex items-center justify-center gap-1.5 text-xs font-mono font-medium shrink-0 my-auto"
+                className="h-[36px] lg:h-[40px] px-2 lg:px-3 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] flex items-center justify-center gap-1.5 text-xs font-mono font-medium shrink-0 my-auto"
                 aria-label="Search products"
                 aria-haspopup="dialog"
                 title="Search Products (Ctrl+K)"
@@ -972,7 +972,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="utility-button-primary hidden md:inline-flex h-[36px] lg:h-[40px] px-4 xl:px-5 my-auto items-center justify-center gap-1.5 shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 rounded-xl"
+                className="utility-button-primary hidden md:inline-flex h-[36px] lg:h-[40px] px-4 xl:px-5 my-auto items-center justify-center gap-1.5 shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] focus-visible:ring-offset-2 rounded-xl"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 INQUIRE NOW
@@ -982,7 +982,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 id="mobile-burger-button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] hover:text-[#2563EB] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] active:scale-[0.95] shrink-0"
+                className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#ECFDF5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] hover:text-[#059669] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] active:scale-[0.95] shrink-0"
                 aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-navigation-drawer"
@@ -1029,7 +1029,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-3 hover:bg-[#F1F5F9] active:bg-[#E2E8F0] rounded-2xl text-[#0F172A] hover:text-[#2563EB] hover:rotate-90 transition-all duration-300 min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                  className="p-3 hover:bg-[#F1F5F9] active:bg-[#E2E8F0] rounded-2xl text-[#0F172A] hover:text-[#059669] hover:rotate-90 transition-all duration-300 min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                   aria-label="Close menu"
                 >
                   <X className="w-7 h-7" />
@@ -1062,15 +1062,15 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setIsMobileMenuOpen(false);
                           if (item.route) navigate(item.route);
                         }}
-                        className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] shrink-0 font-sans ${
+                        className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] shrink-0 font-sans ${
                           isActive
-                            ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
-                            : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#DBEAFE] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] font-semibold"
+                            ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
+                            : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
                         }`}
                       >
                         <div className="flex items-center gap-4">
                           <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
-                            {item.icon && <item.icon className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />}
+                            {item.icon && <item.icon className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />}
                           </motion.div>
                           <span className="text-[16px]">
                             {item.label}
@@ -1085,16 +1085,16 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <motion.div key="products-accordion" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25, delay: index * 0.03 }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "products" ? null : "products")}
-                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
                             isActive
-                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
-                              : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#DBEAFE] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] font-semibold"
+                              ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
+                              : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
                           }`}
                           aria-expanded={activeMobileAccordion === "products"}
                         >
                           <div className="flex items-center gap-4">
                             <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
-                              <Package className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />
+                              <Package className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />
                             </motion.div>
                             <span className="text-[16px]">Products</span>
                           </div>
@@ -1119,14 +1119,14 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                     setIsMobileMenuOpen(false);
                                     navigate("products");
                                   }}
-                                  className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
+                                  className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
                                     currentRoute === "products"
-                                      ? "text-[#2563EB] font-bold bg-[#EFF6FF] border-l-4 border-[#2563EB]"
-                                      : "text-[#64748B] hover:text-[#2563EB] hover:bg-slate-50 font-medium"
+                                      ? "text-[#059669] font-bold bg-[#ECFDF5] border-l-4 border-[#059669]"
+                                      : "text-[#64748B] hover:text-[#059669] hover:bg-slate-50 font-medium"
                                   }`}
                                 >
                                   <span>All Products</span>
-                                  {currentRoute === "products" && <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />}
+                                  {currentRoute === "products" && <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />}
                                 </button>
                                 {PRODUCTS.map((product) => (
                                   <button
@@ -1135,7 +1135,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                       setIsMobileMenuOpen(false);
                                       navigate("products", { id: product.id });
                                     }}
-                                    className="w-full text-left min-h-[48px] py-3 px-4 text-[#64748B] hover:text-[#2563EB] hover:bg-slate-50 text-[15px] font-medium transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                                    className="w-full text-left min-h-[48px] py-3 px-4 text-[#64748B] hover:text-[#059669] hover:bg-slate-50 text-[15px] font-medium transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
                                   >
                                     <span>{product.name}</span>
                                   </button>
@@ -1152,16 +1152,16 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <motion.div key="legal-accordion" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25, delay: index * 0.03 }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
-                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
                             isActive
-                              ? "bg-[linear-gradient(135deg,#2563EB,#1D4ED8)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
-                              : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#DBEAFE] border border-transparent hover:border-[#BFDBFE] text-[#0F172A] font-semibold"
+                              ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
+                              : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
                           }`}
                           aria-expanded={activeMobileAccordion === "legal"}
                         >
                           <div className="flex items-center gap-4">
                             <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
-                              <Scale className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#2563EB]"}`} />
+                              <Scale className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />
                             </motion.div>
                             <span className="text-[16px]">Legal</span>
                           </div>
@@ -1194,14 +1194,14 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                       key={lItem.route}
                                       href={lItem.route}
                                       onClick={() => setIsMobileMenuOpen(false)}
-                                      className={`min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] block ${
+                                      className={`min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] block ${
                                         isSubActive
-                                          ? "text-[#2563EB] font-bold bg-[#EFF6FF] border-l-4 border-[#2563EB]"
-                                          : "text-[#64748B] hover:text-[#2563EB] hover:bg-slate-50 font-medium"
+                                          ? "text-[#059669] font-bold bg-[#ECFDF5] border-l-4 border-[#059669]"
+                                          : "text-[#64748B] hover:text-[#059669] hover:bg-slate-50 font-medium"
                                       }`}
                                     >
                                       <span>{lItem.label}</span>
-                                      {isSubActive && <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />}
+                                      {isSubActive && <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />}
                                     </a>
                                   );
                                 })}
@@ -1222,7 +1222,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsMobileMenuOpen(false);
                     setIsEnquiryOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-3 min-h-[58px] bg-[#0B1F4D] hover:bg-[#2563EB] active:scale-[0.98] text-white rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2563EB] group shrink-0"
+                  className="w-full flex items-center justify-center gap-3 min-h-[58px] bg-[#14532D] hover:bg-[#059669] active:scale-[0.98] text-white rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#059669] group shrink-0"
                 >
                   <PhoneCall className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                   INQUIRE NOW
@@ -1232,9 +1232,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsMobileMenuOpen(false);
                     setIsSearchOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-3 min-h-[54px] bg-white hover:bg-blue-50/50 active:bg-blue-100/50 border border-[#E2E8F0] hover:border-[#BFDBFE] text-[#0F172A] rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] group shrink-0"
+                  className="w-full flex items-center justify-center gap-3 min-h-[54px] bg-white hover:bg-emerald-50/50 active:bg-emerald-100/50 border border-[#E2E8F0] hover:border-[#A7F3D0] text-[#0F172A] rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] group shrink-0"
                 >
-                  <Search className="w-5 h-5 text-[#64748B] group-hover:text-[#2563EB] transition-colors" />
+                  <Search className="w-5 h-5 text-[#64748B] group-hover:text-[#059669] transition-colors" />
                   SEARCH PRODUCTS
                 </button>
               </div>

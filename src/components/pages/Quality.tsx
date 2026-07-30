@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import { motion } from "motion/react";
 import SectionHeader from "../SectionHeader";
 import {
   ShieldCheck,
@@ -80,12 +81,22 @@ export default function Quality() {
             <span className="utility-dot"></span>
             Zero-Defect Standards
           </span>
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight"
+          >
             <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Quality Assurance</span> & Safety Policy
-          </h1>
-          <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl relative animate-fade-in">
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl relative"
+          >
             At Medinet, quality is our primary pledge. We maintain absolute compliance with WHO-GMP specifications, ensuring every pill and topical gel meets international bioequivalence, purity, and clinical criteria.
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -131,7 +142,13 @@ export default function Quality() {
             </div>
 
             {/* Certification Badge Box */}
-            <div className="lg:col-span-5 relative group">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-5 relative group"
+            >
               <div className="bg-gradient-to-br from-primary to-secondary border border-white/10 border-t-[4px] border-t-accent rounded-3xl shadow-xl p-8 lg:p-10 relative overflow-hidden text-center hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
                 {/* Optional glow for animation */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -163,7 +180,7 @@ export default function Quality() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

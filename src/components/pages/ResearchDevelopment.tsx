@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import { motion } from "framer-motion";
 import { PIPELINE } from "../../data";
 import SectionHeader from "../SectionHeader";
 import {
@@ -120,124 +121,474 @@ export default function ResearchDevelopment() {
         </div>
       </section>
 
-      {/* R&D Overview and Stats */}
-      <section className="py-20 bg-gradient-to-b from-background via-alt-bg to-white text-left border-b border-border relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,.04),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(13,148,136,.03),transparent_35%)] pointer-events-none"></div>
+      {/* Premium R&D Overview and Stats */}
+      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+        {/* Background Gradients & Glows */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          {/* Subtle medical gradient glow blobs */}
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.1, 1],
+              opacity: [0.15, 0.25, 0.15] 
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] rounded-full blur-[120px] bg-gradient-to-br from-[#0B1F4D] to-transparent opacity-20"
+          />
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1] 
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute top-[30%] right-[-10%] w-[50%] h-[60%] rounded-full blur-[120px] bg-gradient-to-bl from-[#2563EB] to-[#0D9488] opacity-15"
+          />
+          <div className="absolute bottom-[-20%] left-[10%] w-[60%] h-[50%] rounded-full blur-[120px] bg-gradient-to-tr from-[#0D9488] to-transparent opacity-10" />
+          
+          {/* Subtle Molecular / DNA SVG Pattern */}
+          <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M20%2020.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5z%22%20fill%3D%22%230B1F4D%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"></div>
+        </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6">
-              <span className="utility-badge-blue mb-4">
-                <span className="utility-dot"></span>
-                CORE COMPETENCE
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-heading tracking-tight leading-[1.15]">
-                Pioneering <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Next-Generation</span> Pharmaceutical Delivery
-              </h2>
-              <p className="mt-6 text-body leading-relaxed max-w-[680px] text-sm">
-                Formulating bioequivalent medicines is more than copying active ingredients—it is a meticulous balancing of polymorph stability, excipient biology, and gastric transit pharmacology.
-              </p>
-              <p className="mt-4 text-body leading-relaxed max-w-[680px] text-sm">
-                At Medinet, our R&amp;D center focuses on solid-oral modifications (like sustained-release matrices) and advanced dermatological topical formulations. Through collaborating with elite clinical investigators, we run continuous human-phase trials to lock-in comparative therapeutic benchmarks.
-              </p>
-              <div className="mt-8 grid grid-cols-2 gap-5">
-                <div className="utility-card p-5 group hover:border-secondary transition-all duration-300">
-                  <span className="block text-2xl font-display font-bold text-heading">85%+</span>
-                  <span className="text-xs text-muted font-mono mt-2 block font-bold tracking-wide uppercase">Pipeline in Phase III / Filing</span>
-                </div>
-                <div className="utility-card p-5 group hover:border-secondary transition-all duration-300">
-                  <span className="block text-2xl font-display font-bold text-heading">Zone IVB</span>
-                  <span className="text-xs text-muted font-mono mt-2 block font-bold tracking-wide uppercase">Stability Chamber Tested</span>
-                </div>
-              </div>
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-10 xl:gap-16">
+            
+            {/* Left Content (Text 55%) */}
+            <div className="w-full lg:w-[55%] lg:pr-8 xl:pr-12">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+                }}
+              >
+                {/* Premium Glassmorphism Badge */}
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#0D9488]/20 shadow-[0_4px_20px_rgba(13,148,136,0.08)] mb-8 cursor-default group"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0D9488] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0D9488]"></span>
+                  </span>
+                  <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0B1F4D] uppercase group-hover:bg-gradient-to-r group-hover:from-[#0B1F4D] group-hover:to-[#0D9488] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                    Core Competence
+                  </span>
+                  {/* Subtle animated border gradient */}
+                  <div className="absolute inset-0 rounded-full border border-transparent bg-[linear-gradient(90deg,transparent,rgba(13,148,136,0.4),transparent)] opacity-0 group-hover:opacity-100 group-hover:animate-[spin_3s_linear_infinite] transition-opacity duration-300 [mask-image:linear-gradient(white,white)] [mask-composite:exclude] pointer-events-none" style={{ padding: '1px' }}></div>
+                </motion.div>
+
+                {/* Heading */}
+                <motion.h2 
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                  }}
+                  className="text-4xl sm:text-5xl lg:text-[3.5rem] font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.1] mb-8"
+                >
+                  Pioneering <span className="bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text relative inline-block">Next-Generation<motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-[#2563EB] to-transparent rounded-full origin-left"></motion.span></span><br className="hidden sm:block" /> Pharmaceutical Delivery
+                </motion.h2>
+
+                {/* Paragraphs with Fade-Up */}
+                <motion.p 
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                  }}
+                  className="text-[#475569] leading-[1.85] max-w-[700px] text-[1.05rem] sm:text-lg mb-6 font-medium"
+                >
+                  Formulating bioequivalent medicines is more than copying active ingredients—it is a meticulous balancing of polymorph stability, excipient biology, and gastric transit pharmacology.
+                </motion.p>
+                <motion.p 
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                  }}
+                  className="text-[#475569] leading-[1.85] max-w-[700px] text-[1.05rem] sm:text-lg font-medium"
+                >
+                  At Medinet, our R&amp;D center focuses on solid-oral modifications (like sustained-release matrices) and advanced dermatological topical formulations. Through collaborating with elite clinical investigators, we run continuous human-phase trials to lock-in comparative therapeutic benchmarks.
+                </motion.p>
+              </motion.div>
             </div>
 
-            <div className="lg:col-span-6 relative">
-              <div className="bg-gradient-to-br from-primary via-blue-900 to-secondary rounded-[28px] shadow-2xl hover:shadow-[0_35px_70px_rgba(37,99,235,.30)] hover:-translate-y-1 transition-all duration-300 p-8 lg:p-10 relative overflow-hidden border border-white/10 group">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="bg-white/10 p-3.5 rounded-[16px] group-hover:scale-110 transition-transform duration-300 shrink-0">
-                    <FlaskConical className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-display font-bold text-white text-lg">Analytical Excellence</h3>
-                    <p className="text-[10px] text-white/70 font-mono mt-1 font-bold uppercase tracking-wider">LAB STANDARD · ICH COMPLIANT</p>
-                  </div>
+            {/* Right Content (Illustration + Cards 45%) */}
+            <div className="w-full lg:w-[45%] relative">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+                }}
+                className="relative z-10 flex flex-col gap-5 sm:gap-6"
+              >
+                {/* Floating Medical SVG Illustration (Abstract Molecule / DNA style) */}
+                <div className="absolute -top-32 -right-16 w-80 h-80 pointer-events-none z-0 opacity-40 mix-blend-multiply hidden lg:block">
+                  <motion.svg
+                    viewBox="0 0 200 200"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+                    className="w-full h-full drop-shadow-xl"
+                  >
+                    <motion.circle cx="100" cy="100" r="80" stroke="url(#molGrad)" strokeWidth="0.5" strokeDasharray="4 8" animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
+                    <motion.circle cx="100" cy="100" r="60" stroke="#2563EB" strokeWidth="0.5" strokeOpacity="0.3" strokeDasharray="2 4" animate={{ rotate: -360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "center" }} />
+                    <circle cx="100" cy="20" r="6" fill="#2563EB" />
+                    <circle cx="169" cy="60" r="9" fill="#0D9488" />
+                    <circle cx="169" cy="140" r="4.5" fill="#38BDF8" />
+                    <circle cx="100" cy="180" r="7.5" fill="#2563EB" />
+                    <circle cx="31" cy="140" r="6" fill="#0D9488" />
+                    <circle cx="31" cy="60" r="10.5" fill="#38BDF8" />
+                    <path d="M100 20 L169 60 L169 140 L100 180 L31 140 L31 60 Z" stroke="#cbd5e1" strokeWidth="0.5" />
+                    <path d="M100 20 L100 100 L169 140" stroke="#cbd5e1" strokeWidth="0.5" />
+                    <path d="M31 60 L100 100 L100 180" stroke="#cbd5e1" strokeWidth="0.5" />
+                    <circle cx="100" cy="100" r="16" fill="url(#molGrad)" />
+                    <defs>
+                      <linearGradient id="molGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#2563EB" />
+                        <stop offset="1" stopColor="#0D9488" />
+                      </linearGradient>
+                    </defs>
+                  </motion.svg>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-success mt-0.5 shrink-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div>
-                      <span className="font-bold text-white block text-sm">Full CTD/eCTD Formatting</span>
-                      <p className="text-white/80 mt-1.5 text-xs leading-relaxed">Preparing standardized dossiers for immediate regulatory filings globally.</p>
+                {/* Stats Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 relative z-10">
+                  {/* Card 1 */}
+                  <motion.div 
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                    }}
+                    className="relative group bg-white/70 backdrop-blur-xl border border-slate-200/70 rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.1)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2563EB] to-[#38BDF8] opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#2563EB]/5 rounded-full blur-2xl group-hover:bg-[#2563EB]/15 transition-colors duration-500"></div>
+                    
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-[16px] bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:scale-110 group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300">
+                        <FlaskConical className="w-5 h-5" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-success mt-0.5 shrink-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div>
-                      <span className="font-bold text-white block text-sm">Impurity Profile Screening</span>
-                      <p className="text-white/80 mt-1.5 text-xs leading-relaxed">We verify negligible genotoxic or chemical impurities under strict USP criteria.</p>
+                    <span className="block text-3xl font-display font-black text-[#0B1F4D] mb-1">85%+</span>
+                    <span className="block text-[13px] font-bold text-[#475569] group-hover:text-[#2563EB] transition-colors duration-300">Pipeline in Phase III</span>
+                    <span className="block text-[10px] font-mono text-[#64748B] mt-1.5 tracking-[0.1em] uppercase">/ Filing Stage</span>
+                  </motion.div>
+
+                  {/* Card 2 */}
+                  <motion.div 
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                    }}
+                    className="relative group bg-white/70 backdrop-blur-xl border border-slate-200/70 rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.1)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0D9488] to-[#34D399] opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#0D9488]/5 rounded-full blur-2xl group-hover:bg-[#0D9488]/15 transition-colors duration-500"></div>
+                    
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-[16px] bg-[#0D9488]/10 flex items-center justify-center text-[#0D9488] group-hover:scale-110 group-hover:bg-[#0D9488] group-hover:text-white transition-all duration-300">
+                        <Activity className="w-5 h-5" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-success mt-0.5 shrink-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div>
-                      <span className="font-bold text-white block text-sm">Polymorphism Research</span>
-                      <p className="text-white/80 mt-1.5 text-xs leading-relaxed">Isolating optimized molecular crystal habits to ensure robust storage life.</p>
-                    </div>
-                  </div>
+                    <span className="block text-3xl font-display font-black text-[#0B1F4D] mb-1">Zone IVB</span>
+                    <span className="block text-[13px] font-bold text-[#475569] group-hover:text-[#0D9488] transition-colors duration-300">Stability Chamber</span>
+                    <span className="block text-[10px] font-mono text-[#64748B] mt-1.5 tracking-[0.1em] uppercase">/ Tested & Verified</span>
+                  </motion.div>
                 </div>
-              </div>
+
+                {/* Analytical Excellence Premium Card */}
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                  }}
+                  className="relative bg-gradient-to-br from-[#0B1F4D] via-[#0F2D6B] to-[#0A193F] rounded-[32px] shadow-[0_30px_60px_rgba(11,31,77,0.2)] p-7 sm:p-9 overflow-hidden border border-white/10 group z-10"
+                >
+                  {/* Internal Glow */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#2563EB]/20 rounded-full blur-[80px] group-hover:bg-[#2563EB]/30 transition-colors duration-700 pointer-events-none"></div>
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#0D9488]/20 rounded-full blur-[80px] group-hover:bg-[#0D9488]/30 transition-colors duration-700 pointer-events-none"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-[18px] group-hover:scale-110 transition-transform duration-500 shrink-0 border border-white/10 shadow-inner">
+                        <ShieldCheck className="w-7 h-7 text-[#38BDF8]" />
+                      </div>
+                      <div>
+                        <h3 className="font-display font-[800] text-white text-xl tracking-wide">Analytical Excellence</h3>
+                        <p className="text-[10px] text-[#38BDF8] font-mono mt-1 font-bold uppercase tracking-[0.15em]">LAB STANDARD · ICH COMPLIANT</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      {[
+                        { title: "Full CTD/eCTD Formatting", desc: "Preparing standardized dossiers for immediate regulatory filings globally." },
+                        { title: "Impurity Profile Screening", desc: "We verify negligible genotoxic or chemical impurities under strict USP criteria." },
+                        { title: "Polymorphism Research", desc: "Isolating optimized molecular crystal habits to ensure robust storage life." }
+                      ].map((item, i) => (
+                        <div 
+                          key={i} 
+                          className="flex items-start gap-3.5 p-3.5 rounded-2xl hover:bg-white/5 transition-colors duration-300 border border-transparent hover:border-white/5"
+                        >
+                          <div className="mt-0.5 shrink-0 relative">
+                            <div className="absolute inset-0 bg-[#34D399] blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300"></div>
+                            <CheckCircle2 className="w-5 h-5 text-[#34D399] relative z-10" />
+                          </div>
+                          <div>
+                            <span className="font-bold text-white block text-sm tracking-wide mb-1">{item.title}</span>
+                            <p className="text-[#94A3B8] text-[12px] leading-[1.6] font-medium">{item.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Focus Areas Cards */}
-      <section className="py-20 bg-background border-t border-b border-border relative overflow-hidden">
-        {/* Soft medical radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <SectionHeader
-            badge="Research Pillars"
-            title="Innovation & Technology"
-            description="Our technological frameworks span both biochemical methods and mechanical design to support top-tier formulation integrity."
-            centered
-          />
+      {/* Premium Focus Areas Cards */}
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-t border-b border-slate-100 relative overflow-hidden">
+        {/* Subtle premium background effects */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          {/* Soft radial glow behind the heading */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-[120px] bg-[#2563EB]/5" />
+          
+          {/* Low-opacity blurred gradient blobs for depth */}
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-gradient-to-br from-[#38BDF8] to-transparent opacity-10" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-gradient-to-tl from-[#0D9488] to-transparent opacity-10" />
+          
+          {/* Floating molecular particles (CSS animation) */}
+          <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute top-[20%] left-[15%] w-3 h-3 rounded-full bg-[#38BDF8] blur-sm"></motion.div>
+          <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }} className="absolute bottom-[30%] right-[20%] w-4 h-4 rounded-full bg-[#0D9488] blur-sm"></motion.div>
+          <motion.div animate={{ y: [-15, 15, -15], x: [15, -15, 15], opacity: [0.4, 0.7, 0.4] }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }} className="absolute top-[40%] right-[30%] w-2 h-2 rounded-full bg-[#2563EB] blur-[2px]"></motion.div>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          
+          {/* Premium Section Header */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            }}
+            className="text-center max-w-4xl mx-auto mb-20"
+          >
+            {/* Premium Glass Badge */}
+            <motion.div 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+              }}
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/60 backdrop-blur-md border border-[#2563EB]/20 shadow-[0_4px_20px_rgba(37,99,235,0.08)] mb-6 cursor-default group"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB]"></span>
+              </span>
+              <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0B1F4D] uppercase group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#0D9488] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                Research Pillars
+              </span>
+              <div className="absolute inset-0 rounded-full border border-transparent bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.4),transparent)] opacity-0 group-hover:opacity-100 group-hover:animate-[spin_3s_linear_infinite] transition-opacity duration-300 [mask-image:linear-gradient(white,white)] [mask-composite:exclude] pointer-events-none" style={{ padding: '1px' }}></div>
+            </motion.div>
+
+            {/* Premium Heading */}
+            <motion.h2 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+              }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.1] mb-6 drop-shadow-sm"
+            >
+              Innovation &amp; <br className="hidden sm:block" />
+              <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text relative inline-block">
+                Technology
+                <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB] to-transparent rounded-full origin-left"></motion.span>
+              </span>
+            </motion.h2>
+
+            {/* Subtitle */}
+            <motion.p 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+              }}
+              className="text-[#475569] leading-[1.85] max-w-[700px] mx-auto text-[1.1rem] sm:text-lg font-medium"
+            >
+              Our technological frameworks span both biochemical methods and mechanical design to support top-tier formulation integrity.
+            </motion.p>
+          </motion.div>
+
+          {/* Premium 2x2 Grid */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
+          >
             {focusAreas.map((area, idx) => {
               const AreaIcon = area.icon;
-              const isEven = idx % 2 === 0;
-              const iconColorClass = isEven ? 'text-secondary' : 'text-accent';
-              const bgColorClass = isEven ? 'bg-secondary' : 'bg-accent';
+              const labels = ["BIOPHARMA", "FORMULATION", "VALIDATION", "STABILITY"];
+              const gradients = [
+                "from-[#2563EB] to-[#38BDF8]",
+                "from-[#0D9488] to-[#34D399]",
+                "from-[#7C3AED] to-[#A78BFA]",
+                "from-[#EC4899] to-[#F472B6]"
+              ];
+              const textColors = [
+                "text-[#2563EB]",
+                "text-[#0D9488]",
+                "text-[#7C3AED]",
+                "text-[#EC4899]"
+              ];
+              const bgColors = [
+                "bg-[#2563EB]/10",
+                "bg-[#0D9488]/10",
+                "bg-[#7C3AED]/10",
+                "bg-[#EC4899]/10"
+              ];
+              const hoverBgs = [
+                "group-hover:bg-[#2563EB]",
+                "group-hover:bg-[#0D9488]",
+                "group-hover:bg-[#7C3AED]",
+                "group-hover:bg-[#EC4899]"
+              ];
+              const groupHoverTextColors = [
+                "group-hover:text-[#2563EB]",
+                "group-hover:text-[#0D9488]",
+                "group-hover:text-[#7C3AED]",
+                "group-hover:text-[#EC4899]"
+              ];
+
               return (
-                <div key={idx} className="utility-card p-6 text-left group hover:border-secondary relative pt-8">
-                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[4px] rounded-b-full transition-colors duration-300 ${bgColorClass}`}></div>
-                  <div className="w-14 h-14 bg-alt-bg border border-border rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[5deg]">
-                    <AreaIcon className={`w-6 h-6 ${iconColorClass}`} />
+                <motion.div 
+                  key={idx} 
+                  variants={{
+                    hidden: { opacity: 0, y: 30, scale: 0.95 },
+                    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100, damping: 20 } }
+                  }}
+                  whileHover={{ scale: 1.03, y: -10 }}
+                  className="relative group bg-white/70 backdrop-blur-xl border border-slate-200/70 rounded-[24px] p-8 lg:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(37,99,235,0.08)] transition-all duration-500 overflow-hidden text-left"
+                >
+                  {/* Hover Background Glow */}
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"></div>
+                  
+                  {/* Top Gradient Border */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradients[idx]} opacity-50 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                  
+                  {/* Corner Blur Glow */}
+                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-transparent to-black/5 rounded-full blur-2xl group-hover:bg-blue-50/50 transition-colors duration-500 pointer-events-none -z-10"></div>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8 relative z-10">
+                    {/* Premium Icon Container */}
+                    <div className="relative">
+                      {/* Pulsing glow ring */}
+                      <div className="absolute inset-0 rounded-full border border-black/5 scale-110 group-hover:scale-[1.3] group-hover:border-transparent group-hover:bg-black/5 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                      
+                      <div className={`w-16 h-16 rounded-[20px] ${bgColors[idx]} flex items-center justify-center ${textColors[idx]} group-hover:text-white ${hoverBgs[idx]} transition-all duration-500 relative z-10 shadow-sm`}>
+                        <motion.div 
+                          animate={{ y: [-2, 2, -2] }} 
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <AreaIcon className="w-8 h-8 group-hover:rotate-3 transition-transform duration-300" />
+                        </motion.div>
+                      </div>
+                    </div>
+                    
+                    {/* Scientific Label */}
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold tracking-[0.2em] uppercase bg-slate-100 text-slate-500 border border-slate-200 group-hover:border-slate-300 group-hover:bg-slate-50 transition-colors duration-300">
+                      {labels[idx]}
+                    </span>
                   </div>
-                  <h3 className="font-display font-bold text-heading text-lg mb-3 group-hover:text-secondary transition-colors duration-300">{area.title}</h3>
-                  <p className="text-sm text-body leading-relaxed">{area.description}</p>
-                </div>
+
+                  <h3 className={`font-display font-[800] text-[#0B1F4D] text-2xl mb-4 ${groupHoverTextColors[idx]} transition-colors duration-300 relative z-10`}>
+                    {area.title}
+                  </h3>
+                  
+                  <p className="text-[1.05rem] text-[#64748B] leading-[1.8] font-medium relative z-10 group-hover:text-[#475569] transition-colors duration-300">
+                    {area.description}
+                  </p>
+
+                  {/* Animated Bottom Accent Line */}
+                  <div className={`absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r ${gradients[idx]} group-hover:w-full transition-all duration-700 ease-out opacity-20`}></div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Pipeline Directory */}
-      <section className="py-20 bg-gradient-to-b from-white via-alt-bg to-background relative overflow-hidden">
-        {/* Soft medical radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03),transparent_60%)] pointer-events-none"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <SectionHeader
-            badge="Product Pipeline"
-            title="Pipeline Products"
-            description="Our active pipelines highlight upcoming therapeutic releases. We maintain high R&amp;D transparency from clinical evaluation up to final filing phases."
-            centered
-          />
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
+        {/* Subtle premium background effects */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          {/* Gentle radial glow behind the section heading */}
+          <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-[100px] bg-[#2563EB]/5" />
+          
+          {/* Large blurred radial gradient orbs in corners (4-8% opacity) */}
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-gradient-to-br from-[#38BDF8] to-transparent opacity-[0.06]" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-gradient-to-tl from-[#0D9488] to-transparent opacity-[0.06]" />
+          
+          {/* Soft molecular/DNA-inspired SVG pattern at 2-3% opacity */}
+          <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%221%22%20fill%3D%22%232563EB%22%2F%3E%3Cpath%20d%3D%22M20%2020l10%2010M20%2020L10%2030M20%2020l10-10M20%2020L10%2010%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%220.5%22%20stroke-opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E')]"></div>
+          
+          {/* Floating molecular particles (respects reduced motion implicitly or via transition properties) */}
+          <motion.div animate={{ y: [-15, 15, -15], x: [-10, 10, -10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute top-[25%] left-[20%] w-2 h-2 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
+          <motion.div animate={{ y: [15, -15, 15], x: [10, -10, 10], opacity: [0.1, 0.4, 0.1] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute bottom-[35%] right-[25%] w-3 h-3 rounded-full bg-[#0D9488] blur-[1px]"></motion.div>
+          <motion.div animate={{ y: [-10, 10, -10], x: [15, -15, 15], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }} className="absolute top-[45%] right-[35%] w-2 h-2 rounded-full bg-[#2563EB] blur-[1px]"></motion.div>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="max-w-3xl mb-16 mx-auto text-center relative">
+            {/* Glowing accent above heading */}
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }} 
+              whileInView={{ scale: 1, opacity: 1 }} 
+              viewport={{ once: true }} 
+              className="absolute -top-8 left-1/2 -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-[#38BDF8] to-transparent rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"
+            />
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] relative inline-block">
+              Pipeline Products
+              {/* Subtle animated underline */}
+              <motion.span 
+                initial={{ scaleX: 0 }} 
+                whileInView={{ scaleX: 1 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.8, delay: 0.3 }} 
+                className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#2563EB]/30 to-transparent origin-center"
+              />
+            </h2>
+            <p className="mt-7 text-base sm:text-lg text-body font-sans leading-relaxed">
+              Our active pipelines highlight upcoming therapeutic releases. We maintain high R&amp;D transparency from clinical evaluation up to final filing phases.
+            </p>
+          </div>
+
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          >
             {[
               {
                 title: "Advanced Pharmaceutical Formulations",
@@ -275,30 +626,42 @@ export default function ResearchDevelopment() {
                 bg: "bg-[#7C3AED]/10"
               }
             ].map((pipe, idx) => (
-              <div key={idx} className="utility-card p-6 flex flex-col justify-between group hover:border-secondary transition-all duration-300 shadow-sm relative overflow-hidden">
-                <div className={`absolute top-0 left-0 right-0 h-1 ${pipe.bg}`}></div>
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className={`w-12 h-12 rounded-2xl ${pipe.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
+              <motion.div 
+                key={idx} 
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                }}
+                className="p-8 flex flex-col justify-between group hover:-translate-y-2.5 hover:scale-[1.03] transition-all duration-500 relative overflow-hidden bg-white/95 backdrop-blur-xl border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] rounded-[24px]"
+              >
+                {/* Thin animated gradient line across the top */}
+                <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#2563EB]/40 to-transparent group-hover:via-[#38BDF8] group-hover:w-[150%] group-hover:-translate-x-1/4 transition-all duration-700 ease-in-out opacity-60 group-hover:opacity-100"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`w-14 h-14 rounded-2xl ${pipe.bg} border border-white/50 shadow-sm flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:brightness-110 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.15)] transition-all duration-500`}>
                       <pipe.icon className={`w-6 h-6 ${pipe.color}`} />
                     </div>
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono font-bold tracking-widest uppercase bg-amber-100 text-amber-700 border border-amber-200">
+                    {/* Premium pill status badge */}
+                    <span className="relative inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold tracking-widest uppercase bg-gradient-to-r from-amber-50 to-amber-100/80 text-amber-700 border border-amber-200/50 shadow-sm overflow-hidden">
+                      <span className="absolute inset-0 border border-amber-300 rounded-full animate-pulse opacity-50"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 animate-pulse"></span>
                       Under Development
                     </span>
                   </div>
-                  <h4 className="font-display font-bold text-heading text-lg mb-3 group-hover:text-primary transition-colors">
+                  <h4 className="font-display font-bold text-heading text-[1.1rem] leading-tight mb-3 group-hover:text-[#2563EB] transition-colors duration-300">
                     {pipe.title}
                   </h4>
-                  <p className="text-sm text-body leading-relaxed mb-6">
+                  <p className="text-sm text-slate-500 leading-relaxed mb-2">
                     {pipe.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="mt-10 text-center max-w-2xl mx-auto">
-            <p className="text-xs font-mono text-muted uppercase tracking-widest bg-alt-bg py-2 px-4 rounded-full border border-border inline-block">
+          <div className="mt-12 text-center max-w-2xl mx-auto">
+            <p className="text-xs font-mono text-muted uppercase tracking-widest bg-white/60 backdrop-blur-md py-2 px-5 rounded-full border border-slate-200 inline-block shadow-sm">
               Pipeline products are currently under development and subject to regulatory approvals.
             </p>
           </div>
@@ -306,47 +669,84 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Timeline Infographics Section */}
-      <section className="py-20 bg-background border-t border-border relative overflow-hidden">
-        {/* Soft medical radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none"></div>
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <SectionHeader
-            badge="Our Protocol"
-            title="Product Development Process"
-            description="We adhere to a thorough scientific protocol to take a molecule from theoretical assessment to actual therapeutic distribution."
-            centered
-          />
+          <div className="max-w-3xl mb-20 mx-auto text-center relative">
+            {/* Subtle glow behind the heading */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[100px] rounded-full blur-[80px] bg-[#38BDF8]/10 pointer-events-none" />
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-[#0B1F4D] tracking-tight leading-[1.15] relative inline-block">
+              Product Development Process
+              {/* Soft animated underline using Medinet blue gradient */}
+              <motion.span 
+                initial={{ scaleX: 0 }} 
+                whileInView={{ scaleX: 1 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 1, ease: "easeOut", delay: 0.2 }} 
+                className="absolute -bottom-4 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#2563EB]/70 to-transparent origin-center rounded-full"
+              />
+            </h2>
+            <p className="mt-8 text-base sm:text-lg text-slate-500 font-sans leading-relaxed max-w-2xl mx-auto">
+              We adhere to a thorough scientific protocol to take a molecule from theoretical assessment to actual therapeutic distribution.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mt-12">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 relative"
+          >
+            {/* Timeline continuous line and particle */}
+            <div className="hidden lg:block absolute top-[48px] left-[8%] right-[8%] h-[2px] bg-gradient-to-r from-[#2563EB]/10 via-[#38BDF8]/30 to-[#2563EB]/10 rounded-full z-0 pointer-events-none overflow-hidden">
+              <motion.div 
+                animate={{ x: ["-10%", "110%"] }} 
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }} 
+                className="absolute top-0 bottom-0 w-[100px] bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent blur-[1px]"
+              />
+            </div>
+
             {innovationPhases.map((step, idx) => {
-              const accentColorClass = idx % 2 === 0 ? 'bg-secondary' : 'bg-primary';
               const StepIcon = step.icon;
               return (
-                <div key={idx} className="utility-card p-6 text-left relative group hover:border-secondary flex flex-col justify-start">
-                  {/* Left Accent Border */}
-                  <div className={`absolute left-[-1px] top-6 bottom-6 w-1 rounded-r-full transition-colors duration-300 ${accentColorClass}`}></div>
-                  
-                  {/* Horizontal Connector for Desktop */}
+                <motion.div 
+                  key={idx} 
+                  variants={{
+                    hidden: { opacity: 0, x: -20 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                  }}
+                  className="p-6 text-left relative group hover:-translate-y-2.5 hover:scale-[1.03] transition-all duration-500 flex flex-col justify-start bg-white/95 backdrop-blur-xl border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] rounded-[24px]"
+                >
+                  {/* Thin animated blue-to-teal accent line on top */}
+                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB]/50 to-[#0D9488]/50 opacity-50 group-hover:opacity-100 group-hover:scale-x-110 transition-all duration-500 origin-left"></div>
+
+                  {/* Glowing circular node between each step (on the timeline) */}
                   {idx < 5 && (
-                    <div className="hidden lg:block absolute top-[44px] right-[-24px] w-[24px] h-[2px] bg-gradient-to-r from-primary to-secondary opacity-25 z-0 pointer-events-none"></div>
+                    <div className="hidden lg:flex absolute top-[45px] -right-[16px] w-2 h-2 rounded-full bg-[#38BDF8] shadow-[0_0_10px_#38BDF8] z-10 opacity-50 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300 pointer-events-none"></div>
                   )}
 
-                  <span className="absolute top-4 right-4 text-3xl font-display font-black text-heading opacity-10 font-mono transition-opacity duration-300 group-hover:opacity-20">
+                  {/* Large elegant step numbers in top right corner */}
+                  <span className="absolute top-3 right-4 text-4xl font-display font-black text-[#0B1F4D] opacity-[0.08] font-mono group-hover:opacity-20 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none">
                     {step.phase}
                   </span>
                   
-                  <div className="flex items-center gap-2 mb-4 relative z-10">
-                    <div className="w-8 h-8 rounded-lg bg-alt-bg flex items-center justify-center border border-border shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                      <StepIcon className="w-4 h-4 text-secondary" />
+                  <div className="flex items-center gap-2 mb-6 relative z-10">
+                    {/* Premium rounded-square container with soft gradient */}
+                    <div className="w-12 h-12 rounded-[14px] bg-gradient-to-br from-[#EFF6FF] to-white border border-[#2563EB]/10 flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_0_15px_rgba(37,99,235,0.15)] group-hover:scale-110 group-hover:brightness-110 transition-all duration-500">
+                      <StepIcon className="w-5 h-5 text-[#2563EB]" />
                     </div>
                   </div>
                   
-                  <h4 className="font-display font-bold text-heading text-sm mb-1.5 group-hover:text-secondary transition-colors duration-300">{step.title}</h4>
-                  <p className="text-xs text-body leading-relaxed mt-2">{step.description}</p>
-                </div>
+                  <h4 className="font-display font-bold text-[#0B1F4D] text-[1.05rem] mb-2 group-hover:text-[#2563EB] transition-colors duration-300 relative z-10">{step.title}</h4>
+                  <p className="text-[13px] text-slate-500 leading-relaxed mt-1 relative z-10">{step.description}</p>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -11,7 +11,6 @@ import SectionHeader from "../SectionHeader";
 import {
   Search,
   Filter,
-  Download,
   Mail,
   X,
   FileText,
@@ -86,7 +85,6 @@ export default function Products({ params, showToast }: ProductsProps) {
 
   // Catalog Download State
   const [isDownloading, setIsDownloading] = useState(false);
-  const [isDownloaded, setIsDownloaded] = useState(false);
 
   // Handle incoming query params (e.g. from global search or nav)
   useEffect(() => {
@@ -745,123 +743,7 @@ export default function Products({ params, showToast }: ProductsProps) {
       </section>
 
       {/* Premium Download Product Catalogue CTA */}
-      {/* Premium Download Product Catalogue CTA */}
-      <section className="relative pt-32 pb-24 bg-gradient-to-br from-[#0B1F4D] via-[#0D9488] to-[#0B1F4D] text-center overflow-x-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* Scientific Dotted Texture */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:30px_30px] opacity-30"></div>
 
-          {/* Glass Reflections / Gradient Blobs */}
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#38BDF8] rounded-full blur-[120px] opacity-10 animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#2563EB] rounded-full blur-[120px] opacity-10 animate-pulse delay-700"></div>
-
-          {/* Molecular Pattern Graphics */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-32 -left-32 opacity-[0.03]"
-          >
-            <Activity className="w-[500px] h-[500px] text-white" />
-          </motion.div>
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-32 -right-32 opacity-[0.03]"
-          >
-            <Layers className="w-[500px] h-[500px] text-white" />
-          </motion.div>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            {/* Premium Floating Glass Icon */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-24 h-24 mx-auto mb-10 group cursor-pointer"
-            >
-              <div className="absolute inset-0 bg-white/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative w-full h-full bg-white/10 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.2)] group-hover:scale-110 transition-transform duration-500">
-                <FileText className="w-10 h-10 text-white group-hover:text-[#38BDF8] transition-colors duration-300" />
-                {/* Animated Border Gradient Ring underneath */}
-                <div className="absolute inset-[-2px] rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-spin transition-all duration-500 -z-10"></div>
-              </div>
-            </motion.div>
-
-            {/* Premium Heading */}
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-[900] text-white tracking-tight mb-6 flex flex-wrap justify-center gap-x-3 leading-normal py-2">
-              <span className="opacity-90">Download Full</span>
-              <span className="relative inline-block mt-2 md:mt-0 pt-1 pb-3 px-2">
-                <span className="bg-gradient-to-r from-[#38BDF8] via-white to-[#38BDF8] bg-clip-text text-transparent">
-                  Product Catalogue
-                </span>
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-                  className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent rounded-full origin-left"
-                ></motion.span>
-              </span>
-            </h2>
-
-            {/* Premium Description */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-white/70 text-lg md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto font-medium mb-12"
-            >
-              Get detailed insights into our complete range of formulations, therapeutic segments, and packaging specifications in our latest corporate catalogue.
-            </motion.p>
-
-            {/* Premium Download CTA Button */}
-            <a
-              href="/catalogue.pdf"
-              download="Medinet_Corporate_Catalogue_2026.pdf"
-              onClick={(e) => {
-                if (isDownloading || isDownloaded) {
-                  e.preventDefault();
-                  return;
-                }
-                // Allow the browser to handle the actual file download natively via href!
-                // We just manage the beautiful UI states here.
-                setIsDownloading(true);
-                setTimeout(() => {
-                  setIsDownloading(false);
-                  setIsDownloaded(true);
-                  showToast("✓ Catalogue Downloaded Successfully", "success");
-                  setTimeout(() => setIsDownloaded(false), 2000);
-                }, 800);
-              }}
-              className="relative inline-flex items-center justify-center gap-4 px-10 py-5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl font-bold font-mono text-[13px] tracking-[0.15em] uppercase text-white shadow-[0_15px_40px_rgba(0,0,0,0.3)] hover:bg-white/20 hover:border-white/40 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(56,189,248,0.2)] transition-all duration-300 group overflow-hidden w-full sm:w-auto"
-            >
-              {/* Ripple Animation Effect */}
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-transform duration-500 rounded-2xl"></div>
-
-              <span className="relative z-10 flex items-center gap-3">
-                {isDownloading ? (
-                  <>DOWNLOADING... <Loader2 className="w-5 h-5 animate-spin" /></>
-                ) : isDownloaded ? (
-                  <><CheckCircle2 className="w-5 h-5 text-emerald-400" /> DOWNLOAD COMPLETE</>
-                ) : (
-                  <>
-                    DOWNLOAD CORPORATE CATALOGUE
-                    <Download className="w-5 h-5 group-hover:translate-y-1 group-hover:scale-110 transition-all duration-300" />
-                  </>
-                )}
-              </span>
-            </a>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Product Details Modal */}
       {selectedProduct && (

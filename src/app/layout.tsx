@@ -4,6 +4,9 @@ import "../index.css";
 export const metadata: Metadata = {
   title: "Medinet Pharmaceuticals",
   description: "Enterprise-grade corporate website for Medinet Pharmaceutical Marketing Company, featuring product catalog, R&D innovations, quality assurance, careers, and partnership models.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export const viewport = {

@@ -192,75 +192,76 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
   return (
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 sm:py-20 relative overflow-hidden">
-        {/* Subtle radial medical glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.06),transparent_65%)] pointer-events-none z-0"></div>
-        
-        {/* Soft medical abstract decoration (opacity 5%) */}
-        <div className="absolute right-0 top-0 w-1/3 h-full pointer-events-none opacity-5 z-0 hidden lg:block">
-          <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-1/2 -translate-y-1/2 right-[-5%] w-[120%] h-auto max-w-[600px]">
-            <path d="M120 40 C 20 40 20 200 120 200 C 220 200 220 360 120 360" stroke="url(#paint0_linear)" strokeWidth="60" strokeLinecap="round" />
-            <path d="M280 40 C 380 40 380 200 280 200 C 180 200 180 360 280 360" stroke="url(#paint1_linear)" strokeWidth="60" strokeLinecap="round" />
-            <defs>
-              <linearGradient id="paint0_linear" x1="120" y1="40" x2="120" y2="360" gradientUnits="userSpaceOnUse">
-                <stop stopColor="currentColor" className="text-secondary" />
-                <stop offset="1" stopColor="currentColor" className="text-primary" />
-              </linearGradient>
-              <linearGradient id="paint1_linear" x1="280" y1="40" x2="280" y2="360" gradientUnits="userSpaceOnUse">
-                <stop stopColor="currentColor" className="text-secondary" />
-                <stop offset="1" stopColor="currentColor" className="text-primary" />
-              </linearGradient>
-            </defs>
-          </svg>
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
+        {/* Soft Background Glows */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
         </div>
 
         <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
           <div>
-            <span className="utility-badge-blue mb-5">
-              <span className="utility-dot"></span>
-              B2B Commercial Alliances
-            </span>
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 shadow-sm mb-6 relative z-10 hover:bg-white/[0.9] transition-colors"
+            >
+              <div className="relative flex items-center justify-center">
+                <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-60 animate-ping"></span>
+                <Globe strokeWidth={2.5} className="relative w-4 h-4 text-[#2563EB]" />
+              </div>
+              <span className="text-xs font-mono font-bold tracking-widest text-[#0B1F4D] uppercase">B2B Commercial Alliances</span>
+            </motion.div>
           </div>
 
           <div>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5 mx-auto lg:mx-0">
-              <span className="bg-gradient-to-r from-heading to-primary text-transparent bg-clip-text">Corporate Partnerships</span> & <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">PCD Franchise</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.15] mt-2 mx-auto lg:mx-0 relative inline-block pb-4">
+              <span className="text-[#0B1F4D]">Corporate Partnerships</span> &amp; <span className="bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">PCD Franchise</span>
+              
+              {/* Animated gradient underline */}
+              <motion.span 
+                initial={{ scaleX: 0 }} 
+                whileInView={{ scaleX: 1 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 1, ease: "easeOut", delay: 0.3 }} 
+                className="absolute bottom-0 left-0 lg:w-[60%] w-full h-[3px] bg-gradient-to-r from-[#2563EB]/60 to-transparent origin-left rounded-full"
+              />
             </h1>
-            <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[720px] mx-auto lg:mx-0">
+            <p className="mt-8 text-base sm:text-lg text-[#475569] leading-[1.8] max-w-[720px] mx-auto lg:mx-0">
               Leverage Medinet&rsquo;s global supply channels, multi-segment formulation portfolio, and thorough regulatory compliance to expand your pharmaceutical market presence.
             </p>
           </div>
 
-          <div className="mt-10 cursor-default">
-            <div className="inline-flex flex-wrap items-center gap-4 sm:gap-6 bg-white border border-border rounded-full shadow-sm px-6 py-4 hover:-translate-y-1 transition-transform duration-300">
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-xs font-semibold text-heading">WHO-GMP Certified</span>
-              </div>
-              <div className="hidden sm:block w-[1px] h-4 bg-border"></div>
-              <div className="flex items-center gap-2.5">
-                <Globe className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-xs font-semibold text-heading">18+ Countries</span>
-              </div>
-              <div className="hidden md:block w-[1px] h-4 bg-border"></div>
-              <div className="flex items-center gap-2.5">
-                <Users className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-xs font-semibold text-heading">450+ Distributors</span>
-              </div>
-              <div className="hidden lg:block w-[1px] h-4 bg-border"></div>
-              <div className="flex items-center gap-2.5">
-                <BadgeCheck className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-xs font-semibold text-heading">25+ Years Experience</span>
-              </div>
+          <div className="mt-12 cursor-default flex flex-wrap justify-center lg:justify-start gap-4 relative z-10">
+            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
+              <ShieldCheck className="w-4 h-4 text-[#2563EB] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">WHO-GMP Certified</span>
+            </div>
+            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
+              <Globe className="w-4 h-4 text-[#2563EB] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">18+ Countries</span>
+            </div>
+            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
+              <Users className="w-4 h-4 text-[#2563EB] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">450+ Distributors</span>
+            </div>
+            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
+              <BadgeCheck className="w-4 h-4 text-[#2563EB] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">25+ Years Experience</span>
             </div>
           </div>
         </motion.div>
       </section>
 
       {/* Business Verticals Overview */}
-      <section className="py-20 bg-background relative overflow-hidden text-left">
-        {/* Soft radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden text-left">
+        {/* Soft Background Glows */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <SectionHeader
@@ -277,32 +278,35 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 <motion.div
                   variants={fadeUp}
                   key={idx}
-                  className="utility-card p-6 sm:p-8 text-left flex flex-col justify-between group relative overflow-hidden hover:border-secondary transition-all duration-300 hover-lift"
+                  className="relative bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] p-6 sm:p-8 flex flex-col justify-between group hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] transition-all duration-500 overflow-hidden"
                 >
-                  {/* Top gradient accent line */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${vert.accent}`}></div>
+                  {/* Top animated blue-to-teal gradient accent line */}
+                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB] to-[#0D9488] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
 
                   <div>
                     <div className="flex justify-between items-start mb-6">
-                      <div className={`w-[52px] h-[52px] rounded-2xl ${vert.iconBg} flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
-                        <VertIcon className={`w-6 h-6 ${vert.iconColor} group-hover:scale-110 group-hover:rotate-[8deg] transition-transform duration-300 ease-out`} />
+                      <div className="w-[52px] h-[52px] rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#0D9488] flex items-center justify-center shrink-0 shadow-[0_4px_15px_rgba(37,99,235,0.2)] group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)] transition-all duration-500 group-hover:scale-110">
+                        <VertIcon strokeWidth={2.5} className="w-6 h-6 text-white" />
                       </div>
                       <span className={`inline-block border ${vert.badgeColor} text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full`}>
                         {vert.badge}
                       </span>
                     </div>
                     
-                    <h3 className="font-display font-bold text-heading text-lg">
+                    <h3 className="font-display font-bold text-[#0B1F4D] text-xl leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
                       {vert.title}
                     </h3>
-                    <p className="mt-4 text-sm text-body leading-relaxed">
+                    <p className="mt-4 text-[15px] text-[#475569] leading-[1.7]">
                       {vert.description}
                     </p>
                   </div>
                   
-                  <div className="mt-8 pt-4 border-t border-border flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-primary group-hover:text-secondary transition-colors cursor-pointer">
-                    <span>Enquire About This Channel</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="mt-8 pt-6 border-t border-[#2563EB]/10 flex items-center justify-between cursor-pointer group/cta">
+                    <span className="font-semibold text-[#2563EB] relative overflow-hidden">
+                      <span className="bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Enquire About This Channel</span>
+                      <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-[#2563EB] to-[#0D9488] scale-x-0 group-hover/cta:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-[#0D9488] group-hover/cta:translate-x-1.5 transition-transform duration-300" />
                   </div>
                 </motion.div>
               );
@@ -312,68 +316,149 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       </section>
 
       {/* Distribution Network */}
-      <section className="py-20 bg-white border-b border-border overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeader
-            badge="Global Reach"
-            title="Our Distribution Network"
-            description="Medinet's formulations are trusted across international borders, supported by an expansive supply chain and regional distribution hubs."
-            centered
-          />
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
+        {/* Soft Background Glows */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div className="flex flex-col items-center mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 shadow-sm mb-6 relative z-10"
+            >
+              <div className="relative flex items-center justify-center">
+                <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-60 animate-ping"></span>
+                <MapPin strokeWidth={2.5} className="relative w-4 h-4 text-[#2563EB]" />
+              </div>
+              <span className="text-xs font-mono font-bold tracking-widest text-[#0B1F4D] uppercase">Global Reach</span>
+            </motion.div>
+
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight leading-[1.15] relative z-10 inline-block pb-4"
+            >
+              <span className="bg-gradient-to-r from-[#0B1F4D] via-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Our Distribution Network</span>
+              <motion.span 
+                initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut", delay: 0.4 }} 
+                className="absolute bottom-0 left-[10%] w-[80%] h-[3px] bg-gradient-to-r from-transparent via-[#2563EB]/60 to-transparent origin-left rounded-full"
+              />
+            </motion.h2>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-6 text-[#475569] leading-[1.8] text-base sm:text-lg max-w-[750px] relative z-10 mx-auto"
+            >
+              Medinet's formulations are trusted across international borders, supported by an expansive supply chain and regional distribution hubs.
+            </motion.p>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mt-12 relative max-w-4xl mx-auto"
+            className="mt-12 relative max-w-6xl mx-auto"
           >
-            {/* Animated map illustration using icons and stats */}
-            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden flex flex-col md:flex-row items-center gap-10 text-left">
-              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.2)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+            <div className="flex flex-col lg:flex-row items-center gap-10 text-left">
               
-              <div className="flex-1 relative z-10 space-y-5">
+              {/* Left Feature Panel */}
+              <div className="flex-1 relative z-10 space-y-4 w-full">
                 {[
-                  { title: "Nationwide Product Availability", icon: MapPin },
-                  { title: "Reliable Supply Chain", icon: Boxes },
-                  { title: "Strong Distributor Network", icon: Globe },
-                  { title: "Efficient Logistics", icon: Rocket },
-                  { title: "Customer Support", icon: HeartHandshake }
+                  { title: "Nationwide Product Availability", icon: MapPin, desc: "Serving healthcare providers across India with efficient regional coverage." },
+                  { title: "Reliable Supply Chain", icon: Boxes, desc: "Temperature-controlled logistics ensuring product integrity." },
+                  { title: "Strong Distributor Network", icon: Globe, desc: "Extensive distributor partnerships covering every major region." },
+                  { title: "Efficient Logistics", icon: Rocket, desc: "Fast and secure delivery through optimized supply channels." },
+                  { title: "Customer Support", icon: HeartHandshake, desc: "Dedicated 24/7 support team for our distribution partners." }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-4 group">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-border flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:border-secondary transition-all duration-300">
-                      <item.icon className="w-5 h-5 text-secondary" />
+                  <div key={idx} className="relative bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#059669]/[0.08] shadow-[0_10px_40px_rgba(5,150,105,0.05)] p-5 flex items-start gap-4 group hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(5,150,105,0.1)] transition-all duration-300 overflow-hidden">
+                    {/* Left accent line */}
+                    <div className="absolute top-0 left-0 w-[4px] h-full bg-gradient-to-b from-[#059669] to-[#10B981] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                    
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#059669]/10 to-[#10B981]/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-[#059669] group-hover:to-[#10B981] transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.1)]">
+                      <item.icon strokeWidth={2} className="w-6 h-6 text-[#059669] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <span className="font-bold text-heading group-hover:text-secondary transition-colors duration-300">
-                      {item.title}
-                    </span>
+                    <div className="flex-1 pt-0.5">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <h4 className="font-bold text-[#0B1F4D] text-[15px] sm:text-base group-hover:text-[#059669] transition-colors">{item.title}</h4>
+                        <span className="w-2 h-2 shrink-0 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-pulse ml-2"></span>
+                      </div>
+                      <p className="text-[13px] sm:text-sm text-[#475569] leading-[1.6]">{item.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
 
-              {/* India Coverage Static Visual */}
-              <div className="flex-1 relative z-10 w-full h-[300px] flex items-center justify-center">
-                <div className="relative w-full max-w-[250px] aspect-square rounded-full border border-dashed border-secondary/30 flex items-center justify-center animate-[spin_60s_linear_infinite]">
-                  <div className="absolute w-[80%] h-[80%] rounded-full border border-dashed border-primary/20 flex items-center justify-center animate-[spin_40s_linear_infinite_reverse]">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary shadow-[0_0_30px_rgba(37,99,235,0.3)] flex items-center justify-center">
-                       <MapPin className="w-8 h-8 text-white animate-bounce" />
-                    </div>
-                  </div>
+              {/* Right Map Visualization */}
+              <div className="flex-1 w-full lg:w-auto relative z-10 h-[450px] flex items-center justify-center bg-white/[0.6] backdrop-blur-xl rounded-[32px] border border-[#2563EB]/10 shadow-[0_20px_60px_rgba(11,31,77,0.08)] p-6 overflow-hidden">
+                {/* Central Badge */}
+                <div className="absolute top-6 right-6 bg-gradient-to-r from-[#2563EB] to-[#0D9488] px-4 py-1.5 rounded-full shadow-[0_6px_15px_rgba(37,99,235,0.3)] z-50">
+                  <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest uppercase text-white">Pan India Distribution</span>
                 </div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20">
-                  <span className="text-[10px] font-mono font-bold text-heading bg-white/90 px-3 py-1 rounded-full shadow-md backdrop-blur-sm border border-border tracking-widest uppercase block mt-16">
-                    PAN India
-                  </span>
+
+                {/* Abstract Stylized Network Map */}
+                <div className="relative w-full h-full max-w-[320px] mx-auto">
+                  {/* Connection Lines (SVG) */}
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 400" preserveAspectRatio="xMidYMid meet">
+                    <motion.path d="M 160 180 L 160 70" stroke="url(#line-grad)" strokeWidth="2" strokeDasharray="4 4" fill="none" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }}/>
+                    <motion.path d="M 160 180 L 80 160" stroke="url(#line-grad)" strokeWidth="2" strokeDasharray="4 4" fill="none" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 0.5 }}/>
+                    <motion.path d="M 160 180 L 250 180" stroke="url(#line-grad)" strokeWidth="2" strokeDasharray="4 4" fill="none" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 1 }}/>
+                    <motion.path d="M 160 180 L 140 320" stroke="url(#line-grad)" strokeWidth="2" strokeDasharray="4 4" fill="none" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 1.5 }}/>
+                    <defs>
+                      <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#2563EB" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="#0D9488" stopOpacity="0.6" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+
+                  {/* Pulsing Hubs */}
+                  {[
+                    { id: 'north', label: 'North Hub', x: '50%', y: '17.5%' },
+                    { id: 'west', label: 'West Hub', x: '25%', y: '40%' },
+                    { id: 'east', label: 'East Hub', x: '78%', y: '45%' },
+                    { id: 'central', label: 'Central Hub', x: '50%', y: '45%' },
+                    { id: 'south', label: 'South Hub', x: '43.75%', y: '80%' },
+                  ].map((hub) => (
+                    <div key={hub.id} className="absolute flex flex-col items-center group/hub cursor-default" style={{ left: hub.x, top: hub.y, transform: 'translate(-50%, -50%)' }}>
+                      <div className="relative flex items-center justify-center">
+                        <span className="absolute w-10 h-10 rounded-full bg-[#2563EB]/20 animate-ping"></span>
+                        <div className="relative w-5 h-5 bg-gradient-to-br from-[#2563EB] to-[#0D9488] rounded-full shadow-[0_0_20px_rgba(37,99,235,0.7)] group-hover/hub:scale-125 transition-transform duration-300"></div>
+                      </div>
+                      <span className="mt-3 text-[11px] font-bold text-[#0B1F4D] bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded border border-[#2563EB]/10 shadow-sm whitespace-nowrap opacity-90 group-hover/hub:opacity-100 group-hover:-translate-y-1 transition-all duration-300">{hub.label}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <div className="mt-12">
+            {/* Statistics Row */}
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+              className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6"
+            >
+              {[
+                { value: "450+", label: "Distributors" },
+                { value: "28", label: "States Covered" },
+                { value: "1000+", label: "Healthcare Partners" },
+                { value: "24/7", label: "Logistics Support" },
+              ].map((stat, idx) => (
+                <motion.div key={idx} variants={fadeUp} className="bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] p-6 sm:p-8 text-center hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] transition-all duration-500">
+                  <h4 className="text-4xl sm:text-5xl font-display font-bold bg-gradient-to-br from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text mb-3">{stat.value}</h4>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0B1F4D] uppercase tracking-widest">{stat.label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <div className="mt-16">
               <a
                 href="#enquiry-form"
-                className="utility-button-primary px-8 py-4 inline-flex shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-white font-semibold rounded-full px-8 py-4 shadow-[0_10px_30px_rgba(37,99,235,0.3)] hover:shadow-[0_15px_40px_rgba(37,99,235,0.4)] hover:-translate-y-1 transition-all duration-300 group"
               >
                 Become a Distribution Partner
-                <ArrowRight className="w-5 h-5 text-white ml-2 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
             </div>
           </motion.div>
@@ -462,7 +547,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                       <button
                         type="button"
                         onClick={() => setFormSuccess(false)}
-                        className="utility-button-primary px-8 py-3"
+                        className="utility-button-primary px-8 py-3 h-12"
                       >
                         SUBMIT ANOTHER PROPOSAL
                       </button>
@@ -470,8 +555,9 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                      {/* Name */}
+                      <div className="relative pb-6">
                         <label htmlFor="partner-name" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
                         <input
                           id="partner-name"
@@ -484,18 +570,20 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                           value={formData.name}
                           onChange={(e) => handlePartnerFieldChange("name", e.target.value)}
                           onBlur={(e) => handlePartnerFieldBlur("name", e.target.value)}
-                          className={`utility-input ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
                           aria-invalid={!!errors.name}
                           aria-describedby={errors.name ? "prt-name-err" : undefined}
                         />
                         {errors.name && (
-                          <span id="prt-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <span id="prt-name-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.name}
                           </span>
                         )}
                       </div>
-                      <div>
+
+                      {/* Email */}
+                      <div className="relative pb-6">
                         <label htmlFor="partner-email" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Business Email <span className="text-red-500" aria-hidden="true">*</span></label>
                         <input
                           id="partner-email"
@@ -508,21 +596,20 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                           value={formData.email}
                           onChange={(e) => handlePartnerFieldChange("email", e.target.value)}
                           onBlur={(e) => handlePartnerFieldBlur("email", e.target.value)}
-                          className={`utility-input ${errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
                           aria-invalid={!!errors.email}
                           aria-describedby={errors.email ? "prt-email-err" : undefined}
                         />
                         {errors.email && (
-                          <span id="prt-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <span id="prt-email-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.email}
                           </span>
                         )}
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
+                      {/* Phone */}
+                      <div className="relative pb-6">
                         <label htmlFor="partner-phone" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Phone / Whatsapp <span className="text-red-500" aria-hidden="true">*</span></label>
                         <input
                           id="partner-phone"
@@ -535,18 +622,20 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                           value={formData.phone}
                           onChange={(e) => handlePartnerFieldChange("phone", e.target.value)}
                           onBlur={(e) => handlePartnerFieldBlur("phone", e.target.value)}
-                          className={`utility-input ${errors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
                           aria-invalid={!!errors.phone}
                           aria-describedby={errors.phone ? "prt-phone-err" : undefined}
                         />
                         {errors.phone && (
-                          <span id="prt-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <span id="prt-phone-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.phone}
                           </span>
                         )}
                       </div>
-                      <div>
+
+                      {/* Alliance Type Dropdown */}
+                      <div className="relative pb-6">
                         <label htmlFor="partner-type" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Alliance Vertical Target</label>
                         <div className="relative">
                           <select
@@ -554,7 +643,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                             disabled={submitting}
                             value={formData.partnerType}
                             onChange={(e) => setFormData({ ...formData, partnerType: e.target.value })}
-                            className="utility-input appearance-none pr-10"
+                            className="utility-input h-12 appearance-none pr-10 bg-white"
                           >
                             <option value="franchise">PCD Franchise Distributorship</option>
                             <option value="manufacturing">Third Party Contract Manufacturing</option>
@@ -566,10 +655,9 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
+                      {/* Company Name */}
+                      <div className="relative pb-6">
                         <label htmlFor="partner-company" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Company Name <span className="text-red-500" aria-hidden="true">*</span></label>
                         <input
                           id="partner-company"
@@ -582,18 +670,20 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                           value={formData.company}
                           onChange={(e) => handlePartnerFieldChange("company", e.target.value)}
                           onBlur={(e) => handlePartnerFieldBlur("company", e.target.value)}
-                          className={`utility-input ${errors.company ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.company ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
                           aria-invalid={!!errors.company}
                           aria-describedby={errors.company ? "prt-comp-err" : undefined}
                         />
                         {errors.company && (
-                          <span id="prt-comp-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <span id="prt-comp-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.company}
                           </span>
                         )}
                       </div>
-                      <div>
+
+                      {/* Country */}
+                      <div className="relative pb-6">
                         <label htmlFor="partner-country" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Target Country / Territory <span className="text-red-500" aria-hidden="true">*</span></label>
                         <input
                           id="partner-country"
@@ -606,12 +696,12 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                           value={formData.country}
                           onChange={(e) => handlePartnerFieldChange("country", e.target.value)}
                           onBlur={(e) => handlePartnerFieldBlur("country", e.target.value)}
-                          className={`utility-input ${errors.country ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.country ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
                           aria-invalid={!!errors.country}
                           aria-describedby={errors.country ? "prt-ctry-err" : undefined}
                         />
                         {errors.country && (
-                          <span id="prt-ctry-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                          <span id="prt-ctry-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.country}
                           </span>
@@ -619,7 +709,8 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                       </div>
                     </div>
 
-                    <div>
+                    {/* Textarea */}
+                    <div className="relative pb-6">
                       <div className="flex items-center justify-between mb-2">
                         <label htmlFor="partner-message" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest">Describe Your Proposal / Target Market <span className="text-red-500" aria-hidden="true">*</span></label>
                         <span className={`text-[10px] font-mono ${formData.message.length > 900 ? "text-amber-500 font-bold" : "text-muted"}`}>
@@ -631,18 +722,18 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                         required
                         disabled={submitting}
                         aria-required="true"
-                        rows={4}
+                        rows={5}
                         maxLength={1000}
                         placeholder="Include details about your current healthcare products network, doctor connections, or specific solid-oral dosing needs..."
                         value={formData.message}
                         onChange={(e) => handlePartnerFieldChange("message", e.target.value)}
                         onBlur={(e) => handlePartnerFieldBlur("message", e.target.value)}
-                        className={`utility-input resize-y ${errors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                        className={`utility-input resize-y placeholder:text-slate-400 min-h-[120px] ${errors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
                         aria-invalid={!!errors.message}
                         aria-describedby={errors.message ? "prt-msg-err" : undefined}
                       ></textarea>
                       {errors.message && (
-                        <span id="prt-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <span id="prt-msg-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
                           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                           {errors.message}
                         </span>
@@ -652,7 +743,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full utility-button-primary mt-4 py-3.5 text-sm font-bold flex items-center justify-center gap-2"
+                      className="w-full utility-button-primary h-[52px] text-sm font-bold flex items-center justify-center gap-2"
                     >
                       {submitting ? (
                         <>

@@ -1,7 +1,7 @@
 /**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+* @license
+* SPDX-License-Identifier: Apache-2.0
+*/
 
 import React, { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
@@ -86,6 +86,7 @@ export default function Products({ params, showToast }: ProductsProps) {
 
   // Catalog Download State
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isDownloaded, setIsDownloaded] = useState(false);
 
   // Handle incoming query params (e.g. from global search or nav)
   useEffect(() => {
@@ -116,6 +117,18 @@ export default function Products({ params, showToast }: ProductsProps) {
     }
   }, [params]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProduct || isEnquiryOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProduct, isEnquiryOpen]);
+
   // Filter products dynamically
   const filteredProducts = PRODUCTS.filter((p) => {
     const matchesSearch =
@@ -131,31 +144,31 @@ export default function Products({ params, showToast }: ProductsProps) {
   // Handle catalog download with jsPDF
   const handleCatalogDownload = () => {
     setIsDownloading(true);
-    
+
     setTimeout(async () => {
       try {
         // Dynamically import to avoid SSR issues if this were a server component, though it's client here
         const { default: jsPDF } = await import("jspdf");
         const { default: autoTable } = await import("jspdf-autotable");
-        
+
         const doc = new jsPDF("landscape");
-        
+
         // Add Header
         doc.setFontSize(22);
         doc.setTextColor(15, 23, 42); // slate-900
         doc.text("Medinet Formulations Catalogue", 14, 22);
-        
+
         doc.setFontSize(11);
         doc.setTextColor(100, 116, 139); // slate-500
         doc.text("Comprehensive collection of therapeutic formulations. Audited and verified.", 14, 30);
-        
+
         // Prepare table data
         const tableColumn = ["Product Name", "Generic Name", "Category", "Form", "Strength", "Packaging"];
         const tableRows: any[] = [];
-        
+
         PRODUCTS.forEach(product => {
           const categoryName = THERAPEUTIC_CATEGORIES.find(c => c.id === product.category)?.name || product.category;
-          
+
           const productData = [
             product.name,
             product.genericName,
@@ -166,7 +179,7 @@ export default function Products({ params, showToast }: ProductsProps) {
           ];
           tableRows.push(productData);
         });
-        
+
         // Add table
         autoTable(doc, {
           startY: 40,
@@ -186,10 +199,10 @@ export default function Products({ params, showToast }: ProductsProps) {
           },
           margin: { top: 40, right: 14, bottom: 20, left: 14 }
         });
-        
+
         // Save the PDF
         doc.save("Medinet_Catalogue_Products.pdf");
-        
+
         showToast("Medinet Formulations Catalogue PDF successfully generated and downloaded!", "success");
       } catch (error) {
         console.error("Error generating PDF:", error);
@@ -261,7 +274,7 @@ export default function Products({ params, showToast }: ProductsProps) {
       setFormSubmitting(false);
       setFormSuccess(true);
       showToast("Inquiry submitted successfully! A licensing head will contact you shortly.", "success");
-      
+
       // Reset
       setFormData({
         name: "",
@@ -347,18 +360,16 @@ export default function Products({ params, showToast }: ProductsProps) {
               <div className="space-y-2">
                 <button
                   onClick={() => setSelectedCategory("all")}
-                  className={`w-full text-left px-4 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-xl border-l-[4px] ${
-                    selectedCategory === "all"
+                  className={`w-full text-left px-4 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-xl border-l-[4px] ${selectedCategory === "all"
                       ? "bg-gradient-to-br from-primary to-secondary text-white shadow-md border-transparent"
                       : "bg-transparent text-body border-transparent hover:bg-secondary/5 hover:text-secondary hover:border-l-secondary"
-                  }`}
+                    }`}
                 >
                   <span>All Formulations</span>
-                  <span className={`rounded-full px-2.5 py-1 font-bold text-[10px] transition-colors duration-300 ${
-                    selectedCategory === "all"
+                  <span className={`rounded-full px-2.5 py-1 font-bold text-[10px] transition-colors duration-300 ${selectedCategory === "all"
                       ? "bg-white/20 text-white"
                       : "bg-alt-bg text-muted group-hover:bg-secondary/10 group-hover:text-secondary"
-                  }`}>
+                    }`}>
                     {PRODUCTS.length}
                   </span>
                 </button>
@@ -369,18 +380,16 @@ export default function Products({ params, showToast }: ProductsProps) {
                     <button
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`w-full text-left px-4 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-xl border-l-[4px] ${
-                        selectedCategory === cat.id
+                      className={`w-full text-left px-4 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group rounded-xl border-l-[4px] ${selectedCategory === cat.id
                           ? "bg-gradient-to-br from-primary to-secondary text-white shadow-md border-transparent"
                           : "bg-transparent text-body border-transparent hover:bg-secondary/5 hover:text-secondary hover:border-l-secondary"
-                      }`}
+                        }`}
                     >
                       <span className="line-clamp-1 pr-2">{cat.name}</span>
-                      <span className={`rounded-full px-2.5 py-1 font-bold text-[10px] transition-colors duration-300 ${
-                        selectedCategory === cat.id
+                      <span className={`rounded-full px-2.5 py-1 font-bold text-[10px] transition-colors duration-300 ${selectedCategory === cat.id
                           ? "bg-white/20 text-white"
                           : "bg-alt-bg text-muted group-hover:bg-secondary/10 group-hover:text-secondary"
-                      }`}>
+                        }`}>
                         {count}
                       </span>
                     </button>
@@ -388,17 +397,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                 })}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-border">
-                <div className="text-left bg-gradient-to-b from-background to-alt-bg p-5 rounded-[20px] border border-secondary/10 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
-                    <ShieldCheck className="w-6 h-6 text-accent" />
-                  </div>
-                  <h4 className="font-mono font-bold text-heading text-xs tracking-widest mb-2">// LICENSING NOTICE</h4>
-                  <p className="text-[11px] text-body leading-relaxed">
-                    Medinet formulations are marketed to corporate licensed entities only. We do not distribute to patients directly.
-                  </p>
-                </div>
-              </div>
+
             </aside>
 
             {/* Products Listing Area */}
@@ -415,9 +414,6 @@ export default function Products({ params, showToast }: ProductsProps) {
                   />
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
                 </div>
-                <div className="text-xs font-mono text-muted self-end sm:self-center">
-                  // Showing <span className="text-secondary font-bold">{filteredProducts.length}</span> of <span className="text-secondary font-bold">{PRODUCTS.length}</span> formulations
-                </div>
               </div>
 
               {/* Grid of Product Cards */}
@@ -427,33 +423,33 @@ export default function Products({ params, showToast }: ProductsProps) {
                     <motion.div
                       variants={fadeUp}
                       key={p.id}
-                      className="utility-card p-6 sm:p-7 h-full flex flex-col justify-between group cursor-pointer hover:border-secondary/30 hover:-translate-y-[6px] transition-all duration-300 shadow-sm hover:shadow-[0_24px_48px_-12px_rgba(20,83,45,0.18)]"
+                      className="utility-card p-6 sm:p-7 h-full flex flex-col group cursor-pointer hover:border-secondary/30 hover:-translate-y-[6px] transition-all duration-300 shadow-sm hover:shadow-[0_24px_48px_-12px_rgba(20,83,45,0.18)]"
                       onClick={() => setSelectedProduct(p)}
                     >
-                      <div>
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="utility-badge-blue">
+                      <div className="flex-1 flex flex-col">
+                        <div className="flex items-start justify-between min-h-[44px] mb-4">
+                          <span className="utility-badge-blue whitespace-normal text-left inline-block">
                             {p.dosageForm}
                           </span>
-                          <span className="text-[10px] font-mono font-bold text-muted">{p.strength}</span>
+                          <span className="text-[10px] font-mono font-bold text-muted shrink-0 mt-1.5 ml-3 text-right">{p.strength}</span>
                         </div>
 
-                        <h3 className="mt-3 mb-1.5 font-display font-bold text-heading text-lg sm:text-xl group-hover:text-secondary transition-colors duration-300 flex items-center gap-2.5">
-                          {getDosageIcon(p.dosageForm)}
-                          {p.name}
+                        <h3 className="mb-1.5 font-display font-bold text-heading text-lg sm:text-xl group-hover:text-secondary transition-colors duration-300 flex items-start gap-2.5 h-[56px]">
+                          <span className="mt-1 shrink-0">{getDosageIcon(p.dosageForm)}</span>
+                          <span className="line-clamp-2 leading-snug" title={p.name}>{p.name}</span>
                         </h3>
-                        <p className="text-[11px] text-muted font-mono italic mt-1 line-clamp-1">
+                        <p className="text-[11px] text-muted font-mono italic mt-1 line-clamp-1 h-[16px]">
                           {p.genericName}
                         </p>
-                        <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
+                        <p className="mt-3 text-sm text-body leading-[1.6] line-clamp-3 h-[68px]">
                           {p.description}
                         </p>
                       </div>
 
-                      <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs font-mono">
+                      <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs font-mono shrink-0">
                         <span className="text-muted">{p.packaging}</span>
                         <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-white to-slate-50 border border-emerald-200 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wider shadow-sm group-hover:from-emerald-600 group-hover:to-emerald-500 group-hover:text-white group-hover:border-emerald-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
+                          <span className="inline-flex items-center justify-center gap-1.5 w-[110px] h-9 bg-gradient-to-r from-white to-slate-50 border border-emerald-200 rounded-full text-[10px] font-bold text-slate-800 uppercase tracking-wider shadow-sm group-hover:from-emerald-600 group-hover:to-emerald-500 group-hover:text-white group-hover:border-emerald-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
                             DETAILS <ArrowRight className="w-3.5 h-3.5 text-emerald-600 group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
                           </span>
                         </div>
@@ -482,108 +478,386 @@ export default function Products({ params, showToast }: ProductsProps) {
         </div>
       </section>
 
-      {/* New Launches Section */}
-      <section className="py-20 bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Innovation Pipeline"
-            title="Recent New Launches"
-            description="Discover our newest therapeutic formulations recently introduced to the market."
-            centered
-          />
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Premium New Launches Section */}
+      <section className="relative py-20 bg-gradient-to-b from-white to-[#F8FCFF] border-b border-border overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Central Radial Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.04),transparent_70%)]"></div>
+
+          {/* Animated Background Icons */}
+          <motion.div
+            animate={{ y: [0, -20, 0], opacity: [0.02, 0.04, 0.02] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[20%] left-[5%]"
+          >
+            <Activity className="w-40 h-40 text-[#2563EB]" />
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, 20, 0], opacity: [0.02, 0.04, 0.02] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-[20%] right-[5%]"
+          >
+            <Pill className="w-48 h-48 text-[#0D9488]" />
+          </motion.div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          {/* Custom Header Area */}
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
+            {/* Glassmorphism Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#0D9488]/20 shadow-[0_4px_15px_rgba(13,148,136,0.06)] mb-6 hover:border-[#0D9488]/40 transition-colors duration-300"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#0B1F4D] uppercase">
+                Innovation Pipeline
+              </span>
+            </motion.div>
+
+            {/* Premium Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-tight mb-6"
+            >
+              Recent New <span className="bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent">Launches</span>
+            </motion.h2>
+
+            {/* Animated Divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#0D9488] to-transparent mb-6 origin-center"
+            ></motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto font-medium"
+            >
+              Discover our newest therapeutic formulations recently introduced to the global market, engineered for maximum clinical efficacy.
+            </motion.p>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch"
+          >
             {[
               { name: "MediGastro XR", form: "Extended Release Tablets", category: "Gastroenterology" },
               { name: "NeuroPlus Forte", form: "Dual-Action Capsules", category: "Neurology" },
               { name: "CardioProtect CR", form: "Controlled Release", category: "Cardiology" }
             ].map((launch, idx) => (
               <motion.div
+                variants={fadeUp}
                 key={idx}
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.15, duration: 0.5 }}
-                className="utility-card p-6 border-t-[3px] border-t-emerald-500 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(16,185,129,0.12)] transition-all duration-300 group cursor-pointer"
+                className="group relative bg-white/70 backdrop-blur-xl rounded-[24px] p-6 lg:p-8 flex flex-col justify-between border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.12)] hover:border-[#0D9488]/30 hover:-translate-y-[8px] transition-all duration-300 overflow-hidden cursor-pointer h-full"
               >
-                <span className="inline-block px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-mono font-bold uppercase tracking-widest rounded-full mb-4">
-                  {launch.category}
-                </span>
-                <h3 className="font-display font-bold text-xl text-slate-900 group-hover:text-emerald-700 transition-colors mb-1">
-                  {launch.name}
-                </h3>
-                <p className="text-sm font-mono text-slate-500">{launch.form}</p>
-                <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
-                  <span className="text-[11px] font-mono font-bold text-slate-400 uppercase">Available Now</span>
-                  <ArrowRight className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                {/* Thin Animated Top Gradient */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-      {/* Featured Brands Section */}
-      <section className="py-20 bg-slate-50 border-b border-border overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeader
-            badge="Market Leaders"
-            title="Featured Brands"
-            description="Our flagship brands trusted by millions of patients globally."
-            centered
-          />
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-12 flex flex-wrap justify-center gap-4 sm:gap-6"
-          >
-            {[
-              "MedZole-D", "CardioLife", "NeuroSync", "GastroHeal", "Immunex", "OsteoCare"
-            ].map((brand, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, type: "spring", stiffness: 200 }}
-                className="px-8 py-5 bg-white rounded-2xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.02)] hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default"
-              >
-                <span className="font-display font-bold text-xl text-slate-700">{brand}</span>
+                {/* Subtle Background Pill Icon */}
+                <div className="absolute -top-4 -right-4 opacity-5 group-hover:opacity-10 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 pointer-events-none">
+                  <Pill className="w-32 h-32 text-[#0B1F4D]" />
+                </div>
+
+                <div className="relative z-10 flex-1 flex flex-col">
+                  {/* Card Header */}
+                  <div className="flex items-center justify-between mb-8">
+                    <span className="inline-flex items-center px-3 py-1 bg-[#0D9488]/10 text-[#0D9488] text-[10px] font-mono font-bold uppercase tracking-widest rounded-full border border-[#0D9488]/20 group-hover:bg-[#0D9488] group-hover:text-white transition-colors duration-300">
+                      {launch.category}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 bg-rose-50 text-rose-600 px-2 py-0.5 rounded text-[9px] font-bold tracking-widest border border-rose-100">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                      NEW
+                    </span>
+                  </div>
+
+                  {/* Title & Subtitle */}
+                  <h3 className="font-display font-[800] text-2xl text-[#0B1F4D] mb-3 group-hover:bg-gradient-to-r group-hover:from-[#0B1F4D] group-hover:to-[#0D9488] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 pr-4">
+                    {launch.name}
+                  </h3>
+                  <p className="text-xs font-mono text-[#475569] tracking-wider uppercase font-semibold">
+                    {launch.form}
+                  </p>
+                </div>
+
+                {/* Footer / CTA */}
+                <div className="relative z-10 mt-8 pt-5 border-t border-slate-200/60 flex items-center justify-between group/btn shrink-0">
+                  <div className="relative">
+                    <span className="text-[11px] font-bold text-[#0B1F4D] tracking-widest uppercase inline-block">
+                      Available Now
+                    </span>
+                    <span className="absolute -bottom-1 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:bg-[#0D9488] group-hover:border-[#0D9488] transition-colors duration-300">
+                    <ArrowRight className="w-4 h-4 text-[#475569] group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Download Product Catalogue CTA */}
-      <section className="py-24 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px] opacity-20"></div>
+      {/* Premium Featured Brands Section */}
+      <section className="relative py-20 bg-gradient-to-b from-white to-[#F8FAFC] border-b border-border overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Radial Glow behind heading */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.03),transparent_70%)]"></div>
+
+          {/* Radial glow behind center cards */}
+          <div className="absolute top-[60%] left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(13,148,136,0.03),transparent_60%)]"></div>
+
+          {/* Molecular/DNA Background Elements */}
+          <div className="absolute top-[10%] left-[5%] opacity-[0.03]">
+            <Activity className="w-64 h-64 text-[#0B1F4D]" />
+          </div>
+          <div className="absolute bottom-[10%] right-[5%] opacity-[0.02]">
+            <Layers className="w-80 h-80 text-[#0D9488]" />
+          </div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+          {/* Custom Header Area */}
+          <div className="flex flex-col items-center max-w-3xl mx-auto mb-16">
+            {/* Glassmorphism Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#2563EB]/20 shadow-[0_4px_15px_rgba(37,99,235,0.06)] mb-6 hover:border-[#2563EB]/40 transition-colors duration-300"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+              </span>
+              <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#0B1F4D] uppercase">
+                Market Leaders
+              </span>
+            </motion.div>
+
+            {/* Premium Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-tight mb-6"
+            >
+              Featured <span className="bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent">Brands</span>
+            </motion.h2>
+
+            {/* Animated Divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#2563EB] to-transparent mb-6 origin-center"
+            ></motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-[#475569] text-base md:text-lg leading-relaxed max-w-xl mx-auto font-medium"
+            >
+              Our flagship brands are trusted by millions of patients globally, setting the standard for clinical excellence and reliability.
+            </motion.p>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 items-stretch"
+          >
+            {[
+              { name: "MedZole-D", label: "Gastroenterology", icon: Pill },
+              { name: "CardioLife", label: "Cardiology", icon: Activity },
+              { name: "NeuroSync", label: "Neurology", icon: BadgePlus },
+              { name: "GastroHeal", label: "Gastroenterology", icon: Droplets },
+              { name: "Immunex", label: "Immunology", icon: ShieldCheck },
+              { name: "OsteoCare", label: "Orthopaedics", icon: Layers }
+            ].map((brand, idx) => {
+              const Icon = brand.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  variants={fadeUp}
+                  className="group relative bg-white/70 backdrop-blur-xl rounded-[22px] p-5 flex flex-col items-center text-center border border-slate-200/60 shadow-[0_8px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgba(11,31,77,0.08)] hover:border-[#2563EB]/30 hover:-translate-y-[6px] transition-all duration-300 cursor-default overflow-hidden"
+                >
+                  {/* Animated Gradient Top Border */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0B1F4D] via-[#2563EB] to-[#38BDF8] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                  {/* Circular Placeholder Logo */}
+                  <div className="relative mb-5 mt-2">
+                    {/* Soft Glow */}
+                    <div className="absolute inset-0 bg-[#2563EB]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-all duration-500 z-0"></div>
+
+                    <motion.div
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
+                      className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#F8FAFC] to-[#F1F5F9] border border-slate-200 shadow-sm flex items-center justify-center z-10 group-hover:border-[#2563EB]/40 transition-colors duration-300"
+                    >
+                      <Icon className="w-6 h-6 text-[#475569] group-hover:text-[#2563EB] transition-colors duration-300" />
+                    </motion.div>
+                  </div>
+
+                  {/* Brand Name */}
+                  <h3 className="font-display font-[800] text-lg text-[#0B1F4D] mb-1.5 group-hover:bg-gradient-to-r group-hover:from-[#0B1F4D] group-hover:to-[#2563EB] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-1">
+                    {brand.name}
+                  </h3>
+
+                  {/* Category Label */}
+                  <span className="text-[9px] font-mono font-bold text-[#0D9488] uppercase tracking-widest bg-[#0D9488]/10 px-2 py-0.5 rounded-full group-hover:bg-[#0D9488]/20 transition-colors duration-300">
+                    {brand.label}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Premium Download Product Catalogue CTA */}
+      {/* Premium Download Product Catalogue CTA */}
+      <section className="relative pt-32 pb-24 bg-gradient-to-br from-[#0B1F4D] via-[#0D9488] to-[#0B1F4D] text-center overflow-x-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Scientific Dotted Texture */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:30px_30px] opacity-30"></div>
+
+          {/* Glass Reflections / Gradient Blobs */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#38BDF8] rounded-full blur-[120px] opacity-10 animate-pulse"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#2563EB] rounded-full blur-[120px] opacity-10 animate-pulse delay-700"></div>
+
+          {/* Molecular Pattern Graphics */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-32 -left-32 opacity-[0.03]"
+          >
+            <Activity className="w-[500px] h-[500px] text-white" />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
+            className="absolute -bottom-32 -right-32 opacity-[0.03]"
+          >
+            <Layers className="w-[500px] h-[500px] text-white" />
+          </motion.div>
+        </div>
+
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-8 backdrop-blur-md border border-white/20 shadow-lg">
-              <Download className="w-10 h-10 text-white" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
-              Download Full Product Catalogue
-            </h2>
-            <p className="text-emerald-100/90 mb-10 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-              Get detailed insights into our complete range of formulations, therapeutic segments, and packaging specifications in our latest corporate catalogue.
-            </p>
-            <a 
-              href="#"
-              onClick={(e) => { e.preventDefault(); setIsDownloading(true); setTimeout(() => setIsDownloading(false), 2000); }}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-white text-emerald-900 rounded-xl font-bold font-mono text-sm tracking-wider shadow-[0_15px_40px_rgba(0,0,0,0.2)] hover:scale-105 transition-all duration-300 group"
+            {/* Premium Floating Glass Icon */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-24 h-24 mx-auto mb-10 group cursor-pointer"
             >
-              {isDownloading ? (
-                <>DOWNLOADING... <Loader2 className="w-5 h-5 animate-spin" /></>
-              ) : (
-                <>DOWNLOAD PDF <Download className="w-5 h-5 group-hover:-translate-y-1 transition-transform" /></>
-              )}
+              <div className="absolute inset-0 bg-white/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative w-full h-full bg-white/10 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.2)] group-hover:scale-110 transition-transform duration-500">
+                <FileText className="w-10 h-10 text-white group-hover:text-[#38BDF8] transition-colors duration-300" />
+                {/* Animated Border Gradient Ring underneath */}
+                <div className="absolute inset-[-2px] rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-spin transition-all duration-500 -z-10"></div>
+              </div>
+            </motion.div>
+
+            {/* Premium Heading */}
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-[900] text-white tracking-tight mb-6 flex flex-wrap justify-center gap-x-3 leading-normal py-2">
+              <span className="opacity-90">Download Full</span>
+              <span className="relative inline-block mt-2 md:mt-0 pt-1 pb-3 px-2">
+                <span className="bg-gradient-to-r from-[#38BDF8] via-white to-[#38BDF8] bg-clip-text text-transparent">
+                  Product Catalogue
+                </span>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+                  className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent rounded-full origin-left"
+                ></motion.span>
+              </span>
+            </h2>
+
+            {/* Premium Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-white/70 text-lg md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto font-medium mb-12"
+            >
+              Get detailed insights into our complete range of formulations, therapeutic segments, and packaging specifications in our latest corporate catalogue.
+            </motion.p>
+
+            {/* Premium Download CTA Button */}
+            <a
+              href="/catalogue.pdf"
+              download="Medinet_Corporate_Catalogue_2026.pdf"
+              onClick={(e) => {
+                if (isDownloading || isDownloaded) {
+                  e.preventDefault();
+                  return;
+                }
+                // Allow the browser to handle the actual file download natively via href!
+                // We just manage the beautiful UI states here.
+                setIsDownloading(true);
+                setTimeout(() => {
+                  setIsDownloading(false);
+                  setIsDownloaded(true);
+                  showToast("✓ Catalogue Downloaded Successfully", "success");
+                  setTimeout(() => setIsDownloaded(false), 2000);
+                }, 800);
+              }}
+              className="relative inline-flex items-center justify-center gap-4 px-10 py-5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl font-bold font-mono text-[13px] tracking-[0.15em] uppercase text-white shadow-[0_15px_40px_rgba(0,0,0,0.3)] hover:bg-white/20 hover:border-white/40 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(56,189,248,0.2)] transition-all duration-300 group overflow-hidden w-full sm:w-auto"
+            >
+              {/* Ripple Animation Effect */}
+              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-transform duration-500 rounded-2xl"></div>
+
+              <span className="relative z-10 flex items-center gap-3">
+                {isDownloading ? (
+                  <>DOWNLOADING... <Loader2 className="w-5 h-5 animate-spin" /></>
+                ) : isDownloaded ? (
+                  <><CheckCircle2 className="w-5 h-5 text-emerald-400" /> DOWNLOAD COMPLETE</>
+                ) : (
+                  <>
+                    DOWNLOAD CORPORATE CATALOGUE
+                    <Download className="w-5 h-5 group-hover:translate-y-1 group-hover:scale-110 transition-all duration-300" />
+                  </>
+                )}
+              </span>
             </a>
           </motion.div>
         </div>
@@ -591,7 +865,7 @@ export default function Products({ params, showToast }: ProductsProps) {
 
       {/* Product Details Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm animate-fade-in">
           <div className="w-full max-w-2xl bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-xl border border-border overflow-hidden text-left max-h-[90vh] flex flex-col">
             {/* Modal Header */}
             <div className="flex items-start justify-between p-6 border-b border-border bg-background">
@@ -615,7 +889,10 @@ export default function Products({ params, showToast }: ProductsProps) {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6 overflow-y-auto flex-1">
+            <div
+              className="p-6 space-y-6 overflow-y-auto flex-1 scroll-smooth overscroll-contain"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
               {/* Info Matrix */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-background p-4 rounded border border-border text-xs">
                 <div>
@@ -686,7 +963,7 @@ export default function Products({ params, showToast }: ProductsProps) {
 
       {/* Product Inquiry Form Drawer/Modal */}
       {isEnquiryOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm animate-fade-in">
           <div className="w-full max-w-xl bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm shadow-xl border border-border overflow-hidden text-left max-h-[90vh] flex flex-col">
             {/* Header */}
             <div className="flex items-start justify-between p-6 border-b border-border bg-background">
@@ -744,7 +1021,12 @@ export default function Products({ params, showToast }: ProductsProps) {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleEnquirySubmit} className="flex-1 overflow-y-auto p-6 space-y-4" noValidate>
+              <form
+                onSubmit={handleEnquirySubmit}
+                className="flex-1 overflow-y-auto p-6 space-y-4 scroll-smooth overscroll-contain"
+                style={{ WebkitOverflowScrolling: "touch" }}
+                noValidate
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="prod-enq-name" className="text-xs font-mono font-medium text-body block mb-1.5">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>

@@ -136,38 +136,105 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Corporate Philosophy & CEO Message */}
-      <section className="py-20 bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center justify-center text-center">
-            {/* Corporate Philosophy */}
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center">
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-heading tracking-tight leading-[1.15]">
-                Our Core Philosophy
-              </h2>
-              <p className="mt-4 text-body leading-relaxed text-sm max-w-2xl">
-                We believe that premium, life-restoring pharmaceuticals should be built upon unyielding pillars of ethics and care.
-              </p>
+      {/* Corporate Philosophy */}
+      <section className="py-20 bg-gradient-to-b from-white to-[#F8FCFF] border-b border-border relative overflow-hidden">
+        {/* Soft Radial Glow & Abstract Backgrounds */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03),transparent_60%)] pointer-events-none z-0"></div>
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          {/* Scientific Pattern */}
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.03)_2px,transparent_2px)] bg-[size:40px_40px]"></div>
+          
+          <motion.div 
+            animate={{ y: [0, -20, 0], opacity: [0.01, 0.03, 0.01] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[10%] right-[10%] opacity-[0.03]"
+          >
+            <Shield className="w-[300px] h-[300px] text-primary" />
+          </motion.div>
+          <motion.div 
+            animate={{ rotate: 360, opacity: [0.01, 0.03, 0.01] }}
+            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[-10%] left-[-5%] opacity-[0.03]"
+          >
+            <Brain className="w-[400px] h-[400px] text-secondary" />
+          </motion.div>
+          
+          {/* Animated Gradient Blobs */}
+          <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[80px] pointer-events-none"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+        </div>
 
-              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left">
-                {[
-                  { title: "Quality", desc: "Uncompromising standards in every formulation we produce.", icon: ShieldCheck, color: "text-blue-600", bg: "bg-blue-50" },
-                  { title: "Trust", desc: "Building long-term reliability with our global partners.", icon: HeartHandshake, color: "text-emerald-600", bg: "bg-emerald-50" },
-                  { title: "Affordability", desc: "Accessible and equitable pricing for healthcare worldwide.", icon: Handshake, color: "text-purple-600", bg: "bg-purple-50" },
-                  { title: "Compassion", desc: "A patient-first approach embedded in all our decisions.", icon: Heart, color: "text-rose-600", bg: "bg-rose-50" }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-4 bg-white p-5 rounded-2xl border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 group cursor-default">
-                    <div className={`w-12 h-12 rounded-xl ${item.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                      <item.icon className={`w-6 h-6 ${item.color}`} />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-slate-900 text-sm mb-1">{item.title}</h4>
-                      <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col items-center text-center">
+            {/* Heading Section */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex flex-col items-center"
+            >
+              <h2 className="text-3xl lg:text-4xl font-display font-extrabold text-[#0B1F4D] tracking-tight leading-[1.2]">
+                Our Core <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Philosophy</span>
+              </h2>
+              
+              {/* Animated Gradient Underline */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                className="w-20 h-1 rounded-full bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto mt-5 mb-5 origin-center"
+              ></motion.div>
+
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="text-slate-500 leading-relaxed text-sm max-w-xl mx-auto"
+              >
+                We believe that premium, life-restoring pharmaceuticals should be built upon unyielding pillars of ethics and care.
+              </motion.p>
             </motion.div>
+
+            {/* Philosophy Boxes - Kept Exact Size & Layout */}
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left">
+              {[
+                { title: "Quality", desc: "Uncompromising standards in every formulation we produce.", icon: ShieldCheck },
+                { title: "Trust", desc: "Building long-term reliability with our global partners.", icon: HeartHandshake },
+                { title: "Affordability", desc: "Accessible and equitable pricing for healthcare worldwide.", icon: Handshake },
+                { title: "Compassion", desc: "A patient-first approach embedded in all our decisions.", icon: Heart }
+              ].map((item, idx) => (
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + (idx * 0.15), duration: 0.7, ease: "easeOut" }}
+                  key={idx} 
+                  className="relative flex items-start gap-4 bg-white/70 backdrop-blur-xl p-5 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_24px_rgba(13,148,136,0.08)] hover:border-[#0D9488]/30 hover:-translate-y-[6px] transition-all duration-300 group cursor-default overflow-hidden"
+                >
+                  {/* Thin animated gradient strip on the top edge */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                  <div className="relative shrink-0">
+                    {/* Icon Container with Gradient & Hover Glow */}
+                    <div className="absolute inset-0 bg-[#0D9488]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
+                    <motion.div 
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
+                      className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#0D9488]/30 transition-all duration-300 z-10"
+                    >
+                      <item.icon className="w-6 h-6 text-[#0B1F4D] group-hover:text-secondary transition-colors duration-300" />
+                    </motion.div>
+                  </div>
+                  <div className="pt-1">
+                    <h4 className="font-display font-extrabold text-[#0B1F4D] text-sm mb-1 tracking-wide">{item.title}</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -199,12 +266,120 @@ export default function About() {
             </motion.div>
           </motion.div>
 
-          <SectionHeader
-            badge="Core Values"
-            title="The Pillars of Medinet"
-            description="Our organizational culture is guided by clear, unyielding Ethics that dictate how we conduct business, evaluate scientific formulations, and interact with Healthcare practitioners."
-            centered
-          />
+          {/* Custom Section Header: The Pillars of Medinet */}
+          <div className="relative mt-24 mb-16 rounded-3xl overflow-hidden py-16 px-4">
+            {/* Soft radial glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(13,148,136,0.04),transparent_50%)] pointer-events-none -z-10"></div>
+            
+            {/* Molecular network / abstract bg elements */}
+            <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.02)_1.5px,transparent_1.5px)] bg-[size:30px_30px]"></div>
+              
+              <motion.div 
+                animate={{ y: [0, -15, 0], opacity: [0.02, 0.04, 0.02] }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[10%] left-[15%]"
+              >
+                <Shield className="w-32 h-32 text-[#2563EB]" />
+              </motion.div>
+              <motion.div 
+                animate={{ scale: [1, 1.05, 1], opacity: [0.02, 0.04, 0.02] }}
+                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="absolute bottom-[10%] right-[15%]"
+              >
+                <Brain className="w-40 h-40 text-[#0D9488]" />
+              </motion.div>
+              
+              {/* Quotation-style graphic */}
+              <div className="absolute top-[20%] left-1/2 -translate-x-1/2 text-[180px] font-display font-black text-[#0B1F4D] opacity-[0.03] leading-none pointer-events-none rotate-12 select-none">
+                &ldquo;
+              </div>
+              
+              {/* Floating glowing blobs */}
+              <div className="absolute top-1/4 left-1/3 w-[200px] h-[200px] bg-[#38BDF8]/5 rounded-full blur-[60px]"></div>
+              <div className="absolute bottom-1/4 right-1/3 w-[200px] h-[200px] bg-[#0D9488]/5 rounded-full blur-[60px]"></div>
+
+              {/* Floating medical particles */}
+              <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-[30%] right-[30%] w-2 h-2 rounded-full bg-[#0D9488] blur-[1px]"></motion.div>
+              <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 10, repeat: Infinity, delay: 1 }} className="absolute bottom-[40%] left-[30%] w-3 h-3 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
+            </div>
+
+            <div className="flex flex-col items-center text-center relative z-10 max-w-4xl mx-auto">
+              {/* Premium Glassmorphism Pill */}
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-slate-200 shadow-[0_4px_15px_rgba(5,150,105,0.06)] mb-8 hover:border-[#0D9488]/30 transition-colors duration-300 cursor-default"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0D9488] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0D9488]"></span>
+                </span>
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-[#0B1F4D] uppercase">
+                  CORE VALUES
+                </span>
+              </motion.div>
+
+              {/* Centerpiece Heading */}
+              <motion.h2 
+                className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.1] mb-8 relative"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <span className="drop-shadow-sm">The Pillars of </span>
+                <motion.span 
+                  className="bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block pb-2"
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                  style={{ backgroundSize: "200% auto" }}
+                >
+                  Medinet
+                </motion.span>
+              </motion.h2>
+
+              {/* Animated underline */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#0D9488] to-transparent mx-auto mb-10 origin-center"
+              ></motion.div>
+
+              {/* Description */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto"
+              >
+                Our organizational culture is guided by clear, unyielding{" "}
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>Ethics</motion.span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                </span>{" "}
+                that dictate how we conduct business, evaluate{" "}
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}>Scientific Formulations</motion.span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                </span>
+                , and interact with{" "}
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}>Healthcare Practitioners</motion.span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                </span>
+                .
+              </motion.div>
+            </div>
+          </div>
 
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {coreValues.map((val, idx) => {
@@ -246,12 +421,139 @@ export default function About() {
           }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
-          <SectionHeader
-            badge="Executive Leadership"
-            title="Guiding Our Scientific Vision"
-            description="Our steering committee brings together elite clinical minds, pharmaceutical licensing veterans, and regulatory compliance leaders with decadal experience."
-            centered
-          />
+          {/* Custom Section Header: Executive Leadership */}
+          <div className="relative mt-8 mb-20 rounded-3xl overflow-hidden py-16 px-4">
+            {/* Soft radial glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none -z-10"></div>
+            
+            {/* Background elements */}
+            <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.02)_1.5px,transparent_1.5px)] bg-[size:30px_30px]"></div>
+              
+              <motion.div 
+                animate={{ y: [0, -15, 0], opacity: [0.01, 0.03, 0.01] }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[10%] right-[15%]"
+              >
+                <FlaskConical className="w-32 h-32 text-[#0B1F4D]" />
+              </motion.div>
+              <motion.div 
+                animate={{ scale: [1, 1.05, 1], opacity: [0.01, 0.03, 0.01] }}
+                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="absolute bottom-[10%] left-[15%]"
+              >
+                <Brain className="w-40 h-40 text-[#2563EB]" />
+              </motion.div>
+              
+              {/* Floating glowing blobs */}
+              <motion.div animate={{ opacity: [0.4, 0.6, 0.4], scale: [1, 1.1, 1] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-1/4 right-1/3 w-[200px] h-[200px] bg-[#2563EB]/5 rounded-full blur-[60px]"></motion.div>
+              <motion.div animate={{ opacity: [0.4, 0.6, 0.4], scale: [1, 1.1, 1] }} transition={{ duration: 10, repeat: Infinity, delay: 2 }} className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] bg-[#38BDF8]/5 rounded-full blur-[60px]"></motion.div>
+
+              {/* Floating medical particles */}
+              <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-[20%] right-[20%] w-2 h-2 rounded-full bg-[#0D9488] blur-[1px]"></motion.div>
+              <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 10, repeat: Infinity, delay: 1 }} className="absolute bottom-[30%] left-[20%] w-3 h-3 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
+            </div>
+
+            <div className="flex flex-col items-center text-center relative z-10 max-w-4xl mx-auto">
+              {/* Premium Glassmorphism Pill */}
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-[#0D9488]/20 shadow-[0_4px_15px_rgba(5,150,105,0.06)] mb-8 hover:border-[#0D9488]/40 transition-colors duration-300 cursor-default"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                </span>
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-[#0B1F4D] uppercase">
+                  EXECUTIVE LEADERSHIP
+                </span>
+              </motion.div>
+
+              {/* Centerpiece Heading */}
+              <motion.h2 
+                className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.15] mb-8 relative"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  visible: { transition: { staggerChildren: 0.15 } },
+                  hidden: {}
+                }}
+              >
+                {/* Glowing text shadow */}
+                <div className="absolute inset-0 bg-[#0B1F4D]/5 blur-[20px] rounded-full z-[-1] pointer-events-none"></div>
+                
+                {["Guiding", "Our", "Scientific", "Vision"].map((word, index) => {
+                  const isHighlight = word === "Scientific" || word === "Vision";
+                  return (
+                    <motion.span 
+                      key={index}
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                      }}
+                      className={isHighlight 
+                        ? "bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block mr-3 lg:mr-4 last:mr-0 pb-2" 
+                        : "drop-shadow-sm inline-block mr-3 lg:mr-4 last:mr-0 pb-2"}
+                    >
+                      {isHighlight ? (
+                        <motion.span
+                          animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                          transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                          style={{ backgroundSize: "200% auto" }}
+                        >
+                          {word}
+                        </motion.span>
+                      ) : (
+                        word
+                      )}
+                    </motion.span>
+                  );
+                })}
+              </motion.h2>
+
+              {/* Animated underline */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#0D9488] to-transparent mx-auto mb-10 origin-center"
+              ></motion.div>
+
+              {/* Description */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto"
+              >
+                Our steering committee brings together elite{" "}
+                <span className="relative inline-block font-semibold bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>Clinical Minds</motion.span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                </span>
+                {", "}
+                <span className="relative inline-block font-semibold bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}>Pharmaceutical Licensing</motion.span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                </span>
+                {" veterans, and "}
+                <span className="relative inline-block font-semibold bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}>Regulatory Compliance</motion.span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                </span>
+                {" leaders with decadal experience."}
+              </motion.div>
+            </div>
+          </div>
 
           <motion.div 
             variants={{
@@ -372,14 +674,77 @@ export default function About() {
                   &ldquo;{BRAND_INFO.ceoMessage}&rdquo;
                 </p>
                 
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-8 border-t border-border/60">
-                  <div>
-                    <h4 className="font-display font-bold text-heading text-lg">{LEADERSHIP[1].name}</h4>
-                    <p className="text-sm font-mono text-secondary uppercase tracking-widest mt-1">Founder &amp; Chief Executive Officer</p>
-                    <p className="text-xs text-muted font-bold tracking-widest uppercase mt-3">Reliable Care, Every Time.</p>
+                {/* Custom Founder Information Typography */}
+                <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-10 mt-4 w-full">
+                  {/* Premium Gradient Divider */}
+                  <motion.div 
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-[#0B1F4D]/15 via-[#0D9488]/30 to-transparent origin-left"
+                  ></motion.div>
+                  
+                  {/* Background Accents & Glow */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10 rounded-xl">
+                    <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[300px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.05),transparent_60%)]"></div>
+                    <motion.div 
+                      animate={{ scale: [1, 1.05, 1], opacity: [0.01, 0.03, 0.01] }}
+                      transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute right-[2%] top-[10%]"
+                    >
+                      <Brain className="w-24 h-24 text-[#0D9488]" />
+                    </motion.div>
+                    <div className="absolute top-0 right-0 w-10 h-10 border-t-[1.5px] border-r-[1.5px] border-[#0D9488]/20 rounded-tr-xl"></div>
+                    <div className="absolute bottom-0 left-0 w-10 h-10 border-b-[1.5px] border-l-[1.5px] border-[#2563EB]/20 rounded-bl-xl"></div>
                   </div>
-                  <div className="font-serif italic text-3xl text-slate-300 -rotate-3 select-none">
-                    J. Doe
+
+                  <div className="flex flex-col relative z-10 w-full px-2 py-2">
+                    {/* Name */}
+                    <motion.h4 
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      className="font-display font-[900] text-3xl md:text-4xl tracking-tight leading-tight mb-3 bg-gradient-to-r from-[#0B1F4D] to-[#475569] bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(11,31,77,0.08)]"
+                    >
+                      {LEADERSHIP[1].name}
+                    </motion.h4>
+                    
+                    {/* Designation */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -15 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                      className="mb-5 inline-block w-fit"
+                    >
+                      <motion.p 
+                        className="text-[11px] sm:text-xs font-mono font-bold text-[#0D9488] uppercase tracking-[0.25em] mb-1.5"
+                        animate={{ opacity: [1, 0.7, 1] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        Founder &amp; Chief Executive Officer
+                      </motion.p>
+                      <div className="w-16 h-[2px] bg-gradient-to-r from-[#0D9488] to-transparent rounded-full"></div>
+                    </motion.div>
+
+                    {/* Tagline */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                      className="group cursor-default inline-block w-fit relative"
+                    >
+                      <p className="text-xs sm:text-[13px] font-semibold text-[#475569] tracking-[0.2em] uppercase">
+                        Reliable Care,{" "}
+                        <span className="bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent">
+                          Every Time.
+                        </span>
+                      </p>
+                      <span className="absolute -bottom-1.5 left-0 w-full h-[1.5px] bg-[#0D9488]/40 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
@@ -389,7 +754,8 @@ export default function About() {
       </section>
 
       {/* Corporate Timeline Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-white">
+      {/* Corporate Timeline Section */}
+      <section className="py-12 md:py-14 bg-gradient-to-b from-background to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Corporate Timeline"
@@ -398,47 +764,45 @@ export default function About() {
             centered
           />
 
-          <div className="relative max-w-4xl mx-auto mt-16">
+          <div className="relative max-w-4xl mx-auto mt-10 md:mt-12">
             {/* Center spine on desktop */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-border via-secondary/30 to-border opacity-80 -translate-x-1/2"></div>
 
-            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-12">
+            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-6 md:space-y-8">
               {timelineMilestones.map((milestone, idx) => {
                 const isEven = idx % 2 === 0;
                 const timelineIcons = [Rocket, Building2, Globe, Factory, Brain, Award];
-                const timelineAccents = [
-                  "border-l-secondary",
-                  "border-l-primary",
-                  "border-l-accent",
-                  "border-l-secondary",
-                  "border-l-primary",
-                  "border-l-accent"
-                ];
                 const Icon = timelineIcons[idx];
-                const accentClass = timelineAccents[idx];
 
                 return (
                   <motion.div
                     variants={fadeUp}
                     key={idx}
-                    className={`flex flex-col md:flex-row items-center gap-8 md:gap-0 group ${isEven ? "md:flex-row-reverse" : ""
+                    className={`flex flex-col md:flex-row items-center gap-6 md:gap-0 group ${isEven ? "md:flex-row-reverse" : ""
                       }`}
                   >
                     {/* Left/Right content block */}
                     <div className="w-full md:w-[45%] text-left">
-                      <div className={`utility-card border-l-[4px] ${accentClass} p-8 group-hover:-translate-y-2 group-hover:shadow-[0_0_25px_rgba(5,150,105,0.15)] transition-all duration-300`}>
-                        <div className="flex items-center gap-4 mb-5">
-                          <div className="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center shrink-0">
-                            <Icon className="w-6 h-6 text-secondary group-hover:rotate-12 transition-transform duration-300" />
+                      <div className="relative bg-white/70 backdrop-blur-xl p-5 md:p-6 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_30px_rgba(13,148,136,0.12)] hover:border-[#0D9488]/30 hover:-translate-y-[6px] transition-all duration-300 overflow-hidden cursor-default">
+                        {/* Thin animated top gradient strip */}
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="relative shrink-0">
+                            {/* Glow behind icon */}
+                            <div className="absolute inset-0 bg-[#0D9488]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
+                            <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#0D9488]/30 transition-all duration-300 z-10">
+                              <Icon className="w-5 h-5 text-[#0B1F4D] group-hover:text-secondary transition-colors duration-300" />
+                            </div>
                           </div>
-                          <span className="inline-block text-xl font-display font-bold text-secondary font-mono">
+                          <span className="inline-block text-2xl font-display font-[900] bg-gradient-to-r from-[#0B1F4D] to-[#0D9488] bg-clip-text text-transparent tracking-tight group-hover:scale-105 transition-transform origin-left duration-300">
                             {milestone.year}
                           </span>
                         </div>
-                        <h3 className="font-display font-bold text-heading text-lg mb-3">
+                        <h3 className="font-display font-extrabold text-[#0B1F4D] text-lg mb-2 tracking-wide">
                           {milestone.title}
                         </h3>
-                        <p className="text-sm text-body leading-relaxed">
+                        <p className="text-sm text-slate-500 font-medium leading-[1.6]">
                           {milestone.description}
                         </p>
                       </div>

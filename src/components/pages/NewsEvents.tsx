@@ -181,10 +181,17 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   Corporate Media
                 </span>
               </div>
-              
+
               <div>
                 <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5 mx-auto lg:mx-0">
-                  News &amp; <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Scientific Events</span>
+                  News &amp;{" "}
+                  <motion.span
+                    animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                    className="bg-gradient-to-r from-primary via-secondary to-primary text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+                  >
+                    Scientific Events
+                  </motion.span>
                 </h1>
                 <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px] mx-auto lg:mx-0">
                   Stay updated with Medinet&rsquo;s global academic conferences, WHO-GMP facility validations, community healthcare campaigns, and upcoming therapeutic licensing sessions.
@@ -199,21 +206,21 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   </div>
                   <span className="text-xs font-semibold text-heading">Conference</span>
                 </div>
-                
+
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
                   <div className="bg-accent/10 p-1.5 rounded-full flex items-center justify-center">
                     <ShieldCheck className="w-3 h-3 text-accent group-hover:scale-110 transition-transform duration-300 ease-out" />
                   </div>
                   <span className="text-xs font-semibold text-heading">WHO-GMP</span>
                 </div>
-                
+
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
                   <div className="bg-[#D97706]/10 p-1.5 rounded-full flex items-center justify-center">
                     <FlaskConical className="w-3 h-3 text-[#D97706] group-hover:scale-110 transition-transform duration-300 ease-out" />
                   </div>
                   <span className="text-xs font-semibold text-heading">Research</span>
                 </div>
-                
+
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
                   <div className="bg-secondary/10 p-1.5 rounded-full flex items-center justify-center">
                     <Globe2 className="w-3 h-3 text-secondary group-hover:scale-110 transition-transform duration-300 ease-out" />
@@ -226,13 +233,33 @@ export default function NewsEvents({ params }: NewsEventsProps) {
 
           {/* Latest News & CSR Grid */}
           <section className="py-20 relative overflow-hidden bg-gradient-to-b from-white via-alt-bg to-background text-left border-b border-border">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* Soft floating gradient blobs */}
+              <div className="absolute top-0 right-[10%] w-[500px] h-[500px] bg-[#2563EB]/[0.06] rounded-full blur-[100px] animate-pulse"></div>
+              <div className="absolute top-1/3 left-[-10%] w-[600px] h-[600px] bg-[#0D9488]/[0.06] rounded-full blur-[120px]"></div>
+              <div className="absolute bottom-[10%] right-[20%] w-[400px] h-[400px] bg-[#16A34A]/[0.06] rounded-full blur-[90px] animate-pulse" style={{ animationDuration: '4s' }}></div>
+
+              {/* Medical connection dots / particles */}
+              <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#2563EB 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+              <div className="absolute top-[25%] left-[25%] w-2 h-2 bg-[#38BDF8] rounded-full opacity-30 blur-[2px] animate-ping" style={{ animationDuration: '3s' }}></div>
+              <div className="absolute top-[75%] right-[33%] w-3 h-3 bg-[#34D399] rounded-full opacity-30 blur-[2px] animate-pulse" style={{ animationDuration: '5s' }}></div>
+            </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <SectionHeader
                 badge="Latest Updates"
-                title="Press Releases & Corporate Announcements"
+                title={
+                  <>
+                    Press Releases &amp;{" "}
+                    <motion.span
+                      animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                      className="bg-gradient-to-r from-primary via-secondary to-primary text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+                    >
+                      Corporate Announcements
+                    </motion.span>
+                  </>
+                }
                 description="Browse through our recent corporate highlights, research sponsorings, and rural community medicine distributions."
                 centered
               />
@@ -274,41 +301,65 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                         setSelectedNews(news);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
-                      className="utility-card p-0 hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group shadow-sm hover:shadow-md cursor-pointer hover-lift"
+                      className="group relative rounded-[28px] p-[1px] bg-gradient-to-br from-white/60 via-white/30 to-white/60 hover:from-[#38BDF8] hover:via-[#0D9488] hover:to-[#16A34A] transition-all duration-500 ease-out h-full flex flex-col justify-between cursor-pointer hover:-translate-y-[10px] hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.12)] overflow-hidden"
                     >
-                      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
-                        <div className="flex items-center justify-between mb-5">
-                          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full ${badgeBg} ${badgeText} text-[10px] font-mono font-bold uppercase tracking-widest`}>
-                            <BadgeIcon className="w-3 h-3" />
-                            {news.category}
-                          </span>
-                          
-                          <div className="w-[40px] h-[40px] rounded-[12px] bg-white border border-border flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm">
-                            <CardIcon className={`w-4 h-4 ${badgeText}`} />
+                      {/* Inner Glass Surface */}
+                      <div className="absolute inset-[1px] rounded-[27px] bg-[rgba(255,255,255,0.92)] backdrop-blur-[20px] z-0"></div>
+
+                      {/* Subtle hover radial light / parallax effect */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.06)_0%,transparent_70%)] transition-opacity duration-700 pointer-events-none z-0"></div>
+
+                      <div className="p-6 sm:p-8 flex-1 flex flex-col justify-start relative z-10">
+                        <div className="flex items-center justify-between mb-6">
+                          {/* Premium Category Badge */}
+                          <div className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/50 backdrop-blur-md shadow-[0_0_15px_rgba(13,148,136,0.05)] text-[10px] font-mono font-bold uppercase tracking-widest text-[#0B1F4D] overflow-hidden group/badge">
+                            <div className="absolute inset-0 rounded-full border-[1px] border-transparent bg-gradient-to-r from-[#2563EB] to-[#16A34A] [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] opacity-70 group-hover/badge:opacity-100 transition-opacity"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-[150%] group-hover/badge:animate-[shimmer_1.5s_infinite] skew-x-12"></div>
+                            <BadgeIcon className="w-3 h-3 text-[#0D9488] relative z-10 group-hover/badge:scale-110 transition-transform" />
+                            <span className="relative z-10">{news.category}</span>
+                          </div>
+
+                          {/* Top Right Floating Badge */}
+                          <div className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB] via-[#0D9488] to-[#16A34A] border border-white/20 shadow-[0_0_15px_rgba(13,148,136,0.3)] flex items-center justify-center shrink-0 group-hover:rotate-[10deg] group-hover:scale-[1.08] transition-all duration-500 ease-out relative">
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent"></div>
+                            <CardIcon className="w-4 h-4 text-white relative z-10 group-hover:animate-pulse" />
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-1.5 text-xs font-mono font-semibold mb-3 text-muted uppercase tracking-widest">
-                          <CalendarDays className="w-3.5 h-3.5" />
+                        {/* Date */}
+                        <div className="flex items-center gap-2.5 text-[11px] font-mono font-semibold mb-4 text-gray-400 uppercase tracking-widest">
+                          <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:border-gray-200 transition-colors">
+                            <CalendarDays className="w-3 h-3 text-gray-400" />
+                          </div>
                           {news.date}
                         </div>
 
-                        <h3 className="mt-2 font-display font-bold text-heading text-lg sm:text-xl leading-tight group-hover:text-primary transition-colors">
+                        {/* Title */}
+                        <h3 className="mt-1 font-display font-extrabold text-[#0B1F4D] text-xl sm:text-[22px] leading-tight transition-all duration-350 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#16A34A]">
                           {news.title}
                         </h3>
-                        <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
+
+                        {/* Description */}
+                        <p className="mt-4 text-[14px] text-gray-500 leading-[1.8] line-clamp-3 relative">
                           {news.excerpt}
+                          <span className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-[rgba(255,255,255,0.92)] to-transparent"></span>
                         </p>
                       </div>
 
-                      <div className="p-6 sm:p-7 pt-4.5 border-t border-border bg-alt-bg/50 flex justify-between items-center group-hover:bg-white transition-colors duration-300 mt-auto">
-                        <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary group-hover:text-secondary transition-colors">
+                      <div className="relative p-6 sm:p-8 pt-5 mt-auto flex justify-between items-center z-10">
+                        {/* Glowing gradient divider */}
+                        <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-[#38BDF8] via-[#0D9488] to-[#16A34A] opacity-20 group-hover:opacity-70 transition-opacity duration-500"></div>
+
+                        {/* CTA Text */}
+                        <span className="relative inline-flex items-center gap-2 text-[13px] font-bold text-[#0B1F4D] transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#0D9488]">
                           Read Full Release
-                          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                          <ArrowUpRight className="w-4 h-4 text-[#0D9488] group-hover:translate-x-1 transition-transform duration-300" />
+                          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#2563EB] to-[#0D9488] transition-all duration-500 group-hover:w-full"></span>
                         </span>
-                        
-                        <span className="w-[42px] h-[42px] rounded-full bg-primary/5 border border-primary/20 text-primary flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:text-white hover:shadow-md">
-                          <ArrowUpRight className="w-4 h-4" />
+
+                        {/* CTA Circle */}
+                        <span className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB]/5 to-[#0D9488]/5 border border-[#0D9488]/20 flex items-center justify-center transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#2563EB] group-hover:to-[#0D9488] group-hover:shadow-[0_0_15px_rgba(13,148,136,0.4)]">
+                          <ArrowUpRight className="w-4 h-4 text-[#0D9488] group-hover:text-white group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-300" />
                         </span>
                       </div>
                     </motion.div>
@@ -326,7 +377,18 @@ export default function NewsEvents({ params }: NewsEventsProps) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <SectionHeader
                 badge="On The Horizon"
-                title="Upcoming Conferences"
+                title={
+                  <>
+                    Upcoming{" "}
+                    <motion.span
+                      animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                      className="bg-gradient-to-r from-primary via-secondary to-primary text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+                    >
+                      Conferences
+                    </motion.span>
+                  </>
+                }
                 description="We participate in high-profile pharmaceutical summits. Schedule a direct meet with our licensing heads at these locations."
                 centered
               />
@@ -346,7 +408,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                     badgeBg = "bg-accent/10";
                     badgeText = "text-accent";
                   }
-                  
+
                   // Optional Status Tag logic
                   let statusTag = null;
                   if (i === 0) statusTag = { text: "Upcoming", bg: "bg-primary/10", color: "text-primary" };
@@ -376,11 +438,11 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                             {event.type}
                           </span>
                         </div>
-                        
+
                         <h3 className="font-display font-bold text-heading text-lg sm:text-xl leading-tight hover:text-primary transition-colors pr-16">
                           {event.title}
                         </h3>
-                        
+
                         <div className="mt-5 space-y-3 text-xs font-mono font-semibold uppercase tracking-wider">
                           <p className="flex items-center gap-2.5 text-body">
                             <CalendarDays className="w-4 h-4 text-primary shrink-0" />
@@ -391,12 +453,12 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                             {event.location}
                           </p>
                         </div>
-                        
+
                         <p className="mt-5 text-sm text-body leading-relaxed">
                           {event.desc}
                         </p>
                       </div>
-                      
+
                       <div className="mt-8 pt-5 border-t border-border bg-alt-bg/50 -mx-6 sm:-mx-8 px-6 sm:px-8 -mb-6 sm:-mb-8 pb-6 sm:pb-8 flex items-center justify-between group-hover:bg-white transition-colors duration-300">
                         <button
                           onClick={(e) => {
@@ -450,7 +512,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   let BadgeIcon = HeartHandshake;
                   let badgeBg = "bg-alt-bg";
                   let badgeText = "text-muted";
-                  
+
                   if (item.tag === "CSR") {
                     BadgeIcon = HeartHandshake;
                     badgeBg = "bg-accent/10";
@@ -466,7 +528,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   }
 
                   let statusTag = null;
-                  if (item.tag === "CSR") statusTag = { text: "Completed", bg: "bg-success/10", color: "text-success" }; 
+                  if (item.tag === "CSR") statusTag = { text: "Completed", bg: "bg-success/10", color: "text-success" };
                   if (item.tag === "Quality") statusTag = { text: "WHO-GMP Passed", bg: "bg-primary/10", color: "text-primary" };
                   if (item.tag === "Academic") statusTag = { text: "Live Event", bg: "bg-secondary/10", color: "text-secondary" };
 
@@ -494,7 +556,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                           </div>
                         )}
                       </div>
-                      
+
                       <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
                         <div className="flex items-center gap-4 mb-4">
                           <div className="w-10 h-10 rounded-xl bg-alt-bg border border-border flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm">
@@ -504,7 +566,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                             {item.tag}
                           </span>
                         </div>
-                        
+
                         <h4 className="mt-2 font-display font-bold text-heading text-lg hover:text-primary transition-colors cursor-pointer">
                           {item.title}
                         </h4>

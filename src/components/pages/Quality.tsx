@@ -258,14 +258,14 @@ export default function Quality() {
               className="lg:col-span-5 relative group"
             >
               {/* Decorative blobs behind the card */}
-              <motion.div animate={{ scale: [1, 1.05, 1], rotate: [0, 5, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-[#2563EB] to-transparent rounded-full blur-3xl opacity-20 pointer-events-none" />
-              <motion.div animate={{ scale: [1, 1.1, 1], rotate: [0, -5, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-[#0D9488] to-transparent rounded-full blur-3xl opacity-20 pointer-events-none" />
+              <motion.div animate={{ scale: [1, 1.05, 1], rotate: [0, 5, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-[#059669] to-transparent rounded-full blur-3xl opacity-20 pointer-events-none" />
+              <motion.div animate={{ scale: [1, 1.1, 1], rotate: [0, -5, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-[#10B981] to-transparent rounded-full blur-3xl opacity-20 pointer-events-none" />
               
               {/* Floating glowing particles */}
-              <motion.div animate={{ y: [-10, 10, -10], opacity: [0.5, 1, 0.5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute top-4 right-8 w-2 h-2 rounded-full bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]" />
-              <motion.div animate={{ y: [10, -10, 10], opacity: [0.5, 1, 0.5] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute bottom-20 -left-4 w-3 h-3 rounded-full bg-[#0D9488] shadow-[0_0_10px_#0D9488]" />
+              <motion.div animate={{ y: [-10, 10, -10], opacity: [0.5, 1, 0.5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute top-4 right-8 w-2 h-2 rounded-full bg-[#6EE7B7] shadow-[0_0_8px_#6EE7B7]" />
+              <motion.div animate={{ y: [10, -10, 10], opacity: [0.5, 1, 0.5] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute bottom-20 -left-4 w-3 h-3 rounded-full bg-[#10B981] shadow-[0_0_10px_#10B981]" />
 
-              <div className="bg-gradient-to-br from-[#0B1F4D] via-[#2563EB] to-[#0D9488] rounded-[28px] shadow-[0_30px_80px_rgba(11,31,77,0.25)] p-8 lg:p-10 relative overflow-hidden text-center hover:-translate-y-2 hover:shadow-[0_40px_90px_rgba(11,31,77,0.35)] transition-all duration-500 border border-white/20">
+              <div className="bg-gradient-to-br from-[#064E3B] via-[#059669] to-[#10B981] rounded-[28px] shadow-[0_30px_80px_rgba(6,78,59,0.25)] p-8 lg:p-10 relative overflow-hidden text-center hover:-translate-y-2 hover:shadow-[0_40px_90px_rgba(6,78,59,0.35)] transition-all duration-500 border border-white/20">
                 
                 {/* Subtle glass overlay & Animated light reflection */}
                 <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-[2px]"></div>
@@ -276,7 +276,7 @@ export default function Quality() {
                 </div>
 
                 <h3 className="font-display font-bold text-white text-[1.4rem] tracking-tight relative z-10">Global Certifications</h3>
-                <p className="text-[11px] text-[#38BDF8] font-mono mt-2 uppercase tracking-[0.15em] font-bold relative z-10">WHO-GMP &amp; ISO 9001</p>
+                <p className="text-[11px] text-[#6EE7B7] font-mono mt-2 uppercase tracking-[0.15em] font-bold relative z-10">WHO-GMP &amp; ISO 9001</p>
 
                 <p className="mt-6 text-sm leading-[1.7] text-white/80 relative z-10 max-w-sm mx-auto">
                   Our strategic partner formulation centers have successfully passed the triennial WHO-GMP recertification audits with zero critical non-conformances. This verifies our strict alignment with global pharmaceutical practices.
@@ -285,15 +285,15 @@ export default function Quality() {
                 <div className="mt-10 pt-8 border-t border-white/15 flex flex-wrap justify-center gap-3 relative z-10">
                   {/* Premium Pill Badges */}
                   <div className="bg-white/20 border border-white/15 rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default backdrop-blur-md">
-                    <CheckCircle strokeWidth={3} className="w-3.5 h-3.5 text-[#38BDF8]" />
+                    <CheckCircle strokeWidth={3} className="w-3.5 h-3.5 text-[#6EE7B7]" />
                     <span className="font-bold text-white text-xs tracking-wide">ISO 9001</span>
                   </div>
                   <div className="bg-white/20 border border-white/15 rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default backdrop-blur-md">
-                    <ShieldCheck strokeWidth={3} className="w-3.5 h-3.5 text-[#38BDF8]" />
+                    <ShieldCheck strokeWidth={3} className="w-3.5 h-3.5 text-[#6EE7B7]" />
                     <span className="font-bold text-white text-xs tracking-wide">FDA Verified</span>
                   </div>
                   <div className="bg-white/20 border border-white/15 rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default backdrop-blur-md">
-                    <FileCheck strokeWidth={3} className="w-3.5 h-3.5 text-[#38BDF8]" />
+                    <FileCheck strokeWidth={3} className="w-3.5 h-3.5 text-[#6EE7B7]" />
                     <span className="font-bold text-white text-xs tracking-wide">ICH Q1</span>
                   </div>
                 </div>

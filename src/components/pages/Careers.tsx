@@ -222,7 +222,7 @@ export default function Careers({ showToast }: CareersProps) {
       setSubmitting(false);
       setFormSuccess(true);
       showToast("Application submitted successfully! Our HR team will evaluate your CV.", "success");
-      
+
       // Reset
       setFormData({
         name: "",
@@ -238,46 +238,90 @@ export default function Careers({ showToast }: CareersProps) {
   return (
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
-      <section className="py-16 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white border-b border-border">
-        {/* Soft radial glows */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.06)_0%,transparent_60%)] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+      <section className="py-24 lg:py-32 relative overflow-hidden bg-[radial-gradient(circle_at_top_left,#F5FBFF_0%,#EDF7FF_25%,#ECFFF8_65%,#F8FFFC_100%)] border-b border-[#2563EB]/5">
 
-        {/* Optional Decoration: Soft blurred circle behind heading */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
 
         <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
           <div>
-            <span className="utility-badge-blue mb-5">
-              <span className="utility-dot"></span>
-              Join Our Team
-            </span>
-          </div>
-          
-          <div>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mx-auto lg:mx-0">
-              <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Careers</span> at <span className="bg-gradient-to-r from-secondary to-primary text-transparent bg-clip-text">Medinet</span>
-            </h1>
-            <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px] mx-auto lg:mx-0">
-              At Medinet, we believe our people are our strongest formulation. We provide a workspace that cherishes scientific integrity, ethical dedication, and continuous professional progression.
-            </p>
+            {/* Glassmorphism Section Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="relative group inline-flex rounded-full p-[1.5px] mb-8 hover:-translate-y-1 hover:scale-105 transition-all duration-500"
+            >
+              {/* Animated gradient border */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#38BDF8] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] opacity-80 group-hover:opacity-100 blur-[2px] group-hover:blur-[5px] transition-all duration-500"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#38BDF8] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]"></div>
+
+              <div className="relative bg-[rgba(255,255,255,0.75)] backdrop-blur-xl rounded-full px-6 py-2.5 flex items-center gap-2.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#16A34A] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#16A34A]"></span>
+                </span>
+                <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0B1F4D] uppercase">Join Our Team</span>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Optional Small Badges Below Description */}
-          <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
-              <ShieldCheck className="w-4 h-4 text-primary" />
-              <span className="text-xs font-semibold text-heading">WHO-GMP Certified</span>
-            </div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
-              <TrendingUp className="w-4 h-4 text-accent" />
-              <span className="text-xs font-semibold text-heading">Career Growth</span>
-            </div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default">
-              <GraduationCap className="w-4 h-4 text-secondary" />
-              <span className="text-xs font-semibold text-heading">Learning Culture</span>
-            </div>
+          <div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] relative inline-block pb-4 text-[#0B1F4D]"
+            >
+              Careers at <motion.span
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_15px_rgba(37,99,235,0.2)]"
+              >Medinet</motion.span>
+
+              {/* Animated glowing underline */}
+              <motion.span
+                initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }}
+                className="absolute bottom-0 left-0 lg:w-[65%] w-full h-[3px] bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-transparent origin-left rounded-full shadow-[0_0_15px_rgba(13,148,136,0.5)]"
+              />
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-8 text-base sm:text-lg text-[#334155] leading-relaxed max-w-[700px] mx-auto lg:mx-0"
+            >
+              At Medinet, we believe our people are our strongest formulation. We provide a workspace that cherishes scientific integrity, ethical dedication, and continuous professional progression.
+            </motion.p>
           </div>
+
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.4 } }
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-5"
+          >
+            {[
+              { icon: ShieldCheck, text: "WHO-GMP Certified" },
+              { icon: TrendingUp, text: "Career Growth" },
+              { icon: GraduationCap, text: "Learning Culture" }
+            ].map((badge, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 15 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                }}
+                className="group relative flex items-center gap-3 bg-white/90 backdrop-blur-xl rounded-full p-[1.5px] hover:-translate-y-[6px] hover:scale-[1.04] transition-all duration-500 cursor-default"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB] to-[#16A34A] rounded-full opacity-30 group-hover:opacity-100 transition-opacity duration-500 blur-[3px]"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB] to-[#16A34A] rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                <div className="relative bg-white/95 backdrop-blur-xl rounded-full px-5 py-2.5 flex items-center gap-3 shadow-[0_10px_20px_rgba(11,31,77,0.06)] group-hover:shadow-[0_15px_30px_rgba(22,163,74,0.15)] transition-all duration-500 w-full h-full">
+                  <div className="bg-[#EEF6FF] rounded-full p-1.5 group-hover:bg-[#16A34A]/10 transition-colors duration-500">
+                    <badge.icon className="w-[18px] h-[18px] text-[#2563EB] group-hover:text-[#16A34A] group-hover:rotate-[10deg] transition-all duration-500" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[13px] sm:text-[14px] font-semibold text-[#0B1F4D] relative z-10">{badge.text}</span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </section>
 
@@ -287,31 +331,63 @@ export default function Careers({ showToast }: CareersProps) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <SectionHeader
-            badge="Culture & Values"
-            title="Life at Medinet"
-            description="We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters."
-            centered
-          />
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center flex flex-col items-center mb-8">
+            <div className="inline-block bg-[#EEF6FF] text-[#2563EB] border border-[#2563EB]/20 text-[11px] font-mono font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6 shadow-sm relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB]/10 to-[#16A34A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10 flex items-center">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#16A34A] mr-2 animate-pulse"></span>
+                Culture & Values
+              </span>
+            </div>
+            
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0B1F4D] mb-6 relative">
+              Life at <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+              >
+                Medinet
+              </motion.span>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#16A34A] opacity-50"></div>
+            </h2>
+            
+            <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-2xl mx-auto mt-6">
+              We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters.
+            </p>
+          </motion.div>
 
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {benefits.map((ben, idx) => {
               const BenIcon = ben.icon;
               return (
-                <motion.div variants={fadeUp} key={idx} className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group hover:border-secondary transition-all duration-300 hover-lift">
-                  {/* Top gradient accent line */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 rounded-full ${ben.accent}`}></div>
+                <motion.div variants={fadeUp} key={idx} className="relative group flex flex-col h-full min-h-[300px]">
+                  {/* Blurred Gradient Shadow behind card */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] via-[#0D9488] to-[#16A34A] rounded-2xl opacity-0 group-hover:opacity-30 transition-all duration-[600ms] blur-[15px] group-hover:-translate-y-2 group-hover:scale-[1.02]"></div>
 
-                  <div className="flex justify-between items-start mb-6">
-                    <div className={`w-[52px] h-[52px] rounded-2xl ${ben.iconBg} flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
-                      <BenIcon className={`w-6 h-6 ${ben.iconColor} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out`} />
+                  {/* Card Wrapper with subtle border */}
+                  <div className="relative flex-1 flex flex-col bg-white border border-[#2563EB]/10 rounded-2xl p-6 sm:p-8 text-left overflow-hidden group-hover:border-transparent transition-all duration-[600ms] group-hover:-translate-y-2 group-hover:scale-[1.02] group-hover:shadow-[0_20px_40px_rgba(22,163,74,0.12)] z-10">
+
+                    {/* Animated Gradient Background that fades in on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#F5FBFF] via-[#ECFFF8] to-[#F0FDF4] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+                    {/* Top Animated Gradient Line */}
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                    <div className="relative z-10 flex justify-between items-start mb-8">
+                      {/* Icon Container with Gradient */}
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB]/10 to-[#16A34A]/10 group-hover:from-[#2563EB] group-hover:via-[#0D9488] group-hover:to-[#16A34A] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_8px_20px_rgba(22,163,74,0.3)] transition-all duration-500">
+                        <BenIcon strokeWidth={2.5} className="w-6 h-6 text-[#0D9488] group-hover:text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 ease-out" />
+                      </div>
+
+                      {/* Glass Badge */}
+                      <span className="inline-block bg-white/60 backdrop-blur-md border border-[#0D9488]/20 text-[#0D9488] shadow-sm text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full group-hover:bg-white group-hover:text-[#16A34A] group-hover:border-[#16A34A]/30 transition-all duration-300">
+                        {ben.badge}
+                      </span>
                     </div>
-                    <span className={`inline-block border ${ben.badgeColor} text-[10px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full`}>
-                      {ben.badge}
-                    </span>
+
+                    <h3 className="relative z-10 font-display font-extrabold text-[#0B1F4D] text-xl mb-4 group-hover:text-[#0D9488] transition-colors duration-300">{ben.title}</h3>
+                    <p className="relative z-10 text-[14.5px] text-[#475569] leading-relaxed flex-1">{ben.description}</p>
                   </div>
-                  <h3 className="font-display font-bold text-heading text-lg mb-3">{ben.title}</h3>
-                  <p className="text-sm text-body leading-relaxed">{ben.description}</p>
                 </motion.div>
               );
             })}
@@ -325,12 +401,30 @@ export default function Careers({ showToast }: CareersProps) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
-          <SectionHeader
-            badge="Active Positions"
-            title="Current Openings"
-            description="We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance."
-            centered
-          />
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center flex flex-col items-center mb-8">
+            <div className="inline-block bg-[#EEF6FF] text-[#2563EB] border border-[#2563EB]/20 text-[11px] font-mono font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6 shadow-sm relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB]/10 to-[#16A34A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10 flex items-center">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#16A34A] mr-2 animate-pulse"></span>
+                Active Positions
+              </span>
+            </div>
+            
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0B1F4D] mb-6 relative">
+              Current <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+              >
+                Openings
+              </motion.span>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#16A34A] opacity-50"></div>
+            </h2>
+            
+            <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-2xl mx-auto mt-6">
+              We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance.
+            </p>
+          </motion.div>
 
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12">
             {JOBS.map((job) => {
@@ -381,7 +475,7 @@ export default function Careers({ showToast }: CareersProps) {
                       <div className={`w-[52px] h-[52px] rounded-2xl ${iconBg} flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
                         <Icon className={`w-6 h-6 ${iconColor} group-hover:scale-110 transition-transform duration-300 ease-out`} />
                       </div>
-                      
+
                       {/* Optional Status Badges */}
                       {job.department === "Quality Assurance" && (
                         <span className="inline-block border border-success/20 bg-success/10 text-success text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
@@ -422,7 +516,7 @@ export default function Careers({ showToast }: CareersProps) {
                     <h3 className="font-display font-bold text-heading text-lg sm:text-xl leading-tight">
                       {job.title}
                     </h3>
-                    
+
                     <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted mt-3 uppercase tracking-wider">
                       <CalendarDays className="w-4 h-4" />
                       Experience: {job.experience} Required

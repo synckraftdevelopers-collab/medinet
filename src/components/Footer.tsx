@@ -86,11 +86,27 @@ function Footer({ navigate, showToast }: FooterProps) {
       <div className="relative z-10 border-b border-white/20 bg-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center text-center lg:text-left">
-            <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 max-w-xl mx-auto lg:mx-0">
-              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-3">
-                Stay Informed on <span className="text-secondary">Advancements</span>
+            <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 max-w-xl mx-auto lg:mx-0 flex flex-col items-center lg:items-start text-center lg:text-left">
+              {/* Premium Floating Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/20 to-[#34D399]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#34D399] animate-pulse relative z-10"></div>
+                <span className="text-[10px] font-mono font-bold tracking-widest text-gray-200 uppercase relative z-10">Global Updates</span>
+              </div>
+              
+              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-4 relative">
+                Stay Informed on{" "}
+                <motion.span 
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
+                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  className="bg-gradient-to-r from-[#38BDF8] via-[#34D399] to-[#38BDF8] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+                >
+                  Advancements
+                </motion.span>
+                <div className="absolute -bottom-3 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-16 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-70"></div>
               </h3>
-              <p className="text-sm text-gray-200 leading-relaxed">
+              
+              <p className="text-[14px] sm:text-[15px] text-gray-300/90 leading-relaxed max-w-md mx-auto lg:mx-0 mt-5">
                 Subscribe to receive quarterly scientific updates, new product launches, therapeutic pipelines, and regulatory compliance reports.
               </p>
             </motion.div>
@@ -178,20 +194,28 @@ function Footer({ navigate, showToast }: FooterProps) {
               </a>
             </div>
 
-            <div className="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.2)] w-full transition-colors hover:border-secondary/50">
-              <div className="w-10 h-10 rounded-full bg-secondary/30 flex items-center justify-center shrink-0">
-                <Award className="w-5 h-5 text-secondary brightness-110" />
+            <div className="group flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.3)] w-full transition-all duration-500 hover:bg-white/10 hover:border-[#38BDF8]/40 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/10 to-[#34D399]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10 w-12 h-12 rounded-xl bg-gradient-to-br from-[#38BDF8] to-[#34D399] p-[1.5px] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_0_20px_rgba(52,211,153,0.5)] transition-all duration-500">
+                <div className="w-full h-full bg-primary/80 backdrop-blur-sm rounded-[10px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-500">
+                  <Award className="w-6 h-6 text-[#34D399] group-hover:text-white group-hover:scale-110 transition-all duration-500" />
+                </div>
               </div>
-              <div>
-                <span className="block font-extrabold text-white text-sm">WHO-GMP Compliant</span>
-                <span className="block text-xs text-gray-300 mt-0.5">Global manufacturing standards</span>
+              
+              <div className="relative z-10">
+                <span className="block font-extrabold text-white text-[15px] group-hover:text-[#38BDF8] transition-colors duration-300">WHO-GMP Compliant</span>
+                <span className="block text-[13px] text-gray-300 mt-1 leading-tight">Global manufacturing standards</span>
               </div>
             </div>
           </motion.div>
 
           {/* Column 2: Corporate Links */}
           <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-2 text-center md:text-left">
-            <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-8">Corporate</h4>
+            <h4 className="text-[13px] font-extrabold uppercase tracking-[0.2em] mb-8 relative inline-block">
+              <span className="bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Corporate</span>
+              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-60"></span>
+            </h4>
             <ul className="flex flex-col items-center md:items-start gap-4">
               {[
                 { name: "Home", route: "home" },
@@ -202,9 +226,12 @@ function Footer({ navigate, showToast }: FooterProps) {
                 { name: "News & Events", route: "news-events" }
               ].map((link, idx) => (
                 <li key={idx}>
-                  <button onClick={() => navigate(link.route)} className="text-sm text-gray-200 hover:text-white transition-colors duration-300 group flex items-center relative w-fit pb-1 focus:outline-none">
-                    {link.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                  <button onClick={() => navigate(link.route)} className="text-[13.5px] text-gray-300 group transition-all duration-300 relative pb-1 flex items-center gap-2.5 focus:outline-none w-fit text-left">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-[#38BDF8] group-hover:shadow-[0_0_8px_rgba(56,189,248,0.8)] transition-all duration-300 shrink-0"></span>
+                    <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#34D399] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                      {link.name}
+                    </span>
+                    <span className="absolute bottom-0 left-4 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#34D399] transition-all duration-300 group-hover:w-[calc(100%-16px)]"></span>
                   </button>
                 </li>
               ))}
@@ -213,19 +240,33 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 3: Therapeutics */}
           <motion.div custom={3} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left">
-            <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-8">Therapeutics</h4>
+            <h4 className="text-[13px] font-extrabold uppercase tracking-[0.2em] mb-8 relative inline-block">
+              <span className="bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Therapeutics</span>
+              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-60"></span>
+            </h4>
             <ul className="flex flex-col items-center md:items-start gap-4">
               {THERAPEUTIC_CATEGORIES.slice(0, 5).map((cat) => (
                 <li key={cat.id}>
-                  <button onClick={() => navigate("products", { category: cat.id })} className="text-sm text-gray-200 hover:text-white transition-colors duration-300 group flex items-center relative w-fit pb-1 focus:outline-none text-left">
-                    {cat.name} Division
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                  <button onClick={() => navigate("products", { category: cat.id })} className="text-[13.5px] text-gray-300 group transition-all duration-300 relative pb-1 flex items-center gap-2.5 focus:outline-none w-fit text-left">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-[#34D399] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300 shrink-0"></span>
+                    <span className="group-hover:bg-gradient-to-r group-hover:from-[#34D399] group-hover:to-[#38BDF8] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                      {cat.name} Division
+                    </span>
+                    <span className="absolute bottom-0 left-4 w-0 h-[1px] bg-gradient-to-r from-[#34D399] to-[#38BDF8] transition-all duration-300 group-hover:w-[calc(100%-16px)]"></span>
                   </button>
                 </li>
               ))}
-              <li className="pt-2">
-                <button onClick={() => navigate("products")} className="text-sm font-bold text-secondary hover:text-white transition-colors duration-300 inline-flex items-center gap-1.5 group focus:outline-none">
-                  View All Segments <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              <li className="pt-4">
+                <button 
+                  onClick={() => navigate("products")} 
+                  className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#38BDF8]/30 transition-all duration-300 focus:outline-none"
+                >
+                  <span className="text-sm font-bold bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.4)] transition-all duration-300">
+                    View All Segments
+                  </span>
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#38BDF8]/20 to-[#34D399]/20 flex items-center justify-center group-hover:from-[#38BDF8] group-hover:to-[#34D399] transition-colors duration-300">
+                    <ArrowUpRight className="w-3 h-3 text-[#34D399] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                  </div>
                 </button>
               </li>
             </ul>
@@ -233,7 +274,10 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 4: Contact Details */}
           <motion.div custom={4} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left flex flex-col items-center md:items-start">
-            <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-8">Global Support</h4>
+            <h4 className="text-[13px] font-extrabold uppercase tracking-[0.2em] mb-8 relative inline-block">
+              <span className="bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Global Support</span>
+              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-60"></span>
+            </h4>
             <ul className="flex flex-col items-center md:items-start gap-6">
               <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
                 <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-white/20 transition-colors">
@@ -292,9 +336,12 @@ function Footer({ navigate, showToast }: FooterProps) {
                 { name: "Cookie Policy", route: "/legal/cookie-policy" },
                 { name: "Disclaimer", route: "/legal/disclaimer" }
               ].map((legal, i) => (
-                <a key={i} href={legal.route} className="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300 relative group pb-0.5">
-                  {legal.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                <a key={i} href={legal.route} className="text-[13px] font-medium text-gray-400 group transition-all duration-300 relative pb-1 flex items-center gap-2 focus:outline-none">
+                  <span className="w-1 h-1 rounded-full bg-gray-600 group-hover:bg-[#34D399] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300"></span>
+                  <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#34D399] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                    {legal.name}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#34D399] transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
             </div>

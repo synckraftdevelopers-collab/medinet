@@ -19,8 +19,10 @@ import {
   ShieldAlert,
   ShieldCheck,
   Globe,
+  Globe2,
   Users,
   BadgeCheck,
+  Award,
   Factory,
   Building2,
   ArrowRight,
@@ -192,13 +194,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
   return (
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
-        {/* Soft Background Glows */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
-        </div>
-
+      <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-br from-[#F8FAFC] via-[#EEF6FF] to-[#E8F8F7]">
         <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
           <div>
             <motion.div 
@@ -206,107 +202,177 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 shadow-sm mb-6 relative z-10 hover:bg-white/[0.9] transition-colors"
+              className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_4px_20px_rgba(37,99,235,0.06)] mb-8 relative z-10 hover:-translate-y-1 transition-all duration-300 group overflow-hidden"
             >
+              {/* Animated border glow (inset shadow overlay) */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none"></div>
+              
               <div className="relative flex items-center justify-center">
-                <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-60 animate-ping"></span>
-                <Globe strokeWidth={2.5} className="relative w-4 h-4 text-[#2563EB]" />
+                <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-50 animate-ping"></span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB] relative z-10" />
               </div>
-              <span className="text-xs font-mono font-bold tracking-widest text-[#0B1F4D] uppercase">B2B Commercial Alliances</span>
+              <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0B1F4D] uppercase relative z-10">B2B Commercial Alliances</span>
             </motion.div>
           </div>
 
           <div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.15] mt-2 mx-auto lg:mx-0 relative inline-block pb-4">
-              <span className="text-[#0B1F4D]">Corporate Partnerships</span> &amp; <span className="bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">PCD Franchise</span>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="text-5xl sm:text-6xl lg:text-[4.5rem] font-display font-extrabold tracking-tight leading-[1.1] mt-2 mx-auto lg:mx-0 relative inline-block pb-5 text-[#0F172A]"
+            >
+              <span className="text-[#0B1F4D]">Corporate Partnerships</span> <br className="hidden lg:block"/>
+              &amp; <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="bg-gradient-to-r from-[#2563EB] via-[#10B981] to-[#2563EB] text-transparent bg-clip-text bg-[length:200%_auto]"
+              >PCD Franchise</motion.span>
               
-              {/* Animated gradient underline */}
+              {/* Thin glowing animated underline */}
               <motion.span 
-                initial={{ scaleX: 0 }} 
-                whileInView={{ scaleX: 1 }} 
+                initial={{ scaleX: 0, opacity: 0 }} 
+                whileInView={{ scaleX: 1, opacity: 1 }} 
                 viewport={{ once: true }} 
-                transition={{ duration: 1, ease: "easeOut", delay: 0.3 }} 
-                className="absolute bottom-0 left-0 lg:w-[60%] w-full h-[3px] bg-gradient-to-r from-[#2563EB]/60 to-transparent origin-left rounded-full"
+                transition={{ duration: 1.2, ease: "easeInOut", delay: 0.4 }} 
+                className="absolute bottom-0 left-0 lg:w-[65%] w-full h-[2px] bg-gradient-to-r from-[#2563EB] via-[#10B981] to-transparent origin-left rounded-full shadow-[0_0_12px_rgba(37,99,235,0.5)]"
               />
-            </h1>
-            <p className="mt-8 text-base sm:text-lg text-[#475569] leading-[1.8] max-w-[720px] mx-auto lg:mx-0">
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+              className="mt-8 text-base sm:text-[1.1rem] text-[#334155] leading-relaxed max-w-[700px] mx-auto lg:mx-0"
+            >
               Leverage Medinet&rsquo;s global supply channels, multi-segment formulation portfolio, and thorough regulatory compliance to expand your pharmaceutical market presence.
-            </p>
+            </motion.p>
           </div>
 
-          <div className="mt-12 cursor-default flex flex-wrap justify-center lg:justify-start gap-4 relative z-10">
-            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
-              <ShieldCheck className="w-4 h-4 text-[#2563EB] shrink-0" />
-              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">WHO-GMP Certified</span>
-            </div>
-            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
-              <Globe className="w-4 h-4 text-[#2563EB] shrink-0" />
-              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">18+ Countries</span>
-            </div>
-            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
-              <Users className="w-4 h-4 text-[#2563EB] shrink-0" />
-              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">450+ Distributors</span>
-            </div>
-            <div className="flex items-center gap-2.5 bg-white/[0.75] backdrop-blur-lg border border-[#2563EB]/10 rounded-full px-5 py-2.5 hover:-translate-y-1 hover:shadow-[0_4px_15px_rgba(37,99,235,0.1)] transition-all duration-300">
-              <BadgeCheck className="w-4 h-4 text-[#2563EB] shrink-0" />
-              <span className="text-xs sm:text-sm font-semibold text-[#0B1F4D]">25+ Years Experience</span>
-            </div>
-          </div>
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.4 } }
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-12 flex flex-wrap justify-center lg:justify-start gap-4 lg:gap-5 relative z-10"
+          >
+            {[
+              { icon: ShieldCheck, text: "WHO-GMP Certified" },
+              { icon: Globe2, text: "18+ Countries" },
+              { icon: Users, text: "450+ Distributors" },
+              { icon: Award, text: "25+ Years Experience" }
+            ].map((badge, idx) => (
+              <motion.div 
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 15 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                }}
+                className="group relative flex items-center gap-3 bg-white/90 backdrop-blur-xl border border-[#2563EB]/10 rounded-full px-5 py-3 hover:-translate-y-[5px] hover:scale-[1.04] hover:shadow-[0_15px_30px_rgba(37,99,235,0.12)] transition-all duration-500 ease-out cursor-default overflow-hidden"
+              >
+                {/* Shimmer sweep effect */}
+                <div className="absolute inset-0 -translate-x-[100%] group-hover:translate-x-[100%] bg-gradient-to-r from-transparent via-white/80 to-transparent transition-transform duration-[1200ms] ease-in-out pointer-events-none"></div>
+                
+                <div className="bg-[#EEF6FF] rounded-full p-1.5 group-hover:bg-[#2563EB]/10 transition-colors duration-300">
+                  <badge.icon className="w-[18px] h-[18px] text-[#2563EB] group-hover:rotate-[8deg] transition-transform duration-300" strokeWidth={2.5} />
+                </div>
+                <span className="text-[13px] sm:text-[14.5px] font-semibold text-[#0F172A] relative z-10">{badge.text}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </section>
 
       {/* Business Verticals Overview */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden text-left">
-        {/* Soft Background Glows */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
-        </div>
-
+      <section className="py-24 lg:py-32 relative overflow-hidden bg-[radial-gradient(circle_at_top_left,#EEF7FF_0%,#F8FBFF_30%,#E8FDF6_70%,#F7FFFC_100%)] text-center">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <SectionHeader
-            badge="Business Channels"
-            title="Our Partnership Opportunities"
-            description="We coordinate our corporate activities across three specialized verticals, structured to support different commercial requirements."
-            centered
-          />
+          <motion.div variants={fadeUp} className="flex flex-col items-center mb-16">
+            {/* Glassmorphism Pill Badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="relative group inline-flex rounded-full p-[1.5px] mb-8 hover:-translate-y-1 transition-transform duration-300"
+            >
+              {/* Animated gradient border */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] opacity-70 group-hover:opacity-100 blur-[2px] group-hover:blur-[4px] transition-all duration-300"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]"></div>
+              
+              <div className="relative bg-white/70 backdrop-blur-xl rounded-full px-6 py-2.5 flex items-center gap-2.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#16A34A] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#16A34A]"></span>
+                </span>
+                <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0B1F4D] uppercase">Business Channels</span>
+              </div>
+            </motion.div>
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.1] relative inline-block pb-4 text-[#0B1F4D]"
+            >
+              Our <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto]"
+              >Partnership</motion.span> Opportunities
+              
+              {/* Glowing Underline */}
+              <motion.span 
+                initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }}
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-[3px] bg-gradient-to-r from-transparent via-[#0D9488] to-transparent rounded-full shadow-[0_0_15px_rgba(13,148,136,0.6)]"
+              />
+            </motion.h2>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-8 text-base sm:text-[1.1rem] text-[#334155] leading-relaxed max-w-[700px] mx-auto"
+            >
+              We coordinate our corporate activities across three specialized verticals, structured to support different commercial requirements.
+            </motion.p>
+          </motion.div>
+
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16 text-left">
             {verticals.map((vert, idx) => {
               const VertIcon = vert.icon;
               return (
-                <motion.div
-                  variants={fadeUp}
-                  key={idx}
-                  className="relative bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] p-6 sm:p-8 flex flex-col justify-between group hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] transition-all duration-500 overflow-hidden"
-                >
-                  {/* Top animated blue-to-teal gradient accent line */}
-                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB] to-[#0D9488] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-
-                  <div>
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="w-[52px] h-[52px] rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#0D9488] flex items-center justify-center shrink-0 shadow-[0_4px_15px_rgba(37,99,235,0.2)] group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)] transition-all duration-500 group-hover:scale-110">
-                        <VertIcon strokeWidth={2.5} className="w-6 h-6 text-white" />
-                      </div>
-                      <span className={`inline-block border ${vert.badgeColor} text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full`}>
-                        {vert.badge}
-                      </span>
-                    </div>
-                    
-                    <h3 className="font-display font-bold text-[#0B1F4D] text-xl leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
-                      {vert.title}
-                    </h3>
-                    <p className="mt-4 text-[15px] text-[#475569] leading-[1.7]">
-                      {vert.description}
-                    </p>
-                  </div>
+                <motion.div variants={fadeUp} key={idx} className="relative group flex flex-col h-full">
+                  {/* Premium Gradient Shadow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#38BDF8] to-[#16A34A] rounded-[28px] opacity-20 group-hover:opacity-40 transition-all duration-[600ms] blur-[15px] group-hover:-translate-y-2.5 group-hover:scale-[1.03]"></div>
                   
-                  <div className="mt-8 pt-6 border-t border-[#2563EB]/10 flex items-center justify-between cursor-pointer group/cta">
-                    <span className="font-semibold text-[#2563EB] relative overflow-hidden">
-                      <span className="bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Enquire About This Channel</span>
-                      <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-[#2563EB] to-[#0D9488] scale-x-0 group-hover/cta:scale-x-100 transition-transform duration-300 origin-left"></span>
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-[#0D9488] group-hover/cta:translate-x-1.5 transition-transform duration-300" />
+                  {/* Gradient Border Wrapper */}
+                  <div className="relative flex-1 flex flex-col bg-gradient-to-br from-[#38BDF8] to-[#16A34A] rounded-[28px] p-[1px] transition-all duration-[600ms] ease-out group-hover:-translate-y-2.5 group-hover:scale-[1.03] group-hover:shadow-[0_25px_50px_rgba(37,99,235,0.15)]">
+                    
+                    {/* Inner Glass Card */}
+                    <div className="bg-white/95 backdrop-blur-2xl rounded-[27px] flex-1 p-8 flex flex-col justify-between">
+                      
+                      <div>
+                        <div className="flex justify-between items-start mb-8">
+                          {/* Premium Icon Container */}
+                          <div className="w-14 h-14 rounded-[20px] bg-gradient-to-br from-[#2563EB] via-[#0D9488] to-[#16A34A] flex items-center justify-center shrink-0 shadow-[0_8px_20px_rgba(13,148,136,0.3)] group-hover:shadow-[0_12px_25px_rgba(22,163,74,0.4)] transition-all duration-500 overflow-hidden relative">
+                            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <VertIcon strokeWidth={2.5} className="w-6 h-6 text-white relative z-10 group-hover:rotate-[8deg] transition-transform duration-500 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
+                          </div>
+                          
+                          {/* Glass Badge */}
+                          <span className="inline-block bg-white/80 backdrop-blur-md border border-[#0D9488]/20 shadow-sm text-[#0D9488] text-[10px] font-mono font-bold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full">
+                            {vert.badge}
+                          </span>
+                        </div>
+                        
+                        <h3 className="font-display font-extrabold text-[#0B1F4D] text-xl sm:text-2xl leading-tight group-hover:text-[#0D9488] transition-colors duration-300">
+                          {vert.title}
+                        </h3>
+                        <p className="mt-5 text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">
+                          {vert.description}
+                        </p>
+                      </div>
+                      
+
+
+                    </div>
                   </div>
                 </motion.div>
               );

@@ -8,7 +8,7 @@ import React from "react";
 interface SectionHeaderProps {
   id?: string;
   badge: string;
-  title: string;
+  title: React.ReactNode;
   description?: string;
   centered?: boolean;
 }

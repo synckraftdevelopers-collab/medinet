@@ -388,9 +388,10 @@ export default function Contact({ showToast, params }: ContactProps) {
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-1.5 text-muted text-[10px] font-mono font-bold tracking-widest uppercase">
-                    <PhoneCall className="w-3 h-3" /> Business Hours
+                    <PhoneCall className="w-3 h-3" /> Working Hours
                   </div>
-                  <span className="text-xs font-bold text-heading">9:00 AM - 6:00 PM</span>
+                  <span className="text-[11px] font-bold text-heading">Mon-Fri: 9 AM - 6 PM</span>
+                  <span className="text-[11px] font-bold text-heading">Sat: 9 AM - 2 PM</span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-1.5 text-muted text-[10px] font-mono font-bold tracking-widest uppercase">
@@ -415,16 +416,16 @@ export default function Contact({ showToast, params }: ContactProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Direct Lines"
-            title="Pharmacovigilance & Safety Reporting"
-            description="At Medinet, patient safety is our top priority. If you need to report an adverse event or have a product safety concern, please contact our Pharmacovigilance Team."
+            title="Department Contacts"
+            description="We are always here to support our patients, healthcare partners, and distributors."
             centered
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {[
-              { name: "Global Sales & Sourcing", email: "sales@medinet.com", phone: "+1 (800) 123-4567", icon: ShoppingBag },
-              { name: "Licensing & Franchise", email: "partner@medinet.com", phone: "+1 (800) 123-4568", icon: Handshake },
-              { name: "Pharmacovigilance (ADR)", email: "safety@medinet.com", phone: "+1 (800) 123-4569", icon: ShieldAlert },
-              { name: "Media & Press", email: "media@medinet.com", phone: "+1 (800) 123-4570", icon: MessageSquareText }
+              { name: "General Enquiries", email: "info@medinetpharma.com", icon: MessageSquareText },
+              { name: "Sales & Distribution", email: "sales@medinetpharma.com", icon: ShoppingBag },
+              { name: "Pharmacovigilance (ADR Reporting)", email: "pve@medinetpharma.com", icon: ShieldAlert },
+              { name: "Careers", email: "hr@medinetpharma.com", icon: UserRound }
             ].map((dept, idx) => (
               <motion.div
                 key={idx}
@@ -438,8 +439,7 @@ export default function Contact({ showToast, params }: ContactProps) {
                   <dept.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h4 className="font-display font-bold text-heading mb-3 text-center text-sm">{dept.name}</h4>
-                <a href={`mailto:${dept.email}`} className="text-xs font-mono text-muted hover:text-primary transition-colors block mb-1">{dept.email}</a>
-                <a href={`tel:${dept.phone}`} className="text-xs font-mono font-bold text-secondary hover:text-primary transition-colors block">{dept.phone}</a>
+                <a href={`mailto:${dept.email}`} className="text-xs font-mono font-bold text-secondary hover:text-primary transition-colors block">{dept.email}</a>
               </motion.div>
             ))}
           </div>
@@ -614,11 +614,10 @@ export default function Contact({ showToast, params }: ContactProps) {
                           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                           className="utility-input pl-11 h-[54px] appearance-none pr-10"
                         >
-                          <option value="general">General Sourcing / Wholesaling</option>
-                          <option value="licensing">Territorial Rights & Franchising</option>
-                          <option value="pve">Pharmacovigilance (ADR Reporting)</option>
-                          <option value="contract">Contract Manufacturing Services</option>
-                          <option value="careers">Careers & Human Resources</option>
+                          <option value="general">General Enquiry</option>
+                          <option value="feedback">Product Feedback</option>
+                          <option value="pve">Pharmacovigilance</option>
+                          <option value="other">Other</option>
                         </select>
                         <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">
                           <ChevronDown className="w-4 h-4" />

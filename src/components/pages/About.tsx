@@ -229,10 +229,10 @@ export default function About() {
             {/* Philosophy Boxes - Kept Exact Size & Layout */}
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left">
               {[
-                { title: "Quality", desc: "Uncompromising standards in every formulation we produce.", icon: ShieldCheck },
-                { title: "Trust", desc: "Building long-term reliability with our global partners.", icon: HeartHandshake },
-                { title: "Affordability", desc: "Accessible and equitable pricing for healthcare worldwide.", icon: Handshake },
-                { title: "Compassion", desc: "A patient-first approach embedded in all our decisions.", icon: Heart }
+                { title: "Quality", desc: "Upholding stringent WHO-GMP guidelines for every formulation.", icon: ShieldCheck },
+                { title: "Trust", desc: "Building lasting partnerships based on transparency and mutual growth.", icon: HeartHandshake },
+                { title: "Affordability", desc: "Ensuring high-quality medicines remain accessible to diverse patient demographics.", icon: Handshake },
+                { title: "Compassion", desc: "Keeping the end-patient at the heart of our commercial and operational strategies.", icon: Heart }
               ].map((item, idx) => (
                 <motion.div 
                   initial={{ opacity: 0, y: 30 }}

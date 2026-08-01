@@ -1257,6 +1257,43 @@ export default function Home({ navigate }: HomeProps) {
         </div>
       </section>
 
+      {/* Latest Updates Section */}
+      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <SectionHeader
+            title="Stay Connected with Medinet"
+            badge="Latest Updates"
+            description="Keep up with the latest news and important announcements from Medinet Pharmaceutical Marketing Company."
+            centered={true}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            {[
+              { title: "New Product Launches", icon: Pill },
+              { title: "Medical Conferences & Events", icon: Presentation },
+              { title: "Company Announcements", icon: Megaphone },
+              { title: "Career Opportunities", icon: Briefcase }
+            ].map((update, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="group p-6 rounded-2xl bg-[#F8FAFC] border border-border hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer flex flex-col items-center text-center"
+                onClick={() => navigate("news-events")}
+              >
+                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm text-secondary mb-4 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                  <update.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-display font-bold text-[#0A192F] group-hover:text-secondary transition-colors duration-300">
+                  {update.title}
+                </h3>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Global B2B Call To Action Section */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-primary via-secondary to-primary text-white text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/10 blur-[120px] rounded-full pointer-events-none"></div>
@@ -1270,13 +1307,13 @@ export default function Home({ navigate }: HomeProps) {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs font-mono font-bold tracking-widest uppercase mb-8 backdrop-blur-md shadow-sm">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-            PARTNER WITH MEDINET
+            Call to Action
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-white tracking-tight leading-[1.1] mb-8">
-            Scale Your <span className="text-accent">Pharmaceutical</span><br/>Distribution <span className="text-accent">Globally</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-[1.1] mb-8">
+            Partner with <span className="text-accent">Medinet</span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-12">
-            Leverage our premium bioequivalent product portfolio, dedicated regulatory support, and flexible third-party manufacturing arrangements to boost your market dominance.
+            Whether you're a healthcare professional, distributor, business partner, or aspiring employee, Medinet is committed to building lasting relationships and delivering healthcare solutions you can trust.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-stretch sm:items-center w-full max-w-4xl mx-auto">
             <button

@@ -321,28 +321,36 @@ export const STATS = [
 
 export const NEWS_ITEMS: NewsItem[] = [
   {
-    id: "news-corporate",
-    title: "Corporate News",
+    id: "news-product-launches",
+    title: "Product Launches",
     category: "News",
-    date: "August 10, 2026",
-    excerpt: "Follow our journey as we expand our footprint in the healthcare industry.",
-    content: "Our corporate news highlights include: Company milestones and achievements, Strategic partnerships and collaborations, Awards and recognitions, and Sustainability and CSR initiatives."
+    date: "August 20, 2026",
+    excerpt: "Read our press releases on the latest therapeutic additions to the Medinet portfolio.",
+    content: "Read our press releases on the latest therapeutic additions to the Medinet portfolio. We continuously expand our formulations to address emerging healthcare challenges."
   },
   {
-    id: "news-product-announcements",
-    title: "Product Announcements",
+    id: "news-conferences",
+    title: "Conferences & Seminars",
+    category: "Event",
+    date: "August 10, 2026",
+    excerpt: "Discover where our leadership and R&D teams will be speaking next.",
+    content: "Discover where our leadership and R&D teams will be speaking next. We actively participate in medical conferences and global pharmaceutical seminars."
+  },
+  {
+    id: "news-corporate-announcements",
+    title: "Corporate Announcements",
     category: "News",
     date: "July 25, 2026",
-    excerpt: "Discover how we are bringing innovative treatments to patients.",
-    content: "Our latest product announcements feature: New product launches, Expansion of therapeutic categories, Approvals and regulatory milestones, and Upgrades to existing formulations."
+    excerpt: "Stay updated on our global expansion plans, new manufacturing alliances, and regulatory achievements.",
+    content: "Stay updated on our global expansion plans, new manufacturing alliances, and regulatory achievements that drive our strategic growth."
   },
   {
-    id: "news-upcoming-events",
-    title: "Upcoming Events and Exhibitions",
-    category: "Event",
+    id: "news-csr",
+    title: "CSR Initiatives",
+    category: "CSR",
     date: "June 15, 2026",
-    excerpt: "Connect with our team at industry events to learn more about our healthcare solutions.",
-    content: "We actively participate in medical conferences and seminars, Healthcare exhibitions and trade shows, Health camps and community outreach programs, and Training and development workshops."
+    excerpt: "Learn how Medinet is giving back to communities through health camps and educational programs.",
+    content: "Learn how Medinet is giving back to communities through health camps, educational programs, and sustainable initiatives."
   }
 ];
 

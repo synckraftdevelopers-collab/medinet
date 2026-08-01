@@ -516,7 +516,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
               <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#0A192F] uppercase">
-                Innovation Pipeline
+                Innovation in Every Step
               </span>
             </motion.div>
 
@@ -528,7 +528,7 @@ export default function Products({ params, showToast }: ProductsProps) {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-[900] text-[#0A192F] tracking-tight leading-tight mb-6"
             >
-              Recent New <span className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent">Launches</span>
+              New <span className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent">Launches</span>
             </motion.h2>
 
             {/* Animated Divider */}
@@ -548,7 +548,9 @@ export default function Products({ params, showToast }: ProductsProps) {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto font-medium"
             >
-              Discover our newest therapeutic formulations recently introduced to the global market, engineered for maximum clinical efficacy.
+              Medinet continues to expand its pharmaceutical portfolio with innovative formulations developed to meet evolving healthcare needs. Our commitment to research, quality, and patient-focused care ensures that every new product delivers value to healthcare professionals and patients alike.
+              <br/><br/>
+              Stay tuned for our latest product launches and therapeutic advancements.
             </motion.p>
           </div>
 
@@ -917,23 +919,30 @@ export default function Products({ params, showToast }: ProductsProps) {
                       type="text"
                       required
                       disabled={formSubmitting}
-                      aria-required="true"
-                      autoComplete="name"
                       value={formData.name}
                       onChange={(e) => handleProductFieldChange("name", e.target.value)}
                       onBlur={(e) => handleProductFieldBlur("name", e.target.value)}
-                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                      placeholder="Dr. Jane Doe"
-                      aria-invalid={!!formErrors.name}
-                      aria-describedby={formErrors.name ? "prod-name-err" : undefined}
+                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.name ? "border-red-500 focus:border-red-500" : "border-border"}`}
+                      placeholder="Your Name"
                     />
-                    {formErrors.name && (
-                      <span id="prod-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {formErrors.name}
-                      </span>
-                    )}
                   </div>
+                  <div>
+                    <label htmlFor="prod-enq-company" className="text-xs font-mono font-medium text-body block mb-1.5">Organization / Hospital / Clinic <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      id="prod-enq-company"
+                      type="text"
+                      required
+                      disabled={formSubmitting}
+                      value={formData.company}
+                      onChange={(e) => handleProductFieldChange("company", e.target.value)}
+                      onBlur={(e) => handleProductFieldBlur("company", e.target.value)}
+                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.company ? "border-red-500 focus:border-red-500" : "border-border"}`}
+                      placeholder="Medinet Hospital"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="prod-enq-email" className="text-xs font-mono font-medium text-body block mb-1.5">Email Address <span className="text-red-500" aria-hidden="true">*</span></label>
                     <input
@@ -941,121 +950,45 @@ export default function Products({ params, showToast }: ProductsProps) {
                       type="email"
                       required
                       disabled={formSubmitting}
-                      aria-required="true"
-                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) => handleProductFieldChange("email", e.target.value)}
                       onBlur={(e) => handleProductFieldBlur("email", e.target.value)}
-                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                      placeholder="sourcing@pharma-corp.com"
-                      aria-invalid={!!formErrors.email}
-                      aria-describedby={formErrors.email ? "prod-email-err" : undefined}
+                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.email ? "border-red-500 focus:border-red-500" : "border-border"}`}
+                      placeholder="email@example.com"
                     />
-                    {formErrors.email && (
-                      <span id="prod-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {formErrors.email}
-                      </span>
-                    )}
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="prod-enq-phone" className="text-xs font-mono font-medium text-body block mb-1.5">Phone/Whatsapp <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <label htmlFor="prod-enq-phone" className="text-xs font-mono font-medium text-body block mb-1.5">Contact Number <span className="text-red-500" aria-hidden="true">*</span></label>
                     <input
                       id="prod-enq-phone"
                       type="tel"
                       required
                       disabled={formSubmitting}
-                      aria-required="true"
-                      autoComplete="tel"
                       value={formData.phone}
                       onChange={(e) => handleProductFieldChange("phone", e.target.value)}
                       onBlur={(e) => handleProductFieldBlur("phone", e.target.value)}
-                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                      placeholder="+1 (555) 000-0000"
-                      aria-invalid={!!formErrors.phone}
-                      aria-describedby={formErrors.phone ? "prod-phone-err" : undefined}
+                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.phone ? "border-red-500 focus:border-red-500" : "border-border"}`}
+                      placeholder="+91 XXXXX XXXXX"
                     />
-                    {formErrors.phone && (
-                      <span id="prod-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {formErrors.phone}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="prod-enq-category" className="text-xs font-mono font-medium text-body block mb-1.5">Target Category</label>
-                    <select
-                      id="prod-enq-category"
-                      disabled={formSubmitting}
-                      value={formData.quantity}
-                      onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-white border border-border rounded-input text-sm text-heading appearance-none focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1rem_1rem] bg-[right_0.75rem_center] bg-no-repeat"
-                    >
-                      <option value="commercial">Commercial Supply (Wholesale)</option>
-                      <option value="licensing">Territorial Licensing & Rights</option>
-                      <option value="clinical">Clinical Trials Sourcing</option>
-                      <option value="sample">Analytical/Evaluation Sample</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="prod-enq-company" className="text-xs font-mono font-medium text-body block mb-1.5">Company Name <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="prod-enq-company"
-                      type="text"
-                      required
-                      disabled={formSubmitting}
-                      aria-required="true"
-                      autoComplete="organization"
-                      value={formData.company}
-                      onChange={(e) => handleProductFieldChange("company", e.target.value)}
-                      onBlur={(e) => handleProductFieldBlur("company", e.target.value)}
-                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.company ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                      placeholder="BioPharma Distribution Ltd."
-                      aria-invalid={!!formErrors.company}
-                      aria-describedby={formErrors.company ? "prod-comp-err" : undefined}
-                    />
-                    {formErrors.company && (
-                      <span id="prod-comp-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {formErrors.company}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="prod-enq-country" className="text-xs font-mono font-medium text-body block mb-1.5">Country of Operations <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="prod-enq-country"
-                      type="text"
-                      required
-                      disabled={formSubmitting}
-                      aria-required="true"
-                      autoComplete="country-name"
-                      value={formData.country}
-                      onChange={(e) => handleProductFieldChange("country", e.target.value)}
-                      onBlur={(e) => handleProductFieldBlur("country", e.target.value)}
-                      className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.country ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                      placeholder="United States, Germany, etc."
-                      aria-invalid={!!formErrors.country}
-                      aria-describedby={formErrors.country ? "prod-ctry-err" : undefined}
-                    />
-                    {formErrors.country && (
-                      <span id="prod-ctry-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {formErrors.country}
-                      </span>
-                    )}
                   </div>
                 </div>
 
                 <div>
+                  <label htmlFor="prod-enq-product" className="text-xs font-mono font-medium text-body block mb-1.5">Product of Interest</label>
+                  <input
+                    id="prod-enq-product"
+                    type="text"
+                    disabled={formSubmitting}
+                    value={enquiryProduct ? enquiryProduct.name : ""}
+                    readOnly={!!enquiryProduct}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-border rounded-input text-sm text-heading focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    placeholder="E.g., ZEFRAX 500"
+                  />
+                </div>
+
+                <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <label htmlFor="prod-enq-message" className="text-xs font-mono font-medium text-body">Target Message / Sourcing Specifications <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <label htmlFor="prod-enq-message" className="text-xs font-mono font-medium text-body">Message <span className="text-red-500" aria-hidden="true">*</span></label>
                     <span className={`text-[10px] font-mono ${formData.message.length > 450 ? "text-amber-500 font-bold" : "text-muted"}`}>
                       {formData.message.length}/500 chars
                     </span>
@@ -1064,23 +997,14 @@ export default function Products({ params, showToast }: ProductsProps) {
                     id="prod-enq-message"
                     required
                     disabled={formSubmitting}
-                    aria-required="true"
                     maxLength={500}
                     rows={4}
                     value={formData.message}
                     onChange={(e) => handleProductFieldChange("message", e.target.value)}
                     onBlur={(e) => handleProductFieldBlur("message", e.target.value)}
-                    className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed resize-y ${formErrors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : "border-border"}`}
-                    placeholder="Provide specific dosage forms, packaging preferences, and target volume..."
-                    aria-invalid={!!formErrors.message}
-                    aria-describedby={formErrors.message ? "prod-msg-err" : undefined}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-input text-sm text-heading placeholder:text-muted focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed resize-y ${formErrors.message ? "border-red-500 focus:border-red-500" : "border-border"}`}
+                    placeholder="Your message here..."
                   ></textarea>
-                  {formErrors.message && (
-                    <span id="prod-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      {formErrors.message}
-                    </span>
-                  )}
                 </div>
 
                 {/* Footer */}

@@ -37,19 +37,11 @@ export default function LegalPage({ type }: LegalPageProps) {
           icon: Eye,
           badge: "Your Privacy Matters",
           date: "Last Updated: June 15, 2026",
-          preamble: "At Medinet Pharmaceutical Marketing Company, we are committed to protecting your privacy and safeguarding the personal information you share with us. We collect and process information responsibly to improve our services, respond to enquiries, and provide a secure browsing experience.",
+          preamble: "Medinet Pharmaceutical Marketing Company strictly adheres to international data protection and privacy standards. We collect only essential data needed to process inquiries and manage business partnerships.",
           sections: [
             {
-              heading: "Our Privacy Policy explains:",
-              list: [
-                "Information we collect",
-                "How we use your information",
-                "Data protection and security measures",
-                "Information sharing practices",
-                "Your rights regarding personal data",
-                "Contact details for privacy-related enquiries"
-              ],
-              text: "We are committed to handling your information in accordance with applicable data protection laws and industry best practices."
+              heading: "Data Protection & Safety",
+              text: "Patient data collected through ADR reporting is anonymized and strictly protected. Medinet maintains full transparency with regulatory bodies, stakeholders, and patients, ensuring all operations align with the latest global legal and ethical pharmaceutical frameworks."
             }
           ]
         };
@@ -60,20 +52,11 @@ export default function LegalPage({ type }: LegalPageProps) {
           icon: FileText,
           badge: "Website Usage Guidelines",
           date: "Last Updated: June 15, 2026",
-          preamble: "By accessing and using the Medinet website, you agree to comply with our Terms & Conditions. These terms govern the use of our website, services, and content.",
+          preamble: "The use of our website and services implies agreement with our corporate terms of service.",
           sections: [
             {
-              heading: "The Terms & Conditions cover:",
-              list: [
-                "Acceptable use of the website",
-                "User responsibilities",
-                "Intellectual property rights",
-                "Accuracy of information",
-                "Limitation of liability",
-                "Third-party links",
-                "Changes to website content and policies"
-              ],
-              text: "Please review these terms carefully before using our website."
+              heading: "Usage Rules",
+              text: "Unauthorized use of our trademarks, formulations, or content is strictly prohibited. Medinet maintains full transparency with regulatory bodies, stakeholders, and patients, ensuring all operations align with the latest global legal and ethical pharmaceutical frameworks."
             }
           ]
         };
@@ -84,17 +67,11 @@ export default function LegalPage({ type }: LegalPageProps) {
           icon: ShieldAlert,
           badge: "Important Information",
           date: "Last Updated: June 15, 2026",
-          preamble: "The information provided on this website is intended for general informational purposes only and should not be considered as medical advice, diagnosis, or treatment recommendations.",
+          preamble: "Information on this website is for corporate and educational purposes and should not substitute professional medical advice.",
           sections: [
             {
-              heading: "Key Points:",
-              list: [
-                "Product information is provided for healthcare professionals and business purposes.",
-                "Always consult a qualified healthcare professional before using any medication.",
-                "Product availability may vary by region.",
-                "Medinet reserves the right to update product information and website content without prior notice."
-              ],
-              text: "While we strive to ensure the accuracy of the information presented, Medinet does not guarantee that all content is complete, current, or free from errors."
+              heading: "Compliance",
+              text: "Medinet maintains full transparency with regulatory bodies, stakeholders, and patients, ensuring all operations align with the latest global legal and ethical pharmaceutical frameworks."
             }
           ]
         };
@@ -105,18 +82,11 @@ export default function LegalPage({ type }: LegalPageProps) {
           icon: Cookie,
           badge: "Enhancing Your Browsing Experience",
           date: "Last Updated: June 15, 2026",
-          preamble: "Our website uses cookies and similar technologies to improve functionality, enhance user experience, analyze website traffic, and personalize content.",
+          preamble: "We use essential cookies to ensure website functionality and improve user experience.",
           sections: [
             {
-              heading: "Our Cookie Policy explains:",
-              list: [
-                "What cookies are",
-                "Types of cookies we use",
-                "Why we use cookies",
-                "How cookies improve your browsing experience",
-                "Managing or disabling cookies through your browser settings"
-              ],
-              text: "By continuing to use our website, you consent to the use of cookies in accordance with our Cookie Policy."
+              heading: "Compliance",
+              text: "Medinet maintains full transparency with regulatory bodies, stakeholders, and patients, ensuring all operations align with the latest global legal and ethical pharmaceutical frameworks."
             }
           ]
         };
@@ -127,15 +97,11 @@ export default function LegalPage({ type }: LegalPageProps) {
           icon: BadgeCheck,
           badge: "Intellectual Property Rights",
           date: "Last Updated: June 15, 2026",
-          preamble: "© Medinet Pharmaceutical Marketing Company. All Rights Reserved.",
+          preamble: "© 2026 Medinet Pharmaceutical Marketing Company. All rights reserved.",
           sections: [
             {
-              heading: "Ownership of Content",
-              text: "All content on this website, including text, images, graphics, logos, product information, designs, icons, documents, and other materials, is the intellectual property of Medinet Pharmaceutical Marketing Company unless otherwise stated."
-            },
-            {
-              heading: "Use Restrictions",
-              text: "No part of this website may be copied, reproduced, modified, distributed, or used for commercial purposes without prior written permission from Medinet Pharmaceutical Marketing Company.\n\nUnauthorized use of website content may violate applicable copyright, trademark, and intellectual property laws."
+              heading: "Legal Commitment",
+              text: "Medinet maintains full transparency with regulatory bodies, stakeholders, and patients, ensuring all operations align with the latest global legal and ethical pharmaceutical frameworks."
             }
           ]
         };

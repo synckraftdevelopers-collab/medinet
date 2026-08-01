@@ -65,9 +65,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
     phone: "",
     company: "",
     country: "",
-    partnerType: "franchise", // franchise, manufacturing, institutional, distributor
-    experience: "1-3years",
-    investment: "5-10lakhs",
+    partnerType: "franchise", // franchise, manufacturing, export, institutional
     message: ""
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -76,8 +74,8 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
   const verticals = [
     {
-      title: "Franchise Opportunities",
-      description: "Medinet offers rewarding franchise opportunities. Join our expanding franchise network and contribute to delivering reliable healthcare solutions.",
+      title: "Franchise Opportunities (PCD Pharma)",
+      description: "Medinet offers extensive support for PCD (Propaganda Cum Distribution) franchise partners, including exclusive territorial rights, promotional materials, and continuous product training.",
       icon: Handshake,
       iconBg: "bg-primary/10",
       iconColor: "text-primary",
@@ -87,7 +85,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
     },
     {
       title: "Third-Party Manufacturing",
-      description: "Medinet collaborates with WHO-GMP-certified facilities for third-party manufacturing. Our focus is on delivering quality, consistency, and regulatory compliance in every product.",
+      description: "Leveraging our state-of-the-art facilities, we provide reliable, high-volume contract manufacturing for domestic and international pharmaceutical companies.",
       icon: Factory,
       iconBg: "bg-accent/10",
       iconColor: "text-accent",
@@ -96,14 +94,24 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       badgeColor: "text-accent bg-accent/5 border-accent/20"
     },
     {
-      title: "Institutional Business",
-      description: "Medinet partners with hospitals and institutions. Our goal is to support healthcare institutions with dependable pharmaceutical solutions that contribute to improved patient care.",
+      title: "Institutional & Government Business",
+      description: "We are an approved vendor for various government hospitals and institutional health programs, ensuring a consistent supply of essential medicines at accessible prices.",
       icon: Building2,
       iconBg: "bg-secondary/10",
       iconColor: "text-secondary",
       accent: "bg-secondary",
       badge: "B2B",
       badgeColor: "text-secondary bg-secondary/5 border-secondary/20"
+    },
+    {
+      title: "Global Export Partnerships",
+      description: "With a growing presence in unregulated and semi-regulated markets, we actively seek distribution partners across Southeast Asia, Africa, and Latin America.",
+      icon: Globe2,
+      iconBg: "bg-[#7C3AED]/10",
+      iconColor: "text-[#7C3AED]",
+      accent: "bg-[#7C3AED]",
+      badge: "GLOBAL",
+      badgeColor: "text-[#7C3AED] bg-[#7C3AED]/5 border-[#7C3AED]/20"
     }
   ];
 
@@ -127,9 +135,9 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       case "company":
         return !value.trim() ? "Company name is required" : "";
       case "country":
-        return !value.trim() ? "Target country / territory is required" : "";
+        return !value.trim() ? "Region / Territory is required" : "";
       case "message":
-        return !value.trim() ? "Please describe your proposal or target market" : "";
+        return !value.trim() ? "Message is required" : "";
       default:
         return "";
     }
@@ -184,8 +192,6 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
         company: "",
         country: "",
         partnerType: "franchise",
-        experience: "1-3years",
-        investment: "5-10lakhs",
         message: ""
       });
     }, 1200);
@@ -702,7 +708,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
                       {/* Alliance Type Dropdown */}
                       <div className="relative pb-6">
-                        <label htmlFor="partner-type" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Alliance Vertical Target</label>
+                        <label htmlFor="partner-type" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Partnership Type</label>
                         <div className="relative">
                           <select
                             id="partner-type"
@@ -711,10 +717,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                             onChange={(e) => setFormData({ ...formData, partnerType: e.target.value })}
                             className="utility-input h-12 appearance-none pr-10 bg-white"
                           >
-                            <option value="franchise">PCD Franchise Distributorship</option>
-                            <option value="manufacturing">Third Party Contract Manufacturing</option>
-                            <option value="institutional">Bulk Institutional Supply</option>
-                            <option value="distributor">Regional Wholesale Distributor</option>
+                            <option value="franchise">Franchise</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="export">Export</option>
+                            <option value="institutional">Institutional</option>
                           </select>
                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
                             <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -750,35 +756,25 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
                       {/* Country */}
                       <div className="relative pb-6">
-                        <label htmlFor="partner-country" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Target Country / Territory <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <label htmlFor="partner-country" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Region / Territory <span className="text-red-500" aria-hidden="true">*</span></label>
                         <input
                           id="partner-country"
                           type="text"
                           required
                           disabled={submitting}
-                          aria-required="true"
-                          autoComplete="country-name"
-                          placeholder="e.g. Kenya, India, Philippines"
                           value={formData.country}
                           onChange={(e) => handlePartnerFieldChange("country", e.target.value)}
                           onBlur={(e) => handlePartnerFieldBlur("country", e.target.value)}
-                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.country ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                          aria-invalid={!!errors.country}
-                          aria-describedby={errors.country ? "prt-ctry-err" : undefined}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.country ? "border-red-500 focus:border-red-500" : ""}`}
+                          placeholder="e.g. Kenya, India, Philippines"
                         />
-                        {errors.country && (
-                          <span id="prt-ctry-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
-                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                            {errors.country}
-                          </span>
-                        )}
                       </div>
                     </div>
 
                     {/* Textarea */}
                     <div className="relative pb-6">
                       <div className="flex items-center justify-between mb-2">
-                        <label htmlFor="partner-message" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest">Describe Your Proposal / Target Market <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <label htmlFor="partner-message" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest">Message <span className="text-red-500" aria-hidden="true">*</span></label>
                         <span className={`text-[10px] font-mono ${formData.message.length > 900 ? "text-amber-500 font-bold" : "text-muted"}`}>
                           {formData.message.length}/1000 chars
                         </span>
@@ -787,23 +783,14 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                         id="partner-message"
                         required
                         disabled={submitting}
-                        aria-required="true"
                         rows={5}
                         maxLength={1000}
-                        placeholder="Include details about your current healthcare products network, doctor connections, or specific solid-oral dosing needs..."
+                        placeholder="Your message here..."
                         value={formData.message}
                         onChange={(e) => handlePartnerFieldChange("message", e.target.value)}
                         onBlur={(e) => handlePartnerFieldBlur("message", e.target.value)}
-                        className={`utility-input resize-y placeholder:text-slate-400 min-h-[120px] ${errors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                        aria-invalid={!!errors.message}
-                        aria-describedby={errors.message ? "prt-msg-err" : undefined}
+                        className={`utility-input resize-y placeholder:text-slate-400 min-h-[120px] ${errors.message ? "border-red-500 focus:border-red-500" : ""}`}
                       ></textarea>
-                      {errors.message && (
-                        <span id="prt-msg-err" className="absolute left-0 bottom-0 text-[11px] text-red-500 font-mono font-medium flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          {errors.message}
-                        </span>
-                      )}
                     </div>
 
                     <button

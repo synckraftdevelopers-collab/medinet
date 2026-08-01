@@ -690,6 +690,125 @@ export default function ResearchDevelopment() {
         </div>
       </section>
 
+      {/* Scientific Excellence Section */}
+      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="max-w-3xl mb-16 mx-auto text-center relative">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] relative inline-block">
+              Scientific Excellence
+              <motion.span 
+                initial={{ scaleX: 0 }} 
+                whileInView={{ scaleX: 1 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.8, delay: 0.3 }} 
+                className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#2563EB]/30 to-transparent origin-center"
+              />
+            </h2>
+            <p className="mt-4 text-lg text-[#1D4ED8] font-semibold">Committed to Quality, Innovation, and Integrity</p>
+            <p className="mt-7 text-base sm:text-lg text-body font-sans leading-relaxed">
+              Scientific excellence is at the heart of everything we do. Our R&D philosophy is built on evidence-based development, regulatory compliance, and continuous improvement to ensure every product meets the highest standards of quality and performance.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              "Scientific integrity",
+              "Quality-driven product development",
+              "Continuous innovation",
+              "Regulatory excellence",
+              "Patient-centric healthcare solutions",
+              "Ethical pharmaceutical practices"
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: idx * 0.1 } }
+                }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex items-center gap-4 bg-slate-50 p-6 rounded-[16px] border border-slate-100 shadow-sm"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#1D4ED8]/10 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-5 h-5 text-[#1D4ED8]" />
+                </div>
+                <span className="font-semibold text-heading">{item}</span>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center max-w-2xl mx-auto">
+            <p className="text-lg font-mono text-[#0A192F] font-semibold italic">
+              By combining research, innovation, and quality, Medinet remains dedicated to delivering "Reliable Care, Every Time."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Innovation & Technology Section */}
+      <section className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="max-w-3xl mb-16 mx-auto text-center relative">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] relative inline-block">
+              Innovation & Technology
+              <motion.span 
+                initial={{ scaleX: 0 }} 
+                whileInView={{ scaleX: 1 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.8, delay: 0.3 }} 
+                className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#2563EB]/30 to-transparent origin-center"
+              />
+            </h2>
+            <p className="mt-7 text-base sm:text-lg text-body font-sans leading-relaxed">
+              Medinet integrates modern manufacturing technologies and research methodologies to develop pharmaceuticals that are safer, more effective, and accessible. From advanced drug delivery systems to precision formulation techniques, technology drives our ability to bring complex therapies to market.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[
+              {
+                title: "Advanced Drug Delivery Systems (ADDS)",
+                icon: FlaskConical
+              },
+              {
+                title: "Precision Formulation & Coating Technologies",
+                icon: Layers
+              },
+              {
+                title: "High-Performance Liquid Chromatography (HPLC) Testing",
+                icon: Activity
+              },
+              {
+                title: "Stability & Bioequivalence Analysis Labs",
+                icon: Microscope
+              },
+              {
+                title: "Cleanroom Manufacturing Environments (Class 100/1000)",
+                icon: ShieldCheck
+              }
+            ].map((tech, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: idx * 0.1 } }
+                }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex items-center gap-5 bg-white p-6 rounded-[20px] border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EFF6FF] to-white border border-[#2563EB]/10 flex items-center justify-center shrink-0">
+                  <tech.icon className="w-6 h-6 text-[#2563EB]" />
+                </div>
+                <h4 className="font-display font-bold text-[#0A192F] text-lg">{tech.title}</h4>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Timeline Infographics Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">

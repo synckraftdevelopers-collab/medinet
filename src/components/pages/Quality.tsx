@@ -123,9 +123,8 @@ export default function Quality() {
               </span>
               
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-2">
-                <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Quality Assurance</span>
+                <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Quality & Manufacturing</span>
                 <br className="hidden sm:block" />
-                <span className="text-[#0A192F]"> &amp; Safety Policy</span>
                 
                 {/* Subtle animated underline */}
                 <motion.span 
@@ -138,7 +137,7 @@ export default function Quality() {
               </h1>
               
               <p className="mt-8 text-base sm:text-lg text-[#334155] leading-relaxed max-w-xl relative z-10">
-                At Medinet Pharmaceutical Marketing Company, quality is the foundation of everything we do. We are committed to delivering safe, effective, and high-quality pharmaceutical products that meet the expectations of healthcare professionals and patients. Our quality policy is built on continuous improvement, ethical business practices, regulatory compliance, and customer satisfaction, ensuring &ldquo;Reliable Care, Every Time.&rdquo;
+                Setting Benchmarks in Healthcare. Medinet operates under stringent quality control (QC) and quality assurance (QA) frameworks to ensure that every product meets global pharmacopeial standards. Our manufacturing partners and associated facilities comply with international regulations, enabling us to deliver safe and reliable healthcare solutions.
               </p>
 
               {/* Three premium feature badges */}
@@ -220,7 +219,7 @@ export default function Quality() {
               </h2>
               
               <p className="mt-8 text-[#334155] leading-[1.8] text-sm sm:text-base max-w-[650px]">
-                Quality is not just a standard—it is our promise. Every product we deliver reflects our dedication to innovation, compliance, patient safety, and excellence, reinforcing our commitment to &ldquo;Reliable Care, Every Time.&rdquo;
+                Every batch of Medinet pharmaceuticals undergoes rigorous testing: Raw Material Analysis (API & Excipients), In-Process Quality Checks (IPQC), Finished Product Stability Testing, and Microbiological Testing & Assay Controls.
               </p>
 
               {/* Bottom Feature Box - Premium Glass Card */}
@@ -272,26 +271,30 @@ export default function Quality() {
                   <Award strokeWidth={2.5} className="w-10 h-10 text-white drop-shadow-md" />
                 </div>
 
-                <h3 className="font-display font-bold text-white text-[1.4rem] tracking-tight relative z-10">Global Certifications</h3>
-                <p className="text-[11px] text-[#6EE7B7] font-mono mt-2 uppercase tracking-[0.15em] font-bold relative z-10">WHO-GMP &amp; ISO 9001</p>
+                <h3 className="font-display font-bold text-white text-[1.4rem] tracking-tight relative z-10">Certifications & Compliance</h3>
+                <p className="text-[11px] text-[#6EE7B7] font-mono mt-2 uppercase tracking-[0.15em] font-bold relative z-10">Global Standards</p>
 
                 <p className="mt-6 text-sm leading-[1.7] text-white/80 relative z-10 max-w-sm mx-auto">
-                  Our strategic partner formulation centers have successfully passed the triennial WHO-GMP recertification audits with zero critical non-conformances. This verifies our strict alignment with global pharmaceutical practices.
+                  Our operations align with the highest regulatory standards, enabling us to deliver safe and reliable healthcare solutions globally.
                 </p>
 
                 <div className="mt-10 pt-8 border-t border-white/15 flex flex-wrap justify-center gap-3 relative z-10">
                   {/* Premium Pill Badges */}
                   <div className="bg-white/20 border border-white/15 rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default backdrop-blur-md">
                     <CheckCircle strokeWidth={3} className="w-3.5 h-3.5 text-[#6EE7B7]" />
-                    <span className="font-bold text-white text-xs tracking-wide">ISO 9001</span>
+                    <span className="font-bold text-white text-xs tracking-wide">WHO-GMP</span>
                   </div>
                   <div className="bg-white/20 border border-white/15 rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default backdrop-blur-md">
                     <ShieldCheck strokeWidth={3} className="w-3.5 h-3.5 text-[#6EE7B7]" />
-                    <span className="font-bold text-white text-xs tracking-wide">FDA Verified</span>
+                    <span className="font-bold text-white text-xs tracking-wide">ISO 9001:2015</span>
                   </div>
                   <div className="bg-white/20 border border-white/15 rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default backdrop-blur-md">
                     <FileCheck strokeWidth={3} className="w-3.5 h-3.5 text-[#6EE7B7]" />
-                    <span className="font-bold text-white text-xs tracking-wide">ICH Q1</span>
+                    <span className="font-bold text-white text-xs tracking-wide">FDA-Compliant</span>
+                  </div>
+                  <div className="bg-white/20 border border-white/15 rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default backdrop-blur-md">
+                    <Activity strokeWidth={3} className="w-3.5 h-3.5 text-[#6EE7B7]" />
+                    <span className="font-bold text-white text-xs tracking-wide">GLP Certified</span>
                   </div>
                 </div>
               </div>
@@ -521,7 +524,6 @@ export default function Quality() {
               />
             </motion.h2>
 
-            {/* Subtitle */}
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -529,7 +531,7 @@ export default function Quality() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 text-[#475569] leading-[1.8] text-base sm:text-lg max-w-[750px] relative z-10 mx-auto"
             >
-              As an enterprise pharmaceutical marketer, our responsibility to patients extends far beyond commercial launch. Under our dedicated Global Safety Program, we maintain a 24/7 adverse events log.
+              Patient safety is paramount. Our Pharmacovigilance team actively monitors and reports the safety profile of our products post-commercialization, ensuring continuous risk assessment and proactive clinical interventions.
             </motion.p>
           </div>
 

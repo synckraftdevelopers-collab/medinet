@@ -65,7 +65,7 @@ export default function Careers({ showToast }: CareersProps) {
     name: "",
     email: "",
     phone: "",
-    experience: "",
+    department: "",
     message: ""
   });
   const [uploadedFile, setUploadedFile] = useState<{ name: string; size: string } | null>(null);
@@ -76,44 +76,54 @@ export default function Careers({ showToast }: CareersProps) {
 
   const benefits = [
     {
-      title: "Collaborative Environment",
-      description: "We foster a modern, inclusive, and engaging workplace that encourages teamwork and innovation.",
-      icon: HeartHandshake,
+      title: "Career Growth & Continuous Learning",
+      description: "Focus on continuous learning and development to help you achieve professional excellence and career advancement.",
+      icon: GraduationCap,
       iconBg: "bg-primary/10",
       iconColor: "text-primary",
       accent: "bg-primary",
-      badge: "Teamwork",
+      badge: "Growth",
       badgeColor: "text-primary bg-primary/5 border-primary/20"
     },
     {
-      title: "Continuous Learning",
-      description: "Focus on continuous learning and development to help you achieve professional excellence.",
-      icon: GraduationCap,
+      title: "Global Exposure & Diverse Opportunities",
+      description: "Gain global exposure with diverse opportunities across various markets and healthcare sectors.",
+      icon: Globe,
       iconBg: "bg-accent/10",
       iconColor: "text-accent",
       accent: "bg-accent",
-      badge: "Learning",
+      badge: "Global",
       badgeColor: "text-accent bg-accent/5 border-accent/20"
     },
     {
-      title: "Career Progression",
-      description: "Recognition of talent and hard work with clear opportunities for career advancement.",
-      icon: TrendingUp,
+      title: "Employee-Centric Policies & Work-Life Balance",
+      description: "We foster a modern, inclusive workplace that encourages work-life balance and employee well-being.",
+      icon: HeartHandshake,
       iconBg: "bg-secondary/10",
       iconColor: "text-secondary",
       accent: "bg-secondary",
-      badge: "Growth",
+      badge: "Well-being",
       badgeColor: "text-secondary bg-secondary/5 border-secondary/20"
     },
     {
-      title: "Ethics & Integrity",
-      description: "A strong emphasis on ethics, ensuring our work directly impacts healthcare positively.",
-      icon: ShieldCheck,
+      title: "Competitive Compensation & Rewards",
+      description: "Recognition of talent and hard work with competitive compensation, benefits, and performance rewards.",
+      icon: Award,
       iconBg: "bg-[#7C3AED]/10",
       iconColor: "text-[#7C3AED]",
       accent: "bg-[#7C3AED]",
-      badge: "Integrity",
+      badge: "Rewards",
       badgeColor: "text-[#7C3AED] bg-[#7C3AED]/5 border-[#7C3AED]/20"
+    },
+    {
+      title: "Commitment to Diversity and Inclusion",
+      description: "A strong emphasis on diversity and inclusion, ensuring our team reflects the communities we serve.",
+      icon: User,
+      iconBg: "bg-[#10B981]/10",
+      iconColor: "text-[#10B981]",
+      accent: "bg-[#10B981]",
+      badge: "Inclusion",
+      badgeColor: "text-[#10B981] bg-[#10B981]/5 border-[#10B981]/20"
     }
   ];
 
@@ -174,8 +184,8 @@ export default function Careers({ showToast }: CareersProps) {
         return !value.trim() ? "Email address is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid email address" : "";
       case "phone":
         return !value.trim() ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
-      case "experience":
-        return !value.trim() ? "Work experience detail is required" : "";
+      case "department":
+        return !value.trim() ? "Department of Interest is required" : "";
       default:
         return "";
     }
@@ -201,9 +211,9 @@ export default function Careers({ showToast }: CareersProps) {
       name: validateCareerField("name", formData.name),
       email: validateCareerField("email", formData.email),
       phone: validateCareerField("phone", formData.phone),
-      experience: validateCareerField("experience", formData.experience),
+      department: validateCareerField("department", formData.department),
+      file: !uploadedFile ? "Please upload your resume" : ""
     };
-    if (!uploadedFile) errs.file = "Please upload your resume (PDF/DOCX)";
 
     const activeErrors = Object.fromEntries(Object.entries(errs).filter(([_, v]) => v !== ""));
     setErrors(activeErrors);
@@ -228,7 +238,7 @@ export default function Careers({ showToast }: CareersProps) {
         name: "",
         email: "",
         phone: "",
-        experience: "",
+        department: "",
         message: ""
       });
       setUploadedFile(null);
@@ -693,25 +703,25 @@ export default function Careers({ showToast }: CareersProps) {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="career-experience" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Total Work Experience <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <label htmlFor="career-department" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Department of Interest <span className="text-red-500" aria-hidden="true">*</span></label>
                     <input
-                      id="career-experience"
+                      id="career-department"
                       type="text"
                       required
                       disabled={submitting}
                       aria-required="true"
-                      placeholder="e.g., 5 years in QC wet lab"
-                      value={formData.experience}
-                      onChange={(e) => handleCareerFieldChange("experience", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("experience", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.experience ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.experience}
-                      aria-describedby={errors.experience ? "car-exp-err" : undefined}
+                      placeholder="e.g., Sales & Marketing"
+                      value={formData.department}
+                      onChange={(e) => handleCareerFieldChange("department", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("department", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.department ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.department}
+                      aria-describedby={errors.department ? "car-dept-err" : undefined}
                     />
-                    {errors.experience && (
-                      <span id="car-exp-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                    {errors.department && (
+                      <span id="car-dept-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
                         <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.experience}
+                        {errors.department}
                       </span>
                     )}
                   </div>

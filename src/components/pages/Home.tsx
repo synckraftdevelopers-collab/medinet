@@ -5,7 +5,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { PRODUCTS, THERAPEUTIC_CATEGORIES, STATS, NEWS_ITEMS, BRAND_INFO } from "../../data";
+import { PRODUCTS, THERAPEUTIC_CATEGORIES, NEWS_ITEMS, BRAND_INFO } from "../../data";
 import SectionHeader from "../SectionHeader";
 import Image from "next/image";
 import {
@@ -60,7 +60,7 @@ const iconMap: Record<string, any> = {
 };
 
 export default function Home({ navigate }: HomeProps) {
-  const featuredProducts = PRODUCTS.slice(0, 3);
+  const featuredProducts = PRODUCTS.slice(0, 4);
   const latestNews = NEWS_ITEMS.slice(0, 3);
 
   return (
@@ -403,61 +403,7 @@ export default function Home({ navigate }: HomeProps) {
         </div>
       </section>
 
-      {/* Stats Board Section */}
-      <section className="bg-[linear-gradient(135deg,#0A192F_0%,#163A78_45%,#1E4FA8_100%)] py-16 text-center relative overflow-hidden">
-        {/* Soft radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(52,211,153,.08),transparent_70%)] pointer-events-none z-0"></div>
-        {/* Subtle glowing line bottom border */}
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-[linear-gradient(90deg,transparent,#38BDF8,transparent)] opacity-20 pointer-events-none"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-8 gap-x-6">
-            {STATS.map((stat, idx) => {
-              const Icon = idx === 0 ? Award : idx === 1 ? Pill : idx === 2 ? Globe : idx === 3 ? Users : idx === 4 ? ShieldCheck : HeartHandshake;
-              return (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  key={idx} 
-                  className="flex flex-col items-center justify-center p-6 bg-[rgba(255,255,255,.03)] border border-[rgba(255,255,255,.06)] backdrop-blur-[8px] rounded-[20px] hover:-translate-y-[6px] hover:bg-[rgba(255,255,255,.05)] hover:border-[rgba(52,211,153,.35)] hover:shadow-[0_20px_50px_rgba(10, 25, 47,.30)] transition-all duration-[300ms] group relative cursor-default"
-                >
-                  {/* Vertical dividers */}
-                  {idx !== 0 && <div className="hidden lg:block absolute left-[-12px] top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-[rgba(52,211,153,.20)]"></div>}
-                  {(idx === 1 || idx === 3 || idx === 5) && <div className="lg:hidden absolute left-[-12px] top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-[rgba(52,211,153,.20)]"></div>}
-                  {(idx === 2 || idx === 5) && <div className="hidden md:block lg:hidden absolute left-[-12px] top-1/2 -translate-y-1/2 w-[1px] h-[60%] bg-[rgba(52,211,153,.20)]"></div>}
-
-                  <div className="w-8 h-8 rounded-[14px] bg-[rgba(255,255,255,.08)] flex items-center justify-center mb-4 transition-transform duration-[300ms] group-hover:scale-[1.15] group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)] animate-fade-in">
-                    <Icon className="w-4 h-4 text-[#38BDF8]" />
-                  </div>
-
-                  <motion.span 
-                    initial={{ scale: 0.8 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 200, delay: 0.2 + (idx * 0.1) }}
-                    className="block text-3xl sm:text-4xl font-display font-[800] text-[#FFFFFF] tracking-tight drop-shadow-[0_0_18px_rgba(52,211,153,0.18)] transition-all duration-[300ms] animate-fade-in group-hover:drop-shadow-[0_0_24px_rgba(52,211,153,0.4)]"
-                  >
-                    {stat.value.replace('M+', '').replace('%', '').replace('+', '')}
-                    {stat.value.includes('M+') ? (
-                      <span className="text-[#38BDF8]">M+</span>
-                    ) : stat.value.includes('+') ? (
-                      <span className="text-[#38BDF8]">+</span>
-                    ) : stat.value.includes('%') ? (
-                      <span className="text-[#38BDF8]">%</span>
-                    ) : null}
-                  </motion.span>
-                  
-                  <span className="mt-3 text-[10px] font-mono tracking-[3px] font-[600] text-[#CBD5E1] uppercase leading-relaxed text-center w-full block break-words max-w-[140px]">
-                    {stat.label}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Therapeutic Segments Section */}
       {/* Therapeutic Segments Section (Premium Enterprise Showcase) */}
@@ -669,7 +615,7 @@ export default function Home({ navigate }: HomeProps) {
             </motion.button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 items-stretch">
             {featuredProducts.map((product, idx) => (
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -719,122 +665,6 @@ export default function Home({ navigate }: HomeProps) {
                   <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-white to-slate-50 border border-blue-200 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wider shadow-sm group-hover:from-blue-600 group-hover:to-blue-500 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
                     DETAILS <ArrowRight className="w-3.5 h-3.5 text-blue-600 group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
                   </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Testimonials Endorsement Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-b from-white to-[#F8FCFF] border-t border-b border-border overflow-hidden relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03),transparent_60%)] pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center relative"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[150px] bg-[radial-gradient(circle,rgba(29, 78, 216,0.1),transparent_70%)] blur-2xl -z-10 pointer-events-none"></div>
-            
-            <span className="utility-badge-green mb-4 inline-flex">
-              <span className="utility-dot"></span>
-              Medical Feedback
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.2] mb-4">
-              Trusted by <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Healthcare</span> Professionals
-            </h2>
-            <div className="mx-auto w-16 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full mb-6"></div>
-            <p className="text-body max-w-2xl mx-auto leading-relaxed">
-              Leading clinicians, institutional pharmacists, and global distributors share their experiences in partnering with Medinet Pharmaceuticals.
-            </p>
-          </motion.div>
-
-          {/* Social Proof Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 mb-16">
-            {[
-              { label: "Healthcare Partners", value: "500+", icon: HeartPulse },
-              { label: "Countries", value: "25+", icon: Globe },
-              { label: "Satisfaction Rate", value: "98%", icon: ShieldCheck },
-              { label: "Years of Trust", value: "15+", icon: Award }
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + idx * 0.1, duration: 0.6 }}
-                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-              >
-                <stat.icon className="w-6 h-6 text-secondary mb-2 opacity-80" />
-                <span className="text-2xl md:text-3xl font-display font-bold text-heading">{stat.value}</span>
-                <span className="text-[10px] sm:text-xs font-mono font-semibold text-slate-500 uppercase tracking-wider mt-1 text-center">{stat.label}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {[
-              {
-                text: "We have prescription records for over 2,500 cardiovascular patients on Medivastin 20. The comparative clinical response has been absolutely identical to innovator lipid regulators with excellent compliance.",
-                name: "Dr. Ketan Mehta, MD",
-                title: "Consulting Cardiologist",
-                verified: true
-              },
-              {
-                text: "As a regional distributor in South India, logistical reliability and uncompromised batch records are critical. Medinet provides complete CTD dossiers and maintains perfect batch stability indices.",
-                name: "Ramanathan Iyer",
-                title: "Chief Executive",
-                verified: true
-              },
-              {
-                text: "Formulating products with Gabax NT has given our neurological clinic a stellar therapeutic weapon for diabetic neuropathic pain management. Patient compliance rates are extremely high.",
-                name: "Dr. Sarah Al-Dossari",
-                title: "Head of Neurology",
-                verified: true
-              }
-            ].map((testimonial, idx) => (
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 + idx * 0.15, duration: 0.6 }}
-                key={idx}
-                className="group relative bg-white/80 backdrop-blur-xl rounded-[24px] p-8 md:p-10 flex flex-col justify-between shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 hover:-translate-y-[10px] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 transition-all duration-300 overflow-hidden"
-              >
-                {/* Floating blob */}
-                <motion.div 
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: idx }}
-                  className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/5 rounded-full blur-2xl -z-10"
-                ></motion.div>
-                
-                {/* Top accent line */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                <div className="relative z-10 flex-1">
-                  <Quote className="absolute -top-4 -left-4 w-16 h-16 text-secondary/10 -z-10 transform -scale-x-100 group-hover:scale-110 group-hover:-scale-x-110 transition-transform duration-300" />
-                  <p className="text-base text-slate-700 leading-[1.8] relative z-10 mb-8 mt-2">
-                    &ldquo;{testimonial.text}&rdquo;
-                  </p>
-                </div>
-                
-                <div className="flex items-center gap-4 mt-auto pt-6 border-t border-slate-100 relative z-10">
-                  <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 border-[3px] border-white shadow-md flex items-center justify-center shrink-0">
-                    <CircleUserRound className="w-8 h-8 text-slate-400" />
-                    {testimonial.verified && (
-                      <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5">
-                        <BadgeCheck className="w-4 h-4 text-blue-500" />
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <h4 className="font-display font-extrabold text-slate-900 text-base">{testimonial.name}</h4>
-                    <p className="text-xs text-secondary font-semibold uppercase tracking-wider mt-0.5">{testimonial.title}</p>
-                  </div>
                 </div>
               </motion.div>
             ))}

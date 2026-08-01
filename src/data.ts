@@ -101,6 +101,17 @@ export const PRODUCTS: Product[] = [
     packaging: "10 x 10 Alu-Alu"
   },
   {
+    id: "osteoneu-plus",
+    name: "OSTEONEU PLUS",
+    genericName: "Calcium Citrate Malate + Calcitriol + Zinc + Magnesium",
+    category: "bone-joint-health",
+    description: "Comprehensive nutritional supplement for stronger bones and joints.",
+    indications: ["Calcium deficiency", "Pregnancy & Lactation", "Bone fracture healing"],
+    dosageForm: "Tablet",
+    strength: "Standard",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
     id: "duocef-s",
     name: "DUOCEF-S",
     genericName: "Cefoperazone + Sulbactam",
@@ -222,17 +233,6 @@ export const PRODUCTS: Product[] = [
     packaging: "10 x 1x4 Blister"
   },
   {
-    id: "osteoneu-plus",
-    name: "OSTEONEU PLUS",
-    genericName: "Calcium Citrate Malate + Calcitriol + Zinc + Magnesium",
-    category: "bone-joint-health",
-    description: "Comprehensive nutritional supplement for stronger bones and joints.",
-    indications: ["Calcium deficiency", "Pregnancy & Lactation", "Bone fracture healing"],
-    dosageForm: "Tablet",
-    strength: "Standard",
-    packaging: "10 x 10 Alu-Alu"
-  },
-  {
     id: "neurise-nt",
     name: "NEURISE NT",
     genericName: "Pregabalin + Nortriptyline",
@@ -343,15 +343,6 @@ export const LEADERSHIP: Leader[] = [
     bio: "Dedicated to ensuring the highest standards of quality, compliance, and regulatory adherence.",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&h=400&auto=format&fit=crop"
   }
-];
-
-export const STATS = [
-  { value: "25+", label: "Years of Trust" },
-  { value: "150+", label: "Therapeutic Formulations" },
-  { value: "18+", label: "Global Country Footprints" },
-  { value: "450+", label: "Dedicated Distributors" },
-  { value: "100%", label: "WHO-GMP Compliant Partners" },
-  { value: "10M+", label: "Happy Patients Served Annually" }
 ];
 
 export const NEWS_ITEMS: NewsItem[] = [

@@ -90,6 +90,17 @@ export const PRODUCTS: Product[] = [
     packaging: "10 x 10 Alu-Alu"
   },
   {
+    id: "cartivon-plus",
+    name: "CARTIVON PLUS",
+    genericName: "Diacerein + Glucosamine + MSM",
+    category: "bone-joint-health",
+    description: "Advanced formulation for the management of osteoarthritis and joint health.",
+    indications: ["Osteoarthritis", "Joint stiffness", "Cartilage degradation"],
+    dosageForm: "Tablet",
+    strength: "Standard",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
     id: "duocef-s",
     name: "DUOCEF-S",
     genericName: "Cefoperazone + Sulbactam",
@@ -307,6 +318,30 @@ export const LEADERSHIP: Leader[] = [
     qualification: "Founder",
     bio: "Since founding the company, my vision has been to build an organization that provides safe, effective, and affordable healthcare solutions while upholding the highest standards of ethics and professionalism.",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400"
+  },
+  {
+    id: "jane-smith",
+    name: "Jane Smith",
+    role: "Chief Operating Officer",
+    qualification: "M.Sc, MBA",
+    bio: "Expert in operations and supply chain management across global pharmaceutical markets.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop"
+  },
+  {
+    id: "dr-robert-chen",
+    name: "Dr. Robert Chen",
+    role: "Head of Research & Development",
+    qualification: "Ph.D, M.Pharm",
+    bio: "Leading innovator in formulation development with multiple patents in drug delivery systems.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop"
+  },
+  {
+    id: "sarah-williams",
+    name: "Sarah Williams",
+    role: "VP Quality Assurance",
+    qualification: "M.Pharm, CQE",
+    bio: "Dedicated to ensuring the highest standards of quality, compliance, and regulatory adherence.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&h=400&auto=format&fit=crop"
   }
 ];
 
@@ -345,12 +380,20 @@ export const NEWS_ITEMS: NewsItem[] = [
     content: "Stay updated on our global expansion plans, new manufacturing alliances, and regulatory achievements that drive our strategic growth."
   },
   {
+    id: "news-career-opportunities",
+    title: "Career Opportunities",
+    category: "News",
+    date: "July 10, 2026",
+    excerpt: "Join Medinet and build a rewarding career in the pharmaceutical industry.",
+    content: "Join Medinet and build a rewarding career in the pharmaceutical industry. We are constantly looking for talented professionals across various departments."
+  },
+  {
     id: "news-csr",
     title: "CSR Initiatives",
     category: "CSR",
     date: "June 15, 2026",
-    excerpt: "Learn how Medinet is giving back to communities through health camps and educational programs.",
-    content: "Learn how Medinet is giving back to communities through health camps, educational programs, and sustainable initiatives."
+    excerpt: "Learn how Medinet is giving back to communities through Health Awareness, Medical Camps, Education, and more.",
+    content: "Learn how Medinet is giving back to communities through our focus areas: Health Awareness, Medical Camps, Education, Community Development, Environment, and Employee Volunteering."
   }
 ];
 

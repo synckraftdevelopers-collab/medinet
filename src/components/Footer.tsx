@@ -179,7 +179,7 @@ function Footer({ navigate, showToast }: FooterProps) {
             </button>
             
             <p className="text-sm text-gray-200 leading-relaxed">
-              Medinet Pharmaceutical Marketing Company is dedicated to delivering reliable pharmaceutical solutions. Reliable Care, Every Time.
+              Medinet Pharmaceutical Marketing Company is dedicated to delivering reliable pharmaceutical solutions. Reliable Care, Every Time. Committed to quality. Driven by innovation. Trusted by healthcare professionals.
             </p>
             
             <div className="flex items-center gap-4">

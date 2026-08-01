@@ -65,14 +65,18 @@ export default function Careers({ showToast }: CareersProps) {
     name: "",
     email: "",
     phone: "",
-    department: "",
+    position: "",
+    location: "",
+    experience: "",
     message: ""
   });
   const [uploadedFile, setUploadedFile] = useState<{ name: string; size: string } | null>(null);
+  const [uploadedCoverLetter, setUploadedCoverLetter] = useState<{ name: string; size: string } | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const coverLetterInputRef = useRef<HTMLInputElement>(null);
 
   const benefits = [
     {
@@ -169,10 +173,32 @@ export default function Careers({ showToast }: CareersProps) {
     }
   };
 
+  const handleCoverLetterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        showToast("Cover Letter size exceeds maximum limit of 5MB.", "error");
+        return;
+      }
+      setUploadedCoverLetter({
+        name: file.name,
+        size: (file.size / (1024 * 1024)).toFixed(2) + " MB"
+      });
+      showToast("Cover Letter uploaded successfully!", "success");
+    }
+  };
+
   const removeFile = () => {
     setUploadedFile(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+    }
+  };
+
+  const removeCoverLetter = () => {
+    setUploadedCoverLetter(null);
+    if (coverLetterInputRef.current) {
+      coverLetterInputRef.current.value = "";
     }
   };
 
@@ -184,8 +210,12 @@ export default function Careers({ showToast }: CareersProps) {
         return !value.trim() ? "Email address is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid email address" : "";
       case "phone":
         return !value.trim() ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
-      case "department":
-        return !value.trim() ? "Department of Interest is required" : "";
+      case "position":
+        return !value.trim() ? "Position is required" : "";
+      case "location":
+        return !value.trim() ? "Current Location is required" : "";
+      case "experience":
+        return !value.trim() ? "Experience is required" : "";
       default:
         return "";
     }
@@ -211,8 +241,11 @@ export default function Careers({ showToast }: CareersProps) {
       name: validateCareerField("name", formData.name),
       email: validateCareerField("email", formData.email),
       phone: validateCareerField("phone", formData.phone),
-      department: validateCareerField("department", formData.department),
-      file: !uploadedFile ? "Please upload your resume" : ""
+      position: validateCareerField("position", formData.position),
+      location: validateCareerField("location", formData.location),
+      experience: validateCareerField("experience", formData.experience),
+      file: !uploadedFile ? "Please upload your resume" : "",
+      coverLetter: !uploadedCoverLetter ? "Please upload your cover letter" : ""
     };
 
     const activeErrors = Object.fromEntries(Object.entries(errs).filter(([_, v]) => v !== ""));
@@ -238,10 +271,13 @@ export default function Careers({ showToast }: CareersProps) {
         name: "",
         email: "",
         phone: "",
-        department: "",
+        position: "",
+        location: "",
+        experience: "",
         message: ""
       });
       setUploadedFile(null);
+      setUploadedCoverLetter(null);
     }, 1200);
   };
 
@@ -703,25 +739,74 @@ export default function Careers({ showToast }: CareersProps) {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="career-department" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Department of Interest <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <label htmlFor="career-position" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Position Applying For <span className="text-red-500" aria-hidden="true">*</span></label>
                     <input
-                      id="career-department"
+                      id="career-position"
                       type="text"
                       required
                       disabled={submitting}
                       aria-required="true"
-                      placeholder="e.g., Sales & Marketing"
-                      value={formData.department}
-                      onChange={(e) => handleCareerFieldChange("department", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("department", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.department ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.department}
-                      aria-describedby={errors.department ? "car-dept-err" : undefined}
+                      placeholder="e.g., Medical Sales Representative"
+                      value={formData.position}
+                      onChange={(e) => handleCareerFieldChange("position", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("position", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.position ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.position}
+                      aria-describedby={errors.position ? "car-pos-err" : undefined}
                     />
-                    {errors.department && (
-                      <span id="car-dept-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                    {errors.position && (
+                      <span id="car-pos-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
                         <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.department}
+                        {errors.position}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="career-location" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Current Location <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      id="career-location"
+                      type="text"
+                      required
+                      disabled={submitting}
+                      aria-required="true"
+                      placeholder="e.g., Mumbai, India"
+                      value={formData.location}
+                      onChange={(e) => handleCareerFieldChange("location", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("location", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.location ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.location}
+                      aria-describedby={errors.location ? "car-loc-err" : undefined}
+                    />
+                    {errors.location && (
+                      <span id="car-loc-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {errors.location}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="career-experience" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Total Experience <span className="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      id="career-experience"
+                      type="text"
+                      required
+                      disabled={submitting}
+                      aria-required="true"
+                      placeholder="e.g., 3 Years"
+                      value={formData.experience}
+                      onChange={(e) => handleCareerFieldChange("experience", e.target.value)}
+                      onBlur={(e) => handleCareerFieldBlur("experience", e.target.value)}
+                      className={`utility-input mt-1.5 ${errors.experience ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
+                      aria-invalid={!!errors.experience}
+                      aria-describedby={errors.experience ? "car-exp-err" : undefined}
+                    />
+                    {errors.experience && (
+                      <span id="car-exp-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {errors.experience}
                       </span>
                     )}
                   </div>
@@ -808,6 +893,83 @@ export default function Careers({ showToast }: CareersProps) {
                     <span className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
                       <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                       {errors.file}
+                    </span>
+                  )}
+                </div>
+
+                {/* Cover Letter Upload Box */}
+                <div>
+                  <label htmlFor="career-cover-letter" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">
+                    Upload Cover Letter (PDF or DOCX, max 5MB) <span className="text-red-500" aria-hidden="true">*</span>
+                  </label>
+
+                  {uploadedCoverLetter ? (
+                    <div className="flex items-center justify-between p-4 border border-border rounded-xl bg-alt-bg">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 border border-border">
+                          <FileText className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <span className="block text-heading font-bold text-sm truncate max-w-[200px] sm:max-w-[300px]">
+                            {uploadedCoverLetter.name}
+                          </span>
+                          <span className="text-[10px] text-muted font-mono font-bold block mt-1">
+                            SIZE: {uploadedCoverLetter.size}
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        disabled={submitting}
+                        onClick={removeCoverLetter}
+                        className="p-2 bg-white hover:bg-background border border-border text-body hover:text-red-500 rounded-lg transition-colors cursor-pointer shadow-sm disabled:opacity-50"
+                        title="Remove file"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      onDragOver={handleDragOver}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        const file = e.dataTransfer.files?.[0];
+                        if (file) {
+                          if (file.size > 5 * 1024 * 1024) {
+                            showToast("Cover Letter size exceeds maximum limit of 5MB.", "error");
+                            return;
+                          }
+                          setUploadedCoverLetter({ name: file.name, size: (file.size / (1024 * 1024)).toFixed(2) + " MB" });
+                          showToast("Cover Letter uploaded successfully!", "success");
+                        }
+                      }}
+                      onClick={() => !submitting && coverLetterInputRef.current?.click()}
+                      className={`border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 rounded-[16px] p-8 text-center cursor-pointer transition-all duration-300 ${errors.coverLetter ? "border-red-400 bg-red-50/5" : "bg-alt-bg"} ${submitting ? "opacity-50 pointer-events-none" : ""}`}
+                    >
+                      <input
+                        id="career-cover-letter"
+                        ref={coverLetterInputRef}
+                        type="file"
+                        disabled={submitting}
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleCoverLetterChange}
+                        className="hidden"
+                      />
+                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm">
+                        <Upload className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="block text-sm font-bold text-heading">
+                        Drag &amp; drop your cover letter here, or <span className="text-primary hover:underline">browse</span>
+                      </span>
+                      <span className="block text-[10px] font-bold text-muted mt-2 font-mono uppercase tracking-widest">
+                        Accepts PDF, DOCX up to 5MB
+                      </span>
+                    </div>
+                  )}
+                  {errors.coverLetter && (
+                    <span className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      {errors.coverLetter}
                     </span>
                   )}
                 </div>

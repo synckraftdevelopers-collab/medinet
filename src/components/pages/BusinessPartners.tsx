@@ -64,8 +64,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
     email: "",
     phone: "",
     company: "",
-    country: "",
-    partnerType: "franchise", // franchise, manufacturing, export, institutional
+    partnerType: "Distributor", // Distributor, Stockist, Franchise Partner, Hospital, Third Party Manufacturing, Other
+    state: "",
+    city: "",
+    productsInterested: "",
     message: ""
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -133,9 +135,13 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       case "phone":
         return !value.trim() ? "Phone / Whatsapp is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
       case "company":
-        return !value.trim() ? "Company name is required" : "";
-      case "country":
-        return !value.trim() ? "Region / Territory is required" : "";
+        return !value.trim() ? "Organization name is required" : "";
+      case "state":
+        return !value.trim() ? "State is required" : "";
+      case "city":
+        return !value.trim() ? "City is required" : "";
+      case "productsInterested":
+        return !value.trim() ? "Products / Services are required" : "";
       case "message":
         return !value.trim() ? "Message is required" : "";
       default:
@@ -164,7 +170,9 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       email: validatePartnerField("email", formData.email),
       phone: validatePartnerField("phone", formData.phone),
       company: validatePartnerField("company", formData.company),
-      country: validatePartnerField("country", formData.country),
+      state: validatePartnerField("state", formData.state),
+      city: validatePartnerField("city", formData.city),
+      productsInterested: validatePartnerField("productsInterested", formData.productsInterested),
       message: validatePartnerField("message", formData.message),
     };
 
@@ -190,8 +198,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
         email: "",
         phone: "",
         company: "",
-        country: "",
-        partnerType: "franchise",
+        state: "",
+        city: "",
+        productsInterested: "",
+        partnerType: "Distributor",
         message: ""
       });
     }, 1200);
@@ -717,10 +727,12 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                             onChange={(e) => setFormData({ ...formData, partnerType: e.target.value })}
                             className="utility-input h-12 appearance-none pr-10 bg-white"
                           >
-                            <option value="franchise">Franchise</option>
-                            <option value="manufacturing">Manufacturing</option>
-                            <option value="export">Export</option>
-                            <option value="institutional">Institutional</option>
+                            <option value="Distributor">Distributor</option>
+                            <option value="Stockist">Stockist</option>
+                            <option value="Franchise Partner">Franchise Partner</option>
+                            <option value="Hospital">Hospital</option>
+                            <option value="Third Party Manufacturing">Third Party Manufacturing</option>
+                            <option value="Other">Other</option>
                           </select>
                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
                             <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -738,7 +750,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                           disabled={submitting}
                           aria-required="true"
                           autoComplete="organization"
-                          placeholder="Company Pvt Ltd"
+                          placeholder="Your Organization"
                           value={formData.company}
                           onChange={(e) => handlePartnerFieldChange("company", e.target.value)}
                           onBlur={(e) => handlePartnerFieldBlur("company", e.target.value)}
@@ -754,19 +766,51 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                         )}
                       </div>
 
-                      {/* Country */}
+                      {/* State */}
                       <div className="relative pb-6">
-                        <label htmlFor="partner-country" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Region / Territory <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <label htmlFor="partner-state" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">State <span className="text-red-500" aria-hidden="true">*</span></label>
                         <input
-                          id="partner-country"
+                          id="partner-state"
                           type="text"
                           required
                           disabled={submitting}
-                          value={formData.country}
-                          onChange={(e) => handlePartnerFieldChange("country", e.target.value)}
-                          onBlur={(e) => handlePartnerFieldBlur("country", e.target.value)}
-                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.country ? "border-red-500 focus:border-red-500" : ""}`}
-                          placeholder="e.g. Kenya, India, Philippines"
+                          value={formData.state}
+                          onChange={(e) => handlePartnerFieldChange("state", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("state", e.target.value)}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.state ? "border-red-500 focus:border-red-500" : ""}`}
+                          placeholder="e.g. Maharashtra"
+                        />
+                      </div>
+
+                      {/* City */}
+                      <div className="relative pb-6">
+                        <label htmlFor="partner-city" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">City <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <input
+                          id="partner-city"
+                          type="text"
+                          required
+                          disabled={submitting}
+                          value={formData.city}
+                          onChange={(e) => handlePartnerFieldChange("city", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("city", e.target.value)}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.city ? "border-red-500 focus:border-red-500" : ""}`}
+                          placeholder="e.g. Mumbai"
+                        />
+                      </div>
+
+                      {/* Products / Services Interested */}
+                      <div className="relative pb-6 sm:col-span-2">
+                        <label htmlFor="partner-products" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">Products / Services Interested <span className="text-red-500" aria-hidden="true">*</span></label>
+                        <input
+                          id="partner-products"
+                          type="text"
+                          required
+                          disabled={submitting}
+                          value={formData.productsInterested}
+                          onChange={(e) => handlePartnerFieldChange("productsInterested", e.target.value)}
+                          onBlur={(e) => handlePartnerFieldBlur("productsInterested", e.target.value)}
+                          className={`utility-input h-12 placeholder:text-slate-400 ${errors.productsInterested ? "border-red-500 focus:border-red-500" : ""}`}
+                          placeholder="e.g. Anti-Infectives, Third-Party Manufacturing"
                         />
                       </div>
                     </div>

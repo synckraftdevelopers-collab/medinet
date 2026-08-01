@@ -316,28 +316,36 @@ export default function Products({ params, showToast }: ProductsProps) {
               Explore our comprehensive collection of therapeutic formulations. Every product is audited, verified, bioequivalent, and licensed for wholesale export.
             </p>
           </div>
-          <button
-            onClick={handleCatalogDownload}
-            disabled={isDownloading}
-            className="utility-button-primary md:self-end px-6 py-3.5 mx-auto md:mx-0 w-full sm:w-auto flex justify-center"
-          >
-            {isDownloading ? (
-              <>
-                <div className="w-[28px] h-[28px] rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                  <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                </div>
-                GENERATING PDF...
-              </>
-            ) : (
-              <>
-                <div className="w-[28px] h-[28px] rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:rotate-[8deg] transition-transform duration-300">
-                  <FileText className="w-3.5 h-3.5 text-white" />
-                </div>
-                DOWNLOAD CATALOGUE PDF
-                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-[6px] transition-transform duration-300" />
-              </>
-            )}
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 md:self-end mx-auto md:mx-0 w-full sm:w-auto">
+            <button
+              onClick={() => document.getElementById("formulations")?.scrollIntoView({ behavior: "smooth" })}
+              className="px-6 py-3.5 bg-white text-heading border border-border rounded-xl font-bold text-sm tracking-wide shadow-sm hover:shadow-md hover:border-secondary hover:text-secondary transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              VIEW PRODUCT CATALOGUE
+            </button>
+            <button
+              onClick={handleCatalogDownload}
+              disabled={isDownloading}
+              className="utility-button-primary px-6 py-3.5 flex justify-center w-full sm:w-auto"
+            >
+              {isDownloading ? (
+                <>
+                  <div className="w-[28px] h-[28px] rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                    <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                  </div>
+                  GENERATING PDF...
+                </>
+              ) : (
+                <>
+                  <div className="w-[28px] h-[28px] rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:rotate-[8deg] transition-transform duration-300">
+                    <FileText className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  DOWNLOAD CATALOGUE PDF
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-[6px] transition-transform duration-300" />
+                </>
+              )}
+            </button>
+          </div>
         </motion.div>
       </section>
 

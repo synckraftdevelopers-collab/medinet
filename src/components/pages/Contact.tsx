@@ -422,10 +422,10 @@ export default function Contact({ showToast, params }: ContactProps) {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {[
-              { name: "General Enquiries", email: "info@medinetpharma.com", icon: MessageSquareText },
-              { name: "Sales & Distribution", email: "sales@medinetpharma.com", icon: ShoppingBag },
-              { name: "Pharmacovigilance (ADR Reporting)", email: "pve@medinetpharma.com", icon: ShieldAlert },
-              { name: "Careers", email: "hr@medinetpharma.com", icon: UserRound }
+              { name: "General Enquiry", email: "info@medinetpharma.com", icon: MessageSquareText },
+              { name: "Sales", email: "sales@medinetpharma.com", icon: ShoppingBag },
+              { name: "Business", email: "business@medinetpharma.com", icon: Handshake },
+              { name: "Career", email: "hr@medinetpharma.com", icon: UserRound }
             ].map((dept, idx) => (
               <motion.div
                 key={idx}

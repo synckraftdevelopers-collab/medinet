@@ -103,7 +103,7 @@ export default function Quality() {
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Subtle blurred radial glows: Top Left (Blue) and Bottom Right (Teal) at 5% opacity */}
           <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#0D9488] opacity-5" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#1D4ED8] opacity-5" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
@@ -122,10 +122,10 @@ export default function Quality() {
                 Zero-Defect Standards
               </span>
               
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0B1F4D] tracking-tight leading-[1.15] relative z-10 inline-block mb-2">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-2">
                 <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Quality Assurance</span>
                 <br className="hidden sm:block" />
-                <span className="text-[#0B1F4D]"> &amp; Safety Policy</span>
+                <span className="text-[#0A192F]"> &amp; Safety Policy</span>
                 
                 {/* Subtle animated underline */}
                 <motion.span 
@@ -144,8 +144,8 @@ export default function Quality() {
               {/* Three premium feature badges */}
               <div className="mt-10 flex flex-wrap gap-3 relative z-10">
                 {["WHO-GMP Certified", "Quality Tested", "Global Standards"].map((badge, idx) => (
-                  <span key={idx} className="inline-flex items-center px-4 py-2 rounded-full text-[11px] sm:text-xs font-mono font-bold tracking-wide bg-white border border-[#2563EB]/10 text-[#0B1F4D] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#0D9488] mr-2"></div>
+                  <span key={idx} className="inline-flex items-center px-4 py-2 rounded-full text-[11px] sm:text-xs font-mono font-bold tracking-wide bg-white border border-[#2563EB]/10 text-[#0A192F] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mr-2"></div>
                     {badge}
                   </span>
                 ))}
@@ -168,10 +168,10 @@ export default function Quality() {
 
                 <div className="flex flex-col gap-6">
                   {[
-                    { title: "WHO-GMP Compliance", icon: ShieldCheck, color: "from-[#0B1F4D] to-[#2563EB]" },
+                    { title: "WHO-GMP Compliance", icon: ShieldCheck, color: "from-[#0A192F] to-[#2563EB]" },
                     { title: "ISO Quality Standards", icon: Award, color: "from-[#2563EB] to-[#38BDF8]" },
-                    { title: "Product Safety", icon: HeartPulse, color: "from-[#0D9488] to-[#14B8A6]" },
-                    { title: "Batch Traceability", icon: Fingerprint, color: "from-[#2563EB] to-[#0D9488]" }
+                    { title: "Product Safety", icon: HeartPulse, color: "from-[#1D4ED8] to-[#14B8A6]" },
+                    { title: "Batch Traceability", icon: Fingerprint, color: "from-[#2563EB] to-[#1D4ED8]" }
                   ].map((item, idx) => {
                     const Icon = item.icon;
                     return (
@@ -183,7 +183,7 @@ export default function Quality() {
                           <Icon strokeWidth={2.5} className="w-7 h-7 text-white animate-[pulse_3s_ease-in-out_infinite] drop-shadow-[0_2px_8px_rgba(11,31,77,0.25)] relative z-10" />
                         </div>
                         <div>
-                          <h4 className="font-display font-bold text-[#0B1F4D] text-[1.05rem] leading-tight group-hover/item:text-[#2563EB] transition-colors duration-300">{item.title}</h4>
+                          <h4 className="font-display font-bold text-[#0A192F] text-[1.05rem] leading-tight group-hover/item:text-[#2563EB] transition-colors duration-300">{item.title}</h4>
                         </div>
                       </div>
                     );
@@ -200,7 +200,7 @@ export default function Quality() {
         {/* Soft Background Glows */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-[#2563EB] opacity-[0.04]" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-[#0D9488] opacity-[0.04]" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-[#1D4ED8] opacity-[0.04]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -208,8 +208,8 @@ export default function Quality() {
             {/* QA Message - Left Side */}
             <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-7">
               <h2 className="text-3xl lg:text-4xl font-display font-bold tracking-tight leading-[1.15] relative inline-block mb-6">
-                <span className="text-[#0B1F4D]">Our </span>
-                <span className="bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Quality Commitment</span>
+                <span className="text-[#0A192F]">Our </span>
+                <span className="bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text">Quality Commitment</span>
                 <motion.span 
                   initial={{ scaleX: 0 }} 
                   whileInView={{ scaleX: 1 }} 
@@ -230,16 +230,16 @@ export default function Quality() {
                     <ShieldCheck strokeWidth={2.5} className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#0B1F4D] text-[1.05rem] mb-1">Double Batch Testing</h4>
+                    <h4 className="font-bold text-[#0A192F] text-[1.05rem] mb-1">Double Batch Testing</h4>
                     <p className="text-[#64748B] text-sm leading-[1.6]">We test raw ingredients both at source and pre-packaging.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0D9488] to-[#14B8A6] flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all duration-500">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1D4ED8] to-[#14B8A6] flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all duration-500">
                     <Fingerprint strokeWidth={2.5} className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#0B1F4D] text-[1.05rem] mb-1">Impeccable Traceability</h4>
+                    <h4 className="font-bold text-[#0A192F] text-[1.05rem] mb-1">Impeccable Traceability</h4>
                     <p className="text-[#64748B] text-sm leading-[1.6]">Full computerized trace index for raw materials.</p>
                   </div>
                 </div>
@@ -255,14 +255,14 @@ export default function Quality() {
               className="lg:col-span-5 relative group"
             >
               {/* Decorative blobs behind the card */}
-              <motion.div animate={{ scale: [1, 1.05, 1], rotate: [0, 5, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-[#059669] to-transparent rounded-full blur-3xl opacity-20 pointer-events-none" />
+              <motion.div animate={{ scale: [1, 1.05, 1], rotate: [0, 5, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-[#1D4ED8] to-transparent rounded-full blur-3xl opacity-20 pointer-events-none" />
               <motion.div animate={{ scale: [1, 1.1, 1], rotate: [0, -5, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-[#10B981] to-transparent rounded-full blur-3xl opacity-20 pointer-events-none" />
               
               {/* Floating glowing particles */}
               <motion.div animate={{ y: [-10, 10, -10], opacity: [0.5, 1, 0.5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute top-4 right-8 w-2 h-2 rounded-full bg-[#6EE7B7] shadow-[0_0_8px_#6EE7B7]" />
               <motion.div animate={{ y: [10, -10, 10], opacity: [0.5, 1, 0.5] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute bottom-20 -left-4 w-3 h-3 rounded-full bg-[#10B981] shadow-[0_0_10px_#10B981]" />
 
-              <div className="bg-gradient-to-br from-[#064E3B] via-[#059669] to-[#10B981] rounded-[28px] shadow-[0_30px_80px_rgba(6,78,59,0.25)] p-8 lg:p-10 relative overflow-hidden text-center hover:-translate-y-2 hover:shadow-[0_40px_90px_rgba(6,78,59,0.35)] transition-all duration-500 border border-white/20">
+              <div className="bg-gradient-to-br from-[#0A192F] via-[#1D4ED8] to-[#10B981] rounded-[28px] shadow-[0_30px_80px_rgba(10, 25, 47,0.25)] p-8 lg:p-10 relative overflow-hidden text-center hover:-translate-y-2 hover:shadow-[0_40px_90px_rgba(10, 25, 47,0.35)] transition-all duration-500 border border-white/20">
                 
                 {/* Subtle glass overlay & Animated light reflection */}
                 <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-[2px]"></div>
@@ -301,7 +301,7 @@ export default function Quality() {
       </section>
 
       {/* Stats counters banner */}
-      <section className="bg-gradient-to-r from-[#0D9488] via-[#155E75] to-[#2563EB] py-20 relative overflow-hidden group/stats">
+      <section className="bg-gradient-to-r from-[#1D4ED8] via-[#155E75] to-[#2563EB] py-20 relative overflow-hidden group/stats">
         {/* Soft radial glow behind the center */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_50%)] pointer-events-none"></div>
         {/* Subtle glass overlay */}
@@ -338,7 +338,7 @@ export default function Quality() {
                         {stat.value.includes('+') ? (
                           <>
                             {stat.value.replace('+', '')}
-                            <span className="text-[#34D399] drop-shadow-none">+</span>
+                            <span className="text-[#38BDF8] drop-shadow-none">+</span>
                           </>
                         ) : stat.value}
                       </span>
@@ -375,7 +375,7 @@ export default function Quality() {
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           {/* Soft blurred radial glows */}
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#1D4ED8] opacity-5" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -384,7 +384,7 @@ export default function Quality() {
             <motion.div 
               animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }} 
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[150px] rounded-full blur-[90px] bg-gradient-to-r from-[#2563EB]/15 to-[#0D9488]/15 pointer-events-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[150px] rounded-full blur-[90px] bg-gradient-to-r from-[#2563EB]/15 to-[#1D4ED8]/15 pointer-events-none"
             />
 
             {/* Premium glassmorphism pill badge */}
@@ -399,7 +399,7 @@ export default function Quality() {
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-60 animate-ping"></span>
                 <ShieldCheck strokeWidth={2.5} className="relative w-4 h-4 text-[#2563EB]" />
               </div>
-              <span className="text-xs font-mono font-bold tracking-widest text-[#0B1F4D] uppercase">Standard Workflows</span>
+              <span className="text-xs font-mono font-bold tracking-widest text-[#0A192F] uppercase">Standard Workflows</span>
             </motion.div>
 
             {/* Premium Heading */}
@@ -410,8 +410,8 @@ export default function Quality() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight leading-[1.15] relative z-10 inline-block"
             >
-              <span className="text-[#0B1F4D]">Our </span>
-              <span className="bg-gradient-to-r from-[#0B1F4D] via-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Quality Infrastructure</span>
+              <span className="text-[#0A192F]">Our </span>
+              <span className="bg-gradient-to-r from-[#0A192F] via-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text">Quality Infrastructure</span>
               
               {/* Animated gradient underline */}
               <motion.span 
@@ -474,7 +474,7 @@ export default function Quality() {
         {/* Soft Background Glows */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#1D4ED8] opacity-5" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -483,7 +483,7 @@ export default function Quality() {
             <motion.div 
               animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }} 
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[150px] rounded-full blur-[90px] bg-gradient-to-r from-[#2563EB]/15 to-[#0D9488]/15 pointer-events-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[150px] rounded-full blur-[90px] bg-gradient-to-r from-[#2563EB]/15 to-[#1D4ED8]/15 pointer-events-none"
             />
 
             {/* Premium glassmorphism pill badge */}
@@ -498,7 +498,7 @@ export default function Quality() {
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-60 animate-ping"></span>
                 <ShieldCheck strokeWidth={2.5} className="relative w-4 h-4 text-[#2563EB]" />
               </div>
-              <span className="text-xs font-mono font-bold tracking-widest text-[#0B1F4D] uppercase">Safety Standards</span>
+              <span className="text-xs font-mono font-bold tracking-widest text-[#0A192F] uppercase">Safety Standards</span>
             </motion.div>
 
             {/* Premium Heading */}
@@ -509,7 +509,7 @@ export default function Quality() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight leading-[1.15] relative z-10 inline-block pb-4"
             >
-              <span className="bg-gradient-to-r from-[#0B1F4D] via-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Pharmacovigilance</span>
+              <span className="bg-gradient-to-r from-[#0A192F] via-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text">Pharmacovigilance</span>
               
               {/* Animated gradient underline */}
               <motion.span 
@@ -547,13 +547,13 @@ export default function Quality() {
                 className="relative bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#2563EB]/[0.08] shadow-[0_20px_50px_rgba(11,31,77,0.08)] p-6 flex items-center gap-5 group hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_30px_60px_rgba(11,31,77,0.12)] transition-all duration-500 overflow-hidden"
               >
                 {/* Thin blue-to-teal gradient accent line at the top */}
-                <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB] to-[#0D9488] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
 
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#0D9488] flex items-center justify-center shrink-0 shadow-[0_4px_15px_rgba(37,99,235,0.2)] group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)] group-hover:scale-110 transition-all duration-500">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-[0_4px_15px_rgba(37,99,235,0.2)] group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)] group-hover:scale-110 transition-all duration-500">
                   <item.icon strokeWidth={2.5} className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-[#0B1F4D] text-lg leading-tight group-hover:text-[#2563EB] transition-colors duration-300">{item.title}</h4>
+                  <h4 className="font-display font-bold text-[#0A192F] text-lg leading-tight group-hover:text-[#2563EB] transition-colors duration-300">{item.title}</h4>
                 </div>
               </div>
             ))}

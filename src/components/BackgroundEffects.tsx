@@ -5,7 +5,7 @@ const BackgroundEffects = () => {
   return (
     <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-background">
       {/* Soft Animated Gradient Mesh */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(16,185,129,0.06)_0%,transparent_50%),radial-gradient(circle_at_80%_70%,rgba(5,150,105,0.04)_0%,transparent_50%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(16,185,129,0.06)_0%,transparent_50%),radial-gradient(circle_at_80%_70%,rgba(29, 78, 216,0.04)_0%,transparent_50%)]"></div>
       
       {/* Blurred Glowing Blobs (Bokeh) - Optimized for Performance */}
       <motion.div 
@@ -16,7 +16,7 @@ const BackgroundEffects = () => {
           y: [0, -20, 0]
         }}
         transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-        className="hidden md:block absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(5,150,105,0.1)_0%,transparent_70%)] rounded-full"
+        className="hidden md:block absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(29, 78, 216,0.1)_0%,transparent_70%)] rounded-full"
       />
       <motion.div 
         animate={{ 

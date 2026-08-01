@@ -211,7 +211,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-50 animate-ping"></span>
                 <div className="w-1.5 h-1.5 rounded-full bg-[#2563EB] relative z-10" />
               </div>
-              <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0B1F4D] uppercase relative z-10">B2B Commercial Alliances</span>
+              <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0A192F] uppercase relative z-10">B2B Commercial Alliances</span>
             </motion.div>
           </div>
 
@@ -223,7 +223,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="text-5xl sm:text-6xl lg:text-[4.5rem] font-display font-extrabold tracking-tight leading-[1.1] mt-2 mx-auto lg:mx-0 relative inline-block pb-5 text-[#0F172A]"
             >
-              <span className="text-[#0B1F4D]">Corporate Partnerships</span> <br className="hidden lg:block"/>
+              <span className="text-[#0A192F]">Corporate Partnerships</span> <br className="hidden lg:block"/>
               &amp; <motion.span 
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
@@ -298,31 +298,31 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               className="relative group inline-flex rounded-full p-[1.5px] mb-8 hover:-translate-y-1 transition-transform duration-300"
             >
               {/* Animated gradient border */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] opacity-70 group-hover:opacity-100 blur-[2px] group-hover:blur-[4px] transition-all duration-300"></div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] opacity-70 group-hover:opacity-100 blur-[2px] group-hover:blur-[4px] transition-all duration-300"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]"></div>
               
               <div className="relative bg-white/70 backdrop-blur-xl rounded-full px-6 py-2.5 flex items-center gap-2.5">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#16A34A] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#16A34A]"></span>
                 </span>
-                <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0B1F4D] uppercase">Business Channels</span>
+                <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0A192F] uppercase">Business Channels</span>
               </div>
             </motion.div>
 
             <motion.h2 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.1] relative inline-block pb-4 text-[#0B1F4D]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.1] relative inline-block pb-4 text-[#0A192F]"
             >
               Our <motion.span 
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto]"
+                className="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto]"
               >Partnership</motion.span> Opportunities
               
               {/* Glowing Underline */}
               <motion.span 
                 initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }}
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-[3px] bg-gradient-to-r from-transparent via-[#0D9488] to-transparent rounded-full shadow-[0_0_15px_rgba(13,148,136,0.6)]"
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-[3px] bg-gradient-to-r from-transparent via-[#1D4ED8] to-transparent rounded-full shadow-[0_0_15px_rgba(13,148,136,0.6)]"
               />
             </motion.h2>
 
@@ -351,18 +351,18 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                       <div>
                         <div className="flex justify-between items-start mb-8">
                           {/* Premium Icon Container */}
-                          <div className="w-14 h-14 rounded-[20px] bg-gradient-to-br from-[#2563EB] via-[#0D9488] to-[#16A34A] flex items-center justify-center shrink-0 shadow-[0_8px_20px_rgba(13,148,136,0.3)] group-hover:shadow-[0_12px_25px_rgba(22,163,74,0.4)] transition-all duration-500 overflow-hidden relative">
+                          <div className="w-14 h-14 rounded-[20px] bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#16A34A] flex items-center justify-center shrink-0 shadow-[0_8px_20px_rgba(13,148,136,0.3)] group-hover:shadow-[0_12px_25px_rgba(22,163,74,0.4)] transition-all duration-500 overflow-hidden relative">
                             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             <VertIcon strokeWidth={2.5} className="w-6 h-6 text-white relative z-10 group-hover:rotate-[8deg] transition-transform duration-500 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
                           </div>
                           
                           {/* Glass Badge */}
-                          <span className="inline-block bg-white/80 backdrop-blur-md border border-[#0D9488]/20 shadow-sm text-[#0D9488] text-[10px] font-mono font-bold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full">
+                          <span className="inline-block bg-white/80 backdrop-blur-md border border-[#1D4ED8]/20 shadow-sm text-[#1D4ED8] text-[10px] font-mono font-bold tracking-[0.15em] uppercase px-4 py-1.5 rounded-full">
                             {vert.badge}
                           </span>
                         </div>
                         
-                        <h3 className="font-display font-extrabold text-[#0B1F4D] text-xl sm:text-2xl leading-tight group-hover:text-[#0D9488] transition-colors duration-300">
+                        <h3 className="font-display font-extrabold text-[#0A192F] text-xl sm:text-2xl leading-tight group-hover:text-[#1D4ED8] transition-colors duration-300">
                           {vert.title}
                         </h3>
                         <p className="mt-5 text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">
@@ -386,7 +386,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
         {/* Soft Background Glows */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#0D9488] opacity-5" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-[#1D4ED8] opacity-5" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -399,14 +399,14 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 <span className="absolute inline-flex h-3 w-3 rounded-full bg-[#2563EB] opacity-60 animate-ping"></span>
                 <MapPin strokeWidth={2.5} className="relative w-4 h-4 text-[#2563EB]" />
               </div>
-              <span className="text-xs font-mono font-bold tracking-widest text-[#0B1F4D] uppercase">Global Reach</span>
+              <span className="text-xs font-mono font-bold tracking-widest text-[#0A192F] uppercase">Global Reach</span>
             </motion.div>
 
             <motion.h2 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight leading-[1.15] relative z-10 inline-block pb-4"
             >
-              <span className="bg-gradient-to-r from-[#0B1F4D] via-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Distribution Network</span>
+              <span className="bg-gradient-to-r from-[#0A192F] via-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text">Distribution Network</span>
               <motion.span 
                 initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut", delay: 0.4 }} 
                 className="absolute bottom-0 left-[10%] w-[80%] h-[3px] bg-gradient-to-r from-transparent via-[#2563EB]/60 to-transparent origin-left rounded-full"
@@ -439,16 +439,16 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   { title: "Efficient order fulfillment and logistics", icon: Rocket, desc: "Fast and secure delivery through optimized supply channels." },
                   { title: "Customer-focused service and support", icon: HeartHandshake, desc: "Dedicated support team for our distribution partners." }
                 ].map((item, idx) => (
-                  <div key={idx} className="relative bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#059669]/[0.08] shadow-[0_10px_40px_rgba(5,150,105,0.05)] p-5 flex items-start gap-4 group hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(5,150,105,0.1)] transition-all duration-300 overflow-hidden">
+                  <div key={idx} className="relative bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#1D4ED8]/[0.08] shadow-[0_10px_40px_rgba(29, 78, 216,0.05)] p-5 flex items-start gap-4 group hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(29, 78, 216,0.1)] transition-all duration-300 overflow-hidden">
                     {/* Left accent line */}
-                    <div className="absolute top-0 left-0 w-[4px] h-full bg-gradient-to-b from-[#059669] to-[#10B981] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                    <div className="absolute top-0 left-0 w-[4px] h-full bg-gradient-to-b from-[#1D4ED8] to-[#10B981] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
                     
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#059669]/10 to-[#10B981]/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-[#059669] group-hover:to-[#10B981] transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.1)]">
-                      <item.icon strokeWidth={2} className="w-6 h-6 text-[#059669] group-hover:text-white transition-colors duration-300" />
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D4ED8]/10 to-[#10B981]/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-[#1D4ED8] group-hover:to-[#10B981] transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.1)]">
+                      <item.icon strokeWidth={2} className="w-6 h-6 text-[#1D4ED8] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div className="flex-1 pt-0.5">
                       <div className="flex items-center justify-between mb-1.5">
-                        <h4 className="font-bold text-[#0B1F4D] text-[15px] sm:text-base group-hover:text-[#059669] transition-colors">{item.title}</h4>
+                        <h4 className="font-bold text-[#0A192F] text-[15px] sm:text-base group-hover:text-[#1D4ED8] transition-colors">{item.title}</h4>
                         <span className="w-2 h-2 shrink-0 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-pulse ml-2"></span>
                       </div>
                       <p className="text-[13px] sm:text-sm text-[#475569] leading-[1.6]">{item.desc}</p>
@@ -460,7 +460,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               {/* Right Map Visualization */}
               <div className="flex-1 w-full lg:w-auto relative z-10 h-[450px] flex items-center justify-center bg-white/[0.6] backdrop-blur-xl rounded-[32px] border border-[#2563EB]/10 shadow-[0_20px_60px_rgba(11,31,77,0.08)] p-6 overflow-hidden">
                 {/* Central Badge */}
-                <div className="absolute top-6 right-6 bg-gradient-to-r from-[#2563EB] to-[#0D9488] px-4 py-1.5 rounded-full shadow-[0_6px_15px_rgba(37,99,235,0.3)] z-50">
+                <div className="absolute top-6 right-6 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] px-4 py-1.5 rounded-full shadow-[0_6px_15px_rgba(37,99,235,0.3)] z-50">
                   <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-widest uppercase text-white">Pan India Distribution</span>
                 </div>
 
@@ -475,7 +475,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                     <defs>
                       <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#2563EB" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#0D9488" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.6" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -491,9 +491,9 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                     <div key={hub.id} className="absolute flex flex-col items-center group/hub cursor-default" style={{ left: hub.x, top: hub.y, transform: 'translate(-50%, -50%)' }}>
                       <div className="relative flex items-center justify-center">
                         <span className="absolute w-10 h-10 rounded-full bg-[#2563EB]/20 animate-ping"></span>
-                        <div className="relative w-5 h-5 bg-gradient-to-br from-[#2563EB] to-[#0D9488] rounded-full shadow-[0_0_20px_rgba(37,99,235,0.7)] group-hover/hub:scale-125 transition-transform duration-300"></div>
+                        <div className="relative w-5 h-5 bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] rounded-full shadow-[0_0_20px_rgba(37,99,235,0.7)] group-hover/hub:scale-125 transition-transform duration-300"></div>
                       </div>
-                      <span className="mt-3 text-[11px] font-bold text-[#0B1F4D] bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded border border-[#2563EB]/10 shadow-sm whitespace-nowrap opacity-90 group-hover/hub:opacity-100 group-hover:-translate-y-1 transition-all duration-300">{hub.label}</span>
+                      <span className="mt-3 text-[11px] font-bold text-[#0A192F] bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded border border-[#2563EB]/10 shadow-sm whitespace-nowrap opacity-90 group-hover/hub:opacity-100 group-hover:-translate-y-1 transition-all duration-300">{hub.label}</span>
                     </div>
                   ))}
                 </div>
@@ -512,8 +512,8 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 { value: "24/7", label: "Logistics Support" },
               ].map((stat, idx) => (
                 <motion.div key={idx} variants={fadeUp} className="bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] p-6 sm:p-8 text-center hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] transition-all duration-500">
-                  <h4 className="text-4xl sm:text-5xl font-display font-bold bg-gradient-to-br from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text mb-3">{stat.value}</h4>
-                  <p className="text-[11px] sm:text-xs font-bold text-[#0B1F4D] uppercase tracking-widest">{stat.label}</p>
+                  <h4 className="text-4xl sm:text-5xl font-display font-bold bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text mb-3">{stat.value}</h4>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0A192F] uppercase tracking-widest">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -521,7 +521,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
             <div className="mt-16">
               <a
                 href="#enquiry-form"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-white font-semibold rounded-full px-8 py-4 shadow-[0_10px_30px_rgba(37,99,235,0.3)] hover:shadow-[0_15px_40px_rgba(37,99,235,0.4)] hover:-translate-y-1 transition-all duration-300 group"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white font-semibold rounded-full px-8 py-4 shadow-[0_10px_30px_rgba(37,99,235,0.3)] hover:shadow-[0_15px_40px_rgba(37,99,235,0.4)] hover:-translate-y-1 transition-all duration-300 group"
               >
                 Become a Distribution Partner
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />

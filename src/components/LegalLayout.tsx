@@ -81,8 +81,8 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
   };
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_40%,#FFFFFF_100%)] relative overflow-x-hidden flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-900 font-sans">
-      <div className="fixed top-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.04)_0%,transparent_65%)] pointer-events-none z-0" />
+    <div className="min-h-screen bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F8FD_40%,#FFFFFF_100%)] relative overflow-x-hidden flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900 font-sans">
+      <div className="fixed top-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(circle_at_top_right,rgba(29, 78, 216,0.04)_0%,transparent_65%)] pointer-events-none z-0" />
       <div className="fixed bottom-0 left-0 w-[700px] h-[700px] bg-[radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.03)_0%,transparent_65%)] pointer-events-none z-0" />
 
       <Navbar currentRoute={currentRoute} navigate={navigate} />
@@ -112,7 +112,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
             <motion.div
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-[58px] h-[58px] bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-[0_12px_28px_rgba(5,150,105,0.22)] flex items-center justify-center shrink-0"
+              className="w-[58px] h-[58px] bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-[0_12px_28px_rgba(29, 78, 216,0.22)] flex items-center justify-center shrink-0"
             >
               <PageIcon className="w-7 h-7 text-white" />
             </motion.div>
@@ -205,7 +205,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
                         className={`relative flex items-center gap-3 w-full text-left px-3 py-2 rounded-xl transition-all duration-250 group focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
                           isActive ? "text-secondary font-bold" : "text-slate-600 hover:text-secondary font-semibold"
                         }`}
-                        style={{ backgroundColor: isActive ? "rgba(5,150,105,0.07)" : undefined }}
+                        style={{ backgroundColor: isActive ? "rgba(29, 78, 216,0.07)" : undefined }}
                       >
                         {isActive && (
                           <motion.div
@@ -249,9 +249,9 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-10 bg-gradient-to-br from-slate-900 via-primary to-secondary rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_20px_50px_rgba(5,150,105,0.18)] relative overflow-hidden"
+            className="mt-10 bg-gradient-to-br from-slate-900 via-primary to-secondary rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_20px_50px_rgba(29, 78, 216,0.18)] relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.25),transparent_60%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(29, 78, 216,0.25),transparent_60%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.15),transparent_60%)] pointer-events-none" />
 
             <div className="flex items-center gap-5 text-white relative z-10">
@@ -270,7 +270,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
 
             <a
               href="mailto:corporate@medinetpharma.com"
-              className="relative z-10 shrink-0 px-8 py-4 bg-white hover:bg-secondary hover:text-white text-slate-900 font-bold text-[14px] rounded-2xl transition-all duration-300 flex items-center gap-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_32px_rgba(5,150,105,0.3)] hover:-translate-y-1 group/cta"
+              className="relative z-10 shrink-0 px-8 py-4 bg-white hover:bg-secondary hover:text-white text-slate-900 font-bold text-[14px] rounded-2xl transition-all duration-300 flex items-center gap-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_32px_rgba(29, 78, 216,0.3)] hover:-translate-y-1 group/cta"
             >
               Contact Legal Team
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
@@ -320,7 +320,7 @@ export function LegalSection({
         <motion.div
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
-          className="w-[40px] h-[40px] rounded-[12px] bg-gradient-to-br from-primary to-secondary shadow-[0_8px_20px_rgba(5,150,105,0.22)] flex items-center justify-center shrink-0 group-hover:scale-[1.08] group-hover:shadow-[0_12px_28px_rgba(5,150,105,0.3)] transition-all duration-300"
+          className="w-[40px] h-[40px] rounded-[12px] bg-gradient-to-br from-primary to-secondary shadow-[0_8px_20px_rgba(29, 78, 216,0.22)] flex items-center justify-center shrink-0 group-hover:scale-[1.08] group-hover:shadow-[0_12px_28px_rgba(29, 78, 216,0.3)] transition-all duration-300"
         >
           <Icon className="w-5 h-5 text-white" />
         </motion.div>
@@ -348,7 +348,7 @@ export function LegalCallout({ children }: { children: React.ReactNode }) {
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
       whileHover={{ y: -3 }}
-      className="my-4 bg-gradient-to-r from-secondary/5 via-emerald-50/60 to-transparent border-l-[3px] border-secondary p-4 sm:p-5 rounded-r-2xl flex gap-3.5 items-start cursor-default"
+      className="my-4 bg-gradient-to-r from-secondary/5 via-blue-50/60 to-transparent border-l-[3px] border-secondary p-4 sm:p-5 rounded-r-2xl flex gap-3.5 items-start cursor-default"
     >
       <Info className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
       <div className="text-[14px] sm:text-[15px] text-slate-800 font-semibold leading-[1.65]">

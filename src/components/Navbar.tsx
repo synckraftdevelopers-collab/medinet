@@ -414,7 +414,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
   };
 
   const getNavItemClass = (isActive: boolean) =>
-    `px-1 lg:px-1.5 xl:px-2.5 py-1.5 text-[10px] lg:text-[11px] xl:text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] select-none shrink-0 ${isActive
+    `px-1 lg:px-1.5 xl:px-2.5 py-1.5 text-[10px] lg:text-[11px] xl:text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] select-none shrink-0 ${isActive
       ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold scale-[1.02]"
       : "text-body font-medium hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
     }`;
@@ -494,13 +494,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <button
                       key={product.id}
                       onClick={() => selectSearchResult(product)}
-                      className="w-full text-left flex items-start gap-3 p-3 hover:bg-emerald-50/50 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm transition-colors group"
+                      className="w-full text-left flex items-start gap-3 p-3 hover:bg-blue-50/50 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-100">
+                      <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 group-hover:bg-blue-100">
                         <Activity className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="font-semibold text-heading text-sm group-hover:text-emerald-600 flex items-center gap-2">
+                        <div className="font-semibold text-heading text-sm group-hover:text-blue-600 flex items-center gap-2">
                           {product.name}
                           <span className="text-xs font-normal text-muted font-mono">
                             {product.strength}
@@ -536,7 +536,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setIsSearchOpen(false);
                             navigate("products", { category: cat.id });
                           }}
-                          className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm border border-border hover:border-emerald-100 hover:bg-background/50 text-left transition-all"
+                          className="flex items-center gap-3 p-2.5 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm border border-border hover:border-blue-100 hover:bg-background/50 text-left transition-all"
                         >
                           <div className="w-8 h-8 rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 shadow-sm bg-background flex items-center justify-center text-body">
                             <IconComponent className="w-4 h-4" />
@@ -559,8 +559,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
       {/* Main Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${isScrolled
-            ? "bg-white/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,.06)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
-            : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
+          ? "bg-white/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,.06)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
+          : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
           }`}
         aria-label="Main Navigation"
       >
@@ -570,17 +570,17 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             <div className="flex-1 flex items-center justify-start h-full">
               <button
                 onClick={() => navigate("home")}
-                className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] rounded-lg hover:opacity-90 transition-opacity"
+                className="flex items-center h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] rounded-lg hover:opacity-90 transition-opacity"
                 id="navbar-logo"
                 aria-label="Medinet Pharmaceuticals - Home"
               >
                 <Image
-                  src="/logo.svg"
+                  src="/header%20logo.png"
                   alt="Medinet Pharmaceuticals Logo"
                   width={260}
                   height={64}
                   priority
-                  className="block my-auto w-auto object-contain h-8 sm:h-10 md:h-[44px] lg:h-[40px] xl:h-[48px] min-[1440px]:h-[56px] transition-all duration-300"
+                  className="block my-auto w-[160px] sm:w-[180px] md:w-[200px] lg:w-[220px] xl:w-[260px] h-auto object-contain transition-all duration-300 -translate-y-3 md:-translate-y-4 lg:-translate-y-6"
                 />
               </button>
             </div>
@@ -653,13 +653,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     >
                       {/* Background Effects */}
                       <div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-multiply"></div>
-                      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.12)_0%,transparent_60%)] pointer-events-none"></div>
-                      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_bottom_left,rgba(5,150,105,0.08)_0%,transparent_60%)] pointer-events-none"></div>
+                      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_top_right,rgba(29, 78, 216,0.12)_0%,transparent_60%)] pointer-events-none"></div>
+                      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_bottom_left,rgba(29, 78, 216,0.08)_0%,transparent_60%)] pointer-events-none"></div>
 
                       <div className="relative z-10 grid grid-cols-2 gap-3.5">
-                        <div className="col-span-2 border-b border-[#D1FAE5] pb-3 mb-1 flex">
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#ECFDF5] border border-[#A7F3D0] text-[#14532D] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(5,150,105,.08)]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#059669]"></span>
+                        <div className="col-span-2 border-b border-[#E2E8F0] pb-3 mb-1 flex">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[10px] bg-[#EFF6FF] border border-[#CBD5E1] text-[#0A192F] text-[10px] font-mono font-medium tracking-wider uppercase shadow-[0_4px_12px_rgba(29, 78, 216,.08)]">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]"></span>
                             Therapeutic Segments
                           </span>
                         </div>
@@ -686,13 +686,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                 setActiveMegaMenu(null);
                                 navigate("products", { category: cat.id });
                               }}
-                              className="flex items-start gap-3.5 p-3.5 rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F0FDF4,#ECFDF5)] hover:border-emerald-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_12px_30px_rgba(5,150,105,.12)] text-left transition-all duration-250 ease-out cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                              className="flex items-start gap-3.5 p-3.5 rounded-[14px] bg-transparent border border-transparent hover:bg-[linear-gradient(90deg,#F8FAFC,#EFF6FF)] hover:border-blue-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_12px_30px_rgba(29, 78, 216,.12)] text-left transition-all duration-250 ease-out cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]"
                             >
-                              <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#ECFDF5,#D1FAE5)] border border-[#A7F3D0] text-[#059669] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#059669,#34D399)] group-hover:text-white group-hover:shadow-[0_0_15px_rgba(5,150,105,0.4)] transition-all duration-250">
+                              <div className="w-[46px] h-[46px] rounded-[14px] bg-[linear-gradient(135deg,#EFF6FF,#E2E8F0)] border border-[#CBD5E1] text-[#1D4ED8] flex items-center justify-center shrink-0 group-hover:bg-[linear-gradient(135deg,#1D4ED8,#38BDF8)] group-hover:text-white group-hover:shadow-[0_0_15px_rgba(29, 78, 216,0.4)] transition-all duration-250">
                                 <IconComponent className="w-5 h-5 group-hover:scale-[1.08] group-hover:rotate-[4deg] transition-transform duration-250" />
                               </div>
                               <div>
-                                <div className="text-sm font-bold text-[#0F172A] group-hover:text-[#059669] transition-colors duration-250">
+                                <div className="text-sm font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors duration-250">
                                   {cat.name}
                                 </div>
                                 <div className="text-[11px] text-[#64748B] line-clamp-1 mt-0.5 font-sans">
@@ -706,9 +706,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.25, delay: THERAPEUTIC_CATEGORIES.length * 0.025, ease: "easeOut" }}
-                          className="col-span-2 mt-2 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#D1FAE5] hover:border-emerald-300 hover:shadow-[0_12px_35px_rgba(5,150,105,.12)] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(20,83,45,.06)] transition-all duration-300 group/search"
+                          className="col-span-2 mt-2 bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] border border-[#E2E8F0] hover:border-blue-300 hover:shadow-[0_12px_35px_rgba(29, 78, 216,.12)] p-3 rounded-[18px] flex items-center justify-between shadow-[0_10px_30px_rgba(10, 25, 47,.06)] transition-all duration-300 group/search"
                         >
-                          <div className="text-[11px] text-[#64748B] group-hover/search:text-emerald-700 font-sans ml-2 transition-colors duration-300">
+                          <div className="text-[11px] text-[#64748B] group-hover/search:text-blue-700 font-sans ml-2 transition-colors duration-300">
                             Looking for something specific? Search our entire portfolio.
                           </div>
                           <button
@@ -718,7 +718,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                               setActiveMegaMenu(null);
                               setIsSearchOpen(true);
                             }}
-                            className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#14532D,#059669)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#059669,#34D399)] group-hover/search:shadow-[0_0_16px_rgba(5,150,105,.4)] group-hover/search:scale-[1.03] hover:scale-[1.05] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                            className="px-4 py-2 text-[11px] font-mono font-semibold text-white bg-[linear-gradient(135deg,#0A192F,#1D4ED8)] rounded-[12px] flex items-center gap-1.5 hover:bg-[linear-gradient(135deg,#1D4ED8,#38BDF8)] group-hover/search:shadow-[0_0_16px_rgba(29, 78, 216,.4)] group-hover/search:scale-[1.03] hover:scale-[1.05] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]"
                           >
                             SEARCH NOW <ArrowRight className="w-3.5 h-3.5 text-white" />
                           </button>
@@ -842,9 +842,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             setActiveMegaMenu(null);
                             navigate(item.route);
                           }}
-                          className="flex items-center gap-3 p-2.5 rounded-[12px] text-left text-sm font-semibold text-[#0F172A] hover:text-[#059669] hover:bg-emerald-50/50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] group"
+                          className="flex items-center gap-3 p-2.5 rounded-[12px] text-left text-sm font-semibold text-[#0F172A] hover:text-[#1D4ED8] hover:bg-blue-50/50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] group"
                         >
-                          <div className="w-8 h-8 rounded-[10px] bg-slate-100 group-hover:bg-emerald-100 flex items-center justify-center text-slate-500 group-hover:text-emerald-600 transition-colors duration-200">
+                          <div className="w-8 h-8 rounded-[10px] bg-slate-100 group-hover:bg-blue-100 flex items-center justify-center text-slate-500 group-hover:text-blue-600 transition-colors duration-200">
                             <item.icon className="w-4 h-4" />
                           </div>
                           {item.name}
@@ -859,7 +859,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             <div className="flex-1 flex items-center justify-end gap-1.5 sm:gap-3 xl:gap-4 h-full">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="h-[36px] lg:h-[40px] px-2 lg:px-3 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] flex items-center justify-center gap-1.5 text-xs font-mono font-medium shrink-0 my-auto"
+                className="h-[36px] lg:h-[40px] px-2 lg:px-3 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] flex items-center justify-center gap-1.5 text-xs font-mono font-medium shrink-0 my-auto"
                 aria-label="Search products"
                 aria-haspopup="dialog"
                 title="Search Products (Ctrl+K)"
@@ -881,7 +881,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="utility-button-primary hidden md:inline-flex h-[36px] lg:h-[40px] px-4 xl:px-5 my-auto items-center justify-center gap-1.5 shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] focus-visible:ring-offset-2 rounded-xl"
+                className="utility-button-primary hidden md:inline-flex h-[36px] lg:h-[40px] px-4 xl:px-5 my-auto items-center justify-center gap-1.5 shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-2 rounded-xl"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 INQUIRE NOW
@@ -891,7 +891,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               <button
                 id="mobile-burger-button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#ECFDF5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] hover:text-[#059669] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] active:scale-[0.95] shrink-0"
+                className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#CBD5E1] text-[#0F172A] hover:text-[#1D4ED8] transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] active:scale-[0.95] shrink-0"
                 aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-navigation-drawer"
@@ -932,13 +932,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             >
               {/* Top Header */}
               <div className="flex items-center justify-between p-6 border-b border-[#E2E8F0] bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] shrink-0 min-h-[76px]">
-                <div className="flex flex-col">
-                  <Image src="/logo.svg" alt="Medinet Logo" width={180} height={44} className="h-8 w-auto object-contain object-left mb-1" />
-                  <span className="text-[#64748B] text-xs font-medium font-sans">Medinet Pharmaceuticals</span>
+                <div className="flex flex-col -translate-y-3">
+                  <Image src="/header%20logo.png" alt="Medinet Logo" width={180} height={44} className="w-[140px] sm:w-[160px] h-auto object-contain object-left mb-1" />
+                  <span className="text-[#64748B] text-xs font-medium font-sans pl-1">Medinet Pharmaceuticals</span>
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-3 hover:bg-[#F1F5F9] active:bg-[#E2E8F0] rounded-2xl text-[#0F172A] hover:text-[#059669] hover:rotate-90 transition-all duration-300 min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                  className="p-3 hover:bg-[#F1F5F9] active:bg-[#E2E8F0] rounded-2xl text-[#0F172A] hover:text-[#1D4ED8] hover:rotate-90 transition-all duration-300 min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]"
                   aria-label="Close menu"
                 >
                   <X className="w-7 h-7" />
@@ -971,14 +971,14 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setIsMobileMenuOpen(false);
                           if (item.route) navigate(item.route);
                         }}
-                        className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] shrink-0 font-sans ${isActive
-                            ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
-                            : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
+                        className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] shrink-0 font-sans ${isActive
+                          ? "bg-[linear-gradient(135deg,#1D4ED8,#1E40AF)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
+                          : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#E2E8F0] border border-transparent hover:border-[#CBD5E1] text-[#0F172A] font-semibold"
                           }`}
                       >
                         <div className="flex items-center gap-4">
                           <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
-                            {item.icon && <item.icon className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />}
+                            {item.icon && <item.icon className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#1D4ED8]"}`} />}
                           </motion.div>
                           <span className="text-[16px]">
                             {item.label}
@@ -993,15 +993,15 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <motion.div key="products-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "products" ? null : "products")}
-                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${isActive
-                              ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
-                              : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] ${isActive
+                            ? "bg-[linear-gradient(135deg,#1D4ED8,#1E40AF)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
+                            : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#E2E8F0] border border-transparent hover:border-[#CBD5E1] text-[#0F172A] font-semibold"
                             }`}
                           aria-expanded={activeMobileAccordion === "products"}
                         >
                           <div className="flex items-center gap-4">
                             <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
-                              <Package className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />
+                              <Package className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#1D4ED8]"}`} />
                             </motion.div>
                             <span className="text-[16px]">Products</span>
                           </div>
@@ -1026,13 +1026,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                     setIsMobileMenuOpen(false);
                                     navigate("products");
                                   }}
-                                  className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${currentRoute === "products"
-                                      ? "text-[#059669] font-bold bg-[#ECFDF5] border-l-4 border-[#059669]"
-                                      : "text-[#64748B] hover:text-[#059669] hover:bg-slate-50 font-medium"
+                                  className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] ${currentRoute === "products"
+                                    ? "text-[#1D4ED8] font-bold bg-[#EFF6FF] border-l-4 border-[#1D4ED8]"
+                                    : "text-[#64748B] hover:text-[#1D4ED8] hover:bg-slate-50 font-medium"
                                     }`}
                                 >
                                   <span>All Products</span>
-                                  {currentRoute === "products" && <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />}
+                                  {currentRoute === "products" && <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]" />}
                                 </button>
                                 {PRODUCTS.map((product) => (
                                   <button
@@ -1041,7 +1041,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                       setIsMobileMenuOpen(false);
                                       navigate("products", { id: product.id });
                                     }}
-                                    className="w-full text-left min-h-[48px] py-3 px-4 text-[#64748B] hover:text-[#059669] hover:bg-slate-50 text-[15px] font-medium transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                                    className="w-full text-left min-h-[48px] py-3 px-4 text-[#64748B] hover:text-[#1D4ED8] hover:bg-slate-50 text-[15px] font-medium transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]"
                                   >
                                     <span>{product.name}</span>
                                   </button>
@@ -1058,15 +1058,15 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <motion.div key="legal-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
-                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${isActive
-                              ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
-                              : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] ${isActive
+                            ? "bg-[linear-gradient(135deg,#1D4ED8,#1E40AF)] shadow-lg shadow-blue-500/25 text-white font-bold scale-[1.01]"
+                            : "bg-transparent hover:bg-[#EFF6FF] active:bg-[#E2E8F0] border border-transparent hover:border-[#CBD5E1] text-[#0F172A] font-semibold"
                             }`}
                           aria-expanded={activeMobileAccordion === "legal"}
                         >
                           <div className="flex items-center gap-4">
                             <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
-                              <ShieldCheck className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />
+                              <ShieldCheck className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#1D4ED8]"}`} />
                             </motion.div>
                             <span className="text-[16px]">Legal</span>
                           </div>
@@ -1099,13 +1099,13 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                       setIsMobileMenuOpen(false);
                                       navigate(legal.route);
                                     }}
-                                    className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${currentRoute === legal.route
-                                        ? "text-[#059669] font-bold bg-[#ECFDF5] border-l-4 border-[#059669]"
-                                        : "text-[#64748B] hover:text-[#059669] hover:bg-slate-50 font-medium"
+                                    className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] ${currentRoute === legal.route
+                                      ? "text-[#1D4ED8] font-bold bg-[#EFF6FF] border-l-4 border-[#1D4ED8]"
+                                      : "text-[#64748B] hover:text-[#1D4ED8] hover:bg-slate-50 font-medium"
                                       }`}
                                   >
                                     <span>{legal.name}</span>
-                                    {currentRoute === legal.route && <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />}
+                                    {currentRoute === legal.route && <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]" />}
                                   </button>
                                 ))}
                               </div>
@@ -1125,7 +1125,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsMobileMenuOpen(false);
                     setIsEnquiryOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-3 min-h-[58px] bg-[#14532D] hover:bg-[#059669] active:scale-[0.98] text-white rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#059669] group shrink-0"
+                  className="w-full flex items-center justify-center gap-3 min-h-[58px] bg-[#0A192F] hover:bg-[#1D4ED8] active:scale-[0.98] text-white rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D4ED8] group shrink-0"
                 >
                   <PhoneCall className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                   INQUIRE NOW
@@ -1135,9 +1135,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsMobileMenuOpen(false);
                     setIsSearchOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-3 min-h-[54px] bg-white hover:bg-emerald-50/50 active:bg-emerald-100/50 border border-[#E2E8F0] hover:border-[#A7F3D0] text-[#0F172A] rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] group shrink-0"
+                  className="w-full flex items-center justify-center gap-3 min-h-[54px] bg-white hover:bg-blue-50/50 active:bg-blue-100/50 border border-[#E2E8F0] hover:border-[#CBD5E1] text-[#0F172A] rounded-2xl font-mono text-sm tracking-wider font-semibold transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] group shrink-0"
                 >
-                  <Search className="w-5 h-5 text-[#64748B] group-hover:text-[#059669] transition-colors" />
+                  <Search className="w-5 h-5 text-[#64748B] group-hover:text-[#1D4ED8] transition-colors" />
                   SEARCH PRODUCTS
                 </button>
               </div>
@@ -1162,22 +1162,22 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-              className="w-full max-w-2xl bg-white/95 backdrop-blur-2xl rounded-[24px] border border-white/40 shadow-[0_30px_60px_-15px_rgba(5,150,105,0.2)] overflow-hidden text-left flex flex-col mt-6 sm:mt-12 max-h-[95vh] relative"
+              className="w-full max-w-2xl bg-white/95 backdrop-blur-2xl rounded-[24px] border border-white/40 shadow-[0_30px_60px_-15px_rgba(29, 78, 216,0.2)] overflow-hidden text-left flex flex-col mt-6 sm:mt-12 max-h-[95vh] relative"
             >
               {/* Background Decorative Graphics */}
               <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden rounded-[24px]">
                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.05),transparent_60%)]"></div>
-                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_bottom_left,rgba(5,150,105,0.05),transparent_60%)]"></div>
+                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle_at_bottom_left,rgba(29, 78, 216,0.05),transparent_60%)]"></div>
                 {/* Medical molecule / floating circles pattern */}
-                <div className="absolute -top-10 -right-10 w-40 h-40 border border-emerald-500/10 rounded-full blur-[1px]"></div>
-                <div className="absolute top-20 -right-5 w-20 h-20 border border-emerald-500/10 rounded-full blur-[1px]"></div>
+                <div className="absolute -top-10 -right-10 w-40 h-40 border border-blue-500/10 rounded-full blur-[1px]"></div>
+                <div className="absolute top-20 -right-5 w-20 h-20 border border-blue-500/10 rounded-full blur-[1px]"></div>
               </div>
 
               {/* Header */}
               <div className="relative z-10 flex items-start justify-between p-5 sm:p-6 border-b border-slate-200/50 bg-white/50">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-mono font-bold tracking-widest uppercase rounded-full mb-3 shadow-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-mono font-bold tracking-widest uppercase rounded-full mb-3 shadow-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
                     Corporate Support
                   </span>
                   <h2 id="enquiry-modal-title" className="text-xl sm:text-2xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -1189,7 +1189,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 </div>
                 <button
                   onClick={() => setIsEnquiryOpen(false)}
-                  className="p-2 bg-slate-50 hover:bg-slate-100 text-slate-400 hover:text-slate-600 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 shadow-sm border border-slate-200/50"
+                  className="p-2 bg-slate-50 hover:bg-slate-100 text-slate-400 hover:text-slate-600 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 shadow-sm border border-slate-200/50"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -1203,9 +1203,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                    className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-full flex items-center justify-center mx-auto border border-emerald-200 shadow-[0_0_30px_rgba(16,185,129,0.2)]"
+                    className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center mx-auto border border-blue-200 shadow-[0_0_30px_rgba(16,185,129,0.2)]"
                   >
-                    <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+                    <CheckCircle2 className="w-8 h-8 text-blue-600" />
                   </motion.div>
                   <h3 className="text-xl font-display font-extrabold text-slate-900">Enquiry Submitted!</h3>
                   <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
@@ -1218,7 +1218,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         setFormSuccess(false);
                         setIsEnquiryOpen(false);
                       }}
-                      className="px-8 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-mono text-xs font-bold tracking-wider rounded-xl shadow-[0_8px_20px_rgba(16,185,129,0.25)] hover:shadow-[0_12px_25px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 transition-all duration-300"
+                      className="px-8 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-mono text-xs font-bold tracking-wider rounded-xl shadow-[0_8px_20px_rgba(16,185,129,0.25)] hover:shadow-[0_12px_25px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 transition-all duration-300"
                     >
                       CLOSE WINDOW
                     </button>
@@ -1239,15 +1239,15 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         onChange={(e) => handleEnquiryFieldChange("name", e.target.value)}
                         onBlur={(e) => handleEnquiryFieldBlur("name", e.target.value)}
                         placeholder=" "
-                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
+                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                         aria-invalid={!!formErrors.name}
                         aria-describedby={formErrors.name ? "enq-name-err" : undefined}
                       />
-                      <label htmlFor="enquiry-name" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                      <label htmlFor="enquiry-name" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-blue-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
                         Full Name <span className="text-red-500">*</span>
                       </label>
                       <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
-                        <User className={`w-4 h-4 transition-all duration-300 ${formErrors.name ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
+                        <User className={`w-4 h-4 transition-all duration-300 ${formErrors.name ? "text-red-400" : "text-slate-400 group-focus-within/field:text-blue-500 group-focus-within/field:scale-110"}`} />
                       </div>
                       {formErrors.name && (
                         <span id="enq-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
@@ -1269,15 +1269,15 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         onChange={(e) => handleEnquiryFieldChange("email", e.target.value)}
                         onBlur={(e) => handleEnquiryFieldBlur("email", e.target.value)}
                         placeholder=" "
-                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
+                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                         aria-invalid={!!formErrors.email}
                         aria-describedby={formErrors.email ? "enq-email-err" : undefined}
                       />
-                      <label htmlFor="enquiry-email" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                      <label htmlFor="enquiry-email" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-blue-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
                         Email Address <span className="text-red-500">*</span>
                       </label>
                       <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
-                        <Mail className={`w-4 h-4 transition-all duration-300 ${formErrors.email ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
+                        <Mail className={`w-4 h-4 transition-all duration-300 ${formErrors.email ? "text-red-400" : "text-slate-400 group-focus-within/field:text-blue-500 group-focus-within/field:scale-110"}`} />
                       </div>
                       {formErrors.email && (
                         <span id="enq-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
@@ -1301,15 +1301,15 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         onChange={(e) => handleEnquiryFieldChange("phone", e.target.value)}
                         onBlur={(e) => handleEnquiryFieldBlur("phone", e.target.value)}
                         placeholder=" "
-                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
+                        className={`peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed ${formErrors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                         aria-invalid={!!formErrors.phone}
                         aria-describedby={formErrors.phone ? "enq-phone-err" : undefined}
                       />
-                      <label htmlFor="enquiry-phone" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                      <label htmlFor="enquiry-phone" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-blue-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
                         Phone/Whatsapp <span className="text-red-500">*</span>
                       </label>
                       <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
-                        <Phone className={`w-4 h-4 transition-all duration-300 ${formErrors.phone ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
+                        <Phone className={`w-4 h-4 transition-all duration-300 ${formErrors.phone ? "text-red-400" : "text-slate-400 group-focus-within/field:text-blue-500 group-focus-within/field:scale-110"}`} />
                       </div>
                       {formErrors.phone && (
                         <span id="enq-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
@@ -1328,20 +1328,20 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         value={formData.company}
                         onChange={(e) => handleEnquiryFieldChange("company", e.target.value)}
                         placeholder=" "
-                        className="peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border border-slate-200 rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="peer w-full h-[46px] pl-11 pr-3 pt-3.5 pb-1 bg-slate-50/50 hover:bg-slate-50/80 border border-slate-200 rounded-[16px] text-sm text-slate-800 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed"
                       />
-                      <label htmlFor="enquiry-company" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                      <label htmlFor="enquiry-company" className="absolute left-11 top-1/2 -translate-y-1/2 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-2.5 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-blue-600 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:-translate-y-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
                         Company (Optional)
                       </label>
                       <div className="absolute top-1/2 -translate-y-1/2 left-3.5 pointer-events-none">
-                        <Building2 className="w-4 h-4 text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110 transition-all duration-300" />
+                        <Building2 className="w-4 h-4 text-slate-400 group-focus-within/field:text-blue-500 group-focus-within/field:scale-110 transition-all duration-300" />
                       </div>
                     </div>
                   </div>
 
                   <div className="relative group/field">
                     <div className="absolute top-3.5 left-3.5 pointer-events-none">
-                      <FileText className={`w-4 h-4 transition-all duration-300 ${formErrors.message ? "text-red-400" : "text-slate-400 group-focus-within/field:text-emerald-500 group-focus-within/field:scale-110"}`} />
+                      <FileText className={`w-4 h-4 transition-all duration-300 ${formErrors.message ? "text-red-400" : "text-slate-400 group-focus-within/field:text-blue-500 group-focus-within/field:scale-110"}`} />
                     </div>
                     <textarea
                       id="enquiry-message"
@@ -1354,11 +1354,11 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       onChange={(e) => handleEnquiryFieldChange("message", e.target.value)}
                       onBlur={(e) => handleEnquiryFieldBlur("message", e.target.value)}
                       placeholder=" "
-                      className={`peer w-full min-h-[96px] pl-11 pr-3 pt-6 pb-2 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 placeholder:text-transparent focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed resize-y ${formErrors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
+                      className={`peer w-full min-h-[96px] pl-11 pr-3 pt-6 pb-2 bg-slate-50/50 hover:bg-slate-50/80 border rounded-[16px] text-sm text-slate-800 placeholder:text-transparent focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/15 focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] disabled:opacity-50 disabled:cursor-not-allowed resize-y ${formErrors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/15 bg-red-50/30" : "border-slate-200"}`}
                       aria-invalid={!!formErrors.message}
                       aria-describedby={formErrors.message ? "enq-msg-err" : undefined}
                     ></textarea>
-                    <label htmlFor="enquiry-message" className="absolute left-11 top-3 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
+                    <label htmlFor="enquiry-message" className="absolute left-11 top-3 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-blue-600 peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
                       Enquiry Details <span className="text-red-500">*</span>
                     </label>
 
@@ -1380,14 +1380,14 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       type="button"
                       disabled={formSubmitting}
                       onClick={() => setIsEnquiryOpen(false)}
-                      className="w-full sm:w-auto px-5 py-2.5 bg-white/50 backdrop-blur-md border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 font-mono text-xs font-bold tracking-wider rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                      className="w-full sm:w-auto px-5 py-2.5 bg-white/50 backdrop-blur-md border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 font-mono text-xs font-bold tracking-wider rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                     >
                       CANCEL
                     </button>
                     <button
                       type="submit"
                       disabled={formSubmitting}
-                      className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-mono text-xs font-bold tracking-wider rounded-xl shadow-[0_8px_20px_rgba(16,185,129,0.25)] hover:shadow-[0_12px_25px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500 relative overflow-hidden group/submit"
+                      className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-mono text-xs font-bold tracking-wider rounded-xl shadow-[0_8px_20px_rgba(16,185,129,0.25)] hover:shadow-[0_12px_25px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative overflow-hidden group/submit"
                     >
                       <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover/submit:translate-x-full transition-transform duration-700 ease-in-out"></div>
                       {formSubmitting ? (

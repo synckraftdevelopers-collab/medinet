@@ -89,8 +89,8 @@ function Footer({ navigate, showToast }: FooterProps) {
             <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 max-w-xl mx-auto lg:mx-0 flex flex-col items-center lg:items-start text-center lg:text-left">
               {/* Premium Floating Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6 relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/20 to-[#34D399]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="w-1.5 h-1.5 rounded-full bg-[#34D399] animate-pulse relative z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/20 to-[#38BDF8]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse relative z-10"></div>
                 <span className="text-[10px] font-mono font-bold tracking-widest text-gray-200 uppercase relative z-10">Global Updates</span>
               </div>
               
@@ -99,11 +99,11 @@ function Footer({ navigate, showToast }: FooterProps) {
                 <motion.span 
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
                   transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                  className="bg-gradient-to-r from-[#38BDF8] via-[#34D399] to-[#38BDF8] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+                  className="bg-gradient-to-r from-[#38BDF8] via-[#38BDF8] to-[#38BDF8] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
                 >
                   Advancements
                 </motion.span>
-                <div className="absolute -bottom-3 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-16 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-70"></div>
+                <div className="absolute -bottom-3 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-16 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] opacity-70"></div>
               </h3>
               
               <p className="text-[14px] sm:text-[15px] text-gray-300/90 leading-relaxed max-w-md mx-auto lg:mx-0 mt-5">
@@ -137,7 +137,7 @@ function Footer({ navigate, showToast }: FooterProps) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="h-12 px-6 bg-white text-primary hover:bg-secondary hover:text-white font-mono text-sm font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-lg hover:shadow-[0_0_20px_rgba(5,150,105,0.4)] hover:-translate-y-0.5 w-full sm:w-auto"
+                    className="h-12 px-6 bg-white text-primary hover:bg-secondary hover:text-white font-mono text-sm font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 disabled:opacity-70 disabled:cursor-not-allowed shrink-0 group/sub shadow-lg hover:shadow-[0_0_20px_rgba(29, 78, 216,0.4)] hover:-translate-y-0.5 w-full sm:w-auto"
                   >
                     {loading ? (
                       <>
@@ -183,23 +183,23 @@ function Footer({ navigate, showToast }: FooterProps) {
             </p>
             
             <div className="flex items-center gap-4">
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="LinkedIn">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(29, 78, 216,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="LinkedIn">
                 <Linkedin className="w-4 h-4 brightness-125" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Twitter">
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(29, 78, 216,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Twitter">
                 <Twitter className="w-4 h-4 brightness-125" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(5,150,105,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Facebook">
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(29, 78, 216,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="Facebook">
                 <Facebook className="w-4 h-4 brightness-125" />
               </a>
             </div>
 
             <div className="group flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.3)] w-full transition-all duration-500 hover:bg-white/10 hover:border-[#38BDF8]/40 hover:-translate-y-1 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/10 to-[#34D399]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/10 to-[#38BDF8]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-              <div className="relative z-10 w-12 h-12 rounded-xl bg-gradient-to-br from-[#38BDF8] to-[#34D399] p-[1.5px] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_0_20px_rgba(52,211,153,0.5)] transition-all duration-500">
+              <div className="relative z-10 w-12 h-12 rounded-xl bg-gradient-to-br from-[#38BDF8] to-[#38BDF8] p-[1.5px] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_0_20px_rgba(52,211,153,0.5)] transition-all duration-500">
                 <div className="w-full h-full bg-primary/80 backdrop-blur-sm rounded-[10px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-500">
-                  <Award className="w-6 h-6 text-[#34D399] group-hover:text-white group-hover:scale-110 transition-all duration-500" />
+                  <Award className="w-6 h-6 text-[#38BDF8] group-hover:text-white group-hover:scale-110 transition-all duration-500" />
                 </div>
               </div>
               
@@ -213,8 +213,8 @@ function Footer({ navigate, showToast }: FooterProps) {
           {/* Column 2: Corporate Links */}
           <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-2 text-center md:text-left">
             <h4 className="text-[13px] font-extrabold uppercase tracking-[0.2em] mb-8 relative inline-block">
-              <span className="bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Corporate</span>
-              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-60"></span>
+              <span className="bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Corporate</span>
+              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] opacity-60"></span>
             </h4>
             <ul className="flex flex-col items-center md:items-start gap-4">
               {[
@@ -231,10 +231,10 @@ function Footer({ navigate, showToast }: FooterProps) {
                 <li key={idx}>
                   <button onClick={() => navigate(link.route)} className="text-[13.5px] text-gray-300 group transition-all duration-300 relative pb-1 flex items-center gap-2.5 focus:outline-none w-fit text-left">
                     <span className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-[#38BDF8] group-hover:shadow-[0_0_8px_rgba(56,189,248,0.8)] transition-all duration-300 shrink-0"></span>
-                    <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#34D399] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                    <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#38BDF8] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
                       {link.name}
                     </span>
-                    <span className="absolute bottom-0 left-4 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#34D399] transition-all duration-300 group-hover:w-[calc(100%-16px)]"></span>
+                    <span className="absolute bottom-0 left-4 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] transition-all duration-300 group-hover:w-[calc(100%-16px)]"></span>
                   </button>
                 </li>
               ))}
@@ -244,18 +244,18 @@ function Footer({ navigate, showToast }: FooterProps) {
           {/* Column 3: Therapeutics */}
           <motion.div custom={3} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left">
             <h4 className="text-[13px] font-extrabold uppercase tracking-[0.2em] mb-8 relative inline-block">
-              <span className="bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Therapeutics</span>
-              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-60"></span>
+              <span className="bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Therapeutics</span>
+              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] opacity-60"></span>
             </h4>
             <ul className="flex flex-col items-center md:items-start gap-4">
               {THERAPEUTIC_CATEGORIES.slice(0, 5).map((cat) => (
                 <li key={cat.id}>
                   <button onClick={() => navigate("products", { category: cat.id })} className="text-[13.5px] text-gray-300 group transition-all duration-300 relative pb-1 flex items-center gap-2.5 focus:outline-none w-fit text-left">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-[#34D399] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300 shrink-0"></span>
-                    <span className="group-hover:bg-gradient-to-r group-hover:from-[#34D399] group-hover:to-[#38BDF8] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-[#38BDF8] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300 shrink-0"></span>
+                    <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#38BDF8] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
                       {cat.name} Division
                     </span>
-                    <span className="absolute bottom-0 left-4 w-0 h-[1px] bg-gradient-to-r from-[#34D399] to-[#38BDF8] transition-all duration-300 group-hover:w-[calc(100%-16px)]"></span>
+                    <span className="absolute bottom-0 left-4 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] transition-all duration-300 group-hover:w-[calc(100%-16px)]"></span>
                   </button>
                 </li>
               ))}
@@ -264,11 +264,11 @@ function Footer({ navigate, showToast }: FooterProps) {
                   onClick={() => navigate("products")} 
                   className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#38BDF8]/30 transition-all duration-300 focus:outline-none"
                 >
-                  <span className="text-sm font-bold bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.4)] transition-all duration-300">
+                  <span className="text-sm font-bold bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] text-transparent bg-clip-text group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.4)] transition-all duration-300">
                     View All Segments
                   </span>
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#38BDF8]/20 to-[#34D399]/20 flex items-center justify-center group-hover:from-[#38BDF8] group-hover:to-[#34D399] transition-colors duration-300">
-                    <ArrowUpRight className="w-3 h-3 text-[#34D399] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#38BDF8]/20 to-[#38BDF8]/20 flex items-center justify-center group-hover:from-[#38BDF8] group-hover:to-[#38BDF8] transition-colors duration-300">
+                    <ArrowUpRight className="w-3 h-3 text-[#38BDF8] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                   </div>
                 </button>
               </li>
@@ -278,8 +278,8 @@ function Footer({ navigate, showToast }: FooterProps) {
           {/* Column 4: Contact Details */}
           <motion.div custom={4} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-3 text-center md:text-left flex flex-col items-center md:items-start">
             <h4 className="text-[13px] font-extrabold uppercase tracking-[0.2em] mb-8 relative inline-block">
-              <span className="bg-gradient-to-r from-[#38BDF8] to-[#34D399] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Global Support</span>
-              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#34D399] opacity-60"></span>
+              <span className="bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(52,211,153,0.2)]">Global Support</span>
+              <span className="absolute -bottom-2.5 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-6 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] opacity-60"></span>
             </h4>
             <ul className="flex flex-col items-center md:items-start gap-6">
               <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4">
@@ -341,11 +341,11 @@ function Footer({ navigate, showToast }: FooterProps) {
                 { name: "Copyright Notice", route: "copyright-notice" }
               ].map((legal, i) => (
                 <button key={i} onClick={() => navigate(legal.route)} className="text-[13px] font-medium text-gray-400 group transition-all duration-300 relative pb-1 flex items-center gap-2 focus:outline-none">
-                  <span className="w-1 h-1 rounded-full bg-gray-600 group-hover:bg-[#34D399] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300"></span>
-                  <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#34D399] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                  <span className="w-1 h-1 rounded-full bg-gray-600 group-hover:bg-[#38BDF8] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300"></span>
+                  <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#38BDF8] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
                     {legal.name}
                   </span>
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#34D399] transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] transition-all duration-300 group-hover:w-full"></span>
                 </button>
               ))}
             </div>

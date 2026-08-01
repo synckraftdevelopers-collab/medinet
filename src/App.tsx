@@ -83,7 +83,7 @@ export default function App() {
       <SEOManager currentRoute={currentRoute} params={params} />
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-5 focus:py-2.5 focus:bg-white focus:text-[#0B1F4D] focus:shadow-2xl focus:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2563EB] font-mono text-xs tracking-wider font-bold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-5 focus:py-2.5 focus:bg-white focus:text-[#0A192F] focus:shadow-2xl focus:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2563EB] font-mono text-xs tracking-wider font-bold"
       >
         SKIP TO MAIN CONTENT
       </a>

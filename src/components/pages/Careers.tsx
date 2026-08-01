@@ -257,7 +257,7 @@ export default function Careers({ showToast }: CareersProps) {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#16A34A] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#16A34A]"></span>
                 </span>
-                <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0B1F4D] uppercase">Join Our Team</span>
+                <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0A192F] uppercase">Join Our Team</span>
               </div>
             </motion.div>
           </div>
@@ -265,17 +265,17 @@ export default function Careers({ showToast }: CareersProps) {
           <div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] relative inline-block pb-4 text-[#0B1F4D]"
+              className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] relative inline-block pb-4 text-[#0A192F]"
             >
               Careers at <motion.span
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_15px_rgba(37,99,235,0.2)]"
+                className="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_15px_rgba(37,99,235,0.2)]"
               >Medinet</motion.span>
 
               {/* Animated glowing underline */}
               <motion.span
                 initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }}
-                className="absolute bottom-0 left-0 lg:w-[65%] w-full h-[3px] bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-transparent origin-left rounded-full shadow-[0_0_15px_rgba(13,148,136,0.5)]"
+                className="absolute bottom-0 left-0 lg:w-[65%] w-full h-[3px] bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-transparent origin-left rounded-full shadow-[0_0_15px_rgba(13,148,136,0.5)]"
               />
             </motion.h1>
 
@@ -317,7 +317,7 @@ export default function Careers({ showToast }: CareersProps) {
                   <div className="bg-[#EEF6FF] rounded-full p-1.5 group-hover:bg-[#16A34A]/10 transition-colors duration-500">
                     <badge.icon className="w-[18px] h-[18px] text-[#2563EB] group-hover:text-[#16A34A] group-hover:rotate-[10deg] transition-all duration-500" strokeWidth={2.5} />
                   </div>
-                  <span className="text-[13px] sm:text-[14px] font-semibold text-[#0B1F4D] relative z-10">{badge.text}</span>
+                  <span className="text-[13px] sm:text-[14px] font-semibold text-[#0A192F] relative z-10">{badge.text}</span>
                 </div>
               </motion.div>
             ))}
@@ -340,11 +340,11 @@ export default function Careers({ showToast }: CareersProps) {
               </span>
             </div>
             
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0B1F4D] mb-6 relative">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0A192F] mb-6 relative">
               Life at <motion.span 
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
                 transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+                className="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
               >
                 Medinet
               </motion.span>
@@ -362,30 +362,30 @@ export default function Careers({ showToast }: CareersProps) {
               return (
                 <motion.div variants={fadeUp} key={idx} className="relative group flex flex-col h-full min-h-[300px]">
                   {/* Blurred Gradient Shadow behind card */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] via-[#0D9488] to-[#16A34A] rounded-2xl opacity-0 group-hover:opacity-30 transition-all duration-[600ms] blur-[15px] group-hover:-translate-y-2 group-hover:scale-[1.02]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#16A34A] rounded-2xl opacity-0 group-hover:opacity-30 transition-all duration-[600ms] blur-[15px] group-hover:-translate-y-2 group-hover:scale-[1.02]"></div>
 
                   {/* Card Wrapper with subtle border */}
                   <div className="relative flex-1 flex flex-col bg-white border border-[#2563EB]/10 rounded-2xl p-6 sm:p-8 text-left overflow-hidden group-hover:border-transparent transition-all duration-[600ms] group-hover:-translate-y-2 group-hover:scale-[1.02] group-hover:shadow-[0_20px_40px_rgba(22,163,74,0.12)] z-10">
 
                     {/* Animated Gradient Background that fades in on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#F5FBFF] via-[#ECFFF8] to-[#F0FDF4] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#F5FBFF] via-[#ECFFF8] to-[#F8FAFC] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                     {/* Top Animated Gradient Line */}
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                     <div className="relative z-10 flex justify-between items-start mb-8">
                       {/* Icon Container with Gradient */}
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB]/10 to-[#16A34A]/10 group-hover:from-[#2563EB] group-hover:via-[#0D9488] group-hover:to-[#16A34A] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_8px_20px_rgba(22,163,74,0.3)] transition-all duration-500">
-                        <BenIcon strokeWidth={2.5} className="w-6 h-6 text-[#0D9488] group-hover:text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 ease-out" />
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB]/10 to-[#16A34A]/10 group-hover:from-[#2563EB] group-hover:via-[#1D4ED8] group-hover:to-[#16A34A] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_8px_20px_rgba(22,163,74,0.3)] transition-all duration-500">
+                        <BenIcon strokeWidth={2.5} className="w-6 h-6 text-[#1D4ED8] group-hover:text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 ease-out" />
                       </div>
 
                       {/* Glass Badge */}
-                      <span className="inline-block bg-white/60 backdrop-blur-md border border-[#0D9488]/20 text-[#0D9488] shadow-sm text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full group-hover:bg-white group-hover:text-[#16A34A] group-hover:border-[#16A34A]/30 transition-all duration-300">
+                      <span className="inline-block bg-white/60 backdrop-blur-md border border-[#1D4ED8]/20 text-[#1D4ED8] shadow-sm text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full group-hover:bg-white group-hover:text-[#16A34A] group-hover:border-[#16A34A]/30 transition-all duration-300">
                         {ben.badge}
                       </span>
                     </div>
 
-                    <h3 className="relative z-10 font-display font-extrabold text-[#0B1F4D] text-xl mb-4 group-hover:text-[#0D9488] transition-colors duration-300">{ben.title}</h3>
+                    <h3 className="relative z-10 font-display font-extrabold text-[#0A192F] text-xl mb-4 group-hover:text-[#1D4ED8] transition-colors duration-300">{ben.title}</h3>
                     <p className="relative z-10 text-[14.5px] text-[#475569] leading-relaxed flex-1">{ben.description}</p>
                   </div>
                 </motion.div>
@@ -410,11 +410,11 @@ export default function Careers({ showToast }: CareersProps) {
               </span>
             </div>
             
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0B1F4D] mb-6 relative">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0A192F] mb-6 relative">
               Current <motion.span 
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
                 transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-[#2563EB] via-[#0D9488] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
+                className="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
               >
                 Openings
               </motion.span>

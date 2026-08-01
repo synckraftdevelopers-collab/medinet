@@ -108,7 +108,7 @@ export default function About() {
       title: "Quality Excellence",
       description: "We are committed to delivering pharmaceutical products that consistently meet the highest standards of safety, efficacy, and reliability.",
       icon: Award,
-      accent: "border-t-emerald-500"
+      accent: "border-t-blue-500"
     },
     {
       title: "Trust",
@@ -202,7 +202,7 @@ export default function About() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="flex flex-col items-center"
             >
-              <h2 className="text-3xl lg:text-4xl font-display font-extrabold text-[#0B1F4D] tracking-tight leading-[1.2]">
+              <h2 className="text-3xl lg:text-4xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2]">
                 Our Core <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Philosophy</span>
               </h2>
               
@@ -240,24 +240,24 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + (idx * 0.15), duration: 0.7, ease: "easeOut" }}
                   key={idx} 
-                  className="relative flex items-start gap-4 bg-white/70 backdrop-blur-xl p-5 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_24px_rgba(13,148,136,0.08)] hover:border-[#0D9488]/30 hover:-translate-y-[6px] transition-all duration-300 group cursor-default overflow-hidden"
+                  className="relative flex items-start gap-4 bg-white/70 backdrop-blur-xl p-5 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_24px_rgba(13,148,136,0.08)] hover:border-[#1D4ED8]/30 hover:-translate-y-[6px] transition-all duration-300 group cursor-default overflow-hidden"
                 >
                   {/* Thin animated gradient strip on the top edge */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                   <div className="relative shrink-0">
                     {/* Icon Container with Gradient & Hover Glow */}
-                    <div className="absolute inset-0 bg-[#0D9488]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
+                    <div className="absolute inset-0 bg-[#1D4ED8]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
                     <motion.div 
                       animate={{ y: [0, -3, 0] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
-                      className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#0D9488]/30 transition-all duration-300 z-10"
+                      className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#1D4ED8]/30 transition-all duration-300 z-10"
                     >
-                      <item.icon className="w-6 h-6 text-[#0B1F4D] group-hover:text-secondary transition-colors duration-300" />
+                      <item.icon className="w-6 h-6 text-[#0A192F] group-hover:text-secondary transition-colors duration-300" />
                     </motion.div>
                   </div>
                   <div className="pt-1">
-                    <h4 className="font-display font-extrabold text-[#0B1F4D] text-sm mb-1 tracking-wide">{item.title}</h4>
+                    <h4 className="font-display font-extrabold text-[#0A192F] text-sm mb-1 tracking-wide">{item.title}</h4>
                     <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
@@ -315,20 +315,20 @@ export default function About() {
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
                 className="absolute bottom-[10%] right-[15%]"
               >
-                <Brain className="w-40 h-40 text-[#0D9488]" />
+                <Brain className="w-40 h-40 text-[#1D4ED8]" />
               </motion.div>
               
               {/* Quotation-style graphic */}
-              <div className="absolute top-[20%] left-1/2 -translate-x-1/2 text-[180px] font-display font-black text-[#0B1F4D] opacity-[0.03] leading-none pointer-events-none rotate-12 select-none">
+              <div className="absolute top-[20%] left-1/2 -translate-x-1/2 text-[180px] font-display font-black text-[#0A192F] opacity-[0.03] leading-none pointer-events-none rotate-12 select-none">
                 &ldquo;
               </div>
               
               {/* Floating glowing blobs */}
               <div className="absolute top-1/4 left-1/3 w-[200px] h-[200px] bg-[#38BDF8]/5 rounded-full blur-[60px]"></div>
-              <div className="absolute bottom-1/4 right-1/3 w-[200px] h-[200px] bg-[#0D9488]/5 rounded-full blur-[60px]"></div>
+              <div className="absolute bottom-1/4 right-1/3 w-[200px] h-[200px] bg-[#1D4ED8]/5 rounded-full blur-[60px]"></div>
 
               {/* Floating medical particles */}
-              <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-[30%] right-[30%] w-2 h-2 rounded-full bg-[#0D9488] blur-[1px]"></motion.div>
+              <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-[30%] right-[30%] w-2 h-2 rounded-full bg-[#1D4ED8] blur-[1px]"></motion.div>
               <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 10, repeat: Infinity, delay: 1 }} className="absolute bottom-[40%] left-[30%] w-3 h-3 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
             </div>
 
@@ -339,20 +339,20 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-slate-200 shadow-[0_4px_15px_rgba(5,150,105,0.06)] mb-8 hover:border-[#0D9488]/30 transition-colors duration-300 cursor-default"
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-slate-200 shadow-[0_4px_15px_rgba(29, 78, 216,0.06)] mb-8 hover:border-[#1D4ED8]/30 transition-colors duration-300 cursor-default"
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0D9488] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0D9488]"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1D4ED8] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1D4ED8]"></span>
                 </span>
-                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-[#0B1F4D] uppercase">
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-[#0A192F] uppercase">
                   CORE VALUES
                 </span>
               </motion.div>
 
               {/* Centerpiece Heading */}
               <motion.h2 
-                className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.1] mb-8 relative"
+                className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0A192F] tracking-tight leading-[1.1] mb-8 relative"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -360,7 +360,7 @@ export default function About() {
               >
                 <span className="drop-shadow-sm">The Pillars of </span>
                 <motion.span 
-                  className="bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block pb-2"
+                  className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block pb-2"
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 8, ease: "linear", repeat: Infinity }}
                   style={{ backgroundSize: "200% auto" }}
@@ -375,7 +375,7 @@ export default function About() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#0D9488] to-transparent mx-auto mb-10 origin-center"
+                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#1D4ED8] to-transparent mx-auto mb-10 origin-center"
               ></motion.div>
 
               {/* Description */}
@@ -387,22 +387,22 @@ export default function About() {
                 className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto"
               >
                 Our organizational culture is guided by clear, unyielding{" "}
-                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
                   <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>Ethics</motion.span>
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1D4ED8] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#1D4ED8]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
                 </span>{" "}
                 that dictate how we conduct business, evaluate{" "}
-                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
                   <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}>Scientific Formulations</motion.span>
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1D4ED8] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#1D4ED8]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
                 </span>
                 , and interact with{" "}
-                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
                   <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}>Healthcare Practitioners</motion.span>
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1D4ED8] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute inset-0 bg-[#1D4ED8]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
                 </span>
                 .
               </motion.div>
@@ -431,12 +431,12 @@ export default function About() {
         {/* Subtle Decorative Background Elements */}
         <div className="absolute inset-0 pointer-events-none flex justify-center items-center overflow-hidden">
           {/* Subtle Grid / DNA Line Hint */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(5,150,105,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(5,150,105,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(29, 78, 216,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(29, 78, 216,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
           {/* Floating Blobs for Depth */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-secondary/5 to-transparent rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
           {/* Low Opacity Floating Dots */}
-          <div className="absolute inset-0 bg-[radial-gradient(#059669_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-[0.03]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(#1D4ED8_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-[0.03]"></div>
         </div>
 
         <motion.div 
@@ -463,7 +463,7 @@ export default function About() {
                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute top-[10%] right-[15%]"
               >
-                <FlaskConical className="w-32 h-32 text-[#0B1F4D]" />
+                <FlaskConical className="w-32 h-32 text-[#0A192F]" />
               </motion.div>
               <motion.div 
                 animate={{ scale: [1, 1.05, 1], opacity: [0.01, 0.03, 0.01] }}
@@ -478,7 +478,7 @@ export default function About() {
               <motion.div animate={{ opacity: [0.4, 0.6, 0.4], scale: [1, 1.1, 1] }} transition={{ duration: 10, repeat: Infinity, delay: 2 }} className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] bg-[#38BDF8]/5 rounded-full blur-[60px]"></motion.div>
 
               {/* Floating medical particles */}
-              <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-[20%] right-[20%] w-2 h-2 rounded-full bg-[#0D9488] blur-[1px]"></motion.div>
+              <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-[20%] right-[20%] w-2 h-2 rounded-full bg-[#1D4ED8] blur-[1px]"></motion.div>
               <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 10, repeat: Infinity, delay: 1 }} className="absolute bottom-[30%] left-[20%] w-3 h-3 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
             </div>
 
@@ -489,20 +489,20 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-[#0D9488]/20 shadow-[0_4px_15px_rgba(5,150,105,0.06)] mb-8 hover:border-[#0D9488]/40 transition-colors duration-300 cursor-default"
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-[#1D4ED8]/20 shadow-[0_4px_15px_rgba(29, 78, 216,0.06)] mb-8 hover:border-[#1D4ED8]/40 transition-colors duration-300 cursor-default"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
                 </span>
-                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-[#0B1F4D] uppercase">
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-[#0A192F] uppercase">
                   EXECUTIVE LEADERSHIP
                 </span>
               </motion.div>
 
               {/* Centerpiece Heading */}
               <motion.h2 
-                className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.15] mb-8 relative"
+                className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0A192F] tracking-tight leading-[1.15] mb-8 relative"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -512,7 +512,7 @@ export default function About() {
                 }}
               >
                 {/* Glowing text shadow */}
-                <div className="absolute inset-0 bg-[#0B1F4D]/5 blur-[20px] rounded-full z-[-1] pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[#0A192F]/5 blur-[20px] rounded-full z-[-1] pointer-events-none"></div>
                 
                 {["Guiding", "Our", "Scientific", "Vision"].map((word, index) => {
                   const isHighlight = word === "Scientific" || word === "Vision";
@@ -524,7 +524,7 @@ export default function About() {
                         visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
                       }}
                       className={isHighlight 
-                        ? "bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block mr-3 lg:mr-4 last:mr-0 pb-2" 
+                        ? "bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block mr-3 lg:mr-4 last:mr-0 pb-2" 
                         : "drop-shadow-sm inline-block mr-3 lg:mr-4 last:mr-0 pb-2"}
                     >
                       {isHighlight ? (
@@ -549,7 +549,7 @@ export default function About() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#0D9488] to-transparent mx-auto mb-10 origin-center"
+                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#1D4ED8] to-transparent mx-auto mb-10 origin-center"
               ></motion.div>
 
               {/* Description */}
@@ -588,7 +588,7 @@ export default function About() {
                 accentGradient = "from-accent to-secondary";
                 badgeText = "R&D";
               } else if (roleLower.includes("quality") || roleLower.includes("qa") || roleLower.includes("compliance")) {
-                accentGradient = "from-emerald-500 to-secondary";
+                accentGradient = "from-blue-500 to-secondary";
                 badgeText = "QA";
               }
 
@@ -599,7 +599,7 @@ export default function About() {
                     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
                   }}
                   key={leader.id}
-                  className="group relative bg-white rounded-[24px] border border-border/60 p-6 flex flex-col h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(5,150,105,0.12)] hover:-translate-y-2 hover:scale-[1.02] hover:border-secondary/30 transition-all duration-500 ease-out cursor-pointer"
+                  className="group relative bg-white rounded-[24px] border border-border/60 p-6 flex flex-col h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(29, 78, 216,0.12)] hover:-translate-y-2 hover:scale-[1.02] hover:border-secondary/30 transition-all duration-500 ease-out cursor-pointer"
                 >
                   {/* Subtle top accent border glow on hover */}
                   <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r ${accentGradient} rounded-b-full opacity-0 group-hover:w-1/2 group-hover:opacity-100 transition-all duration-500 ease-out`}></div>
@@ -607,7 +607,7 @@ export default function About() {
                   {/* Image Container */}
                   <div className="relative w-32 h-32 mx-auto mb-6 shrink-0">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-border/50 to-border/10 animate-pulse"></div>
-                    <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white shadow-[0_8px_25px_rgba(0,0,0,0.08)] group-hover:shadow-[0_12px_30px_rgba(5,150,105,0.2)] group-hover:border-secondary/10 transition-all duration-500">
+                    <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white shadow-[0_8px_25px_rgba(0,0,0,0.08)] group-hover:shadow-[0_12px_30px_rgba(29, 78, 216,0.2)] group-hover:border-secondary/10 transition-all duration-500">
                       <Image
                         src={leader.image}
                         alt={leader.name}
@@ -617,7 +617,7 @@ export default function About() {
                       />
                     </div>
                     {/* Floating badge effect */}
-                    <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r ${accentGradient} text-white text-[10px] font-bold tracking-[0.1em] shadow-md group-hover:shadow-[0_0_15px_rgba(5,150,105,0.4)] transition-all duration-300 transform group-hover:-translate-y-1`}>
+                    <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r ${accentGradient} text-white text-[10px] font-bold tracking-[0.1em] shadow-md group-hover:shadow-[0_0_15px_rgba(29, 78, 216,0.4)] transition-all duration-300 transform group-hover:-translate-y-1`}>
                       {badgeText}
                     </div>
                   </div>
@@ -693,7 +693,7 @@ export default function About() {
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-[#0B1F4D]/15 via-[#0D9488]/30 to-transparent origin-left"
+                    className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-[#0A192F]/15 via-[#1D4ED8]/30 to-transparent origin-left"
                   ></motion.div>
                   
                   {/* Background Accents & Glow */}
@@ -704,9 +704,9 @@ export default function About() {
                       transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
                       className="absolute right-[2%] top-[10%]"
                     >
-                      <Brain className="w-24 h-24 text-[#0D9488]" />
+                      <Brain className="w-24 h-24 text-[#1D4ED8]" />
                     </motion.div>
-                    <div className="absolute top-0 right-0 w-10 h-10 border-t-[1.5px] border-r-[1.5px] border-[#0D9488]/20 rounded-tr-xl"></div>
+                    <div className="absolute top-0 right-0 w-10 h-10 border-t-[1.5px] border-r-[1.5px] border-[#1D4ED8]/20 rounded-tr-xl"></div>
                     <div className="absolute bottom-0 left-0 w-10 h-10 border-b-[1.5px] border-l-[1.5px] border-[#2563EB]/20 rounded-bl-xl"></div>
                   </div>
 
@@ -717,7 +717,7 @@ export default function About() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="font-display font-[900] text-3xl md:text-4xl tracking-tight leading-tight mb-3 bg-gradient-to-r from-[#0B1F4D] to-[#475569] bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(11,31,77,0.08)]"
+                      className="font-display font-[900] text-3xl md:text-4xl tracking-tight leading-tight mb-3 bg-gradient-to-r from-[#0A192F] to-[#475569] bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(11,31,77,0.08)]"
                     >
                       {LEADERSHIP[0].name}
                     </motion.h4>
@@ -731,13 +731,13 @@ export default function About() {
                       className="mb-5 inline-block w-fit"
                     >
                       <motion.p 
-                        className="text-[11px] sm:text-xs font-mono font-bold text-[#0D9488] uppercase tracking-[0.25em] mb-1.5"
+                        className="text-[11px] sm:text-xs font-mono font-bold text-[#1D4ED8] uppercase tracking-[0.25em] mb-1.5"
                         animate={{ opacity: [1, 0.7, 1] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                       >
                         Founder &amp; Chief Executive Officer
                       </motion.p>
-                      <div className="w-16 h-[2px] bg-gradient-to-r from-[#0D9488] to-transparent rounded-full"></div>
+                      <div className="w-16 h-[2px] bg-gradient-to-r from-[#1D4ED8] to-transparent rounded-full"></div>
                     </motion.div>
 
                     {/* Tagline */}
@@ -750,11 +750,11 @@ export default function About() {
                     >
                       <p className="text-xs sm:text-[13px] font-semibold text-[#475569] tracking-[0.2em] uppercase">
                         Reliable Care,{" "}
-                        <span className="bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent">
                           Every Time.
                         </span>
                       </p>
-                      <span className="absolute -bottom-1.5 left-0 w-full h-[1.5px] bg-[#0D9488]/40 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                      <span className="absolute -bottom-1.5 left-0 w-full h-[1.5px] bg-[#1D4ED8]/40 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
                     </motion.div>
                   </div>
                 </div>
@@ -831,7 +831,7 @@ export default function About() {
                       <span className="font-bold text-sm text-heading">Trust</span>
                     </div>
                     <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
-                      <TrendingUp className="w-8 h-8 text-emerald-500 mb-3 group-hover:scale-110 transition-transform" />
+                      <TrendingUp className="w-8 h-8 text-blue-500 mb-3 group-hover:scale-110 transition-transform" />
                       <span className="font-bold text-sm text-heading">Affordability</span>
                     </div>
                     <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
@@ -882,23 +882,23 @@ export default function About() {
                   >
                     {/* Left/Right content block */}
                     <div className="w-full md:w-[45%] text-left">
-                      <div className="relative bg-white/70 backdrop-blur-xl p-5 md:p-6 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_30px_rgba(13,148,136,0.12)] hover:border-[#0D9488]/30 hover:-translate-y-[6px] transition-all duration-300 overflow-hidden cursor-default">
+                      <div className="relative bg-white/70 backdrop-blur-xl p-5 md:p-6 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_30px_rgba(13,148,136,0.12)] hover:border-[#1D4ED8]/30 hover:-translate-y-[6px] transition-all duration-300 overflow-hidden cursor-default">
                         {/* Thin animated top gradient strip */}
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
                         <div className="flex items-center gap-4 mb-4">
                           <div className="relative shrink-0">
                             {/* Glow behind icon */}
-                            <div className="absolute inset-0 bg-[#0D9488]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
-                            <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#0D9488]/30 transition-all duration-300 z-10">
-                              <Icon className="w-5 h-5 text-[#0B1F4D] group-hover:text-secondary transition-colors duration-300" />
+                            <div className="absolute inset-0 bg-[#1D4ED8]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
+                            <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#1D4ED8]/30 transition-all duration-300 z-10">
+                              <Icon className="w-5 h-5 text-[#0A192F] group-hover:text-secondary transition-colors duration-300" />
                             </div>
                           </div>
-                          <span className="inline-block text-2xl font-display font-[900] bg-gradient-to-r from-[#0B1F4D] to-[#0D9488] bg-clip-text text-transparent tracking-tight group-hover:scale-105 transition-transform origin-left duration-300">
+                          <span className="inline-block text-2xl font-display font-[900] bg-gradient-to-r from-[#0A192F] to-[#1D4ED8] bg-clip-text text-transparent tracking-tight group-hover:scale-105 transition-transform origin-left duration-300">
                             {milestone.year}
                           </span>
                         </div>
-                        <h3 className="font-display font-extrabold text-[#0B1F4D] text-lg mb-2 tracking-wide">
+                        <h3 className="font-display font-extrabold text-[#0A192F] text-lg mb-2 tracking-wide">
                           {milestone.title}
                         </h3>
                         <p className="text-sm text-slate-500 font-medium leading-[1.6]">
@@ -909,7 +909,7 @@ export default function About() {
 
                     {/* Timeline Node Center Indicator */}
                     <div className="hidden md:flex w-[10%] items-center justify-center relative z-10">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-primary shadow-[0_0_15px_rgba(5,150,105,0.4)] flex items-center justify-center text-white font-mono text-sm font-bold group-hover:from-accent group-hover:to-secondary group-hover:scale-125 transition-all duration-500 border-4 border-background">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-primary shadow-[0_0_15px_rgba(29, 78, 216,0.4)] flex items-center justify-center text-white font-mono text-sm font-bold group-hover:from-accent group-hover:to-secondary group-hover:scale-125 transition-all duration-500 border-4 border-background">
                         {idx + 1}
                       </div>
                     </div>

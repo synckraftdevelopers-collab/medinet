@@ -7,26 +7,26 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Premium Pharmaceutical Colors */
-  --color-primary: #14532D;
-  --color-primary-hover: #166534;
-  --color-secondary: #059669;
-  --color-accent: #F59E0B;
-  --color-highlight: #34D399;
+  --color-primary: #0A192F;
+  --color-primary-hover: #1D4ED8;
+  --color-secondary: #1D4ED8;
+  --color-accent: #E11D48;
+  --color-highlight: #38BDF8;
 
-  --color-background: #FCFDFB;
+  --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
-  --color-alt-bg: #F3F9F4;
-  --color-footer: #064E3B;
+  --color-alt-bg: #F1F5F9;
+  --color-footer: #0A192F;
 
-  --color-heading: #1F2937;
-  --color-body: #4B5563;
-  --color-muted: #9CA3AF;
-  --color-border: #D1FAE5;
+  --color-heading: #0F172A;
+  --color-body: #475569;
+  --color-muted: #94A3B8;
+  --color-border: #E2E8F0;
 
   --color-success: #10B981;
-  --color-warning: #F59E0B;
+  --color-warning: #E11D48;
   --color-error: #DC2626;
-  --color-info: #059669;
+  --color-info: #1D4ED8;
 
   /* Design Tokens */
   --radius-btn: 12px;
@@ -35,11 +35,11 @@
   --radius-dropdown: 16px;
   --radius-badge: 999px;
 
-  --shadow-card: 0 10px 30px -5px rgba(20, 83, 45,.08);
-  --shadow-card-hover: 0 20px 40px -5px rgba(20, 83, 45,.12);
+  --shadow-card: 0 10px 30px -5px rgba(10, 25, 47,.08);
+  --shadow-card-hover: 0 20px 40px -5px rgba(10, 25, 47,.12);
   --shadow-dropdown: 0 10px 25px -5px rgba(0,0,0,.08);
-  --shadow-btn: 0 8px 20px -4px rgba(20, 83, 45,.15);
-  --shadow-nav: 0 2px 10px -2px rgba(20, 83, 45,.05);
+  --shadow-btn: 0 8px 20px -4px rgba(10, 25, 47,.15);
+  --shadow-nav: 0 2px 10px -2px rgba(10, 25, 47,.05);
 }
 
 @layer base {
@@ -126,7 +126,7 @@
   *:focus-visible {
     outline: 2px solid var(--color-secondary) !important;
     outline-offset: 3px !important;
-    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.25) !important;
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.25) !important;
   }
 }
 
@@ -221,7 +221,7 @@
 }
 
 .glass-panel-dark {
-  background: rgba(20, 83, 45, 0.85);
+  background: rgba(10, 25, 47, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -248,7 +248,7 @@
 [class*="rounded-card"]:hover,
 [class*="shadow-card"]:hover {
   transform: translateY(-4px) scale(1.01) !important;
-  box-shadow: 0 16px 32px -8px rgba(20, 83, 45, 0.12), 0 8px 16px -6px rgba(5, 150, 105, 0.08) !important;
+  box-shadow: 0 16px 32px -8px rgba(10, 25, 47, 0.12), 0 8px 16px -6px rgba(29, 78, 216, 0.08) !important;
 }
 
 /* 2. Buttons Micro Interaction & Accessibility */
@@ -277,15 +277,15 @@ a.utility-button-secondary:focus-visible,
 [role="button"]:focus-visible {
   outline: 2px solid var(--color-secondary) !important;
   outline-offset: 3px !important;
-  box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.25) !important;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.25) !important;
 }
 
 /* Gradient hover and soft glow for primary buttons */
 .utility-button-primary:hover,
 button[class*="bg-primary"]:hover,
-button[class*="bg-[#0B1F4D]"]:hover {
+button[class*="bg-[#0A192F]"]:hover {
   background-image: linear-gradient(135deg, var(--color-secondary), var(--color-primary-hover)) !important;
-  box-shadow: 0 0 22px rgba(5, 150, 105, 0.42), 0 8px 24px -4px rgba(20, 83, 45, 0.25) !important;
+  box-shadow: 0 0 22px rgba(29, 78, 216, 0.42), 0 8px 24px -4px rgba(10, 25, 47, 0.25) !important;
 }
 
 /* Subtle gradient hover and soft glow for secondary buttons */
@@ -293,7 +293,7 @@ button[class*="bg-[#0B1F4D]"]:hover {
 button[class*="bg-surface"]:hover,
 button[class*="bg-white"][class*="border"]:hover {
   background-image: linear-gradient(135deg, #F8FBFF, #EFF6FF) !important;
-  box-shadow: 0 0 18px rgba(5, 150, 105, 0.22), 0 6px 16px -4px rgba(20, 83, 45, 0.12) !important;
+  box-shadow: 0 0 18px rgba(29, 78, 216, 0.22), 0 6px 16px -4px rgba(10, 25, 47, 0.12) !important;
 }
 
 /* Arrow Slide Animation */
@@ -556,20 +556,20 @@ header[class*="sticky"], header[class*="fixed"] {
   backdrop-filter: blur(16px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
   border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
-  box-shadow: 0 4px 20px -4px rgba(20, 83, 45, 0.05), 0 1px 3px 0 rgba(20, 83, 45, 0.02) !important;
+  box-shadow: 0 4px 20px -4px rgba(10, 25, 47, 0.05), 0 1px 3px 0 rgba(10, 25, 47, 0.02) !important;
 }
 
 /* 2. Enterprise Shadows & Subtle Border Aesthetics for Cards */
 .utility-card:not([class*="bg-"]), .utility-panel:not([class*="bg-"]), .card:not([class*="bg-"]) {
   border: 1px solid rgba(226, 232, 240, 0.75);
   background-image: linear-gradient(180deg, #FFFFFF 0%, #FCFCFD 100%);
-  box-shadow: 0 4px 20px -2px rgba(20, 83, 45, 0.04), 0 2px 6px -1px rgba(20, 83, 45, 0.02);
+  box-shadow: 0 4px 20px -2px rgba(10, 25, 47, 0.04), 0 2px 6px -1px rgba(10, 25, 47, 0.02);
 }
 
 /* Hover Shadow Elevation (Multi-layered ambient + direct light shadow) */
 .utility-card:not([class*="bg-"]):hover, .utility-panel:not([class*="bg-"]):hover, .card:not([class*="bg-"]):hover, .hover-lift:not([class*="bg-"]):hover {
-  border-color: rgba(5, 150, 105, 0.25);
-  box-shadow: 0 16px 32px -12px rgba(20, 83, 45, 0.1), 0 8px 16px -8px rgba(5, 150, 105, 0.08), 0 0 0 1px rgba(5, 150, 105, 0.05);
+  border-color: rgba(29, 78, 216, 0.25);
+  box-shadow: 0 16px 32px -12px rgba(10, 25, 47, 0.1), 0 8px 16px -8px rgba(29, 78, 216, 0.08), 0 0 0 1px rgba(29, 78, 216, 0.05);
 }
 
 /* 3. Glossy Sheen & Optical Polish on Badges, Tags, and Status Pills */
@@ -581,12 +581,12 @@ span[class*="rounded-full"], div[class*="rounded-full"][class*="px-"] {
 }
 
 /* 4. Enterprise Button Depth & Inner Highlight */
-.utility-button-primary, button[class*="bg-primary"], button[class*="bg-[#0B1F4D]"] {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 14px 0 rgba(20, 83, 45, 0.22) !important;
+.utility-button-primary, button[class*="bg-primary"], button[class*="bg-[#0A192F]"] {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 14px 0 rgba(10, 25, 47, 0.22) !important;
 }
 
-.utility-button-primary:hover, button[class*="bg-primary"]:hover, button[class*="bg-[#0B1F4D]"]:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 24px rgba(5, 150, 105, 0.38), 0 4px 12px rgba(20, 83, 45, 0.2) !important;
+.utility-button-primary:hover, button[class*="bg-primary"]:hover, button[class*="bg-[#0A192F]"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 24px rgba(29, 78, 216, 0.38), 0 4px 12px rgba(10, 25, 47, 0.2) !important;
 }
 
 /* 5. Clean Form Input Aesthetics & Polish */
@@ -603,7 +603,7 @@ input:hover, select:hover, textarea:hover, .utility-input:hover {
 
 input:focus, select:focus, textarea:focus, .utility-input:focus {
   border-color: #2563EB !important;
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
   outline: none !important;
 }
 

@@ -153,7 +153,7 @@ export default function ResearchDevelopment() {
               opacity: [0.15, 0.25, 0.15] 
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] rounded-full blur-[120px] bg-gradient-to-br from-[#0B1F4D] to-transparent opacity-20"
+            className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] rounded-full blur-[120px] bg-gradient-to-br from-[#0A192F] to-transparent opacity-20"
           />
           <motion.div 
             animate={{ 
@@ -161,9 +161,9 @@ export default function ResearchDevelopment() {
               opacity: [0.1, 0.2, 0.1] 
             }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-[30%] right-[-10%] w-[50%] h-[60%] rounded-full blur-[120px] bg-gradient-to-bl from-[#2563EB] to-[#0D9488] opacity-15"
+            className="absolute top-[30%] right-[-10%] w-[50%] h-[60%] rounded-full blur-[120px] bg-gradient-to-bl from-[#2563EB] to-[#1D4ED8] opacity-15"
           />
-          <div className="absolute bottom-[-20%] left-[10%] w-[60%] h-[50%] rounded-full blur-[120px] bg-gradient-to-tr from-[#0D9488] to-transparent opacity-10" />
+          <div className="absolute bottom-[-20%] left-[10%] w-[60%] h-[50%] rounded-full blur-[120px] bg-gradient-to-tr from-[#1D4ED8] to-transparent opacity-10" />
           
           {/* Subtle Molecular / DNA SVG Pattern */}
           <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M20%2020.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5z%22%20fill%3D%22%230B1F4D%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"></div>
@@ -190,13 +190,13 @@ export default function ResearchDevelopment() {
                     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
                   }}
                   whileHover={{ scale: 1.05 }}
-                  className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#0D9488]/20 shadow-[0_4px_20px_rgba(13,148,136,0.08)] mb-8 cursor-default group"
+                  className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#1D4ED8]/20 shadow-[0_4px_20px_rgba(13,148,136,0.08)] mb-8 cursor-default group"
                 >
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0D9488] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0D9488]"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1D4ED8] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1D4ED8]"></span>
                   </span>
-                  <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0B1F4D] uppercase group-hover:bg-gradient-to-r group-hover:from-[#0B1F4D] group-hover:to-[#0D9488] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0A192F] uppercase group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                     Core Competence
                   </span>
                   {/* Subtle animated border gradient */}
@@ -209,9 +209,9 @@ export default function ResearchDevelopment() {
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
                   }}
-                  className="text-4xl sm:text-5xl lg:text-[3.5rem] font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.1] mb-8"
+                  className="text-4xl sm:text-5xl lg:text-[3.5rem] font-display font-[900] text-[#0A192F] tracking-tight leading-[1.1] mb-8"
                 >
-                  Pioneering <span className="bg-gradient-to-r from-[#2563EB] to-[#0D9488] text-transparent bg-clip-text relative inline-block">Next-Generation<motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-[#2563EB] to-transparent rounded-full origin-left"></motion.span></span><br className="hidden sm:block" /> Pharmaceutical Delivery
+                  Pioneering <span className="bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text relative inline-block">Next-Generation<motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-[#2563EB] to-transparent rounded-full origin-left"></motion.span></span><br className="hidden sm:block" /> Pharmaceutical Delivery
                 </motion.h2>
 
                 {/* Paragraphs with Fade-Up */}
@@ -261,10 +261,10 @@ export default function ResearchDevelopment() {
                     <motion.circle cx="100" cy="100" r="80" stroke="url(#molGrad)" strokeWidth="0.5" strokeDasharray="4 8" animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
                     <motion.circle cx="100" cy="100" r="60" stroke="#2563EB" strokeWidth="0.5" strokeOpacity="0.3" strokeDasharray="2 4" animate={{ rotate: -360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "center" }} />
                     <circle cx="100" cy="20" r="6" fill="#2563EB" />
-                    <circle cx="169" cy="60" r="9" fill="#0D9488" />
+                    <circle cx="169" cy="60" r="9" fill="#1D4ED8" />
                     <circle cx="169" cy="140" r="4.5" fill="#38BDF8" />
                     <circle cx="100" cy="180" r="7.5" fill="#2563EB" />
-                    <circle cx="31" cy="140" r="6" fill="#0D9488" />
+                    <circle cx="31" cy="140" r="6" fill="#1D4ED8" />
                     <circle cx="31" cy="60" r="10.5" fill="#38BDF8" />
                     <path d="M100 20 L169 60 L169 140 L100 180 L31 140 L31 60 Z" stroke="#cbd5e1" strokeWidth="0.5" />
                     <path d="M100 20 L100 100 L169 140" stroke="#cbd5e1" strokeWidth="0.5" />
@@ -273,7 +273,7 @@ export default function ResearchDevelopment() {
                     <defs>
                       <linearGradient id="molGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
                         <stop stopColor="#2563EB" />
-                        <stop offset="1" stopColor="#0D9488" />
+                        <stop offset="1" stopColor="#1D4ED8" />
                       </linearGradient>
                     </defs>
                   </motion.svg>
@@ -297,7 +297,7 @@ export default function ResearchDevelopment() {
                         <FlaskConical className="w-5 h-5" />
                       </div>
                     </div>
-                    <span className="block text-3xl font-display font-black text-[#0B1F4D] mb-1">85%+</span>
+                    <span className="block text-3xl font-display font-black text-[#0A192F] mb-1">85%+</span>
                     <span className="block text-[13px] font-bold text-[#475569] group-hover:text-[#2563EB] transition-colors duration-300">Pipeline in Phase III</span>
                     <span className="block text-[10px] font-mono text-[#64748B] mt-1.5 tracking-[0.1em] uppercase">/ Filing Stage</span>
                   </motion.div>
@@ -310,16 +310,16 @@ export default function ResearchDevelopment() {
                     }}
                     className="relative group bg-white/70 backdrop-blur-xl border border-slate-200/70 rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.1)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
                   >
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0D9488] to-[#34D399] opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#0D9488]/5 rounded-full blur-2xl group-hover:bg-[#0D9488]/15 transition-colors duration-500"></div>
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1D4ED8] to-[#38BDF8] opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#1D4ED8]/5 rounded-full blur-2xl group-hover:bg-[#1D4ED8]/15 transition-colors duration-500"></div>
                     
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-[16px] bg-[#0D9488]/10 flex items-center justify-center text-[#0D9488] group-hover:scale-110 group-hover:bg-[#0D9488] group-hover:text-white transition-all duration-300">
+                      <div className="w-12 h-12 rounded-[16px] bg-[#1D4ED8]/10 flex items-center justify-center text-[#1D4ED8] group-hover:scale-110 group-hover:bg-[#1D4ED8] group-hover:text-white transition-all duration-300">
                         <Activity className="w-5 h-5" />
                       </div>
                     </div>
-                    <span className="block text-3xl font-display font-black text-[#0B1F4D] mb-1">Zone IVB</span>
-                    <span className="block text-[13px] font-bold text-[#475569] group-hover:text-[#0D9488] transition-colors duration-300">Stability Chamber</span>
+                    <span className="block text-3xl font-display font-black text-[#0A192F] mb-1">Zone IVB</span>
+                    <span className="block text-[13px] font-bold text-[#475569] group-hover:text-[#1D4ED8] transition-colors duration-300">Stability Chamber</span>
                     <span className="block text-[10px] font-mono text-[#64748B] mt-1.5 tracking-[0.1em] uppercase">/ Tested & Verified</span>
                   </motion.div>
                 </div>
@@ -330,11 +330,11 @@ export default function ResearchDevelopment() {
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
                   }}
-                  className="relative bg-gradient-to-br from-[#0B1F4D] via-[#0F2D6B] to-[#0A193F] rounded-[32px] shadow-[0_30px_60px_rgba(11,31,77,0.2)] p-7 sm:p-9 overflow-hidden border border-white/10 group z-10"
+                  className="relative bg-gradient-to-br from-[#0A192F] via-[#0F2D6B] to-[#0A193F] rounded-[32px] shadow-[0_30px_60px_rgba(11,31,77,0.2)] p-7 sm:p-9 overflow-hidden border border-white/10 group z-10"
                 >
                   {/* Internal Glow */}
                   <div className="absolute top-0 right-0 w-64 h-64 bg-[#2563EB]/20 rounded-full blur-[80px] group-hover:bg-[#2563EB]/30 transition-colors duration-700 pointer-events-none"></div>
-                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#0D9488]/20 rounded-full blur-[80px] group-hover:bg-[#0D9488]/30 transition-colors duration-700 pointer-events-none"></div>
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#1D4ED8]/20 rounded-full blur-[80px] group-hover:bg-[#1D4ED8]/30 transition-colors duration-700 pointer-events-none"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-center gap-4 mb-8">
@@ -358,8 +358,8 @@ export default function ResearchDevelopment() {
                           className="flex items-start gap-3.5 p-3.5 rounded-2xl hover:bg-white/5 transition-colors duration-300 border border-transparent hover:border-white/5"
                         >
                           <div className="mt-0.5 shrink-0 relative">
-                            <div className="absolute inset-0 bg-[#34D399] blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300"></div>
-                            <CheckCircle2 className="w-5 h-5 text-[#34D399] relative z-10" />
+                            <div className="absolute inset-0 bg-[#38BDF8] blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300"></div>
+                            <CheckCircle2 className="w-5 h-5 text-[#38BDF8] relative z-10" />
                           </div>
                           <div>
                             <span className="font-bold text-white block text-sm tracking-wide mb-1">{item.title}</span>
@@ -385,11 +385,11 @@ export default function ResearchDevelopment() {
           
           {/* Low-opacity blurred gradient blobs for depth */}
           <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-gradient-to-br from-[#38BDF8] to-transparent opacity-10" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-gradient-to-tl from-[#0D9488] to-transparent opacity-10" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-gradient-to-tl from-[#1D4ED8] to-transparent opacity-10" />
           
           {/* Floating molecular particles (CSS animation) */}
           <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute top-[20%] left-[15%] w-3 h-3 rounded-full bg-[#38BDF8] blur-sm"></motion.div>
-          <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }} className="absolute bottom-[30%] right-[20%] w-4 h-4 rounded-full bg-[#0D9488] blur-sm"></motion.div>
+          <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }} className="absolute bottom-[30%] right-[20%] w-4 h-4 rounded-full bg-[#1D4ED8] blur-sm"></motion.div>
           <motion.div animate={{ y: [-15, 15, -15], x: [15, -15, 15], opacity: [0.4, 0.7, 0.4] }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }} className="absolute top-[40%] right-[30%] w-2 h-2 rounded-full bg-[#2563EB] blur-[2px]"></motion.div>
         </div>
 
@@ -419,7 +419,7 @@ export default function ResearchDevelopment() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB]"></span>
               </span>
-              <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0B1F4D] uppercase group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#0D9488] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+              <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0A192F] uppercase group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                 Research Pillars
               </span>
               <div className="absolute inset-0 rounded-full border border-transparent bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.4),transparent)] opacity-0 group-hover:opacity-100 group-hover:animate-[spin_3s_linear_infinite] transition-opacity duration-300 [mask-image:linear-gradient(white,white)] [mask-composite:exclude] pointer-events-none" style={{ padding: '1px' }}></div>
@@ -431,7 +431,7 @@ export default function ResearchDevelopment() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
               }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0B1F4D] tracking-tight leading-[1.1] mb-6 drop-shadow-sm"
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0A192F] tracking-tight leading-[1.1] mb-6 drop-shadow-sm"
             >
               Innovation &amp; <br className="hidden sm:block" />
               <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text relative inline-block">
@@ -468,31 +468,31 @@ export default function ResearchDevelopment() {
               const labels = ["BIOPHARMA", "FORMULATION", "VALIDATION", "STABILITY"];
               const gradients = [
                 "from-[#2563EB] to-[#38BDF8]",
-                "from-[#0D9488] to-[#34D399]",
+                "from-[#1D4ED8] to-[#38BDF8]",
                 "from-[#7C3AED] to-[#A78BFA]",
                 "from-[#EC4899] to-[#F472B6]"
               ];
               const textColors = [
                 "text-[#2563EB]",
-                "text-[#0D9488]",
+                "text-[#1D4ED8]",
                 "text-[#7C3AED]",
                 "text-[#EC4899]"
               ];
               const bgColors = [
                 "bg-[#2563EB]/10",
-                "bg-[#0D9488]/10",
+                "bg-[#1D4ED8]/10",
                 "bg-[#7C3AED]/10",
                 "bg-[#EC4899]/10"
               ];
               const hoverBgs = [
                 "group-hover:bg-[#2563EB]",
-                "group-hover:bg-[#0D9488]",
+                "group-hover:bg-[#1D4ED8]",
                 "group-hover:bg-[#7C3AED]",
                 "group-hover:bg-[#EC4899]"
               ];
               const groupHoverTextColors = [
                 "group-hover:text-[#2563EB]",
-                "group-hover:text-[#0D9488]",
+                "group-hover:text-[#1D4ED8]",
                 "group-hover:text-[#7C3AED]",
                 "group-hover:text-[#EC4899]"
               ];
@@ -539,7 +539,7 @@ export default function ResearchDevelopment() {
                     </span>
                   </div>
 
-                  <h3 className={`font-display font-[800] text-[#0B1F4D] text-2xl mb-4 ${groupHoverTextColors[colorIdx]} transition-colors duration-300 relative z-10`}>
+                  <h3 className={`font-display font-[800] text-[#0A192F] text-2xl mb-4 ${groupHoverTextColors[colorIdx]} transition-colors duration-300 relative z-10`}>
                     {area.title}
                   </h3>
                   
@@ -565,14 +565,14 @@ export default function ResearchDevelopment() {
           
           {/* Large blurred radial gradient orbs in corners (4-8% opacity) */}
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-gradient-to-br from-[#38BDF8] to-transparent opacity-[0.06]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-gradient-to-tl from-[#0D9488] to-transparent opacity-[0.06]" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-gradient-to-tl from-[#1D4ED8] to-transparent opacity-[0.06]" />
           
           {/* Soft molecular/DNA-inspired SVG pattern at 2-3% opacity */}
           <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%221%22%20fill%3D%22%232563EB%22%2F%3E%3Cpath%20d%3D%22M20%2020l10%2010M20%2020L10%2030M20%2020l10-10M20%2020L10%2010%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%220.5%22%20stroke-opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E')]"></div>
           
           {/* Floating molecular particles (respects reduced motion implicitly or via transition properties) */}
           <motion.div animate={{ y: [-15, 15, -15], x: [-10, 10, -10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute top-[25%] left-[20%] w-2 h-2 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
-          <motion.div animate={{ y: [15, -15, 15], x: [10, -10, 10], opacity: [0.1, 0.4, 0.1] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute bottom-[35%] right-[25%] w-3 h-3 rounded-full bg-[#0D9488] blur-[1px]"></motion.div>
+          <motion.div animate={{ y: [15, -15, 15], x: [10, -10, 10], opacity: [0.1, 0.4, 0.1] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute bottom-[35%] right-[25%] w-3 h-3 rounded-full bg-[#1D4ED8] blur-[1px]"></motion.div>
           <motion.div animate={{ y: [-10, 10, -10], x: [15, -15, 15], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }} className="absolute top-[45%] right-[35%] w-2 h-2 rounded-full bg-[#2563EB] blur-[1px]"></motion.div>
         </div>
 
@@ -697,7 +697,7 @@ export default function ResearchDevelopment() {
             {/* Subtle glow behind the heading */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[100px] rounded-full blur-[80px] bg-[#38BDF8]/10 pointer-events-none" />
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-[#0B1F4D] tracking-tight leading-[1.15] relative inline-block">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative inline-block">
               Product Development Process
               {/* Soft animated underline using Medinet blue gradient */}
               <motion.span 
@@ -744,7 +744,7 @@ export default function ResearchDevelopment() {
                   className="p-6 text-left relative group hover:-translate-y-2.5 hover:scale-[1.03] transition-all duration-500 flex flex-col justify-start bg-white/95 backdrop-blur-xl border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] rounded-[24px]"
                 >
                   {/* Thin animated blue-to-teal accent line on top */}
-                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB]/50 to-[#0D9488]/50 opacity-50 group-hover:opacity-100 group-hover:scale-x-110 transition-all duration-500 origin-left"></div>
+                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB]/50 to-[#1D4ED8]/50 opacity-50 group-hover:opacity-100 group-hover:scale-x-110 transition-all duration-500 origin-left"></div>
 
                   {/* Glowing circular node between each step (on the timeline) */}
                   {idx < 5 && (
@@ -752,7 +752,7 @@ export default function ResearchDevelopment() {
                   )}
 
                   {/* Large elegant step numbers in top right corner */}
-                  <span className="absolute top-3 right-4 text-4xl font-display font-black text-[#0B1F4D] opacity-[0.08] font-mono group-hover:opacity-20 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none">
+                  <span className="absolute top-3 right-4 text-4xl font-display font-black text-[#0A192F] opacity-[0.08] font-mono group-hover:opacity-20 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none">
                     {step.phase}
                   </span>
                   
@@ -763,7 +763,7 @@ export default function ResearchDevelopment() {
                     </div>
                   </div>
                   
-                  <h4 className="font-display font-bold text-[#0B1F4D] text-[1.05rem] mb-2 group-hover:text-[#2563EB] transition-colors duration-300 relative z-10">{step.title}</h4>
+                  <h4 className="font-display font-bold text-[#0A192F] text-[1.05rem] mb-2 group-hover:text-[#2563EB] transition-colors duration-300 relative z-10">{step.title}</h4>
                   <p className="text-[13px] text-slate-500 leading-relaxed mt-1 relative z-10">{step.description}</p>
                 </motion.div>
               );

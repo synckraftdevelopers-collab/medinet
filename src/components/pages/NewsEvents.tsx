@@ -236,13 +236,13 @@ export default function NewsEvents({ params }: NewsEventsProps) {
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
               {/* Soft floating gradient blobs */}
               <div className="absolute top-0 right-[10%] w-[500px] h-[500px] bg-[#2563EB]/[0.06] rounded-full blur-[100px] animate-pulse"></div>
-              <div className="absolute top-1/3 left-[-10%] w-[600px] h-[600px] bg-[#0D9488]/[0.06] rounded-full blur-[120px]"></div>
+              <div className="absolute top-1/3 left-[-10%] w-[600px] h-[600px] bg-[#1D4ED8]/[0.06] rounded-full blur-[120px]"></div>
               <div className="absolute bottom-[10%] right-[20%] w-[400px] h-[400px] bg-[#16A34A]/[0.06] rounded-full blur-[90px] animate-pulse" style={{ animationDuration: '4s' }}></div>
 
               {/* Medical connection dots / particles */}
               <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#2563EB 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
               <div className="absolute top-[25%] left-[25%] w-2 h-2 bg-[#38BDF8] rounded-full opacity-30 blur-[2px] animate-ping" style={{ animationDuration: '3s' }}></div>
-              <div className="absolute top-[75%] right-[33%] w-3 h-3 bg-[#34D399] rounded-full opacity-30 blur-[2px] animate-pulse" style={{ animationDuration: '5s' }}></div>
+              <div className="absolute top-[75%] right-[33%] w-3 h-3 bg-[#38BDF8] rounded-full opacity-30 blur-[2px] animate-pulse" style={{ animationDuration: '5s' }}></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -301,7 +301,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                         setSelectedNews(news);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
-                      className="group relative rounded-[28px] p-[1px] bg-gradient-to-br from-white/60 via-white/30 to-white/60 hover:from-[#38BDF8] hover:via-[#0D9488] hover:to-[#16A34A] transition-all duration-500 ease-out h-full flex flex-col justify-between cursor-pointer hover:-translate-y-[10px] hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.12)] overflow-hidden"
+                      className="group relative rounded-[28px] p-[1px] bg-gradient-to-br from-white/60 via-white/30 to-white/60 hover:from-[#38BDF8] hover:via-[#1D4ED8] hover:to-[#16A34A] transition-all duration-500 ease-out h-full flex flex-col justify-between cursor-pointer hover:-translate-y-[10px] hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.12)] overflow-hidden"
                     >
                       {/* Inner Glass Surface */}
                       <div className="absolute inset-[1px] rounded-[27px] bg-[rgba(255,255,255,0.92)] backdrop-blur-[20px] z-0"></div>
@@ -312,15 +312,15 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                       <div className="p-6 sm:p-8 flex-1 flex flex-col justify-start relative z-10">
                         <div className="flex items-center justify-between mb-6">
                           {/* Premium Category Badge */}
-                          <div className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/50 backdrop-blur-md shadow-[0_0_15px_rgba(13,148,136,0.05)] text-[10px] font-mono font-bold uppercase tracking-widest text-[#0B1F4D] overflow-hidden group/badge">
+                          <div className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/50 backdrop-blur-md shadow-[0_0_15px_rgba(13,148,136,0.05)] text-[10px] font-mono font-bold uppercase tracking-widest text-[#0A192F] overflow-hidden group/badge">
                             <div className="absolute inset-0 rounded-full border-[1px] border-transparent bg-gradient-to-r from-[#2563EB] to-[#16A34A] [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] opacity-70 group-hover/badge:opacity-100 transition-opacity"></div>
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-[150%] group-hover/badge:animate-[shimmer_1.5s_infinite] skew-x-12"></div>
-                            <BadgeIcon className="w-3 h-3 text-[#0D9488] relative z-10 group-hover/badge:scale-110 transition-transform" />
+                            <BadgeIcon className="w-3 h-3 text-[#1D4ED8] relative z-10 group-hover/badge:scale-110 transition-transform" />
                             <span className="relative z-10">{news.category}</span>
                           </div>
 
                           {/* Top Right Floating Badge */}
-                          <div className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB] via-[#0D9488] to-[#16A34A] border border-white/20 shadow-[0_0_15px_rgba(13,148,136,0.3)] flex items-center justify-center shrink-0 group-hover:rotate-[10deg] group-hover:scale-[1.08] transition-all duration-500 ease-out relative">
+                          <div className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#16A34A] border border-white/20 shadow-[0_0_15px_rgba(13,148,136,0.3)] flex items-center justify-center shrink-0 group-hover:rotate-[10deg] group-hover:scale-[1.08] transition-all duration-500 ease-out relative">
                             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent"></div>
                             <CardIcon className="w-4 h-4 text-white relative z-10 group-hover:animate-pulse" />
                           </div>
@@ -335,7 +335,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                         </div>
 
                         {/* Title */}
-                        <h3 className="mt-1 font-display font-extrabold text-[#0B1F4D] text-xl sm:text-[22px] leading-tight transition-all duration-350 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#16A34A]">
+                        <h3 className="mt-1 font-display font-extrabold text-[#0A192F] text-xl sm:text-[22px] leading-tight transition-all duration-350 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#16A34A]">
                           {news.title}
                         </h3>
 
@@ -348,18 +348,18 @@ export default function NewsEvents({ params }: NewsEventsProps) {
 
                       <div className="relative p-6 sm:p-8 pt-5 mt-auto flex justify-between items-center z-10">
                         {/* Glowing gradient divider */}
-                        <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-[#38BDF8] via-[#0D9488] to-[#16A34A] opacity-20 group-hover:opacity-70 transition-opacity duration-500"></div>
+                        <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-[#38BDF8] via-[#1D4ED8] to-[#16A34A] opacity-20 group-hover:opacity-70 transition-opacity duration-500"></div>
 
                         {/* CTA Text */}
-                        <span className="relative inline-flex items-center gap-2 text-[13px] font-bold text-[#0B1F4D] transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#0D9488]">
+                        <span className="relative inline-flex items-center gap-2 text-[13px] font-bold text-[#0A192F] transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#1D4ED8]">
                           Read Full Release
-                          <ArrowUpRight className="w-4 h-4 text-[#0D9488] group-hover:translate-x-1 transition-transform duration-300" />
-                          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#2563EB] to-[#0D9488] transition-all duration-500 group-hover:w-full"></span>
+                          <ArrowUpRight className="w-4 h-4 text-[#1D4ED8] group-hover:translate-x-1 transition-transform duration-300" />
+                          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] transition-all duration-500 group-hover:w-full"></span>
                         </span>
 
                         {/* CTA Circle */}
-                        <span className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB]/5 to-[#0D9488]/5 border border-[#0D9488]/20 flex items-center justify-center transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#2563EB] group-hover:to-[#0D9488] group-hover:shadow-[0_0_15px_rgba(13,148,136,0.4)]">
-                          <ArrowUpRight className="w-4 h-4 text-[#0D9488] group-hover:text-white group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-300" />
+                        <span className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB]/5 to-[#1D4ED8]/5 border border-[#1D4ED8]/20 flex items-center justify-center transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#2563EB] group-hover:to-[#1D4ED8] group-hover:shadow-[0_0_15px_rgba(13,148,136,0.4)]">
+                          <ArrowUpRight className="w-4 h-4 text-[#1D4ED8] group-hover:text-white group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-300" />
                         </span>
                       </div>
                     </motion.div>

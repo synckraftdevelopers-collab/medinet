@@ -147,17 +147,19 @@ export default function About() {
       {/* Page Header Banner */}
       <section className="bg-gradient-to-b from-white via-background to-alt-bg border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(37,99,235,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(37,99,235,0.06)_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-10"></div>
-        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
-          <span className="utility-badge-blue mb-4">
-            <span className="utility-dot"></span>
-            Corporate Profile
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-heading tracking-tight leading-[1.15] relative w-fit mb-4 mx-auto lg:mx-0">
-            About Medinet: A heritage of pharmaceutical excellence...
-            <motion.span initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, delay: 0.5 }} className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-secondary to-accent opacity-70 rounded-full"></motion.span>
+        <motion.div variants={fadeUp} className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center z-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-heading tracking-tight leading-[1.2] relative w-fit mb-8 mx-auto text-center">
+            About Medinet
+            <motion.span 
+              initial={{ width: 0 }} 
+              animate={{ width: "100%" }} 
+              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }} 
+              className="absolute -bottom-3 left-0 h-1.5 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-80 rounded-full"
+            ></motion.span>
           </h1>
-          <p className="mt-5 text-base sm:text-lg text-body font-sans leading-relaxed max-w-3xl mx-auto lg:mx-0">
-            Founded with a vision to enhance global health, Medinet has grown from a specialized marketer to a global pharmaceutical leader.
+
+          <p className="mt-4 text-base sm:text-lg text-body font-sans leading-relaxed max-w-3xl mx-auto text-center">
+            Founded with a vision to enhance global health, Medinet has grown from a specialized marketer to a global pharmaceutical leader with a heritage of pharmaceutical excellence.
           </p>
         </motion.div>
       </section>

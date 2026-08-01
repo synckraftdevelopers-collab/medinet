@@ -7,244 +7,252 @@ import { Product, TherapeuticCategory, Job, NewsItem, Leader, PipelineProduct, O
 
 export const BRAND_INFO = {
   name: "Medinet Pharmaceutical Marketing Company",
-  shortName: "Medinet Pharmaceuticals",
-  tagline: "Bridging Science and Patient Care through Quality Therapeutics",
+  shortName: "Medinet",
+  tagline: "Reliable Care, Every Time.",
   established: "1998",
-  headquarters: "Mumbai, Maharashtra, India",
-  philosophy: "To ensure that high-quality, advanced therapeutics are made accessible and affordable to patients worldwide, adhering to global regulatory guidelines and manufacturing excellence.",
-  ceoMessage: "For over two decades, Medinet has stood at the intersection of medical innovation and commercial execution. Our core focus lies in identifying critical healthcare gaps and bridging them with premium, bioequivalent, and novel formulations. As we expand our footprint globally, our commitment to ethics, scientific integrity, and uncompromised quality remains the ultimate driver of our success. We thank our healthcare partners, researchers, and global distributors for their persistent trust in the Medinet name.",
+  headquarters: "Corporate Office",
+  philosophy: "At Medinet Pharmaceutical Marketing Company, we believe that every medicine we market represents a commitment to a healthier life. Our philosophy is built on four enduring principles: Quality, Trust, Affordability, and Compassion.",
+  ceoMessage: "Welcome to Medinet Pharmaceutical Marketing Company.\n\nAt Medinet, we believe that healthcare is more than delivering medicines—it is about improving lives through trust, quality, and compassionate care. Since founding the company, my vision has been to build an organization that provides safe, effective, and affordable healthcare solutions while upholding the highest standards of ethics and professionalism.\n\nEvery milestone we achieve reflects the dedication of our team, the confidence of healthcare professionals, and the trust our partners place in us. We remain committed to supporting doctors, distributors, pharmacies, and healthcare institutions with reliable pharmaceutical solutions that contribute to better patient care and healthier communities.\n\nAs we continue to grow, our focus remains unchanged: to innovate responsibly, strengthen lasting partnerships, and make quality healthcare more accessible to those who need it most.\n\nOn behalf of the entire Medinet family, I thank you for your trust and support. We look forward to serving you with excellence and integrity for many years to come.",
 };
 
 export const THERAPEUTIC_CATEGORIES: TherapeuticCategory[] = [
   {
-    id: "cardiovascular",
-    name: "Cardiovascular",
-    description: "Advanced cardioselective therapies, lipid-lowering agents, and anti-hypertensives designed to manage coronary artery disease and heart failure.",
-    iconName: "HeartPulse"
+    id: "anti-infectives",
+    name: "Anti-Infectives",
+    description: "Providing effective antibacterial therapies to support the treatment of infectious diseases.",
+    iconName: "ShieldPlus"
   },
   {
-    id: "neurology-cns",
-    name: "Neurology & CNS",
-    description: "Specialized central nervous system modulators, neuropathic pain relievers, and neuroprotective agents targeting critical brain disorders.",
-    iconName: "Brain"
+    id: "pain-management",
+    name: "Pain Management & Anti-Inflammatory Care",
+    description: "Advanced formulations to relieve pain, inflammation, and support faster recovery.",
+    iconName: "Activity"
   },
   {
     id: "gastroenterology",
     name: "Gastroenterology",
-    description: "Proton pump inhibitors, prokinetics, anti-spasmodics, and gut-health solutions restoring gastrointestinal balance.",
+    description: "Providing effective gastrointestinal care for improved digestive health and acid-related disorders.",
     iconName: "Droplet"
+  },
+  {
+    id: "bone-joint-health",
+    name: "Bone & Joint Health",
+    description: "Comprehensive nutritional and therapeutic solutions for stronger bones, joints, and musculoskeletal wellness.",
+    iconName: "Bone"
+  },
+  {
+    id: "neurology",
+    name: "Neurology",
+    description: "Supporting nerve health and neurological well-being through advanced formulations.",
+    iconName: "Brain"
+  },
+  {
+    id: "urology",
+    name: "Urology",
+    description: "Targeted therapy for improved urinary health and patient comfort.",
+    iconName: "FlaskConical"
   },
   {
     id: "dermatology",
     name: "Dermatology",
-    description: "Premium therapeutic topical formulations, anti-fungals, corticosteroids, and advanced skin-barrier restorative creams.",
+    description: "Specialized topical formulations for wound care and skin infection management.",
     iconName: "Sparkles"
   },
   {
-    id: "anti-infectives",
-    name: "Anti-infectives & Antibiotics",
-    description: "Broad-spectrum cephalosporins, macrolides, and fluoroquinolones addressing drug-resistant bacterial strains and acute infections.",
-    iconName: "ShieldPlus"
-  },
-  {
-    id: "respiratory",
-    name: "Respiratory & Pulmonology",
-    description: "Inhalation formulations, long-acting bronchodilators, and anti-asthmatics for chronic obstructive pulmonary diseases (COPD).",
-    iconName: "Wind"
-  },
-  {
-    id: "orthopedics",
-    name: "Orthopedics & Pain Management",
-    description: "Highly selective COX-2 inhibitors, chondroprotective agents, and muscle relaxants restoring joint mobility and relieving chronic pain.",
-    iconName: "Bone"
-  },
-  {
     id: "nutraceuticals",
-    name: "Nutraceuticals & Wellness",
-    description: "Evidence-based micronutrient formulations, high-potency antioxidants, and bioactive vitamins for comprehensive preventative wellness.",
+    name: "Nutraceuticals",
+    description: "Nutritional formulations to support overall patient well-being.",
     iconName: "HeartHandshake"
   }
 ];
 
 export const PRODUCTS: Product[] = [
   {
-    id: "medivastin-20",
-    name: "Medivastin 20",
-    genericName: "Atorvastatin Calcium Trihydrate IP",
-    category: "cardiovascular",
-    description: "A highly selective, competitive inhibitor of HMG-CoA reductase, the rate-limiting enzyme that converts 3-hydroxy-3-methylglutaryl-coenzyme A to mevalonate, a precursor of cholesterol.",
-    indications: [
-      "Primary hypercholesterolemia (heterozygous familial and non-familial)",
-      "Mixed dyslipidemia (Fredrickson Types IIa and IIb)",
-      "Reduction of risk of myocardial infarction, stroke, and revascularization procedures in clinically diagnosed coronary artery disease patients."
-    ],
+    id: "zefrax-500",
+    name: "ZEFRAX 500",
+    genericName: "Cefuroxime Axetil 500mg",
+    category: "anti-infectives",
+    description: "A second-generation cephalosporin antibiotic used to treat a wide variety of bacterial infections.",
+    indications: ["Respiratory tract infections", "Urinary tract infections", "Skin and soft tissue infections"],
     dosageForm: "Tablet",
-    strength: "20 mg",
-    packaging: "10 x 14 Tablets Alu-Alu Blister"
+    strength: "500 mg",
+    packaging: "10 x 10 Alu-Alu"
   },
   {
-    id: "cardipril-am",
-    name: "Cardipril AM",
-    genericName: "Ramipril IP 5mg + Amlodipine Besylate IP 5mg",
-    category: "cardiovascular",
-    description: "A synergistic dual-mechanism anti-hypertensive agent combining a long-acting Angiotensin-Converting Enzyme (ACE) inhibitor with a calcium channel blocker for superior blood pressure control.",
-    indications: [
-      "Moderate to severe essential hypertension",
-      "Patients whose blood pressure is not adequately controlled with monotherapy",
-      "Reduction in cardiovascular risk in patients with established atherothrombotic cardiovascular disease."
-    ],
-    dosageForm: "Capsule",
-    strength: "5mg / 5mg",
+    id: "clavinet-625",
+    name: "CLAVINET 625",
+    genericName: "Amoxicillin 500mg + Clavulanic Acid 125mg",
+    category: "anti-infectives",
+    description: "A combination penicillin-type antibiotic used to treat a wide variety of bacterial infections.",
+    indications: ["Sinusitis", "Pneumonia", "Ear infections", "Bronchitis"],
+    dosageForm: "Tablet",
+    strength: "625 mg",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
+    id: "duocef-s",
+    name: "DUOCEF-S",
+    genericName: "Cefoperazone + Sulbactam",
+    category: "anti-infectives",
+    description: "A combination of a third-generation cephalosporin and a beta-lactamase inhibitor.",
+    indications: ["Severe intra-abdominal infections", "Respiratory tract infections", "Septicemia"],
+    dosageForm: "Injection",
+    strength: "1.5 g",
+    packaging: "1 Vial"
+  },
+  {
+    id: "zeftron",
+    name: "ZEFTRON",
+    genericName: "Ceftriaxone Injection",
+    category: "anti-infectives",
+    description: "A broad-spectrum third-generation cephalosporin antibiotic for intravenous or intramuscular administration.",
+    indications: ["Meningitis", "Community-acquired pneumonia", "Bone and joint infections"],
+    dosageForm: "Injection",
+    strength: "1 g",
+    packaging: "1 Vial"
+  },
+  {
+    id: "zefrax-iv",
+    name: "ZEFRAX-IV",
+    genericName: "Cefuroxime Sodium Injection",
+    category: "anti-infectives",
+    description: "Injectable cephalosporin used for severe infections.",
+    indications: ["Surgical prophylaxis", "Severe respiratory infections", "Septicemia"],
+    dosageForm: "Injection",
+    strength: "1.5 g",
+    packaging: "1 Vial"
+  },
+  {
+    id: "proenzy-dt",
+    name: "PROENZY DT",
+    genericName: "Trypsin + Bromelain + Rutoside Trihydrate",
+    category: "pain-management",
+    description: "Proteolytic enzymes combination for resolving inflammation and edema.",
+    indications: ["Post-operative inflammation", "Traumatic edema", "Sports injuries"],
+    dosageForm: "Dispersible Tablet",
+    strength: "Standard",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
+    id: "proenzy-plus",
+    name: "PROENZY PLUS",
+    genericName: "Trypsin + Bromelain + Rutoside + Diclofenac",
+    category: "pain-management",
+    description: "Advanced formulation providing potent analgesic and anti-inflammatory action.",
+    indications: ["Osteoarthritis", "Rheumatoid arthritis", "Severe inflammatory pain"],
+    dosageForm: "Tablet",
+    strength: "Standard",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
+    id: "afidol-p",
+    name: "AFIDOL P",
+    genericName: "Aceclofenac 100mg + Paracetamol 325mg",
+    category: "pain-management",
+    description: "A combination medication used for pain relief and fever reduction.",
+    indications: ["Musculoskeletal pain", "Dental pain", "Post-operative pain"],
+    dosageForm: "Tablet",
+    strength: "100mg/325mg",
+    packaging: "10 x 10 Blister pack"
+  },
+  {
+    id: "afidol-sp",
+    name: "AFIDOL SP",
+    genericName: "Aceclofenac 100mg + Paracetamol 325mg + Serratiopeptidase 15mg",
+    category: "pain-management",
+    description: "A triple combination for fast pain relief and reduction of swelling.",
+    indications: ["Inflammatory conditions", "Post-traumatic swelling", "Joint pain"],
+    dosageForm: "Tablet",
+    strength: "100/325/15mg",
     packaging: "10 x 10 Alu-Alu pack"
   },
   {
-    id: "gabax-nt",
-    name: "Gabax NT",
-    genericName: "Gabapentin 300mg + Nortriptyline Hydrochloride 10mg",
-    category: "neurology-cns",
-    description: "Combines an alpha-2-delta ligand (Gabapentin) with a tricyclic antidepressant (Nortriptyline) to deliver intensive synergism for neuropathic pain alleviation.",
-    indications: [
-      "Post-herpetic neuralgia",
-      "Painful diabetic peripheral neuropathy",
-      "Fibromyalgia and nerve compression syndromes."
-    ],
+    id: "etorivon-p",
+    name: "ETORIVON P",
+    genericName: "Etoricoxib + Paracetamol",
+    category: "pain-management",
+    description: "A highly selective COX-2 inhibitor with paracetamol for enhanced pain relief.",
+    indications: ["Acute gout", "Ankylosing spondylitis", "Severe osteoarthritis"],
     dosageForm: "Tablet",
-    strength: "300mg / 10mg",
-    packaging: "10 x 10 Tablets in Alu-Alu strip"
+    strength: "Standard",
+    packaging: "10 x 10 Alu-Alu"
   },
   {
-    id: "neuroprotect-cit",
-    name: "Neuroprotect CIT",
-    genericName: "Citicoline Sodium IP 500mg",
-    category: "neurology-cns",
-    description: "A complex organic molecule that serves as an essential intermediate in the biosynthesis of structural phospholipids of cell membranes, particularly phosphatidylcholine.",
-    indications: [
-      "Acute phase of stroke (Ischemic cerebral infarction)",
-      "Traumatic brain injury and cognitive impairment of vascular origin",
-      "Co-therapy in Parkinson's disease and senile dementia."
-    ],
+    id: "trafidol-p",
+    name: "TRAFIDOL P",
+    genericName: "Tramadol + Paracetamol",
+    category: "pain-management",
+    description: "A combination of a centrally acting synthetic opioid analgesic and paracetamol.",
+    indications: ["Moderate to severe acute pain", "Post-surgical pain"],
     dosageForm: "Tablet",
-    strength: "500 mg",
-    packaging: "10 x 10 Alu-Alu Premium pack"
+    strength: "37.5mg/325mg",
+    packaging: "10 x 10 Blister pack"
   },
   {
-    id: "pantomed-d",
-    name: "Pantomed D",
-    genericName: "Pantoprazole Sodium Sesquihydrate BP 40mg + Domperidone IP 30mg SR",
+    id: "xpraz-d",
+    name: "XPRAZ-D",
+    genericName: "Pantoprazole + Domperidone",
     category: "gastroenterology",
-    description: "A fixed-dose combination containing an irreversible proton pump inhibitor (Pantoprazole) and a peripheral dopamine receptor antagonist (Domperidone) in a sustained-release capsule formulation.",
-    indications: [
-      "Gastroesophageal Reflux Disease (GERD) unresponsive to pantoprazole monotherapy",
-      "Erosive esophagitis with associated hyperacidity and dyspepsia",
-      "Prophylaxis of NSAID-induced gastric ulcers and chronic reflux esophagitis."
-    ],
-    dosageForm: "Sustained-Release Capsule",
-    strength: "40mg / 30mg SR",
-    packaging: "10 x 10 Capsules in Alu-Alu strip"
+    description: "Proton pump inhibitor and antiemetic combination for effective acid reflux management.",
+    indications: ["GERD", "Dyspepsia", "Peptic ulcer disease"],
+    dosageForm: "Capsule",
+    strength: "40mg/30mg SR",
+    packaging: "10 x 10 Alu-Alu"
   },
   {
-    id: "spasmorel-me",
-    name: "Spasmorel ME",
-    genericName: "Mebeverine Hydrochloride IP 200mg Sustained Release",
-    category: "gastroenterology",
-    description: "A musculotropic spasmolytic agent with a direct effect on the smooth muscle of the gastrointestinal tract, especially the colon, without disturbing normal intestinal motility.",
-    indications: [
-      "Symptomatic treatment of irritable bowel syndrome (IBS)",
-      "Abdominal pain, spasms, and post-prandial discomfort associated with functional bowel disorders",
-      "Gastrointestinal spasm secondary to organic diseases."
-    ],
-    dosageForm: "Sustained-Release Capsule",
-    strength: "200 mg SR",
-    packaging: "10 x 15 Capsules in Alu-Alu"
-  },
-  {
-    id: "dermacort-m",
-    name: "Dermacort M",
-    genericName: "Mometasone Furoate USP 0.1% w/w + Mupirocin USP 2.0% w/w",
-    category: "dermatology",
-    description: "An advanced dermatological ointment containing a medium-potency topical corticosteroid combined with a structurally unique natural antibacterial agent for inflamed, infected lesions.",
-    indications: [
-      "Inflammatory dermatoses with secondary bacterial infections (e.g., infected eczema, impetigo)",
-      "Atopic dermatitis or psoriasis showing signs of bacterial colonization",
-      "Minor traumatic wounds, abrasions, and infected surgical incisions."
-    ],
-    dosageForm: "Cream / Ointment",
-    strength: "0.1% + 2.0% w/w",
-    packaging: "15g Laminated Aluminium Tube"
-  },
-  {
-    id: "clindashield-gel",
-    name: "Clindashield Gel",
-    genericName: "Clindamycin Phosphate USP 1.0% w/w + Adapalene USP 0.1% w/w",
-    category: "dermatology",
-    description: "Dual-active topical gel combining a highly efficacious lincosamide antibiotic with a third-generation synthetic retinoid, addressing both inflammatory acne and follicular hyperkeratinization.",
-    indications: [
-      "Acne Vulgaris of mild to moderate severity, targeting both inflammatory papules and comedones",
-      "Superficial folliculitis and sebaceous gland hyper-activity."
-    ],
-    dosageForm: "Gel",
-    strength: "1.0% / 0.1% w/w",
-    packaging: "20g Laminated Tube"
-  },
-  {
-    id: "cefonet-o-200",
-    name: "Cefonet O 200",
-    genericName: "Cefixime Trihydrate IP 200mg + Ofloxacin IP 200mg",
-    category: "anti-infectives",
-    description: "An ultra-broad-spectrum oral antibiotic formulation combining a third-generation oral cephalosporin with a synthetic fluoroquinolone, securing double-action bacterial wall and DNA synthesis disruption.",
-    indications: [
-      "Complicated typhoid fever (enteric fever) resistant to conventional therapies",
-      "Severe acute respiratory tract infections, chronic bronchitis exacerbations",
-      "Uncomplicated and complicated urinary tract infections, and intra-abdominal infections."
-    ],
-    dosageForm: "Tablet",
-    strength: "200mg / 200mg",
-    packaging: "10 x 10 Tablets in Alu-Alu strip"
-  },
-  {
-    id: "montemac-fx",
-    name: "Montemac FX",
-    genericName: "Montelukast Sodium 10mg + Fexofenadine Hydrochloride 120mg",
-    category: "respiratory",
-    description: "A dual-action anti-asthmatic and anti-allergic combination. Montelukast selectively inhibits cysteinyl leukotriene CysLT1 receptors, while Fexofenadine serves as a non-sedating H1 receptor antagonist.",
-    indications: [
-      "Prophylaxis and chronic treatment of bronchial asthma",
-      "Seasonal and perennial allergic rhinitis with concurrent respiratory congestion",
-      "Allergic bronchospasm and exercise-induced bronchoconstriction."
-    ],
-    dosageForm: "Tablet",
-    strength: "10mg / 120mg",
-    packaging: "10 x 10 Alu-Alu Blister"
-  },
-  {
-    id: "etoric-120",
-    name: "Etoric 120",
-    genericName: "Etoricoxib IP 120mg",
-    category: "orthopedics",
-    description: "A highly selective oral cyclooxygenase-2 (COX-2) inhibitor, providing deep analgesic and anti-inflammatory action with minimal gastrointestinal mucosal toxicity compared to non-selective NSAIDs.",
-    indications: [
-      "Acute gouty arthritis pain and inflammation",
-      "Rheumatoid arthritis, osteoarthritis, and ankylosing spondylitis symptomatic control",
-      "Acute post-operative dental and orthopedic pain management."
-    ],
-    dosageForm: "Tablet",
-    strength: "120 mg",
-    packaging: "10 x 10 Tablets in Blister Pack"
-  },
-  {
-    id: "medical-d3",
-    name: "Medical D3 Nano",
+    id: "osteoneu-d3",
+    name: "OSTEONEU D3",
     genericName: "Cholecalciferol (Vitamin D3) 60,000 IU",
-    category: "nutraceuticals",
-    description: "A high-potency oral formulation of Vitamin D3 delivered in soft gelatin capsules or liquid nano-droplets for optimal lipid-phase systemic absorption.",
-    indications: [
-      "Treatment and prevention of clinical Vitamin D deficiency",
-      "Secondary prevention of senile osteoporosis and osteomalacia",
-      "Adjuvant therapy in hypocalcemia, chronic fatigue syndrome, and low bone mineral density."
-    ],
-    dosageForm: "Soft Gelatin Capsule",
+    category: "bone-joint-health",
+    description: "High-dose vitamin D supplement for the treatment of vitamin D deficiency.",
+    indications: ["Vitamin D deficiency", "Osteoporosis support", "Osteomalacia"],
+    dosageForm: "Softgel Capsule",
     strength: "60,000 IU",
-    packaging: "10 x 4 Capsules Alu-Alu"
+    packaging: "10 x 1x4 Blister"
+  },
+  {
+    id: "osteoneu-plus",
+    name: "OSTEONEU PLUS",
+    genericName: "Calcium Citrate Malate + Calcitriol + Zinc + Magnesium",
+    category: "bone-joint-health",
+    description: "Comprehensive nutritional supplement for stronger bones and joints.",
+    indications: ["Calcium deficiency", "Pregnancy & Lactation", "Bone fracture healing"],
+    dosageForm: "Tablet",
+    strength: "Standard",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
+    id: "neurise-nt",
+    name: "NEURISE NT",
+    genericName: "Pregabalin + Nortriptyline",
+    category: "neurology",
+    description: "Combination therapy for the management of neuropathic pain.",
+    indications: ["Diabetic peripheral neuropathy", "Post-herpetic neuralgia", "Fibromyalgia"],
+    dosageForm: "Tablet",
+    strength: "75mg/10mg",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
+    id: "silalpha",
+    name: "SILALPHA",
+    genericName: "Silodosin 8mg",
+    category: "urology",
+    description: "Targeted alpha-1 adrenoceptor antagonist for urinary health.",
+    indications: ["Benign prostatic hyperplasia (BPH) symptoms", "Urinary retention"],
+    dosageForm: "Capsule",
+    strength: "8 mg",
+    packaging: "10 x 10 Alu-Alu"
+  },
+  {
+    id: "metvion-p-ointment",
+    name: "METVION-P Ointment",
+    genericName: "Povidone Iodine Ointment",
+    category: "dermatology",
+    description: "Specialized topical formulation for wound care and skin infection management.",
+    indications: ["Minor cuts and burns", "Skin infections", "Wound dressing"],
+    dosageForm: "Ointment",
+    strength: "5% w/w",
+    packaging: "15g Tube"
   }
 ];
 
@@ -293,36 +301,12 @@ export const PIPELINE: PipelineProduct[] = [
 
 export const LEADERSHIP: Leader[] = [
   {
-    id: "dr-anand-sharma",
-    name: "Dr. Anand Sharma, MD, PhD",
-    role: "Founder & Executive Chairman",
-    qualification: "MD (Cardiology) - AIIMS, PhD (Pharmacology) - University of Oxford",
-    bio: "Dr. Sharma founded Medinet with a vision to integrate scientific research with robust global pharmaceutical marketing. Under his stellar guidance, Medinet transitioned from a domestic trading hub into an international brand with presence across 15+ countries.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400&h=400"
-  },
-  {
-    id: "mrs-priya-patel",
-    name: "Mrs. Priya Patel, MBA",
-    role: "Chief Executive Officer (CEO)",
-    qualification: "MBA in International Healthcare Management - Wharton School of Business",
-    bio: "With over 20 years of experience in pharmaceutical licensing, corporate scaling, and global distribution logistics, Priya leads Medinet's overall commercial expansion and strategic alliance portfolio.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"
-  },
-  {
-    id: "dr-rahul-deshmukh",
-    name: "Dr. Rahul Deshmukh, M.Pharm, PhD",
-    role: "Director of Research & Development",
-    qualification: "PhD in Pharmaceutical Sciences - National Institute of Pharmaceutical Education & Research (NIPER)",
-    bio: "Dr. Deshmukh supervises our formulation development teams, ensuring bioequivalence studies, stability analyses, and drug delivery systems match global pharmacopeia standards (IP, BP, USP).",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400&h=400"
-  },
-  {
-    id: "ms-sarah-jenkins",
-    name: "Ms. Sarah Jenkins, MS, CQE",
-    role: "Global Head of Quality & Regulatory Affairs",
-    qualification: "MS in Pharmaceutical Quality Systems - Temple University, Certified Quality Engineer (ASQ)",
-    bio: "Sarah governs Medinet's absolute adherence to WHO-GMP and international regulatory policies. She leads all FDA/WHO inspections, pharmacovigilance logging, and QC lab protocol alignments.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=400"
+    id: "mr-harish-k",
+    name: "Mr. Harish K",
+    role: "Founder & Chief Executive Officer (CEO)",
+    qualification: "Founder",
+    bio: "Since founding the company, my vision has been to build an organization that provides safe, effective, and affordable healthcare solutions while upholding the highest standards of ethics and professionalism.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400"
   }
 ];
 
@@ -337,122 +321,206 @@ export const STATS = [
 
 export const NEWS_ITEMS: NewsItem[] = [
   {
-    id: "news-cphi-global-2026",
-    title: "Medinet to Showcase Advanced Therapeutic Portfolio at CPHI Global 2026",
-    category: "Conference",
-    date: "July 02, 2026",
-    excerpt: "Medinet's executive delegation announces its participation in the upcoming CPHI Global Conference, showcasing newer drug delivery mechanisms in CNS and Cardiology.",
-    content: "We are thrilled to present our expanded product pipeline at Booth B42, Hall 5 during CPHI Global 2026. Our scientific team will showcase advanced drug release systems, micro-emulsion gels for topical dermatology, and customized manufacturing services. This conference serves as a key channel to lock-in newer distribution and licensing alliances across Latin America and Europe."
-  },
-  {
-    id: "news-gmp-recertification",
-    title: "Medinet Allied Manufacturing Facilities Secure WHO-GMP Recertification",
+    id: "news-corporate",
+    title: "Corporate News",
     category: "News",
-    date: "May 18, 2026",
-    excerpt: "Medinet's primary allied formulation facility passes comprehensive multi-day regulatory audit with zero critical observations, validating outstanding quality control benchmarks.",
-    content: "We are proud to announce that our primary strategic manufacturing site has successfully concluded its triennial WHO-GMP and international standards audit with zero non-conformances. The rigorous inspection evaluated physical plant hygiene, computer-system validations, raw materials tracing, batch packaging integrity, and QC laboratory instrumentation compliance."
+    date: "August 10, 2026",
+    excerpt: "Follow our journey as we expand our footprint in the healthcare industry.",
+    content: "Our corporate news highlights include: Company milestones and achievements, Strategic partnerships and collaborations, Awards and recognitions, and Sustainability and CSR initiatives."
   },
   {
-    id: "news-csr-health-camp",
-    title: "Medinet CSR: Launching Free Diagnostic and Medication Distribution Camps",
-    category: "CSR",
-    date: "April 10, 2026",
-    excerpt: "Underscoring our core belief in patient care, Medinet launches rural health initiatives, providing free cardiac diagnostic checkups and life-saving anti-hypertensives.",
-    content: "As part of our commitment to social equity, Medinet's Community Welfare Wing completed a massive three-district rural healthcare camp. Over 4,500 families received diagnostic screenings, cardiograms, and a full three-month supply of chronic disease medications (atorvastatin, ramipril, and wellness nutraceuticals) completely free of cost."
+    id: "news-product-announcements",
+    title: "Product Announcements",
+    category: "News",
+    date: "July 25, 2026",
+    excerpt: "Discover how we are bringing innovative treatments to patients.",
+    content: "Our latest product announcements feature: New product launches, Expansion of therapeutic categories, Approvals and regulatory milestones, and Upgrades to existing formulations."
   },
   {
-    id: "news-neurology-symposium",
-    title: "Sponsoring the 14th National Neuropathic Pain & CNS Symposium",
+    id: "news-upcoming-events",
+    title: "Upcoming Events and Exhibitions",
     category: "Event",
-    date: "March 05, 2026",
-    excerpt: "Medinet hosts scientific research forum, facilitating panel discussions among top physicians regarding advanced combined therapies for painful diabetic neuropathy.",
-    content: "The symposium gathered over 200 neurologists and endocrinologists to discuss modern therapeutic guidelines. Our clinical researchers presented peer-reviewed data on the pharmacokinetic profile of Gabapentin and Nortriptyline combined therapy, demonstrating faster onset times and reduced CNS sedation compared to standard single-drug regimes."
+    date: "June 15, 2026",
+    excerpt: "Connect with our team at industry events to learn more about our healthcare solutions.",
+    content: "We actively participate in medical conferences and seminars, Healthcare exhibitions and trade shows, Health camps and community outreach programs, and Training and development workshops."
   }
 ];
 
 export const JOBS: Job[] = [
   {
-    id: "job-qa-executive",
-    title: "Senior Executive - Quality Assurance & Validation",
-    department: "Quality Assurance",
-    location: "Mumbai HQ",
+    id: "job-msr",
+    title: "Medical Sales Representative (MSR)",
+    department: "Sales",
+    location: "Various Locations",
     type: "Full-time",
-    experience: "4 - 7 Years",
-    description: "Responsible for reviewing batch manufacturing records, executing equipment validation protocols, managing change control logging, and maintaining overall compliance with WHO-GMP and FDA regulations.",
+    experience: "1 - 3 Years",
+    description: "Promote Medinet's product portfolio to healthcare professionals and generate prescriptions.",
     requirements: [
-      "B.Pharm / M.Pharm degree in Pharmaceutical Chemistry or Quality Systems.",
-      "Thorough understanding of HPLC, GC, and wet chemistry analytical validation principles.",
-      "Experience handling regulatory audits and drafting CAPA documentation."
+      "B.Sc / B.Pharm degree.",
+      "Excellent communication and interpersonal skills.",
+      "Willingness to travel extensively within the assigned territory."
     ]
   },
   {
-    id: "job-area-manager",
-    title: "Area Business Manager - Cardiovascular Division",
+    id: "job-abm",
+    title: "Area Business Manager (ABM)",
     department: "Sales & Marketing",
-    location: "Bengaluru, India",
+    location: "Bengaluru / Coimbatore",
     type: "Full-time",
     experience: "3 - 5 Years",
-    description: "Lead a high-performing team of medical representatives to drive penetration of Medinet's premium cardiology portfolio, establish strong ties with key opinion leaders, and achieve regional sales targets.",
+    description: "Lead a team of Medical Sales Representatives, monitor sales targets, and build relationships with key opinion leaders.",
     requirements: [
-      "B.Sc / B.Pharm or MBA in Marketing Management.",
-      "Proven track record of launching and sustaining cardiology brands in tier-1 and tier-2 markets.",
-      "Strong command of regional languages and doctor-network database."
+      "B.Pharm or Science Graduate, preferably with an MBA.",
+      "Proven track record of pharmaceutical sales leadership.",
+      "Strong analytical and team management skills."
     ]
   },
   {
-    id: "job-pve-specialist",
-    title: "Drug Safety & Pharmacovigilance Specialist",
-    department: "Medical & Regulatory",
-    location: "Mumbai HQ",
+    id: "job-rsm",
+    title: "Regional Sales Manager (RSM)",
+    department: "Sales",
+    location: "South India Region",
+    type: "Full-time",
+    experience: "7 - 10 Years",
+    description: "Oversee operations across multiple areas, drive regional growth strategies, and ensure optimal market penetration.",
+    requirements: [
+      "Extensive experience in pharmaceutical sales management.",
+      "Strategic planning and execution capabilities.",
+      "Excellent networking and negotiation skills."
+    ]
+  },
+  {
+    id: "job-product-manager",
+    title: "Product Manager",
+    department: "Marketing",
+    location: "Corporate Office",
+    type: "Full-time",
+    experience: "4 - 6 Years",
+    description: "Develop and execute brand strategies, create marketing materials, and train the sales force on product positioning.",
+    requirements: [
+      "B.Pharm + MBA in Marketing.",
+      "Experience in brand management and product launches.",
+      "Creative thinking and strong scientific knowledge."
+    ]
+  },
+  {
+    id: "job-hr",
+    title: "Human Resources",
+    department: "HR",
+    location: "Corporate Office",
+    type: "Full-time",
+    experience: "3 - 5 Years",
+    description: "Manage recruitment, employee relations, performance management, and organizational development initiatives.",
+    requirements: [
+      "MBA in HR or relevant degree.",
+      "Strong understanding of labor laws and HR best practices.",
+      "Excellent interpersonal and communication skills."
+    ]
+  },
+  {
+    id: "job-marketing-exec",
+    title: "Marketing Executive",
+    department: "Marketing",
+    location: "Corporate Office",
+    type: "Full-time",
+    experience: "1 - 3 Years",
+    description: "Assist in executing marketing campaigns, coordinating promotional activities, and market research.",
+    requirements: [
+      "B.Sc / B.Pharm or BBA.",
+      "Strong analytical and communication skills.",
+      "Proficiency in digital marketing tools is a plus."
+    ]
+  },
+  {
+    id: "job-admin",
+    title: "Administration",
+    department: "Administration",
+    location: "Corporate Office",
     type: "Full-time",
     experience: "2 - 4 Years",
-    description: "Manage end-to-end adverse event logging, prepare safety reports (PSURs) for regulatory authorities, and assist in clinical trial safety assessments following global safety guidelines.",
+    description: "Oversee office operations, facilities management, and administrative support for various departments.",
     requirements: [
-      "Pharm.D / B.Pharm or MBBS/BDS background.",
-      "Experience operating global PV databases (Argus, ArisG or similar).",
-      "Familiarity with ICH-GCP, MedDRA coding, and WHO-UMC safety terminologies."
+      "Bachelor's degree in any discipline.",
+      "Experience in office administration and vendor management.",
+      "Strong organizational and multitasking abilities."
     ]
   },
   {
-    id: "job-formulation-scientist",
-    title: "Research Scientist - Formulation R&D (Solid Orals)",
-    department: "Research & Development",
-    location: "Medinet R&D Center, Thane",
+    id: "job-finance",
+    title: "Finance & Accounts",
+    department: "Finance",
+    location: "Corporate Office",
     type: "Full-time",
-    experience: "5 - 8 Years",
-    description: "Conceptualize, develop, and optimize novel solid-oral dosage formulations (tablets, sustained-release capsules) from lab-scale trials up to successful pilot scale-up and bio-equivalence matching.",
+    experience: "3 - 5 Years",
+    description: "Manage accounting, financial reporting, taxation, and budget preparation.",
     requirements: [
-      "M.Pharm / PhD in Pharmaceutics.",
-      "Deep expertise in solid-oral coating technologies, granulation methods, and solubility enhancement.",
-      "Hands-on experience drafting drug product dossiers for international regulatory filings."
+      "B.Com / M.Com or CA Inter.",
+      "Proficiency in accounting software and MS Excel.",
+      "Strong analytical and numerical skills."
+    ]
+  },
+  {
+    id: "job-regulatory",
+    title: "Regulatory Affairs",
+    department: "Regulatory",
+    location: "Corporate Office",
+    type: "Full-time",
+    experience: "4 - 6 Years",
+    description: "Ensure compliance with national and international pharmaceutical regulations and manage dossier submissions.",
+    requirements: [
+      "B.Pharm / M.Pharm degree.",
+      "In-depth knowledge of regulatory guidelines (FDA, WHO-GMP).",
+      "Experience in dossier preparation and regulatory filings."
+    ]
+  },
+  {
+    id: "job-qa",
+    title: "Quality Assurance",
+    department: "Quality",
+    location: "Corporate Office",
+    type: "Full-time",
+    experience: "3 - 6 Years",
+    description: "Implement and monitor quality management systems, conduct audits, and ensure adherence to quality standards.",
+    requirements: [
+      "B.Pharm / M.Pharm or M.Sc in Chemistry.",
+      "Experience in pharmaceutical quality assurance.",
+      "Knowledge of GMP and ISO standards."
     ]
   }
 ];
 
 export const OFFICES: Office[] = [
   {
-    name: "Medinet Corporate Headquarters",
+    name: "Corporate Office",
     type: "Corporate",
-    address: "Medinet Tower, 12th Floor, Bandra-Kurla Complex (BKC), Mumbai, Maharashtra, 400051, India",
-    phone: "+91-22-4982-3300",
+    address: "Medinet Pharmaceutical Marketing Company, Mumbai, Maharashtra",
+    phone: "+91 XXXXX XXXXX",
     email: "corporate@medinetpharma.com",
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.4802875143365!2d72.86178381533042!3d19.042617787108137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8be00000001%3A0xbd8e2d67d7cbfe0e!2sBandra%20Kurla%20Complex!5e0!3m2!1sen!2sin!4v1626500000000!5m2!1sen!2sin"
   },
   {
-    name: "Medinet R&D & Formulation Technology Center",
-    type: "Manufacturing",
-    address: "Plot No. A-412, MIDC Industrial Area, Thane West, Maharashtra, 400604, India",
-    phone: "+91-22-6102-4500",
-    email: "research@medinetpharma.com",
-    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.4111364531473!2d72.9731238!3d19.1881248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b8e100000001%3A0xbd1e5d67d7cbfe0e!2sThane!5e0!3m2!1sen!2sin!4v1626500000001!5m2!1sen!2sin"
+    name: "Regional Office - Coimbatore",
+    type: "Regional",
+    address: "Coimbatore, Tamil Nadu",
+    phone: "+91 XXXXX XXXXX",
+    email: "coimbatore@medinetpharma.com",
+    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.3262413159043!2d76.953683!3d11.015243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859a8501e74f1%3A0xbd8e5c62df!2sCoimbatore!5e0!3m2!1sen!2sin!4v1626500000001!5m2!1sen!2sin"
   },
   {
-    name: "Regional Distribution Hub - South India",
+    name: "Regional Office - Bengaluru",
     type: "Regional",
-    address: "Sy. No. 42/3, Phase-II, Electronic City, Bengaluru, Karnataka, 560100, India",
-    phone: "+91-80-4911-2099",
-    email: "south.dist@medinetpharma.com",
+    address: "Bengaluru, Karnataka",
+    phone: "+91 XXXXX XXXXX",
+    email: "bengaluru@medinetpharma.com",
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0432245314!2d77.6743123!3d12.8456123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6c62aaaaaaab%3A0xbd8e5c62df!2sElectronic%20City!5e0!3m2!1sen!2sin!4v1626500000002!5m2!1sen!2sin"
+  },
+  {
+    name: "Regional Office - Dharmapuri",
+    type: "Regional",
+    address: "Dharmapuri, Tamil Nadu",
+    phone: "+91 XXXXX XXXXX",
+    email: "dharmapuri@medinetpharma.com",
+    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.3262413159043!2d78.15!3d12.13!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859a8501e74f1%3A0xbd8e5c62df!2sDharmapuri!5e0!3m2!1sen!2sin!4v1626500000003!5m2!1sen!2sin"
   }
 ];
 

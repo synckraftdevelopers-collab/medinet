@@ -414,10 +414,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
   };
 
   const getNavItemClass = (isActive: boolean) =>
-    `px-2 xl:px-3 py-1.5 text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] select-none shrink-0 ${
-      isActive
-        ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold scale-[1.02]"
-        : "text-body font-medium hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
+    `px-1 lg:px-1.5 xl:px-2.5 py-1.5 text-[10px] lg:text-[11px] xl:text-xs font-mono rounded-xl transition-all duration-300 flex items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] select-none shrink-0 ${isActive
+      ? "text-primary bg-secondary/10 border border-secondary/20 shadow-sm font-semibold scale-[1.02]"
+      : "text-body font-medium hover:text-secondary hover:bg-secondary/5 border border-transparent relative after:absolute after:bottom-0 after:left-[15%] after:w-[70%] after:h-[2px] after:bg-secondary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center hover:scale-[1.02]"
     }`;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -559,11 +558,10 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
 
       {/* Main Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${isScrolled
             ? "bg-white/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,.06)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
             : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
-        }`}
+          }`}
         aria-label="Main Navigation"
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8 min-[1440px]:px-10 h-full w-full">
@@ -590,7 +588,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             {/* Desktop Navigation - Center Column */}
             <nav
               aria-label="Desktop Navigation Links"
-              className="hidden lg:flex flex-none items-center justify-center gap-1 xl:gap-2 min-[1440px]:gap-4 h-full"
+              className="hidden lg:flex flex-auto items-center justify-center gap-0.5 lg:gap-1 xl:gap-2 min-[1440px]:gap-3 h-full"
             >
               <button
                 onClick={() => navigate("home")}
@@ -704,7 +702,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                             </motion.button>
                           );
                         })}
-                        <motion.div 
+                        <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.25, delay: THERAPEUTIC_CATEGORIES.length * 0.025, ease: "easeOut" }}
@@ -768,7 +766,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 aria-current={currentRoute === "news-events" ? "page" : undefined}
                 className={getNavItemClass(currentRoute === "news-events" || activeSection === "news-events")}
               >
-                NEWS
+                NEWS & EVENTS
               </button>
 
               <button
@@ -776,16 +774,20 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 aria-current={currentRoute === "contact" ? "page" : undefined}
                 className={getNavItemClass(currentRoute === "contact" || activeSection === "contact")}
               >
-                CONTACT
+                CONTACT US
               </button>
 
-              {/* Legal Dropdown in Navigation with Equal Spacing */}
+              {/* Legal Mega Menu Trigger */}
               <div
                 className="relative flex items-center h-full"
                 onMouseEnter={() => handleMegaMenuEnter("legal")}
                 onMouseLeave={handleMegaMenuLeave}
               >
                 <button
+                  onClick={() => {
+                    const nextState = activeMegaMenu === "legal" ? null : "legal";
+                    setActiveMegaMenu(nextState);
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
                       e.preventDefault();
@@ -802,166 +804,55 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   aria-haspopup="true"
                   aria-expanded={activeMegaMenu === "legal"}
                   aria-controls="legal-mega-menu"
-                  aria-current={currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") ? "page" : undefined}
-                  className={getNavItemClass(currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright") || activeSection === "legal")}
+                  className={getNavItemClass(["privacy-policy", "terms", "cookies", "disclaimer", "copyright-notice"].includes(currentRoute) || ["privacy-policy", "terms", "cookies", "disclaimer", "copyright-notice"].includes(activeSection))}
                 >
                   LEGAL
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "legal" ? "rotate-180 text-secondary" : ""}`} />
                 </button>
 
-                {activeMegaMenu === "legal" && (
-                  <div
-                    id="legal-mega-menu"
-                    role="menu"
-                    aria-label="Legal documents and policies"
-                    onKeyDown={(e) => handleMenuKeyDown(e, "legal-mega-menu")}
-                    className="absolute right-0 top-full mt-0 pt-2 w-[520px] max-w-[95vw] bg-[rgba(250,252,251,.97)] backdrop-blur-[20px] rounded-[28px] border border-secondary/15 shadow-[0_30px_80px_rgba(5,150,105,0.14),0_0_0_1px_rgba(5,150,105,0.04)] p-6 animate-fade-in origin-top z-50 flex flex-col scale-100 transition-all duration-[250ms]"
-                  >
-                    {/* Section Header — matches Therapeutic Segments style */}
-                    <div className="mb-5">
-                      <div className="flex items-center gap-2.5 mb-3">
-                        {/* Glowing dot badge pill */}
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-secondary/25 bg-secondary/5 text-secondary text-[10px] font-mono font-bold uppercase tracking-[0.12em]">
-                          <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse shrink-0"></span>
-                          Legal &amp; Compliance
-                        </span>
-                      </div>
-                      <h4 className="text-[18px] font-display font-extrabold text-slate-900 leading-tight mb-1">
-                        Policy &amp; Compliance Hub
-                      </h4>
-                      <p className="text-[12px] text-slate-500 font-medium leading-relaxed">
-                        Protecting your privacy, ensuring transparency and maintaining regulatory compliance.
-                      </p>
-                      {/* Subtle animated divider */}
-                      <div className="mt-3 h-px bg-gradient-to-r from-secondary/30 via-primary/20 to-transparent rounded-full"></div>
-                    </div>
-
-                    {/* Cards Grid — 2×3 matching Therapeutic Segments stagger */}
-                    <div className="grid grid-cols-1 gap-2">
+                {/* Legal Mega Menu Dropdown */}
+                <AnimatePresence>
+                  {activeMegaMenu === "legal" && (
+                    <motion.div
+                      id="legal-mega-menu"
+                      role="menu"
+                      aria-label="Legal Pages"
+                      onKeyDown={(e) => handleMenuKeyDown(e, "legal-mega-menu")}
+                      initial={{ opacity: 0, scale: 0.96, y: 5 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.96, y: 5 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[240px] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FAFC_100%)] rounded-[16px] border border-[#E2E8F0] shadow-[0_16px_40px_rgba(0,0,0,.08)] p-3 z-50 origin-top overflow-hidden will-change-transform flex flex-col gap-1"
+                    >
                       {[
-                        {
-                          href: "/legal/privacy-policy",
-                          label: "Privacy Policy",
-                          sub: "Protecting your information",
-                          icon: ShieldCheck,
-                          gradient: "from-[#059669] to-[#34D399]",
-                          shadow: "rgba(5,150,105,.25)",
-                          nav: "privacy-policy",
-                          delay: 0
-                        },
-                        {
-                          href: "/legal/terms-conditions",
-                          label: "Terms & Conditions",
-                          sub: "Usage guidelines & responsibilities",
-                          icon: FileText,
-                          gradient: "from-[#0D9488] to-[#2DD4BF]",
-                          shadow: "rgba(13,148,136,.25)",
-                          nav: "terms",
-                          delay: 0.04
-                        },
-                        {
-                          href: "/legal/disclaimer",
-                          label: "Medical Disclaimer",
-                          sub: "Legal limitations & medical notices",
-                          icon: Scale,
-                          gradient: "from-[#D97706] to-[#FBBF24]",
-                          shadow: "rgba(245,158,11,.25)",
-                          nav: "disclaimer",
-                          delay: 0.08
-                        },
-                        {
-                          href: "/legal/cookie-policy",
-                          label: "Cookie Policy",
-                          sub: "Tracking & browser preferences",
-                          icon: Cookie,
-                          gradient: "from-[#7C3AED] to-[#A78BFA]",
-                          shadow: "rgba(124,58,237,.25)",
-                          nav: "cookies",
-                          delay: 0.12
-                        },
-                        {
-                          href: "/legal/copyright-notice",
-                          label: "Copyright Notice",
-                          sub: "Ownership, IP & licensing terms",
-                          icon: BadgeCheck,
-                          gradient: "from-[#059669] to-[#10B981]",
-                          shadow: "rgba(5,150,105,.25)",
-                          nav: "copyright-notice",
-                          delay: 0.16
-                        }
-                      ].map((item, idx) => (
-                        <a
-                          key={idx}
-                          href={item.href}
+                        { name: "Privacy Policy", route: "privacy-policy", icon: ShieldCheck },
+                        { name: "Terms & Conditions", route: "terms", icon: FileText },
+                        { name: "Cookie Policy", route: "cookies", icon: Cookie },
+                        { name: "Disclaimer", route: "disclaimer", icon: AlertCircle },
+                        { name: "Copyright Notice", route: "copyright-notice", icon: Copyright }
+                      ].map((item, index) => (
+                        <motion.button
+                          key={item.route}
                           role="menuitem"
                           tabIndex={0}
-                          onClick={() => setActiveMegaMenu(null)}
-                          onKeyDown={(e) => {
-                            if (e.key === " ") {
-                              e.preventDefault();
-                              setActiveMegaMenu(null);
-                              navigate(item.nav);
-                            }
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.2, delay: index * 0.05 }}
+                          onClick={() => {
+                            setActiveMegaMenu(null);
+                            navigate(item.route);
                           }}
-                          className="group/item relative flex items-center justify-between p-3.5 rounded-[16px] bg-transparent hover:bg-gradient-to-r hover:from-white hover:via-emerald-50/60 hover:to-white border border-transparent hover:border-secondary/20 hover:shadow-[0_8px_24px_rgba(5,150,105,.08)] hover:-translate-y-[2px] active:bg-gradient-to-br active:from-secondary active:to-primary active:border-secondary active:text-white transition-all duration-[250ms] ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary overflow-hidden"
-                          style={{ transitionDelay: `${item.delay}s` }}
+                          className="flex items-center gap-3 p-2.5 rounded-[12px] text-left text-sm font-semibold text-[#0F172A] hover:text-[#059669] hover:bg-emerald-50/50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] group"
                         >
-                          {/* Subtle inner glow on hover */}
-                          <div className="absolute inset-0 rounded-[16px] bg-gradient-to-b from-white/60 via-emerald-50/20 to-white/60 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"></div>
-                          {/* Top accent strip */}
-                          <div className={`absolute top-0 left-3 right-3 h-[2px] rounded-b-full bg-gradient-to-r ${item.gradient} opacity-0 group-hover/item:opacity-60 transition-opacity duration-[250ms]`}></div>
-
-                          <div className="flex items-center gap-3.5">
-                            {/* Floating animated icon container */}
-                            <div
-                              className={`w-[46px] h-[46px] rounded-[14px] bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0 group-hover/item:scale-[1.08] group-hover/item:rotate-[4deg] group-active/item:bg-white transition-all duration-[250ms] relative`}
-                              style={{ boxShadow: `0 8px 20px ${item.shadow}` }}
-                            >
-                              <div className={`absolute inset-0 rounded-[14px] bg-gradient-to-br ${item.gradient} blur-md opacity-0 group-hover/item:opacity-40 transition-opacity duration-[250ms] -z-10`}></div>
-                              <item.icon className="w-[20px] h-[20px] text-white group-active/item:text-secondary relative z-10" />
-                            </div>
-                            <div className="flex flex-col gap-0.5">
-                              <span className="text-[14px] font-display font-extrabold text-slate-900 group-hover/item:text-secondary group-active/item:text-white transition-colors duration-[250ms]">
-                                {item.label}
-                              </span>
-                              <span className="text-[11px] font-medium text-slate-500 group-active/item:text-white/80 transition-colors duration-[250ms]">
-                                {item.sub}
-                              </span>
-                            </div>
+                          <div className="w-8 h-8 rounded-[10px] bg-slate-100 group-hover:bg-emerald-100 flex items-center justify-center text-slate-500 group-hover:text-emerald-600 transition-colors duration-200">
+                            <item.icon className="w-4 h-4" />
                           </div>
-                          {/* Animated arrow */}
-                          <div className="flex items-center gap-1.5 shrink-0">
-                            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 group-hover/item:text-secondary group-active/item:text-white opacity-0 group-hover/item:opacity-100 transition-all duration-[250ms] -translate-x-2 group-hover/item:translate-x-0">
-                              VIEW
-                            </span>
-                            <ArrowRight className="w-4 h-4 text-slate-300 group-hover/item:text-secondary group-hover/item:translate-x-1 group-active/item:text-white transition-all duration-[250ms]" />
-                          </div>
-                        </a>
+                          {item.name}
+                        </motion.button>
                       ))}
-                    </div>
-
-                    {/* Bottom CTA — premium style */}
-                    <div className="mt-4 pt-4 border-t border-secondary/10">
-                      <div className="flex items-center justify-between bg-gradient-to-br from-slate-900 to-primary rounded-2xl px-5 py-4 relative overflow-hidden group/cta">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(5,150,105,0.3),transparent_60%)] pointer-events-none"></div>
-                        <div className="relative z-10">
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <Info className="w-3.5 h-3.5 text-secondary" />
-                            <span className="text-white text-[12px] font-bold">Need Legal Assistance?</span>
-                          </div>
-                          <p className="text-white/60 text-[10px] font-medium">Our team is available to clarify any policy.</p>
-                        </div>
-                        <a
-                          href="mailto:corporate@medinetpharma.com"
-                          className="relative z-10 shrink-0 px-5 py-2.5 bg-white hover:bg-secondary hover:text-white text-slate-900 text-[11px] font-bold rounded-full transition-all duration-300 flex items-center gap-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_20px_rgba(5,150,105,0.3)] hover:-translate-y-0.5 group/btn focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                        >
-                          Contact Legal Team
-                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </nav>
             {/* Right Buttons - Right Column (Equal flex basis for exact desktop centering) */}
@@ -1064,9 +955,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   { type: "link", label: "Quality", route: "quality", icon: ShieldCheck },
                   { type: "link", label: "Partners", route: "business-partners", icon: Handshake },
                   { type: "link", label: "Careers", route: "careers", icon: Briefcase },
-                  { type: "link", label: "News", route: "news-events", icon: Newspaper },
+                  { type: "link", label: "News & Events", route: "news-events", icon: Newspaper },
                   { type: "link", label: "Contact", route: "contact", icon: Phone },
-                  { type: "accordion", id: "legal", label: "Legal", icon: Scale }
+                  { type: "accordion", id: "legal", label: "Legal", icon: ShieldCheck }
                 ].map((item, index) => {
                   if (item.type === "link") {
                     const isActive = currentRoute === item.route;
@@ -1080,11 +971,10 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                           setIsMobileMenuOpen(false);
                           if (item.route) navigate(item.route);
                         }}
-                        className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] shrink-0 font-sans ${
-                          isActive
+                        className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] shrink-0 font-sans ${isActive
                             ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
                             : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-4">
                           <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
@@ -1103,11 +993,10 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       <motion.div key="products-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "products" ? null : "products")}
-                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
-                            isActive
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${isActive
                               ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
                               : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
-                          }`}
+                            }`}
                           aria-expanded={activeMobileAccordion === "products"}
                         >
                           <div className="flex items-center gap-4">
@@ -1137,11 +1026,10 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                                     setIsMobileMenuOpen(false);
                                     navigate("products");
                                   }}
-                                  className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
-                                    currentRoute === "products"
+                                  className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${currentRoute === "products"
                                       ? "text-[#059669] font-bold bg-[#ECFDF5] border-l-4 border-[#059669]"
                                       : "text-[#64748B] hover:text-[#059669] hover:bg-slate-50 font-medium"
-                                  }`}
+                                    }`}
                                 >
                                   <span>All Products</span>
                                   {currentRoute === "products" && <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />}
@@ -1165,21 +1053,20 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                       </motion.div>
                     );
                   } else if (item.id === "legal") {
-                    const isActive = currentRoute.startsWith("privacy") || currentRoute.startsWith("terms") || currentRoute.startsWith("disclaimer") || currentRoute.startsWith("cookie") || currentRoute.startsWith("copyright");
+                    const isActive = ["privacy-policy", "terms", "cookies", "disclaimer", "copyright-notice"].includes(currentRoute);
                     return (
                       <motion.div key="legal-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
-                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
-                            isActive
+                          className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${isActive
                               ? "bg-[linear-gradient(135deg,#059669,#047857)] shadow-lg shadow-emerald-500/25 text-white font-bold scale-[1.01]"
                               : "bg-transparent hover:bg-[#ECFDF5] active:bg-[#D1FAE5] border border-transparent hover:border-[#A7F3D0] text-[#0F172A] font-semibold"
-                          }`}
+                            }`}
                           aria-expanded={activeMobileAccordion === "legal"}
                         >
                           <div className="flex items-center gap-4">
                             <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.3, delay: index * 0.03 + 0.05 }}>
-                              <Scale className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />
+                              <ShieldCheck className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[#059669]"}`} />
                             </motion.div>
                             <span className="text-[16px]">Legal</span>
                           </div>
@@ -1198,91 +1085,29 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-2 pt-3 pb-3 px-1">
+                              <div className="flex flex-col gap-1.5 pt-2 pb-3 pl-12 pr-4">
                                 {[
-                                  {
-                                    label: "Privacy Policy",
-                                    sub: "Protecting your information",
-                                    route: "/legal/privacy-policy",
-                                    key: "privacy",
-                                    icon: ShieldCheck,
-                                    gradient: "from-[#059669] to-[#34D399]",
-                                    shadow: "rgba(5,150,105,.25)"
-                                  },
-                                  {
-                                    label: "Terms & Conditions",
-                                    sub: "Usage guidelines & responsibilities",
-                                    route: "/legal/terms-conditions",
-                                    key: "terms",
-                                    icon: FileText,
-                                    gradient: "from-[#0D9488] to-[#2DD4BF]",
-                                    shadow: "rgba(13,148,136,.25)"
-                                  },
-                                  {
-                                    label: "Medical Disclaimer",
-                                    sub: "Legal limitations & medical notices",
-                                    route: "/legal/disclaimer",
-                                    key: "disclaimer",
-                                    icon: Scale,
-                                    gradient: "from-[#D97706] to-[#FBBF24]",
-                                    shadow: "rgba(245,158,11,.25)"
-                                  },
-                                  {
-                                    label: "Cookie Policy",
-                                    sub: "Tracking & browser preferences",
-                                    route: "/legal/cookie-policy",
-                                    key: "cookie",
-                                    icon: Cookie,
-                                    gradient: "from-[#7C3AED] to-[#A78BFA]",
-                                    shadow: "rgba(124,58,237,.25)"
-                                  },
-                                  {
-                                    label: "Copyright Notice",
-                                    sub: "Ownership, IP & licensing terms",
-                                    route: "/legal/copyright-notice",
-                                    key: "copyright",
-                                    icon: BadgeCheck,
-                                    gradient: "from-[#059669] to-[#10B981]",
-                                    shadow: "rgba(5,150,105,.25)"
-                                  }
-                                ].map((lItem, idx) => {
-                                  const isSubActive = currentRoute.includes(lItem.key);
-                                  return (
-                                    <motion.a
-                                      key={lItem.route}
-                                      href={lItem.route}
-                                      initial={{ opacity: 0, x: -10, y: 5 }}
-                                      animate={{ opacity: 1, x: 0, y: 0 }}
-                                      transition={{ duration: 0.25, delay: idx * 0.04, ease: "easeOut" }}
-                                      onClick={() => setIsMobileMenuOpen(false)}
-                                      className={`group/litem flex items-center justify-between px-4 py-3 rounded-2xl transition-all duration-250 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${
-                                        isSubActive
-                                          ? "bg-gradient-to-r from-emerald-50 to-teal-50/60 border border-secondary/25 shadow-sm"
-                                          : "bg-white/60 hover:bg-gradient-to-r hover:from-white hover:via-emerald-50/50 hover:to-white border border-slate-100 hover:border-secondary/20 hover:shadow-[0_4px_16px_rgba(5,150,105,.06)]"
+                                  { name: "Privacy Policy", route: "privacy-policy" },
+                                  { name: "Terms & Conditions", route: "terms" },
+                                  { name: "Cookie Policy", route: "cookies" },
+                                  { name: "Disclaimer", route: "disclaimer" },
+                                  { name: "Copyright Notice", route: "copyright-notice" }
+                                ].map((legal) => (
+                                  <button
+                                    key={legal.route}
+                                    onClick={() => {
+                                      setIsMobileMenuOpen(false);
+                                      navigate(legal.route);
+                                    }}
+                                    className={`w-full text-left min-h-[48px] py-3 px-4 text-[15px] transition-all duration-200 rounded-xl flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669] ${currentRoute === legal.route
+                                        ? "text-[#059669] font-bold bg-[#ECFDF5] border-l-4 border-[#059669]"
+                                        : "text-[#64748B] hover:text-[#059669] hover:bg-slate-50 font-medium"
                                       }`}
-                                    >
-                                      <div className="flex items-center gap-3.5">
-                                        {/* Premium icon container — matches Therapeutic Segments */}
-                                        <div
-                                          className={`w-[46px] h-[46px] rounded-[14px] bg-gradient-to-br ${lItem.gradient} flex items-center justify-center shrink-0 group-hover/litem:scale-[1.08] group-hover/litem:rotate-[4deg] transition-all duration-[250ms] relative`}
-                                          style={{ boxShadow: `0 8px 20px ${lItem.shadow}` }}
-                                        >
-                                          <div className={`absolute inset-0 rounded-[14px] bg-gradient-to-br ${lItem.gradient} blur-md opacity-0 group-hover/litem:opacity-40 transition-opacity duration-[250ms] -z-10`}></div>
-                                          <lItem.icon className="w-[20px] h-[20px] text-white relative z-10" />
-                                        </div>
-                                        <div className="flex flex-col gap-0.5 min-w-0">
-                                          <span className={`text-[14px] font-display font-extrabold transition-colors duration-[250ms] truncate ${isSubActive ? "text-secondary" : "text-slate-900 group-hover/litem:text-secondary"}`}>
-                                            {lItem.label}
-                                          </span>
-                                          <span className="text-[11px] font-medium text-slate-500 truncate">
-                                            {lItem.sub}
-                                          </span>
-                                        </div>
-                                      </div>
-                                      <ArrowRight className={`w-4 h-4 shrink-0 ml-2 transition-all duration-[250ms] group-hover/litem:translate-x-1 ${isSubActive ? "text-secondary" : "text-slate-300 group-hover/litem:text-secondary"}`} />
-                                    </motion.a>
-                                  );
-                                })}
+                                  >
+                                    <span>{legal.name}</span>
+                                    {currentRoute === legal.route && <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />}
+                                  </button>
+                                ))}
                               </div>
                             </motion.div>
                           )}
@@ -1324,15 +1149,15 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
       {/* Enquiry Modal */}
       <AnimatePresence>
         {isEnquiryOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
             animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/40 overflow-y-auto" 
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/40 overflow-y-auto"
             role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title"
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -1347,7 +1172,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 <div className="absolute -top-10 -right-10 w-40 h-40 border border-emerald-500/10 rounded-full blur-[1px]"></div>
                 <div className="absolute top-20 -right-5 w-20 h-20 border border-emerald-500/10 rounded-full blur-[1px]"></div>
               </div>
-              
+
               {/* Header */}
               <div className="relative z-10 flex items-start justify-between p-5 sm:p-6 border-b border-slate-200/50 bg-white/50">
                 <div>
@@ -1374,7 +1199,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* Form Content */}
               {formSuccess ? (
                 <div className="relative z-10 p-8 text-center space-y-4 my-auto">
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15 }}
@@ -1431,7 +1256,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         </span>
                       )}
                     </div>
-                    
+
                     <div className="relative group/field">
                       <input
                         id="enquiry-email"
@@ -1493,7 +1318,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         </span>
                       )}
                     </div>
-                    
+
                     <div className="relative group/field">
                       <input
                         id="enquiry-company"
@@ -1536,11 +1361,11 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     <label htmlFor="enquiry-message" className="absolute left-11 top-3 text-[13px] font-mono text-slate-400 transition-all duration-300 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-emerald-600 peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-slate-500 pointer-events-none">
                       Enquiry Details <span className="text-red-500">*</span>
                     </label>
-                    
+
                     <div className={`absolute bottom-2 right-2 px-2 py-0.5 rounded-full text-[9px] font-mono font-bold transition-colors ${formData.message.length > 450 ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-500"}`}>
                       {formData.message.length}/500 chars
                     </div>
-                    
+
                     {formErrors.message && (
                       <span id="enq-msg-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1.5 ml-1">
                         <AlertCircle className="w-3.5 h-3.5 shrink-0" />

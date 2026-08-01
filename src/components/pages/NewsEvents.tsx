@@ -194,7 +194,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   </motion.span>
                 </h1>
                 <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px] mx-auto lg:mx-0">
-                  Stay updated with Medinet&rsquo;s global academic conferences, WHO-GMP facility validations, community healthcare campaigns, and upcoming therapeutic licensing sessions.
+                  Stay informed with the latest news, product launches, corporate announcements, and industry events from Medinet Pharmaceutical Marketing Company. Our commitment to transparency and growth is reflected in our ongoing initiatives.
                 </p>
               </div>
 

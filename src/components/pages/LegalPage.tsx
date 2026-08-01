@@ -35,76 +35,66 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Privacy Policy",
           icon: Eye,
-          badge: "Information Integrity",
+          badge: "Your Privacy Matters",
           date: "Last Updated: June 15, 2026",
+          preamble: "At Medinet Pharmaceutical Marketing Company, we are committed to protecting your privacy and safeguarding the personal information you share with us. We collect and process information responsibly to improve our services, respond to enquiries, and provide a secure browsing experience.",
           sections: [
             {
-              heading: "1. Scope of Policy",
-              text: "This Privacy Policy dictates the collection, processing, and storage of corporate and contact data by Medinet Pharmaceutical Marketing Company. We prioritize securing the commercial contact files, inquiry details, and corporate emails of our distributors, manufacturers, and partners in complete compliance with the General Data Protection Regulation (GDPR) and local pharmaceutical security acts."
-            },
-            {
-              heading: "2. Information We Collect",
-              text: "We collect direct B2B identifiers including: full name, business email address, corporate phone numbers, registered country, license identifiers (where required for drug wholesale sourcing), and specific therapeutic areas of focus. We do not collect direct medical profiles of individual end-users."
-            },
-            {
-              heading: "3. Purposes of Processing",
-              text: "All collected datasets are handled exclusively to process wholesale sourcing inquiries, territorial licensing proposals, contract formulation logistics, drug safety pharmacovigilance reports, and career recruitment applications. We never monetize or rent commercial contacts to third-party marketing brokers."
-            },
-            {
-              heading: "4. Pharmacovigilance Exception",
-              text: "In the event of an Adverse Drug Reaction (ADR) report, Medinet is legally bound under WHO and national drug safety regulations to log details of the clinical episode (such as age, gender, reaction description, and generic drug dosage). This data is compiled in anonymous formats and routed to national health departments to secure active drug monitoring."
-            },
-            {
-              heading: "5. Data Erasure and Rights",
-              text: "B2B contact records are persisted as long as necessary to maintain licensing agreements or corporate communications. Partners can request full access, correction, or permanent deletion of their business contacts by mailing corporate@medinetpharma.com."
+              heading: "Our Privacy Policy explains:",
+              list: [
+                "Information we collect",
+                "How we use your information",
+                "Data protection and security measures",
+                "Information sharing practices",
+                "Your rights regarding personal data",
+                "Contact details for privacy-related enquiries"
+              ],
+              text: "We are committed to handling your information in accordance with applicable data protection laws and industry best practices."
             }
           ]
         };
 
       case "terms":
         return {
-          title: "Terms of Service",
+          title: "Terms & Conditions",
           icon: FileText,
-          badge: "B2B Standard Terms",
+          badge: "Website Usage Guidelines",
           date: "Last Updated: June 15, 2026",
+          preamble: "By accessing and using the Medinet website, you agree to comply with our Terms & Conditions. These terms govern the use of our website, services, and content.",
           sections: [
             {
-              heading: "1. Corporate Scope",
-              text: "This website serves as a business-to-business (B2B) communications channel for Medinet Pharmaceutical Marketing Company. By utilizing this platform, you certify that you are representing a registered commercial entity, pharmacy, health institution, or licensed drug distributor."
-            },
-            {
-              heading: "2. Prescription Only Limitations",
-              text: "The formulation portfolio, strength indicators, and therapeutic segments represented here are strictly prescription-only medicines (Rx formulations). Medinet does not distribute, prescribe, or sell medications directly to end-consumer patients. All commercial supply arrangements require valid territorial drug licenses and WHO-GMP clearances."
-            },
-            {
-              heading: "3. Intellect Property",
-              text: "The brand names, trademarked logos (including Medivastin, Cardipril, Gabax, Neuroprotect), molecular descriptions, and clinical monographs displayed on this website are the intellectual property of Medinet or licensed manufacturing partners. Unauthorized copying, scraper scraping, or modification is prohibited."
-            },
-            {
-              heading: "4. Licensing Territory Boundaries",
-              text: "Product availability, packaging design, and dosage strengths vary between countries based on local FDA registrations and licensing boundaries. A product display on this portal does not guarantee export rights or authorization in every territory until formal agreements are ratified."
+              heading: "The Terms & Conditions cover:",
+              list: [
+                "Acceptable use of the website",
+                "User responsibilities",
+                "Intellectual property rights",
+                "Accuracy of information",
+                "Limitation of liability",
+                "Third-party links",
+                "Changes to website content and policies"
+              ],
+              text: "Please review these terms carefully before using our website."
             }
           ]
         };
 
       case "disclaimer":
         return {
-          title: "Medical Disclaimer",
+          title: "Disclaimer",
           icon: ShieldAlert,
-          badge: "Regulatory Notice",
+          badge: "Important Information",
           date: "Last Updated: June 15, 2026",
+          preamble: "The information provided on this website is intended for general informational purposes only and should not be considered as medical advice, diagnosis, or treatment recommendations.",
           sections: [
             {
-              heading: "1. Not Medical Advice",
-              text: "The information on this portal is provided for commercial, marketing, educational, and scientific licensing purposes only. It is NOT intended as a substitute for professional medical advice, clinical diagnosis, or patient treatment. Patients must always consult with registered clinicians before initiating or adjusting any therapy."
-            },
-            {
-              heading: "2. Accuracy of Monographs",
-              text: "While our scientific teams verify that product monographs, generic compositions, and indications align with active USP, BP, and IP dossiers, Medinet makes no absolute warranties regarding the error-free status of web descriptions. Actual physical labeling and pack inserts should serve as the authoritative standard of instruction."
-            },
-            {
-              heading: "3. No Direct Selling",
-              text: "Any attempt by individual consumers to purchase or enquire about purchasing prescription drugs directly from Medinet will be declined. We maintain strict compliance with legal pharmaceutical supply chains and distribute exclusively via licensed wholesale routes."
+              heading: "Key Points:",
+              list: [
+                "Product information is provided for healthcare professionals and business purposes.",
+                "Always consult a qualified healthcare professional before using any medication.",
+                "Product availability may vary by region.",
+                "Medinet reserves the right to update product information and website content without prior notice."
+              ],
+              text: "While we strive to ensure the accuracy of the information presented, Medinet does not guarantee that all content is complete, current, or free from errors."
             }
           ]
         };
@@ -113,20 +103,20 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Cookie Policy",
           icon: Cookie,
-          badge: "Platform Stability",
+          badge: "Enhancing Your Browsing Experience",
           date: "Last Updated: June 15, 2026",
+          preamble: "Our website uses cookies and similar technologies to improve functionality, enhance user experience, analyze website traffic, and personalize content.",
           sections: [
             {
-              heading: "1. Use of Cookies",
-              text: "Medinet uses essential cookies to ensure platform stability, secure form submissions, and maintain user-selected categories across sessions. We do not engage in persistent profiling or cross-site commercial ad tracking."
-            },
-            {
-              heading: "2. Technical Cookie Selection",
-              text: "Essential cookies manage active selections during product category browsing, filter criteria in searches, and prevent Cross-Site Request Forgery (CSRF) in our B2B form submission channels."
-            },
-            {
-              heading: "3. Opt-out Controls",
-              text: "Most web browsers automatically accept standard cookies. You can disable them in your browser preferences; however, doing so might degrade interactive features like global search filtering and proposal submission."
+              heading: "Our Cookie Policy explains:",
+              list: [
+                "What cookies are",
+                "Types of cookies we use",
+                "Why we use cookies",
+                "How cookies improve your browsing experience",
+                "Managing or disabling cookies through your browser settings"
+              ],
+              text: "By continuing to use our website, you consent to the use of cookies in accordance with our Cookie Policy."
             }
           ]
         };
@@ -135,24 +125,17 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Copyright Notice",
           icon: BadgeCheck,
-          badge: "Intellectual Property",
+          badge: "Intellectual Property Rights",
           date: "Last Updated: June 15, 2026",
+          preamble: "© Medinet Pharmaceutical Marketing Company. All Rights Reserved.",
           sections: [
             {
-              heading: "1. Ownership of Content",
-              text: "All content present on this website, including but not limited to text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software, is the property of Medinet Pharmaceutical Marketing Company or its content suppliers and is protected by international copyright laws."
+              heading: "Ownership of Content",
+              text: "All content on this website, including text, images, graphics, logos, product information, designs, icons, documents, and other materials, is the intellectual property of Medinet Pharmaceutical Marketing Company unless otherwise stated."
             },
             {
-              heading: "2. Authorized Use",
-              text: "You may view, download, and print contents from the website subject to the following conditions: (a) the content may be used solely for information purposes of a personal, non-commercial nature; (b) the content may not be modified or altered in any way; and (c) you may not remove any copyright or other proprietary notices contained in the content."
-            },
-            {
-              heading: "3. Trademarks",
-              text: "Medinet, the Medinet logo, and all related product and service names, design marks, and slogans are the trademarks or service marks of Medinet Pharmaceuticals. All other marks are the property of their respective companies. No trademark or service mark license is granted in connection with the materials contained on this website."
-            },
-            {
-              heading: "4. Reporting Infringement",
-              text: "If you believe that any content on our website infringes upon your copyright, please notify us immediately by contacting our legal department at legal@medinetpharma.com with detailed information regarding the alleged infringement."
+              heading: "Use Restrictions",
+              text: "No part of this website may be copied, reproduced, modified, distributed, or used for commercial purposes without prior written permission from Medinet Pharmaceutical Marketing Company.\n\nUnauthorized use of website content may violate applicable copyright, trademark, and intellectual property laws."
             }
           ]
         };
@@ -167,7 +150,7 @@ export default function LegalPage({ type }: LegalPageProps) {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.03)_0%,transparent_60%)] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 lg:pt-36 pb-20 relative z-10">
         
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-[13px] font-mono text-muted mb-12 uppercase tracking-wider font-bold">
@@ -228,7 +211,6 @@ export default function LegalPage({ type }: LegalPageProps) {
             </div>
           </motion.div>
 
-          {/* Main Content Card */}
           <motion.div 
             variants={staggerContainer}
             initial="hidden"
@@ -236,17 +218,26 @@ export default function LegalPage({ type }: LegalPageProps) {
             className="lg:col-span-9 utility-card p-8 md:p-12 w-full max-w-[900px]"
           >
             <div className="flex flex-col gap-[48px] text-body leading-loose text-base max-w-[72ch]">
+              {/* @ts-ignore - Support for optional preamble */}
+              {data.preamble && (
+                <motion.div variants={fadeUp} className="text-[17px] leading-relaxed text-heading font-medium pb-2 border-b border-primary/10">
+                  {/* @ts-ignore */}
+                  {data.preamble}
+                </motion.div>
+              )}
               {data.sections.map((sec, idx) => {
                 let SecIcon = ShieldCheck;
-                if (sec.heading.includes("Collection") || sec.heading.includes("Product") || sec.heading.includes("Use of Cookies")) SecIcon = Database;
+                if (sec.heading.includes("Collection") || sec.heading.includes("Product") || sec.heading.includes("Use of Cookies") || sec.heading.includes("Ownership")) SecIcon = Database;
                 else if (sec.heading.includes("Use") || sec.heading.includes("Governing Law")) SecIcon = Building2;
                 else if (sec.heading.includes("Third-Party") || sec.heading.includes("External") || sec.heading.includes("Acceptance")) SecIcon = Handshake;
-                else if (sec.heading.includes("Rights") || sec.heading.includes("Trademarks")) SecIcon = BadgeCheck;
+                else if (sec.heading.includes("Rights") || sec.heading.includes("Trademarks") || sec.heading.includes("Key Points")) SecIcon = BadgeCheck;
                 else if (sec.heading.includes("Cookies")) SecIcon = Cookie;
                 else if (sec.heading.includes("Liability") || sec.heading.includes("Disclaimer")) SecIcon = Scale;
                 else if (sec.heading.includes("Intellectual") || sec.heading.includes("Copyright")) SecIcon = Copyright;
 
-                const hasCallout = sec.text.match(/privacy|security|compliance|legal|cookies|copyright/i);
+                // @ts-ignore - Support for optional text
+                const textContent = sec.text || "";
+                const hasCallout = textContent.match(/privacy|security|compliance|legal|cookies|copyright/i);
 
                 return (
                   <motion.section variants={fadeUp} id={`section-${idx}`} key={idx} className="group hover-lift transition-all duration-300">
@@ -258,12 +249,26 @@ export default function LegalPage({ type }: LegalPageProps) {
                     </div>
                     <div className="w-full h-px bg-primary/10 mb-6"></div>
                     <div className="space-y-4">
-                      <p>{sec.text}</p>
+                      {/* @ts-ignore */}
+                      {sec.list && sec.list.length > 0 && (
+                        <ul className="space-y-3 mb-6">
+                          {/* @ts-ignore */}
+                          {sec.list.map((item, i) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0"></div>
+                              <span className="text-[15px]">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {textContent && (
+                        <p className="whitespace-pre-wrap">{textContent}</p>
+                      )}
                       {hasCallout && (
                         <div className="my-6 bg-primary/5 border-l-4 border-primary p-4 rounded-r-xl flex gap-3 items-start">
                           <Info className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                           <div className="text-sm text-heading font-semibold leading-relaxed">
-                            This section contains important information regarding corporate {sec.text.match(/privacy|security|compliance|legal|cookies|copyright/i)?.[0].toLowerCase()} policies.
+                            This section contains important information regarding corporate {textContent.match(/privacy|security|compliance|legal|cookies|copyright/i)?.[0].toLowerCase()} policies.
                           </div>
                         </div>
                       )}

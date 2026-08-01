@@ -70,7 +70,8 @@ export default function App() {
       case "terms":
       case "disclaimer":
       case "cookies":
-        return <LegalPage type={currentRoute} />;
+      case "copyright-notice":
+        return <LegalPage type={currentRoute as any} />;
       default:
         return <Home navigate={navigate} />;
     }

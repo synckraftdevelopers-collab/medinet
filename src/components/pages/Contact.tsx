@@ -248,10 +248,10 @@ export default function Contact({ showToast, params }: ContactProps) {
             Connect With Us
           </span>
           <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5 mx-auto lg:mx-0">
-            Contact Our <span className="bg-gradient-to-b from-primary to-secondary text-transparent bg-clip-text">Global Offices</span>
+            Get in Touch
           </h1>
           <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-3xl mx-auto lg:mx-0">
-            Have questions regarding wholesale sourcing, territorial licensing rights, or adverse drug event reporting? Reach out to our dedicated corporate departments globally.
+            <strong className="font-bold">We're Here to Help.</strong> Whether you have an inquiry about our products, want to explore business partnerships, or need customer support, the Medinet team is ready to assist you. Reach out to us through the details below or fill out the contact form.
           </p>
         </motion.div>
       </section>
@@ -415,8 +415,8 @@ export default function Contact({ showToast, params }: ContactProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Direct Lines"
-            title="Department Contacts"
-            description="Reach out directly to our specialized department heads for faster resolution of your queries."
+            title="Pharmacovigilance & Safety Reporting"
+            description="At Medinet, patient safety is our top priority. If you need to report an adverse event or have a product safety concern, please contact our Pharmacovigilance Team."
             centered
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
@@ -460,8 +460,8 @@ export default function Contact({ showToast, params }: ContactProps) {
                   <MessageSquareMore className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-heading text-xl sm:text-2xl">Enquiry Form</h3>
-                  <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase text-muted tracking-widest mt-1">DIRECTLY ROUTED TO SPECIALIZED DEPARTMENT HEADS</p>
+                  <h3 className="font-display font-bold text-heading text-xl sm:text-2xl">Inquiry Form</h3>
+                  <p className="text-[11px] font-mono text-muted mt-1">Have a specific question or request? Fill out the form below, and our team will get back to you within 24-48 business hours.</p>
                 </div>
               </div>
 

@@ -126,24 +126,27 @@ export default function Home({ navigate }: HomeProps) {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
                     </span>
-                    Enterprise Pharmaceutical Marketing
+                    {BRAND_INFO.shortName}
                   </span>
                 </motion.div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-heading tracking-tight leading-[1.1] mb-6">
-                  Bridging <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Science</span> and <br />
+                  {BRAND_INFO.tagline.split(',')[0]}, <br />
                   <span className="relative inline-block">
-                    <span className="relative z-10 text-heading">Patient Care</span>
+                    <span className="relative z-10 text-heading">{BRAND_INFO.tagline.split(',')[1]}</span>
                     <motion.span 
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
                       className="absolute -bottom-2 left-0 w-full h-2 rounded-full bg-gradient-to-r from-secondary to-accent origin-left"
                     ></motion.span>
-                  </span> Globally
+                  </span>
                 </h1>
+                <p className="text-base sm:text-lg text-body font-semibold mb-2">
+                  Delivering trusted pharmaceutical solutions through quality, innovation, and ethical marketing.
+                </p>
                 <p className="text-base sm:text-lg text-body leading-relaxed max-w-xl mb-8 mx-auto lg:mx-0">
-                  Medinet Pharmaceutical Marketing Company drives the global commercialization of bioequivalent, advanced therapeutics, delivering trust to doctors and life-saving remedies to millions.
+                  At Medinet Pharmaceutical Marketing Company, we are committed to improving lives by providing high-quality, affordable, and innovative pharmaceutical products. With a strong focus on excellence and integrity, we strive to be a trusted partner for healthcare professionals and patients across India.
                 </p>
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
@@ -157,15 +160,15 @@ export default function Home({ navigate }: HomeProps) {
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-hover to-secondary opacity-0 group-hover/btn1:opacity-100 transition-opacity duration-300"></div>
                     <span className="relative z-10 flex items-center gap-2">
-                      VIEW FORMULATIONS
+                      EXPLORE OUR PRODUCTS
                       <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn1:translate-x-1" />
                     </span>
                   </button>
                   <button
-                    onClick={() => navigate("business-partners")}
+                    onClick={() => navigate("contact")}
                     className="group/btn2 px-8 py-4 bg-white text-heading border border-border rounded-xl font-bold text-sm tracking-wide shadow-sm hover:shadow-md hover:border-secondary hover:text-secondary transition-all duration-300 hover:-translate-y-1 flex items-center justify-center"
                   >
-                    B2B PARTNERSHIPS
+                    CONTACT US
                   </button>
                 </motion.div>
               </motion.div>
@@ -312,9 +315,8 @@ export default function Home({ navigate }: HomeProps) {
               </div>
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0B1F4D] tracking-tight leading-[1.25] mb-6 relative inline-block">
-                {/* Premium Glow behind title */}
                 <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full z-[-1] pointer-events-none"></div>
-                About <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Medinet Pharmaceuticals</span>
+                About <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Medinet</span>
               </h2>
 
               {/* Animated Gradient Line */}
@@ -333,10 +335,10 @@ export default function Home({ navigate }: HomeProps) {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               >
                 <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-4">
-                  Established in {BRAND_INFO.established}, {BRAND_INFO.name} has built a highly reputable position in global pharmaceutical marketing by offering premium, affordable, and bioequivalent healthcare products.
+                  {BRAND_INFO.name} is dedicated to delivering reliable pharmaceutical solutions that support better healthcare outcomes. Guided by our tagline, "{BRAND_INFO.tagline.replace(/\.$/, '')}," we combine scientific excellence, ethical business practices, and a customer-centric approach to meet the evolving needs of healthcare professionals and patients.
                 </p>
                 <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
-                  We manage therapeutic formulation delivery across intensive clinical segments including Cardiology, Neurology, Gastroenterology, Dermatology, and Respiratory sciences. By bridging manufacturing excellence with robust commercial execution, we ensure quality medicines are always within patient reach.
+                  Our growing portfolio spans multiple therapeutic segments, reflecting our commitment to quality, innovation, and accessibility.
                 </p>
               </motion.div>
             </motion.div>
@@ -543,7 +545,7 @@ export default function Home({ navigate }: HomeProps) {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0B1F4D] tracking-tight leading-[1.2] mb-6 max-w-4xl mx-auto"
             >
-              Comprehensive <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Healthcare</span> Formulations
+              Healthcare Solutions Across <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Multiple Specialties</span>
             </motion.h2>
 
             {/* Subtle Animated Underline Accent */}
@@ -649,10 +651,10 @@ export default function Home({ navigate }: HomeProps) {
             >
               <span className="utility-badge-blue mb-4">
                 <span className="utility-dot"></span>
-                Product Showcase
+                Trusted Brands
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15]">
-                Featured Formulations
+                Featured Products
               </h2>
             </motion.div>
             <motion.button
@@ -1276,18 +1278,30 @@ export default function Home({ navigate }: HomeProps) {
           <p className="text-base sm:text-lg lg:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-12">
             Leverage our premium bioequivalent product portfolio, dedicated regulatory support, and flexible third-party manufacturing arrangements to boost your market dominance.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-stretch sm:items-center w-full sm:w-auto max-w-md sm:max-w-none mx-auto">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-stretch sm:items-center w-full max-w-4xl mx-auto">
+            <button
+              onClick={() => navigate("products")}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 bg-white hover:bg-alt-bg text-primary font-mono text-sm font-bold rounded-xl shadow-[0_8px_30px_rgba(255,255,255,0.2)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(255,255,255,0.3)] group/primary min-h-[52px]"
+            >
+              EXPLORE PRODUCTS <ArrowRight className="w-4 h-4 text-primary group-hover/primary:translate-x-1.5 transition-transform duration-300" />
+            </button>
             <button
               onClick={() => navigate("business-partners")}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-white hover:bg-alt-bg text-primary font-mono text-sm font-bold rounded-2xl shadow-[0_8px_30px_rgba(255,255,255,0.2)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(255,255,255,0.3)] group/primary min-h-[52px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 bg-white/10 border border-white/20 text-white font-mono text-sm font-bold rounded-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] min-h-[52px] !bg-none hover:!bg-white/20 hover:!bg-none active:!bg-white/30 active:!bg-none [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
             >
-              PARTNER INQUIRY FORM <ArrowRight className="w-5 h-5 text-primary group-hover/primary:translate-x-1.5 transition-transform duration-300" />
+              BECOME A PARTNER
+            </button>
+            <button
+              onClick={() => navigate("careers")}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 bg-white/10 border border-white/20 text-white font-mono text-sm font-bold rounded-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] min-h-[52px] !bg-none hover:!bg-white/20 hover:!bg-none active:!bg-white/30 active:!bg-none [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            >
+              CAREERS
             </button>
             <button
               onClick={() => navigate("contact")}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 bg-white/10 border border-white/20 text-white font-mono text-sm font-bold rounded-2xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] min-h-[52px] !bg-none hover:!bg-white/20 hover:!bg-none active:!bg-white/30 active:!bg-none [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 bg-white/10 border border-white/20 text-white font-mono text-sm font-bold rounded-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] min-h-[52px] !bg-none hover:!bg-white/20 hover:!bg-none active:!bg-white/30 active:!bg-none [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
             >
-              CONTACT OFFICES
+              CONTACT US
             </button>
           </div>
         </motion.div>

@@ -55,36 +55,36 @@ const staggerContainer: Variants = {
 export default function Quality() {
   const qualityPillars = [
     {
-      title: "Quality Assurance (QA)",
-      description: "QA focuses on standardizing administrative and physical workflows. We enforce strict Corrective and Preventive Actions (CAPA), maintain standard operating procedures (SOPs), perform computer-system validations (CSV), and supervise regular equipment calibration.",
+      title: "Quality Assurance",
+      description: "Our Quality Assurance (QA) system is designed to ensure that every product is developed, manufactured, and distributed in accordance with established quality standards and regulatory requirements.",
       icon: ClipboardCheck,
       iconColor: "text-secondary",
       accent: "border-l-secondary",
-      badge: "Certified"
+      badge: "Ensuring Consistent Quality"
     },
     {
-      title: "Quality Control (QC)",
-      description: "QC handles direct testing of material chemistry. Our allied laboratory facilities perform high-performance liquid chromatography (HPLC), dissolution profiling, sterility logging, microbial limit testing, and raw API chemical assays.",
+      title: "Quality Control",
+      description: "Quality Control (QC) plays a vital role in verifying the safety, identity, purity, and effectiveness of our pharmaceutical products. Every product undergoes rigorous quality evaluation.",
       icon: FlaskConical,
       iconColor: "text-accent",
       accent: "border-l-accent",
-      badge: "Validated"
+      badge: "Precision at Every Stage"
     },
     {
       title: "Regulatory Compliance",
-      description: "We align all processes with International Council for Harmonisation (ICH) directives, ensuring perfect readiness for inspections by regional FDAs, drug controllers, and global ministries.",
+      description: "Medinet is committed to operating in full compliance with applicable pharmaceutical regulations and industry standards. We work closely with our manufacturing partners to ensure products are developed in accordance with regulatory requirements.",
       icon: ShieldCheck,
       iconColor: "text-secondary",
       accent: "border-l-secondary",
-      badge: "ICH Ready"
+      badge: "Meeting Standards"
     },
     {
-      title: "Active Pharmacovigilance",
-      description: "We track safety inputs in real-time. Our dedicated pharmacovigilance desk maintains formal Adverse Drug Reaction (ADR) logs and drafts Periodic Safety Update Reports (PSURs) to secure ongoing patient security.",
+      title: "Pharmacovigilance",
+      description: "Patient safety remains our highest priority. Medinet supports pharmacovigilance practices by monitoring, documenting, and reporting adverse drug reactions in accordance with applicable regulatory guidelines.",
       icon: HeartPulse,
       iconColor: "text-success",
       accent: "border-l-success",
-      badge: "24/7 Monitoring"
+      badge: "Monitoring Safety"
     }
   ];
 
@@ -138,7 +138,7 @@ export default function Quality() {
               </h1>
               
               <p className="mt-8 text-base sm:text-lg text-[#334155] leading-relaxed max-w-xl relative z-10">
-                At Medinet, quality is our primary pledge. We maintain absolute compliance with WHO-GMP specifications, ensuring every pill and topical gel meets international bioequivalence, purity, and clinical criteria.
+                At Medinet Pharmaceutical Marketing Company, quality is the foundation of everything we do. We are committed to delivering safe, effective, and high-quality pharmaceutical products that meet the expectations of healthcare professionals and patients. Our quality policy is built on continuous improvement, ethical business practices, regulatory compliance, and customer satisfaction, ensuring &ldquo;Reliable Care, Every Time.&rdquo;
               </p>
 
               {/* Three premium feature badges */}
@@ -220,10 +220,7 @@ export default function Quality() {
               </h2>
               
               <p className="mt-8 text-[#334155] leading-[1.8] text-sm sm:text-base max-w-[650px]">
-                Medinet Pharmaceutical Marketing Company operates under a strict &ldquo;Quality First&rdquo; corporate doctrine. We believe that a drug product represents a patient&rsquo;s hope for restoration, which makes any compromise in quality an ethical failure.
-              </p>
-              <p className="mt-4 text-[#334155] leading-[1.8] text-sm sm:text-base max-w-[650px]">
-                To fulfill this creed, our Quality Assurance heads govern every step of our allied supply lines. From checking chemical impurity indices of raw APIs up to validating climatic logistics (such as cold-chain integrity for temperature-sensitive compounds), we secure double-audited validation parameters before releasing any batch.
+                Quality is not just a standard—it is our promise. Every product we deliver reflects our dedication to innovation, compliance, patient safety, and excellence, reinforcing our commitment to &ldquo;Reliable Care, Every Time.&rdquo;
               </p>
 
               {/* Bottom Feature Box - Premium Glass Card */}

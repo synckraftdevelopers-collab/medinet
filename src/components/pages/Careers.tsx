@@ -76,18 +76,18 @@ export default function Careers({ showToast }: CareersProps) {
 
   const benefits = [
     {
-      title: "Health & Wellbeing",
-      description: "Comprehensive medical insurance policies for employees and dependent family members, plus routine health camps.",
+      title: "Collaborative Environment",
+      description: "We foster a modern, inclusive, and engaging workplace that encourages teamwork and innovation.",
       icon: HeartHandshake,
       iconBg: "bg-primary/10",
       iconColor: "text-primary",
       accent: "bg-primary",
-      badge: "Employee Care",
+      badge: "Teamwork",
       badgeColor: "text-primary bg-primary/5 border-primary/20"
     },
     {
-      title: "Scientific Training",
-      description: "Continuous corporate sponsorships for pharma certifications, regulatory seminars, and global research conventions.",
+      title: "Continuous Learning",
+      description: "Focus on continuous learning and development to help you achieve professional excellence.",
       icon: GraduationCap,
       iconBg: "bg-accent/10",
       iconColor: "text-accent",
@@ -96,23 +96,23 @@ export default function Careers({ showToast }: CareersProps) {
       badgeColor: "text-accent bg-accent/5 border-accent/20"
     },
     {
-      title: "Career Growth",
-      description: "Fast-track performance evaluation plans allowing rapid transitions from junior executive to divisional heads.",
+      title: "Career Progression",
+      description: "Recognition of talent and hard work with clear opportunities for career advancement.",
       icon: TrendingUp,
       iconBg: "bg-secondary/10",
       iconColor: "text-secondary",
       accent: "bg-secondary",
-      badge: "Promotion",
+      badge: "Growth",
       badgeColor: "text-secondary bg-secondary/5 border-secondary/20"
     },
     {
-      title: "Work-Life Synergy",
-      description: "Flexible regional marketing timings, comprehensive maternal/paternal leave plans, and collaborative office layouts.",
-      icon: BriefcaseBusiness,
+      title: "Ethics & Integrity",
+      description: "A strong emphasis on ethics, ensuring our work directly impacts healthcare positively.",
+      icon: ShieldCheck,
       iconBg: "bg-[#7C3AED]/10",
       iconColor: "text-[#7C3AED]",
       accent: "bg-[#7C3AED]",
-      badge: "Flexible",
+      badge: "Integrity",
       badgeColor: "text-[#7C3AED] bg-[#7C3AED]/5 border-[#7C3AED]/20"
     }
   ];
@@ -283,7 +283,7 @@ export default function Careers({ showToast }: CareersProps) {
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
               className="mt-8 text-base sm:text-lg text-[#334155] leading-relaxed max-w-[700px] mx-auto lg:mx-0"
             >
-              At Medinet, we believe our people are our strongest formulation. We provide a workspace that cherishes scientific integrity, ethical dedication, and continuous professional progression.
+              <strong className="font-bold">Building a Career with Purpose.</strong> At Medinet Pharmaceutical Marketing Company, we believe our people are our greatest asset. Working with us means being part of a dynamic, supportive, and growth-oriented environment where your contributions directly impact healthcare and patient lives.
             </motion.p>
           </div>
 
@@ -352,7 +352,7 @@ export default function Careers({ showToast }: CareersProps) {
             </h2>
             
             <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-2xl mx-auto mt-6">
-              We support our researchers, quality validation experts, and field representatives with industry-leading corporate parameters.
+              A Culture of Excellence. We foster a modern, inclusive, and engaging workplace that encourages innovation, teamwork, and professional excellence. When you join Medinet, you join a family that supports your ambitions and values your dedication to delivering &ldquo;Reliable Care, Every Time.&rdquo;
             </p>
           </motion.div>
 
@@ -422,7 +422,7 @@ export default function Careers({ showToast }: CareersProps) {
             </h2>
             
             <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-2xl mx-auto mt-6">
-              We are actively sourcing talented professionals who share our commitment to patient care and strict global compliance.
+              We are always looking for passionate and talented individuals to join our team. Explore career opportunities with Medinet today.
             </p>
           </motion.div>
 

@@ -23,30 +23,51 @@ import {
   Microscope,
   Database,
   ShieldCheck,
-  FileCheck
+  FileCheck,
+  Brain
 } from "lucide-react";
 
 export default function ResearchDevelopment() {
   const focusAreas = [
     {
-      title: "Bioequivalence Mapping",
-      description: "We conduct intensive comparative in-vitro and in-vivo dissolution studies against originator reference standards to ensure our products deliver identical pharmacokinetic matches.",
+      title: "Anti-Infectives",
+      description: "Providing effective antibacterial therapies to support the treatment of infectious diseases.",
       icon: FlaskConical
     },
     {
-      title: "Novel Drug Delivery Systems (NDDS)",
-      description: "Developing sustained-release granules, gastro-retentive systems, and micro-emulsions to lower dosage frequency and improve compliance.",
+      title: "Pain Management & Anti-Inflammatory Care",
+      description: "Advanced formulations to relieve pain, inflammation, and support faster recovery.",
+      icon: Activity
+    },
+    {
+      title: "Gastroenterology",
+      description: "Providing effective gastrointestinal care for improved digestive health and acid-related disorders.",
       icon: Pill
     },
     {
-      title: "Analytical Method Validation",
-      description: "Implementing ultra-high performance liquid chromatography (UHPLC) and gas chromatography method validations under ICH Q2 guidelines.",
-      icon: Microscope
+      title: "Bone & Joint Health",
+      description: "Comprehensive nutritional and therapeutic solutions for stronger bones, joints, and musculoskeletal wellness.",
+      icon: Award
     },
     {
-      title: "Global Stability Logging",
-      description: "Conducting long-term, intermediate, and accelerated stability indexing in state-of-the-art climatic chambers following ICH zone IVB parameters.",
-      icon: Database
+      title: "Neurology",
+      description: "Supporting nerve health and neurological well-being through advanced formulations.",
+      icon: Brain
+    },
+    {
+      title: "Urology",
+      description: "Targeted therapy for improved urinary health and patient comfort.",
+      icon: ShieldCheck
+    },
+    {
+      title: "Dermatology",
+      description: "Specialized topical formulations for wound care and skin infection management.",
+      icon: Layers
+    },
+    {
+      title: "Nutraceuticals",
+      description: "High-quality supplements designed to support general health and wellness.",
+      icon: Sparkles
     }
   ];
 
@@ -112,11 +133,11 @@ export default function ResearchDevelopment() {
             {/* Optional blurred medical glow behind heading */}
             <div className="absolute -inset-10 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.04),transparent_60%)] blur-2xl rounded-full pointer-events-none"></div>
             <h1 className="relative text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight animate-fade-in">
-              <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Research</span> & Formulation Technology
+              <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Driving Innovation</span> for Better Healthcare
             </h1>
           </div>
           <p className="mt-4 text-sm sm:text-base text-body leading-relaxed max-w-[760px] relative animate-fade-in">
-            Medinet&rsquo;s R&amp;D efforts focus on mastering formulation sciences. We optimize bioavailability, ensure complete physical stability, and pioneer advanced delivery systems to maximize therapeutic outcomes.
+            At Medinet Pharmaceutical Marketing Company, Research & Development is the cornerstone of our commitment to advancing healthcare. We continuously strive to introduce innovative, effective, and high-quality pharmaceutical products that address evolving medical needs. By combining scientific expertise with market insights, we focus on delivering reliable healthcare solutions that improve patient outcomes while maintaining the highest standards of quality, safety, and regulatory compliance.
           </p>
         </div>
       </section>
@@ -427,7 +448,7 @@ export default function ResearchDevelopment() {
               }}
               className="text-[#475569] leading-[1.85] max-w-[700px] mx-auto text-[1.1rem] sm:text-lg font-medium"
             >
-              Our technological frameworks span both biochemical methods and mechanical design to support top-tier formulation integrity.
+              Advancing Healthcare Through Science. Innovation drives our mission to deliver reliable pharmaceutical solutions. We embrace modern pharmaceutical technologies and continuously evaluate new formulations, advanced drug delivery systems, and improved manufacturing practices to enhance product quality and therapeutic effectiveness. Our commitment to innovation enables us to respond to changing healthcare needs while supporting better treatment outcomes.
             </motion.p>
           </motion.div>
 
@@ -476,6 +497,7 @@ export default function ResearchDevelopment() {
                 "group-hover:text-[#EC4899]"
               ];
 
+              const colorIdx = idx % 4;
               return (
                 <motion.div 
                   key={idx} 
@@ -490,7 +512,7 @@ export default function ResearchDevelopment() {
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"></div>
                   
                   {/* Top Gradient Border */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradients[idx]} opacity-50 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradients[colorIdx]} opacity-50 group-hover:opacity-100 transition-opacity duration-300`}></div>
                   
                   {/* Corner Blur Glow */}
                   <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-transparent to-black/5 rounded-full blur-2xl group-hover:bg-blue-50/50 transition-colors duration-500 pointer-events-none -z-10"></div>
@@ -501,7 +523,7 @@ export default function ResearchDevelopment() {
                       {/* Pulsing glow ring */}
                       <div className="absolute inset-0 rounded-full border border-black/5 scale-110 group-hover:scale-[1.3] group-hover:border-transparent group-hover:bg-black/5 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                       
-                      <div className={`w-16 h-16 rounded-[20px] ${bgColors[idx]} flex items-center justify-center ${textColors[idx]} group-hover:text-white ${hoverBgs[idx]} transition-all duration-500 relative z-10 shadow-sm`}>
+                      <div className={`w-16 h-16 rounded-[20px] ${bgColors[colorIdx]} flex items-center justify-center ${textColors[colorIdx]} group-hover:text-white ${hoverBgs[colorIdx]} transition-all duration-500 relative z-10 shadow-sm`}>
                         <motion.div 
                           animate={{ y: [-2, 2, -2] }} 
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -513,11 +535,11 @@ export default function ResearchDevelopment() {
                     
                     {/* Scientific Label */}
                     <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold tracking-[0.2em] uppercase bg-slate-100 text-slate-500 border border-slate-200 group-hover:border-slate-300 group-hover:bg-slate-50 transition-colors duration-300">
-                      {labels[idx]}
+                      {labels[colorIdx]}
                     </span>
                   </div>
 
-                  <h3 className={`font-display font-[800] text-[#0B1F4D] text-2xl mb-4 ${groupHoverTextColors[idx]} transition-colors duration-300 relative z-10`}>
+                  <h3 className={`font-display font-[800] text-[#0B1F4D] text-2xl mb-4 ${groupHoverTextColors[colorIdx]} transition-colors duration-300 relative z-10`}>
                     {area.title}
                   </h3>
                   
@@ -526,7 +548,7 @@ export default function ResearchDevelopment() {
                   </p>
 
                   {/* Animated Bottom Accent Line */}
-                  <div className={`absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r ${gradients[idx]} group-hover:w-full transition-all duration-700 ease-out opacity-20`}></div>
+                  <div className={`absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r ${gradients[colorIdx]} group-hover:w-full transition-all duration-700 ease-out opacity-20`}></div>
                 </motion.div>
               );
             })}
@@ -575,7 +597,7 @@ export default function ResearchDevelopment() {
               />
             </h2>
             <p className="mt-7 text-base sm:text-lg text-body font-sans leading-relaxed">
-              Our active pipelines highlight upcoming therapeutic releases. We maintain high R&amp;D transparency from clinical evaluation up to final filing phases.
+              Building the Future of Healthcare. Medinet continues to strengthen its product portfolio through ongoing research and development initiatives. Our development pipeline focuses on introducing innovative formulations across multiple therapeutic areas to meet the growing demands of healthcare professionals and patients.
             </p>
           </div>
 

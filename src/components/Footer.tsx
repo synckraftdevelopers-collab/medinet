@@ -179,7 +179,7 @@ function Footer({ navigate, showToast }: FooterProps) {
             </button>
             
             <p className="text-sm text-gray-200 leading-relaxed">
-              Medinet Pharmaceutical Marketing Company is a world-class marketer of high-quality, bioequivalent advanced therapeutics. Bridging research and accessibility for over 25 years.
+              Medinet Pharmaceutical Marketing Company is dedicated to delivering reliable pharmaceutical solutions. Reliable Care, Every Time.
             </p>
             
             <div className="flex items-center gap-4">
@@ -219,11 +219,14 @@ function Footer({ navigate, showToast }: FooterProps) {
             <ul className="flex flex-col items-center md:items-start gap-4">
               {[
                 { name: "Home", route: "home" },
-                { name: "About Profile", route: "about" },
-                { name: "Research Focus", route: "research-development" },
-                { name: "Quality & Safety", route: "quality" },
-                { name: "Join Our Team", route: "careers" },
-                { name: "News & Events", route: "news-events" }
+                { name: "About Us", route: "about" },
+                { name: "Products", route: "products" },
+                { name: "R&D", route: "research-development" },
+                { name: "Quality", route: "quality" },
+                { name: "Partners", route: "business-partners" },
+                { name: "Careers", route: "careers" },
+                { name: "News & Events", route: "news-events" },
+                { name: "Contact Us", route: "contact" }
               ].map((link, idx) => (
                 <li key={idx}>
                   <button onClick={() => navigate(link.route)} className="text-[13.5px] text-gray-300 group transition-all duration-300 relative pb-1 flex items-center gap-2.5 focus:outline-none w-fit text-left">
@@ -331,18 +334,19 @@ function Footer({ navigate, showToast }: FooterProps) {
             
             <div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-3">
               {[
-                { name: "Privacy Policy", route: "/legal/privacy-policy" },
-                { name: "Terms & Conditions", route: "/legal/terms-conditions" },
-                { name: "Cookie Policy", route: "/legal/cookie-policy" },
-                { name: "Disclaimer", route: "/legal/disclaimer" }
+                { name: "Privacy Policy", route: "privacy-policy" },
+                { name: "Terms & Conditions", route: "terms" },
+                { name: "Cookie Policy", route: "cookies" },
+                { name: "Disclaimer", route: "disclaimer" },
+                { name: "Copyright Notice", route: "copyright-notice" }
               ].map((legal, i) => (
-                <a key={i} href={legal.route} className="text-[13px] font-medium text-gray-400 group transition-all duration-300 relative pb-1 flex items-center gap-2 focus:outline-none">
+                <button key={i} onClick={() => navigate(legal.route)} className="text-[13px] font-medium text-gray-400 group transition-all duration-300 relative pb-1 flex items-center gap-2 focus:outline-none">
                   <span className="w-1 h-1 rounded-full bg-gray-600 group-hover:bg-[#34D399] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300"></span>
                   <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#34D399] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
                     {legal.name}
                   </span>
                   <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#38BDF8] to-[#34D399] transition-all duration-300 group-hover:w-full"></span>
-                </a>
+                </button>
               ))}
             </div>
             

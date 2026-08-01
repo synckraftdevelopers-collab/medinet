@@ -1,7 +1,5 @@
 /**
  * @license
-/**
- * @license
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -29,7 +27,11 @@ import {
   Building2,
   Globe,
   Factory,
-  Brain
+  Brain,
+  Banknote,
+  Lightbulb,
+  UserCheck,
+  Users
 } from "lucide-react";
 
 const fadeUp: Variants = {
@@ -91,28 +93,52 @@ export default function About() {
 
   const coreValues = [
     {
-      title: "Scientific Ethics",
-      description: <>We verify therapeutic equivalence curves on all batches, ensuring unyielding <span className="text-secondary font-semibold">Ethics</span> in every formulation.</>,
-      icon: FlaskConical,
-      accent: "border-t-secondary"
-    },
-    {
-      title: "Uncompromised Quality",
-      description: <>We work exclusively with <span className="text-secondary font-semibold">WHO-GMP</span> compliant facilities. Our stringent <span className="text-secondary font-semibold">Quality</span> assurance meets global standards.</>,
-      icon: ShieldCheck,
+      title: "Patient First",
+      description: "Every decision we make is guided by our commitment to improving patient health, safety, and quality of life.",
+      icon: HeartHandshake,
       accent: "border-t-primary"
     },
     {
-      title: "Patient Accessibility",
-      description: <>We believe life-saving therapeutics must remain affordable to ensure continuous <span className="text-secondary font-semibold">Accessibility</span> for all.</>,
-      icon: HeartHandshake,
-      accent: "border-t-accent"
+      title: "Integrity",
+      description: "We conduct our business with honesty, transparency, accountability, and unwavering ethical standards.",
+      icon: ShieldCheck,
+      accent: "border-t-secondary"
     },
     {
-      title: "Dynamic Collaboration",
-      description: <>We build mutually lucrative <span className="text-secondary font-semibold">Partnership</span> models with leading <span className="text-secondary font-semibold">Healthcare</span> distributors globally.</>,
+      title: "Quality Excellence",
+      description: "We are committed to delivering pharmaceutical products that consistently meet the highest standards of safety, efficacy, and reliability.",
+      icon: Award,
+      accent: "border-t-emerald-500"
+    },
+    {
+      title: "Trust",
+      description: "We build lasting relationships with healthcare professionals, distributors, business partners, and patients through consistency, reliability, and mutual respect.",
       icon: Handshake,
-      accent: "border-t-secondary"
+      accent: "border-t-blue-500"
+    },
+    {
+      title: "Affordability",
+      description: "We believe quality healthcare should be accessible to everyone by providing affordable pharmaceutical solutions without compromising excellence.",
+      icon: Banknote,
+      accent: "border-t-amber-500"
+    },
+    {
+      title: "Innovation",
+      description: "We continuously seek better solutions, embrace new technologies, and adapt to the changing healthcare landscape.",
+      icon: Lightbulb,
+      accent: "border-t-violet-500"
+    },
+    {
+      title: "Customer Commitment",
+      description: "We are dedicated to understanding and exceeding the expectations of our customers through responsive service and dependable support.",
+      icon: UserCheck,
+      accent: "border-t-pink-500"
+    },
+    {
+      title: "Teamwork",
+      description: "We believe collaboration, mutual respect, and shared purpose are the foundation of organizational success.",
+      icon: Users,
+      accent: "border-t-teal-500"
     }
   ];
 
@@ -127,11 +153,11 @@ export default function About() {
             Corporate Profile
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-heading tracking-tight leading-[1.15] relative w-fit mb-4 mx-auto lg:mx-0">
-            About Medinet Pharmaceuticals
+            About Medinet: A heritage of pharmaceutical excellence...
             <motion.span initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, delay: 0.5 }} className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-secondary to-accent opacity-70 rounded-full"></motion.span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-body font-sans leading-relaxed max-w-3xl mx-auto lg:mx-0">
-            Established with a deep commitment to patient care, Medinet Pharmaceutical Marketing Company serves as a vital bridge between complex formulation chemistry and accessible healthcare delivery.
+            Founded with a vision to enhance global health, Medinet has grown from a specialized marketer to a global pharmaceutical leader.
           </p>
         </motion.div>
       </section>
@@ -250,7 +276,7 @@ export default function About() {
               </div>
               <h3 className="font-display font-bold text-heading text-2xl mb-4">Our Corporate Mission</h3>
               <p className="text-body leading-relaxed text-base">
-                To discover, license, and market high-<span className="text-secondary font-semibold">Quality</span>, <span className="text-secondary font-semibold">Bioequivalent</span> formulations across key therapeutic areas, and distribute them efficiently to improve <span className="text-secondary font-semibold">Patient Care</span> worldwide. We exist to make advanced healthcare <span className="text-secondary font-semibold">Accessibility</span> a reality, maintaining ethical and continuous supply.
+                To provide world-class, affordable, and innovative healthcare solutions.
               </p>
             </motion.div>
 
@@ -261,7 +287,7 @@ export default function About() {
               </div>
               <h3 className="font-display font-bold text-heading text-2xl mb-4">Our Long-term Vision</h3>
               <p className="text-body leading-relaxed text-base">
-                To rank among the most trusted <span className="text-secondary font-semibold">Global</span> names in pharmaceutical licensing and marketing. Our <span className="text-secondary font-semibold">Vision</span> is to continuously drive <span className="text-secondary font-semibold">Innovation</span> in critical unmet segments like Oncology and CNS, maintaining zero-defect <span className="text-secondary font-semibold">Quality</span> standards and sustainable strategic partnerships across all continents.
+                To be the most trusted pharmaceutical partner globally, recognized for quality and integrity.
               </p>
             </motion.div>
           </motion.div>
@@ -532,25 +558,8 @@ export default function About() {
                 transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
                 className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto"
               >
-                Our steering committee brings together elite{" "}
-                <span className="relative inline-block font-semibold bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
-                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>Clinical Minds</motion.span>
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
-                </span>
-                {", "}
-                <span className="relative inline-block font-semibold bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
-                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}>Pharmaceutical Licensing</motion.span>
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
-                </span>
-                {" veterans, and "}
-                <span className="relative inline-block font-semibold bg-gradient-to-r from-[#0B1F4D] via-[#0D9488] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
-                  <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}>Regulatory Compliance</motion.span>
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#0D9488] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                  <span className="absolute inset-0 bg-[#0D9488]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
-                </span>
-                {" leaders with decadal experience."}
+                {/* Intro to leadership text added from PDF */}
+                The leadership team at Medinet Pharmaceutical Marketing Company brings together expertise in pharmaceutical marketing, healthcare management, business strategy, and organizational development. United by a shared vision of improving healthcare, our leaders are committed to building a trusted organization that prioritizes patient care, ethical practices, quality excellence, and customer satisfaction. They foster a culture of innovation, collaboration, accountability, and continuous improvement, empowering every team member to contribute to our mission of delivering reliable healthcare solutions.
               </motion.div>
             </div>
           </div>
@@ -653,8 +662,8 @@ export default function About() {
                 className="lg:col-span-5 relative min-h-[400px] lg:min-h-full bg-slate-100"
               >
                 <Image
-                  src={LEADERSHIP[1].image}
-                  alt={LEADERSHIP[1].name}
+                  src={LEADERSHIP[0].image}
+                  alt={LEADERSHIP[0].name}
                   fill
                   className="object-cover"
                 />
@@ -708,7 +717,7 @@ export default function About() {
                       transition={{ duration: 0.6, ease: "easeOut" }}
                       className="font-display font-[900] text-3xl md:text-4xl tracking-tight leading-tight mb-3 bg-gradient-to-r from-[#0B1F4D] to-[#475569] bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(11,31,77,0.08)]"
                     >
-                      {LEADERSHIP[1].name}
+                      {LEADERSHIP[0].name}
                     </motion.h4>
                     
                     {/* Designation */}
@@ -753,7 +762,95 @@ export default function About() {
         </div>
       </section>
 
-      {/* Corporate Timeline Section */}
+      {/* Corporate Philosophy Section */}
+      <section className="py-20 md:py-28 bg-white border-b border-border relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 pointer-events-none -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(13,148,136,0.05),transparent_40%)]"></div>
+          <div className="absolute top-[10%] left-[5%] w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0, x: -30 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+              }}
+              className="order-2 lg:order-1"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-[11px] font-bold tracking-widest uppercase mb-6">
+                <Target className="w-3.5 h-3.5" />
+                Corporate Philosophy
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] mb-8">
+                Every medicine we market represents a commitment to a healthier life.
+              </h2>
+              
+              <div className="space-y-6 text-body text-base leading-relaxed">
+                <p>
+                  Our philosophy is built on four enduring principles: <strong>Quality, Trust, Affordability, and Compassion</strong>. We are committed to supporting healthcare professionals with dependable pharmaceutical solutions while ensuring patients have access to safe, effective, and affordable medicines.
+                </p>
+                <p>
+                  Through ethical business practices, continuous innovation, responsible partnerships, and an unwavering focus on customer satisfaction, we strive to make a meaningful contribution to healthcare. Every interaction, every product, and every decision reflects our promise to deliver excellence with integrity.
+                </p>
+                <p className="font-semibold text-heading/90 italic border-l-4 border-secondary/50 pl-4">
+                  Because for us, healthcare is not just about medicines—it is about caring for people, supporting better outcomes, and building healthier communities.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0, x: 30 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+              }}
+              className="order-1 lg:order-2 relative"
+            >
+              {/* Abstract Philosophy Visual */}
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-2xl"></div>
+                
+                <div className="absolute inset-4 rounded-full border border-border/60 shadow-xl overflow-hidden bg-white/50 backdrop-blur-sm flex items-center justify-center p-8">
+                  <div className="grid grid-cols-2 gap-6 w-full h-full relative">
+                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
+                      <ShieldCheck className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
+                      <span className="font-bold text-sm text-heading">Quality</span>
+                    </div>
+                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
+                      <Handshake className="w-8 h-8 text-secondary mb-3 group-hover:scale-110 transition-transform" />
+                      <span className="font-bold text-sm text-heading">Trust</span>
+                    </div>
+                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
+                      <TrendingUp className="w-8 h-8 text-emerald-500 mb-3 group-hover:scale-110 transition-transform" />
+                      <span className="font-bold text-sm text-heading">Affordability</span>
+                    </div>
+                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
+                      <Heart className="w-8 h-8 text-pink-500 mb-3 group-hover:scale-110 transition-transform" />
+                      <span className="font-bold text-sm text-heading">Compassion</span>
+                    </div>
+                    
+                    {/* Connecting center node */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center z-10">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <HeartHandshake className="w-4 h-4 text-white" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Corporate Timeline Section */}
       <section className="py-12 md:py-14 bg-gradient-to-b from-background to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

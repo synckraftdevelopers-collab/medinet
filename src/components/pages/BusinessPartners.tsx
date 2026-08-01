@@ -76,8 +76,8 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
   const verticals = [
     {
-      title: "PCD Franchise & Monopolistic Distribution",
-      description: "Medinet offers exclusive monopolistic distribution and Propaganda Cum Distribution (PCD) rights in unoccupied territories. We back our partners with full medical visual aids, clinical literature, doctor samples, and scientific journals to capture regional markets.",
+      title: "Franchise Opportunities",
+      description: "Medinet offers rewarding franchise opportunities. Join our expanding franchise network and contribute to delivering reliable healthcare solutions.",
       icon: Handshake,
       iconBg: "bg-primary/10",
       iconColor: "text-primary",
@@ -86,8 +86,8 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       badgeColor: "text-primary bg-primary/5 border-primary/20"
     },
     {
-      title: "Third-Party Contract Manufacturing",
-      description: "Partner with our state-of-the-art, allied WHO-GMP, EU-GMP, and USFDA approved contract formulation plants. We manage full technology transfer, formulation scaling, raw materials tracing, stability tests, and final packaging.",
+      title: "Third-Party Manufacturing",
+      description: "Medinet collaborates with WHO-GMP-certified facilities for third-party manufacturing. Our focus is on delivering quality, consistency, and regulatory compliance in every product.",
       icon: Factory,
       iconBg: "bg-accent/10",
       iconColor: "text-accent",
@@ -96,8 +96,8 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       badgeColor: "text-accent bg-accent/5 border-accent/20"
     },
     {
-      title: "Institutional Supplies Business",
-      description: "We are authorized registered suppliers to major health departments, public sector undertakings, railways, defence hospitals, and extensive medical chains. We handle bulk production requirements under rigid scheduling.",
+      title: "Institutional Business",
+      description: "Medinet partners with hospitals and institutions. Our goal is to support healthcare institutions with dependable pharmaceutical solutions that contribute to improved patient care.",
       icon: Building2,
       iconBg: "bg-secondary/10",
       iconColor: "text-secondary",
@@ -406,7 +406,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight leading-[1.15] relative z-10 inline-block pb-4"
             >
-              <span className="bg-gradient-to-r from-[#0B1F4D] via-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Our Distribution Network</span>
+              <span className="bg-gradient-to-r from-[#0B1F4D] via-[#2563EB] to-[#0D9488] text-transparent bg-clip-text">Distribution Network</span>
               <motion.span 
                 initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut", delay: 0.4 }} 
                 className="absolute bottom-0 left-[10%] w-[80%] h-[3px] bg-gradient-to-r from-transparent via-[#2563EB]/60 to-transparent origin-left rounded-full"
@@ -417,7 +417,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 text-[#475569] leading-[1.8] text-base sm:text-lg max-w-[750px] relative z-10 mx-auto"
             >
-              Medinet's formulations are trusted across international borders, supported by an expansive supply chain and regional distribution hubs.
+              Medinet Pharmaceutical Marketing Company is building a strong and reliable distribution network to ensure our products reach patients and healthcare professionals efficiently. Our commitment to accessibility drives us to partner with trusted distributors.
             </motion.p>
           </div>
 
@@ -433,11 +433,11 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               {/* Left Feature Panel */}
               <div className="flex-1 relative z-10 space-y-4 w-full">
                 {[
-                  { title: "Nationwide Product Availability", icon: MapPin, desc: "Serving healthcare providers across India with efficient regional coverage." },
-                  { title: "Reliable Supply Chain", icon: Boxes, desc: "Temperature-controlled logistics ensuring product integrity." },
-                  { title: "Strong Distributor Network", icon: Globe, desc: "Extensive distributor partnerships covering every major region." },
-                  { title: "Efficient Logistics", icon: Rocket, desc: "Fast and secure delivery through optimized supply channels." },
-                  { title: "Customer Support", icon: HeartHandshake, desc: "Dedicated 24/7 support team for our distribution partners." }
+                  { title: "Nationwide product availability", icon: MapPin, desc: "Ensuring our healthcare solutions are accessible everywhere." },
+                  { title: "Reliable and timely supply chain management", icon: Boxes, desc: "Consistent product delivery without delays." },
+                  { title: "Strong partnerships with distributors and stockists", icon: Globe, desc: "Building mutually beneficial long-term relationships." },
+                  { title: "Efficient order fulfillment and logistics", icon: Rocket, desc: "Fast and secure delivery through optimized supply channels." },
+                  { title: "Customer-focused service and support", icon: HeartHandshake, desc: "Dedicated support team for our distribution partners." }
                 ].map((item, idx) => (
                   <div key={idx} className="relative bg-white/[0.94] backdrop-blur-xl rounded-[24px] border border-[#059669]/[0.08] shadow-[0_10px_40px_rgba(5,150,105,0.05)] p-5 flex items-start gap-4 group hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(5,150,105,0.1)] transition-all duration-300 overflow-hidden">
                     {/* Left accent line */}
@@ -544,10 +544,10 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 Why Partner With Us?
               </span>
               <h2 className="text-3xl sm:text-4xl font-display font-bold text-heading tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-heading to-primary text-transparent bg-clip-text">Outstanding Support Systems</span> for <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">PCD and Distributors</span>
+                <span className="bg-gradient-to-r from-heading to-primary text-transparent bg-clip-text">Advance Healthcare</span> <span className="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">With Confidence</span>
               </h2>
               <p className="mt-5 text-body leading-relaxed text-sm sm:text-base">
-                We do not just supply formulations—we build regional market leaders. Medinet serves as a single-point backup for your therapeutic scaling requirements.
+                Choosing Medinet means partnering with a company that values quality, integrity, innovation, and long-term relationships. Together, let's advance healthcare with confidence—because at Medinet, it's &ldquo;Reliable Care, Every Time.&rdquo;
               </p>
 
               <div className="mt-8 space-y-5 text-sm text-body">

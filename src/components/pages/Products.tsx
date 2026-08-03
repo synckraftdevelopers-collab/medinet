@@ -558,7 +558,7 @@ export default function Products({ params, showToast }: ProductsProps) {
             >
               Medinet continues to expand its pharmaceutical portfolio with innovative formulations developed to meet evolving healthcare needs. Our commitment to research, quality, and patient-focused care ensures that every new product delivers value to healthcare professionals and patients alike.
               <br/><br/>
-              Stay tuned for our latest product launches and therapeutic advancements.
+              <strong className="font-bold text-[#0A192F]">Stay tuned for our latest product launches and therapeutic advancements.</strong>
             </motion.p>
           </div>
 
@@ -705,12 +705,23 @@ export default function Products({ params, showToast }: ProductsProps) {
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 items-stretch"
           >
             {[
-              { name: "MedZole-D", label: "Gastroenterology", icon: Pill },
-              { name: "CardioLife", label: "Cardiology", icon: Activity },
-              { name: "NeuroSync", label: "Neurology", icon: BadgePlus },
-              { name: "GastroHeal", label: "Gastroenterology", icon: Droplets },
-              { name: "Immunex", label: "Immunology", icon: ShieldCheck },
-              { name: "OsteoCare", label: "Orthopaedics", icon: Layers }
+              { name: "PROENZY DT", label: "Premium Brand", icon: Pill },
+              { name: "PROENZY PLUS", label: "Premium Brand", icon: ShieldCheck },
+              { name: "AFIDOL P", label: "Premium Brand", icon: BadgePlus },
+              { name: "AFIDOL SP", label: "Premium Brand", icon: Activity },
+              { name: "ETORIVON P", label: "Premium Brand", icon: Pill },
+              { name: "NEURISE NT", label: "Premium Brand", icon: ShieldCheck },
+              { name: "OSTEONEU D3", label: "Premium Brand", icon: BadgePlus },
+              { name: "OSTEONEU PLUS", label: "Premium Brand", icon: Activity },
+              { name: "TRAFIDOL P", label: "Premium Brand", icon: Pill },
+              { name: "ZEFRAX 500", label: "Premium Brand", icon: ShieldCheck },
+              { name: "XPRAZ-D", label: "Premium Brand", icon: BadgePlus },
+              { name: "CLAVINET 625", label: "Premium Brand", icon: Activity },
+              { name: "SILALPHA", label: "Premium Brand", icon: Pill },
+              { name: "METVION-P", label: "Premium Brand", icon: ShieldCheck },
+              { name: "DUOCEF-S", label: "Premium Brand", icon: BadgePlus },
+              { name: "ZEFTRON", label: "Premium Brand", icon: Activity },
+              { name: "ZEFRAX-IV", label: "Premium Brand", icon: Pill }
             ].map((brand, idx) => {
               const Icon = brand.icon;
               return (

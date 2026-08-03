@@ -164,138 +164,214 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Corporate Philosophy */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#F8FCFF] border-b border-border relative overflow-hidden">
-        {/* Soft Radial Glow & Abstract Backgrounds */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03),transparent_60%)] pointer-events-none z-0"></div>
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          {/* Scientific Pattern */}
-          <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.03)_2px,transparent_2px)] bg-[size:40px_40px]"></div>
-          
-          <motion.div 
-            animate={{ y: [0, -20, 0], opacity: [0.01, 0.03, 0.01] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[10%] right-[10%] opacity-[0.03]"
-          >
-            <Shield className="w-[300px] h-[300px] text-primary" />
-          </motion.div>
-          <motion.div 
-            animate={{ rotate: 360, opacity: [0.01, 0.03, 0.01] }}
-            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-[-10%] left-[-5%] opacity-[0.03]"
-          >
-            <Brain className="w-[400px] h-[400px] text-secondary" />
-          </motion.div>
-          
-          {/* Animated Gradient Blobs */}
-          <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[80px] pointer-events-none"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
-        </div>
-
+      {/* Company Profile Section */}
+      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.03),transparent_50%)] pointer-events-none z-0"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center text-center">
-            {/* Heading Section */}
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col items-center"
+              className="lg:w-1/2"
             >
-              <h2 className="text-3xl lg:text-4xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2]">
-                Our Core <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Philosophy</span>
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200 shadow-sm mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary uppercase">
+                  Company Profile
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-6">
+                Who <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">We Are</span>
               </h2>
+              <div className="w-20 h-1 rounded-full bg-gradient-to-r from-primary to-transparent mb-8"></div>
               
-              {/* Animated Gradient Underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                className="w-20 h-1 rounded-full bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto mt-5 mb-5 origin-center"
-              ></motion.div>
-
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="text-slate-500 leading-relaxed text-sm max-w-xl mx-auto"
-              >
-                We believe that premium, life-restoring pharmaceuticals should be built upon unyielding pillars of ethics and care.
-              </motion.p>
+              <div className="space-y-6 text-slate-600 text-base md:text-lg leading-relaxed">
+                <p>
+                  <strong className="text-[#0A192F] font-bold">Medinet Pharmaceutical Marketing Company</strong> is a quality-driven pharmaceutical marketing organization committed to improving lives by making safe, effective, and affordable medicines accessible to patients across India.
+                </p>
+                <p>
+                  We work closely with trusted manufacturing partners and healthcare professionals to deliver pharmaceutical products that meet stringent quality standards while addressing the evolving healthcare needs of society. Our commitment extends beyond marketing medicines—we strive to support better patient care through ethical practices, reliable service, and lasting partnerships.
+                </p>
+                <p>
+                  Driven by innovation, integrity, and customer satisfaction, Medinet continues to build trust among doctors, distributors, pharmacies, hospitals, and patients by consistently delivering healthcare solutions that improve treatment outcomes and enhance quality of life.
+                </p>
+                <p className="font-semibold text-primary italic pt-4 border-t border-slate-100">
+                  "Reliable Care, Everytime" is not just our tagline—it is the promise that guides every product we offer and every relationship we build.
+                </p>
+              </div>
             </motion.div>
 
-            {/* Philosophy Boxes - Kept Exact Size & Layout */}
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left">
-              {[
-                { title: "Quality", desc: "Upholding stringent WHO-GMP guidelines for every formulation.", icon: ShieldCheck },
-                { title: "Trust", desc: "Building lasting partnerships based on transparency and mutual growth.", icon: HeartHandshake },
-                { title: "Affordability", desc: "Ensuring high-quality medicines remain accessible to diverse patient demographics.", icon: Handshake },
-                { title: "Compassion", desc: "Keeping the end-patient at the heart of our commercial and operational strategies.", icon: Heart }
-              ].map((item, idx) => (
-                <motion.div 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + (idx * 0.15), duration: 0.7, ease: "easeOut" }}
-                  key={idx} 
-                  className="relative flex items-start gap-4 bg-white/70 backdrop-blur-xl p-5 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_24px_rgba(13,148,136,0.08)] hover:border-[#1D4ED8]/30 hover:-translate-y-[6px] transition-all duration-300 group cursor-default overflow-hidden"
-                >
-                  {/* Thin animated gradient strip on the top edge */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  <div className="relative shrink-0">
-                    {/* Icon Container with Gradient & Hover Glow */}
-                    <div className="absolute inset-0 bg-[#1D4ED8]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
-                    <motion.div 
-                      animate={{ y: [0, -3, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
-                      className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#1D4ED8]/30 transition-all duration-300 z-10"
-                    >
-                      <item.icon className="w-6 h-6 text-[#0A192F] group-hover:text-secondary transition-colors duration-300" />
-                    </motion.div>
-                  </div>
-                  <div className="pt-1">
-                    <h4 className="font-display font-extrabold text-[#0A192F] text-sm mb-1 tracking-wide">{item.title}</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="lg:w-1/2 relative"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-slate-100">
+                <div className="absolute inset-0 bg-primary/5 z-10 mix-blend-multiply pointer-events-none"></div>
+                <Image 
+                  src="https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&q=80&w=1000"
+                  alt="Medinet Company Profile"
+                  width={1000}
+                  height={800}
+                  className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              {/* Decorative Elements */}
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl"></div>
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Mission, Vision, Values */}
+      {/* Our Journey Section */}
+      <section className="py-20 bg-slate-50 border-b border-border relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center">
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="lg:w-1/2 relative"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-slate-200">
+                <div className="absolute inset-0 bg-secondary/10 z-10 mix-blend-multiply pointer-events-none"></div>
+                <Image 
+                  src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
+                  alt="Medinet Journey"
+                  width={1000}
+                  height={800}
+                  className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              {/* Decorative Elements */}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-secondary/10 rounded-full blur-2xl"></div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:w-1/2"
+            >
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                </span>
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-secondary uppercase">
+                  Our History
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-6">
+                Our <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">Journey</span>
+              </h2>
+              <div className="w-20 h-1 rounded-full bg-gradient-to-r from-secondary to-transparent mb-8"></div>
+              
+              <div className="space-y-6 text-slate-600 text-base md:text-lg leading-relaxed">
+                <p>
+                  Medinet Pharmaceutical Marketing Company was established with a simple yet meaningful vision—to make quality healthcare more accessible and affordable while maintaining the highest standards of ethics and professionalism. 
+                </p>
+                <p>
+                  What began as a commitment to supporting healthcare professionals has evolved into a growing pharmaceutical marketing company focused on delivering trusted healthcare solutions. Through dedication, continuous learning, and customer-centric service, we have steadily expanded our product portfolio and strengthened our presence in the pharmaceutical industry.
+                </p>
+                <p>
+                  As we move forward, our journey continues to be driven by innovation, quality, patient wellbeing, and the trust of our healthcare partners.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:w-1/3 lg:sticky lg:top-32"
+            >
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-slate-50 border border-slate-200 shadow-sm mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary uppercase">
+                  Our Purpose
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-6">
+                Our <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Mission</span>
+              </h2>
+              <div className="w-20 h-1 rounded-full bg-gradient-to-r from-primary to-transparent mb-8"></div>
+              
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+                We are driven by a steadfast commitment to improve patient health and well-being through innovative, accessible, and high-quality healthcare solutions.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="lg:w-2/3"
+            >
+              <div className="grid grid-cols-1 gap-4">
+                {[
+                  "Deliver safe, effective, and affordable pharmaceutical solutions that improve patient health and well-being.",
+                  "Advance healthcare through continuous research, innovation, and scientific excellence.",
+                  "Maintain the highest standards of quality, safety, and regulatory compliance across all operations.",
+                  "Uphold integrity, transparency, and ethical business practices in everything we do.",
+                  "Foster a culture of continuous learning, innovation, and rewarding career growth for our employees.",
+                  "Build trusted partnerships with healthcare professionals, distributors, and stakeholders to enhance patient care.",
+                  "Embrace advanced technologies and sustainable practices to drive long-term growth and operational excellence.",
+                  "Create lasting value for patients, healthcare professionals, employees, and communities through responsible and innovative healthcare solutions."
+                ].map((point, idx) => (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * idx, duration: 0.5 }}
+                    key={idx}
+                    className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary/20 hover:shadow-md transition-all group"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/20 transition-colors">
+                      <CheckCircle className="w-5 h-5 text-primary" />
+                    </div>
+                    <p className="text-slate-700 leading-relaxed text-[15px] md:text-base font-medium">
+                      {point}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
       <section className="py-20 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {/* Mission Card */}
-            <motion.div variants={fadeUp} className="utility-card p-8 border-t-[4px] border-t-secondary group hover-lift">
-              <div className="w-14 h-14 bg-gradient-to-br from-secondary to-primary group-hover:from-accent group-hover:to-secondary rounded-2xl shadow-md flex items-center justify-center text-white mb-6 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-6">
-                <Target className="w-6 h-6" />
-              </div>
-              <h3 className="font-display font-bold text-heading text-2xl mb-4">Our Corporate Mission</h3>
-              <p className="text-body leading-relaxed text-base">
-                To provide world-class, affordable, and innovative healthcare solutions.
-              </p>
-            </motion.div>
-
-            {/* Vision Card */}
-            <motion.div variants={fadeUp} className="utility-card p-8 border-t-[4px] border-t-accent group hover-lift">
-              <div className="w-14 h-14 bg-gradient-to-br from-secondary to-primary group-hover:from-accent group-hover:to-secondary rounded-2xl shadow-md flex items-center justify-center text-white mb-6 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-6">
-                <Eye className="w-6 h-6" />
-              </div>
-              <h3 className="font-display font-bold text-heading text-2xl mb-4">Our Long-term Vision</h3>
-              <p className="text-body leading-relaxed text-base">
-                To be the most trusted pharmaceutical partner globally, recognized for quality and integrity.
-              </p>
-            </motion.div>
-          </motion.div>
 
           {/* Custom Section Header: The Pillars of Medinet */}
-          <div className="relative mt-24 mb-16 rounded-3xl overflow-hidden py-16 px-4">
+          <div className="relative mt-0 mb-16 rounded-3xl overflow-hidden py-16 px-4">
             {/* Soft radial glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(13,148,136,0.04),transparent_50%)] pointer-events-none -z-10"></div>
             
@@ -426,227 +502,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Leadership Team Section */}
-      <section className="py-24 bg-white border-b border-border relative overflow-hidden">
-        {/* Subtle Decorative Background Elements */}
-        <div className="absolute inset-0 pointer-events-none flex justify-center items-center overflow-hidden">
-          {/* Subtle Grid / DNA Line Hint */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(29, 78, 216,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(29, 78, 216,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-          {/* Floating Blobs for Depth */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-secondary/5 to-transparent rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-          {/* Low Opacity Floating Dots */}
-          <div className="absolute inset-0 bg-[radial-gradient(#1D4ED8_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-[0.03]"></div>
-        </div>
-
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-          }}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        >
-          {/* Custom Section Header: Executive Leadership */}
-          <div className="relative mt-8 mb-20 rounded-3xl overflow-hidden py-16 px-4">
-            {/* Soft radial glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none -z-10"></div>
-            
-            {/* Background elements */}
-            <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.02)_1.5px,transparent_1.5px)] bg-[size:30px_30px]"></div>
-              
-              <motion.div 
-                animate={{ y: [0, -15, 0], opacity: [0.01, 0.03, 0.01] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[10%] right-[15%]"
-              >
-                <FlaskConical className="w-32 h-32 text-[#0A192F]" />
-              </motion.div>
-              <motion.div 
-                animate={{ scale: [1, 1.05, 1], opacity: [0.01, 0.03, 0.01] }}
-                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute bottom-[10%] left-[15%]"
-              >
-                <Brain className="w-40 h-40 text-[#2563EB]" />
-              </motion.div>
-              
-              {/* Floating glowing blobs */}
-              <motion.div animate={{ opacity: [0.4, 0.6, 0.4], scale: [1, 1.1, 1] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-1/4 right-1/3 w-[200px] h-[200px] bg-[#2563EB]/5 rounded-full blur-[60px]"></motion.div>
-              <motion.div animate={{ opacity: [0.4, 0.6, 0.4], scale: [1, 1.1, 1] }} transition={{ duration: 10, repeat: Infinity, delay: 2 }} className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] bg-[#38BDF8]/5 rounded-full blur-[60px]"></motion.div>
-
-              {/* Floating medical particles */}
-              <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-[20%] right-[20%] w-2 h-2 rounded-full bg-[#1D4ED8] blur-[1px]"></motion.div>
-              <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 10, repeat: Infinity, delay: 1 }} className="absolute bottom-[30%] left-[20%] w-3 h-3 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
-            </div>
-
-            <div className="flex flex-col items-center text-center relative z-10 max-w-4xl mx-auto">
-              {/* Premium Glassmorphism Pill */}
-              <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-[#1D4ED8]/20 shadow-[0_4px_15px_rgba(29, 78, 216,0.06)] mb-8 hover:border-[#1D4ED8]/40 transition-colors duration-300 cursor-default"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-                </span>
-                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-[#0A192F] uppercase">
-                  EXECUTIVE LEADERSHIP
-                </span>
-              </motion.div>
-
-              {/* Centerpiece Heading */}
-              <motion.h2 
-                className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0A192F] tracking-tight leading-[1.15] mb-8 relative"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  visible: { transition: { staggerChildren: 0.15 } },
-                  hidden: {}
-                }}
-              >
-                {/* Glowing text shadow */}
-                <div className="absolute inset-0 bg-[#0A192F]/5 blur-[20px] rounded-full z-[-1] pointer-events-none"></div>
-                
-                {["Guiding", "Our", "Scientific", "Vision"].map((word, index) => {
-                  const isHighlight = word === "Scientific" || word === "Vision";
-                  return (
-                    <motion.span 
-                      key={index}
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-                      }}
-                      className={isHighlight 
-                        ? "bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block mr-3 lg:mr-4 last:mr-0 pb-2" 
-                        : "drop-shadow-sm inline-block mr-3 lg:mr-4 last:mr-0 pb-2"}
-                    >
-                      {isHighlight ? (
-                        <motion.span
-                          animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                          transition={{ duration: 8, ease: "linear", repeat: Infinity }}
-                          style={{ backgroundSize: "200% auto" }}
-                        >
-                          {word}
-                        </motion.span>
-                      ) : (
-                        word
-                      )}
-                    </motion.span>
-                  );
-                })}
-              </motion.h2>
-
-              {/* Animated underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#1D4ED8] to-transparent mx-auto mb-10 origin-center"
-              ></motion.div>
-
-              {/* Description */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto"
-              >
-                {/* Intro to leadership text added from PDF */}
-                The leadership team at Medinet Pharmaceutical Marketing Company brings together expertise in pharmaceutical marketing, healthcare management, business strategy, and organizational development. United by a shared vision of improving healthcare, our leaders are committed to building a trusted organization that prioritizes patient care, ethical practices, quality excellence, and customer satisfaction. They foster a culture of innovation, collaboration, accountability, and continuous improvement, empowering every team member to contribute to our mission of delivering reliable healthcare solutions.
-              </motion.div>
-            </div>
-          </div>
-
-          <motion.div 
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
-            }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
-          >
-            {LEADERSHIP.map((leader) => {
-              let accentGradient = "from-secondary to-primary";
-              let badgeText = "MD";
-
-              const roleLower = leader.role.toLowerCase();
-              if (roleLower.includes("founder")) {
-                accentGradient = "from-secondary to-primary";
-                badgeText = "MD";
-              } else if (roleLower.includes("ceo") || roleLower.includes("chief")) {
-                accentGradient = "from-primary to-blue-600";
-                badgeText = "CEO";
-              } else if (roleLower.includes("research") || roleLower.includes("r&d")) {
-                accentGradient = "from-accent to-secondary";
-                badgeText = "R&D";
-              } else if (roleLower.includes("quality") || roleLower.includes("qa") || roleLower.includes("compliance")) {
-                accentGradient = "from-blue-500 to-secondary";
-                badgeText = "QA";
-              }
-
-              return (
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, y: 40, scale: 0.95 },
-                    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-                  }}
-                  key={leader.id}
-                  className="group relative bg-white rounded-[24px] border border-border/60 p-6 flex flex-col h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(29, 78, 216,0.12)] hover:-translate-y-2 hover:scale-[1.02] hover:border-secondary/30 transition-all duration-500 ease-out cursor-pointer"
-                >
-                  {/* Subtle top accent border glow on hover */}
-                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r ${accentGradient} rounded-b-full opacity-0 group-hover:w-1/2 group-hover:opacity-100 transition-all duration-500 ease-out`}></div>
-                  
-                  {/* Image Container */}
-                  <div className="relative w-32 h-32 mx-auto mb-6 shrink-0">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-border/50 to-border/10 animate-pulse"></div>
-                    <div className="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white shadow-[0_8px_25px_rgba(0,0,0,0.08)] group-hover:shadow-[0_12px_30px_rgba(29, 78, 216,0.2)] group-hover:border-secondary/10 transition-all duration-500">
-                      <Image
-                        src={leader.image}
-                        alt={leader.name}
-                        fill
-                        sizes="128px"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
-                    </div>
-                    {/* Floating badge effect */}
-                    <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r ${accentGradient} text-white text-[10px] font-bold tracking-[0.1em] shadow-md group-hover:shadow-[0_0_15px_rgba(29, 78, 216,0.4)] transition-all duration-300 transform group-hover:-translate-y-1`}>
-                      {badgeText}
-                    </div>
-                  </div>
-
-                  {/* Text Content */}
-                  <div className="text-center flex-grow flex flex-col justify-start">
-                    <span className="text-[11px] font-mono font-bold text-secondary uppercase tracking-[0.15em] block mb-2 opacity-90">
-                      {leader.role}
-                    </span>
-                    <h3 className="font-display font-extrabold text-heading text-xl mb-1.5 text-slate-900 group-hover:text-secondary transition-colors duration-300 line-clamp-1">
-                      {leader.name}
-                    </h3>
-                    <p className="text-sm text-slate-500 font-medium leading-relaxed mb-4">
-                      {leader.qualification}
-                    </p>
-                    
-                    {/* Bio */}
-                    <div className="mt-auto pt-4 border-t border-border/40 overflow-hidden">
-                      <p className="text-[13px] text-body leading-relaxed line-clamp-3 transition-all duration-300">
-                        {leader.bio}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </motion.div>
-      </section>
 
       {/* Message from the CEO & Founder */}
       <section className="py-24 bg-gradient-to-b from-background via-alt-bg to-white border-b border-border overflow-hidden">
@@ -853,76 +708,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Corporate Timeline Section */}
-      <section className="py-12 md:py-14 bg-gradient-to-b from-background to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Corporate Timeline"
-            title="Our Path of Progress"
-            description="Review the critical milestones that defined our transition from a local marketer to a globally trusted pharmaceutical exporter."
-            centered
-          />
 
-          <div className="relative max-w-4xl mx-auto mt-10 md:mt-12">
-            {/* Center spine on desktop */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-border via-secondary/30 to-border opacity-80 -translate-x-1/2"></div>
-
-            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-6 md:space-y-8">
-              {timelineMilestones.map((milestone, idx) => {
-                const isEven = idx % 2 === 0;
-                const timelineIcons = [Rocket, Building2, Globe, Factory, Brain, Award];
-                const Icon = timelineIcons[idx];
-
-                return (
-                  <motion.div
-                    variants={fadeUp}
-                    key={idx}
-                    className={`flex flex-col md:flex-row items-center gap-6 md:gap-0 group ${isEven ? "md:flex-row-reverse" : ""
-                      }`}
-                  >
-                    {/* Left/Right content block */}
-                    <div className="w-full md:w-[45%] text-left">
-                      <div className="relative bg-white/70 backdrop-blur-xl p-5 md:p-6 rounded-[24px] border border-slate-100 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_30px_rgba(13,148,136,0.12)] hover:border-[#1D4ED8]/30 hover:-translate-y-[6px] transition-all duration-300 overflow-hidden cursor-default">
-                        {/* Thin animated top gradient strip */}
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="relative shrink-0">
-                            {/* Glow behind icon */}
-                            <div className="absolute inset-0 bg-[#1D4ED8]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-opacity duration-300 z-0"></div>
-                            <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center group-hover:scale-[1.08] group-hover:border-[#1D4ED8]/30 transition-all duration-300 z-10">
-                              <Icon className="w-5 h-5 text-[#0A192F] group-hover:text-secondary transition-colors duration-300" />
-                            </div>
-                          </div>
-                          <span className="inline-block text-2xl font-display font-[900] bg-gradient-to-r from-[#0A192F] to-[#1D4ED8] bg-clip-text text-transparent tracking-tight group-hover:scale-105 transition-transform origin-left duration-300">
-                            {milestone.year}
-                          </span>
-                        </div>
-                        <h3 className="font-display font-extrabold text-[#0A192F] text-lg mb-2 tracking-wide">
-                          {milestone.title}
-                        </h3>
-                        <p className="text-sm text-slate-500 font-medium leading-[1.6]">
-                          {milestone.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Timeline Node Center Indicator */}
-                    <div className="hidden md:flex w-[10%] items-center justify-center relative z-10">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-primary shadow-[0_0_15px_rgba(29, 78, 216,0.4)] flex items-center justify-center text-white font-mono text-sm font-bold group-hover:from-accent group-hover:to-secondary group-hover:scale-125 transition-all duration-500 border-4 border-background">
-                        {idx + 1}
-                      </div>
-                    </div>
-
-                    {/* Empty placeholder on opposite side */}
-                    <div className="hidden md:block w-[45%]"></div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </div>
-        </div>
-      </section>
     </motion.div>
   );
 }

@@ -1,46 +1,20 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState, useRef } from "react";
 import { motion, Variants } from "framer-motion";
-import { JOBS } from "../../data";
-import { Job } from "../../types";
-import SectionHeader from "../SectionHeader";
 import {
   Briefcase,
-  MapPin,
-  Clock,
+  HeartPulse,
+  MonitorSmartphone,
+  Star,
+  Users,
   Award,
   Upload,
-  User,
-  Mail,
-  Phone,
-  FileText,
-  X,
+  Send,
   CheckCircle,
-  HeartHandshake,
-  GraduationCap,
-  BriefcaseBusiness,
-  TrendingUp,
-  Globe,
-  Plus,
-  ShieldCheck,
-  ClipboardCheck,
-  FlaskConical,
-  Clock3,
-  CalendarDays,
-  CheckCircle2,
-  ArrowRight,
-  Lock,
-  Building2,
-  Loader2,
-  AlertCircle
+  FileText
 } from "lucide-react";
 
 interface CareersProps {
-  showToast: (message: string, type: "success" | "error") => void;
+  showToast?: (message: string, type: "success" | "error") => void;
 }
 
 const fadeUp: Variants = {
@@ -52,15 +26,11 @@ const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: { staggerChildren: 0.15 }
   }
 };
 
 export default function Careers({ showToast }: CareersProps) {
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
-  const [isApplying, setIsApplying] = useState(false);
-
-  // Apply Form State
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -68,205 +38,51 @@ export default function Careers({ showToast }: CareersProps) {
     position: "",
     location: "",
     experience: "",
-    message: ""
+    message: "" // mapped to cover letter visually if they want to type, or we can use file upload
   });
+
   const [uploadedFile, setUploadedFile] = useState<{ name: string; size: string } | null>(null);
   const [uploadedCoverLetter, setUploadedCoverLetter] = useState<{ name: string; size: string } | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
   const coverLetterInputRef = useRef<HTMLInputElement>(null);
 
-  const benefits = [
-    {
-      title: "Career Growth & Continuous Learning",
-      description: "Focus on continuous learning and development to help you achieve professional excellence and career advancement.",
-      icon: GraduationCap,
-      iconBg: "bg-primary/10",
-      iconColor: "text-primary",
-      accent: "bg-primary",
-      badge: "Growth",
-      badgeColor: "text-primary bg-primary/5 border-primary/20"
-    },
-    {
-      title: "Global Exposure & Diverse Opportunities",
-      description: "Gain global exposure with diverse opportunities across various markets and healthcare sectors.",
-      icon: Globe,
-      iconBg: "bg-accent/10",
-      iconColor: "text-accent",
-      accent: "bg-accent",
-      badge: "Global",
-      badgeColor: "text-accent bg-accent/5 border-accent/20"
-    },
-    {
-      title: "Employee-Centric Policies & Work-Life Balance",
-      description: "We foster a modern, inclusive workplace that encourages work-life balance and employee well-being.",
-      icon: HeartHandshake,
-      iconBg: "bg-secondary/10",
-      iconColor: "text-secondary",
-      accent: "bg-secondary",
-      badge: "Well-being",
-      badgeColor: "text-secondary bg-secondary/5 border-secondary/20"
-    },
-    {
-      title: "Competitive Compensation & Rewards",
-      description: "Recognition of talent and hard work with competitive compensation, benefits, and performance rewards.",
-      icon: Award,
-      iconBg: "bg-[#7C3AED]/10",
-      iconColor: "text-[#7C3AED]",
-      accent: "bg-[#7C3AED]",
-      badge: "Rewards",
-      badgeColor: "text-[#7C3AED] bg-[#7C3AED]/5 border-[#7C3AED]/20"
-    },
-    {
-      title: "Commitment to Diversity and Inclusion",
-      description: "A strong emphasis on diversity and inclusion, ensuring our team reflects the communities we serve.",
-      icon: User,
-      iconBg: "bg-[#10B981]/10",
-      iconColor: "text-[#10B981]",
-      accent: "bg-[#10B981]",
-      badge: "Inclusion",
-      badgeColor: "text-[#10B981] bg-[#10B981]/5 border-[#10B981]/20"
-    }
-  ];
-
-  const handleApplyClick = (job: Job) => {
-    setSelectedJob(job);
-    setFormSuccess(false);
-    setErrors({});
-    setIsApplying(true);
+  const handleFieldChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: "resume" | "cover") => {
     const file = e.target.files?.[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        showToast("Resume size exceeds maximum limit of 5MB.", "error");
+        if(showToast) showToast("File size exceeds maximum limit of 5MB.", "error");
         return;
       }
-      setUploadedFile({
+      const fileData = {
         name: file.name,
         size: (file.size / (1024 * 1024)).toFixed(2) + " MB"
-      });
-      showToast("Resume uploaded successfully!", "success");
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        showToast("Resume size exceeds maximum limit of 5MB.", "error");
-        return;
+      };
+      if (type === "resume") {
+        setUploadedFile(fileData);
+      } else {
+        setUploadedCoverLetter(fileData);
       }
-      setUploadedFile({
-        name: file.name,
-        size: (file.size / (1024 * 1024)).toFixed(2) + " MB"
-      });
-      showToast("Resume uploaded successfully!", "success");
     }
-  };
-
-  const handleCoverLetterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        showToast("Cover Letter size exceeds maximum limit of 5MB.", "error");
-        return;
-      }
-      setUploadedCoverLetter({
-        name: file.name,
-        size: (file.size / (1024 * 1024)).toFixed(2) + " MB"
-      });
-      showToast("Cover Letter uploaded successfully!", "success");
-    }
-  };
-
-  const removeFile = () => {
-    setUploadedFile(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
-
-  const removeCoverLetter = () => {
-    setUploadedCoverLetter(null);
-    if (coverLetterInputRef.current) {
-      coverLetterInputRef.current.value = "";
-    }
-  };
-
-  const validateCareerField = (field: string, value: string) => {
-    switch (field) {
-      case "name":
-        return !value.trim() ? "Full name is required" : "";
-      case "email":
-        return !value.trim() ? "Email address is required" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid email address" : "";
-      case "phone":
-        return !value.trim() ? "Phone number is required" : !/^\+?[0-9\s-\(\)\.]{7,15}$/.test(value) ? "Please enter a valid phone number" : "";
-      case "position":
-        return !value.trim() ? "Position is required" : "";
-      case "location":
-        return !value.trim() ? "Current Location is required" : "";
-      case "experience":
-        return !value.trim() ? "Experience is required" : "";
-      default:
-        return "";
-    }
-  };
-
-  const handleCareerFieldChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      const err = validateCareerField(field, value);
-      setErrors((prev) => ({ ...prev, [field]: err }));
-    }
-  };
-
-  const handleCareerFieldBlur = (field: string, value: string) => {
-    if (value.trim() || errors[field]) {
-      const err = validateCareerField(field, value);
-      setErrors((prev) => ({ ...prev, [field]: err }));
-    }
-  };
-
-  const validateForm = () => {
-    const errs: Record<string, string> = {
-      name: validateCareerField("name", formData.name),
-      email: validateCareerField("email", formData.email),
-      phone: validateCareerField("phone", formData.phone),
-      position: validateCareerField("position", formData.position),
-      location: validateCareerField("location", formData.location),
-      experience: validateCareerField("experience", formData.experience),
-      file: !uploadedFile ? "Please upload your resume" : "",
-      coverLetter: !uploadedCoverLetter ? "Please upload your cover letter" : ""
-    };
-
-    const activeErrors = Object.fromEntries(Object.entries(errs).filter(([_, v]) => v !== ""));
-    setErrors(activeErrors);
-    return Object.keys(activeErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) {
-      showToast("Please fill all required fields and upload your resume.", "error");
+    if (!uploadedFile) {
+      if (showToast) showToast("Please upload your resume.", "error");
       return;
     }
-
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
       setFormSuccess(true);
-      showToast("Application submitted successfully! Our HR team will evaluate your CV.", "success");
-
-      // Reset
+      if (showToast) showToast("Application submitted successfully!", "success");
       setFormData({
         name: "",
         email: "",
@@ -278,739 +94,380 @@ export default function Careers({ showToast }: CareersProps) {
       });
       setUploadedFile(null);
       setUploadedCoverLetter(null);
-    }, 1200);
+      setTimeout(() => setFormSuccess(false), 5000);
+    }, 1500);
   };
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
-      {/* Page Header */}
-      <section className="py-24 lg:py-32 relative overflow-hidden bg-[radial-gradient(circle_at_top_left,#F5FBFF_0%,#EDF7FF_25%,#ECFFF8_65%,#F8FFFC_100%)] border-b border-[#2563EB]/5">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20 bg-white">
+      
+      {/* Why Join Us */}
+      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 py-20 lg:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#1D4ED8] opacity-5" />
+        </div>
 
-
-        <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
-          <div>
-            {/* Glassmorphism Section Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-              className="relative group inline-flex rounded-full p-[1.5px] mb-8 hover:-translate-y-1 hover:scale-105 transition-all duration-500"
-            >
-              {/* Animated gradient border */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#38BDF8] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] opacity-80 group-hover:opacity-100 blur-[2px] group-hover:blur-[5px] transition-all duration-500"></div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#38BDF8] to-[#16A34A] bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]"></div>
-
-              <div className="relative bg-[rgba(255,255,255,0.75)] backdrop-blur-xl rounded-full px-6 py-2.5 flex items-center gap-2.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#16A34A] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#16A34A]"></span>
-                </span>
-                <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#0A192F] uppercase">Join Our Team</span>
-              </div>
-            </motion.div>
-          </div>
-
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] relative inline-block pb-4 text-[#0A192F]"
-            >
-              Careers at <motion.span
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_15px_rgba(37,99,235,0.2)]"
-              >Medinet</motion.span>
-
-              {/* Animated glowing underline */}
-              <motion.span
-                initial={{ scaleX: 0, opacity: 0 }} whileInView={{ scaleX: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }}
-                className="absolute bottom-0 left-0 lg:w-[65%] w-full h-[3px] bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-transparent origin-left rounded-full shadow-[0_0_15px_rgba(13,148,136,0.5)]"
-              />
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-8 text-base sm:text-lg text-[#334155] leading-relaxed max-w-[700px] mx-auto lg:mx-0"
-            >
-              <strong className="font-bold">Building a Career with Purpose.</strong> At Medinet Pharmaceutical Marketing Company, we believe our people are our greatest asset. Working with us means being part of a dynamic, supportive, and growth-oriented environment where your contributions directly impact healthcare and patient lives.
-            </motion.p>
-          </div>
-
-          <motion.div
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.4 } }
-            }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-5"
-          >
-            {[
-              { icon: ShieldCheck, text: "WHO-GMP Certified" },
-              { icon: TrendingUp, text: "Career Growth" },
-              { icon: GraduationCap, text: "Learning Culture" }
-            ].map((badge, idx) => (
-              <motion.div
-                key={idx}
-                variants={{
-                  hidden: { opacity: 0, y: 15 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-                }}
-                className="group relative flex items-center gap-3 bg-white/90 backdrop-blur-xl rounded-full p-[1.5px] hover:-translate-y-[6px] hover:scale-[1.04] transition-all duration-500 cursor-default"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB] to-[#16A34A] rounded-full opacity-30 group-hover:opacity-100 transition-opacity duration-500 blur-[3px]"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB] to-[#16A34A] rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                <div className="relative bg-white/95 backdrop-blur-xl rounded-full px-5 py-2.5 flex items-center gap-3 shadow-[0_10px_20px_rgba(11,31,77,0.06)] group-hover:shadow-[0_15px_30px_rgba(22,163,74,0.15)] transition-all duration-500 w-full h-full">
-                  <div className="bg-[#EEF6FF] rounded-full p-1.5 group-hover:bg-[#16A34A]/10 transition-colors duration-500">
-                    <badge.icon className="w-[18px] h-[18px] text-[#2563EB] group-hover:text-[#16A34A] group-hover:rotate-[10deg] transition-all duration-500" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-[13px] sm:text-[14px] font-semibold text-[#0A192F] relative z-10">{badge.text}</span>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Careers Work Culture & Benefits */}
-      <section className="py-20 bg-gradient-to-b from-background via-alt-bg to-white relative overflow-hidden text-left border-b border-border">
-        {/* Soft radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center flex flex-col items-center mb-8">
-            <div className="inline-block bg-[#EEF6FF] text-[#2563EB] border border-[#2563EB]/20 text-[11px] font-mono font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6 shadow-sm relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB]/10 to-[#16A34A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="relative z-10 flex items-center">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#16A34A] mr-2 animate-pulse"></span>
-                Culture & Values
-              </span>
-            </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
+          <motion.div variants={fadeUp} className="max-w-4xl mx-auto">
+            <span className="utility-badge-blue mb-5 relative z-10 mx-auto">
+              <span className="utility-dot"></span>
+              Why Join Us
+            </span>
             
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0A192F] mb-6 relative">
-              Life at <motion.span 
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
-              >
-                Medinet
-              </motion.span>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#16A34A] opacity-50"></div>
-            </h2>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
+              <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Build a Career That Makes a Difference</span>
+            </h1>
             
-            <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-2xl mx-auto mt-6">
-              A Culture of Excellence. We foster a modern, inclusive, and engaging workplace that encourages innovation, teamwork, and professional excellence. When you join Medinet, you join a family that supports your ambitions and values your dedication to delivering &ldquo;Reliable Care, Every Time.&rdquo;
+            <p className="mt-4 text-base sm:text-lg text-[#334155] leading-relaxed relative z-10">
+              At Medinet Pharmaceutical Marketing Company, we believe our people are our greatest strength. We are committed to creating a workplace that encourages innovation, continuous learning, teamwork, and professional growth. If you're passionate about improving healthcare and making a meaningful impact, Medinet is the place to build your career.
             </p>
           </motion.div>
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-            {benefits.map((ben, idx) => {
-              const BenIcon = ben.icon;
-              return (
-                <motion.div variants={fadeUp} key={idx} className="relative group flex flex-col h-full min-h-[300px]">
-                  {/* Blurred Gradient Shadow behind card */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#16A34A] rounded-2xl opacity-0 group-hover:opacity-30 transition-all duration-[600ms] blur-[15px] group-hover:-translate-y-2 group-hover:scale-[1.02]"></div>
-
-                  {/* Card Wrapper with subtle border */}
-                  <div className="relative flex-1 flex flex-col bg-white border border-[#2563EB]/10 rounded-2xl p-6 sm:p-8 text-left overflow-hidden group-hover:border-transparent transition-all duration-[600ms] group-hover:-translate-y-2 group-hover:scale-[1.02] group-hover:shadow-[0_20px_40px_rgba(22,163,74,0.12)] z-10">
-
-                    {/* Animated Gradient Background that fades in on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#F5FBFF] via-[#ECFFF8] to-[#F8FAFC] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-
-                    {/* Top Animated Gradient Line */}
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                    <div className="relative z-10 flex justify-between items-start mb-8">
-                      {/* Icon Container with Gradient */}
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB]/10 to-[#16A34A]/10 group-hover:from-[#2563EB] group-hover:via-[#1D4ED8] group-hover:to-[#16A34A] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_8px_20px_rgba(22,163,74,0.3)] transition-all duration-500">
-                        <BenIcon strokeWidth={2.5} className="w-6 h-6 text-[#1D4ED8] group-hover:text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 ease-out" />
-                      </div>
-
-                      {/* Glass Badge */}
-                      <span className="inline-block bg-white/60 backdrop-blur-md border border-[#1D4ED8]/20 text-[#1D4ED8] shadow-sm text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full group-hover:bg-white group-hover:text-[#16A34A] group-hover:border-[#16A34A]/30 transition-all duration-300">
-                        {ben.badge}
-                      </span>
-                    </div>
-
-                    <h3 className="relative z-10 font-display font-extrabold text-[#0A192F] text-xl mb-4 group-hover:text-[#1D4ED8] transition-colors duration-300">{ben.title}</h3>
-                    <p className="relative z-10 text-[14.5px] text-[#475569] leading-relaxed flex-1">{ben.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+          <motion.div variants={staggerContainer} className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+            {[
+              "Meaningful career in the pharmaceutical industry",
+              "Professional growth and learning opportunities",
+              "Ethical and transparent work culture",
+              "Performance-driven environment",
+              "Supportive leadership and teamwork",
+              "Opportunity to contribute to better patient care",
+              "Equal opportunity employer"
+            ].map((item, idx) => (
+              <motion.div variants={fadeUp} key={idx} className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
+                <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                <span className="text-[#475569] font-medium">{item}</span>
+              </motion.div>
+            ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Life at Medinet & New Age Workplace */}
+      <section className="py-20 bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+          
+          {/* Life at Medinet */}
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-32">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
+                <HeartPulse className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Life at Medinet</h2>
+              <h3 className="text-[#2563EB] font-medium tracking-wide text-lg mb-4">Where Passion Meets Purpose</h3>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] mb-6"></div>
+              <p className="text-[#475569] leading-relaxed">
+                Life at Medinet is built on collaboration, respect, and a shared commitment to excellence. We foster a positive work environment where every employee is encouraged to innovate, grow, and contribute to our mission of delivering quality healthcare solutions.
+              </p>
+            </div>
+            <div className="lg:w-2/3 bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100">
+              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our workplace promotes:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  "Teamwork and collaboration",
+                  "Continuous learning and skill development",
+                  "Employee recognition and appreciation",
+                  "Open communication and mutual respect",
+                  "Work-life balance",
+                  "A culture of integrity and accountability"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                    <span className="text-[#475569] font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-slate-200">
+                <p className="text-[#475569] leading-relaxed text-lg font-bold text-center">
+                  Together, we work towards one goal—Reliable Care, Every Time.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* New Age Workplace */}
+          <div className="flex flex-col lg:flex-row-reverse gap-12 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-32">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center shrink-0 shadow-lg mb-6">
+                <MonitorSmartphone className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">New Age Workplace</h2>
+              <h3 className="text-teal-600 font-medium tracking-wide text-lg mb-4">Empowering Every Employee</h3>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-teal-500 to-teal-700 mb-6"></div>
+              <p className="text-[#475569] leading-relaxed">
+                At Medinet Pharmaceuticals, we believe that a progressive workplace inspires innovation, collaboration, and growth. Our New Age Workplace is built on trust, technology, transparency, and a people-first culture that empowers every employee to achieve their full potential.
+              </p>
+            </div>
+            <div className="lg:w-2/3 bg-teal-50/50 rounded-3xl p-8 md:p-10 border border-teal-100/50">
+              <p className="text-[#0A192F] font-semibold mb-6 text-lg">What Makes Our Workplace Different?</p>
+              <div className="space-y-4">
+                {[
+                  { title: "Employee-Centric Culture", desc: "We value every individual and foster a supportive, respectful, and inclusive work environment." },
+                  { title: "Technology-Driven Operations", desc: "Digital HR processes, streamlined workflows, and modern tools enhance productivity and efficiency." },
+                  { title: "Continuous Learning & Development", desc: "Regular training, mentorship, and career advancement opportunities help employees grow professionally." },
+                  { title: "Open Communication", desc: "Transparent leadership and an open-door policy encourage collaboration and innovation." },
+                  { title: "Performance Recognition", desc: "We celebrate achievements and reward excellence through recognition and growth opportunities." },
+                  { title: "Work-Life Balance", desc: "We promote employee well-being with flexible, supportive practices that encourage a healthy work environment." },
+                  { title: "Innovation & Collaboration", desc: "Employees are encouraged to share ideas, solve challenges creatively, and contribute to the company's success." },
+                  { title: "Ethical & Purpose-Driven Workplace", desc: "Guided by integrity, patient care, quality, and affordability, every employee contributes to improving healthcare outcomes." }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-4 bg-white p-5 rounded-xl border border-teal-100/50 shadow-sm hover:shadow-md transition-shadow">
+                    <CheckCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-[#0A192F] font-bold block mb-1">{item.title}</span>
+                      <span className="text-[#475569] text-sm leading-relaxed block">{item.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Promise */}
+      <section className="py-20 bg-gradient-to-b from-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          <div className="absolute w-[60%] h-[60%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-[#0A192F] tracking-tight mb-6">
+            Our <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Promise</span>
+          </h2>
+          <div className="w-20 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#38BDF8] mx-auto mb-8"></div>
+          <p className="text-[#334155] leading-relaxed text-lg sm:text-xl font-medium">
+            At Medinet Pharmaceuticals, we don't just offer jobs—we build careers in a workplace where talent is nurtured, ideas are valued, and every individual has the opportunity to make a meaningful impact on patients' lives and the future of healthcare.
+          </p>
         </div>
       </section>
 
       {/* Current Openings */}
-      <section className="py-20 bg-background relative overflow-hidden border-t border-b border-border">
-        {/* Soft radial glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center flex flex-col items-center mb-8">
-            <div className="inline-block bg-[#EEF6FF] text-[#2563EB] border border-[#2563EB]/20 text-[11px] font-mono font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6 shadow-sm relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB]/10 to-[#16A34A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="relative z-10 flex items-center">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#16A34A] mr-2 animate-pulse"></span>
-                Active Positions
-              </span>
-            </div>
-            
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-[#0A192F] mb-6 relative">
-              Current <motion.span 
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#16A34A] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
-              >
-                Openings
-              </motion.span>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#16A34A] opacity-50"></div>
+      <section className="py-20 bg-white relative overflow-hidden border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-[#0A192F] tracking-tight mb-4">
+              Current Openings
             </h2>
-            
-            <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-2xl mx-auto mt-6">
-              We are always looking for passionate and talented individuals to join our team. Explore career opportunities with Medinet today.
+            <h3 className="text-[#2563EB] font-medium tracking-wide text-lg mb-6">Explore Career Opportunities</h3>
+            <p className="text-[#475569] leading-relaxed text-lg">
+              We are always looking for talented and motivated individuals to join our growing team. Current opportunities may include:
             </p>
-          </motion.div>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {[
+              "Medical Sales Representative (MSR)",
+              "Area Business Manager (ABM)",
+              "Regional Sales Manager (RSM)",
+              "Product Manager",
+              "Human Resources",
+              "Marketing Executive",
+              "Administration",
+              "Finance & Accounts",
+              "Regulatory Affairs",
+              "Quality Assurance"
+            ].map((role, idx) => (
+              <span key={idx} className="bg-slate-50 border border-slate-200 text-[#0A192F] font-medium px-5 py-2.5 rounded-full hover:bg-[#2563EB]/5 hover:border-[#2563EB]/30 transition-colors cursor-default">
+                {role}
+              </span>
+            ))}
+          </div>
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12">
-            {JOBS.map((job) => {
-              // Determine styles based on department
-              let Icon = Building2;
-              let iconBg = "bg-alt-bg";
-              let iconColor = "text-muted";
-              let accent = "bg-muted";
-              let badgeColor = "text-muted bg-background border-border";
-
-              if (job.department === "Quality Assurance") {
-                Icon = ShieldCheck;
-                iconBg = "bg-primary/10";
-                iconColor = "text-primary";
-                accent = "bg-primary";
-                badgeColor = "text-primary bg-primary/5 border-primary/20";
-              } else if (job.department === "Sales & Marketing") {
-                Icon = BriefcaseBusiness;
-                iconBg = "bg-accent/10";
-                iconColor = "text-accent";
-                accent = "bg-accent";
-                badgeColor = "text-accent bg-accent/5 border-accent/20";
-              } else if (job.department === "Medical & Regulatory") {
-                Icon = ClipboardCheck;
-                iconBg = "bg-secondary/10";
-                iconColor = "text-secondary";
-                accent = "bg-secondary";
-                badgeColor = "text-secondary bg-secondary/5 border-secondary/20";
-              } else if (job.department === "Research & Development") {
-                Icon = FlaskConical;
-                iconBg = "bg-[#D97706]/10";
-                iconColor = "text-[#D97706]";
-                accent = "bg-[#D97706]";
-                badgeColor = "text-[#D97706] bg-[#FFF8E1] border-[#FDE68A]";
-              }
-
-              return (
-                <motion.div
-                  variants={fadeUp}
-                  key={job.id}
-                  className="utility-card p-6 sm:p-8 text-left relative overflow-hidden group flex flex-col justify-between hover:border-secondary transition-all duration-300 hover-lift"
-                >
-                  {/* Top Accent Bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 rounded-full ${accent}`}></div>
-
-                  <div>
-                    <div className="flex justify-between items-start mb-6">
-                      <div className={`w-[52px] h-[52px] rounded-2xl ${iconBg} flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
-                        <Icon className={`w-6 h-6 ${iconColor} group-hover:scale-110 transition-transform duration-300 ease-out`} />
-                      </div>
-
-                      {/* Optional Status Badges */}
-                      {job.department === "Quality Assurance" && (
-                        <span className="inline-block border border-success/20 bg-success/10 text-success text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
-                          Urgent Hiring
-                        </span>
-                      )}
-                      {job.department === "Research & Development" && (
-                        <span className="inline-block border border-primary/20 bg-primary/10 text-primary text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
-                          Featured
-                        </span>
-                      )}
-                      {job.department === "Sales & Marketing" && (
-                        <span className="inline-block border border-accent/20 bg-accent/10 text-accent text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
-                          New
-                        </span>
-                      )}
-                      {job.department === "Medical & Regulatory" && (
-                        <span className="inline-block border border-secondary/20 bg-secondary/10 text-secondary text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full">
-                          Remote Eligible
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-3 mb-5">
-                      <span className={`inline-block border ${badgeColor} text-[10px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full`}>
-                        {job.department}
-                      </span>
-                      <span className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted uppercase tracking-wider">
-                        <MapPin className="w-4 h-4" />
-                        {job.location}
-                      </span>
-                      <span className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted uppercase tracking-wider">
-                        <Clock3 className="w-4 h-4" />
-                        {job.type}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display font-bold text-heading text-lg sm:text-xl leading-tight">
-                      {job.title}
-                    </h3>
-
-                    <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted mt-3 uppercase tracking-wider">
-                      <CalendarDays className="w-4 h-4" />
-                      Experience: {job.experience} Required
-                    </div>
-
-                    <p className="mt-5 text-body leading-relaxed text-sm">
-                      {job.description}
-                    </p>
-
-                    <div className="mt-6 space-y-3">
-                      <ul className="space-y-3 text-sm text-body">
-                        {job.requirements.map((req, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
-                            <span className="leading-relaxed">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
-                    <span className="flex items-center gap-1.5 text-xs text-muted font-bold font-mono uppercase tracking-widest">
-                      <Lock className="w-4 h-4" />
-                      Secure Opportunity
-                    </span>
-                    <button
-                      onClick={() => handleApplyClick(job)}
-                      className="utility-button-primary"
-                    >
-                      Apply Now
-                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                    </button>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>      {/* Application Form Modal */}
-      {isApplying && selectedJob && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm overflow-y-auto">
-          <div className="w-full max-w-xl bg-white rounded-[24px] shadow-card hover:shadow-card-hover transition-all duration-300 border border-border overflow-hidden text-left my-8 max-h-[90vh] flex flex-col">
-            {/* Header */}
-            <div className="flex items-start justify-between p-6 sm:p-8 border-b border-border bg-alt-bg">
-              <div>
-                <span className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block">
-                  // APPLICATION PORTAL
-                </span>
-                <h2 className="text-xl sm:text-2xl font-display font-bold text-heading mt-2">
-                  Apply: {selectedJob.title}
-                </h2>
-                <p className="text-xs text-body mt-1.5 font-mono uppercase font-semibold">{selectedJob.department} | {selectedJob.location}</p>
-              </div>
-              <button
-                onClick={() => {
-                  setIsApplying(false);
-                  setSelectedJob(null);
-                  removeFile();
-                }}
-                className="p-2 bg-white hover:bg-background border border-border text-body hover:text-primary rounded-full transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
+          <div className="bg-[#F8FAFC] rounded-3xl p-8 max-w-4xl mx-auto border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6 text-left shadow-sm">
+            <div>
+              <h4 className="font-bold text-[#0A192F] text-xl mb-2">Can't find a suitable role?</h4>
+              <p className="text-[#475569]">Submit your resume, and we'll contact you when a relevant opportunity becomes available.</p>
             </div>
-
-            {/* Form */}
-            {formSuccess ? (
-              <div className="p-8 text-center space-y-4 my-auto animate-fade-in">
-                <div className="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mx-auto border border-green-200">
-                  <CheckCircle2 className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="text-xl font-display font-medium text-heading">Application Received!</h3>
-                <p className="text-xs text-muted max-w-sm mx-auto leading-relaxed">
-                  Your CV and details for <strong className="text-body font-semibold">{selectedJob?.title}</strong> have been submitted to our talent acquisition team. We will contact you if your qualifications match our current requirements.
-                </p>
-                <div className="pt-4 flex justify-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormSuccess(false);
-                      setIsApplying(false);
-                      setSelectedJob(null);
-                    }}
-                    className="utility-button-primary px-6 py-2.5"
-                  >
-                    CLOSE WINDOW
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setFormSuccess(false)}
-                    className="utility-button-secondary px-6 py-2.5"
-                  >
-                    APPLY FOR ANOTHER ROLE
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-5" noValidate>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="career-name" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Full Name <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="career-name"
-                      type="text"
-                      required
-                      disabled={submitting}
-                      aria-required="true"
-                      autoComplete="name"
-                      placeholder="John Doe"
-                      value={formData.name}
-                      onChange={(e) => handleCareerFieldChange("name", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("name", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.name}
-                      aria-describedby={errors.name ? "car-name-err" : undefined}
-                    />
-                    {errors.name && (
-                      <span id="car-name-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.name}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="career-email" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Email Address <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="career-email"
-                      type="email"
-                      required
-                      disabled={submitting}
-                      aria-required="true"
-                      autoComplete="email"
-                      placeholder="johndoe@example.com"
-                      value={formData.email}
-                      onChange={(e) => handleCareerFieldChange("email", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("email", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.email}
-                      aria-describedby={errors.email ? "car-email-err" : undefined}
-                    />
-                    {errors.email && (
-                      <span id="car-email-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.email}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="career-phone" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Phone Number <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="career-phone"
-                      type="tel"
-                      required
-                      disabled={submitting}
-                      aria-required="true"
-                      autoComplete="tel"
-                      placeholder="+1 (555) 000-0000"
-                      value={formData.phone}
-                      onChange={(e) => handleCareerFieldChange("phone", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("phone", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.phone}
-                      aria-describedby={errors.phone ? "car-phone-err" : undefined}
-                    />
-                    {errors.phone && (
-                      <span id="car-phone-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.phone}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="career-position" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Position Applying For <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="career-position"
-                      type="text"
-                      required
-                      disabled={submitting}
-                      aria-required="true"
-                      placeholder="e.g., Medical Sales Representative"
-                      value={formData.position}
-                      onChange={(e) => handleCareerFieldChange("position", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("position", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.position ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.position}
-                      aria-describedby={errors.position ? "car-pos-err" : undefined}
-                    />
-                    {errors.position && (
-                      <span id="car-pos-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.position}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="career-location" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Current Location <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="career-location"
-                      type="text"
-                      required
-                      disabled={submitting}
-                      aria-required="true"
-                      placeholder="e.g., Mumbai, India"
-                      value={formData.location}
-                      onChange={(e) => handleCareerFieldChange("location", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("location", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.location ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.location}
-                      aria-describedby={errors.location ? "car-loc-err" : undefined}
-                    />
-                    {errors.location && (
-                      <span id="car-loc-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.location}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="career-experience" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-1.5">Total Experience <span className="text-red-500" aria-hidden="true">*</span></label>
-                    <input
-                      id="career-experience"
-                      type="text"
-                      required
-                      disabled={submitting}
-                      aria-required="true"
-                      placeholder="e.g., 3 Years"
-                      value={formData.experience}
-                      onChange={(e) => handleCareerFieldChange("experience", e.target.value)}
-                      onBlur={(e) => handleCareerFieldBlur("experience", e.target.value)}
-                      className={`utility-input mt-1.5 ${errors.experience ? "border-red-500 focus:border-red-500 focus:ring-red-500/15" : ""}`}
-                      aria-invalid={!!errors.experience}
-                      aria-describedby={errors.experience ? "car-exp-err" : undefined}
-                    />
-                    {errors.experience && (
-                      <span id="car-exp-err" className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.experience}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <label htmlFor="career-message" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest">Message / Cover Letter Note</label>
-                    <span className={`text-[10px] font-mono ${formData.message.length > 700 ? "text-amber-500 font-bold" : "text-muted"}`}>
-                      {formData.message.length}/800 chars
-                    </span>
-                  </div>
-                  <textarea
-                    id="career-message"
-                    rows={4}
-                    disabled={submitting}
-                    maxLength={800}
-                    placeholder="Summarize your key qualifications or motivation to join Medinet..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="utility-input mt-1.5 resize-y"
-                  ></textarea>
-                </div>
-
-                {/* Resume Upload Box */}
-                <div>
-                  <label htmlFor="career-resume" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">
-                    Upload Resume (PDF or DOCX, max 5MB) <span className="text-red-500" aria-hidden="true">*</span>
-                  </label>
-
-                  {uploadedFile ? (
-                    <div className="flex items-center justify-between p-4 border border-border rounded-xl bg-alt-bg">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 border border-border">
-                          <FileText className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <span className="block text-heading font-bold text-sm truncate max-w-[200px] sm:max-w-[300px]">
-                            {uploadedFile.name}
-                          </span>
-                          <span className="text-[10px] text-muted font-mono font-bold block mt-1">
-                            SIZE: {uploadedFile.size}
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        disabled={submitting}
-                        onClick={removeFile}
-                        className="p-2 bg-white hover:bg-background border border-border text-body hover:text-red-500 rounded-lg transition-colors cursor-pointer shadow-sm disabled:opacity-50"
-                        title="Remove file"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <div
-                      onDragOver={handleDragOver}
-                      onDrop={handleDrop}
-                      onClick={() => !submitting && fileInputRef.current?.click()}
-                      className={`border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 rounded-[16px] p-8 text-center cursor-pointer transition-all duration-300 ${errors.file ? "border-red-400 bg-red-50/5" : "bg-alt-bg"} ${submitting ? "opacity-50 pointer-events-none" : ""}`}
-                    >
-                      <input
-                        id="career-resume"
-                        ref={fileInputRef}
-                        type="file"
-                        disabled={submitting}
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                        className="hidden"
-                      />
-                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm">
-                        <Upload className="w-5 h-5 text-primary" />
-                      </div>
-                      <span className="block text-sm font-bold text-heading">
-                        Drag &amp; drop your resume here, or <span className="text-primary hover:underline">browse</span>
-                      </span>
-                      <span className="block text-[10px] font-bold text-muted mt-2 font-mono uppercase tracking-widest">
-                        Accepts PDF, DOCX up to 5MB
-                      </span>
-                    </div>
-                  )}
-                  {errors.file && (
-                    <span className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      {errors.file}
-                    </span>
-                  )}
-                </div>
-
-                {/* Cover Letter Upload Box */}
-                <div>
-                  <label htmlFor="career-cover-letter" className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest block mb-2">
-                    Upload Cover Letter (PDF or DOCX, max 5MB) <span className="text-red-500" aria-hidden="true">*</span>
-                  </label>
-
-                  {uploadedCoverLetter ? (
-                    <div className="flex items-center justify-between p-4 border border-border rounded-xl bg-alt-bg">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 border border-border">
-                          <FileText className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <span className="block text-heading font-bold text-sm truncate max-w-[200px] sm:max-w-[300px]">
-                            {uploadedCoverLetter.name}
-                          </span>
-                          <span className="text-[10px] text-muted font-mono font-bold block mt-1">
-                            SIZE: {uploadedCoverLetter.size}
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        disabled={submitting}
-                        onClick={removeCoverLetter}
-                        className="p-2 bg-white hover:bg-background border border-border text-body hover:text-red-500 rounded-lg transition-colors cursor-pointer shadow-sm disabled:opacity-50"
-                        title="Remove file"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <div
-                      onDragOver={handleDragOver}
-                      onDrop={(e) => {
-                        e.preventDefault();
-                        const file = e.dataTransfer.files?.[0];
-                        if (file) {
-                          if (file.size > 5 * 1024 * 1024) {
-                            showToast("Cover Letter size exceeds maximum limit of 5MB.", "error");
-                            return;
-                          }
-                          setUploadedCoverLetter({ name: file.name, size: (file.size / (1024 * 1024)).toFixed(2) + " MB" });
-                          showToast("Cover Letter uploaded successfully!", "success");
-                        }
-                      }}
-                      onClick={() => !submitting && coverLetterInputRef.current?.click()}
-                      className={`border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 rounded-[16px] p-8 text-center cursor-pointer transition-all duration-300 ${errors.coverLetter ? "border-red-400 bg-red-50/5" : "bg-alt-bg"} ${submitting ? "opacity-50 pointer-events-none" : ""}`}
-                    >
-                      <input
-                        id="career-cover-letter"
-                        ref={coverLetterInputRef}
-                        type="file"
-                        disabled={submitting}
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleCoverLetterChange}
-                        className="hidden"
-                      />
-                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm">
-                        <Upload className="w-5 h-5 text-primary" />
-                      </div>
-                      <span className="block text-sm font-bold text-heading">
-                        Drag &amp; drop your cover letter here, or <span className="text-primary hover:underline">browse</span>
-                      </span>
-                      <span className="block text-[10px] font-bold text-muted mt-2 font-mono uppercase tracking-widest">
-                        Accepts PDF, DOCX up to 5MB
-                      </span>
-                    </div>
-                  )}
-                  {errors.coverLetter && (
-                    <span className="text-[11px] text-red-500 font-mono font-medium mt-1.5 flex items-center gap-1">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      {errors.coverLetter}
-                    </span>
-                  )}
-                </div>
-
-                {/* Form Footer */}
-                <div className="pt-6 mt-4 border-t border-border flex flex-col sm:flex-row items-center justify-end gap-3 bg-white">
-                  <button
-                    type="button"
-                    disabled={submitting}
-                    onClick={() => {
-                      setIsApplying(false);
-                      setSelectedJob(null);
-                      removeFile();
-                    }}
-                    className="w-full sm:w-auto px-6 py-2.5 border border-border text-body font-bold hover:bg-background hover:text-heading text-xs sm:text-sm rounded-[12px] transition-colors uppercase tracking-wider font-mono disabled:opacity-50"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full sm:w-auto utility-button-primary flex items-center justify-center gap-2 min-w-[180px]"
-                  >
-                    {submitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Submitting CV...
-                      </>
-                    ) : (
-                      <>
-                        Submit Application
-                        <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </form>
-            )}
+            <a href="#apply" className="shrink-0 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white font-bold px-8 py-3.5 rounded-xl shadow-[0_10px_20px_rgba(37,99,235,0.2)] hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(37,99,235,0.3)] transition-all">
+              View Current Openings
+            </a>
           </div>
         </div>
-      )}
+      </section>
+
+      {/* Apply Now Form */}
+      <section id="apply" className="py-20 lg:py-28 bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#0A192F] tracking-tight leading-tight mb-4">
+              Apply <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Now</span>
+            </h2>
+            <h3 className="text-[#2563EB] font-medium tracking-wide text-lg mb-6">Take the Next Step in Your Career</h3>
+            <p className="text-[#475569] leading-relaxed text-lg max-w-2xl mx-auto">
+              Ready to build a rewarding career with Medinet? We welcome passionate individuals who are eager to contribute to the healthcare industry and grow with us.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(11,31,77,0.06)] border border-slate-100">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              {formSuccess && (
+                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center gap-3 mb-6">
+                  <CheckCircle className="w-5 h-5" />
+                  <span className="font-medium">Application submitted successfully! Our HR team will reach out to you.</span>
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Full Name</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={formData.name}
+                    onChange={(e) => handleFieldChange("name", e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Email Address</label>
+                  <input 
+                    type="email" 
+                    required
+                    value={formData.email}
+                    onChange={(e) => handleFieldChange("email", e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Mobile Number</label>
+                  <input 
+                    type="tel" 
+                    required
+                    value={formData.phone}
+                    onChange={(e) => handleFieldChange("phone", e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                    placeholder="+91 98765 43210"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Position Applying For</label>
+                  <select 
+                    required
+                    value={formData.position}
+                    onChange={(e) => handleFieldChange("position", e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all appearance-none"
+                  >
+                    <option value="" disabled>Select Position</option>
+                    <option value="Medical Sales Representative (MSR)">Medical Sales Representative (MSR)</option>
+                    <option value="Area Business Manager (ABM)">Area Business Manager (ABM)</option>
+                    <option value="Regional Sales Manager (RSM)">Regional Sales Manager (RSM)</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Marketing Executive">Marketing Executive</option>
+                    <option value="Administration">Administration</option>
+                    <option value="Finance & Accounts">Finance & Accounts</option>
+                    <option value="Regulatory Affairs">Regulatory Affairs</option>
+                    <option value="Quality Assurance">Quality Assurance</option>
+                    <option value="General Application">General Application</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Current Location</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={formData.location}
+                    onChange={(e) => handleFieldChange("location", e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                    placeholder="City, State"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Years of Experience</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={formData.experience}
+                    onChange={(e) => handleFieldChange("experience", e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                    placeholder="e.g. 5 Years"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Upload Resume (PDF/DOC)</label>
+                  <input type="file" ref={fileInputRef} className="hidden" accept=".pdf,.doc,.docx" onChange={(e) => handleFileChange(e, "resume")} />
+                  <div 
+                    onClick={() => fileInputRef.current?.click()}
+                    className="w-full flex items-center justify-between bg-slate-50 border border-slate-200 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-slate-100 transition-colors"
+                  >
+                    <span className="text-[#475569] text-sm truncate">
+                      {uploadedFile ? uploadedFile.name : "Choose File..."}
+                    </span>
+                    <Upload className="w-5 h-5 text-[#2563EB]" />
+                  </div>
+                  {uploadedFile && <p className="text-xs text-[#2563EB] mt-2 font-medium">Selected: {uploadedFile.size}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-[#0A192F] mb-2">Cover Letter (Optional)</label>
+                  <input type="file" ref={coverLetterInputRef} className="hidden" accept=".pdf,.doc,.docx" onChange={(e) => handleFileChange(e, "cover")} />
+                  <div 
+                    onClick={() => coverLetterInputRef.current?.click()}
+                    className="w-full flex items-center justify-between bg-slate-50 border border-slate-200 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-slate-100 transition-colors"
+                  >
+                    <span className="text-[#475569] text-sm truncate">
+                      {uploadedCoverLetter ? uploadedCoverLetter.name : "Choose File..."}
+                    </span>
+                    <FileText className="w-5 h-5 text-[#2563EB]" />
+                  </div>
+                  {uploadedCoverLetter && <p className="text-xs text-[#2563EB] mt-2 font-medium">Selected: {uploadedCoverLetter.size}</p>}
+                </div>
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={submitting}
+                className="w-full mt-6 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#1e40af] text-white font-bold py-4 px-8 rounded-xl shadow-[0_10px_20px_rgba(37,99,235,0.2)] hover:shadow-[0_15px_30px_rgba(37,99,235,0.3)] transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {submitting ? (
+                  <span className="flex items-center gap-2">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting...
+                  </span>
+                ) : (
+                  <>
+                    Apply Now
+                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Join the Medinet Family */}
+      <section className="py-24 bg-white relative overflow-hidden border-t border-slate-100 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-8">
+            <Users className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-[#0A192F] tracking-tight mb-6">
+            Join the Medinet Family
+          </h2>
+          <p className="text-[#334155] leading-relaxed text-lg sm:text-xl font-medium mb-8">
+            At Medinet Pharmaceutical Marketing Company, we're more than a workplace—we're a team driven by a shared purpose: improving healthcare through quality, innovation, and trust. If you're ready to make a difference, we'd love to hear from you.
+          </p>
+          <p className="text-[#2563EB] font-bold text-xl">
+            Start your journey with Medinet today — because together, we deliver "Reliable Care, Every Time."
+          </p>
+        </div>
+      </section>
+
     </motion.div>
   );
 }

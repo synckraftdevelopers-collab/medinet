@@ -303,16 +303,7 @@ export default function Home({ navigate }: HomeProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              {/* Premium Glassmorphism Badge */}
-              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-secondary/20 shadow-[0_4px_15px_rgba(29, 78, 216,0.08)] mb-8 hover:border-secondary/40 transition-colors duration-300">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
-                </span>
-                <span className="text-[11px] font-mono font-bold tracking-[0.15em] bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent uppercase">
-                  Corporate Profile
-                </span>
-              </div>
+
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.25] mb-6 relative inline-block">
                 <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full z-[-1] pointer-events-none"></div>
@@ -400,6 +391,81 @@ export default function Home({ navigate }: HomeProps) {
             </button>
           </div>
 
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 md:py-32 bg-white relative overflow-hidden border-b border-border">
+        {/* Soft Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.03),transparent_70%)] pointer-events-none z-0"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto mb-16 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              {/* Premium Glassmorphism Pill Badge */}
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-secondary/20 shadow-[0_4px_15px_rgba(29, 78, 216,0.08)] mb-6 hover:border-secondary/40 transition-colors duration-300">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                </span>
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent uppercase">
+                  Why Choose Us
+                </span>
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-6">
+                Why <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Medinet?</span>
+              </h2>
+
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                className="w-24 h-1 rounded-full bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto mb-6 origin-center"
+              ></motion.div>
+
+              <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                We are dedicated to providing the highest standards of healthcare through our comprehensive and reliable pharmaceutical solutions.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Quality-driven pharmaceutical products", icon: ShieldCheck },
+              { title: "Ethical marketing practices", icon: Handshake },
+              { title: "Customer-focused healthcare solutions", icon: HeartHandshake },
+              { title: "Diverse therapeutic portfolio", icon: Pill },
+              { title: "Commitment to innovation", icon: FlaskConical },
+              { title: "Strong business partnerships", icon: Briefcase },
+              { title: "Reliable supply and distribution", icon: Globe },
+              { title: "Dedicated support for healthcare professionals", icon: Users }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 * idx, duration: 0.5, ease: "easeOut" }}
+                className="group relative bg-white/70 backdrop-blur-xl rounded-2xl border border-slate-100 p-6 flex items-start gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center shrink-0 group-hover:border-secondary/30 transition-colors duration-300">
+                  <item.icon className="w-6 h-6 text-secondary group-hover:scale-110 group-hover:text-primary transition-all duration-300" />
+                </div>
+                <div className="flex-1 pt-1 flex items-center">
+                  <h3 className="font-display font-bold text-[#0A192F] text-[15px] leading-snug group-hover:text-secondary transition-colors duration-300">
+                    {item.title}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

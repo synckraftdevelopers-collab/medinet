@@ -1,46 +1,16 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React from "react";
 import { motion, Variants } from "framer-motion";
-import { NEWS_ITEMS } from "../../data";
-import { NewsItem } from "../../types";
-import SectionHeader from "../SectionHeader";
 import {
-  Calendar,
-  Tag,
-  ArrowLeft,
-  ArrowUpRight,
-  ChevronRight,
-  Clock,
-  MapPin,
-  Flame,
-  Award,
-  Globe,
-  Heart,
-  Newspaper,
+  Rocket,
   Presentation,
-  ShieldCheck,
-  FlaskConical,
-  Globe2,
-  CalendarDays,
-  Microscope,
-  Building2,
+  Newspaper,
   HeartHandshake,
-  CalendarPlus,
-  Handshake,
-  ArrowRight,
-  PhoneCall,
-  BadgeCheck,
-  ImageIcon,
-  GraduationCap
+  CheckCircle,
+  Link as LinkIcon
 } from "lucide-react";
 
 interface NewsEventsProps {
-  params: Record<string, string>;
+  params?: Record<string, string>;
 }
 
 const fadeUp: Variants = {
@@ -52,543 +22,213 @@ const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: { staggerChildren: 0.15 }
   }
 };
 
 export default function NewsEvents({ params }: NewsEventsProps) {
-  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
-
-  // Parse direct selection from query parameters
-  useEffect(() => {
-    if (params.id) {
-      const found = NEWS_ITEMS.find((n) => n.id === params.id);
-      if (found) {
-        setSelectedNews(found);
-      }
-    } else {
-      setSelectedNews(null);
-    }
-  }, [params]);
-
-  const upcomingEvents = [
-    {
-      title: "CPHI Global Conference 2026",
-      date: "October 13 - 15, 2026",
-      location: "Fira Barcelona, Spain",
-      type: "Conference",
-      desc: "Medinet's global regulatory delegation will host booth B42, Hall 5, presenting modern CNS oral formulations."
-    },
-    {
-      title: "14th Annual Neuropathic Pain & CNS Symposium",
-      date: "November 05 - 06, 2026",
-      location: "Taj Lands End, Mumbai, India",
-      type: "Symposium",
-      desc: "Hosting medical panels reviewing therapeutic synergy curves of combined nortriptyline and gabapentin therapy."
-    },
-    {
-      title: "South-East Asian Licensing Summit",
-      date: "December 12, 2026",
-      location: "Suntec Convention Centre, Singapore",
-      type: "B2B Summit",
-      desc: "Meeting licensed territorial distributors to scale-up multi-channel pharmaceutical supply franchises."
-    }
-  ];
-
-  const galleryPlaceholders = [
-    {
-      title: "Rural Health Camp",
-      desc: "Free diagnostic screenings & cardiovascular drug distribution.",
-      tag: "CSR",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=400&h=260"
-    },
-    {
-      title: "WHO Audit Validation",
-      desc: "Allied labs QA inspections concluding with zero critical remarks.",
-      tag: "Quality",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=400&h=260"
-    },
-    {
-      title: "CNS Forum Sponsoring",
-      desc: "Over 200 neurologists attending our combined therapy debates.",
-      tag: "Academic",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=400&h=260"
-    }
-  ];
-
   return (
-    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
-      {/* Article Detail View State */}
-      {selectedNews ? (
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 py-16 text-left">
-          <button
-            onClick={() => {
-              setSelectedNews(null);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="inline-flex items-center gap-1.5 text-xs font-mono uppercase text-body hover:text-heading mb-8 cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to News &amp; Events
-          </button>
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20 bg-white">
+      
+      {/* Page Header */}
+      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 py-20 lg:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#1D4ED8] opacity-5" />
+        </div>
 
-          <header className="mb-8">
-            <div className="flex items-center gap-3 text-[10px] font-mono mb-4">
-              <span className="bg-alt-bg text-heading border border-border px-3 py-1 rounded font-bold uppercase">
-                {selectedNews.category}
-              </span>
-              <span className="flex items-center gap-1 text-muted">
-                <Calendar className="w-3.5 h-3.5" />
-                {selectedNews.date}
-              </span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-medium text-heading tracking-tight leading-tight">
-              {selectedNews.title}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
+          <motion.div variants={fadeUp} className="max-w-4xl mx-auto">
+            <span className="utility-badge-blue mb-5 relative z-10 mx-auto">
+              <span className="utility-dot"></span>
+              News & Events
+            </span>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
+              <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Stay Updated with Medinet</span>
             </h1>
-            <p className="mt-4 text-sm sm:text-base text-body italic leading-relaxed">
-              {selectedNews.excerpt}
+            
+            <p className="mt-4 text-base sm:text-lg text-[#334155] leading-relaxed relative z-10">
+              Keep up with the latest news, important announcements, product launches, and community initiatives from Medinet Pharmaceutical Marketing Company. We are committed to keeping our customers, partners, and stakeholders informed about our growth and achievements.
             </p>
-          </header>
+          </motion.div>
+        </div>
+      </section>
 
-          <div className="prose prose-slate max-w-none text-body text-sm sm:text-base leading-relaxed space-y-6 border-t border-border pt-8">
-            <p>{selectedNews.content}</p>
-            <p>
-              Medinet continues to bolster its presence as a key player in scientific licensing. By collaborating with international clinical consultants, we maintain high standards of comparative bioequivalence indexing and absolute molecular purity. We thank our healthcare affiliates, scientists, and territory distribution teams for helping us bridge science and patient care globally.
-            </p>
-          </div>
-
-          <footer className="mt-12 pt-8 border-t border-border text-xs text-muted font-mono flex items-center justify-between">
-            <span>ESTD 1998 | Medinet Media Desk</span>
-            <span>PR ID: PR-{selectedNews.id.slice(-4).toUpperCase()}</span>
-          </footer>
-        </article>
-      ) : (
-        /* Regular News Grid & Events Schedule State */
-        <>
-          {/* Page Header */}
-          <section className="py-16 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white border-b border-border">
-            {/* Subtle blurred radial glows */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-
-            {/* Optional Decoration: Soft blurred circle behind heading */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[rgba(37,99,235,0.05)] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
-
-            <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
-              <div>
-                <span className="utility-badge-blue mb-5">
-                  <Newspaper className="w-3 h-3 text-primary" />
-                  Corporate Media
-                </span>
+      {/* Main Content Sections */}
+      <section className="py-20 bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+          
+          {/* Product Launches */}
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-32">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
+                <Rocket className="w-6 h-6 text-white" />
               </div>
-
-              <div>
-                <h1 className="text-4xl sm:text-5xl font-display font-bold text-heading tracking-tight leading-tight mt-5 mx-auto lg:mx-0">
-                  News &amp;{" "}
-                  <motion.span
-                    animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                    className="bg-gradient-to-r from-primary via-secondary to-primary text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
-                  >
-                    Scientific Events
-                  </motion.span>
-                </h1>
-                <p className="mt-6 text-sm sm:text-base text-body leading-relaxed max-w-[760px] mx-auto lg:mx-0">
-                  Stay informed with the latest news, product launches, corporate announcements, and industry events from Medinet Pharmaceutical Marketing Company. Our commitment to transparency and growth is reflected in our ongoing initiatives.
+              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Product Launches</h2>
+              <h3 className="text-[#2563EB] font-medium tracking-wide text-lg mb-4">Introducing Innovative Healthcare Solutions</h3>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] mb-6"></div>
+              <p className="text-[#475569] leading-relaxed">
+                At Medinet Pharmaceutical Marketing Company, we are committed to expanding our product portfolio with innovative, high-quality pharmaceutical formulations that address the evolving needs of healthcare professionals and patients.
+              </p>
+            </div>
+            <div className="lg:w-2/3 bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100">
+              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Highlights:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  "New Product Releases",
+                  "Product Portfolio Expansion",
+                  "Innovative Formulations",
+                  "Therapeutic Advancements"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                    <span className="text-[#475569] font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-slate-200">
+                <p className="text-[#475569] leading-relaxed text-lg font-medium">
+                  Our product launches reflect our dedication to quality, innovation, and improved patient outcomes. Stay updated with our latest product introductions, therapeutic advancements, and upcoming healthcare solutions.
                 </p>
               </div>
+            </div>
+          </div>
 
-              {/* Optional Info Badges Below Description */}
-              <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
-                  <div className="bg-primary/10 p-1.5 rounded-full flex items-center justify-center">
-                    <Presentation className="w-3 h-3 text-primary group-hover:scale-110 transition-transform duration-300 ease-out" />
-                  </div>
-                  <span className="text-xs font-semibold text-heading">Conference</span>
-                </div>
-
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
-                  <div className="bg-accent/10 p-1.5 rounded-full flex items-center justify-center">
-                    <ShieldCheck className="w-3 h-3 text-accent group-hover:scale-110 transition-transform duration-300 ease-out" />
-                  </div>
-                  <span className="text-xs font-semibold text-heading">WHO-GMP</span>
-                </div>
-
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
-                  <div className="bg-[#D97706]/10 p-1.5 rounded-full flex items-center justify-center">
-                    <FlaskConical className="w-3 h-3 text-[#D97706] group-hover:scale-110 transition-transform duration-300 ease-out" />
-                  </div>
-                  <span className="text-xs font-semibold text-heading">Research</span>
-                </div>
-
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full shadow-sm hover:-translate-y-1 transition-transform duration-300 ease-out cursor-default group">
-                  <div className="bg-secondary/10 p-1.5 rounded-full flex items-center justify-center">
-                    <Globe2 className="w-3 h-3 text-secondary group-hover:scale-110 transition-transform duration-300 ease-out" />
-                  </div>
-                  <span className="text-xs font-semibold text-heading">Global Events</span>
-                </div>
+          {/* Medical Conferences */}
+          <div className="flex flex-col lg:flex-row-reverse gap-12 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-32">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center shrink-0 shadow-lg mb-6">
+                <Presentation className="w-6 h-6 text-white" />
               </div>
-            </motion.div>
-          </section>
-
-          {/* Latest News & CSR Grid */}
-          <section className="py-20 relative overflow-hidden bg-gradient-to-b from-white via-alt-bg to-background text-left border-b border-border">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              {/* Soft floating gradient blobs */}
-              <div className="absolute top-0 right-[10%] w-[500px] h-[500px] bg-[#2563EB]/[0.06] rounded-full blur-[100px] animate-pulse"></div>
-              <div className="absolute top-1/3 left-[-10%] w-[600px] h-[600px] bg-[#1D4ED8]/[0.06] rounded-full blur-[120px]"></div>
-              <div className="absolute bottom-[10%] right-[20%] w-[400px] h-[400px] bg-[#16A34A]/[0.06] rounded-full blur-[90px] animate-pulse" style={{ animationDuration: '4s' }}></div>
-
-              {/* Medical connection dots / particles */}
-              <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#2563EB 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-              <div className="absolute top-[25%] left-[25%] w-2 h-2 bg-[#38BDF8] rounded-full opacity-30 blur-[2px] animate-ping" style={{ animationDuration: '3s' }}></div>
-              <div className="absolute top-[75%] right-[33%] w-3 h-3 bg-[#38BDF8] rounded-full opacity-30 blur-[2px] animate-pulse" style={{ animationDuration: '5s' }}></div>
+              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Medical Conferences</h2>
+              <h3 className="text-teal-600 font-medium tracking-wide text-lg mb-4">Connecting Through Science and Knowledge</h3>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-teal-500 to-teal-700 mb-6"></div>
+              <p className="text-[#475569] leading-relaxed">
+                Medinet actively participates in medical conferences, Continuing Medical Education (CME) programs, healthcare exhibitions, and industry events to strengthen scientific engagement and foster meaningful collaborations with healthcare professionals.
+              </p>
             </div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <SectionHeader
-                badge="Latest Updates"
-                title={
-                  <>
-                    Press Releases &amp;{" "}
-                    <motion.span
-                      animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                      className="bg-gradient-to-r from-primary via-secondary to-primary text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
-                    >
-                      Corporate Announcements
-                    </motion.span>
-                  </>
-                }
-                description="Browse through our recent corporate highlights, research sponsorings, and rural community medicine distributions."
-                centered
-              />
-
-              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-12 items-stretch">
-                {NEWS_ITEMS.map((news) => {
-                  let BadgeIcon = Newspaper;
-                  let CardIcon = Building2;
-                  let badgeBg = "bg-alt-bg";
-                  let badgeText = "text-muted";
-
-                  if (news.category === "Conference") {
-                    BadgeIcon = Presentation;
-                    CardIcon = Presentation;
-                    badgeBg = "bg-primary/10";
-                    badgeText = "text-primary";
-                  } else if (news.category === "News") {
-                    BadgeIcon = Newspaper;
-                    CardIcon = Building2;
-                    badgeBg = "bg-accent/10";
-                    badgeText = "text-accent";
-                  } else if (news.category === "CSR") {
-                    BadgeIcon = HeartHandshake;
-                    CardIcon = HeartHandshake;
-                    badgeBg = "bg-[#D97706]/10";
-                    badgeText = "text-[#D97706]";
-                  } else if (news.category === "Event") {
-                    BadgeIcon = CalendarDays;
-                    CardIcon = Microscope;
-                    badgeBg = "bg-secondary/10";
-                    badgeText = "text-secondary";
-                  }
-
-                  return (
-                    <motion.div
-                      variants={fadeUp}
-                      key={news.id}
-                      onClick={() => {
-                        setSelectedNews(news);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                      className="group relative rounded-[28px] p-[1px] bg-gradient-to-br from-white/60 via-white/30 to-white/60 hover:from-[#38BDF8] hover:via-[#1D4ED8] hover:to-[#16A34A] transition-all duration-500 ease-out h-full flex flex-col justify-between cursor-pointer hover:-translate-y-[10px] hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.12)] overflow-hidden"
-                    >
-                      {/* Inner Glass Surface */}
-                      <div className="absolute inset-[1px] rounded-[27px] bg-[rgba(255,255,255,0.92)] backdrop-blur-[20px] z-0"></div>
-
-                      {/* Subtle hover radial light / parallax effect */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.06)_0%,transparent_70%)] transition-opacity duration-700 pointer-events-none z-0"></div>
-
-                      <div className="p-6 sm:p-8 flex-1 flex flex-col justify-start relative z-10">
-                        <div className="flex items-center justify-between mb-6">
-                          {/* Premium Category Badge */}
-                          <div className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/50 backdrop-blur-md shadow-[0_0_15px_rgba(13,148,136,0.05)] text-[10px] font-mono font-bold uppercase tracking-widest text-[#0A192F] overflow-hidden group/badge">
-                            <div className="absolute inset-0 rounded-full border-[1px] border-transparent bg-gradient-to-r from-[#2563EB] to-[#16A34A] [mask-image:linear-gradient(#fff_0_0)] [mask-composite:exclude] opacity-70 group-hover/badge:opacity-100 transition-opacity"></div>
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-[150%] group-hover/badge:animate-[shimmer_1.5s_infinite] skew-x-12"></div>
-                            <BadgeIcon className="w-3 h-3 text-[#1D4ED8] relative z-10 group-hover/badge:scale-110 transition-transform" />
-                            <span className="relative z-10">{news.category}</span>
-                          </div>
-
-                          {/* Top Right Floating Badge */}
-                          <div className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#16A34A] border border-white/20 shadow-[0_0_15px_rgba(13,148,136,0.3)] flex items-center justify-center shrink-0 group-hover:rotate-[10deg] group-hover:scale-[1.08] transition-all duration-500 ease-out relative">
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent"></div>
-                            <CardIcon className="w-4 h-4 text-white relative z-10 group-hover:animate-pulse" />
-                          </div>
-                        </div>
-
-                        {/* Date */}
-                        <div className="flex items-center gap-2.5 text-[11px] font-mono font-semibold mb-4 text-gray-400 uppercase tracking-widest">
-                          <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:border-gray-200 transition-colors">
-                            <CalendarDays className="w-3 h-3 text-gray-400" />
-                          </div>
-                          {news.date}
-                        </div>
-
-                        {/* Title */}
-                        <h3 className="mt-1 font-display font-extrabold text-[#0A192F] text-xl sm:text-[22px] leading-tight transition-all duration-350 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#16A34A]">
-                          {news.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="mt-4 text-[14px] text-gray-500 leading-[1.8] line-clamp-3 relative">
-                          {news.excerpt}
-                          <span className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-[rgba(255,255,255,0.92)] to-transparent"></span>
-                        </p>
-                      </div>
-
-                      <div className="relative p-6 sm:p-8 pt-5 mt-auto flex justify-between items-center z-10">
-                        {/* Glowing gradient divider */}
-                        <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-[#38BDF8] via-[#1D4ED8] to-[#16A34A] opacity-20 group-hover:opacity-70 transition-opacity duration-500"></div>
-
-                        {/* CTA Text */}
-                        <span className="relative inline-flex items-center gap-2 text-[13px] font-bold text-[#0A192F] transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#1D4ED8]">
-                          Read Full Release
-                          <ArrowUpRight className="w-4 h-4 text-[#1D4ED8] group-hover:translate-x-1 transition-transform duration-300" />
-                          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] transition-all duration-500 group-hover:w-full"></span>
-                        </span>
-
-                        {/* CTA Circle */}
-                        <span className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[#2563EB]/5 to-[#1D4ED8]/5 border border-[#1D4ED8]/20 flex items-center justify-center transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#2563EB] group-hover:to-[#1D4ED8] group-hover:shadow-[0_0_15px_rgba(13,148,136,0.4)]">
-                          <ArrowUpRight className="w-4 h-4 text-[#1D4ED8] group-hover:text-white group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-300" />
-                        </span>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+            <div className="lg:w-2/3 bg-teal-50/50 rounded-3xl p-8 md:p-10 border border-teal-100/50">
+              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our participation includes:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  "Medical Conferences",
+                  "CME Programs",
+                  "Healthcare Exhibitions",
+                  "Scientific Meetings",
+                  "Product Awareness Programs",
+                  "Healthcare Professional Engagement Activities"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-teal-100/50 shadow-sm hover:shadow-md transition-shadow">
+                    <CheckCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
+                    <span className="text-[#475569] font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-teal-200/50">
+                <p className="text-[#475569] leading-relaxed text-lg font-medium">
+                  These events provide opportunities to exchange knowledge, showcase our products, and stay aligned with the latest advancements in healthcare.
+                </p>
+              </div>
             </div>
-          </section>
+          </div>
 
-          {/* Upcoming Conferences/Symposiums */}
-          <section className="py-20 relative overflow-hidden bg-background text-left border-b border-border">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <SectionHeader
-                badge="On The Horizon"
-                title={
-                  <>
-                    Upcoming{" "}
-                    <motion.span
-                      animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                      className="bg-gradient-to-r from-primary via-secondary to-primary text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
-                    >
-                      Conferences
-                    </motion.span>
-                  </>
-                }
-                description="We participate in high-profile pharmaceutical summits. Schedule a direct meet with our licensing heads at these locations."
-                centered
-              />
-
-              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
-                {upcomingEvents.map((event, i) => {
-                  let BadgeIcon = Presentation;
-                  let badgeBg = "bg-primary/10";
-                  let badgeText = "text-primary";
-
-                  if (event.type === "Symposium") {
-                    BadgeIcon = Microscope;
-                    badgeBg = "bg-secondary/10";
-                    badgeText = "text-secondary";
-                  } else if (event.type === "B2B Summit") {
-                    BadgeIcon = Handshake;
-                    badgeBg = "bg-accent/10";
-                    badgeText = "text-accent";
-                  }
-
-                  // Optional Status Tag logic
-                  let statusTag = null;
-                  if (i === 0) statusTag = { text: "Upcoming", bg: "bg-primary/10", color: "text-primary" };
-                  if (i === 1) statusTag = { text: "Featured", bg: "bg-[#D97706]/10", color: "text-[#D97706]" };
-                  if (i === 2) statusTag = { text: "Confirmed", bg: "bg-accent/10", color: "text-accent" };
-
-                  return (
-                    <motion.div
-                      variants={fadeUp}
-                      key={i}
-                      className="utility-card p-6 sm:p-8 text-left flex flex-col justify-between group relative hover:border-secondary transition-all duration-300 hover-lift"
-                    >
-                      {statusTag && (
-                        <div className="absolute top-6 right-6">
-                          <span className={`inline-block px-3 py-1 rounded-full ${statusTag.bg} ${statusTag.color} text-[9px] font-mono font-bold uppercase tracking-widest`}>
-                            {statusTag.text}
-                          </span>
-                        </div>
-                      )}
-
-                      <div>
-                        <div className="flex items-center gap-4 mb-6">
-                          <div className="w-10 h-10 rounded-xl bg-alt-bg border border-border flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm">
-                            <BadgeIcon className={`w-4 h-4 ${badgeText}`} />
-                          </div>
-                          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full ${badgeBg} ${badgeText} text-[10px] font-mono font-bold uppercase tracking-widest`}>
-                            {event.type}
-                          </span>
-                        </div>
-
-                        <h3 className="font-display font-bold text-heading text-lg sm:text-xl leading-tight hover:text-primary transition-colors pr-16">
-                          {event.title}
-                        </h3>
-
-                        <div className="mt-5 space-y-3 text-xs font-mono font-semibold uppercase tracking-wider">
-                          <p className="flex items-center gap-2.5 text-body">
-                            <CalendarDays className="w-4 h-4 text-primary shrink-0" />
-                            {event.date}
-                          </p>
-                          <p className="flex items-center gap-2.5 text-muted">
-                            <MapPin className="w-4 h-4 text-accent shrink-0" />
-                            {event.location}
-                          </p>
-                        </div>
-
-                        <p className="mt-5 text-sm text-body leading-relaxed">
-                          {event.desc}
-                        </p>
-                      </div>
-
-                      <div className="mt-8 pt-5 border-t border-border bg-alt-bg/50 -mx-6 sm:-mx-8 px-6 sm:px-8 -mb-6 sm:-mb-8 pb-6 sm:pb-8 flex items-center justify-between group-hover:bg-white transition-colors duration-300">
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const el = document.getElementById("contact-form");
-                            if (el) el.scrollIntoView({ behavior: "smooth" });
-                          }}
-                          aria-label="Schedule Meeting at this Event"
-                          className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-secondary transition-colors group/link cursor-pointer min-h-[44px] py-2"
-                        >
-                          <CalendarPlus className="w-4 h-4 group-hover/link:scale-110 transition-transform duration-300" />
-                          Schedule Meeting
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const el = document.getElementById("contact-form");
-                            if (el) el.scrollIntoView({ behavior: "smooth" });
-                          }}
-                          aria-label="Contact Corporate Sales regarding this Event"
-                          className="inline-flex items-center gap-2 min-h-[44px] px-5 bg-primary/5 border border-primary/20 rounded-full text-xs font-semibold text-primary hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 group/btn shadow-sm hover:shadow-md cursor-pointer"
-                        >
-                          Contact Sales
-                          <ArrowRight className="w-4 h-4 text-primary group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
-                        </button>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+          {/* Company Announcements */}
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-32">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0 shadow-lg mb-6">
+                <Newspaper className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Company Announcements</h2>
+              <h3 className="text-indigo-600 font-medium tracking-wide text-lg mb-4">Stay Updated with Medinet</h3>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 mb-6"></div>
+              <p className="text-[#475569] leading-relaxed">
+                Keep up with the latest news and important announcements from Medinet Pharmaceutical Marketing Company. We are committed to keeping our customers, partners, and stakeholders informed about our growth and achievements.
+              </p>
             </div>
-          </section>
-
-          {/* Corporate Event Gallery */}
-          <section className="py-20 relative overflow-hidden bg-gradient-to-b from-background via-alt-bg to-white text-left">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.05)_0%,transparent_60%)] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_bottom_left,rgba(13,148,136,0.04)_0%,transparent_60%)] pointer-events-none"></div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <SectionHeader
-                badge="Corporate Gallery"
-                title="Media Gallery"
-                description="Visual logs of our rural diagnostics missions, regulatory audit passes, and therapeutic research debates."
-                centered
-              />
-
-              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 items-stretch">
-                {galleryPlaceholders.map((item, idx) => {
-                  let BadgeIcon = HeartHandshake;
-                  let badgeBg = "bg-alt-bg";
-                  let badgeText = "text-muted";
-
-                  if (item.tag === "CSR") {
-                    BadgeIcon = HeartHandshake;
-                    badgeBg = "bg-accent/10";
-                    badgeText = "text-accent";
-                  } else if (item.tag === "Quality") {
-                    BadgeIcon = BadgeCheck;
-                    badgeBg = "bg-primary/10";
-                    badgeText = "text-primary";
-                  } else if (item.tag === "Academic") {
-                    BadgeIcon = GraduationCap;
-                    badgeBg = "bg-secondary/10";
-                    badgeText = "text-secondary";
-                  }
-
-                  let statusTag = null;
-                  if (item.tag === "CSR") statusTag = { text: "Completed", bg: "bg-success/10", color: "text-success" };
-                  if (item.tag === "Quality") statusTag = { text: "WHO-GMP Passed", bg: "bg-primary/10", color: "text-primary" };
-                  if (item.tag === "Academic") statusTag = { text: "Live Event", bg: "bg-secondary/10", color: "text-secondary" };
-
-                  return (
-                    <motion.div
-                      variants={fadeUp}
-                      key={idx}
-                      className="utility-card hover:border-secondary hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden h-full flex flex-col justify-between group relative p-0 shadow-sm hover:shadow-md hover-lift"
-                    >
-                      <div className="aspect-[3/2] w-full overflow-hidden bg-alt-bg relative shrink-0 rounded-t-[24px]">
-                        <div className="absolute inset-0 bg-gradient-to-t from-heading/40 to-transparent z-10 pointer-events-none"></div>
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
-                          referrerPolicy="no-referrer"
-                        />
-                        {statusTag && (
-                          <div className="absolute top-4 right-4 z-20">
-                            <span className={`inline-block px-3 py-1.5 rounded-full ${statusTag.bg} ${statusTag.color} border border-${statusTag.color.replace('text-', '')}/20 bg-white/90 backdrop-blur-sm text-[9px] font-mono font-bold uppercase tracking-widest shadow-sm`}>
-                              {statusTag.text}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-start">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="w-10 h-10 rounded-xl bg-alt-bg border border-border flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm">
-                            <BadgeIcon className={`w-4 h-4 ${badgeText}`} />
-                          </div>
-                          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full ${badgeBg} ${badgeText} text-[10px] font-mono font-bold uppercase tracking-widest`}>
-                            {item.tag}
-                          </span>
-                        </div>
-
-                        <h4 className="mt-2 font-display font-bold text-heading text-lg hover:text-primary transition-colors cursor-pointer">
-                          {item.title}
-                        </h4>
-                        <p className="mt-3 text-sm text-body leading-relaxed line-clamp-3">
-                          {item.desc}
-                        </p>
-                      </div>
-
-                      <div className="mt-auto pt-4 border-t border-border bg-alt-bg/50 p-6 sm:px-7 flex items-center justify-between group-hover:bg-white transition-colors duration-300">
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-muted">View Full Details</span>
-                        <button className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/5 border border-primary/20 text-primary transition-all duration-300 cursor-pointer group-hover:bg-primary group-hover:text-white hover:shadow-md">
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
-                        </button>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+            <div className="lg:w-2/3 bg-indigo-50/50 rounded-3xl p-8 md:p-10 border border-indigo-100/50">
+              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Here you'll find updates on:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  "Corporate News",
+                  "Business Milestones",
+                  "Strategic Partnerships",
+                  "New Team Members",
+                  "Awards & Recognitions",
+                  "Business Expansion",
+                  "Product Portfolio Updates",
+                  "Career Announcements"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-indigo-100/50 shadow-sm hover:shadow-md transition-shadow">
+                    <CheckCircle className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+                    <span className="text-[#475569] font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </section>
-        </>
-      )}
+          </div>
+
+          {/* CSR Initiatives */}
+          <div className="flex flex-col lg:flex-row-reverse gap-12 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-32">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shrink-0 shadow-lg mb-6">
+                <HeartHandshake className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">CSR Initiatives</h2>
+              <h3 className="text-emerald-600 font-medium tracking-wide text-lg mb-4">Caring Beyond Medicines</h3>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 mb-6"></div>
+              <p className="text-[#475569] leading-relaxed">
+                At Medinet, we believe our responsibility extends beyond delivering quality medicines. Through our Corporate Social Responsibility (CSR) initiatives, we strive to make a positive impact on the communities we serve by promoting health, education, and social well-being.
+              </p>
+            </div>
+            <div className="lg:w-2/3 bg-emerald-50/50 rounded-3xl p-8 md:p-10 border border-emerald-100/50">
+              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our CSR focus areas include:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  "Health Awareness Campaigns",
+                  "Community Health Programs",
+                  "Medical Camps",
+                  "Public Health Education",
+                  "Environmental Sustainability Initiatives",
+                  "Employee Volunteering Activities",
+                  "Support for Community Development"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-emerald-100/50 shadow-sm hover:shadow-md transition-shadow">
+                    <CheckCircle className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-[#475569] font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-emerald-200/50">
+                <p className="text-[#475569] leading-relaxed text-lg font-medium">
+                  Through these initiatives, we remain committed to creating healthier communities and contributing to a better future.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      {/* Stay Connected */}
+      <section className="py-20 bg-gradient-to-b from-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+          <div className="absolute w-[60%] h-[60%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
+            <LinkIcon className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-[#0A192F] tracking-tight mb-6">
+            Stay <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Connected</span>
+          </h2>
+          <div className="w-20 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#38BDF8] mx-auto mb-8"></div>
+          <p className="text-[#334155] leading-relaxed text-lg sm:text-xl font-medium">
+            Follow our News & Events page for the latest updates on product launches, medical conferences, company announcements, and community initiatives as Medinet continues its journey of delivering <strong>"Reliable Care, Every Time."</strong>
+          </p>
+        </div>
+      </section>
+
     </motion.div>
   );
 }

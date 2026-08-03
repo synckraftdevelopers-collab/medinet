@@ -574,14 +574,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                 id="navbar-logo"
                 aria-label="Medinet Pharmaceuticals - Home"
               >
-                <Image
-                  src="/header%20logo.png"
-                  alt="Medinet Pharmaceuticals Logo"
-                  width={260}
-                  height={64}
-                  priority
-                  className="block my-auto w-[160px] sm:w-[180px] md:w-[200px] lg:w-[220px] xl:w-[260px] h-auto object-contain transition-all duration-300 -translate-y-3 md:-translate-y-4 lg:-translate-y-6"
-                />
+                <span className="text-2xl font-display font-bold text-[#2563EB] tracking-tight">Medinet</span>
               </button>
             </div>
 
@@ -933,7 +926,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               {/* Top Header */}
               <div className="flex items-center justify-between p-6 border-b border-[#E2E8F0] bg-[linear-gradient(90deg,#F8FAFC,#FFFFFF)] shrink-0 min-h-[76px]">
                 <div className="flex flex-col -translate-y-3">
-                  <Image src="/header%20logo.png" alt="Medinet Logo" width={180} height={44} className="w-[140px] sm:w-[160px] h-auto object-contain object-left mb-1" />
+                  <span className="text-xl font-display font-bold text-[#2563EB] tracking-tight">Medinet</span>
                   <span className="text-[#64748B] text-xs font-medium font-sans pl-1">Medinet Pharmaceuticals</span>
                 </div>
                 <button

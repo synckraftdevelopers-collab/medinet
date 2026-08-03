@@ -175,7 +175,7 @@ function Footer({ navigate, showToast }: FooterProps) {
               className="focus:outline-none group/logo w-fit"
               aria-label="Go to Medinet Home"
             >
-              <img src="/logo-dark.svg" alt="Medinet Pharmaceuticals Logo" className="h-14 w-auto drop-shadow-md group-hover/logo:scale-105 transition-transform duration-500 origin-center md:origin-left" />
+              <span className="text-3xl font-display font-bold text-white tracking-tight drop-shadow-md group-hover/logo:scale-105 transition-transform duration-500 origin-center md:origin-left">Medinet</span>
             </button>
             
             <p className="text-sm text-gray-200 leading-relaxed">

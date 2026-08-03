@@ -90,17 +90,6 @@ export const PRODUCTS: Product[] = [
     packaging: "10 x 10 Alu-Alu"
   },
   {
-    id: "cartivon-plus",
-    name: "CARTIVON PLUS",
-    genericName: "Diacerein + Glucosamine + MSM",
-    category: "bone-joint-health",
-    description: "Advanced formulation for the management of osteoarthritis and joint health.",
-    indications: ["Osteoarthritis", "Joint stiffness", "Cartilage degradation"],
-    dosageForm: "Tablet",
-    strength: "Standard",
-    packaging: "10 x 10 Alu-Alu"
-  },
-  {
     id: "osteoneu-plus",
     name: "OSTEONEU PLUS",
     genericName: "Calcium Citrate Malate + Calcitriol + Zinc + Magnesium",

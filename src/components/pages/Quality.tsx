@@ -44,7 +44,7 @@ export default function Quality() {
       </section>
 
       {/* Quality Sections */}
-      <section className="py-20 bg-white border-b border-border">
+      <section className="py-20 bg-blue-50/50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
           
           {/* Quality Assurance */}

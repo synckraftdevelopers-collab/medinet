@@ -150,10 +150,10 @@ export default function About() {
         <motion.div variants={fadeUp} className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center z-10">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-heading tracking-tight leading-[1.2] relative w-fit mb-8 mx-auto text-center">
             About Medinet
-            <motion.span 
-              initial={{ width: 0 }} 
-              animate={{ width: "100%" }} 
-              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }} 
+            <motion.span
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
               className="absolute -bottom-3 left-0 h-1.5 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-80 rounded-full"
             ></motion.span>
           </h1>
@@ -165,11 +165,11 @@ export default function About() {
       </section>
 
       {/* Company Profile Section */}
-      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+      <section className="py-20 bg-blue-50/40 border-b border-border relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.03),transparent_50%)] pointer-events-none z-0"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -189,7 +189,7 @@ export default function About() {
                 Who <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">We Are</span>
               </h2>
               <div className="w-20 h-1 rounded-full bg-gradient-to-r from-primary to-transparent mb-8"></div>
-              
+
               <div className="space-y-6 text-body text-base md:text-lg leading-relaxed">
                 <p>
                   <strong className="text-primary font-bold">Medinet Pharmaceutical Marketing Company</strong> is a quality-driven pharmaceutical marketing organization committed to improving lives by making safe, effective, and affordable medicines accessible to patients across India.
@@ -206,7 +206,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -215,7 +215,7 @@ export default function About() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-border">
                 <div className="absolute inset-0 bg-primary/5 z-10 mix-blend-multiply pointer-events-none"></div>
-                <Image 
+                <Image
                   src="https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&q=80&w=1000"
                   alt="Medinet Company Profile"
                   width={1000}
@@ -235,8 +235,8 @@ export default function About() {
       <section className="py-20 bg-alt-bg border-b border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center">
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -245,7 +245,7 @@ export default function About() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-border">
                 <div className="absolute inset-0 bg-secondary/10 z-10 mix-blend-multiply pointer-events-none"></div>
-                <Image 
+                <Image
                   src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
                   alt="Medinet Journey"
                   width={1000}
@@ -258,7 +258,7 @@ export default function About() {
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-secondary/10 rounded-full blur-2xl"></div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -278,10 +278,10 @@ export default function About() {
                 Our <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">Journey</span>
               </h2>
               <div className="w-20 h-1 rounded-full bg-gradient-to-r from-secondary to-transparent mb-8"></div>
-              
+
               <div className="space-y-6 text-body text-base md:text-lg leading-relaxed">
                 <p>
-                  Medinet Pharmaceutical Marketing Company was established with a simple yet meaningful vision—to make quality healthcare more accessible and affordable while maintaining the highest standards of ethics and professionalism. 
+                  Medinet Pharmaceutical Marketing Company was established with a simple yet meaningful vision—to make quality healthcare more accessible and affordable while maintaining the highest standards of ethics and professionalism.
                 </p>
                 <p>
                   What began as a commitment to supporting healthcare professionals has evolved into a growing pharmaceutical marketing company focused on delivering trusted healthcare solutions. Through dedication, continuous learning, and customer-centric service, we have steadily expanded our product portfolio and strengthened our presence in the pharmaceutical industry.
@@ -296,11 +296,11 @@ export default function About() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+      <section className="py-20 bg-blue-50/40 border-b border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -320,13 +320,13 @@ export default function About() {
                 Our <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Mission</span>
               </h2>
               <div className="w-20 h-1 rounded-full bg-gradient-to-r from-primary to-transparent mb-8"></div>
-              
+
               <p className="text-body text-base md:text-lg leading-relaxed">
                 We are driven by a steadfast commitment to improve patient health and well-being through innovative, accessible, and high-quality healthcare solutions.
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -344,7 +344,7 @@ export default function About() {
                   "Embrace advanced technologies and sustainable practices to drive long-term growth and operational excellence.",
                   "Create lasting value for patients, healthcare professionals, employees, and communities through responsible and innovative healthcare solutions."
                 ].map((point, idx) => (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -374,31 +374,31 @@ export default function About() {
           <div className="relative mt-0 mb-16 rounded-3xl overflow-hidden py-16 px-4">
             {/* Soft radial glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(13,148,136,0.04),transparent_50%)] pointer-events-none -z-10"></div>
-            
+
             {/* Molecular network / abstract bg elements */}
             <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.02)_1.5px,transparent_1.5px)] bg-[size:30px_30px]"></div>
-              
-              <motion.div 
+
+              <motion.div
                 animate={{ y: [0, -15, 0], opacity: [0.02, 0.04, 0.02] }}
                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute top-[10%] left-[15%]"
               >
                 <Shield className="w-32 h-32 text-[#2563EB]" />
               </motion.div>
-              <motion.div 
+              <motion.div
                 animate={{ scale: [1, 1.05, 1], opacity: [0.02, 0.04, 0.02] }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
                 className="absolute bottom-[10%] right-[15%]"
               >
                 <Brain className="w-40 h-40 text-secondary" />
               </motion.div>
-              
+
               {/* Quotation-style graphic */}
               <div className="absolute top-[20%] left-1/2 -translate-x-1/2 text-[180px] font-display font-black text-primary opacity-[0.03] leading-none pointer-events-none rotate-12 select-none">
                 &ldquo;
               </div>
-              
+
               {/* Floating glowing blobs */}
               <div className="absolute top-1/4 left-1/3 w-[200px] h-[200px] bg-[#38BDF8]/5 rounded-full blur-[60px]"></div>
               <div className="absolute bottom-1/4 right-1/3 w-[200px] h-[200px] bg-secondary/5 rounded-full blur-[60px]"></div>
@@ -410,7 +410,7 @@ export default function About() {
 
             <div className="flex flex-col items-center text-center relative z-10 max-w-4xl mx-auto">
               {/* Premium Glassmorphism Pill */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -427,7 +427,7 @@ export default function About() {
               </motion.div>
 
               {/* Centerpiece Heading */}
-              <motion.h2 
+              <motion.h2
                 className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-primary tracking-tight leading-[1.1] mb-8 relative"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -435,7 +435,7 @@ export default function About() {
                 transition={{ duration: 0.8 }}
               >
                 <span className="drop-shadow-sm">The Pillars of </span>
-                <motion.span 
+                <motion.span
                   className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block pb-2"
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 8, ease: "linear", repeat: Infinity }}
@@ -506,15 +506,15 @@ export default function About() {
       {/* Message from the CEO & Founder */}
       <section className="py-24 bg-gradient-to-b from-background via-alt-bg to-white border-b border-border overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial="hidden" 
-            whileInView="visible" 
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
             className="utility-card p-0 overflow-hidden shadow-lg border border-border/80"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12">
-              <motion.div 
+              <motion.div
                 variants={fadeLeft}
                 className="lg:col-span-5 relative min-h-[400px] lg:min-h-full bg-background"
               >
@@ -525,36 +525,36 @@ export default function About() {
                   className="object-cover"
                 />
               </motion.div>
-              <motion.div 
+              <motion.div
                 variants={fadeRight}
                 className="lg:col-span-7 p-10 lg:p-16 flex flex-col justify-center"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 shadow-sm">
                   <span className="font-serif text-3xl text-primary mt-3">&ldquo;</span>
                 </div>
-                
+
                 <h2 className="text-3xl font-display font-bold text-heading mb-2">Message from the CEO &amp; Founder</h2>
                 <div className="w-16 h-1 bg-gradient-to-r from-secondary to-primary rounded-full mb-8"></div>
-                
+
                 <p className="text-body text-base lg:text-lg leading-relaxed italic mb-8">
                   &ldquo;{BRAND_INFO.ceoMessage}&rdquo;
                 </p>
-                
+
                 {/* Custom Founder Information Typography */}
                 <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-10 mt-4 w-full">
                   {/* Premium Gradient Divider */}
-                  <motion.div 
+                  <motion.div
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-[#0A192F]/15 via-[#1D4ED8]/30 to-transparent origin-left"
                   ></motion.div>
-                  
+
                   {/* Background Accents & Glow */}
                   <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10 rounded-xl">
                     <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[300px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.05),transparent_60%)]"></div>
-                    <motion.div 
+                    <motion.div
                       animate={{ scale: [1, 1.05, 1], opacity: [0.01, 0.03, 0.01] }}
                       transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
                       className="absolute right-[2%] top-[10%]"
@@ -567,7 +567,7 @@ export default function About() {
 
                   <div className="flex flex-col relative z-10 w-full px-2 py-2">
                     {/* Name */}
-                    <motion.h4 
+                    <motion.h4
                       initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -576,7 +576,7 @@ export default function About() {
                     >
                       {LEADERSHIP[0].name}
                     </motion.h4>
-                    
+
                     {/* Designation */}
                     <motion.div
                       initial={{ opacity: 0, x: -15 }}
@@ -585,7 +585,7 @@ export default function About() {
                       transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                       className="mb-5 inline-block w-fit"
                     >
-                      <motion.p 
+                      <motion.p
                         className="text-[11px] sm:text-xs font-mono font-bold text-secondary uppercase tracking-[0.25em] mb-1.5"
                         animate={{ opacity: [1, 0.7, 1] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -620,7 +620,7 @@ export default function About() {
       </section>
 
       {/* Corporate Philosophy Section */}
-      <section className="py-20 md:py-28 bg-white border-b border-border relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-blue-50/40 border-b border-border relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none -z-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(13,148,136,0.05),transparent_40%)]"></div>
@@ -629,7 +629,7 @@ export default function About() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -643,11 +643,11 @@ export default function About() {
                 <Target className="w-3.5 h-3.5" />
                 Corporate Philosophy
               </div>
-              
+
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] mb-8">
                 Every medicine we market represents a commitment to a healthier life.
               </h2>
-              
+
               <div className="space-y-6 text-body text-base leading-relaxed">
                 <p>
                   Our philosophy is built on four enduring principles: <strong>Quality, Trust, Affordability, and Compassion</strong>. We are committed to supporting healthcare professionals with dependable pharmaceutical solutions while ensuring patients have access to safe, effective, and affordable medicines.
@@ -661,7 +661,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -674,7 +674,7 @@ export default function About() {
               {/* Abstract Philosophy Visual */}
               <div className="relative w-full aspect-square max-w-md mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-2xl"></div>
-                
+
                 <div className="absolute inset-4 rounded-full border border-border/60 shadow-xl overflow-hidden bg-white/50 backdrop-blur-sm flex items-center justify-center p-8">
                   <div className="grid grid-cols-2 gap-6 w-full h-full relative">
                     <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
@@ -693,7 +693,7 @@ export default function About() {
                       <Heart className="w-8 h-8 text-pink-500 mb-3 group-hover:scale-110 transition-transform" />
                       <span className="font-bold text-sm text-heading">Compassion</span>
                     </div>
-                    
+
                     {/* Connecting center node */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center z-10">
                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">

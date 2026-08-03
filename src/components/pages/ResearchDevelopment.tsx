@@ -143,7 +143,7 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Premium R&D Overview and Stats */}
-      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+      <section className="py-24 lg:py-32 bg-teal-50/30 relative overflow-hidden">
         {/* Background Gradients & Glows */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           {/* Subtle medical gradient glow blobs */}
@@ -691,7 +691,7 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Scientific Excellence Section */}
-      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+      <section className="py-24 lg:py-32 bg-teal-50/30 relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="max-w-3xl mb-16 mx-auto text-center relative">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] relative inline-block">

@@ -170,6 +170,22 @@
   }
 }
 
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-animated-pink-navy {
+  background: linear-gradient(90deg, #0B1F4D, #EC4899, #0B1F4D, #EC4899);
+  background-size: 300% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradient-x 4s linear infinite;
+  display: inline-block;
+}
+
 /* Clean Utility / Minimal styles: Crisp, structured, high-contrast, beautiful borders */
 .utility-panel {
   @apply bg-surface border border-border rounded-card p-8 shadow-card hover:shadow-card-hover transition-all duration-300;

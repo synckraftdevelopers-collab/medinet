@@ -116,7 +116,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       </section>
 
       {/* Partnership Opportunities */}
-      <section className="py-20 bg-white border-b border-border">
+      <section className="py-20 bg-gradient-to-br from-background to-alt-bg border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
           
           {/* Franchise Opportunities */}

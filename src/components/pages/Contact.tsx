@@ -98,7 +98,7 @@ export default function Contact({ showToast }: ContactProps) {
         </div>
       </section>
 
-      <section className="py-20 bg-white border-b border-border">
+      <section className="py-20 bg-slate-50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
@@ -348,7 +348,7 @@ export default function Contact({ showToast }: ContactProps) {
       </section>
 
       {/* Locate Us */}
-      <section className="py-20 bg-white border-t border-border">
+      <section className="py-20 bg-slate-50 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
             <Map className="w-8 h-8 text-white" />

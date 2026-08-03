@@ -74,7 +74,7 @@ export default function Home({ navigate }: HomeProps) {
         {/* Floating Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Floating Pill */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="hidden md:flex absolute top-[20%] right-[15%] w-16 h-16 rounded-3xl bg-gradient-to-tr from-secondary/10 to-accent/10 border border-white/40 backdrop-blur-md items-center justify-center shadow-lg"
@@ -82,7 +82,7 @@ export default function Home({ navigate }: HomeProps) {
             <Pill className="w-8 h-8 text-secondary/50" />
           </motion.div>
           {/* Floating Molecule / Flask */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="hidden md:flex absolute bottom-[25%] left-[10%] w-20 h-20 rounded-full bg-gradient-to-tr from-primary/5 to-success/10 border border-white/40 backdrop-blur-md items-center justify-center shadow-lg"
@@ -90,12 +90,12 @@ export default function Home({ navigate }: HomeProps) {
             <FlaskConical className="w-10 h-10 text-success/40" />
           </motion.div>
           {/* Decorative Geometric Circles */}
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             className="hidden md:block absolute top-[10%] left-[20%] w-[400px] h-[400px] bg-secondary/5 rounded-full"
           ></motion.div>
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="hidden md:block absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-accent/5 rounded-full"
@@ -114,8 +114,8 @@ export default function Home({ navigate }: HomeProps) {
               >
                 {/* Clean background overlay to hide grid for readability */}
                 <div className="absolute -inset-8 sm:-inset-16 bg-white/60 blur-3xl max-w-[760px] rounded-[32px] -z-10 pointer-events-none"></div>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -130,11 +130,11 @@ export default function Home({ navigate }: HomeProps) {
                   </span>
                 </motion.div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-heading tracking-tight leading-[1.1] mb-6">
-                  {BRAND_INFO.tagline.split(',')[0]}, <br />
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
+                  <span className="text-heading">Reliable Care,</span> <br />
                   <span className="relative inline-block">
-                    <span className="relative z-10 text-heading">{BRAND_INFO.tagline.split(',')[1]}</span>
-                    <motion.span 
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent drop-shadow-sm">Every Time.</span>
+                    <motion.span
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
@@ -148,7 +148,7 @@ export default function Home({ navigate }: HomeProps) {
                 <p className="text-base sm:text-lg text-body leading-relaxed max-w-xl mb-8 mx-auto lg:mx-0">
                   At Medinet Pharmaceutical Marketing Company, we are committed to improving lives by providing high-quality, affordable, and innovative pharmaceutical products. With a strong focus on excellence and integrity, we strive to be a trusted partner for healthcare professionals and patients across India.
                 </p>
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
@@ -185,14 +185,14 @@ export default function Home({ navigate }: HomeProps) {
                 <div className="bg-white/70 backdrop-blur-xl border border-white/60 rounded-3xl p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] relative overflow-hidden group hover:shadow-[0_30px_60px_-15px_rgba(29, 78, 216,0.15)] transition-all duration-500">
                   {/* Subtle inner glow */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl group-hover:bg-secondary/20 transition-all duration-500"></div>
-                  
+
                   <div className="flex items-center gap-4 mb-6 relative z-10">
                     <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg p-3 transform group-hover:rotate-6 transition-transform duration-300">
                       <ShieldCheck className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <h3 className="font-display font-bold text-heading text-xl">Guaranteed Efficacy</h3>
-                      <p className="text-xs text-secondary font-mono mt-1">WHO-GMP & FDA Compliant</p>
+                      <p className="text-xs font-mono mt-1 font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent tracking-wide">WHO-GMP & FDA Compliant</p>
                     </div>
                   </div>
 
@@ -206,11 +206,11 @@ export default function Home({ navigate }: HomeProps) {
                       "Double-Inspected Quality Control",
                       "Rigorous Pharmacovigilance Monitoring"
                     ].map((text, i) => (
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 + (i * 0.1) }}
-                        key={i} 
+                        key={i}
                         className="flex items-center gap-3 group/item"
                       >
                         <div className="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0 group-hover/item:bg-success/20 transition-colors">
@@ -223,15 +223,15 @@ export default function Home({ navigate }: HomeProps) {
 
                   <div className="mt-8 pt-6 border-t border-border flex items-center justify-between relative z-10">
                     <div className="group/stat">
-                      <span className="block text-2xl font-display font-bold text-primary group-hover/stat:text-secondary group-hover/stat:-translate-y-1 transition-all">10M+</span>
+                      <span className="block text-2xl font-display font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent group-hover/stat:-translate-y-1 transition-transform">10M+</span>
                       <span className="text-[10px] text-muted font-mono uppercase tracking-wider font-semibold">Patients</span>
                     </div>
                     <div className="group/stat">
-                      <span className="block text-2xl font-display font-bold text-primary group-hover/stat:text-secondary group-hover/stat:-translate-y-1 transition-all">18+</span>
+                      <span className="block text-2xl font-display font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent group-hover/stat:-translate-y-1 transition-transform">18+</span>
                       <span className="text-[10px] text-muted font-mono uppercase tracking-wider font-semibold">Nations</span>
                     </div>
                     <div className="group/stat">
-                      <span className="block text-2xl font-display font-bold text-primary group-hover/stat:text-secondary group-hover/stat:-translate-y-1 transition-all">100%</span>
+                      <span className="block text-2xl font-display font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent group-hover/stat:-translate-y-1 transition-transform">100%</span>
                       <span className="text-[10px] text-muted font-mono uppercase tracking-wider font-semibold">Audit Pass</span>
                     </div>
                   </div>
@@ -241,7 +241,7 @@ export default function Home({ navigate }: HomeProps) {
           </div>
 
           {/* Scroll Indicator */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 1 }}
@@ -276,15 +276,15 @@ export default function Home({ navigate }: HomeProps) {
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Scientific Dots */}
           <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.02)_2px,transparent_2px)] bg-[size:50px_50px]"></div>
-          
-          <motion.div 
+
+          <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
             className="absolute top-[-10%] right-[-5%] opacity-[0.03]"
           >
             <Shield className="w-[400px] h-[400px] text-secondary" />
           </motion.div>
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -20, 0], opacity: [0.02, 0.04, 0.02] }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute bottom-[10%] left-[5%] opacity-[0.03]"
@@ -294,7 +294,7 @@ export default function Home({ navigate }: HomeProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* Heading & Description */}
           <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20 relative">
             <motion.div
@@ -304,7 +304,7 @@ export default function Home({ navigate }: HomeProps) {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
 
-              
+
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.25] mb-6 relative inline-block">
                 <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full z-[-1] pointer-events-none"></div>
                 About <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Medinet</span>
@@ -326,10 +326,10 @@ export default function Home({ navigate }: HomeProps) {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               >
                 <p className="text-body text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-4">
-                  {BRAND_INFO.name} is dedicated to delivering reliable pharmaceutical solutions that support better healthcare outcomes. Guided by our tagline, "{BRAND_INFO.tagline.replace(/\.$/, '')}," we combine scientific excellence, ethical business practices, and a customer-centric approach to meet the evolving needs of healthcare professionals and patients.
+                  {BRAND_INFO.name} is dedicated to delivering reliable pharmaceutical solutions that support <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-bold">better healthcare outcomes</span>. Guided by our tagline, "<span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent font-bold">{BRAND_INFO.tagline.replace(/\.$/, '')}</span>," we combine <span className="font-semibold text-primary">scientific excellence</span>, <span className="font-semibold text-primary">ethical business practices</span>, and a customer-centric approach to meet the evolving needs of healthcare professionals and patients.
                 </p>
                 <p className="text-body text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
-                  Our growing portfolio spans multiple therapeutic segments, reflecting our commitment to quality, innovation, and accessibility.
+                  Our growing portfolio spans multiple therapeutic segments, reflecting our commitment to <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-bold">quality, innovation, and accessibility</span>.
                 </p>
               </motion.div>
             </motion.div>
@@ -353,10 +353,10 @@ export default function Home({ navigate }: HomeProps) {
               >
                 {/* Floating gradient blob inside card */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl z-0 pointer-events-none group-hover:bg-secondary/10 transition-colors duration-500"></div>
-                
+
                 <div className="relative mb-6 z-10">
                   <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <motion.div 
+                  <motion.div
                     animate={{ y: [0, -4, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
                     className="relative w-14 h-14 bg-gradient-to-br from-white to-slate-50 rounded-full border border-border shadow-sm flex items-center justify-center text-secondary group-hover:border-primary/30 group-hover:text-primary transition-colors duration-300"
@@ -365,15 +365,15 @@ export default function Home({ navigate }: HomeProps) {
                     <feature.icon className="w-6 h-6" />
                   </motion.div>
                 </div>
-                
+
                 <h3 className="font-display font-extrabold text-primary text-lg mb-2 relative z-10 group-hover:text-secondary transition-colors duration-300">
                   {feature.title}
                 </h3>
-                
+
                 <p className="text-sm text-body leading-relaxed relative z-10">
                   {feature.desc}
                 </p>
-                
+
                 {/* Elegant corner decoration */}
                 <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-border rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                 <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-border rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
@@ -382,13 +382,15 @@ export default function Home({ navigate }: HomeProps) {
           </div>
 
           <div className="mt-16 flex justify-center relative z-10">
-            <button
+            <motion.button
+              whileTap={{ scale: 0.93 }}
               onClick={() => navigate("about")}
-              className="group relative px-8 py-3.5 bg-white border border-border text-primary font-mono text-sm font-bold tracking-wide rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(29, 78, 216,0.12)] hover:border-secondary hover:text-secondary transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 overflow-hidden"
+              className="group relative px-8 py-3.5 bg-white border border-border text-primary font-mono text-sm font-bold tracking-wide rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(236,72,153,0.15)] hover:border-[#EC4899] transition-all duration-300 hover:-translate-y-1 active:-translate-y-0 active:shadow-[0_2px_8px_rgba(236,72,153,0.1)] flex items-center gap-3 overflow-hidden"
             >
-              <span className="relative z-10">CEO MESSAGE</span>
-              <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-            </button>
+              <div className="absolute inset-0 bg-[#EC4899] opacity-0 group-active:opacity-10 transition-opacity duration-150"></div>
+              <span className="relative z-10 group-hover:text-animated-pink-navy transition-all duration-300">CEO MESSAGE</span>
+              <ArrowRight className="relative z-10 w-4 h-4 group-hover:text-[#EC4899] group-hover:translate-x-1.5 transition-all duration-300" />
+            </motion.button>
           </div>
 
         </div>
@@ -398,7 +400,7 @@ export default function Home({ navigate }: HomeProps) {
       <section className="py-20 md:py-32 bg-white relative overflow-hidden border-b border-border">
         {/* Soft Background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.03),transparent_70%)] pointer-events-none z-0"></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto mb-16 relative">
             <motion.div
@@ -417,7 +419,7 @@ export default function Home({ navigate }: HomeProps) {
                   Why Choose Us
                 </span>
               </div>
-              
+
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-6">
                 Why <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Medinet?</span>
               </h2>
@@ -431,7 +433,7 @@ export default function Home({ navigate }: HomeProps) {
               ></motion.div>
 
               <p className="text-body text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                We are dedicated to providing the highest standards of healthcare through our comprehensive and reliable pharmaceutical solutions.
+                We are dedicated to providing the <span className="text-animated-pink-navy font-bold">highest standards of healthcare</span> through our <span className="text-animated-pink-navy font-bold">comprehensive and reliable pharmaceutical solutions</span>.
               </p>
             </motion.div>
           </div>
@@ -480,7 +482,7 @@ export default function Home({ navigate }: HomeProps) {
         {/* Elegant Floating Medical-Inspired Abstract Shapes */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Medical Cross (ShieldPlus) */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -30, 0], rotate: [0, 5, 0], opacity: [0.02, 0.05, 0.02] }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[15%] left-[5%]"
@@ -489,7 +491,7 @@ export default function Home({ navigate }: HomeProps) {
           </motion.div>
 
           {/* Molecule/Flask */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, 40, 0], rotate: [0, -10, 0], opacity: [0.015, 0.04, 0.015] }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-[20%] right-[8%]"
@@ -498,30 +500,30 @@ export default function Home({ navigate }: HomeProps) {
           </motion.div>
 
           {/* Pill Outline */}
-          <motion.div 
+          <motion.div
             animate={{ x: [0, -20, 0], rotate: [15, 30, 15], opacity: [0.02, 0.06, 0.02] }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 }}
             className="absolute top-[40%] left-[85%]"
           >
             <Pill className="w-[100px] h-[100px] text-secondary" />
           </motion.div>
-          
+
           {/* Activity/DNA-like wave */}
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.015, 0.04, 0.015] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute bottom-[10%] left-[15%]"
           >
             <Activity className="w-[140px] h-[140px] text-primary" />
           </motion.div>
-          
+
           {/* Subtle animated gradient blobs behind the content */}
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[30%] left-[20%] w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[80px]"
           ></motion.div>
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
             className="absolute bottom-[20%] right-[20%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]"
@@ -529,7 +531,7 @@ export default function Home({ navigate }: HomeProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* Custom Premium Section Header */}
           <div className="flex flex-col items-center text-center mb-16 relative z-10">
             {/* Premium Glassmorphism Badge */}
@@ -577,9 +579,9 @@ export default function Home({ navigate }: HomeProps) {
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="text-base md:text-lg text-body leading-[1.8] max-w-2xl mx-auto"
             >
-              We develop and distribute highly effective medicines covering a broad array of therapeutic disciplines, backed by targeted formulation research.
+              We develop and distribute <span className="text-animated-pink-navy font-bold">highly effective medicines</span> covering a broad array of therapeutic disciplines, backed by <span className="text-animated-pink-navy font-bold">targeted formulation research</span>.
             </motion.p>
-            
+
             {/* Thin Animated Gradient Divider Below Description */}
             <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
@@ -590,7 +592,7 @@ export default function Home({ navigate }: HomeProps) {
             ></motion.div>
           </div>
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -614,12 +616,12 @@ export default function Home({ navigate }: HomeProps) {
                 >
                   {/* Subtle inner gradient (White -> Soft Mint -> White) */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/40 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"></div>
-                  
+
                   {/* Premium top accent strip */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary/50 via-primary/60 to-secondary/50 opacity-80 group-hover:opacity-100 group-hover:from-secondary group-hover:via-accent group-hover:to-secondary transition-all duration-[250ms]"></div>
 
                   <div className="relative z-10">
-                    <motion.div 
+                    <motion.div
                       animate={{ y: [0, -4, 0] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
                       className="w-14 h-14 bg-gradient-to-br from-white to-blue-50/80 border border-secondary/15 rounded-[16px] text-secondary flex items-center justify-center mb-6 shadow-[0_4px_15px_rgba(29, 78, 216,0.06)] group-hover:shadow-[0_8px_25px_rgba(29, 78, 216,0.25)] group-hover:scale-[1.08] group-hover:from-secondary group-hover:to-primary group-hover:text-white transition-all duration-[250ms] relative"
@@ -627,16 +629,16 @@ export default function Home({ navigate }: HomeProps) {
                       <div className="absolute inset-0 rounded-[16px] bg-secondary/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-[250ms] -z-10"></div>
                       <IconComp className="w-6 h-6 relative z-10" />
                     </motion.div>
-                    
+
                     <h3 className="font-display font-extrabold text-heading text-[19px] mb-3 group-hover:text-secondary transition-colors duration-[250ms]">
                       {cat.name}
                     </h3>
-                    
+
                     <p className="text-[14px] text-body leading-loose line-clamp-3">
                       {cat.description}
                     </p>
                   </div>
-                  
+
                   <div className="mt-8 pt-5 border-t border-border flex items-center justify-between text-xs font-mono font-bold text-body group-hover:text-secondary transition-colors duration-[250ms] relative z-10">
                     <span className="relative overflow-hidden py-1">
                       VIEW FORMULATIONS
@@ -745,14 +747,14 @@ export default function Home({ navigate }: HomeProps) {
 
         {/* Abstract Medical Shapes (< 5% opacity) */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -20, 0], rotate: [0, 5, 0], opacity: [0.01, 0.03, 0.01] }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[20%] right-[10%]"
           >
             <Shield className="w-[200px] h-[200px] text-primary" />
           </motion.div>
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.05, 1], opacity: [0.015, 0.035, 0.015] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-[10%] left-[5%]"
@@ -762,7 +764,7 @@ export default function Home({ navigate }: HomeProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* Two-Column Header */}
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-8">
             <motion.div
@@ -782,14 +784,14 @@ export default function Home({ navigate }: HomeProps) {
                   Corporate Media
                 </span>
               </div>
-              
+
               {/* Dominant Heading */}
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-4">
                 Latest <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">News</span> & Events
               </h2>
-              
+
               <p className="text-body text-base leading-relaxed">
-                Stay updated with the latest clinical developments, corporate milestones, and social responsibility initiatives at Medinet Pharmaceuticals.
+                Stay updated with the latest <span className="text-animated-pink-navy font-bold">clinical developments</span>, <span className="text-animated-pink-navy font-bold">corporate milestones</span>, and <span className="text-animated-pink-navy font-bold">social responsibility initiatives</span> at Medinet Pharmaceuticals.
               </p>
             </motion.div>
 
@@ -814,7 +816,7 @@ export default function Home({ navigate }: HomeProps) {
               let badgeBg = "bg-secondary/10 border-secondary/20";
               let badgeText = "text-secondary";
               let BadgeIcon = Presentation;
-              
+
               if (news.category === "News") {
                 badgeBg = "bg-primary/10 border-primary/20";
                 badgeText = "text-primary";
@@ -833,62 +835,63 @@ export default function Home({ navigate }: HomeProps) {
               const imageUrl = images[idx % images.length];
 
               return (
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + idx * 0.15, duration: 0.7, ease: "easeOut" }}
-                key={news.id}
-                onClick={() => navigate("news-events", { id: news.id })}
-                className="group relative bg-white rounded-[24px] border border-border h-full flex flex-col justify-between overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[10px] transition-all duration-300"
-              >
-                {/* Top Accent Strip */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.15, duration: 0.7, ease: "easeOut" }}
+                  key={news.id}
+                  onClick={() => navigate("news-events", { id: news.id })}
+                  className="group relative bg-white rounded-[24px] border border-border h-full flex flex-col justify-between overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[10px] transition-all duration-300"
+                >
+                  {/* Top Accent Strip */}
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
 
-                {/* Premium Thumbnail Area */}
-                <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-background">
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
-                  <Image 
-                    src={imageUrl} 
-                    alt={news.title}
-                    fill
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  {/* Category Pill over Image */}
-                  <div className={`absolute top-4 left-4 z-20 flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider border ${badgeBg} ${badgeText} px-3 py-1.5 rounded-full font-bold bg-white/90 backdrop-blur-sm shadow-sm`}>
-                    <BadgeIcon className="w-3.5 h-3.5" />
-                    {news.category}
-                  </div>
-                </div>
-
-                <div className="p-6 md:p-8 flex-1 flex flex-col justify-start relative z-10 bg-white">
-                  {/* Metadata Row */}
-                  <div className="flex items-center gap-2 mb-4 text-body">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span className="text-xs font-mono font-semibold tracking-wide">{news.date}</span>
+                  {/* Premium Thumbnail Area */}
+                  <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-background">
+                    <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                    <Image
+                      src={imageUrl}
+                      alt={news.title}
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    {/* Category Pill over Image */}
+                    <div className={`absolute top-4 left-4 z-20 flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider border ${badgeBg} ${badgeText} px-3 py-1.5 rounded-full font-bold bg-white/90 backdrop-blur-sm shadow-sm`}>
+                      <BadgeIcon className="w-3.5 h-3.5" />
+                      {news.category}
+                    </div>
                   </div>
 
-                  <h3 className="font-display font-extrabold text-primary text-lg sm:text-xl md:text-2xl leading-[1.3] group-hover:text-secondary transition-colors duration-300 line-clamp-2">
-                    {news.title}
-                  </h3>
-                  
-                  <p className="mt-4 text-sm text-body leading-relaxed line-clamp-3">
-                    {news.excerpt}
-                  </p>
-                </div>
+                  <div className="p-6 md:p-8 flex-1 flex flex-col justify-start relative z-10 bg-white">
+                    {/* Metadata Row */}
+                    <div className="flex items-center gap-2 mb-4 text-body">
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span className="text-xs font-mono font-semibold tracking-wide">{news.date}</span>
+                    </div>
 
-                {/* Fixed Bottom CTA */}
-                <div className="px-6 md:px-8 py-5 border-t border-border bg-alt-bg/50 group-hover:bg-secondary/5 transition-colors duration-300 flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-secondary relative overflow-hidden py-1">
-                    READ COMPLETE RELEASE
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-border flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-colors duration-300">
-                    <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-white transition-colors duration-300" />
+                    <h3 className="font-display font-extrabold text-primary text-lg sm:text-xl md:text-2xl leading-[1.3] group-hover:text-secondary transition-colors duration-300 line-clamp-2">
+                      {news.title}
+                    </h3>
+
+                    <p className="mt-4 text-sm text-body leading-relaxed line-clamp-3">
+                      {news.excerpt}
+                    </p>
                   </div>
-                </div>
-              </motion.div>
-            )})}
+
+                  {/* Fixed Bottom CTA */}
+                  <div className="px-6 md:px-8 py-5 border-t border-border bg-alt-bg/50 group-hover:bg-secondary/5 transition-colors duration-300 flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold text-secondary relative overflow-hidden py-1">
+                      READ COMPLETE RELEASE
+                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-border flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-colors duration-300">
+                      <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-white transition-colors duration-300" />
+                    </div>
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -903,16 +906,16 @@ export default function Home({ navigate }: HomeProps) {
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Subtle medical pattern (grid of tiny dots) */}
           <div className="absolute inset-0 bg-[radial-gradient(rgba(29, 78, 216,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-          
-          <motion.div 
+
+          <motion.div
             animate={{ y: [0, -20, 0], opacity: [0.03, 0.05, 0.03] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[20%] left-[10%]"
           >
             <Activity className="w-[120px] h-[120px] text-secondary" />
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             animate={{ scale: [1, 1.05, 1], opacity: [0.02, 0.04, 0.02] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-[20%] right-[10%]"
@@ -939,7 +942,7 @@ export default function Home({ navigate }: HomeProps) {
                   Company Updates
                 </span>
               </div>
-              
+
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-6">
                 Latest <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Updates</span>
               </h2>
@@ -954,7 +957,7 @@ export default function Home({ navigate }: HomeProps) {
               ></motion.div>
 
               <p className="text-body text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Stay informed with our latest corporate announcements, product launches, global events, and career opportunities at Medinet.
+                Stay informed with our latest <span className="text-animated-pink-navy font-bold">corporate announcements</span>, <span className="text-animated-pink-navy font-bold">product launches</span>, <span className="text-animated-pink-navy font-bold">global events</span>, and <span className="text-animated-pink-navy font-bold">career opportunities</span> at Medinet.
               </p>
             </motion.div>
           </div>
@@ -994,7 +997,7 @@ export default function Home({ navigate }: HomeProps) {
                   <div className="relative w-14 h-14 rounded-full mb-8">
                     {/* Soft glow around the icon */}
                     <div className="absolute inset-0 bg-secondary/20 blur-md rounded-full scale-110 opacity-50 group-hover:opacity-100 group-hover:bg-primary/30 transition-all duration-300"></div>
-                    <motion.div 
+                    <motion.div
                       animate={{ y: [0, -3, 0] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
                       className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 border border-border rounded-full flex items-center justify-center shadow-sm group-hover:border-secondary/40 transition-colors duration-300"
@@ -1003,7 +1006,7 @@ export default function Home({ navigate }: HomeProps) {
                     </motion.div>
                   </div>
 
-                  <h3 className="font-display font-extrabold text-primary text-xl group-hover:text-secondary transition-colors duration-300 mb-4 leading-tight">
+                  <h3 className="font-display font-extrabold text-primary text-xl group-hover:text-animated-pink-navy transition-all duration-300 mb-4 leading-tight">
                     {item.title}
                   </h3>
                   <p className="text-sm text-body leading-relaxed mb-6">
@@ -1033,19 +1036,19 @@ export default function Home({ navigate }: HomeProps) {
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Scientific Dots Pattern */}
           <div className="absolute inset-0 bg-[radial-gradient(rgba(11,31,77,0.03)_2px,transparent_2px)] bg-[size:60px_60px]"></div>
-          
+
           {/* Giant low-opacity quotation mark */}
           <Quote className="absolute top-[15%] left-[50%] -translate-x-1/2 w-[300px] h-[300px] text-primary opacity-[0.02] transform -scale-x-100 rotate-12" />
-          
-          <motion.div 
+
+          <motion.div
             animate={{ y: [0, -30, 0], rotate: [0, 10, 0], opacity: [0.02, 0.04, 0.02] }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[20%] left-[10%]"
           >
             <Activity className="w-[180px] h-[180px] text-secondary" />
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.02, 0.04, 0.02] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-[20%] right-[10%]"
@@ -1054,14 +1057,14 @@ export default function Home({ navigate }: HomeProps) {
           </motion.div>
 
           {/* Soft glowing particles moving slowly */}
-          <motion.div 
-            animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.2, 0.5, 0.2] }} 
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} 
+          <motion.div
+            animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[30%] right-[25%] w-2 h-2 rounded-full bg-secondary blur-[2px]"
           ></motion.div>
-          <motion.div 
-            animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.2, 0.5, 0.2] }} 
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
+          <motion.div
+            animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute bottom-[40%] left-[20%] w-3 h-3 rounded-full bg-primary blur-[2px]"
           ></motion.div>
         </div>
@@ -1071,7 +1074,7 @@ export default function Home({ navigate }: HomeProps) {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* Hero Quote */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -1084,7 +1087,7 @@ export default function Home({ navigate }: HomeProps) {
               &ldquo;Reliable Care, <br className="sm:hidden" />
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Every Time.</span>&rdquo;
             </h2>
-            
+
             {/* Animated Gradient Underline */}
             <motion.div
               initial={{ scaleX: 0 }}
@@ -1128,9 +1131,9 @@ export default function Home({ navigate }: HomeProps) {
                 <div className="relative mb-6">
                   {/* Soft hover glow */}
                   <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
+
                   {/* Circular Medical Icon */}
-                  <motion.div 
+                  <motion.div
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.3 }}
                     className="relative w-16 h-16 rounded-full bg-gradient-to-br from-white to-slate-50 border border-border shadow-md flex items-center justify-center z-10 group-hover:border-primary/30 transition-colors duration-300"
@@ -1138,12 +1141,12 @@ export default function Home({ navigate }: HomeProps) {
                     <feature.icon className="w-7 h-7 text-primary group-hover:text-primary transition-colors duration-300" />
                   </motion.div>
                 </div>
-                
+
                 <h3 className="font-display font-bold text-primary text-xl mb-3 tracking-wide flex items-center justify-center gap-2">
                   <span className="text-secondary font-sans">✓</span>
                   {feature.title}
                 </h3>
-                
+
                 <p className="text-body text-sm leading-relaxed max-w-sm mx-auto">
                   {feature.desc}
                 </p>
@@ -1194,7 +1197,7 @@ export default function Home({ navigate }: HomeProps) {
       <section className="py-24 md:py-32 bg-gradient-to-br from-primary via-secondary to-primary text-white text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

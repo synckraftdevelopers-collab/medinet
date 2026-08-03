@@ -94,13 +94,13 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="flex items-center gap-2 text-[12px] font-mono text-slate-500 mb-6 uppercase tracking-widest font-bold"
+            className="flex items-center gap-2 text-[12px] font-mono text-body mb-6 uppercase tracking-widest font-bold"
           >
             <a href="/" className="hover:text-secondary transition-colors">Home</a>
-            <ChevronRight className="w-3 h-3 text-slate-400" />
+            <ChevronRight className="w-3 h-3 text-muted" />
             <span>Legal</span>
-            <ChevronRight className="w-3 h-3 text-slate-400" />
-            <span className="text-slate-800">{title}</span>
+            <ChevronRight className="w-3 h-3 text-muted" />
+            <span className="text-heading">{title}</span>
           </motion.div>
 
           <motion.div
@@ -123,7 +123,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
                   Legal Document
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-display font-extrabold text-slate-900 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-display font-extrabold text-heading tracking-tight leading-tight">
                 {title}
               </h1>
             </div>
@@ -133,14 +133,14 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
           <div className="lg:hidden mb-6">
             <button
               onClick={() => setIsTocOpen(!isTocOpen)}
-              className="w-full flex items-center justify-between px-5 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-secondary/30 transition-all duration-300"
+              className="w-full flex items-center justify-between px-5 py-4 bg-white border border-border rounded-2xl shadow-sm hover:border-secondary/30 transition-all duration-300"
             >
               <div className="flex items-center gap-3">
                 <ListTree className="w-4 h-4 text-secondary" />
-                <span className="text-[13px] font-bold text-slate-800 uppercase tracking-wider font-mono">Table of Contents</span>
+                <span className="text-[13px] font-bold text-heading uppercase tracking-wider font-mono">Table of Contents</span>
               </div>
               <motion.div animate={{ rotate: isTocOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
-                <ChevronDown className="w-5 h-5 text-slate-500" />
+                <ChevronDown className="w-5 h-5 text-body" />
               </motion.div>
             </button>
 
@@ -153,7 +153,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="bg-white border border-slate-200 border-t-0 rounded-b-2xl px-4 py-3 flex flex-col gap-1">
+                  <div className="bg-white border border-border border-t-0 rounded-b-2xl px-4 py-3 flex flex-col gap-1">
                     {sections.map((sec) => (
                       <button
                         key={sec.id}
@@ -161,7 +161,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
                         className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-xl transition-all duration-200 text-[13px] font-semibold ${
                           activeSection === sec.id
                             ? "text-secondary bg-secondary/5 border-l-[3px] border-secondary pl-2.5"
-                            : "text-slate-600 hover:text-secondary hover:bg-secondary/5"
+                            : "text-body hover:text-secondary hover:bg-secondary/5"
                         }`}
                       >
                         <span className={`w-1.5 h-1.5 rounded-full shrink-0 transition-colors ${activeSection === sec.id ? "bg-secondary" : "bg-slate-300"}`} />
@@ -184,12 +184,12 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
               transition={{ duration: 0.5, delay: 0.1 }}
               className="hidden lg:block lg:sticky lg:top-24 self-start"
             >
-              <div className="bg-white/95 backdrop-blur-xl border border-slate-200/80 rounded-3xl shadow-[0_8px_32px_rgba(15,23,42,0.07)] p-4 xl:p-5 overflow-hidden">
-                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100">
+              <div className="bg-white/95 backdrop-blur-xl border border-border/80 rounded-3xl shadow-[0_8px_32px_rgba(15,23,42,0.07)] p-4 xl:p-5 overflow-hidden">
+                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-border">
                   <div className="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
                     <ListTree className="w-4 h-4 text-secondary" />
                   </div>
-                  <h4 className="text-[12px] font-mono font-extrabold text-slate-800 uppercase tracking-[0.12em]">Table of Contents</h4>
+                  <h4 className="text-[12px] font-mono font-extrabold text-heading uppercase tracking-[0.12em]">Table of Contents</h4>
                 </div>
 
                 <nav className="flex flex-col gap-0.5">
@@ -203,7 +203,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
                         transition={{ duration: 0.3, delay: 0.15 + idx * 0.05 }}
                         onClick={() => scrollToSection(sec.id)}
                         className={`relative flex items-center gap-3 w-full text-left px-3 py-2 rounded-xl transition-all duration-250 group focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
-                          isActive ? "text-secondary font-bold" : "text-slate-600 hover:text-secondary font-semibold"
+                          isActive ? "text-secondary font-bold" : "text-body hover:text-secondary font-semibold"
                         }`}
                         style={{ backgroundColor: isActive ? "rgba(29, 78, 216,0.07)" : undefined }}
                       >
@@ -220,9 +220,9 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
                   })}
                 </nav>
 
-                <div className="mt-4 pt-3 border-t border-slate-100">
-                  <p className="text-[11px] text-slate-400 font-mono">Last updated: July 2025</p>
-                  <p className="text-[11px] text-slate-400 font-mono mt-0.5">Medinet Pharmaceuticals</p>
+                <div className="mt-4 pt-3 border-t border-border">
+                  <p className="text-[11px] text-muted font-mono">Last updated: July 2025</p>
+                  <p className="text-[11px] text-muted font-mono mt-0.5">Medinet Pharmaceuticals</p>
                 </div>
               </div>
             </motion.aside>
@@ -234,8 +234,8 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
               transition={{ duration: 0.5, delay: 0.15 }}
               className="w-full min-w-0"
             >
-              <div className="bg-white border border-slate-200/80 rounded-3xl shadow-[0_8px_40px_rgba(15,23,42,0.07)] p-6 sm:p-8 xl:p-10">
-                <div className="flex flex-col gap-8 text-slate-700 leading-[1.75] text-[15px]">
+              <div className="bg-white border border-border/80 rounded-3xl shadow-[0_8px_40px_rgba(15,23,42,0.07)] p-6 sm:p-8 xl:p-10">
+                <div className="flex flex-col gap-8 text-body leading-[1.75] text-[15px]">
                   {children}
                 </div>
               </div>
@@ -270,7 +270,7 @@ export default function LegalLayout({ title, currentRoute, sections, children }:
 
             <a
               href="mailto:corporate@medinetpharma.com"
-              className="relative z-10 shrink-0 px-8 py-4 bg-white hover:bg-secondary hover:text-white text-slate-900 font-bold text-[14px] rounded-2xl transition-all duration-300 flex items-center gap-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_32px_rgba(29, 78, 216,0.3)] hover:-translate-y-1 group/cta"
+              className="relative z-10 shrink-0 px-8 py-4 bg-white hover:bg-secondary hover:text-white text-heading font-bold text-[14px] rounded-2xl transition-all duration-300 flex items-center gap-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_32px_rgba(29, 78, 216,0.3)] hover:-translate-y-1 group/cta"
             >
               Contact Legal Team
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
@@ -325,7 +325,7 @@ export function LegalSection({
           <Icon className="w-5 h-5 text-white" />
         </motion.div>
         <div className="pt-1">
-          <h2 className="text-[20px] sm:text-[22px] font-display font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-secondary transition-colors duration-300">
+          <h2 className="text-[20px] sm:text-[22px] font-display font-extrabold text-heading tracking-tight leading-tight group-hover:text-secondary transition-colors duration-300">
             {title}
           </h2>
         </div>
@@ -351,7 +351,7 @@ export function LegalCallout({ children }: { children: React.ReactNode }) {
       className="my-4 bg-gradient-to-r from-secondary/5 via-blue-50/60 to-transparent border-l-[3px] border-secondary p-4 sm:p-5 rounded-r-2xl flex gap-3.5 items-start cursor-default"
     >
       <Info className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
-      <div className="text-[14px] sm:text-[15px] text-slate-800 font-semibold leading-[1.65]">
+      <div className="text-[14px] sm:text-[15px] text-heading font-semibold leading-[1.65]">
         {children}
       </div>
     </motion.div>

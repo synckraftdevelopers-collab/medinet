@@ -93,11 +93,11 @@ function Footer({ navigate, showToast }: FooterProps) {
                 <div className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse relative z-10"></div>
                 <span className="text-[10px] font-mono font-bold tracking-widest text-gray-200 uppercase relative z-10">Global Updates</span>
               </div>
-              
+
               <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-4 relative">
                 Stay Informed on{" "}
-                <motion.span 
-                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} 
+                <motion.span
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
                   className="bg-gradient-to-r from-[#38BDF8] via-[#38BDF8] to-[#38BDF8] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
                 >
@@ -105,12 +105,12 @@ function Footer({ navigate, showToast }: FooterProps) {
                 </motion.span>
                 <div className="absolute -bottom-3 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-16 h-[2px] rounded-full bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] opacity-70"></div>
               </h3>
-              
+
               <p className="text-[14px] sm:text-[15px] text-gray-300/90 leading-relaxed max-w-md mx-auto lg:mx-0 mt-5">
                 Subscribe to receive quarterly scientific updates, new product launches, therapeutic pipelines, and regulatory compliance reports.
               </p>
             </motion.div>
-            
+
             <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-6 w-full max-w-[360px] sm:max-w-[380px] mx-auto lg:max-w-[420px] lg:mx-0">
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2" noValidate>
                 <div className="flex flex-col sm:flex-row items-center gap-3">
@@ -126,9 +126,8 @@ function Footer({ navigate, showToast }: FooterProps) {
                       onChange={handleEmailChange}
                       onFocus={() => setIsFocused(true)}
                       onBlur={handleEmailBlur}
-                      className={`w-full pl-11 pr-4 h-12 bg-white/10 border rounded-xl text-white placeholder:text-gray-400 text-sm shadow-sm focus:outline-none focus:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
-                        emailError ? "border-red-500 focus:border-red-500" : isFocused ? "border-secondary ring-2 ring-secondary/20" : "border-white/20 hover:border-white/30"
-                      }`}
+                      className={`w-full pl-11 pr-4 h-12 bg-white/10 border rounded-xl text-white placeholder:text-muted text-sm shadow-sm focus:outline-none focus:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${emailError ? "border-red-500 focus:border-red-500" : isFocused ? "border-secondary ring-2 ring-secondary/20" : "border-white/20 hover:border-white/30"
+                        }`}
                       aria-label="Email address for newsletter"
                       aria-invalid={!!emailError}
                     />
@@ -167,7 +166,7 @@ function Footer({ navigate, showToast }: FooterProps) {
       {/* Main Footer Links */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Column 1: Brand Info */}
           <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:col-span-4 flex flex-col items-center md:items-start gap-8 lg:pr-8 text-center md:text-left">
             <button
@@ -177,11 +176,11 @@ function Footer({ navigate, showToast }: FooterProps) {
             >
               <span className="text-3xl font-display font-bold text-white tracking-tight drop-shadow-md group-hover/logo:scale-105 transition-transform duration-500 origin-center md:origin-left">Medinet</span>
             </button>
-            
+
             <p className="text-sm text-gray-200 leading-relaxed">
               Medinet Pharmaceutical Marketing Company is dedicated to delivering reliable pharmaceutical solutions. Reliable Care, Every Time. Committed to quality. Driven by innovation. Trusted by healthcare professionals.
             </p>
-            
+
             <div className="flex items-center gap-4">
               <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 border border-white/20 hover:bg-secondary hover:border-secondary hover:shadow-[0_0_15px_rgba(29, 78, 216,0.6)] flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 shrink-0" aria-label="LinkedIn">
                 <Linkedin className="w-4 h-4 brightness-125" />
@@ -196,13 +195,13 @@ function Footer({ navigate, showToast }: FooterProps) {
 
             <div className="group flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.3)] w-full transition-all duration-500 hover:bg-white/10 hover:border-[#38BDF8]/40 hover:-translate-y-1 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/10 to-[#38BDF8]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
+
               <div className="relative z-10 w-12 h-12 rounded-xl bg-gradient-to-br from-[#38BDF8] to-[#38BDF8] p-[1.5px] flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_0_20px_rgba(52,211,153,0.5)] transition-all duration-500">
                 <div className="w-full h-full bg-primary/80 backdrop-blur-sm rounded-[10px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-500">
                   <Award className="w-6 h-6 text-[#38BDF8] group-hover:text-white group-hover:scale-110 transition-all duration-500" />
                 </div>
               </div>
-              
+
               <div className="relative z-10">
                 <span className="block font-extrabold text-white text-[15px] group-hover:text-[#38BDF8] transition-colors duration-300">WHO-GMP Compliant</span>
                 <span className="block text-[13px] text-gray-300 mt-1 leading-tight">Global manufacturing standards</span>
@@ -260,8 +259,8 @@ function Footer({ navigate, showToast }: FooterProps) {
                 </li>
               ))}
               <li className="pt-4">
-                <button 
-                  onClick={() => navigate("products")} 
+                <button
+                  onClick={() => navigate("products")}
                   className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#38BDF8]/30 transition-all duration-300 focus:outline-none"
                 >
                   <span className="text-sm font-bold bg-gradient-to-r from-[#38BDF8] to-[#38BDF8] text-transparent bg-clip-text group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.4)] transition-all duration-300">
@@ -326,12 +325,12 @@ function Footer({ navigate, showToast }: FooterProps) {
       <div className="relative z-10 bg-black/20 border-t border-white/20 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            
+
             <div className="text-center md:text-left flex flex-col gap-1">
               <p className="text-sm font-medium text-gray-300">&copy; {new Date().getFullYear()} Medinet Pharmaceutical Marketing Company. All rights reserved.</p>
-              <p className="text-xs text-gray-400 font-mono tracking-wider uppercase">ESTD 1998 | WHO-GMP Certified Operations</p>
+              <p className="text-xs text-muted font-mono tracking-wider uppercase">ESTD 1998 | WHO-GMP Certified Operations</p>
             </div>
-            
+
             <div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-3">
               {[
                 { name: "Privacy Policy", route: "privacy-policy" },
@@ -340,7 +339,7 @@ function Footer({ navigate, showToast }: FooterProps) {
                 { name: "Disclaimer", route: "disclaimer" },
                 { name: "Copyright Notice", route: "copyright-notice" }
               ].map((legal, i) => (
-                <button key={i} onClick={() => navigate(legal.route)} className="text-[13px] font-medium text-gray-400 group transition-all duration-300 relative pb-1 flex items-center gap-2 focus:outline-none">
+                <button key={i} onClick={() => navigate(legal.route)} className="text-[13px] font-medium text-muted group transition-all duration-300 relative pb-1 flex items-center gap-2 focus:outline-none">
                   <span className="w-1 h-1 rounded-full bg-gray-600 group-hover:bg-[#38BDF8] group-hover:shadow-[0_0_8px_rgba(52,211,153,0.8)] transition-all duration-300"></span>
                   <span className="group-hover:bg-gradient-to-r group-hover:from-[#38BDF8] group-hover:to-[#38BDF8] group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
                     {legal.name}
@@ -349,9 +348,9 @@ function Footer({ navigate, showToast }: FooterProps) {
                 </button>
               ))}
             </div>
-            
+
           </div>
-          
+
           {/* Subtle separator for disclaimer */}
           <div className="mt-8 pt-8 border-t border-white/20 text-center">
             <p className="text-xs text-gray-300 leading-loose max-w-7xl mx-auto">

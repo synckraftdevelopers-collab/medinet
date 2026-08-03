@@ -190,13 +190,13 @@ export default function ResearchDevelopment() {
                     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
                   }}
                   whileHover={{ scale: 1.05 }}
-                  className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#1D4ED8]/20 shadow-[0_4px_20px_rgba(13,148,136,0.08)] mb-8 cursor-default group"
+                  className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-secondary/20 shadow-[0_4px_20px_rgba(13,148,136,0.08)] mb-8 cursor-default group"
                 >
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1D4ED8] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1D4ED8]"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
                   </span>
-                  <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0A192F] uppercase group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-primary uppercase group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                     Core Competence
                   </span>
                   {/* Subtle animated border gradient */}
@@ -209,7 +209,7 @@ export default function ResearchDevelopment() {
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
                   }}
-                  className="text-4xl sm:text-5xl lg:text-[3.5rem] font-display font-[900] text-[#0A192F] tracking-tight leading-[1.1] mb-8"
+                  className="text-4xl sm:text-5xl lg:text-[3.5rem] font-display font-[900] text-primary tracking-tight leading-[1.1] mb-8"
                 >
                   Pioneering <span className="bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text relative inline-block">Next-Generation<motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-[#2563EB] to-transparent rounded-full origin-left"></motion.span></span><br className="hidden sm:block" /> Pharmaceutical Delivery
                 </motion.h2>
@@ -287,7 +287,7 @@ export default function ResearchDevelopment() {
                       hidden: { opacity: 0, y: 20 },
                       visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
                     }}
-                    className="relative group bg-white/70 backdrop-blur-xl border border-slate-200/70 rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.1)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                    className="relative group bg-white/70 backdrop-blur-xl border border-border/70 rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.1)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
                   >
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2563EB] to-[#38BDF8] opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#2563EB]/5 rounded-full blur-2xl group-hover:bg-[#2563EB]/15 transition-colors duration-500"></div>
@@ -297,7 +297,7 @@ export default function ResearchDevelopment() {
                         <FlaskConical className="w-5 h-5" />
                       </div>
                     </div>
-                    <span className="block text-3xl font-display font-black text-[#0A192F] mb-1">85%+</span>
+                    <span className="block text-3xl font-display font-black text-primary mb-1">85%+</span>
                     <span className="block text-[13px] font-bold text-[#475569] group-hover:text-[#2563EB] transition-colors duration-300">Pipeline in Phase III</span>
                     <span className="block text-[10px] font-mono text-[#64748B] mt-1.5 tracking-[0.1em] uppercase">/ Filing Stage</span>
                   </motion.div>
@@ -308,18 +308,18 @@ export default function ResearchDevelopment() {
                       hidden: { opacity: 0, y: 20 },
                       visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
                     }}
-                    className="relative group bg-white/70 backdrop-blur-xl border border-slate-200/70 rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.1)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                    className="relative group bg-white/70 backdrop-blur-xl border border-border/70 rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.1)] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
                   >
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1D4ED8] to-[#38BDF8] opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#1D4ED8]/5 rounded-full blur-2xl group-hover:bg-[#1D4ED8]/15 transition-colors duration-500"></div>
+                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/15 transition-colors duration-500"></div>
                     
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-[16px] bg-[#1D4ED8]/10 flex items-center justify-center text-[#1D4ED8] group-hover:scale-110 group-hover:bg-[#1D4ED8] group-hover:text-white transition-all duration-300">
+                      <div className="w-12 h-12 rounded-[16px] bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
                         <Activity className="w-5 h-5" />
                       </div>
                     </div>
-                    <span className="block text-3xl font-display font-black text-[#0A192F] mb-1">Zone IVB</span>
-                    <span className="block text-[13px] font-bold text-[#475569] group-hover:text-[#1D4ED8] transition-colors duration-300">Stability Chamber</span>
+                    <span className="block text-3xl font-display font-black text-primary mb-1">Zone IVB</span>
+                    <span className="block text-[13px] font-bold text-[#475569] group-hover:text-secondary transition-colors duration-300">Stability Chamber</span>
                     <span className="block text-[10px] font-mono text-[#64748B] mt-1.5 tracking-[0.1em] uppercase">/ Tested & Verified</span>
                   </motion.div>
                 </div>
@@ -334,7 +334,7 @@ export default function ResearchDevelopment() {
                 >
                   {/* Internal Glow */}
                   <div className="absolute top-0 right-0 w-64 h-64 bg-[#2563EB]/20 rounded-full blur-[80px] group-hover:bg-[#2563EB]/30 transition-colors duration-700 pointer-events-none"></div>
-                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#1D4ED8]/20 rounded-full blur-[80px] group-hover:bg-[#1D4ED8]/30 transition-colors duration-700 pointer-events-none"></div>
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-[80px] group-hover:bg-secondary/30 transition-colors duration-700 pointer-events-none"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-center gap-4 mb-8">
@@ -377,7 +377,7 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Premium Focus Areas Cards */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-t border-b border-slate-100 relative overflow-hidden">
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-t border-b border-border relative overflow-hidden">
         {/* Subtle premium background effects */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           {/* Soft radial glow behind the heading */}
@@ -389,7 +389,7 @@ export default function ResearchDevelopment() {
           
           {/* Floating molecular particles (CSS animation) */}
           <motion.div animate={{ y: [-20, 20, -20], x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute top-[20%] left-[15%] w-3 h-3 rounded-full bg-[#38BDF8] blur-sm"></motion.div>
-          <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }} className="absolute bottom-[30%] right-[20%] w-4 h-4 rounded-full bg-[#1D4ED8] blur-sm"></motion.div>
+          <motion.div animate={{ y: [20, -20, 20], x: [10, -10, 10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }} className="absolute bottom-[30%] right-[20%] w-4 h-4 rounded-full bg-secondary blur-sm"></motion.div>
           <motion.div animate={{ y: [-15, 15, -15], x: [15, -15, 15], opacity: [0.4, 0.7, 0.4] }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }} className="absolute top-[40%] right-[30%] w-2 h-2 rounded-full bg-[#2563EB] blur-[2px]"></motion.div>
         </div>
 
@@ -419,7 +419,7 @@ export default function ResearchDevelopment() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB]"></span>
               </span>
-              <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#0A192F] uppercase group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+              <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-primary uppercase group-hover:bg-gradient-to-r group-hover:from-[#2563EB] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                 Research Pillars
               </span>
               <div className="absolute inset-0 rounded-full border border-transparent bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.4),transparent)] opacity-0 group-hover:opacity-100 group-hover:animate-[spin_3s_linear_infinite] transition-opacity duration-300 [mask-image:linear-gradient(white,white)] [mask-composite:exclude] pointer-events-none" style={{ padding: '1px' }}></div>
@@ -431,7 +431,7 @@ export default function ResearchDevelopment() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
               }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-[#0A192F] tracking-tight leading-[1.1] mb-6 drop-shadow-sm"
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-primary tracking-tight leading-[1.1] mb-6 drop-shadow-sm"
             >
               Innovation &amp; <br className="hidden sm:block" />
               <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text relative inline-block">
@@ -474,25 +474,25 @@ export default function ResearchDevelopment() {
               ];
               const textColors = [
                 "text-[#2563EB]",
-                "text-[#1D4ED8]",
+                "text-secondary",
                 "text-[#7C3AED]",
                 "text-[#EC4899]"
               ];
               const bgColors = [
                 "bg-[#2563EB]/10",
-                "bg-[#1D4ED8]/10",
+                "bg-secondary/10",
                 "bg-[#7C3AED]/10",
                 "bg-[#EC4899]/10"
               ];
               const hoverBgs = [
                 "group-hover:bg-[#2563EB]",
-                "group-hover:bg-[#1D4ED8]",
+                "group-hover:bg-secondary",
                 "group-hover:bg-[#7C3AED]",
                 "group-hover:bg-[#EC4899]"
               ];
               const groupHoverTextColors = [
                 "group-hover:text-[#2563EB]",
-                "group-hover:text-[#1D4ED8]",
+                "group-hover:text-secondary",
                 "group-hover:text-[#7C3AED]",
                 "group-hover:text-[#EC4899]"
               ];
@@ -506,7 +506,7 @@ export default function ResearchDevelopment() {
                     visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100, damping: 20 } }
                   }}
                   whileHover={{ scale: 1.03, y: -10 }}
-                  className="relative group bg-white/70 backdrop-blur-xl border border-slate-200/70 rounded-[24px] p-8 lg:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(37,99,235,0.08)] transition-all duration-500 overflow-hidden text-left"
+                  className="relative group bg-white/70 backdrop-blur-xl border border-border/70 rounded-[24px] p-8 lg:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(37,99,235,0.08)] transition-all duration-500 overflow-hidden text-left"
                 >
                   {/* Hover Background Glow */}
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"></div>
@@ -534,12 +534,12 @@ export default function ResearchDevelopment() {
                     </div>
                     
                     {/* Scientific Label */}
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold tracking-[0.2em] uppercase bg-slate-100 text-slate-500 border border-slate-200 group-hover:border-slate-300 group-hover:bg-slate-50 transition-colors duration-300">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold tracking-[0.2em] uppercase bg-background text-body border border-border group-hover:border-slate-300 group-hover:bg-alt-bg transition-colors duration-300">
                       {labels[colorIdx]}
                     </span>
                   </div>
 
-                  <h3 className={`font-display font-[800] text-[#0A192F] text-2xl mb-4 ${groupHoverTextColors[colorIdx]} transition-colors duration-300 relative z-10`}>
+                  <h3 className={`font-display font-[800] text-primary text-2xl mb-4 ${groupHoverTextColors[colorIdx]} transition-colors duration-300 relative z-10`}>
                     {area.title}
                   </h3>
                   
@@ -572,7 +572,7 @@ export default function ResearchDevelopment() {
           
           {/* Floating molecular particles (respects reduced motion implicitly or via transition properties) */}
           <motion.div animate={{ y: [-15, 15, -15], x: [-10, 10, -10], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute top-[25%] left-[20%] w-2 h-2 rounded-full bg-[#38BDF8] blur-[1px]"></motion.div>
-          <motion.div animate={{ y: [15, -15, 15], x: [10, -10, 10], opacity: [0.1, 0.4, 0.1] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute bottom-[35%] right-[25%] w-3 h-3 rounded-full bg-[#1D4ED8] blur-[1px]"></motion.div>
+          <motion.div animate={{ y: [15, -15, 15], x: [10, -10, 10], opacity: [0.1, 0.4, 0.1] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute bottom-[35%] right-[25%] w-3 h-3 rounded-full bg-secondary blur-[1px]"></motion.div>
           <motion.div animate={{ y: [-10, 10, -10], x: [15, -15, 15], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }} className="absolute top-[45%] right-[35%] w-2 h-2 rounded-full bg-[#2563EB] blur-[1px]"></motion.div>
         </div>
 
@@ -674,7 +674,7 @@ export default function ResearchDevelopment() {
                   <h4 className="font-display font-bold text-heading text-[1.1rem] leading-tight mb-3 group-hover:text-[#2563EB] transition-colors duration-300">
                     {pipe.title}
                   </h4>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-2">
+                  <p className="text-sm text-body leading-relaxed mb-2">
                     {pipe.desc}
                   </p>
                 </div>
@@ -683,7 +683,7 @@ export default function ResearchDevelopment() {
           </motion.div>
 
           <div className="mt-12 text-center max-w-2xl mx-auto">
-            <p className="text-xs font-mono text-muted uppercase tracking-widest bg-white/60 backdrop-blur-md py-2 px-5 rounded-full border border-slate-200 inline-block shadow-sm">
+            <p className="text-xs font-mono text-muted uppercase tracking-widest bg-white/60 backdrop-blur-md py-2 px-5 rounded-full border border-border inline-block shadow-sm">
               Pipeline products are currently under development and subject to regulatory approvals.
             </p>
           </div>
@@ -704,7 +704,7 @@ export default function ResearchDevelopment() {
                 className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#2563EB]/30 to-transparent origin-center"
               />
             </h2>
-            <p className="mt-4 text-lg text-[#1D4ED8] font-semibold">Committed to Quality, Innovation, and Integrity</p>
+            <p className="mt-4 text-lg text-secondary font-semibold">Committed to Quality, Innovation, and Integrity</p>
             <p className="mt-7 text-base sm:text-lg text-body font-sans leading-relaxed">
               Scientific excellence is at the heart of everything we do. Our R&D philosophy is built on evidence-based development, regulatory compliance, and continuous improvement to ensure every product meets the highest standards of quality and performance.
             </p>
@@ -728,10 +728,10 @@ export default function ResearchDevelopment() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="flex items-center gap-4 bg-slate-50 p-6 rounded-[16px] border border-slate-100 shadow-sm"
+                className="flex items-center gap-4 bg-alt-bg p-6 rounded-[16px] border border-border shadow-sm"
               >
-                <div className="w-10 h-10 rounded-full bg-[#1D4ED8]/10 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-5 h-5 text-[#1D4ED8]" />
+                <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-5 h-5 text-secondary" />
                 </div>
                 <span className="font-semibold text-heading">{item}</span>
               </motion.div>
@@ -739,7 +739,7 @@ export default function ResearchDevelopment() {
           </div>
           
           <div className="mt-12 text-center max-w-2xl mx-auto">
-            <p className="text-lg font-mono text-[#0A192F] font-semibold italic">
+            <p className="text-lg font-mono text-primary font-semibold italic">
               By combining research, innovation, and quality, Medinet remains dedicated to delivering "Reliable Care, Every Time."
             </p>
           </div>
@@ -747,7 +747,7 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Innovation & Technology Section */}
-      <section className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+      <section className="py-24 lg:py-32 bg-alt-bg relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="max-w-3xl mb-16 mx-auto text-center relative">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] relative inline-block">
@@ -797,12 +797,12 @@ export default function ResearchDevelopment() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="flex items-center gap-5 bg-white p-6 rounded-[20px] border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                className="flex items-center gap-5 bg-white p-6 rounded-[20px] border border-border shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EFF6FF] to-white border border-[#2563EB]/10 flex items-center justify-center shrink-0">
                   <tech.icon className="w-6 h-6 text-[#2563EB]" />
                 </div>
-                <h4 className="font-display font-bold text-[#0A192F] text-lg">{tech.title}</h4>
+                <h4 className="font-display font-bold text-primary text-lg">{tech.title}</h4>
               </motion.div>
             ))}
           </div>
@@ -816,7 +816,7 @@ export default function ResearchDevelopment() {
             {/* Subtle glow behind the heading */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[100px] rounded-full blur-[80px] bg-[#38BDF8]/10 pointer-events-none" />
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative inline-block">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-primary tracking-tight leading-[1.15] relative inline-block">
               Product Development Process
               {/* Soft animated underline using Medinet blue gradient */}
               <motion.span 
@@ -827,7 +827,7 @@ export default function ResearchDevelopment() {
                 className="absolute -bottom-4 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#2563EB]/70 to-transparent origin-center rounded-full"
               />
             </h2>
-            <p className="mt-8 text-base sm:text-lg text-slate-500 font-sans leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-8 text-base sm:text-lg text-body font-sans leading-relaxed max-w-2xl mx-auto">
               We adhere to a thorough scientific protocol to take a molecule from theoretical assessment to actual therapeutic distribution.
             </p>
           </div>
@@ -871,7 +871,7 @@ export default function ResearchDevelopment() {
                   )}
 
                   {/* Large elegant step numbers in top right corner */}
-                  <span className="absolute top-3 right-4 text-4xl font-display font-black text-[#0A192F] opacity-[0.08] font-mono group-hover:opacity-20 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none">
+                  <span className="absolute top-3 right-4 text-4xl font-display font-black text-primary opacity-[0.08] font-mono group-hover:opacity-20 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none">
                     {step.phase}
                   </span>
                   
@@ -882,8 +882,8 @@ export default function ResearchDevelopment() {
                     </div>
                   </div>
                   
-                  <h4 className="font-display font-bold text-[#0A192F] text-[1.05rem] mb-2 group-hover:text-[#2563EB] transition-colors duration-300 relative z-10">{step.title}</h4>
-                  <p className="text-[13px] text-slate-500 leading-relaxed mt-1 relative z-10">{step.description}</p>
+                  <h4 className="font-display font-bold text-primary text-[1.05rem] mb-2 group-hover:text-[#2563EB] transition-colors duration-300 relative z-10">{step.title}</h4>
+                  <p className="text-[13px] text-body leading-relaxed mt-1 relative z-10">{step.description}</p>
                 </motion.div>
               );
             })}

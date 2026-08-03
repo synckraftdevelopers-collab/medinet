@@ -39,14 +39,14 @@ export default function LegalPage({ type }: LegalPageProps) {
           icon: ShieldCheck,
           color: "from-[#2563EB] to-[#1D4ED8]",
           textColor: "text-[#2563EB]",
-          bgTheme: "bg-slate-50",
-          borderTheme: "border-slate-100",
+          bgTheme: "bg-alt-bg",
+          borderTheme: "border-border",
           content: (
             <>
               <p className="text-[#475569] leading-relaxed mb-6">
                 At Medinet Pharmaceutical Marketing Company, we are committed to protecting your privacy and safeguarding the personal information you share with us. We collect and process information responsibly to improve our services, respond to enquiries, and provide a secure browsing experience.
               </p>
-              <p className="text-[#0A192F] font-semibold mb-4">Our Privacy Policy explains:</p>
+              <p className="text-primary font-semibold mb-4">Our Privacy Policy explains:</p>
               <ul className="space-y-3 mb-6">
                 {[
                   "Information we collect",
@@ -82,7 +82,7 @@ export default function LegalPage({ type }: LegalPageProps) {
               <p className="text-[#475569] leading-relaxed mb-6">
                 By accessing and using the Medinet website, you agree to comply with our Terms & Conditions. These terms govern the use of our website, services, and content.
               </p>
-              <p className="text-[#0A192F] font-semibold mb-4">The Terms & Conditions cover:</p>
+              <p className="text-primary font-semibold mb-4">The Terms & Conditions cover:</p>
               <ul className="space-y-3 mb-6">
                 {[
                   "Acceptable use of the website",
@@ -152,7 +152,7 @@ export default function LegalPage({ type }: LegalPageProps) {
               <p className="text-[#475569] leading-relaxed mb-6">
                 Our website uses cookies and similar technologies to improve functionality, enhance user experience, analyze website traffic, and personalize content.
               </p>
-              <p className="text-[#0A192F] font-semibold mb-4">Our Cookie Policy explains:</p>
+              <p className="text-primary font-semibold mb-4">Our Cookie Policy explains:</p>
               <ul className="space-y-3 mb-6">
                 {[
                   "What cookies are",
@@ -179,12 +179,12 @@ export default function LegalPage({ type }: LegalPageProps) {
           badge: "Intellectual Property Rights",
           icon: Copyright,
           color: "from-slate-600 to-slate-800",
-          textColor: "text-slate-600",
-          bgTheme: "bg-slate-50",
-          borderTheme: "border-slate-200",
+          textColor: "text-body",
+          bgTheme: "bg-alt-bg",
+          borderTheme: "border-border",
           content: (
             <>
-              <p className="text-[#0A192F] font-bold mb-4">
+              <p className="text-primary font-bold mb-4">
                 © Medinet Pharmaceutical Marketing Company. All Rights Reserved.
               </p>
               <p className="text-[#475569] leading-relaxed mb-4">
@@ -209,8 +209,8 @@ export default function LegalPage({ type }: LegalPageProps) {
   if (!config) {
     return (
       <div className="pt-32 pb-20 text-center bg-white min-h-[50vh] flex items-center justify-center">
-        <div className="p-12 bg-slate-50 rounded-2xl border border-slate-100">
-          <h2 className="text-2xl font-bold text-[#0A192F]">Document Not Found</h2>
+        <div className="p-12 bg-alt-bg rounded-2xl border border-border">
+          <h2 className="text-2xl font-bold text-primary">Document Not Found</h2>
           <p className="text-[#475569] mt-2">Please select a valid legal document from the menu.</p>
         </div>
       </div>
@@ -241,7 +241,7 @@ export default function LegalPage({ type }: LegalPageProps) {
               {config.badge}
             </span>
             
-            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-6`}>
+            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary tracking-tight leading-[1.15] relative z-10 inline-block mb-6`}>
               {config.title}
             </h1>
             
@@ -262,7 +262,7 @@ export default function LegalPage({ type }: LegalPageProps) {
       </section>
 
       {/* Legal Commitment (Footer Note) */}
-      <section className="py-16 bg-gradient-to-b from-[#F8FAFC] to-[#EFF6FF] text-center border-t border-slate-100 relative overflow-hidden mt-auto">
+      <section className="py-16 bg-gradient-to-b from-[#F8FAFC] to-[#EFF6FF] text-center border-t border-border relative overflow-hidden mt-auto">
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           <div className="absolute w-[60%] h-[60%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
         </div>
@@ -270,7 +270,7 @@ export default function LegalPage({ type }: LegalPageProps) {
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
             <Scale className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-2xl lg:text-3xl font-display font-bold text-[#0A192F] tracking-tight mb-4">
+          <h2 className="text-2xl lg:text-3xl font-display font-bold text-primary tracking-tight mb-4">
             Legal Commitment
           </h2>
           <p className="text-[#475569] leading-relaxed text-lg mb-6">

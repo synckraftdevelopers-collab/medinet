@@ -19,10 +19,10 @@ export default function Quality() {
   return (
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header / Quality Policy */}
-      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#1D4ED8] opacity-5" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
@@ -32,7 +32,7 @@ export default function Quality() {
               Quality Policy
             </span>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
               <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Committed to Excellence in Every Product</span>
             </h1>
             
@@ -53,15 +53,15 @@ export default function Quality() {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <ShieldCheck className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Quality Assurance</h2>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Quality Assurance</h2>
               <h3 className="text-[#2563EB] font-medium tracking-wide text-lg mb-4">Ensuring Consistent Quality</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
                 Our Quality Assurance (QA) system is designed to ensure that every product is developed, manufactured, and distributed in accordance with established quality standards and regulatory requirements.
               </p>
             </div>
-            <div className="lg:w-2/3 bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our Quality Assurance focuses on:</p>
+            <div className="lg:w-2/3 bg-alt-bg rounded-3xl p-8 md:p-10 border border-border">
+              <p className="text-primary font-semibold mb-6 text-lg">Our Quality Assurance focuses on:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Standardized quality management systems",
@@ -71,13 +71,13 @@ export default function Quality() {
                   "Continuous quality monitoring",
                   "Risk assessment and quality improvement"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
                     <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-8 pt-6 border-t border-slate-200">
+              <div className="mt-8 pt-6 border-t border-border">
                 <p className="text-[#475569] leading-relaxed text-lg font-medium">
                   Through stringent QA practices, we ensure consistency, reliability, and patient safety across our product portfolio.
                 </p>
@@ -91,7 +91,7 @@ export default function Quality() {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <FlaskConical className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Quality Control</h2>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Quality Control</h2>
               <h3 className="text-teal-600 font-medium tracking-wide text-lg mb-4">Precision at Every Stage</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-teal-500 to-teal-700 mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
@@ -99,7 +99,7 @@ export default function Quality() {
               </p>
             </div>
             <div className="lg:w-2/3 bg-teal-50/50 rounded-3xl p-8 md:p-10 border border-teal-100/50">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our Quality Control activities include:</p>
+              <p className="text-primary font-semibold mb-6 text-lg">Our Quality Control activities include:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Raw material testing",
@@ -129,7 +129,7 @@ export default function Quality() {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <ClipboardCheck className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Regulatory Compliance</h2>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Regulatory Compliance</h2>
               <h3 className="text-amber-600 font-medium tracking-wide text-lg mb-4">Meeting National and International Standards</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
@@ -137,7 +137,7 @@ export default function Quality() {
               </p>
             </div>
             <div className="lg:w-2/3 bg-orange-50/50 rounded-3xl p-8 md:p-10 border border-orange-100/50">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our commitment includes:</p>
+              <p className="text-primary font-semibold mb-6 text-lg">Our commitment includes:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Compliance with applicable pharmaceutical regulations",
@@ -162,7 +162,7 @@ export default function Quality() {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <Award className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Certifications</h2>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Certifications</h2>
               <h3 className="text-indigo-600 font-medium tracking-wide text-lg mb-4">Quality You Can Trust</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
@@ -170,7 +170,7 @@ export default function Quality() {
               </p>
             </div>
             <div className="lg:w-2/3 bg-indigo-50/50 rounded-3xl p-8 md:p-10 border border-indigo-100/50">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our focus is on maintaining:</p>
+              <p className="text-primary font-semibold mb-6 text-lg">Our focus is on maintaining:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Good Manufacturing Practice (GMP) compliance",
@@ -198,15 +198,15 @@ export default function Quality() {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <HeartPulse className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Pharmacovigilance</h2>
-              <h3 className="text-emerald-600 font-medium tracking-wide text-lg mb-4">Monitoring Safety Beyond the Product</h3>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Pharmacovigilance</h2>
+              <h3 className="text-secondary font-medium tracking-wide text-lg mb-4">Monitoring Safety Beyond the Product</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
                 Patient safety remains our highest priority. Medinet supports pharmacovigilance practices by monitoring, documenting, and reporting adverse drug reactions in accordance with applicable regulatory guidelines.
               </p>
             </div>
             <div className="lg:w-2/3 bg-emerald-50/50 rounded-3xl p-8 md:p-10 border border-emerald-100/50">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our pharmacovigilance activities include:</p>
+              <p className="text-primary font-semibold mb-6 text-lg">Our pharmacovigilance activities include:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Adverse event reporting",
@@ -217,7 +217,7 @@ export default function Quality() {
                   "Promotion of safe and responsible medicine use"
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-emerald-100/50 shadow-sm hover:shadow-md transition-shadow">
-                    <CheckCircle className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}
@@ -233,12 +233,12 @@ export default function Quality() {
         </div>
       </section>
       {/* Our Quality Commitment */}
-      <section className="py-20 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
           <div className="absolute w-[60%] h-[60%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h2 className="text-3xl lg:text-4xl font-display font-bold text-[#0A192F] tracking-tight mb-6">
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary tracking-tight mb-6">
             Our <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Quality Commitment</span>
           </h2>
           <div className="w-20 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#38BDF8] mx-auto mb-8"></div>

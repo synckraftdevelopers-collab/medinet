@@ -74,10 +74,10 @@ export default function Contact({ showToast }: ContactProps) {
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20 bg-white">
       
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#1D4ED8] opacity-5" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
@@ -87,7 +87,7 @@ export default function Contact({ showToast }: ContactProps) {
               Contact Us
             </span>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
               <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Get in Touch with Medinet</span>
             </h1>
             
@@ -103,11 +103,11 @@ export default function Contact({ showToast }: ContactProps) {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
             {/* Corporate Office */}
-            <motion.div variants={fadeUp} className="bg-slate-50 border border-slate-100 p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
+            <motion.div variants={fadeUp} className="bg-alt-bg border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <Building2 className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-[#0A192F] mb-3">Corporate Office</h3>
+              <h3 className="text-2xl font-bold text-primary mb-3">Corporate Office</h3>
               <p className="text-[#475569] font-medium mb-4">Medinet Pharmaceutical Marketing Company</p>
               <div className="flex items-start gap-3 mt-4 text-[#475569]">
                 <MapPin className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
@@ -116,11 +116,11 @@ export default function Contact({ showToast }: ContactProps) {
             </motion.div>
 
             {/* Regional Offices */}
-            <motion.div variants={fadeUp} className="bg-slate-50 border border-slate-100 p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
+            <motion.div variants={fadeUp} className="bg-alt-bg border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-[#0A192F] mb-3">Regional Offices</h3>
+              <h3 className="text-2xl font-bold text-primary mb-3">Regional Offices</h3>
               <p className="text-[#475569] font-medium mb-6">Our Growing Presence</p>
               <p className="text-[#475569] text-sm mb-4">Medinet is continuously expanding its reach to serve healthcare professionals and business partners across multiple regions.</p>
               
@@ -129,8 +129,8 @@ export default function Contact({ showToast }: ContactProps) {
                   <div key={idx} className="flex items-start gap-3 text-[#475569]">
                     <MapPin className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
                     <div className="text-sm">
-                      <strong className="block text-[#0A192F]">{city}</strong>
-                      <span className="italic text-slate-400 block mt-1">(Add address, contact & email)</span>
+                      <strong className="block text-primary">{city}</strong>
+                      <span className="italic text-muted block mt-1">(Add address, contact & email)</span>
                     </div>
                   </div>
                 ))}
@@ -138,30 +138,30 @@ export default function Contact({ showToast }: ContactProps) {
             </motion.div>
 
             {/* Contact Details */}
-            <motion.div variants={fadeUp} className="bg-slate-50 border border-slate-100 p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
+            <motion.div variants={fadeUp} className="bg-alt-bg border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <Phone className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-[#0A192F] mb-3">Contact Details</h3>
+              <h3 className="text-2xl font-bold text-primary mb-3">Contact Details</h3>
               <p className="text-[#475569] font-medium mb-6">We're Just a Call or Email Away</p>
               
               <div className="space-y-5">
                 <div>
-                  <h4 className="text-sm font-bold text-[#0A192F] mb-2">General Enquiries</h4>
+                  <h4 className="text-sm font-bold text-primary mb-2">General Enquiries</h4>
                   <p className="flex items-center gap-2 text-[#475569] text-sm"><Phone className="w-4 h-4 text-[#2563EB]" /> +91 XXXXX XXXXX</p>
                   <p className="flex items-center gap-2 text-[#475569] text-sm mt-1"><Mail className="w-4 h-4 text-[#2563EB]" /> info@medinetpharma.com</p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[#0A192F] mb-2">Sales & Marketing</h4>
+                  <h4 className="text-sm font-bold text-primary mb-2">Sales & Marketing</h4>
                   <p className="flex items-center gap-2 text-[#475569] text-sm"><Mail className="w-4 h-4 text-[#2563EB]" /> sales@medinetpharma.com</p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[#0A192F] mb-2">Business Partnerships & Careers</h4>
+                  <h4 className="text-sm font-bold text-primary mb-2">Business Partnerships & Careers</h4>
                   <p className="flex items-center gap-2 text-[#475569] text-sm"><Mail className="w-4 h-4 text-[#2563EB]" /> business@medinetpharma.com</p>
                   <p className="flex items-center gap-2 text-[#475569] text-sm mt-1"><Mail className="w-4 h-4 text-[#2563EB]" /> careers@medinetpharma.com</p>
                 </div>
-                <div className="pt-4 border-t border-slate-200">
-                  <h4 className="text-sm font-bold text-[#0A192F] mb-2">Working Hours</h4>
+                <div className="pt-4 border-t border-border">
+                  <h4 className="text-sm font-bold text-primary mb-2">Working Hours</h4>
                   <p className="flex items-center gap-2 text-[#475569] text-sm"><Clock className="w-4 h-4 text-[#2563EB]" /> Monday – Saturday</p>
                   <p className="flex items-center gap-2 text-[#475569] text-sm mt-1 pl-6">9:00 AM – 6:00 PM (IST)</p>
                 </div>
@@ -173,7 +173,7 @@ export default function Contact({ showToast }: ContactProps) {
       </section>
 
       {/* Enquiry Form */}
-      <section id="enquiry" className="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden">
+      <section id="enquiry" className="py-20 lg:py-28 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">
@@ -181,19 +181,19 @@ export default function Contact({ showToast }: ContactProps) {
                 <span className="utility-dot"></span>
                 Enquiry Form
               </span>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#0A192F] tracking-tight leading-tight mb-6">
+              <h2 className="text-3xl sm:text-4xl font-display font-bold text-primary tracking-tight leading-tight mb-6">
                 Send Us a <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Message</span>
               </h2>
               <p className="text-[#475569] leading-relaxed text-lg mb-8">
                 Have a question or need assistance? Fill out the form below, and our team will get back to you as soon as possible.
               </p>
               
-              <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm mb-6">
-                <h3 className="text-xl font-bold text-[#0A192F] mb-4">Let's Connect</h3>
+              <div className="bg-white p-8 rounded-3xl border border-border shadow-sm mb-6">
+                <h3 className="text-xl font-bold text-primary mb-4">Let's Connect</h3>
                 <p className="text-[#475569] leading-relaxed">
                   Whether you're a healthcare professional, distributor, business partner, job seeker, or customer, we'd love to hear from you. Reach out to us for any enquiries, and we'll be happy to assist you.
                 </p>
-                <div className="mt-6 pt-6 border-t border-slate-100">
+                <div className="mt-6 pt-6 border-t border-border">
                   <p className="font-bold text-[#2563EB] text-lg">
                     Reliable Care, Every Time.
                   </p>
@@ -201,19 +201,19 @@ export default function Contact({ showToast }: ContactProps) {
               </div>
 
               {/* Legal Note */}
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4">
+              <div className="bg-alt-bg p-6 rounded-2xl border border-border flex items-start gap-4">
                 <ShieldCheck className="w-6 h-6 text-[#2563EB] shrink-0" />
                 <div>
-                  <h4 className="font-bold text-[#0A192F]">Legal & Privacy Policy</h4>
+                  <h4 className="font-bold text-primary">Legal & Privacy Policy</h4>
                   <p className="text-sm text-[#475569] mt-1">Your Privacy Matters. We ensure that your data is securely handled.</p>
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-7">
-              <div className="bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(11,31,77,0.06)] border border-slate-100">
+              <div className="bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(11,31,77,0.06)] border border-border">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <h3 className="text-2xl font-bold text-[#0A192F] mb-6 border-b border-slate-100 pb-4">Enquiry Form</h3>
+                  <h3 className="text-2xl font-bold text-primary mb-6 border-b border-border pb-4">Enquiry Form</h3>
                   
                   {formSuccess && (
                     <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center gap-3">
@@ -224,23 +224,23 @@ export default function Contact({ showToast }: ContactProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Full Name</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Full Name</label>
                       <input 
                         type="text" 
                         required
                         value={formData.name}
                         onChange={(e) => handleFieldChange("name", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Company / Organization (Optional)</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Company / Organization (Optional)</label>
                       <input 
                         type="text" 
                         value={formData.company}
                         onChange={(e) => handleFieldChange("company", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="Your Company"
                       />
                     </div>
@@ -248,43 +248,43 @@ export default function Contact({ showToast }: ContactProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Email Address</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Email Address</label>
                       <input 
                         type="email" 
                         required
                         value={formData.email}
                         onChange={(e) => handleFieldChange("email", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="john@example.com"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Contact Number</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Contact Number</label>
                       <input 
                         type="tel" 
                         required
                         value={formData.phone}
                         onChange={(e) => handleFieldChange("phone", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="+91 98765 43210"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-semibold text-[#0A192F] mb-2">Subject</label>
+                    <label className="block text-sm font-semibold text-primary mb-2">Subject</label>
                     <input 
                       type="text" 
                       required
                       value={formData.subject}
                       onChange={(e) => handleFieldChange("subject", e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                      className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                       placeholder="Brief subject of your enquiry"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-[#0A192F] mb-3">Enquiry Type</label>
+                    <label className="block text-sm font-semibold text-primary mb-3">Enquiry Type</label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {[
                         "Product Enquiry", 
@@ -293,7 +293,7 @@ export default function Contact({ showToast }: ContactProps) {
                         "Customer Support", 
                         "General Enquiry"
                       ].map((type) => (
-                        <label key={type} className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition-colors">
+                        <label key={type} className="flex items-center gap-3 p-3 rounded-xl border border-border cursor-pointer hover:bg-alt-bg transition-colors">
                           <input 
                             type="radio" 
                             name="enquiryType" 
@@ -309,13 +309,13 @@ export default function Contact({ showToast }: ContactProps) {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-[#0A192F] mb-2">Message</label>
+                    <label className="block text-sm font-semibold text-primary mb-2">Message</label>
                     <textarea 
                       required
                       rows={4}
                       value={formData.message}
                       onChange={(e) => handleFieldChange("message", e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all resize-none"
+                      className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all resize-none"
                       placeholder="Tell us about your requirements..."
                     ></textarea>
                   </div>
@@ -353,7 +353,7 @@ export default function Contact({ showToast }: ContactProps) {
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
             <Map className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-3xl lg:text-4xl font-display font-bold text-[#0A192F] tracking-tight mb-4">
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary tracking-tight mb-4">
             Locate Us
           </h2>
           <p className="text-[#475569] leading-relaxed text-lg mb-10 max-w-2xl mx-auto">
@@ -361,35 +361,35 @@ export default function Contact({ showToast }: ContactProps) {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-5xl mx-auto text-left mb-12">
-             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4">
+             <div className="bg-alt-bg p-6 rounded-2xl border border-border flex items-start gap-4">
                 <MapPin className="w-6 h-6 text-[#2563EB] shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-[#0A192F]">Google Maps integration</h4>
+                  <h4 className="font-bold text-primary">Google Maps integration</h4>
                   <p className="text-sm text-[#475569] mt-1">Easily find us on Google Maps</p>
                 </div>
              </div>
-             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4">
+             <div className="bg-alt-bg p-6 rounded-2xl border border-border flex items-start gap-4">
                 <Navigation className="w-6 h-6 text-[#2563EB] shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-[#0A192F]">Directions to our Corporate Office</h4>
+                  <h4 className="font-bold text-primary">Directions to our Corporate Office</h4>
                   <p className="text-sm text-[#475569] mt-1">Get precise navigation to our HQ.</p>
                 </div>
              </div>
-             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start gap-4">
+             <div className="bg-alt-bg p-6 rounded-2xl border border-border flex items-start gap-4">
                 <Building2 className="w-6 h-6 text-[#2563EB] shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-[#0A192F]">Parking & Accessibility</h4>
+                  <h4 className="font-bold text-primary">Parking & Accessibility</h4>
                   <p className="text-sm text-[#475569] mt-1">Visitor parking available on-site.</p>
                 </div>
              </div>
           </div>
           
-          <div className="w-full h-80 bg-slate-100 rounded-3xl border border-slate-200 flex flex-col items-center justify-center text-slate-400 max-w-5xl mx-auto relative overflow-hidden group shadow-inner">
+          <div className="w-full h-80 bg-background rounded-3xl border border-border flex flex-col items-center justify-center text-muted max-w-5xl mx-auto relative overflow-hidden group shadow-inner">
              <Map className="w-16 h-16 mb-4 opacity-50" />
              <p className="font-medium">Interactive Map Placeholder</p>
              <p className="text-sm">(Map integration goes here)</p>
              <div className="absolute inset-0 bg-white/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-                <button className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-colors flex items-center gap-2">
+                <button className="bg-[#2563EB] hover:bg-secondary text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-colors flex items-center gap-2">
                   <Navigation className="w-5 h-5" />
                   Get Directions
                 </button>

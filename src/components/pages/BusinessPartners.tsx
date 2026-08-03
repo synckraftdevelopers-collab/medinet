@@ -73,15 +73,15 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20 bg-white">
       
       {/* Distribution Network */}
-      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-slate-100 py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#1D4ED8] opacity-5" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center max-w-4xl mx-auto mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0A192F] tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
               <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Distribution Network</span>
             </h1>
             <h3 className="text-xl font-medium text-[#2563EB] mb-6">Delivering Healthcare Across Every Region</h3>
@@ -102,13 +102,13 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 <div className="w-10 h-10 rounded-full bg-[#2563EB]/10 flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5 text-[#2563EB]" />
                 </div>
-                <p className="font-semibold text-[#0A192F] mt-2">{item}</p>
+                <p className="font-semibold text-primary mt-2">{item}</p>
               </motion.div>
             ))}
           </div>
           
           <div className="mt-16 text-center">
-             <p className="text-lg font-bold text-[#0A192F] bg-gradient-to-r from-[#2563EB]/10 to-[#38BDF8]/10 inline-block px-8 py-4 rounded-full border border-[#2563EB]/20">
+             <p className="text-lg font-bold text-primary bg-gradient-to-r from-[#2563EB]/10 to-[#38BDF8]/10 inline-block px-8 py-4 rounded-full border border-[#2563EB]/20">
                Become a Distribution Partner and grow with a company committed to quality and trust.
              </p>
           </div>
@@ -125,15 +125,15 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <Handshake className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Franchise Opportunities</h2>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Franchise Opportunities</h2>
               <h3 className="text-[#2563EB] font-medium tracking-wide text-lg mb-4">Grow Your Business with Medinet</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
                 Medinet offers rewarding franchise opportunities for entrepreneurs and pharmaceutical professionals looking to establish or expand their presence in the healthcare industry.
               </p>
             </div>
-            <div className="lg:w-2/3 bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">As a Medinet franchise partner, you benefit from:</p>
+            <div className="lg:w-2/3 bg-alt-bg rounded-3xl p-8 md:p-10 border border-border">
+              <p className="text-primary font-semibold mb-6 text-lg">As a Medinet franchise partner, you benefit from:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Monopoly-based business opportunities*",
@@ -144,14 +144,14 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                   "Dedicated business assistance",
                   "Long-term growth partnership"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
                     <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-8 pt-6 border-t border-slate-200">
-                <p className="text-xs text-slate-500 mb-4">*Subject to company policies and territory availability.</p>
+              <div className="mt-8 pt-6 border-t border-border">
+                <p className="text-xs text-body mb-4">*Subject to company policies and territory availability.</p>
                 <p className="text-[#475569] leading-relaxed text-lg font-medium">
                   Join our expanding franchise network and contribute to delivering reliable healthcare solutions.
                 </p>
@@ -165,7 +165,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <Factory className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Third-Party Manufacturing</h2>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Third-Party Manufacturing</h2>
               <h3 className="text-teal-600 font-medium tracking-wide text-lg mb-4">Trusted Manufacturing Partnerships</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-teal-500 to-teal-700 mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
@@ -173,7 +173,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               </p>
             </div>
             <div className="lg:w-2/3 bg-teal-50/50 rounded-3xl p-8 md:p-10 border border-teal-100/50">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">Our third-party manufacturing services include:</p>
+              <p className="text-primary font-semibold mb-6 text-lg">Our third-party manufacturing services include:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Tablet manufacturing",
@@ -204,7 +204,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shrink-0 shadow-lg mb-6">
                 <Building2 className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-display font-bold text-[#0A192F] mb-4">Institutional Business</h2>
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Institutional Business</h2>
               <h3 className="text-amber-600 font-medium tracking-wide text-lg mb-4">Serving Healthcare Institutions with Excellence</h3>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
@@ -212,7 +212,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
               </p>
             </div>
             <div className="lg:w-2/3 bg-orange-50/50 rounded-3xl p-8 md:p-10 border border-orange-100/50">
-              <p className="text-[#0A192F] font-semibold mb-6 text-lg">We offer:</p>
+              <p className="text-primary font-semibold mb-6 text-lg">We offer:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Institutional supply programs",
@@ -240,7 +240,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       </section>
 
       {/* Business Enquiry Form */}
-      <section id="enquiry" className="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden">
+      <section id="enquiry" className="py-20 lg:py-28 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">
@@ -248,19 +248,19 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 <span className="utility-dot"></span>
                 Business Enquiry
               </span>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#0A192F] tracking-tight leading-tight mb-6">
+              <h2 className="text-3xl sm:text-4xl font-display font-bold text-primary tracking-tight leading-tight mb-6">
                 Let's Build a <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Successful Partnership</span>
               </h2>
               <p className="text-[#475569] leading-relaxed text-lg mb-8">
                 Whether you are a distributor, franchise partner, healthcare institution, or business organization, Medinet welcomes the opportunity to collaborate and grow together.
               </p>
               
-              <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                <h3 className="text-xl font-bold text-[#0A192F] mb-4">Why Partner with Medinet?</h3>
+              <div className="bg-white p-8 rounded-3xl border border-border shadow-sm">
+                <h3 className="text-xl font-bold text-primary mb-4">Why Partner with Medinet?</h3>
                 <p className="text-[#475569] leading-relaxed">
                   Choosing Medinet means partnering with a company that values quality, integrity, innovation, and long-term relationships. We are committed to supporting our partners through reliable products, ethical business practices, responsive customer service, and sustainable growth opportunities.
                 </p>
-                <div className="mt-6 pt-6 border-t border-slate-100">
+                <div className="mt-6 pt-6 border-t border-border">
                   <p className="font-bold text-[#2563EB]">
                     Together, let's advance healthcare with confidence—because at Medinet, it's <em>"Reliable Care, Every Time."</em>
                   </p>
@@ -269,9 +269,9 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(11,31,77,0.06)] border border-slate-100">
+              <div className="bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(11,31,77,0.06)] border border-border">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <h3 className="text-2xl font-bold text-[#0A192F] mb-6 border-b border-slate-100 pb-4">Business Enquiry Form</h3>
+                  <h3 className="text-2xl font-bold text-primary mb-6 border-b border-border pb-4">Business Enquiry Form</h3>
                   
                   {formSuccess && (
                     <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center gap-3">
@@ -282,31 +282,31 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Full Name</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Full Name</label>
                       <input 
                         type="text" 
                         required
                         value={formData.name}
                         onChange={(e) => handleFieldChange("name", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Organization / Company Name</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Organization / Company Name</label>
                       <input 
                         type="text" 
                         required
                         value={formData.company}
                         onChange={(e) => handleFieldChange("company", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="Your Company Ltd."
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-[#0A192F] mb-3">Business Type</label>
+                    <label className="block text-sm font-semibold text-primary mb-3">Business Type</label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {[
                         "Distributor", 
@@ -316,7 +316,7 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                         "Third-Party Manufacturing", 
                         "Other"
                       ].map((type) => (
-                        <label key={type} className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition-colors">
+                        <label key={type} className="flex items-center gap-3 p-3 rounded-xl border border-border cursor-pointer hover:bg-alt-bg transition-colors">
                           <input 
                             type="radio" 
                             name="partnerType" 
@@ -333,24 +333,24 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Email Address</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Email Address</label>
                       <input 
                         type="email" 
                         required
                         value={formData.email}
                         onChange={(e) => handleFieldChange("email", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="john@example.com"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Contact Number</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Contact Number</label>
                       <input 
                         type="tel" 
                         required
                         value={formData.phone}
                         onChange={(e) => handleFieldChange("phone", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="+91 98765 43210"
                       />
                     </div>
@@ -358,37 +358,37 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">State / City</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">State / City</label>
                       <input 
                         type="text" 
                         required
                         value={formData.stateCity}
                         onChange={(e) => handleFieldChange("stateCity", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="Maharashtra, Mumbai"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-[#0A192F] mb-2">Products or Services of Interest</label>
+                      <label className="block text-sm font-semibold text-primary mb-2">Products or Services of Interest</label>
                       <input 
                         type="text" 
                         required
                         value={formData.productsInterested}
                         onChange={(e) => handleFieldChange("productsInterested", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
+                        className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all"
                         placeholder="E.g., Tablets, PCD Franchise"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-[#0A192F] mb-2">Message</label>
+                    <label className="block text-sm font-semibold text-primary mb-2">Message</label>
                     <textarea 
                       required
                       rows={4}
                       value={formData.message}
                       onChange={(e) => handleFieldChange("message", e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all resize-none"
+                      className="w-full bg-alt-bg border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 focus:border-[#2563EB] transition-all resize-none"
                       placeholder="Tell us about your requirements..."
                     ></textarea>
                   </div>

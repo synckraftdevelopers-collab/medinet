@@ -455,8 +455,8 @@ export default function Products({ params, showToast }: ProductsProps) {
                       <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs font-mono shrink-0">
                         <span className="text-muted">{p.packaging}</span>
                         <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center justify-center gap-1.5 w-[110px] h-9 bg-gradient-to-r from-white to-slate-50 border border-blue-200 rounded-full text-[10px] font-bold text-slate-800 uppercase tracking-wider shadow-sm group-hover:from-blue-600 group-hover:to-blue-500 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
-                            DETAILS <ArrowRight className="w-3.5 h-3.5 text-blue-600 group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
+                          <span className="inline-flex items-center justify-center gap-1.5 w-[110px] h-9 bg-gradient-to-r from-white to-slate-50 border border-blue-200 rounded-full text-[10px] font-bold text-heading uppercase tracking-wider shadow-sm group-hover:from-blue-600 group-hover:to-blue-500 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
+                            DETAILS <ArrowRight className="w-3.5 h-3.5 text-secondary group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
                           </span>
                         </div>
                       </div>
@@ -504,7 +504,7 @@ export default function Products({ params, showToast }: ProductsProps) {
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute bottom-[20%] right-[5%]"
           >
-            <Pill className="w-48 h-48 text-[#1D4ED8]" />
+            <Pill className="w-48 h-48 text-secondary" />
           </motion.div>
         </div>
 
@@ -517,13 +517,13 @@ export default function Products({ params, showToast }: ProductsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#1D4ED8]/20 shadow-[0_4px_15px_rgba(13,148,136,0.06)] mb-6 hover:border-[#1D4ED8]/40 transition-colors duration-300"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-secondary/20 shadow-[0_4px_15px_rgba(13,148,136,0.06)] mb-6 hover:border-secondary/40 transition-colors duration-300"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
               </span>
-              <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#0A192F] uppercase">
+              <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-primary uppercase">
                 Innovation in Every Step
               </span>
             </motion.div>
@@ -534,7 +534,7 @@ export default function Products({ params, showToast }: ProductsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-[900] text-[#0A192F] tracking-tight leading-tight mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-[900] text-primary tracking-tight leading-tight mb-6"
             >
               New <span className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent">Launches</span>
             </motion.h2>
@@ -558,7 +558,7 @@ export default function Products({ params, showToast }: ProductsProps) {
             >
               Medinet continues to expand its pharmaceutical portfolio with innovative formulations developed to meet evolving healthcare needs. Our commitment to research, quality, and patient-focused care ensures that every new product delivers value to healthcare professionals and patients alike.
               <br/><br/>
-              <strong className="font-bold text-[#0A192F]">Stay tuned for our latest product launches and therapeutic advancements.</strong>
+              <strong className="font-bold text-primary">Stay tuned for our latest product launches and therapeutic advancements.</strong>
             </motion.p>
           </div>
 
@@ -577,20 +577,20 @@ export default function Products({ params, showToast }: ProductsProps) {
               <motion.div
                 variants={fadeUp}
                 key={idx}
-                className="group relative bg-white/70 backdrop-blur-xl rounded-[24px] p-6 lg:p-8 flex flex-col justify-between border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.12)] hover:border-[#1D4ED8]/30 hover:-translate-y-[8px] transition-all duration-300 overflow-hidden cursor-pointer h-full"
+                className="group relative bg-white/70 backdrop-blur-xl rounded-[24px] p-6 lg:p-8 flex flex-col justify-between border border-border shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.12)] hover:border-secondary/30 hover:-translate-y-[8px] transition-all duration-300 overflow-hidden cursor-pointer h-full"
               >
                 {/* Thin Animated Top Gradient */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                 {/* Subtle Background Pill Icon */}
                 <div className="absolute -top-4 -right-4 opacity-5 group-hover:opacity-10 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 pointer-events-none">
-                  <Pill className="w-32 h-32 text-[#0A192F]" />
+                  <Pill className="w-32 h-32 text-primary" />
                 </div>
 
                 <div className="relative z-10 flex-1 flex flex-col">
                   {/* Card Header */}
                   <div className="flex items-center justify-between mb-8">
-                    <span className="inline-flex items-center px-3 py-1 bg-[#1D4ED8]/10 text-[#1D4ED8] text-[10px] font-mono font-bold uppercase tracking-widest rounded-full border border-[#1D4ED8]/20 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors duration-300">
+                    <span className="inline-flex items-center px-3 py-1 bg-secondary/10 text-secondary text-[10px] font-mono font-bold uppercase tracking-widest rounded-full border border-secondary/20 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
                       {launch.category}
                     </span>
                     <span className="inline-flex items-center gap-1.5 bg-rose-50 text-rose-600 px-2 py-0.5 rounded text-[9px] font-bold tracking-widest border border-rose-100">
@@ -600,7 +600,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="font-display font-[800] text-2xl text-[#0A192F] mb-3 group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 pr-4">
+                  <h3 className="font-display font-[800] text-2xl text-primary mb-3 group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#1D4ED8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 pr-4">
                     {launch.name}
                   </h3>
                   <p className="text-xs font-mono text-[#475569] tracking-wider uppercase font-semibold">
@@ -609,14 +609,14 @@ export default function Products({ params, showToast }: ProductsProps) {
                 </div>
 
                 {/* Footer / CTA */}
-                <div className="relative z-10 mt-8 pt-5 border-t border-slate-200/60 flex items-center justify-between group/btn shrink-0">
+                <div className="relative z-10 mt-8 pt-5 border-t border-border/60 flex items-center justify-between group/btn shrink-0">
                   <div className="relative">
-                    <span className="text-[11px] font-bold text-[#0A192F] tracking-widest uppercase inline-block">
+                    <span className="text-[11px] font-bold text-primary tracking-widest uppercase inline-block">
                       Available Now
                     </span>
-                    <span className="absolute -bottom-1 left-0 w-full h-[1.5px] bg-[#1D4ED8] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    <span className="absolute -bottom-1 left-0 w-full h-[1.5px] bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:bg-[#1D4ED8] group-hover:border-[#1D4ED8] transition-colors duration-300">
+                  <div className="w-8 h-8 rounded-full bg-alt-bg border border-border flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-colors duration-300">
                     <ArrowRight className="w-4 h-4 text-[#475569] group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
                   </div>
                 </div>
@@ -638,10 +638,10 @@ export default function Products({ params, showToast }: ProductsProps) {
 
           {/* Molecular/DNA Background Elements */}
           <div className="absolute top-[10%] left-[5%] opacity-[0.03]">
-            <Activity className="w-64 h-64 text-[#0A192F]" />
+            <Activity className="w-64 h-64 text-primary" />
           </div>
           <div className="absolute bottom-[10%] right-[5%] opacity-[0.02]">
-            <Layers className="w-80 h-80 text-[#1D4ED8]" />
+            <Layers className="w-80 h-80 text-secondary" />
           </div>
         </div>
 
@@ -660,7 +660,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
               </span>
-              <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#0A192F] uppercase">
+              <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-primary uppercase">
                 Market Leaders
               </span>
             </motion.div>
@@ -671,7 +671,7 @@ export default function Products({ params, showToast }: ProductsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-display font-[900] text-[#0A192F] tracking-tight leading-tight mb-6"
+              className="text-4xl md:text-5xl font-display font-[900] text-primary tracking-tight leading-tight mb-6"
             >
               Featured <span className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent">Brands</span>
             </motion.h2>
@@ -728,7 +728,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                 <motion.div
                   key={idx}
                   variants={fadeUp}
-                  className="group relative bg-white/70 backdrop-blur-xl rounded-[22px] p-5 flex flex-col items-center text-center border border-slate-200/60 shadow-[0_8px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgba(11,31,77,0.08)] hover:border-[#2563EB]/30 hover:-translate-y-[6px] transition-all duration-300 cursor-default overflow-hidden"
+                  className="group relative bg-white/70 backdrop-blur-xl rounded-[22px] p-5 flex flex-col items-center text-center border border-border/60 shadow-[0_8px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgba(11,31,77,0.08)] hover:border-[#2563EB]/30 hover:-translate-y-[6px] transition-all duration-300 cursor-default overflow-hidden"
                 >
                   {/* Animated Gradient Top Border */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0A192F] via-[#2563EB] to-[#38BDF8] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -741,19 +741,19 @@ export default function Products({ params, showToast }: ProductsProps) {
                     <motion.div
                       animate={{ y: [0, -4, 0] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
-                      className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#F8FAFC] to-[#F1F5F9] border border-slate-200 shadow-sm flex items-center justify-center z-10 group-hover:border-[#2563EB]/40 transition-colors duration-300"
+                      className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#F8FAFC] to-[#F1F5F9] border border-border shadow-sm flex items-center justify-center z-10 group-hover:border-[#2563EB]/40 transition-colors duration-300"
                     >
                       <Icon className="w-6 h-6 text-[#475569] group-hover:text-[#2563EB] transition-colors duration-300" />
                     </motion.div>
                   </div>
 
                   {/* Brand Name */}
-                  <h3 className="font-display font-[800] text-lg text-[#0A192F] mb-1.5 group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#2563EB] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-1">
+                  <h3 className="font-display font-[800] text-lg text-primary mb-1.5 group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#2563EB] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-1">
                     {brand.name}
                   </h3>
 
                   {/* Category Label */}
-                  <span className="text-[9px] font-mono font-bold text-[#1D4ED8] uppercase tracking-widest bg-[#1D4ED8]/10 px-2 py-0.5 rounded-full group-hover:bg-[#1D4ED8]/20 transition-colors duration-300">
+                  <span className="text-[9px] font-mono font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-2 py-0.5 rounded-full group-hover:bg-secondary/20 transition-colors duration-300">
                     {brand.label}
                   </span>
                 </motion.div>
@@ -1000,7 +1000,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                     disabled={formSubmitting}
                     value={enquiryProduct ? enquiryProduct.name : ""}
                     readOnly={!!enquiryProduct}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-border rounded-input text-sm text-heading focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-3.5 py-2.5 bg-alt-bg border border-border rounded-input text-sm text-heading focus:border-secondary focus:ring-4 focus:ring-secondary/15 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="E.g., ZEFRAX 500"
                   />
                 </div>

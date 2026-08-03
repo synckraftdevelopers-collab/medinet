@@ -7,26 +7,26 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Premium Pharmaceutical Colors */
-  --color-primary: #0A192F;
-  --color-primary-hover: #1D4ED8;
-  --color-secondary: #1D4ED8;
-  --color-accent: #E11D48;
-  --color-highlight: #38BDF8;
+  --color-primary: #0B1F4D;
+  --color-primary-hover: #17367B;
+  --color-secondary: #EC4899;
+  --color-accent: #DB2777;
+  --color-highlight: #F472B6;
 
   --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
   --color-alt-bg: #F1F5F9;
-  --color-footer: #0A192F;
+  --color-footer: #0B1120;
 
   --color-heading: #0F172A;
   --color-body: #475569;
   --color-muted: #94A3B8;
   --color-border: #E2E8F0;
 
-  --color-success: #10B981;
-  --color-warning: #E11D48;
+  --color-success: #16A34A;
+  --color-warning: #F59E0B;
   --color-error: #DC2626;
-  --color-info: #1D4ED8;
+  --color-info: #EC4899;
 
   /* Design Tokens */
   --radius-btn: 12px;
@@ -35,11 +35,11 @@
   --radius-dropdown: 16px;
   --radius-badge: 999px;
 
-  --shadow-card: 0 10px 30px -5px rgba(10, 25, 47,.08);
-  --shadow-card-hover: 0 20px 40px -5px rgba(10, 25, 47,.12);
-  --shadow-dropdown: 0 10px 25px -5px rgba(0,0,0,.08);
-  --shadow-btn: 0 8px 20px -4px rgba(10, 25, 47,.15);
-  --shadow-nav: 0 2px 10px -2px rgba(10, 25, 47,.05);
+  --shadow-card: 0 10px 30px -5px rgba(10, 25, 47, .08);
+  --shadow-card-hover: 0 20px 40px -5px rgba(10, 25, 47, .12);
+  --shadow-dropdown: 0 10px 25px -5px rgba(0, 0, 0, .08);
+  --shadow-btn: 0 8px 20px -4px rgba(10, 25, 47, .15);
+  --shadow-nav: 0 2px 10px -2px rgba(10, 25, 47, .05);
 }
 
 @layer base {
@@ -51,7 +51,11 @@
   }
 
   /* Global scroll offset for all sections to prevent sticky header overlap */
-  section[id], div[id], h1[id], h2[id], h3[id] {
+  section[id],
+  div[id],
+  h1[id],
+  h2[id],
+  h3[id] {
     scroll-margin-top: 110px;
   }
 
@@ -62,7 +66,12 @@
   }
 
   /* Typography Hierarchy, Responsive Font Scaling, Line-Height & Letter Spacing */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display text-heading;
     margin-bottom: 0.65em;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -117,7 +126,9 @@
     max-width: 68ch;
   }
 
-  .text-center p, [class*="text-center"] p, p.mx-auto {
+  .text-center p,
+  [class*="text-center"] p,
+  p.mx-auto {
     margin-left: auto;
     margin-right: auto;
   }
@@ -132,7 +143,10 @@
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -150,6 +164,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -353,6 +368,7 @@ nav a::after {
     opacity: 0;
     transform: translateY(-6px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -361,14 +377,17 @@ nav a::after {
 
 /* Touch Targets & Mobile Optimizations */
 @media (max-width: 768px) {
-  button, a {
-    min-height: 44px; /* Minimum touch target size */
+
+  button,
+  a {
+    min-height: 44px;
+    /* Minimum touch target size */
   }
-  
+
   .utility-panel {
     padding: 1.5rem;
   }
-  
+
   /* Ensure proper spacing and prevent horizontal scrolling */
   body {
     overflow-x: hidden;
@@ -390,18 +409,22 @@ nav a::after {
    ========================================================================== */
 
 /* 1. Backdrop Blur & Sticky Header (Safari, iOS, and Legacy Fallbacks) */
-.glass-nav, [class*="backdrop-blur"] {
+.glass-nav,
+[class*="backdrop-blur"] {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
 
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .glass-nav, [class*="backdrop-blur"] {
+
+  .glass-nav,
+  [class*="backdrop-blur"] {
     background: rgba(255, 255, 255, 0.98) !important;
   }
 }
 
-.sticky, [class*="sticky"] {
+.sticky,
+[class*="sticky"] {
   position: -webkit-sticky;
   position: sticky;
   -webkit-backface-visibility: hidden;
@@ -411,19 +434,26 @@ nav a::after {
 }
 
 /* 2. Flex Alignment & Grid Spacing Normalization (Safari, Firefox, Edge) */
-.flex, .inline-flex, .grid, .inline-grid {
+.flex,
+.inline-flex,
+.grid,
+.inline-grid {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 /* 3. Dropdowns & Absolute Menus (Safari Tap Highlight & Clipping Fixes) */
-[role="menu"], [class*="absolute"][class*="top-full"], .animate-fade-in {
+[role="menu"],
+[class*="absolute"][class*="top-full"],
+.animate-fade-in {
   -webkit-tap-highlight-color: transparent;
   z-index: 100;
 }
 
 /* 4. Cross-Browser Shadows (Webkit & Gecko Anti-aliasing Protection) */
-.utility-card, .utility-panel, [class*="shadow"] {
+.utility-card,
+.utility-panel,
+[class*="shadow"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-backface-visibility: hidden;
@@ -431,7 +461,8 @@ nav a::after {
 }
 
 /* 5. SVG Icons (Prevent Shrinking & Collapsing in Safari, Firefox, Edge) */
-svg.lucide, svg[class*="lucide"] {
+svg.lucide,
+svg[class*="lucide"] {
   flex-shrink: 0 !important;
   display: inline-block;
   vertical-align: middle;
@@ -442,7 +473,10 @@ svg.lucide, svg[class*="lucide"] {
 }
 
 /* 6. Form Inputs (iOS Safari Zoom Prevention & Webkit Appearance Normalization) */
-input, select, textarea, .utility-input {
+input,
+select,
+textarea,
+.utility-input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -454,13 +488,19 @@ input, select, textarea, .utility-input {
 }
 
 @media (min-width: 640px) {
-  input, select, textarea, .utility-input {
+
+  input,
+  select,
+  textarea,
+  .utility-input {
     font-size: 0.875rem !important;
   }
 }
 
 /* 7. Smooth Scrolling & Root Normalization across Webkit, Gecko, and Blink */
-:root, html, body {
+:root,
+html,
+body {
   scroll-behavior: smooth !important;
   scroll-padding-top: 104px !important;
   -webkit-overflow-scrolling: touch;
@@ -475,7 +515,10 @@ input, select, textarea, .utility-input {
    ========================================================================== */
 
 /* 1. GPU Acceleration & Layout Shift Protection for Animations */
-.utility-card, .utility-panel, [class*="animate-"], [class*="transition-"] {
+.utility-card,
+.utility-panel,
+[class*="animate-"],
+[class*="transition-"] {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
@@ -483,7 +526,8 @@ input, select, textarea, .utility-input {
 }
 
 /* 2. Prevent CLS on Media by enforcing box containment */
-video, canvas {
+video,
+canvas {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
@@ -491,7 +535,9 @@ video, canvas {
 
 /* 3. Render Optimization for Offscreen Sections (Reduces LCP & Main Thread Blocking) */
 @media (min-width: 768px) {
-  section:not(:first-of-type), footer {
+
+  section:not(:first-of-type),
+  footer {
     content-visibility: auto;
     contain-intrinsic-size: 1px 600px;
   }
@@ -508,25 +554,27 @@ section {
 }
 
 /* Ensure first hero sections and headers maintain proper above-the-fold spacing */
-main > section:first-of-type {
+main>section:first-of-type {
   padding-top: clamp(2.5rem, 5vw, 4rem) !important;
 }
 
 /* 2. Equal Card Spacing & Grid Gaps */
-.grid, [class*="grid-cols-"] {
+.grid,
+[class*="grid-cols-"] {
   gap: clamp(1.25rem, 2.5vw, 2rem) !important;
 }
 
 /* 3. Equal Card Internal Padding across Viewports */
-.utility-card, .utility-panel {
+.utility-card,
+.utility-panel {
   padding: clamp(1.5rem, 3vw, 2.5rem) !important;
 }
 
 /* 4. Consistent Margins & Removal of Unnecessary Whitespace */
-.space-y-12 > :not([hidden]) ~ :not([hidden]),
-.space-y-16 > :not([hidden]) ~ :not([hidden]),
-.space-y-20 > :not([hidden]) ~ :not([hidden]),
-[class*="space-y-"] > :not([hidden]) ~ :not([hidden]) {
+.space-y-12> :not([hidden])~ :not([hidden]),
+.space-y-16> :not([hidden])~ :not([hidden]),
+.space-y-20> :not([hidden])~ :not([hidden]),
+[class*="space-y-"]> :not([hidden])~ :not([hidden]) {
   margin-top: clamp(2rem, 4vw, 3.5rem) !important;
 }
 
@@ -539,7 +587,11 @@ main > section:first-of-type {
 }
 
 /* 5. Consistent Container Gutters for Equal Edge Spacing on All Viewports */
-.container, [class*="max-w-7xl"], [class*="max-w-6xl"], [class*="max-w-5xl"], [class*="max-w-4xl"] {
+.container,
+[class*="max-w-7xl"],
+[class*="max-w-6xl"],
+[class*="max-w-5xl"],
+[class*="max-w-4xl"] {
   margin-left: auto !important;
   margin-right: auto !important;
   padding-left: clamp(1rem, 4vw, 2.5rem) !important;
@@ -551,7 +603,8 @@ main > section:first-of-type {
    ========================================================================== */
 
 /* 1. Header Alignment & Frosted Glass Refinement */
-header[class*="sticky"], header[class*="fixed"] {
+header[class*="sticky"],
+header[class*="fixed"] {
   background: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: blur(16px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
@@ -560,20 +613,26 @@ header[class*="sticky"], header[class*="fixed"] {
 }
 
 /* 2. Enterprise Shadows & Subtle Border Aesthetics for Cards */
-.utility-card:not([class*="bg-"]), .utility-panel:not([class*="bg-"]), .card:not([class*="bg-"]) {
+.utility-card:not([class*="bg-"]),
+.utility-panel:not([class*="bg-"]),
+.card:not([class*="bg-"]) {
   border: 1px solid rgba(226, 232, 240, 0.75);
   background-image: linear-gradient(180deg, #FFFFFF 0%, #FCFCFD 100%);
   box-shadow: 0 4px 20px -2px rgba(10, 25, 47, 0.04), 0 2px 6px -1px rgba(10, 25, 47, 0.02);
 }
 
 /* Hover Shadow Elevation (Multi-layered ambient + direct light shadow) */
-.utility-card:not([class*="bg-"]):hover, .utility-panel:not([class*="bg-"]):hover, .card:not([class*="bg-"]):hover, .hover-lift:not([class*="bg-"]):hover {
+.utility-card:not([class*="bg-"]):hover,
+.utility-panel:not([class*="bg-"]):hover,
+.card:not([class*="bg-"]):hover,
+.hover-lift:not([class*="bg-"]):hover {
   border-color: rgba(29, 78, 216, 0.25);
   box-shadow: 0 16px 32px -12px rgba(10, 25, 47, 0.1), 0 8px 16px -8px rgba(29, 78, 216, 0.08), 0 0 0 1px rgba(29, 78, 216, 0.05);
 }
 
 /* 3. Glossy Sheen & Optical Polish on Badges, Tags, and Status Pills */
-span[class*="rounded-full"], div[class*="rounded-full"][class*="px-"] {
+span[class*="rounded-full"],
+div[class*="rounded-full"][class*="px-"] {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -581,34 +640,50 @@ span[class*="rounded-full"], div[class*="rounded-full"][class*="px-"] {
 }
 
 /* 4. Enterprise Button Depth & Inner Highlight */
-.utility-button-primary, button[class*="bg-primary"], button[class*="bg-[#0A192F]"] {
+.utility-button-primary,
+button[class*="bg-primary"],
+button[class*="bg-[#0A192F]"] {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 14px 0 rgba(10, 25, 47, 0.22) !important;
 }
 
-.utility-button-primary:hover, button[class*="bg-primary"]:hover, button[class*="bg-[#0A192F]"]:hover {
+.utility-button-primary:hover,
+button[class*="bg-primary"]:hover,
+button[class*="bg-[#0A192F]"]:hover {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 24px rgba(29, 78, 216, 0.38), 0 4px 12px rgba(10, 25, 47, 0.2) !important;
 }
 
 /* 5. Clean Form Input Aesthetics & Polish */
-input, select, textarea, .utility-input {
+input,
+select,
+textarea,
+.utility-input {
   background-color: #FFFFFF !important;
   border: 1px solid #CBD5E1 !important;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
   transition: border-color 200ms ease, box-shadow 200ms ease !important;
 }
 
-input:hover, select:hover, textarea:hover, .utility-input:hover {
+input:hover,
+select:hover,
+textarea:hover,
+.utility-input:hover {
   border-color: #94A3B8 !important;
 }
 
-input:focus, select:focus, textarea:focus, .utility-input:focus {
+input:focus,
+select:focus,
+textarea:focus,
+.utility-input:focus {
   border-color: #2563EB !important;
   box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
   outline: none !important;
 }
 
 /* 6. Smooth Transitions for Dropdowns, Modals, and Accordions */
-[class*="dropdown"], [class*="accordion"], [role="menu"], [role="dialog"] {
+[class*="dropdown"],
+[class*="accordion"],
+[role="menu"],
+[role="dialog"] {
   -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
 }

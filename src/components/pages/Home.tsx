@@ -305,7 +305,7 @@ export default function Home({ navigate }: HomeProps) {
             >
 
               
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.25] mb-6 relative inline-block">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.25] mb-6 relative inline-block">
                 <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full z-[-1] pointer-events-none"></div>
                 About <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Medinet</span>
               </h2>
@@ -325,10 +325,10 @@ export default function Home({ navigate }: HomeProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               >
-                <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-4">
+                <p className="text-body text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-4">
                   {BRAND_INFO.name} is dedicated to delivering reliable pharmaceutical solutions that support better healthcare outcomes. Guided by our tagline, "{BRAND_INFO.tagline.replace(/\.$/, '')}," we combine scientific excellence, ethical business practices, and a customer-centric approach to meet the evolving needs of healthcare professionals and patients.
                 </p>
-                <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
+                <p className="text-body text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
                   Our growing portfolio spans multiple therapeutic segments, reflecting our commitment to quality, innovation, and accessibility.
                 </p>
               </motion.div>
@@ -349,7 +349,7 @@ export default function Home({ navigate }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + (idx * 0.15), duration: 0.7, ease: "easeOut" }}
-                className="group relative bg-white/70 backdrop-blur-xl rounded-[24px] border border-slate-100 p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[8px] transition-all duration-300 h-full flex flex-col items-center text-center overflow-hidden"
+                className="group relative bg-white/70 backdrop-blur-xl rounded-[24px] border border-border p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[8px] transition-all duration-300 h-full flex flex-col items-center text-center overflow-hidden"
               >
                 {/* Floating gradient blob inside card */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl z-0 pointer-events-none group-hover:bg-secondary/10 transition-colors duration-500"></div>
@@ -359,24 +359,24 @@ export default function Home({ navigate }: HomeProps) {
                   <motion.div 
                     animate={{ y: [0, -4, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
-                    className="relative w-14 h-14 bg-gradient-to-br from-white to-slate-50 rounded-full border border-slate-100 shadow-sm flex items-center justify-center text-secondary group-hover:border-primary/30 group-hover:text-primary transition-colors duration-300"
+                    className="relative w-14 h-14 bg-gradient-to-br from-white to-slate-50 rounded-full border border-border shadow-sm flex items-center justify-center text-secondary group-hover:border-primary/30 group-hover:text-primary transition-colors duration-300"
                   >
                     <span className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[8px] text-secondary font-bold">✓</span>
                     <feature.icon className="w-6 h-6" />
                   </motion.div>
                 </div>
                 
-                <h3 className="font-display font-extrabold text-[#0A192F] text-lg mb-2 relative z-10 group-hover:text-secondary transition-colors duration-300">
+                <h3 className="font-display font-extrabold text-primary text-lg mb-2 relative z-10 group-hover:text-secondary transition-colors duration-300">
                   {feature.title}
                 </h3>
                 
-                <p className="text-sm text-slate-500 leading-relaxed relative z-10">
+                <p className="text-sm text-body leading-relaxed relative z-10">
                   {feature.desc}
                 </p>
                 
                 {/* Elegant corner decoration */}
-                <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-slate-200 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-                <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-slate-200 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-border rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-border rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
               </motion.div>
             ))}
           </div>
@@ -384,7 +384,7 @@ export default function Home({ navigate }: HomeProps) {
           <div className="mt-16 flex justify-center relative z-10">
             <button
               onClick={() => navigate("about")}
-              className="group relative px-8 py-3.5 bg-white border border-slate-200 text-[#0A192F] font-mono text-sm font-bold tracking-wide rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(29, 78, 216,0.12)] hover:border-secondary hover:text-secondary transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 overflow-hidden"
+              className="group relative px-8 py-3.5 bg-white border border-border text-primary font-mono text-sm font-bold tracking-wide rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(29, 78, 216,0.12)] hover:border-secondary hover:text-secondary transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 overflow-hidden"
             >
               <span className="relative z-10">CEO MESSAGE</span>
               <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -418,7 +418,7 @@ export default function Home({ navigate }: HomeProps) {
                 </span>
               </div>
               
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-6">
                 Why <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Medinet?</span>
               </h2>
 
@@ -430,7 +430,7 @@ export default function Home({ navigate }: HomeProps) {
                 className="w-24 h-1 rounded-full bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto mb-6 origin-center"
               ></motion.div>
 
-              <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="text-body text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 We are dedicated to providing the highest standards of healthcare through our comprehensive and reliable pharmaceutical solutions.
               </p>
             </motion.div>
@@ -453,13 +453,13 @@ export default function Home({ navigate }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * idx, duration: 0.5, ease: "easeOut" }}
-                className="group relative bg-white/70 backdrop-blur-xl rounded-2xl border border-slate-100 p-6 flex items-start gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-1 transition-all duration-300"
+                className="group relative bg-white/70 backdrop-blur-xl rounded-2xl border border-border p-6 flex items-start gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm flex items-center justify-center shrink-0 group-hover:border-secondary/30 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-border shadow-sm flex items-center justify-center shrink-0 group-hover:border-secondary/30 transition-colors duration-300">
                   <item.icon className="w-6 h-6 text-secondary group-hover:scale-110 group-hover:text-primary transition-all duration-300" />
                 </div>
                 <div className="flex-1 pt-1 flex items-center">
-                  <h3 className="font-display font-bold text-[#0A192F] text-[15px] leading-snug group-hover:text-secondary transition-colors duration-300">
+                  <h3 className="font-display font-bold text-primary text-[15px] leading-snug group-hover:text-secondary transition-colors duration-300">
                     {item.title}
                   </h3>
                 </div>
@@ -555,7 +555,7 @@ export default function Home({ navigate }: HomeProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-6 max-w-4xl mx-auto"
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-6 max-w-4xl mx-auto"
             >
               Healthcare Solutions Across <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Multiple Specialties</span>
             </motion.h2>
@@ -575,7 +575,7 @@ export default function Home({ navigate }: HomeProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="text-base md:text-lg text-slate-500 leading-[1.8] max-w-2xl mx-auto"
+              className="text-base md:text-lg text-body leading-[1.8] max-w-2xl mx-auto"
             >
               We develop and distribute highly effective medicines covering a broad array of therapeutic disciplines, backed by targeted formulation research.
             </motion.p>
@@ -628,16 +628,16 @@ export default function Home({ navigate }: HomeProps) {
                       <IconComp className="w-6 h-6 relative z-10" />
                     </motion.div>
                     
-                    <h3 className="font-display font-extrabold text-slate-900 text-[19px] mb-3 group-hover:text-secondary transition-colors duration-[250ms]">
+                    <h3 className="font-display font-extrabold text-heading text-[19px] mb-3 group-hover:text-secondary transition-colors duration-[250ms]">
                       {cat.name}
                     </h3>
                     
-                    <p className="text-[14px] text-slate-600 leading-loose line-clamp-3">
+                    <p className="text-[14px] text-body leading-loose line-clamp-3">
                       {cat.description}
                     </p>
                   </div>
                   
-                  <div className="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-500 group-hover:text-secondary transition-colors duration-[250ms] relative z-10">
+                  <div className="mt-8 pt-5 border-t border-border flex items-center justify-between text-xs font-mono font-bold text-body group-hover:text-secondary transition-colors duration-[250ms] relative z-10">
                     <span className="relative overflow-hidden py-1">
                       VIEW FORMULATIONS
                       <span className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-[250ms] ease-out"></span>
@@ -728,8 +728,8 @@ export default function Home({ navigate }: HomeProps) {
 
                 <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
                   <span className="text-xs font-mono"><span className="text-muted">Pack:</span> <span className="text-heading font-bold">{product.packaging}</span></span>
-                  <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-white to-slate-50 border border-blue-200 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wider shadow-sm group-hover:from-blue-600 group-hover:to-blue-500 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
-                    DETAILS <ArrowRight className="w-3.5 h-3.5 text-blue-600 group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-white to-slate-50 border border-blue-200 rounded-full text-xs font-bold text-heading uppercase tracking-wider shadow-sm group-hover:from-blue-600 group-hover:to-blue-500 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
+                    DETAILS <ArrowRight className="w-3.5 h-3.5 text-secondary group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
                   </span>
                 </div>
               </motion.div>
@@ -773,22 +773,22 @@ export default function Home({ navigate }: HomeProps) {
               className="max-w-2xl"
             >
               {/* Glassmorphism Pill Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_10px_rgba(0,0,0,0.02)] mb-6 group cursor-default hover:border-secondary/30 transition-colors duration-300">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-border/60 shadow-[0_2px_10px_rgba(0,0,0,0.02)] mb-6 group cursor-default hover:border-secondary/30 transition-colors duration-300">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75 group-hover:bg-primary transition-colors"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary group-hover:bg-primary transition-colors"></span>
                 </span>
-                <span className="text-[11px] font-mono font-bold tracking-[0.1em] text-slate-700 uppercase">
+                <span className="text-[11px] font-mono font-bold tracking-[0.1em] text-body uppercase">
                   Corporate Media
                 </span>
               </div>
               
               {/* Dominant Heading */}
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-4">
                 Latest <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">News</span> & Events
               </h2>
               
-              <p className="text-slate-500 text-base leading-relaxed">
+              <p className="text-body text-base leading-relaxed">
                 Stay updated with the latest clinical developments, corporate milestones, and social responsibility initiatives at Medinet Pharmaceuticals.
               </p>
             </motion.div>
@@ -840,14 +840,14 @@ export default function Home({ navigate }: HomeProps) {
                 transition={{ delay: 0.2 + idx * 0.15, duration: 0.7, ease: "easeOut" }}
                 key={news.id}
                 onClick={() => navigate("news-events", { id: news.id })}
-                className="group relative bg-white rounded-[24px] border border-slate-100 h-full flex flex-col justify-between overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[10px] transition-all duration-300"
+                className="group relative bg-white rounded-[24px] border border-border h-full flex flex-col justify-between overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[10px] transition-all duration-300"
               >
                 {/* Top Accent Strip */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
 
                 {/* Premium Thumbnail Area */}
-                <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-slate-100">
-                  <div className="absolute inset-0 bg-[#0A192F]/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-background">
+                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
                   <Image 
                     src={imageUrl} 
                     alt={news.title}
@@ -863,28 +863,28 @@ export default function Home({ navigate }: HomeProps) {
 
                 <div className="p-6 md:p-8 flex-1 flex flex-col justify-start relative z-10 bg-white">
                   {/* Metadata Row */}
-                  <div className="flex items-center gap-2 mb-4 text-slate-500">
+                  <div className="flex items-center gap-2 mb-4 text-body">
                     <Calendar className="w-3.5 h-3.5" />
                     <span className="text-xs font-mono font-semibold tracking-wide">{news.date}</span>
                   </div>
 
-                  <h3 className="font-display font-extrabold text-[#0A192F] text-lg sm:text-xl md:text-2xl leading-[1.3] group-hover:text-secondary transition-colors duration-300 line-clamp-2">
+                  <h3 className="font-display font-extrabold text-primary text-lg sm:text-xl md:text-2xl leading-[1.3] group-hover:text-secondary transition-colors duration-300 line-clamp-2">
                     {news.title}
                   </h3>
                   
-                  <p className="mt-4 text-sm text-slate-600 leading-relaxed line-clamp-3">
+                  <p className="mt-4 text-sm text-body leading-relaxed line-clamp-3">
                     {news.excerpt}
                   </p>
                 </div>
 
                 {/* Fixed Bottom CTA */}
-                <div className="px-6 md:px-8 py-5 border-t border-slate-100 bg-slate-50/50 group-hover:bg-secondary/5 transition-colors duration-300 flex items-center justify-between">
+                <div className="px-6 md:px-8 py-5 border-t border-border bg-alt-bg/50 group-hover:bg-secondary/5 transition-colors duration-300 flex items-center justify-between">
                   <span className="text-xs font-mono font-bold text-secondary relative overflow-hidden py-1">
                     READ COMPLETE RELEASE
                     <span className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-200 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-colors duration-300">
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors duration-300" />
+                  <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-border flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-colors duration-300">
+                    <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-white transition-colors duration-300" />
                   </div>
                 </div>
               </motion.div>
@@ -940,7 +940,7 @@ export default function Home({ navigate }: HomeProps) {
                 </span>
               </div>
               
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.2] mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-6">
                 Latest <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Updates</span>
               </h2>
 
@@ -953,7 +953,7 @@ export default function Home({ navigate }: HomeProps) {
                 className="w-20 h-1 rounded-full bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto mb-6 origin-center"
               ></motion.div>
 
-              <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="text-body text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 Stay informed with our latest corporate announcements, product launches, global events, and career opportunities at Medinet.
               </p>
             </motion.div>
@@ -976,7 +976,7 @@ export default function Home({ navigate }: HomeProps) {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + idx * 0.15, duration: 0.7, ease: "easeOut" }}
                 onClick={() => navigate("news-events")}
-                className="group relative bg-white/80 backdrop-blur-xl rounded-[24px] border border-slate-100 p-8 flex flex-col justify-between overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[10px] transition-all duration-300 h-full z-10"
+                className="group relative bg-white/80 backdrop-blur-xl rounded-[24px] border border-border p-8 flex flex-col justify-between overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[10px] transition-all duration-300 h-full z-10"
               >
                 {/* Thin animated gradient strip at the top */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -997,16 +997,16 @@ export default function Home({ navigate }: HomeProps) {
                     <motion.div 
                       animate={{ y: [0, -3, 0] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
-                      className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-full flex items-center justify-center shadow-sm group-hover:border-secondary/40 transition-colors duration-300"
+                      className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 border border-border rounded-full flex items-center justify-center shadow-sm group-hover:border-secondary/40 transition-colors duration-300"
                     >
                       <item.icon className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                     </motion.div>
                   </div>
 
-                  <h3 className="font-display font-extrabold text-[#0A192F] text-xl group-hover:text-secondary transition-colors duration-300 mb-4 leading-tight">
+                  <h3 className="font-display font-extrabold text-primary text-xl group-hover:text-secondary transition-colors duration-300 mb-4 leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                  <p className="text-sm text-body leading-relaxed mb-6">
                     {item.desc}
                   </p>
                 </div>
@@ -1080,7 +1080,7 @@ export default function Home({ navigate }: HomeProps) {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center max-w-4xl mx-auto mb-20 md:mb-24 relative"
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-[#0A192F] tracking-tight leading-[1.15] mb-8">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-primary tracking-tight leading-[1.15] mb-8">
               &ldquo;Reliable Care, <br className="sm:hidden" />
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Every Time.</span>&rdquo;
             </h2>
@@ -1123,7 +1123,7 @@ export default function Home({ navigate }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + idx * 0.2, duration: 0.7, ease: "easeOut" }}
-                className={`group flex flex-col items-center text-center p-8 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:bg-white/60 hover:shadow-[0_20px_40px_rgba(37,99,235,0.05)] border border-transparent hover:border-slate-100 ${idx === 2 ? 'md:col-span-2 lg:col-span-1 md:w-1/2 md:mx-auto lg:w-full' : ''}`}
+                className={`group flex flex-col items-center text-center p-8 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:bg-white/60 hover:shadow-[0_20px_40px_rgba(37,99,235,0.05)] border border-transparent hover:border-border ${idx === 2 ? 'md:col-span-2 lg:col-span-1 md:w-1/2 md:mx-auto lg:w-full' : ''}`}
               >
                 <div className="relative mb-6">
                   {/* Soft hover glow */}
@@ -1133,18 +1133,18 @@ export default function Home({ navigate }: HomeProps) {
                   <motion.div 
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.3 }}
-                    className="relative w-16 h-16 rounded-full bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-md flex items-center justify-center z-10 group-hover:border-primary/30 transition-colors duration-300"
+                    className="relative w-16 h-16 rounded-full bg-gradient-to-br from-white to-slate-50 border border-border shadow-md flex items-center justify-center z-10 group-hover:border-primary/30 transition-colors duration-300"
                   >
-                    <feature.icon className="w-7 h-7 text-[#0A192F] group-hover:text-primary transition-colors duration-300" />
+                    <feature.icon className="w-7 h-7 text-primary group-hover:text-primary transition-colors duration-300" />
                   </motion.div>
                 </div>
                 
-                <h3 className="font-display font-bold text-[#0A192F] text-xl mb-3 tracking-wide flex items-center justify-center gap-2">
+                <h3 className="font-display font-bold text-primary text-xl mb-3 tracking-wide flex items-center justify-center gap-2">
                   <span className="text-secondary font-sans">✓</span>
                   {feature.title}
                 </h3>
                 
-                <p className="text-slate-500 text-sm leading-relaxed max-w-sm mx-auto">
+                <p className="text-body text-sm leading-relaxed max-w-sm mx-auto">
                   {feature.desc}
                 </p>
               </motion.div>
@@ -1175,13 +1175,13 @@ export default function Home({ navigate }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="group p-6 rounded-2xl bg-[#F8FAFC] border border-border hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer flex flex-col items-center text-center"
+                className="group p-6 rounded-2xl bg-background border border-border hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer flex flex-col items-center text-center"
                 onClick={() => navigate("news-events")}
               >
                 <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm text-secondary mb-4 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
                   <update.icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-display font-bold text-[#0A192F] group-hover:text-secondary transition-colors duration-300">
+                <h3 className="font-display font-bold text-primary group-hover:text-secondary transition-colors duration-300">
                   {update.title}
                 </h3>
               </motion.div>

@@ -21,6 +21,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
 
 interface FooterProps {
   navigate: (route: string, queryParams?: Record<string, string>) => void;
@@ -78,8 +79,18 @@ function Footer({ navigate, showToast }: FooterProps) {
   };
 
   return (
-    <footer className="bg-[#0B1F4D] text-white font-sans border-t border-[#EC4899]/20 pt-16 pb-0 overflow-hidden">
+    <footer className="bg-[#0B1F4D] text-white font-sans border-t border-[#EC4899]/20 pt-16 pb-0 relative overflow-hidden">
+      {/* Background Molecular Pattern Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-5 mix-blend-overlay">
+        <Image
+          src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=2000&auto=format&fit=crop"
+          alt="Molecular Background"
+          fill
+          className="object-cover"
+        />
+      </div>
 
+      <div className="relative z-10">
       {/* Top Newsletter Section */}
       <div className="max-w-[1500px] mx-auto px-6 lg:px-[80px] 2xl:px-[100px] pb-[60px] border-b border-white/10">
         <div className="flex flex-col xl:flex-row items-center justify-between gap-10">
@@ -340,6 +351,7 @@ function Footer({ navigate, showToast }: FooterProps) {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </footer>
   );

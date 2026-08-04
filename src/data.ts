@@ -306,7 +306,7 @@ export const LEADERSHIP: Leader[] = [
     role: "Founder & Chief Executive Officer (CEO)",
     qualification: "Founder",
     bio: "Since founding the company, my vision has been to build an organization that provides safe, effective, and affordable healthcare solutions while upholding the highest standards of ethics and professionalism.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400"
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1600&auto=format&fit=crop"
   },
   {
     id: "jane-smith",

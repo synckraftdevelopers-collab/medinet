@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import {
   MapPin,
@@ -75,9 +76,19 @@ export default function Contact({ showToast }: ContactProps) {
       
       {/* Page Header */}
       <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
+        {/* Background Meeting Room Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2000&auto=format&fit=crop"
+            alt="Meeting Room"
+            fill
+            className="object-cover opacity-5"
+          />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-10" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
@@ -98,8 +109,13 @@ export default function Contact({ showToast }: ContactProps) {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-50 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-slate-50 border-b border-border relative overflow-hidden">
+        {/* Background Corporate Office Image */}
+        <div className="absolute right-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop" alt="Corporate Office Building" fill className="object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
             {/* Corporate Office */}
@@ -174,6 +190,11 @@ export default function Contact({ showToast }: ContactProps) {
 
       {/* Enquiry Form */}
       <section id="enquiry" className="py-20 lg:py-28 bg-background relative overflow-hidden">
+        {/* Background Customer Support Image */}
+        <div className="absolute left-0 bottom-0 w-[50%] h-[75%] z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1600&auto=format&fit=crop" alt="Customer Support" fill className="object-cover" />
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">
@@ -348,8 +369,13 @@ export default function Contact({ showToast }: ContactProps) {
       </section>
 
       {/* Locate Us */}
-      <section className="py-20 bg-slate-50 border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-slate-50 border-t border-border relative overflow-hidden">
+        {/* Background Reception Image */}
+        <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2000&auto=format&fit=crop" alt="Reception Area" fill className="object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
             <Map className="w-8 h-8 text-white" />
           </div>

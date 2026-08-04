@@ -69,6 +69,17 @@ export default function Home({ navigate }: HomeProps) {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#EFF6FF] border-b border-border overflow-hidden">
+        {/* Background Laboratory Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2000&auto=format&fit=crop"
+            alt="Pharmaceutical Laboratory"
+            fill
+            className="object-cover opacity-[0.03]"
+            priority
+          />
+        </div>
+        
         {/* Soft Animated Gradient & Particle Background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(16,185,129,0.05)_0%,transparent_50%),radial-gradient(circle_at_80%_70%,rgba(29, 78, 216,0.05)_0%,transparent_50%)] pointer-events-none"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(29, 78, 216,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(29, 78, 216,0.04)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40"></div>
@@ -398,6 +409,16 @@ export default function Home({ navigate }: HomeProps) {
 
       {/* Why Choose Us Section */}
       <section className="py-20 md:py-32 bg-white relative overflow-hidden border-b border-border">
+        {/* Background Scientists Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2000&auto=format&fit=crop"
+            alt="Scientists working together"
+            fill
+            className="object-cover opacity-[0.03]"
+          />
+        </div>
+
         {/* Soft Background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.03),transparent_70%)] pointer-events-none z-0"></div>
 
@@ -476,6 +497,16 @@ export default function Home({ navigate }: HomeProps) {
       {/* Therapeutic Segments Section */}
       {/* Therapeutic Segments Section (Premium Enterprise Showcase) */}
       <section className="py-16 md:py-20 bg-gradient-to-b from-white to-[#F8FCFF] border-t border-b border-border relative overflow-hidden">
+        {/* Background R&D Laboratory Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2000&auto=format&fit=crop"
+            alt="Modern R&D Laboratory"
+            fill
+            className="object-cover opacity-[0.03]"
+          />
+        </div>
+
         {/* Soft Radial Glow behind the section */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.04),transparent_60%)] pointer-events-none z-0"></div>
 
@@ -654,8 +685,18 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Featured Products Showcase */}
-      <section className="py-24 bg-alt-bg border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-alt-bg border-b border-border relative overflow-hidden">
+        {/* Background Medicine Packaging Image */}
+        <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
+          <Image
+            src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=2000&auto=format&fit=crop"
+            alt="Medicine Packaging"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -1223,7 +1264,17 @@ export default function Home({ navigate }: HomeProps) {
 
       {/* Global B2B Call To Action Section */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-primary via-secondary to-primary text-white text-center relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/10 blur-[120px] rounded-full pointer-events-none"></div>
+        {/* Background Healthcare Professionals Image */}
+        <div className="absolute inset-0 z-0 mix-blend-overlay opacity-20 pointer-events-none">
+          <Image
+            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2000&auto=format&fit=crop"
+            alt="Healthcare professionals discussing"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

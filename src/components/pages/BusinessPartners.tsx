@@ -1,5 +1,6 @@
 import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { 
   MapPin, 
@@ -75,7 +76,17 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       
       {/* Distribution Network */}
       <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Background Global Network Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop"
+            alt="Global Distribution Network"
+            fill
+            className="object-cover opacity-10 mix-blend-luminosity"
+          />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
           <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
         </div>
@@ -117,8 +128,13 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
       </section>
 
       {/* Partnership Opportunities */}
-      <section className="py-20 bg-gradient-to-br from-background to-alt-bg border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      <section className="py-20 bg-gradient-to-br from-background to-alt-bg border-b border-border relative overflow-hidden">
+        {/* Background Handshake Image */}
+        <div className="absolute right-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop" alt="Business Partnership" fill className="object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 relative z-10">
           
           {/* Franchise Opportunities */}
           <div className="flex flex-col lg:flex-row gap-12 items-start">
@@ -242,6 +258,11 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
       {/* Business Enquiry Form */}
       <section id="enquiry" className="py-20 lg:py-28 bg-background relative overflow-hidden">
+        {/* Background Business Meeting Image */}
+        <div className="absolute left-0 bottom-0 w-[50%] h-[50%] z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop" alt="Business Meeting" fill className="object-cover" />
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">

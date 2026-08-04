@@ -236,8 +236,8 @@ export default function About() {
               <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-border">
                 <div className="absolute inset-0 bg-primary/5 z-10 mix-blend-multiply pointer-events-none"></div>
                 <Image
-                  src="/company_profile.png"
-                  alt="Medinet Company Profile"
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
+                  alt="Medinet Corporate Office"
                   width={1000}
                   height={800}
                   className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
@@ -266,8 +266,8 @@ export default function About() {
               <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-border">
                 <div className="absolute inset-0 bg-secondary/10 z-10 mix-blend-multiply pointer-events-none"></div>
                 <Image
-                  src="/our_journey.png"
-                  alt="Medinet Journey"
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop"
+                  alt="Medinet Team Collaboration"
                   width={1000}
                   height={800}
                   className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
@@ -317,6 +317,11 @@ export default function About() {
 
       {/* Mission Section */}
       <section className="py-20 bg-blue-50/40 border-b border-border relative overflow-hidden">
+        {/* Background Manufacturing Facility Image */}
+        <div className="absolute right-0 top-0 w-[60%] h-full z-0 opacity-[0.05] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop" alt="Manufacturing Facility" fill className="object-cover" />
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
 
@@ -387,8 +392,13 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-background border-b border-border relative overflow-hidden">
+        {/* Background Company Culture Image */}
+        <div className="absolute left-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop" alt="Company Culture" fill className="object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           {/* Custom Section Header: The Pillars of Medinet */}
           <div className="relative mt-0 mb-16 rounded-3xl overflow-hidden py-16 px-4">

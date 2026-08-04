@@ -1,5 +1,6 @@
 import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { ShieldCheck, CheckCircle, ClipboardCheck, FlaskConical, Award, HeartPulse } from "lucide-react";
 
@@ -21,9 +22,19 @@ export default function Quality() {
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header / Quality Policy */}
       <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
+        {/* Background GMP Lab Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2000&auto=format&fit=crop"
+            alt="GMP Laboratory"
+            fill
+            className="object-cover opacity-15"
+          />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-10" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
@@ -45,8 +56,17 @@ export default function Quality() {
       </section>
 
       {/* Quality Sections */}
-      <section className="py-20 bg-blue-50/50 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      <section className="py-20 bg-blue-50/50 border-b border-border relative overflow-hidden">
+        {/* Background Quality Testing Image */}
+        <div className="absolute right-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1600&auto=format&fit=crop" alt="Quality Testing" fill className="object-cover" />
+        </div>
+        {/* Background Scientists Image */}
+        <div className="absolute left-0 bottom-0 w-[50%] h-[50%] z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1600&auto=format&fit=crop" alt="Scientists Working" fill className="object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 relative z-10">
           
           {/* Quality Assurance */}
           <div className="flex flex-col lg:flex-row gap-12 items-start">
@@ -235,7 +255,17 @@ export default function Quality() {
       </section>
       {/* Our Quality Commitment */}
       <section className="py-20 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+        {/* Background Certificates Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=2000&auto=format&fit=crop"
+            alt="Certificates and Quality"
+            fill
+            className="object-cover opacity-5"
+          />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
           <div className="absolute w-[60%] h-[60%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">

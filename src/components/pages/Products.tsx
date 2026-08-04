@@ -4,6 +4,7 @@
 */
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES } from "../../data";
 import { Product } from "../../types";
@@ -301,8 +302,17 @@ export default function Products({ params, showToast }: ProductsProps) {
     <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20">
       {/* Page Header */}
       <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none"></div>
+        {/* Premium Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2000&auto=format&fit=crop"
+            alt="Pharmaceutical Formulations"
+            fill
+            className="object-cover opacity-15"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none z-0"></div>
         <motion.div variants={fadeUp} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="flex flex-col items-center md:items-start">
             <span className="utility-badge-blue mb-4">
@@ -486,8 +496,13 @@ export default function Products({ params, showToast }: ProductsProps) {
 
       {/* Premium New Launches Section */}
       <section className="relative py-20 bg-gradient-to-b from-white to-[#F8FCFF] border-b border-border overflow-hidden">
+        {/* Background Medicine Packaging Image */}
+        <div className="absolute right-0 top-0 w-[50%] h-full z-0 opacity-[0.05] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1600&auto=format&fit=crop" alt="Medicine Packaging" fill className="object-cover" />
+        </div>
+
         {/* Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none z-0">
           {/* Central Radial Glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.04),transparent_70%)]"></div>
 
@@ -651,8 +666,13 @@ export default function Products({ params, showToast }: ProductsProps) {
 
       {/* Premium Featured Brands Section */}
       <section className="relative py-20 bg-gradient-to-b from-white to-[#F8FAFC] border-b border-border overflow-hidden">
+        {/* Background Research Image */}
+        <div className="absolute left-0 top-0 w-[50%] h-full z-0 opacity-[0.05] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1600&auto=format&fit=crop" alt="Research and Development" fill className="object-cover" />
+        </div>
+
         {/* Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none z-0">
           {/* Radial Glow behind heading */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.03),transparent_70%)]"></div>
 

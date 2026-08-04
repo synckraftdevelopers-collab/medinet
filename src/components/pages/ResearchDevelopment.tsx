@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { PIPELINE } from "../../data";
 import SectionHeader from "../SectionHeader";
@@ -120,10 +121,19 @@ export default function ResearchDevelopment() {
     <div className="pt-20">
       {/* Page Header */}
       <section className="bg-gradient-to-b from-background via-alt-bg to-white border-b border-border py-16 relative overflow-hidden">
+        {/* Background Scientists Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=2000&auto=format&fit=crop"
+            alt="Scientists in Laboratory"
+            fill
+            className="object-cover opacity-15"
+          />
+        </div>
         {/* Soft medical lighting */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(13,148,136,.04),transparent_35%)] pointer-events-none z-0"></div>
         {/* Subtle bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none z-0"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left z-10">
           <span className="utility-badge-blue mb-4">
             <span className="utility-dot"></span>
@@ -144,6 +154,10 @@ export default function ResearchDevelopment() {
 
       {/* Premium R&D Overview and Stats */}
       <section className="py-24 lg:py-32 bg-background relative overflow-hidden border-b border-border">
+        {/* Background Laboratory Research Image */}
+        <div className="absolute right-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=1600&auto=format&fit=crop" alt="Laboratory Research" fill className="object-cover" />
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-10 xl:gap-16">
@@ -383,8 +397,13 @@ export default function ResearchDevelopment() {
 
       {/* Premium Focus Areas Cards */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-t border-b border-border relative overflow-hidden">
+        {/* Background Data Analysis Image */}
+        <div className="absolute left-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop" alt="Data Analysis" fill className="object-cover" />
+        </div>
+
         {/* Subtle premium background effects */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
           {/* Soft radial glow behind the heading */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-[120px] bg-[#2563EB]/5" />
           
@@ -608,8 +627,13 @@ export default function ResearchDevelopment() {
 
       {/* Pipeline Directory */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
+        {/* Background Clinical Trials Image */}
+        <div className="absolute right-0 top-0 w-[50%] h-full z-0 opacity-[0.05] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1600&auto=format&fit=crop" alt="Clinical Trials" fill className="object-cover" />
+        </div>
+
         {/* Subtle premium background effects */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
           {/* Gentle radial glow behind the section heading */}
           <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-[100px] bg-[#2563EB]/5" />
           

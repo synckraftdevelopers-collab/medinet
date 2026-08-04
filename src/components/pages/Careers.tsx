@@ -1,5 +1,6 @@
 import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import {
   Briefcase,
@@ -104,9 +105,19 @@ export default function Careers({ showToast }: CareersProps) {
       
       {/* Why Join Us */}
       <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
+        {/* Background Team Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop"
+            alt="Team Collaboration"
+            fill
+            className="object-cover opacity-5"
+          />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-10" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
@@ -145,8 +156,17 @@ export default function Careers({ showToast }: CareersProps) {
       </section>
 
       {/* Life at Medinet & New Age Workplace */}
-      <section className="py-20 bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+        {/* Background Employees Working Image */}
+        <div className="absolute right-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1600&auto=format&fit=crop" alt="Employees Working" fill className="object-cover" />
+        </div>
+        {/* Background Modern Office Image */}
+        <div className="absolute left-0 bottom-0 w-[50%] h-[50%] z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" alt="Modern Office" fill className="object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 relative z-10">
           
           {/* Life at Medinet */}
           <div className="flex flex-col lg:flex-row gap-12 items-start">
@@ -244,6 +264,11 @@ export default function Careers({ showToast }: CareersProps) {
 
       {/* Current Openings */}
       <section className="py-20 bg-white relative overflow-hidden border-b border-border">
+        {/* Background Corporate Environment Image */}
+        <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?q=80&w=2000&auto=format&fit=crop" alt="Corporate Environment" fill className="object-cover" />
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary tracking-tight mb-4">
@@ -453,6 +478,11 @@ export default function Careers({ showToast }: CareersProps) {
 
       {/* Join the Medinet Family */}
       <section className="py-24 bg-white relative overflow-hidden border-t border-border text-center">
+        {/* Background Corporate Environment 2 Image */}
+        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2000&auto=format&fit=crop" alt="Diversity and Inclusion" fill className="object-cover" />
+        </div>
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-8">
             <Users className="w-8 h-8 text-white" />

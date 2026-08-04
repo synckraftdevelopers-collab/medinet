@@ -1,5 +1,6 @@
 import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import {
   Rocket,
@@ -33,9 +34,19 @@ export default function NewsEvents({ params }: NewsEventsProps) {
       
       {/* Page Header */}
       <section className="bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b border-border py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-5" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-5" />
+        {/* Background Press Release Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2000&auto=format&fit=crop"
+            alt="Press Release"
+            fill
+            className="object-cover opacity-5"
+          />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-secondary opacity-10" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
@@ -57,8 +68,21 @@ export default function NewsEvents({ params }: NewsEventsProps) {
       </section>
 
       {/* Main Content Sections */}
-      <section className="py-20 bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+        {/* Background Product Launch Image */}
+        <div className="absolute left-0 top-0 w-[50%] h-[25%] z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1600&auto=format&fit=crop" alt="Product Launch" fill className="object-cover" />
+        </div>
+        {/* Background Medical Conference Image */}
+        <div className="absolute right-0 top-[33%] w-[50%] h-[25%] z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1600&auto=format&fit=crop" alt="Medical Conference" fill className="object-cover" />
+        </div>
+        {/* Background CSR Image */}
+        <div className="absolute right-0 bottom-0 w-[50%] h-[25%] z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=1600&auto=format&fit=crop" alt="CSR Initiatives" fill className="object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 relative z-10">
           
           {/* Product Launches */}
           <div className="flex flex-col lg:flex-row gap-12 items-start">

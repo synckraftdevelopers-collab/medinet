@@ -8,6 +8,7 @@ import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { BRAND_INFO, LEADERSHIP } from "../../data";
 import SectionHeader from "../SectionHeader";
+import { PremiumFeatureIcon } from "../PremiumFeatureIcon";
 import {
   Compass,
   Eye,
@@ -148,14 +149,33 @@ export default function About() {
       <section className="bg-gradient-to-b from-white via-background to-alt-bg border-b border-border py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(37,99,235,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(37,99,235,0.06)_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-10"></div>
         <motion.div variants={fadeUp} className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center z-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-heading tracking-tight leading-[1.2] relative w-fit mb-8 mx-auto text-center">
-            About Medinet
-            <motion.span
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-              className="absolute -bottom-3 left-0 h-1.5 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-80 rounded-full"
-            ></motion.span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.2] relative w-fit mb-8 mx-auto text-center flex flex-wrap justify-center gap-3 sm:gap-4 group">
+            <span className="text-[#0B1F4D] relative">About</span>
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-[#2563EB] via-[#6366F1] to-[#EC4899] bg-clip-text text-transparent drop-shadow-sm">
+                Medinet
+              </span>
+              <motion.span
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.3, ease: "circOut" }}
+                style={{ originX: 0 }}
+                className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-[4px] bg-gradient-to-r from-[#2563EB] to-[#EC4899] rounded-full"
+              ></motion.span>
+              <motion.span
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 0.6 }}
+                transition={{ duration: 1, delay: 0.5, ease: "circOut" }}
+                style={{ originX: 0 }}
+                className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-[6px] bg-[#EC4899] blur-[6px] rounded-full"
+              ></motion.span>
+              <motion.span
+                initial={{ opacity: 0, scale: 0, x: -20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 1.2, type: "spring" }}
+                className="absolute -bottom-1 sm:-bottom-2 -right-3 sm:-right-4 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#EC4899] rounded-full shadow-[0_0_10px_rgba(236,72,153,0.8)]"
+              ></motion.span>
+            </span>
           </h1>
 
           <p className="mt-4 text-base sm:text-lg text-body font-sans leading-relaxed max-w-3xl mx-auto text-center">
@@ -216,7 +236,7 @@ export default function About() {
               <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-border">
                 <div className="absolute inset-0 bg-primary/5 z-10 mix-blend-multiply pointer-events-none"></div>
                 <Image
-                  src="https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&q=80&w=1000"
+                  src="/company_profile.png"
                   alt="Medinet Company Profile"
                   width={1000}
                   height={800}
@@ -246,7 +266,7 @@ export default function About() {
               <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(29,78,216,0.1)] border border-border">
                 <div className="absolute inset-0 bg-secondary/10 z-10 mix-blend-multiply pointer-events-none"></div>
                 <Image
-                  src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
+                  src="/our_journey.png"
                   alt="Medinet Journey"
                   width={1000}
                   height={800}
@@ -352,8 +372,8 @@ export default function About() {
                     key={idx}
                     className="flex items-start gap-4 p-5 rounded-2xl bg-alt-bg border border-border hover:border-primary/20 hover:shadow-md transition-all group"
                   >
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/20 transition-colors">
-                      <CheckCircle className="w-5 h-5 text-primary" />
+                    <div className="shrink-0 mt-1">
+                      <PremiumFeatureIcon icon={CheckCircle} />
                     </div>
                     <p className="text-body leading-relaxed text-[15px] md:text-base font-medium">
                       {point}
@@ -436,7 +456,7 @@ export default function About() {
               >
                 <span className="drop-shadow-sm">The Pillars of </span>
                 <motion.span
-                  className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-sm inline-block pb-2"
+                  className="bg-gradient-to-r from-[#9D174D] via-[#EC4899] to-[#F9A8D4] bg-clip-text text-transparent drop-shadow-sm inline-block pb-2"
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 8, ease: "linear", repeat: Infinity }}
                   style={{ backgroundSize: "200% auto" }}
@@ -451,7 +471,7 @@ export default function About() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#1D4ED8] to-transparent mx-auto mb-10 origin-center"
+                className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#EC4899] to-transparent mx-auto mb-10 origin-center"
               ></motion.div>
 
               {/* Description */}
@@ -463,19 +483,19 @@ export default function About() {
                 className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto"
               >
                 Our organizational culture is guided by clear, unyielding{" "}
-                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#9D174D] via-[#EC4899] to-[#F9A8D4] bg-clip-text text-transparent group cursor-default">
                   <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>Ethics</motion.span>
                   <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
                   <span className="absolute inset-0 bg-secondary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
                 </span>{" "}
                 that dictate how we conduct business, evaluate{" "}
-                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#9D174D] via-[#EC4899] to-[#F9A8D4] bg-clip-text text-transparent group cursor-default">
                   <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}>Scientific Formulations</motion.span>
                   <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
                   <span className="absolute inset-0 bg-secondary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
                 </span>
                 , and interact with{" "}
-                <span className="relative inline-block font-medium bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent group cursor-default">
+                <span className="relative inline-block font-medium bg-gradient-to-r from-[#9D174D] via-[#EC4899] to-[#F9A8D4] bg-clip-text text-transparent group cursor-default">
                   <motion.span animate={{ opacity: [1, 0.7, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}>Healthcare Practitioners</motion.span>
                   <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
                   <span className="absolute inset-0 bg-secondary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[-1]"></span>
@@ -536,10 +556,26 @@ export default function About() {
                 <h2 className="text-3xl font-display font-bold text-heading mb-2">Message from the CEO &amp; Founder</h2>
                 <div className="w-16 h-1 bg-gradient-to-r from-secondary to-primary rounded-full mb-8"></div>
 
-                <p className="text-body text-base lg:text-lg leading-relaxed italic mb-8">
-                  &ldquo;{BRAND_INFO.ceoMessage}&rdquo;
-                </p>
-
+                <div className="space-y-6 mb-10 relative">
+                  {BRAND_INFO.ceoMessage.split('\n\n').map((paragraph, index) => (
+                    <motion.p
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + (index * 0.15), duration: 0.7, ease: "easeOut" }}
+                      className={`leading-[1.85] ${
+                        index === 0
+                          ? "text-xl lg:text-2xl font-display font-medium text-[#0A192F] relative"
+                          : "text-base lg:text-[1.1rem] font-sans text-slate-600 relative pl-5 border-l-[3px] border-secondary/30"
+                      }`}
+                    >
+                      {index === 0 && <span className="font-serif text-5xl text-primary absolute -left-6 -top-4 opacity-40 select-none">"</span>}
+                      {paragraph}
+                      {index === BRAND_INFO.ceoMessage.split('\n\n').length - 1 && <span className="font-serif text-5xl text-primary absolute -bottom-6 ml-2 opacity-40 select-none">"</span>}
+                    </motion.p>
+                  ))}
+                </div>
                 {/* Custom Founder Information Typography */}
                 <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-10 mt-4 w-full">
                   {/* Premium Gradient Divider */}
@@ -644,20 +680,76 @@ export default function About() {
                 Corporate Philosophy
               </div>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] mb-8">
-                Every medicine we market represents a commitment to a healthier life.
-              </h2>
+              <motion.h2 
+                className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] mb-8"
+              >
+                Every medicine we market represents a{" "}
+                <motion.span 
+                  animate={{ 
+                    textShadow: ["0px 4px 20px rgba(37,99,235,0)", "0px 4px 20px rgba(37,99,235,0.4)", "0px 4px 20px rgba(37,99,235,0)"] 
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="bg-gradient-to-r from-primary to-[#38BDF8] bg-clip-text text-transparent inline-block"
+                >
+                  commitment
+                </motion.span>{" "}
+                to a{" "}
+                <motion.span 
+                  animate={{ 
+                    textShadow: ["0px 4px 20px rgba(236,72,153,0)", "0px 4px 20px rgba(236,72,153,0.5)", "0px 4px 20px rgba(236,72,153,0)"] 
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                  className="bg-gradient-to-r from-secondary to-[#F472B6] bg-clip-text text-transparent inline-block"
+                >
+                  healthier life.
+                </motion.span>
+              </motion.h2>
 
-              <div className="space-y-6 text-body text-base leading-relaxed">
-                <p>
-                  Our philosophy is built on four enduring principles: <strong>Quality, Trust, Affordability, and Compassion</strong>. We are committed to supporting healthcare professionals with dependable pharmaceutical solutions while ensuring patients have access to safe, effective, and affordable medicines.
-                </p>
-                <p>
+              <div className="space-y-6 text-body text-base lg:text-lg leading-relaxed relative z-10">
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  Our philosophy is built on four enduring principles:{" "}
+                  <motion.strong 
+                    animate={{ textShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 15px rgba(236,72,153,0.6)", "0px 0px 0px rgba(236,72,153,0)"] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="font-bold text-secondary tracking-wide inline-block"
+                  >
+                    Quality, Trust, Affordability, and Compassion
+                  </motion.strong>. 
+                  We are committed to supporting healthcare professionals with dependable pharmaceutical solutions while ensuring patients have access to safe, effective, and affordable medicines.
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                >
                   Through ethical business practices, continuous innovation, responsible partnerships, and an unwavering focus on customer satisfaction, we strive to make a meaningful contribution to healthcare. Every interaction, every product, and every decision reflects our promise to deliver excellence with integrity.
-                </p>
-                <p className="font-semibold text-heading/90 italic border-l-4 border-secondary/50 pl-4">
-                  Because for us, healthcare is not just about medicines—it is about caring for people, supporting better outcomes, and building healthier communities.
-                </p>
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="relative mt-8 p-6 rounded-2xl bg-gradient-to-r from-secondary/5 to-transparent border border-secondary/10 group"
+                >
+                  <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-secondary to-primary rounded-l-2xl"></div>
+                  <p className="font-medium text-heading italic text-lg relative z-10">
+                    "Because for us, healthcare is not just about medicines—it is about{" "}
+                    <motion.span 
+                      animate={{ color: ["#0B1F4D", "#EC4899", "#0B1F4D"] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                      className="font-bold"
+                    >
+                      caring for people
+                    </motion.span>, supporting better outcomes, and building healthier communities."
+                  </p>
+                  <div className="absolute -top-4 -right-4 text-8xl text-secondary opacity-[0.03] font-serif select-none pointer-events-none group-hover:scale-110 transition-transform duration-500">"</div>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -677,28 +769,51 @@ export default function About() {
 
                 <div className="absolute inset-4 rounded-full border border-border/60 shadow-xl overflow-hidden bg-white/50 backdrop-blur-sm flex items-center justify-center p-8">
                   <div className="grid grid-cols-2 gap-6 w-full h-full relative">
-                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
-                      <ShieldCheck className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
-                      <span className="font-bold text-sm text-heading">Quality</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
-                      <Handshake className="w-8 h-8 text-secondary mb-3 group-hover:scale-110 transition-transform" />
-                      <span className="font-bold text-sm text-heading">Trust</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
-                      <TrendingUp className="w-8 h-8 text-secondary mb-3 group-hover:scale-110 transition-transform" />
-                      <span className="font-bold text-sm text-heading">Affordability</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-sm border border-slate-50 group hover:-translate-y-1 transition-transform">
-                      <Heart className="w-8 h-8 text-pink-500 mb-3 group-hover:scale-110 transition-transform" />
-                      <span className="font-bold text-sm text-heading">Compassion</span>
-                    </div>
+                    <motion.div 
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-[0_4px_15px_rgba(37,99,235,0.05)] border border-blue-50 cursor-default hover:shadow-lg hover:border-blue-100 transition-all z-10 group"
+                    >
+                      <ShieldCheck className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform duration-300" />
+                      <span className="font-bold text-sm text-heading group-hover:text-primary transition-colors">Quality</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      animate={{ y: [0, 8, 0] }}
+                      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                      className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-[0_4px_15px_rgba(236,72,153,0.05)] border border-pink-50 cursor-default hover:shadow-lg hover:border-pink-100 transition-all z-10 group"
+                    >
+                      <Handshake className="w-8 h-8 text-secondary mb-3 group-hover:scale-110 transition-transform duration-300" />
+                      <span className="font-bold text-sm text-heading group-hover:text-secondary transition-colors">Trust</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      animate={{ y: [0, 6, 0] }}
+                      transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                      className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-[0_4px_15px_rgba(236,72,153,0.05)] border border-pink-50 cursor-default hover:shadow-lg hover:border-pink-100 transition-all z-10 group"
+                    >
+                      <TrendingUp className="w-8 h-8 text-secondary mb-3 group-hover:scale-110 transition-transform duration-300" />
+                      <span className="font-bold text-sm text-heading group-hover:text-secondary transition-colors">Affordability</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                      className="flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl shadow-[0_4px_15px_rgba(236,72,153,0.05)] border border-pink-50 cursor-default hover:shadow-lg hover:border-pink-100 transition-all z-10 group"
+                    >
+                      <Heart className="w-8 h-8 text-secondary mb-3 group-hover:scale-110 transition-transform duration-300" />
+                      <span className="font-bold text-sm text-heading group-hover:text-secondary transition-colors">Compassion</span>
+                    </motion.div>
 
                     {/* Connecting center node */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center z-10">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                        <HeartHandshake className="w-4 h-4 text-white" />
-                      </div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center z-20">
+                      <motion.div 
+                        animate={{ scale: [1, 1.15, 1], boxShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 20px rgba(236,72,153,0.5)", "0px 0px 0px rgba(236,72,153,0)"] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center"
+                      >
+                        <HeartHandshake className="w-5 h-5 text-white" />
+                      </motion.div>
                     </div>
                   </div>
                 </div>

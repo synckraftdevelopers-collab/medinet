@@ -1,3 +1,4 @@
+import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import {
@@ -81,8 +82,8 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   "Innovative Formulations",
                   "Therapeutic Advancements"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
-                    <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-center gap-[20px] bg-white p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
+                    <PremiumFeatureIcon />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}
@@ -119,8 +120,8 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   "Product Awareness Programs",
                   "Healthcare Professional Engagement Activities"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-teal-100/50 shadow-sm hover:shadow-md transition-shadow">
-                    <CheckCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-center gap-[20px] bg-white p-4 rounded-xl border border-teal-100/50 shadow-sm hover:shadow-md transition-shadow">
+                    <PremiumFeatureIcon />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}
@@ -159,8 +160,8 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   "Product Portfolio Updates",
                   "Career Announcements"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-indigo-100/50 shadow-sm hover:shadow-md transition-shadow">
-                    <CheckCircle className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-center gap-[20px] bg-white p-4 rounded-xl border border-indigo-100/50 shadow-sm hover:shadow-md transition-shadow">
+                    <PremiumFeatureIcon />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}
@@ -193,8 +194,8 @@ export default function NewsEvents({ params }: NewsEventsProps) {
                   "Employee Volunteering Activities",
                   "Support for Community Development"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-emerald-100/50 shadow-sm hover:shadow-md transition-shadow">
-                    <CheckCircle className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-center gap-[20px] bg-white p-4 rounded-xl border border-emerald-100/50 shadow-sm hover:shadow-md transition-shadow">
+                    <PremiumFeatureIcon />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}

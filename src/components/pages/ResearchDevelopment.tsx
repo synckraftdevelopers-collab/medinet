@@ -143,31 +143,7 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Premium R&D Overview and Stats */}
-      <section className="py-24 lg:py-32 bg-teal-50/30 relative overflow-hidden">
-        {/* Background Gradients & Glows */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
-          {/* Subtle medical gradient glow blobs */}
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.15, 0.25, 0.15] 
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] rounded-full blur-[120px] bg-gradient-to-br from-[#0A192F] to-transparent opacity-20"
-          />
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1] 
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-[30%] right-[-10%] w-[50%] h-[60%] rounded-full blur-[120px] bg-gradient-to-bl from-[#2563EB] to-[#1D4ED8] opacity-15"
-          />
-          <div className="absolute bottom-[-20%] left-[10%] w-[60%] h-[50%] rounded-full blur-[120px] bg-gradient-to-tr from-[#1D4ED8] to-transparent opacity-10" />
-          
-          {/* Subtle Molecular / DNA SVG Pattern */}
-          <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M20%2020.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5z%22%20fill%3D%22%230B1F4D%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"></div>
-        </div>
+      <section className="py-24 lg:py-32 bg-background relative overflow-hidden border-b border-border">
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-10 xl:gap-16">
@@ -211,7 +187,26 @@ export default function ResearchDevelopment() {
                   }}
                   className="text-4xl sm:text-5xl lg:text-[3.5rem] font-display font-[900] text-primary tracking-tight leading-[1.1] mb-8"
                 >
-                  Pioneering <span className="bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-transparent bg-clip-text relative inline-block">Next-Generation<motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-[#2563EB] to-transparent rounded-full origin-left"></motion.span></span><br className="hidden sm:block" /> Pharmaceutical Delivery
+                  Pioneering{" "}
+                  <motion.span 
+                    animate={{ 
+                      textShadow: ["0px 4px 20px rgba(236,72,153,0)", "0px 4px 20px rgba(236,72,153,0.5)", "0px 4px 20px rgba(236,72,153,0)"],
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                    }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    style={{ backgroundSize: "200% auto" }}
+                    className="bg-gradient-to-r from-[#9D174D] via-[#EC4899] to-[#F9A8D4] bg-clip-text text-transparent relative inline-block pb-1"
+                  >
+                    Next-Generation
+                    <motion.span 
+                      initial={{ scaleX: 0 }} 
+                      whileInView={{ scaleX: 1 }} 
+                      viewport={{ once: true }} 
+                      transition={{ delay: 0.8, duration: 0.8 }} 
+                      className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-[#EC4899] to-transparent rounded-full origin-left"
+                    ></motion.span>
+                  </motion.span>
+                  <br className="hidden sm:block" /> Pharmaceutical Delivery
                 </motion.h2>
 
                 {/* Paragraphs with Fade-Up */}
@@ -222,17 +217,27 @@ export default function ResearchDevelopment() {
                   }}
                   className="text-[#475569] leading-[1.85] max-w-[700px] text-[1.05rem] sm:text-lg mb-6 font-medium"
                 >
-                  Formulating bioequivalent medicines is more than copying active ingredients—it is a meticulous balancing of polymorph stability, excipient biology, and gastric transit pharmacology.
+                  Formulating bioequivalent medicines is more than copying active ingredients—it is a meticulous balancing of{" "}
+                  <motion.strong 
+                    animate={{ textShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 15px rgba(236,72,153,0.4)", "0px 0px 0px rgba(236,72,153,0)"] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="font-bold text-[#0A192F]"
+                  >
+                    polymorph stability, excipient biology, and gastric transit pharmacology
+                  </motion.strong>.
                 </motion.p>
-                <motion.p 
+                <motion.div 
                   variants={{
                     hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } }
                   }}
-                  className="text-[#475569] leading-[1.85] max-w-[700px] text-[1.05rem] sm:text-lg font-medium"
+                  className="p-5 mt-4 rounded-xl bg-gradient-to-r from-secondary/5 to-transparent border-l-[3px] border-secondary"
                 >
-                  At Medinet, our R&amp;D center focuses on solid-oral modifications (like sustained-release matrices) and advanced dermatological topical formulations. Through collaborating with elite clinical investigators, we run continuous human-phase trials to lock-in comparative therapeutic benchmarks.
-                </motion.p>
+                  <p className="text-[#475569] leading-[1.85] max-w-[700px] text-[1.05rem] sm:text-lg font-medium">
+                    At Medinet, our R&amp;D center focuses on{" "}
+                    <span className="text-secondary font-bold">solid-oral modifications</span> (like sustained-release matrices) and advanced dermatological topical formulations. Through collaborating with elite clinical investigators, we run continuous human-phase trials to lock-in comparative therapeutic benchmarks.
+                  </p>
+                </motion.div>
               </motion.div>
             </div>
 
@@ -434,22 +439,67 @@ export default function ResearchDevelopment() {
               className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-primary tracking-tight leading-[1.1] mb-6 drop-shadow-sm"
             >
               Innovation &amp; <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text relative inline-block">
+              <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                style={{ backgroundSize: "200% auto" }}
+                className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] text-transparent bg-clip-text relative inline-block pb-1"
+              >
                 Technology
-                <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB] to-transparent rounded-full origin-left"></motion.span>
-              </span>
+                <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-[#1D4ED8] to-transparent rounded-full origin-left"></motion.span>
+              </motion.span>
             </motion.h2>
 
-            {/* Subtitle */}
-            <motion.p 
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-              }}
-              className="text-[#475569] leading-[1.85] max-w-[700px] mx-auto text-[1.1rem] sm:text-lg font-medium"
-            >
-              Advancing Healthcare Through Science. Innovation drives our mission to deliver reliable pharmaceutical solutions. We embrace modern pharmaceutical technologies and continuously evaluate new formulations, advanced drug delivery systems, and improved manufacturing practices to enhance product quality and therapeutic effectiveness. Our commitment to innovation enables us to respond to changing healthcare needs while supporting better treatment outcomes.
-            </motion.p>
+            {/* Subtitle / Animated Text */}
+            <div className="space-y-6 text-[#475569] leading-[1.85] max-w-[700px] mx-auto text-[1.1rem] sm:text-lg font-medium text-center mt-6">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              >
+                Advancing Healthcare Through Science. Innovation drives our mission to deliver reliable pharmaceutical solutions. We embrace{" "}
+                <motion.span 
+                  animate={{ textShadow: ["0px 0px 0px rgba(29,78,216,0)", "0px 0px 15px rgba(29,78,216,0.4)", "0px 0px 0px rgba(29,78,216,0)"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="font-bold text-[#0A192F] relative inline-block"
+                >
+                  modern pharmaceutical technologies
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#1D4ED8]/60 to-transparent rounded-full"></span>
+                </motion.span>
+                {" "}and continuously evaluate new formulations,{" "}
+                <motion.span 
+                  animate={{ textShadow: ["0px 0px 0px rgba(29,78,216,0)", "0px 0px 15px rgba(29,78,216,0.4)", "0px 0px 0px rgba(29,78,216,0)"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="font-bold text-[#0A192F] relative inline-block"
+                >
+                  advanced drug delivery systems
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#1D4ED8]/60 to-transparent rounded-full"></span>
+                </motion.span>
+                {", "}and{" "}
+                <motion.span 
+                  animate={{ textShadow: ["0px 0px 0px rgba(29,78,216,0)", "0px 0px 15px rgba(29,78,216,0.4)", "0px 0px 0px rgba(29,78,216,0)"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                  className="font-bold text-[#0A192F] relative inline-block"
+                >
+                  improved manufacturing practices
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#1D4ED8]/60 to-transparent rounded-full"></span>
+                </motion.span>
+                {" "}to enhance product quality and therapeutic effectiveness.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                className="p-5 rounded-xl bg-gradient-to-r from-[#1D4ED8]/5 to-transparent border-l-[3px] border-[#1D4ED8] text-left inline-block mt-4"
+              >
+                <p className="font-bold text-[#0A192F] tracking-wide">
+                  Our commitment to innovation enables us to respond to changing healthcare needs while supporting better treatment outcomes.
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
 
           {/* Premium 2x2 Grid */}
@@ -577,28 +627,79 @@ export default function ResearchDevelopment() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="max-w-3xl mb-16 mx-auto text-center relative">
+          <div className="max-w-4xl mb-16 mx-auto text-center relative">
             {/* Glowing accent above heading */}
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }} 
               whileInView={{ scale: 1, opacity: 1 }} 
               viewport={{ once: true }} 
-              className="absolute -top-8 left-1/2 -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-[#38BDF8] to-transparent rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"
+              className="absolute -top-8 left-1/2 -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-[#EC4899] to-transparent rounded-full shadow-[0_0_10px_rgba(236,72,153,0.5)]"
             />
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] relative inline-block">
-              Pipeline Products
-              {/* Subtle animated underline */}
+            <motion.h2 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-primary tracking-tight leading-[1.15] relative inline-block mb-8"
+            >
+              Pipeline{" "}
+              <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                style={{ backgroundSize: "200% auto" }}
+                className="bg-gradient-to-r from-[#9D174D] via-[#EC4899] to-[#F9A8D4] bg-clip-text text-transparent inline-block drop-shadow-sm pb-1"
+              >
+                Products
+              </motion.span>
               <motion.span 
                 initial={{ scaleX: 0 }} 
                 whileInView={{ scaleX: 1 }} 
                 viewport={{ once: true }} 
                 transition={{ duration: 0.8, delay: 0.3 }} 
-                className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#2563EB]/30 to-transparent origin-center"
+                className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#EC4899] to-transparent origin-center"
               />
-            </h2>
-            <p className="mt-7 text-base sm:text-lg text-body font-sans leading-relaxed">
-              Building the Future of Healthcare. Medinet continues to strengthen its product portfolio through ongoing research and development initiatives. Our development pipeline focuses on introducing innovative formulations across multiple therapeutic areas to meet the growing demands of healthcare professionals and patients.
-            </p>
+            </motion.h2>
+            
+            <div className="space-y-6 text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-3xl mx-auto font-medium text-left sm:text-center mt-6">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              >
+                Building the Future of Healthcare. Medinet continues to strengthen its product portfolio through{" "}
+                <motion.span 
+                  animate={{ textShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 15px rgba(236,72,153,0.4)", "0px 0px 0px rgba(236,72,153,0)"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="font-bold text-[#0A192F] relative inline-block"
+                >
+                  ongoing research and development initiatives
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#EC4899]/60 to-transparent rounded-full"></span>
+                </motion.span>
+                .
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                className="p-5 rounded-xl bg-gradient-to-r from-[#EC4899]/5 to-transparent border-l-[3px] border-[#EC4899] text-left inline-block mt-4"
+              >
+                <p className="font-bold text-[#0A192F] tracking-wide">
+                  Our development pipeline focuses on introducing{" "}
+                  <motion.span 
+                    animate={{ textShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 15px rgba(236,72,153,0.4)", "0px 0px 0px rgba(236,72,153,0)"] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="relative inline-block"
+                  >
+                    innovative formulations
+                    <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#EC4899]/60 to-transparent rounded-full"></span>
+                  </motion.span>
+                  {" "}across multiple therapeutic areas to meet the growing demands of healthcare professionals and patients.
+                </p>
+              </motion.div>
+            </div>
           </div>
 
           <motion.div 
@@ -749,20 +850,81 @@ export default function ResearchDevelopment() {
       {/* Innovation & Technology Section */}
       <section className="py-24 lg:py-32 bg-alt-bg relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="max-w-3xl mb-16 mx-auto text-center relative">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] relative inline-block">
-              Innovation & Technology
+          <div className="max-w-4xl mb-16 mx-auto text-center relative">
+            <motion.h2 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-[900] text-primary tracking-tight leading-[1.15] relative inline-block mb-8"
+            >
+              Innovation &{" "}
+              <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                style={{ backgroundSize: "200% auto" }}
+                className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent inline-block drop-shadow-sm pb-1"
+              >
+                Technology
+              </motion.span>
               <motion.span 
                 initial={{ scaleX: 0 }} 
                 whileInView={{ scaleX: 1 }} 
                 viewport={{ once: true }} 
                 transition={{ duration: 0.8, delay: 0.3 }} 
-                className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#2563EB]/30 to-transparent origin-center"
+                className="absolute -bottom-3 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#1D4ED8] to-transparent origin-center"
               />
-            </h2>
-            <p className="mt-7 text-base sm:text-lg text-body font-sans leading-relaxed">
-              Medinet integrates modern manufacturing technologies and research methodologies to develop pharmaceuticals that are safer, more effective, and accessible. From advanced drug delivery systems to precision formulation techniques, technology drives our ability to bring complex therapies to market.
-            </p>
+            </motion.h2>
+            
+            <div className="space-y-6 text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-3xl mx-auto font-medium text-left sm:text-center mt-6">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Advancing Healthcare Through Science. Innovation drives our mission to deliver reliable pharmaceutical solutions. We embrace{" "}
+                <motion.span 
+                  animate={{ textShadow: ["0px 0px 0px rgba(29,78,216,0)", "0px 0px 15px rgba(29,78,216,0.4)", "0px 0px 0px rgba(29,78,216,0)"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="font-bold text-[#0A192F] relative inline-block"
+                >
+                  modern pharmaceutical technologies
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#1D4ED8]/60 to-transparent rounded-full"></span>
+                </motion.span>
+                {" "}and continuously evaluate new formulations,{" "}
+                <motion.span 
+                  animate={{ textShadow: ["0px 0px 0px rgba(29,78,216,0)", "0px 0px 15px rgba(29,78,216,0.4)", "0px 0px 0px rgba(29,78,216,0)"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="font-bold text-[#0A192F] relative inline-block"
+                >
+                  advanced drug delivery systems
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#1D4ED8]/60 to-transparent rounded-full"></span>
+                </motion.span>
+                {", "}and{" "}
+                <motion.span 
+                  animate={{ textShadow: ["0px 0px 0px rgba(29,78,216,0)", "0px 0px 15px rgba(29,78,216,0.4)", "0px 0px 0px rgba(29,78,216,0)"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                  className="font-bold text-[#0A192F] relative inline-block"
+                >
+                  improved manufacturing practices
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#1D4ED8]/60 to-transparent rounded-full"></span>
+                </motion.span>
+                {" "}to enhance product quality and therapeutic effectiveness.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="p-5 rounded-xl bg-gradient-to-r from-[#1D4ED8]/5 to-transparent border-l-[3px] border-[#1D4ED8] text-left inline-block"
+              >
+                <p className="font-bold text-[#0A192F] tracking-wide">
+                  Our commitment to innovation enables us to respond to changing healthcare needs while supporting better treatment outcomes.
+                </p>
+              </motion.div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -810,21 +972,30 @@ export default function ResearchDevelopment() {
       </section>
 
       {/* Timeline Infographics Section */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] relative overflow-hidden">
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-pink-50/30 relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="max-w-3xl mb-20 mx-auto text-center relative">
-            {/* Subtle glow behind the heading */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[100px] rounded-full blur-[80px] bg-[#38BDF8]/10 pointer-events-none" />
+            {/* Subtle glow behind the heading - Pink + Blue mix */}
+            <div className="absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[100px] rounded-full blur-[80px] bg-[#1D4ED8]/10 pointer-events-none" />
+            <div className="absolute top-1/2 right-[30%] translate-x-1/2 -translate-y-1/2 w-[300px] h-[100px] rounded-full blur-[80px] bg-[#EC4899]/10 pointer-events-none" />
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-primary tracking-tight leading-[1.15] relative inline-block">
-              Product Development Process
-              {/* Soft animated underline using Medinet blue gradient */}
+              Product Development{" "}
+              <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                style={{ backgroundSize: "200% auto" }}
+                className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#EC4899] text-transparent bg-clip-text relative inline-block pb-1"
+              >
+                Process
+              </motion.span>
+              {/* Soft animated underline using Medinet blue+pink gradient */}
               <motion.span 
                 initial={{ scaleX: 0 }} 
                 whileInView={{ scaleX: 1 }} 
                 viewport={{ once: true }} 
                 transition={{ duration: 1, ease: "easeOut", delay: 0.2 }} 
-                className="absolute -bottom-4 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#2563EB]/70 to-transparent origin-center rounded-full"
+                className="absolute -bottom-4 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#1D4ED8] to-[#EC4899] origin-left rounded-full"
               />
             </h2>
             <p className="mt-8 text-base sm:text-lg text-body font-sans leading-relaxed max-w-2xl mx-auto">
@@ -843,11 +1014,11 @@ export default function ResearchDevelopment() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 relative"
           >
             {/* Timeline continuous line and particle */}
-            <div className="hidden lg:block absolute top-[48px] left-[8%] right-[8%] h-[2px] bg-gradient-to-r from-[#2563EB]/10 via-[#38BDF8]/30 to-[#2563EB]/10 rounded-full z-0 pointer-events-none overflow-hidden">
+            <div className="hidden lg:block absolute top-[48px] left-[8%] right-[8%] h-[2px] bg-gradient-to-r from-[#1D4ED8]/10 via-[#EC4899]/30 to-[#1D4ED8]/10 rounded-full z-0 pointer-events-none overflow-hidden">
               <motion.div 
                 animate={{ x: ["-10%", "110%"] }} 
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }} 
-                className="absolute top-0 bottom-0 w-[100px] bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent blur-[1px]"
+                className="absolute top-0 bottom-0 w-[100px] bg-gradient-to-r from-transparent via-[#EC4899] to-transparent blur-[1px]"
               />
             </div>
 
@@ -860,29 +1031,29 @@ export default function ResearchDevelopment() {
                     hidden: { opacity: 0, x: -20 },
                     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
                   }}
-                  className="p-6 text-left relative group hover:-translate-y-2.5 hover:scale-[1.03] transition-all duration-500 flex flex-col justify-start bg-white/95 backdrop-blur-xl border border-[#2563EB]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] hover:shadow-[0_30px_70px_rgba(11,31,77,0.12)] rounded-[24px]"
+                  className="p-6 text-left relative group hover:-translate-y-2.5 hover:scale-[1.03] transition-all duration-500 flex flex-col justify-start bg-white/95 backdrop-blur-xl border border-[#1D4ED8]/[0.08] shadow-[0_20px_60px_rgba(11,31,77,0.08)] hover:shadow-[0_30px_70px_rgba(236,72,153,0.08)] rounded-[24px]"
                 >
-                  {/* Thin animated blue-to-teal accent line on top */}
-                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563EB]/50 to-[#1D4ED8]/50 opacity-50 group-hover:opacity-100 group-hover:scale-x-110 transition-all duration-500 origin-left"></div>
+                  {/* Thin animated blue-to-pink accent line on top */}
+                  <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#1D4ED8]/50 to-[#EC4899]/50 opacity-50 group-hover:opacity-100 group-hover:scale-x-110 transition-all duration-500 origin-left"></div>
 
                   {/* Glowing circular node between each step (on the timeline) */}
                   {idx < 5 && (
-                    <div className="hidden lg:flex absolute top-[45px] -right-[16px] w-2 h-2 rounded-full bg-[#38BDF8] shadow-[0_0_10px_#38BDF8] z-10 opacity-50 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300 pointer-events-none"></div>
+                    <div className="hidden lg:flex absolute top-[45px] -right-[16px] w-2 h-2 rounded-full bg-[#EC4899] shadow-[0_0_10px_#EC4899] z-10 opacity-50 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300 pointer-events-none"></div>
                   )}
 
                   {/* Large elegant step numbers in top right corner */}
-                  <span className="absolute top-3 right-4 text-4xl font-display font-black text-primary opacity-[0.08] font-mono group-hover:opacity-20 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none">
+                  <span className="absolute top-3 right-4 text-4xl font-display font-black text-primary opacity-[0.08] font-mono group-hover:opacity-20 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none group-hover:text-[#EC4899]">
                     {step.phase}
                   </span>
                   
                   <div className="flex items-center gap-2 mb-6 relative z-10">
                     {/* Premium rounded-square container with soft gradient */}
-                    <div className="w-12 h-12 rounded-[14px] bg-gradient-to-br from-[#EFF6FF] to-white border border-[#2563EB]/10 flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_0_15px_rgba(37,99,235,0.15)] group-hover:scale-110 group-hover:brightness-110 transition-all duration-500">
-                      <StepIcon className="w-5 h-5 text-[#2563EB]" />
+                    <div className="w-12 h-12 rounded-[14px] bg-gradient-to-br from-[#EFF6FF] to-pink-50/50 border border-[#1D4ED8]/10 flex items-center justify-center shrink-0 shadow-sm group-hover:shadow-[0_0_15px_rgba(236,72,153,0.15)] group-hover:scale-110 group-hover:border-[#EC4899]/30 transition-all duration-500">
+                      <StepIcon className="w-5 h-5 text-[#1D4ED8] group-hover:text-[#EC4899] transition-colors duration-500" />
                     </div>
                   </div>
                   
-                  <h4 className="font-display font-bold text-primary text-[1.05rem] mb-2 group-hover:text-[#2563EB] transition-colors duration-300 relative z-10">{step.title}</h4>
+                  <h4 className="font-display font-bold text-primary text-[1.05rem] mb-2 group-hover:text-[#EC4899] transition-colors duration-300 relative z-10">{step.title}</h4>
                   <p className="text-[13px] text-body leading-relaxed mt-1 relative z-10">{step.description}</p>
                 </motion.div>
               );

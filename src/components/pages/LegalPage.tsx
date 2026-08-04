@@ -1,3 +1,4 @@
+import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import { 
@@ -56,8 +57,8 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "Your rights regarding personal data",
                   "Contact details for privacy-related enquiries"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-[#475569]">
-                    <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                    <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -93,8 +94,8 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "Third-party links",
                   "Changes to website content and policies"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-[#475569]">
-                    <CheckCircle className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                    <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -126,8 +127,8 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "Product availability may vary by region.",
                   "Medinet reserves the right to update product information and website content without prior notice."
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-[#475569]">
-                    <CheckCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                    <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -161,8 +162,8 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "How cookies improve your browsing experience",
                   "Managing or disabling cookies through your browser settings"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-[#475569]">
-                    <CheckCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
+                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                    <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}

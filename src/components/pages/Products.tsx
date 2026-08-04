@@ -536,7 +536,15 @@ export default function Products({ params, showToast }: ProductsProps) {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-[900] text-primary tracking-tight leading-tight mb-6"
             >
-              New <span className="bg-gradient-to-r from-[#0A192F] via-[#1D4ED8] to-[#38BDF8] bg-clip-text text-transparent">Launches</span>
+              New{" "}
+              <motion.span 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                style={{ backgroundSize: "200% auto" }}
+                className="bg-gradient-to-r from-[#9D174D] via-[#EC4899] to-[#F9A8D4] bg-clip-text text-transparent inline-block drop-shadow-sm pb-1"
+              >
+                Launches
+              </motion.span>
             </motion.h2>
 
             {/* Animated Divider */}
@@ -545,21 +553,36 @@ export default function Products({ params, showToast }: ProductsProps) {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#1D4ED8] to-transparent mb-6 origin-center"
+              className="w-24 h-1.5 rounded-full bg-gradient-to-r from-transparent via-[#EC4899] to-transparent mb-8 origin-center"
             ></motion.div>
 
             {/* Description */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto font-medium"
-            >
-              Medinet continues to expand its pharmaceutical portfolio with innovative formulations developed to meet evolving healthcare needs. Our commitment to research, quality, and patient-focused care ensures that every new product delivers value to healthcare professionals and patients alike.
-              <br/><br/>
-              <strong className="font-bold text-primary">Stay tuned for our latest product launches and therapeutic advancements.</strong>
-            </motion.p>
+            <div className="space-y-6 text-[#475569] text-base md:text-[1.1rem] leading-[1.8] max-w-2xl mx-auto font-medium">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Medinet continues to expand its pharmaceutical portfolio with innovative formulations developed to meet evolving healthcare needs. Our commitment to research, quality, and patient-focused care ensures that every new product delivers value to healthcare professionals and patients alike.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="p-5 rounded-xl bg-gradient-to-r from-secondary/5 to-transparent border-l-[3px] border-secondary"
+              >
+                <motion.strong 
+                  animate={{ textShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 15px rgba(236,72,153,0.5)", "0px 0px 0px rgba(236,72,153,0)"] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="font-bold text-[#0A192F] inline-block tracking-wide"
+                >
+                  Stay tuned for our latest product launches and therapeutic advancements.
+                </motion.strong>
+              </motion.div>
+            </div>
           </div>
 
           <motion.div

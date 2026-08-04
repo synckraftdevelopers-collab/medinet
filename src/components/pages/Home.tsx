@@ -1,3 +1,4 @@
+import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -212,11 +213,9 @@ export default function Home({ navigate }: HomeProps) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 + (i * 0.1) }}
                         key={i}
-                        className="flex items-center gap-3 group/item"
+                        className="flex items-center gap-[20px] group/item"
                       >
-                        <div className="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0 group-hover/item:bg-success/20 transition-colors">
-                          <CheckCircle className="w-3.5 h-3.5 text-success group-hover/item:scale-110 transition-transform" />
-                        </div>
+                        <PremiumFeatureIcon />
                         <span className="text-sm font-semibold text-heading">{text}</span>
                       </motion.div>
                     ))}

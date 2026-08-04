@@ -1,3 +1,4 @@
+import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React, { useState, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import {
@@ -135,7 +136,7 @@ export default function Careers({ showToast }: CareersProps) {
               "Equal opportunity employer"
             ].map((item, idx) => (
               <motion.div variants={fadeUp} key={idx} className="bg-white p-5 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-                <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                <PremiumFeatureIcon />
                 <span className="text-[#475569] font-medium">{item}</span>
               </motion.div>
             ))}
@@ -171,8 +172,8 @@ export default function Careers({ showToast }: CareersProps) {
                   "Work-life balance",
                   "A culture of integrity and accountability"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
-                    <CheckCircle className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-center gap-[20px] bg-white p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
+                    <PremiumFeatureIcon />
                     <span className="text-[#475569] font-medium">{item}</span>
                   </div>
                 ))}
@@ -212,7 +213,7 @@ export default function Careers({ showToast }: CareersProps) {
                   { title: "Ethical & Purpose-Driven Workplace", desc: "Guided by integrity, patient care, quality, and affordability, every employee contributes to improving healthcare outcomes." }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-4 bg-white p-5 rounded-xl border border-teal-100/50 shadow-sm hover:shadow-md transition-shadow">
-                    <CheckCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
+                    <PremiumFeatureIcon />
                     <div>
                       <span className="text-primary font-bold block mb-1">{item.title}</span>
                       <span className="text-[#475569] text-sm leading-relaxed block">{item.desc}</span>

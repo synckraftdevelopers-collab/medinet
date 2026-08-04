@@ -39,7 +39,8 @@ import {
   Globe,
   ShieldCheck,
   Megaphone,
-  Briefcase
+  Briefcase,
+  Bell
 } from "lucide-react";
 
 interface HomeProps {
@@ -1157,15 +1158,43 @@ export default function Home({ navigate }: HomeProps) {
       </section>
 
       {/* Latest Updates Section */}
-      <section className="py-20 bg-white border-b border-border relative overflow-hidden">
+      <section className="py-24 bg-[#F8FAFC] border-y border-border relative overflow-hidden">
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <SectionHeader
-            title="Stay Connected with Medinet"
-            badge="Latest Updates"
-            description="Keep up with the latest news and important announcements from Medinet Pharmaceutical Marketing Company."
-            centered={true}
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[24px] p-10 md:p-14 text-center hover:shadow-[0_20px_40px_rgb(236,72,153,0.08)] transition-all duration-500 group max-w-4xl mx-auto mb-16"
+          >
+            <motion.div 
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0B1F4D] to-[#17367B] flex items-center justify-center shadow-lg shadow-[#0B1F4D]/20 mx-auto mb-8 relative group-hover:scale-105 transition-transform duration-500"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-[#EC4899] to-[#DB2777] opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500"></div>
+              <Bell className="w-10 h-10 text-white relative z-10 group-hover:rotate-12 transition-transform duration-500" />
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-[#EC4899] rounded-full border-2 border-white flex items-center justify-center shadow-sm z-20">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FCE7F3] opacity-75"></span>
+              </div>
+            </motion.div>
+
+            <div className="relative inline-block mb-6">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] to-[#EC4899] blur-2xl opacity-15 -z-10 rounded-full"></div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A] tracking-tight">
+                Stay Connected with Medinet
+              </h2>
+            </div>
+            
+            <div className="w-24 h-1.5 rounded-full bg-gradient-to-r from-[#0B1F4D] to-[#EC4899] mx-auto mb-8 opacity-80 group-hover:w-32 transition-all duration-500"></div>
+            
+            <p className="text-[#475569] leading-relaxed text-lg sm:text-xl font-medium max-w-3xl mx-auto">
+              Stay updated with the latest pharmaceutical innovations, product launches, healthcare insights, company announcements, medical conferences, and industry updates from <strong className="text-[#EC4899] font-bold">Medinet Pharmaceutical Marketing Company</strong>.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { title: "New Product Launches", icon: Pill },
               { title: "Medical Conferences & Events", icon: Presentation },
@@ -1178,13 +1207,13 @@ export default function Home({ navigate }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="group p-6 rounded-2xl bg-background border border-border hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer flex flex-col items-center text-center"
+                className="group p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/60 hover:border-[#EC4899]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#EC4899]/5 cursor-pointer flex flex-col items-center text-center"
                 onClick={() => navigate("news-events")}
               >
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm text-secondary mb-4 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                <div className="w-12 h-12 bg-[#FCE7F3] rounded-xl flex items-center justify-center shadow-sm text-[#EC4899] mb-4 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-[#EC4899] group-hover:to-[#DB2777] group-hover:text-white transition-all duration-300">
                   <update.icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-display font-bold text-primary group-hover:text-secondary transition-colors duration-300">
+                <h3 className="font-display font-bold text-[#0B1F4D] group-hover:text-[#EC4899] transition-colors duration-300">
                   {update.title}
                 </h3>
               </motion.div>

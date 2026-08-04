@@ -589,7 +589,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     width={200}
                     height={60}
                     priority
-                    className="block lg:hidden w-[130px] sm:w-[150px] md:w-[180px] h-auto object-contain object-left"
+                    className="block lg:hidden w-[110px] sm:w-[130px] md:w-[160px] h-auto object-contain object-left"
                   />
                 </div>
               </button>

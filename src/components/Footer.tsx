@@ -79,16 +79,16 @@ function Footer({ navigate, showToast }: FooterProps) {
 
   return (
     <footer className="bg-[#0B1F4D] text-white font-sans border-t border-[#EC4899]/20 pt-16 pb-0 overflow-hidden">
-      
+
       {/* Top Newsletter Section */}
       <div className="max-w-[1500px] mx-auto px-6 lg:px-[80px] 2xl:px-[100px] pb-[60px] border-b border-white/10">
         <div className="flex flex-col xl:flex-row items-center justify-between gap-10">
-          
+
           <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex flex-col items-center xl:items-start w-full xl:w-auto text-center xl:text-left">
             <div className="w-full max-w-[650px] mx-auto xl:mx-0">
               <h3 className="text-[38px] lg:text-[54px] font-[800] text-white leading-[1.1] tracking-tight mb-6">
                 Stay Connected <br className="hidden sm:block" /> with{" "}
-                <motion.span 
+                <motion.span
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                   className="bg-gradient-to-r from-[#EC4899] via-[#2563EB] to-[#EC4899] text-transparent bg-clip-text bg-[length:200%_auto] inline-block"
@@ -117,9 +117,8 @@ function Footer({ navigate, showToast }: FooterProps) {
                   onChange={handleEmailChange}
                   onFocus={() => setIsFocused(true)}
                   onBlur={handleEmailBlur}
-                  className={`relative w-full pl-[46px] pr-4 h-[52px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-[14px] text-white placeholder:text-white/50 text-[15px] shadow-sm focus:outline-none focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
-                    emailError ? "border-red-500" : isFocused ? "border-[#EC4899]/50 shadow-[inset_0_0_15px_rgba(236,72,153,0.15)]" : ""
-                  }`}
+                  className={`relative w-full pl-[46px] pr-4 h-[52px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-[14px] text-white placeholder:text-white/50 text-[15px] shadow-sm focus:outline-none focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${emailError ? "border-red-500" : isFocused ? "border-[#EC4899]/50 shadow-[inset_0_0_15px_rgba(236,72,153,0.15)]" : ""
+                    }`}
                   aria-label="Email address for newsletter"
                   aria-invalid={!!emailError}
                 />
@@ -131,7 +130,7 @@ function Footer({ navigate, showToast }: FooterProps) {
                   </motion.span>
                 )}
               </div>
-              
+
               <button
                 type="submit"
                 disabled={loading}
@@ -164,7 +163,7 @@ function Footer({ navigate, showToast }: FooterProps) {
             <h4 className="text-[13px] leading-none font-bold text-white uppercase tracking-[0.15em] mb-2 opacity-90 hidden md:block">
               Company
             </h4>
-            
+
             <p className="text-[16px] text-[rgba(255,255,255,0.88)] leading-[1.8] max-w-[360px]">
               Medinet Pharmaceutical Marketing Company is dedicated to delivering reliable pharmaceutical solutions. Reliable Care, Every Time. Committed to quality. Driven by innovation. Trusted by healthcare professionals.
             </p>
@@ -181,13 +180,13 @@ function Footer({ navigate, showToast }: FooterProps) {
               </a>
             </div>
 
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -3, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="mt-4 group flex items-center gap-[18px] bg-white/5 backdrop-blur-2xl p-[18px] rounded-[18px] border border-[#EC4899]/20 shadow-[0_8px_25px_rgba(0,0,0,0.2)] w-full max-w-[320px] h-[90px] transition-all duration-500 hover:bg-white/10 hover:border-[#EC4899]/50 hover:shadow-[0_15px_30px_rgba(236,72,153,0.15)] relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#EC4899]/10 to-[#2563EB]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
+
               <div className="relative z-10 w-[50px] h-[50px] rounded-[14px] bg-gradient-to-br from-[#EC4899] to-[#2563EB] p-[1.5px] flex items-center justify-center shrink-0 group-hover:shadow-[0_0_15px_rgba(236,72,153,0.4)] transition-all duration-500">
                 <div className="w-full h-full bg-[#0B1F4D] rounded-[12.5px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-500">
                   <Award className="w-[22px] h-[22px] text-[#F9A8D4] group-hover:text-white group-hover:scale-110 transition-all duration-500" />
@@ -250,7 +249,7 @@ function Footer({ navigate, showToast }: FooterProps) {
                 >
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#EC4899] to-[#0B1F4D] group-hover:from-[#C026D3] group-hover:to-[#EC4899] transition-colors duration-300"></div>
                   <div className="absolute inset-[2px] rounded-full bg-[rgba(255,255,255,0.08)] backdrop-blur-md"></div>
-                  
+
                   <span className="relative z-10 text-[15px] font-[600] text-[#FFFFFF] tracking-[0.5px]">
                     VIEW ALL SEGMENTS
                   </span>

@@ -99,7 +99,14 @@ export default function Contact({ showToast }: ContactProps) {
             </span>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
-              <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Get in Touch with Medinet</span>
+              Get in Touch with{" "}
+              <motion.span
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="bg-[linear-gradient(to_right,#BE185D,#2563EB,#BE185D)] bg-[length:200%_auto] text-transparent bg-clip-text inline-block drop-shadow-sm"
+              >
+                Medinet
+              </motion.span>
             </h1>
             
             <p className="mt-4 text-base sm:text-lg text-[#334155] leading-relaxed relative z-10">
@@ -119,31 +126,49 @@ export default function Contact({ showToast }: ContactProps) {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
             {/* Corporate Office */}
-            <motion.div variants={fadeUp} className="bg-alt-bg border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
+            <motion.div 
+              variants={fadeUp} 
+              whileHover={{ y: -5, boxShadow: "0 20px 40px -15px rgba(236,72,153,0.15)" }}
+              className="bg-white border border-indigo-50 hover:border-pink-200/60 p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2563EB] to-[#BE185D] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <motion.div 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="w-14 h-14 rounded-2xl bg-[linear-gradient(to_right,#BE185D,#2563EB,#BE185D)] bg-[length:200%_auto] flex items-center justify-center shrink-0 shadow-[0_8px_16px_rgba(236,72,153,0.25)] mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
                 <Building2 className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-primary mb-3">Corporate Office</h3>
+              </motion.div>
+              <h3 className="text-2xl font-bold text-primary mb-3 group-hover:text-[#2563EB] transition-colors duration-300">Corporate Office</h3>
               <p className="text-[#475569] font-medium mb-4">Medinet Pharmaceutical Marketing Company</p>
               <div className="flex items-start gap-3 mt-4 text-[#475569]">
-                <MapPin className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-[#BE185D] shrink-0 mt-0.5 group-hover:animate-bounce" />
                 <span>(Add your complete corporate office address here.)</span>
               </div>
             </motion.div>
 
             {/* Regional Offices */}
-            <motion.div variants={fadeUp} className="bg-alt-bg border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
+            <motion.div 
+              variants={fadeUp} 
+              whileHover={{ y: -5, boxShadow: "0 20px 40px -15px rgba(236,72,153,0.15)" }}
+              className="bg-white border border-indigo-50 hover:border-pink-200/60 p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2563EB] to-[#BE185D] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <motion.div 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+                className="w-14 h-14 rounded-2xl bg-[linear-gradient(to_right,#2563EB,#BE185D,#2563EB)] bg-[length:200%_auto] flex items-center justify-center shrink-0 shadow-[0_8px_16px_rgba(37,99,235,0.25)] mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
                 <MapPin className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-primary mb-3">Regional Offices</h3>
-              <p className="text-[#475569] font-medium mb-6">Our Growing Presence</p>
+              </motion.div>
+              <h3 className="text-2xl font-bold text-primary mb-3 group-hover:text-[#2563EB] transition-colors duration-300">Regional Offices</h3>
+              <p className="text-[#BE185D] font-medium mb-6">Our Growing Presence</p>
               <p className="text-[#475569] text-sm mb-4">Medinet is continuously expanding its reach to serve healthcare professionals and business partners across multiple regions.</p>
               
               <div className="space-y-4">
                 {["Coimbatore", "Dharmapuri", "Bengaluru"].map((city, idx) => (
-                  <div key={idx} className="flex items-start gap-3 text-[#475569]">
-                    <MapPin className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-start gap-3 text-[#475569] group/item hover:bg-pink-50/50 p-2 -mx-2 rounded-lg transition-colors">
+                    <MapPin className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5 group-hover/item:text-[#BE185D] transition-colors" />
                     <div className="text-sm">
                       <strong className="block text-primary">{city}</strong>
                       <span className="italic text-muted block mt-1">(Add address, contact & email)</span>
@@ -154,29 +179,38 @@ export default function Contact({ showToast }: ContactProps) {
             </motion.div>
 
             {/* Contact Details */}
-            <motion.div variants={fadeUp} className="bg-alt-bg border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg mb-6">
+            <motion.div 
+              variants={fadeUp} 
+              whileHover={{ y: -5, boxShadow: "0 20px 40px -15px rgba(236,72,153,0.15)" }}
+              className="bg-white border border-indigo-50 hover:border-pink-200/60 p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2563EB] to-[#BE185D] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <motion.div 
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 1 }}
+                className="w-14 h-14 rounded-2xl bg-[linear-gradient(to_right,#BE185D,#2563EB,#BE185D)] bg-[length:200%_auto] flex items-center justify-center shrink-0 shadow-[0_8px_16px_rgba(236,72,153,0.25)] mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
                 <Phone className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-primary mb-3">Contact Details</h3>
-              <p className="text-[#475569] font-medium mb-6">We're Just a Call or Email Away</p>
+              </motion.div>
+              <h3 className="text-2xl font-bold text-primary mb-3 group-hover:text-[#2563EB] transition-colors duration-300">Contact Details</h3>
+              <p className="text-[#BE185D] font-medium mb-6">We're Just a Call or Email Away</p>
               
               <div className="space-y-5">
-                <div>
+                <div className="group/item hover:bg-pink-50/50 p-2 -mx-2 rounded-lg transition-colors">
                   <h4 className="text-sm font-bold text-primary mb-2">General Enquiries</h4>
-                  <p className="flex items-center gap-2 text-[#475569] text-sm"><Phone className="w-4 h-4 text-[#2563EB]" /> +91 XXXXX XXXXX</p>
-                  <p className="flex items-center gap-2 text-[#475569] text-sm mt-1"><Mail className="w-4 h-4 text-[#2563EB]" /> info@medinetpharma.com</p>
+                  <p className="flex items-center gap-2 text-[#475569] text-sm"><Phone className="w-4 h-4 text-[#2563EB] group-hover/item:text-[#BE185D] transition-colors" /> +91 XXXXX XXXXX</p>
+                  <p className="flex items-center gap-2 text-[#475569] text-sm mt-1"><Mail className="w-4 h-4 text-[#2563EB] group-hover/item:text-[#BE185D] transition-colors" /> info@medinetpharma.com</p>
                 </div>
-                <div>
+                <div className="group/item hover:bg-pink-50/50 p-2 -mx-2 rounded-lg transition-colors">
                   <h4 className="text-sm font-bold text-primary mb-2">Sales & Marketing</h4>
-                  <p className="flex items-center gap-2 text-[#475569] text-sm"><Mail className="w-4 h-4 text-[#2563EB]" /> sales@medinetpharma.com</p>
+                  <p className="flex items-center gap-2 text-[#475569] text-sm"><Mail className="w-4 h-4 text-[#2563EB] group-hover/item:text-[#BE185D] transition-colors" /> sales@medinetpharma.com</p>
                 </div>
-                <div>
+                <div className="group/item hover:bg-pink-50/50 p-2 -mx-2 rounded-lg transition-colors">
                   <h4 className="text-sm font-bold text-primary mb-2">Business Partnerships & Careers</h4>
-                  <p className="flex items-center gap-2 text-[#475569] text-sm"><Mail className="w-4 h-4 text-[#2563EB]" /> business@medinetpharma.com</p>
-                  <p className="flex items-center gap-2 text-[#475569] text-sm mt-1"><Mail className="w-4 h-4 text-[#2563EB]" /> careers@medinetpharma.com</p>
+                  <p className="flex items-center gap-2 text-[#475569] text-sm"><Mail className="w-4 h-4 text-[#2563EB] group-hover/item:text-[#BE185D] transition-colors" /> business@medinetpharma.com</p>
+                  <p className="flex items-center gap-2 text-[#475569] text-sm mt-1"><Mail className="w-4 h-4 text-[#2563EB] group-hover/item:text-[#BE185D] transition-colors" /> careers@medinetpharma.com</p>
                 </div>
-                <div className="pt-4 border-t border-border">
+                <div className="pt-4 border-t border-indigo-50 group-hover:border-pink-100 transition-colors">
                   <h4 className="text-sm font-bold text-primary mb-2">Working Hours</h4>
                   <p className="flex items-center gap-2 text-[#475569] text-sm"><Clock className="w-4 h-4 text-[#2563EB]" /> Monday – Saturday</p>
                   <p className="flex items-center gap-2 text-[#475569] text-sm mt-1 pl-6">9:00 AM – 6:00 PM (IST)</p>

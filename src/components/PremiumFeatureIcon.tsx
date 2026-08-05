@@ -27,7 +27,6 @@ export const PremiumFeatureIcon: React.FC<PremiumFeatureIconProps> = ({ icon: Ic
       style={{
         background: "linear-gradient(135deg, rgba(11,31,77,0.85) 0%, rgba(37,99,235,0.85) 100%)",
         border: "1.5px solid rgba(236,72,153,0.3)",
-        boxShadow: "0 0 15px rgba(37,99,235,0.3), 0 0 20px rgba(236,72,153,0.15)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
       }}
@@ -55,17 +54,11 @@ export const PremiumFeatureIcon: React.FC<PremiumFeatureIconProps> = ({ icon: Ic
         <div className="absolute top-4 right-2 w-0.5 h-0.5 bg-white/50 rounded-full animate-pulse delay-150" />
       </div>
 
-      {/* Glow pulse animation when active */}
+      {/* Unique Merged Glow Effect */}
       <motion.div 
-        animate={{ 
-          boxShadow: [
-            "0 0 0 0 rgba(37,99,235,0)", 
-            "0 0 20px 2px rgba(37,99,235,0.2)", 
-            "0 0 0 0 rgba(37,99,235,0)"
-          ] 
-        }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 rounded-[18px] pointer-events-none"
+        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        className="absolute -inset-1 rounded-[20px] blur-[12px] opacity-70 bg-[linear-gradient(to_right,#EC4899,#2563EB,#EC4899)] bg-[length:200%_auto] pointer-events-none group-hover:opacity-100 group-hover:blur-[16px] transition-all duration-500 -z-10"
       />
 
       {/* The Icon itself */}

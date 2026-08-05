@@ -107,11 +107,11 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center max-w-4xl mx-auto mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-[1.15] relative z-10 inline-block mb-6 drop-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-[1.15] relative z-10 inline-block mb-6">
               <motion.span 
-                animate={{ textShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 20px rgba(236,72,153,0.6)", "0px 0px 0px rgba(236,72,153,0)"] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="bg-gradient-to-r from-[#EC4899] to-[#F9A8D4] text-transparent bg-clip-text inline-block"
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="bg-[linear-gradient(to_right,#EC4899,#8B5CF6,#3B82F6,#EC4899)] bg-[length:200%_auto] text-transparent bg-clip-text inline-block drop-shadow-[0_0_15px_rgba(139,92,246,0.4)]"
               >
                 Distribution Network
               </motion.span>
@@ -166,8 +166,15 @@ export default function BusinessPartners({ showToast }: BusinessPartnersProps) {
                 <div className="absolute inset-0 bg-white opacity-20 rounded-2xl mix-blend-overlay"></div>
                 <Handshake className="w-8 h-8 text-white relative z-10" />
               </div>
-              <h2 className="text-4xl font-display font-[900] text-[#0B1F4D] mb-4 drop-shadow-sm">
-                Franchise Opportunities
+              <h2 className="text-4xl font-display font-[900] tracking-tight leading-[1.15] mb-4 text-[#0B1F4D]">
+                Franchise{" "}
+                <motion.span 
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                  className="bg-[linear-gradient(to_right,#BE185D,#2563EB,#BE185D)] bg-[length:200%_auto] text-transparent bg-clip-text inline-block drop-shadow-sm"
+                >
+                  Opportunities
+                </motion.span>
               </h2>
               <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#38BDF8] font-bold tracking-wide text-xl mb-6 inline-block drop-shadow-sm">Grow Your Business with Medinet</h3>
               <div className="w-20 h-[3px] rounded-full bg-gradient-to-r from-[#2563EB] to-transparent mb-8"></div>

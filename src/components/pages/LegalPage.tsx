@@ -44,10 +44,10 @@ export default function LegalPage({ type }: LegalPageProps) {
           borderTheme: "border-border",
           content: (
             <>
-              <p className="text-[#475569] leading-relaxed mb-6">
+              <p className="text-[#334155] leading-relaxed mb-6">
                 At Medinet Pharmaceutical Marketing Company, we are committed to protecting your privacy and safeguarding the personal information you share with us. We collect and process information responsibly to improve our services, respond to enquiries, and provide a secure browsing experience.
               </p>
-              <p className="text-primary font-semibold mb-4">Our Privacy Policy explains:</p>
+              <p className="text-[#0F172A] font-semibold mb-4">Our Privacy Policy explains:</p>
               <ul className="space-y-3 mb-6">
                 {[
                   "Information we collect",
@@ -57,13 +57,13 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "Your rights regarding personal data",
                   "Contact details for privacy-related enquiries"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                  <li key={idx} className="flex items-center gap-[20px] text-[#334155]">
                     <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-[#475569] leading-relaxed font-medium">
+              <p className="text-[#334155] leading-relaxed font-medium">
                 We are committed to handling your information in accordance with applicable data protection laws and industry best practices.
               </p>
             </>
@@ -80,10 +80,10 @@ export default function LegalPage({ type }: LegalPageProps) {
           borderTheme: "border-indigo-100/50",
           content: (
             <>
-              <p className="text-[#475569] leading-relaxed mb-6">
+              <p className="text-[#334155] leading-relaxed mb-6">
                 By accessing and using the Medinet website, you agree to comply with our Terms & Conditions. These terms govern the use of our website, services, and content.
               </p>
-              <p className="text-primary font-semibold mb-4">The Terms & Conditions cover:</p>
+              <p className="text-[#0F172A] font-semibold mb-4">The Terms & Conditions cover:</p>
               <ul className="space-y-3 mb-6">
                 {[
                   "Acceptable use of the website",
@@ -94,13 +94,13 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "Third-party links",
                   "Changes to website content and policies"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                  <li key={idx} className="flex items-center gap-[20px] text-[#334155]">
                     <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-[#475569] leading-relaxed font-medium">
+              <p className="text-[#334155] leading-relaxed font-medium">
                 Please review these terms carefully before using our website.
               </p>
             </>
@@ -117,7 +117,7 @@ export default function LegalPage({ type }: LegalPageProps) {
           borderTheme: "border-orange-100/50",
           content: (
             <>
-              <p className="text-[#475569] leading-relaxed mb-6">
+              <p className="text-[#334155] leading-relaxed mb-6">
                 The information provided on this website is intended for general informational purposes only and should not be considered as medical advice, diagnosis, or treatment recommendations.
               </p>
               <ul className="space-y-3 mb-6">
@@ -127,13 +127,13 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "Product availability may vary by region.",
                   "Medinet reserves the right to update product information and website content without prior notice."
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                  <li key={idx} className="flex items-center gap-[20px] text-[#334155]">
                     <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-[#475569] leading-relaxed font-medium">
+              <p className="text-[#334155] leading-relaxed font-medium">
                 While we strive to ensure the accuracy of the information presented, Medinet does not guarantee that all content is complete, current, or free from errors.
               </p>
             </>
@@ -150,10 +150,10 @@ export default function LegalPage({ type }: LegalPageProps) {
           borderTheme: "border-teal-100/50",
           content: (
             <>
-              <p className="text-[#475569] leading-relaxed mb-6">
+              <p className="text-[#334155] leading-relaxed mb-6">
                 Our website uses cookies and similar technologies to improve functionality, enhance user experience, analyze website traffic, and personalize content.
               </p>
-              <p className="text-primary font-semibold mb-4">Our Cookie Policy explains:</p>
+              <p className="text-[#0F172A] font-semibold mb-4">Our Cookie Policy explains:</p>
               <ul className="space-y-3 mb-6">
                 {[
                   "What cookies are",
@@ -162,13 +162,13 @@ export default function LegalPage({ type }: LegalPageProps) {
                   "How cookies improve your browsing experience",
                   "Managing or disabling cookies through your browser settings"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-[20px] text-[#475569]">
+                  <li key={idx} className="flex items-center gap-[20px] text-[#334155]">
                     <PremiumFeatureIcon />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-[#475569] leading-relaxed font-medium">
+              <p className="text-[#334155] leading-relaxed font-medium">
                 By continuing to use our website, you consent to the use of cookies in accordance with our Cookie Policy.
               </p>
             </>
@@ -185,16 +185,16 @@ export default function LegalPage({ type }: LegalPageProps) {
           borderTheme: "border-border",
           content: (
             <>
-              <p className="text-primary font-bold mb-4">
+              <p className="text-[#0F172A] font-bold mb-4">
                 © Medinet Pharmaceutical Marketing Company. All Rights Reserved.
               </p>
-              <p className="text-[#475569] leading-relaxed mb-4">
+              <p className="text-[#334155] leading-relaxed mb-4">
                 All content on this website, including text, images, graphics, logos, product information, designs, icons, documents, and other materials, is the intellectual property of Medinet Pharmaceutical Marketing Company unless otherwise stated.
               </p>
-              <p className="text-[#475569] leading-relaxed mb-4">
+              <p className="text-[#334155] leading-relaxed mb-4">
                 No part of this website may be copied, reproduced, modified, distributed, or used for commercial purposes without prior written permission from Medinet Pharmaceutical Marketing Company.
               </p>
-              <p className="text-[#475569] leading-relaxed font-medium">
+              <p className="text-[#334155] leading-relaxed font-medium">
                 Unauthorized use of website content may violate applicable copyright, trademark, and intellectual property laws.
               </p>
             </>
@@ -211,8 +211,8 @@ export default function LegalPage({ type }: LegalPageProps) {
     return (
       <div className="pt-32 pb-20 text-center bg-white min-h-[50vh] flex items-center justify-center">
         <div className="p-12 bg-alt-bg rounded-2xl border border-border">
-          <h2 className="text-2xl font-bold text-primary">Document Not Found</h2>
-          <p className="text-[#475569] mt-2">Please select a valid legal document from the menu.</p>
+          <h2 className="text-2xl font-bold text-[#0F172A]">Document Not Found</h2>
+          <p className="text-[#334155] mt-2">Please select a valid legal document from the menu.</p>
         </div>
       </div>
     );
@@ -242,7 +242,7 @@ export default function LegalPage({ type }: LegalPageProps) {
               {config.badge}
             </span>
             
-            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary tracking-tight leading-[1.15] relative z-10 inline-block mb-6`}>
+            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0F172A] tracking-tight leading-[1.15] relative z-10 inline-block mb-6`}>
               {config.title}
             </h1>
             
@@ -271,10 +271,10 @@ export default function LegalPage({ type }: LegalPageProps) {
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
             <Scale className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-2xl lg:text-3xl font-display font-bold text-primary tracking-tight mb-4">
+          <h2 className="text-2xl lg:text-3xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
             Legal Commitment
           </h2>
-          <p className="text-[#475569] leading-relaxed text-lg mb-6">
+          <p className="text-[#334155] leading-relaxed text-lg mb-6">
             At Medinet Pharmaceutical Marketing Company, we are committed to maintaining transparency, protecting user privacy, respecting intellectual property rights, and ensuring compliance with all applicable legal and regulatory requirements.
           </p>
           <p className="text-[#2563EB] font-bold text-xl">

@@ -237,21 +237,32 @@ export default function Contact({ showToast }: ContactProps) {
                 Enquiry Form
               </span>
               <h2 className="text-3xl sm:text-4xl font-display font-bold text-primary tracking-tight leading-tight mb-6">
-                Send Us a <span className="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text">Message</span>
+                Send Us a <motion.span 
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                  className="bg-[linear-gradient(to_right,#EC4899,#F472B6,#BE185D,#EC4899)] bg-[length:200%_auto] text-transparent bg-clip-text drop-shadow-[0_0_12px_rgba(236,72,153,0.7)]"
+                >
+                  Message
+                </motion.span>
               </h2>
               <p className="text-[#475569] leading-relaxed text-lg mb-8">
                 Have a question or need assistance? Fill out the form below, and our team will get back to you as soon as possible.
               </p>
               
-              <div className="bg-white p-8 rounded-3xl border border-border shadow-sm mb-6">
-                <h3 className="text-xl font-bold text-primary mb-4">Let's Connect</h3>
-                <p className="text-[#475569] leading-relaxed">
-                  Whether you're a healthcare professional, distributor, business partner, job seeker, or customer, we'd love to hear from you. Reach out to us for any enquiries, and we'll be happy to assist you.
-                </p>
-                <div className="mt-6 pt-6 border-t border-border">
-                  <p className="font-bold text-[#2563EB] text-lg">
-                    Reliable Care, Every Time.
+              <div className="relative group mb-6">
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#2563EB]/40 to-[#38BDF8]/40 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="bg-white p-8 rounded-3xl border border-border shadow-sm relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
+                  <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#38BDF8] drop-shadow-[0_0_8px_rgba(37,99,235,0.5)] mb-4">
+                    Let's Connect
+                  </h3>
+                  <p className="text-[#475569] leading-relaxed group-hover:text-gray-900 transition-colors duration-300">
+                    Whether you're a healthcare professional, distributor, business partner, job seeker, or customer, we'd love to hear from you. Reach out to us for any enquiries, and we'll be happy to assist you.
                   </p>
+                  <div className="mt-6 pt-6 border-t border-border">
+                    <p className="font-bold text-[#2563EB] text-lg group-hover:drop-shadow-[0_0_8px_rgba(37,99,235,0.6)] transition-all duration-300">
+                      Reliable Care, <span className="bg-gradient-to-r from-pink-500 to-rose-400 text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">Every Time.</span>
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -265,8 +276,23 @@ export default function Contact({ showToast }: ContactProps) {
               </div>
             </div>
 
-            <div className="lg:col-span-7">
-              <div className="bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(11,31,77,0.06)] border border-border">
+            <motion.div 
+              variants={fadeUp} 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true, amount: 0.1 }} 
+              className="lg:col-span-7 relative group"
+            >
+              <motion.div 
+                className="absolute -inset-4 bg-gradient-to-r from-[#2563EB]/40 to-[#38BDF8]/40 blur-2xl rounded-[3rem]"
+                animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.98, 1.02, 0.98] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div 
+                className="bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(11,31,77,0.06)] border border-border relative z-10"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <h3 className="text-2xl font-bold text-primary mb-6 border-b border-border pb-4">Enquiry Form</h3>
                   
@@ -375,10 +401,14 @@ export default function Contact({ showToast }: ContactProps) {
                     ></textarea>
                   </div>
 
-                  <button 
+                  <motion.button 
                     type="submit" 
                     disabled={submitting}
-                    className="w-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#1e40af] text-white font-bold py-4 px-8 rounded-xl shadow-[0_10px_20px_rgba(37,99,235,0.2)] hover:shadow-[0_15px_30px_rgba(37,99,235,0.3)] transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                    transition={{ backgroundPosition: { duration: 6, repeat: Infinity, ease: "linear" } }}
+                    className="w-full bg-[linear-gradient(to_right,#1E3A8A,#EC4899,#1E3A8A)] bg-[length:200%_auto] text-white font-bold py-4 px-8 rounded-xl shadow-[0_10px_20px_rgba(30,58,138,0.3)] hover:shadow-[0_15px_30px_rgba(236,72,153,0.4)] transition-shadow duration-300 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {submitting ? (
                       <span className="flex items-center gap-2">
@@ -394,10 +424,10 @@ export default function Contact({ showToast }: ContactProps) {
                         <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </>
                     )}
-                  </button>
+                  </motion.button>
                 </form>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -410,9 +440,16 @@ export default function Contact({ showToast }: ContactProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
-            <Map className="w-8 h-8 text-white" />
-          </div>
+          <motion.div 
+            animate={{ 
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              boxShadow: ["0 10px 25px -5px rgba(30,58,138,0.4)", "0 15px 35px -5px rgba(236,72,153,0.5)", "0 10px 25px -5px rgba(30,58,138,0.4)"]
+            }}
+            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            className="w-16 h-16 rounded-2xl bg-[linear-gradient(to_right,#1E3A8A,#EC4899,#1E3A8A)] bg-[length:200%_auto] flex items-center justify-center mx-auto mb-6 relative group cursor-pointer"
+          >
+            <Map className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
+          </motion.div>
           <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary tracking-tight mb-4">
             Locate Us
           </h2>
@@ -421,39 +458,63 @@ export default function Contact({ showToast }: ContactProps) {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-5xl mx-auto text-left mb-12">
-             <div className="bg-alt-bg p-6 rounded-2xl border border-border flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-[#2563EB] shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-primary">Google Maps integration</h4>
+             {/* Card 1 (Navy Blue) */}
+             <motion.div 
+               whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(30,58,138,0.4)" }}
+               className="bg-white p-6 rounded-2xl border border-border hover:border-[#1E3A8A]/30 flex items-start gap-4 group transition-colors duration-300 relative overflow-hidden cursor-default"
+             >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="w-12 h-12 rounded-xl bg-blue-50/50 flex items-center justify-center shrink-0 group-hover:bg-[#1E3A8A] transition-colors duration-300 z-10 border border-blue-100 group-hover:border-transparent">
+                  <MapPin className="w-6 h-6 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div className="z-10">
+                  <h4 className="font-bold text-primary group-hover:text-[#1E3A8A] transition-colors duration-300">Google Maps integration</h4>
                   <p className="text-sm text-[#475569] mt-1">Easily find us on Google Maps</p>
                 </div>
-             </div>
-             <div className="bg-alt-bg p-6 rounded-2xl border border-border flex items-start gap-4">
-                <Navigation className="w-6 h-6 text-[#2563EB] shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-primary">Directions to our Corporate Office</h4>
+             </motion.div>
+
+             {/* Card 2 (Pink) */}
+             <motion.div 
+               whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(236,72,153,0.4)" }}
+               className="bg-white p-6 rounded-2xl border border-border hover:border-[#EC4899]/30 flex items-start gap-4 group transition-colors duration-300 relative overflow-hidden cursor-default"
+             >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#EC4899]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="w-12 h-12 rounded-xl bg-pink-50/50 flex items-center justify-center shrink-0 group-hover:bg-[#EC4899] transition-colors duration-300 z-10 border border-pink-100 group-hover:border-transparent">
+                  <Navigation className="w-6 h-6 text-[#EC4899] group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div className="z-10">
+                  <h4 className="font-bold text-primary group-hover:text-[#EC4899] transition-colors duration-300">Directions to our Corporate Office</h4>
                   <p className="text-sm text-[#475569] mt-1">Get precise navigation to our HQ.</p>
                 </div>
-             </div>
-             <div className="bg-alt-bg p-6 rounded-2xl border border-border flex items-start gap-4">
-                <Building2 className="w-6 h-6 text-[#2563EB] shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-primary">Parking & Accessibility</h4>
+             </motion.div>
+
+             {/* Card 3 (Navy Blue) */}
+             <motion.div 
+               whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(30,58,138,0.4)" }}
+               className="bg-white p-6 rounded-2xl border border-border hover:border-[#1E3A8A]/30 flex items-start gap-4 group transition-colors duration-300 relative overflow-hidden cursor-default"
+             >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="w-12 h-12 rounded-xl bg-blue-50/50 flex items-center justify-center shrink-0 group-hover:bg-[#1E3A8A] transition-colors duration-300 z-10 border border-blue-100 group-hover:border-transparent">
+                  <Building2 className="w-6 h-6 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div className="z-10">
+                  <h4 className="font-bold text-primary group-hover:text-[#1E3A8A] transition-colors duration-300">Parking & Accessibility</h4>
                   <p className="text-sm text-[#475569] mt-1">Visitor parking available on-site.</p>
                 </div>
-             </div>
+             </motion.div>
           </div>
           
-          <div className="w-full h-80 bg-background rounded-3xl border border-border flex flex-col items-center justify-center text-muted max-w-5xl mx-auto relative overflow-hidden group shadow-inner">
-             <Map className="w-16 h-16 mb-4 opacity-50" />
-             <p className="font-medium">Interactive Map Placeholder</p>
-             <p className="text-sm">(Map integration goes here)</p>
-             <div className="absolute inset-0 bg-white/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-                <button className="bg-[#2563EB] hover:bg-secondary text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-colors flex items-center gap-2">
-                  <Navigation className="w-5 h-5" />
-                  Get Directions
-                </button>
-             </div>
+          <div className="w-full h-[400px] bg-background rounded-[2rem] border border-border max-w-5xl mx-auto relative overflow-hidden shadow-sm group">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.25279998186!2d-74.14448744415412!3d40.69766374872111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1714151234567!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 grayscale-[15%] group-hover:grayscale-0 transition-all duration-700"
+            ></iframe>
           </div>
         </div>
       </section>

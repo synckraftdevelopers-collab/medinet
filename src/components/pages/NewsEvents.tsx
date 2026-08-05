@@ -327,7 +327,7 @@ export default function NewsEvents({ params }: NewsEventsProps) {
               </motion.div>
               <h2 className="text-3xl font-display font-bold text-primary mb-4">CSR Initiatives</h2>
               <h3 className="text-secondary font-medium tracking-wide text-lg mb-4">Caring Beyond Medicines</h3>
-              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 mb-6"></div>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-pink-500 to-pink-600 mb-6"></div>
               <p className="text-[#475569] leading-relaxed">
                 At Medinet, we believe our responsibility extends beyond delivering quality medicines. Through our{" "}
                 <motion.span animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }} className="bg-[linear-gradient(to_right,#9D174D,#EC4899,#BE185D,#9D174D)] bg-[length:200%_auto] text-transparent bg-clip-text font-semibold drop-shadow-sm">

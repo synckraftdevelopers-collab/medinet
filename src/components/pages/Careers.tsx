@@ -1,4 +1,3 @@
-import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
@@ -46,10 +45,10 @@ const titleContainerVariants: Variants = {
 
 const wordVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
   }
 };
 
@@ -175,8 +174,8 @@ export default function Careers({ showToast }: CareersProps) {
                 Why Join Us
               </span>
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary tracking-wide leading-[1.15] relative z-10 inline-block mb-6 cursor-default"
               variants={titleContainerVariants}
               initial="hidden"
@@ -192,30 +191,30 @@ export default function Careers({ showToast }: CareersProps) {
                     {word}
                   </motion.span>
                 ))}
-                
-                <motion.span 
-                  variants={wordVariants} 
+
+                <motion.span
+                  variants={wordVariants}
                   className="inline-block mr-[0.25em] bg-gradient-to-r from-[#1E3A8A] to-pink-500 text-transparent bg-clip-text relative"
                 >
                   Career
                   <Sparkles className="absolute -top-6 -right-5 w-6 h-6 text-pink-400 opacity-60 animate-pulse" />
                 </motion.span>
-                
+
                 {["That", "Makes", "a"].map((word, i) => (
                   <motion.span key={i + 2} variants={wordVariants} className="inline-block mr-[0.25em]">
                     {word}
                   </motion.span>
                 ))}
-                
-                <motion.span 
-                  variants={wordVariants} 
+
+                <motion.span
+                  variants={wordVariants}
                   className="inline-block bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-transparent bg-clip-text relative pr-2"
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 4, ease: "linear", repeat: Infinity }}
                   style={{ backgroundSize: "200% auto" }}
                 >
                   Difference
-                  <motion.div 
+                  <motion.div
                     className="absolute -right-6 -top-2 text-pink-500"
                     animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -225,8 +224,8 @@ export default function Careers({ showToast }: CareersProps) {
                 </motion.span>
               </motion.div>
             </motion.h1>
-            
-            <motion.div 
+
+            <motion.div
               className="mt-4 text-base sm:text-lg text-[#334155] opacity-90 hover:opacity-100 transition-opacity duration-300 leading-[1.8] relative z-10 cursor-default"
               variants={paragraphContainerVariants}
               initial="hidden"
@@ -245,8 +244,8 @@ export default function Careers({ showToast }: CareersProps) {
             </motion.div>
           </div>
 
-          <motion.div 
-            variants={cardContainerVariants} 
+          <motion.div
+            variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -298,29 +297,30 @@ export default function Careers({ showToast }: CareersProps) {
             ].map((item, idx) => {
               const Icon = item.icon;
               return (
-              <motion.div 
-                variants={cardVariants} 
-                key={idx} 
-                className="relative bg-white p-5 rounded-2xl border border-border flex items-start gap-4 group hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(236,72,153,0.15)] transition-all duration-300 overflow-hidden z-10"
-              >
-                {/* Subtle animated pink gradient background on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 bg-gradient-to-r from-pink-500 to-[#1E3A8A] z-[-1]" />
-                
-                <div className="shrink-0 relative">
-                  {/* Pink Glow Behind Icon */}
-                  <div className="absolute inset-0 bg-pink-500 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full scale-150" />
-                  
-                  {/* Navy Blue Icon Container */}
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] flex items-center justify-center relative z-10 transform group-hover:rotate-[5deg] group-hover:scale-110 transition-all duration-500 shadow-md group-hover:shadow-pink-500/30">
-                    <Icon className="w-5 h-5 text-white group-hover:text-pink-200 transition-colors duration-500" />
+                <motion.div
+                  variants={cardVariants}
+                  key={idx}
+                  className="relative bg-white p-5 rounded-2xl border border-border flex items-start gap-4 group hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(236,72,153,0.15)] transition-all duration-300 overflow-hidden z-10"
+                >
+                  {/* Subtle animated pink gradient background on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 bg-gradient-to-r from-pink-500 to-[#1E3A8A] z-[-1]" />
+
+                  <div className="shrink-0 relative">
+                    {/* Pink Glow Behind Icon */}
+                    <div className="absolute inset-0 bg-pink-500 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full scale-150" />
+
+                    {/* Navy Blue Icon Container */}
+                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] flex items-center justify-center relative z-10 transform group-hover:rotate-[5deg] group-hover:scale-110 transition-all duration-500 shadow-md group-hover:shadow-pink-500/30">
+                      <Icon className="w-5 h-5 text-white group-hover:text-pink-200 transition-colors duration-500" />
+                    </div>
                   </div>
-                </div>
-                
-                <div className="mt-[2px] relative z-10">
-                  <span className="text-[#475569] group-hover:text-[#0F172A] font-medium leading-relaxed transition-colors duration-300">{item.text}</span>
-                </div>
-              </motion.div>
-            )})}
+
+                  <div className="mt-[2px] relative z-10">
+                    <span className="text-[#475569] group-hover:text-[#0F172A] font-medium leading-relaxed transition-colors duration-300">{item.text}</span>
+                  </div>
+                </motion.div>
+              )
+            })}
           </motion.div>
         </div>
       </section>
@@ -339,15 +339,15 @@ export default function Careers({ showToast }: CareersProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 relative z-10">
 
           {/* Life at Medinet */}
-          <motion.div 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }} 
-            variants={cardContainerVariants} 
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={cardContainerVariants}
             className="flex flex-col lg:flex-row gap-12 items-start"
           >
             <motion.div variants={fadeUp} className="lg:w-1/3 lg:sticky lg:top-32">
-              <motion.div 
+              <motion.div
                 className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] flex items-center justify-center shrink-0 shadow-lg mb-6 relative group cursor-default"
                 animate={{ scale: [1, 1.05, 1], boxShadow: ["0px 10px 15px -3px rgba(0,0,0,0.1)", "0px 10px 25px -3px rgba(236,72,153,0.3)", "0px 10px 15px -3px rgba(0,0,0,0.1)"] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -373,9 +373,9 @@ export default function Careers({ showToast }: CareersProps) {
                   "Work-life balance",
                   "A culture of integrity and accountability"
                 ].map((item, idx) => (
-                  <motion.div 
+                  <motion.div
                     variants={cardVariants}
-                    key={idx} 
+                    key={idx}
                     className="group flex items-center gap-4 bg-alt-bg p-4 rounded-xl border border-border hover:bg-white hover:border-pink-200 hover:shadow-[0_8px_25px_rgba(236,72,153,0.12)] transition-all duration-300"
                   >
                     <div className="relative shrink-0">
@@ -397,15 +397,15 @@ export default function Careers({ showToast }: CareersProps) {
           </motion.div>
 
           {/* New Age Workplace */}
-          <motion.div 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }} 
-            variants={cardContainerVariants} 
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={cardContainerVariants}
             className="flex flex-col lg:flex-row-reverse gap-12 items-start mt-24"
           >
             <motion.div variants={fadeUp} className="lg:w-1/3 lg:sticky lg:top-32">
-              <motion.div 
+              <motion.div
                 className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] flex items-center justify-center shrink-0 shadow-lg mb-6 relative group cursor-default"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -433,9 +433,9 @@ export default function Careers({ showToast }: CareersProps) {
                   { title: "Innovation & Collaboration", desc: "Employees are encouraged to share ideas, solve challenges creatively, and contribute to the company's success." },
                   { title: "Ethical & Purpose-Driven Workplace", desc: "Guided by integrity, patient care, quality, and affordability, every employee contributes to improving healthcare outcomes." }
                 ].map((item, idx) => (
-                  <motion.div 
+                  <motion.div
                     variants={cardVariants}
-                    key={idx} 
+                    key={idx}
                     className="group flex items-start gap-5 bg-alt-bg p-5 rounded-2xl border border-border hover:bg-white hover:border-pink-200 hover:shadow-[0_10px_30px_rgba(236,72,153,0.12)] hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="relative shrink-0 mt-1">
@@ -462,8 +462,8 @@ export default function Careers({ showToast }: CareersProps) {
           <div className="absolute top-0 right-1/4 w-[40%] h-[40%] rounded-full blur-[150px] bg-pink-500 opacity-5" />
           <div className="absolute bottom-0 left-1/4 w-[40%] h-[40%] rounded-full blur-[150px] bg-[#1E3A8A] opacity-10" />
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
           initial="hidden"
           whileInView="visible"
@@ -473,10 +473,10 @@ export default function Careers({ showToast }: CareersProps) {
           <motion.h2 variants={fadeUp} className="text-4xl lg:text-5xl font-display font-bold text-primary tracking-tight mb-6">
             Our <span className="bg-gradient-to-r from-[#1E3A8A] to-pink-500 text-transparent bg-clip-text">Promise</span>
           </motion.h2>
-          
+
           <motion.div variants={fadeUp} className="w-24 h-1.5 rounded-full bg-gradient-to-r from-[#1E3A8A] to-pink-500 mx-auto mb-10"></motion.div>
-          
-          <motion.div 
+
+          <motion.div
             variants={fadeUp}
             className="text-[#334155] leading-[2.2] text-lg sm:text-xl font-medium max-w-3xl mx-auto"
           >
@@ -499,7 +499,7 @@ export default function Careers({ showToast }: CareersProps) {
                 <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#1E3A8A] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
               </span>
               , and every individual has the opportunity to make a{" "}
-              <motion.span 
+              <motion.span
                 className="relative inline-block cursor-default"
                 animate={{ textShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 15px rgba(236,72,153,0.5)", "0px 0px 0px rgba(236,72,153,0)"] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -522,7 +522,7 @@ export default function Careers({ showToast }: CareersProps) {
           <Image src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?q=80&w=2000&auto=format&fit=crop" alt="Corporate Environment" fill className="object-cover" />
         </div>
 
-        <motion.div 
+        <motion.div
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
           initial="hidden"
           whileInView="visible"
@@ -555,19 +555,17 @@ export default function Careers({ showToast }: CareersProps) {
             ].map((role, idx) => {
               const isEven = idx % 2 === 0;
               return (
-                <motion.div 
+                <motion.div
                   variants={cardVariants}
-                  key={idx} 
+                  key={idx}
                   className="relative group cursor-default hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className={`absolute inset-0 blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-full scale-105 ${
-                    isEven ? "bg-pink-500" : "bg-[#1E3A8A]"
-                  }`} />
-                  <div className={`relative bg-white border border-border font-semibold px-6 py-3 rounded-full shadow-sm transition-colors duration-300 text-[#0F172A] ${
-                    isEven 
-                      ? "group-hover:border-pink-400 group-hover:text-pink-600" 
+                  <div className={`absolute inset-0 blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-full scale-105 ${isEven ? "bg-pink-500" : "bg-[#1E3A8A]"
+                    }`} />
+                  <div className={`relative bg-white border border-border font-semibold px-6 py-3 rounded-full shadow-sm transition-colors duration-300 text-[#0F172A] ${isEven
+                      ? "group-hover:border-pink-400 group-hover:text-pink-600"
                       : "group-hover:border-[#1E3A8A] group-hover:text-[#1E3A8A]"
-                  }`}>
+                    }`}>
                     {role}
                   </div>
                 </motion.div>
@@ -581,8 +579,8 @@ export default function Careers({ showToast }: CareersProps) {
               <h4 className="font-bold text-[#0F172A] text-xl mb-2 group-hover:text-pink-600 transition-colors">Can't find a suitable role?</h4>
               <p className="text-[#475569]">Submit your resume, and we'll contact you when a relevant opportunity becomes available.</p>
             </div>
-            <a 
-              href="#apply" 
+            <a
+              href="#apply"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
@@ -598,7 +596,7 @@ export default function Careers({ showToast }: CareersProps) {
 
       {/* Apply Now Form */}
       <section id="apply" className="py-20 lg:py-28 bg-gradient-to-b from-[#F8FAFC] to-white relative overflow-hidden">
-        <motion.div 
+        <motion.div
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
           initial="hidden"
           whileInView="visible"
@@ -618,7 +616,7 @@ export default function Careers({ showToast }: CareersProps) {
           <motion.div variants={fadeUp} className="max-w-3xl mx-auto relative group">
             {/* Unique glowing backdrop for the form */}
             <div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 to-[#1E3A8A]/20 blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700 rounded-[3rem]" />
-            
+
             <div className="bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-border relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
               <form onSubmit={handleSubmit} className="space-y-6">
 
@@ -778,20 +776,20 @@ export default function Careers({ showToast }: CareersProps) {
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
           <Image src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2000&auto=format&fit=crop" alt="Diversity and Inclusion" fill className="object-cover" />
         </div>
-        
+
         {/* Glowing floating orbs */}
-        <motion.div 
+        <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-0 left-1/4 w-[30rem] h-[30rem] bg-pink-500/20 rounded-full blur-[120px] pointer-events-none"
         />
-        <motion.div 
+        <motion.div
           animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-[#1E3A8A]/20 rounded-full blur-[120px] pointer-events-none"
         />
 
-        <motion.div 
+        <motion.div
           className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
           initial="hidden"
           whileInView="visible"
@@ -799,7 +797,7 @@ export default function Careers({ showToast }: CareersProps) {
           variants={cardContainerVariants}
         >
           <motion.div variants={fadeUp} className="relative inline-block mb-8">
-            <motion.div 
+            <motion.div
               animate={{ scale: [1, 1.1, 1], boxShadow: ["0px 0px 0px rgba(236,72,153,0)", "0px 0px 40px rgba(236,72,153,0.6)", "0px 0px 0px rgba(236,72,153,0)"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] flex items-center justify-center relative z-10 shadow-xl"
@@ -807,24 +805,24 @@ export default function Careers({ showToast }: CareersProps) {
               <Users className="w-10 h-10 text-white" />
             </motion.div>
           </motion.div>
-          
+
           <motion.h2 variants={fadeUp} className="text-4xl lg:text-5xl font-display font-bold text-primary tracking-tight mb-6">
             Join the <span className="bg-gradient-to-r from-pink-500 to-[#1E3A8A] text-transparent bg-clip-text">Medinet Family</span>
           </motion.h2>
-          
+
           <motion.p variants={fadeUp} className="text-[#334155] leading-relaxed text-lg sm:text-xl font-medium mb-12 max-w-3xl mx-auto">
             At Medinet Pharmaceutical Marketing Company, we're more than a workplace—we're a team driven by a shared purpose: improving healthcare through quality, innovation, and trust. If you're ready to make a difference, we'd love to hear from you.
           </motion.p>
-          
+
           <motion.div variants={fadeUp} className="relative group inline-block w-full max-w-3xl">
             {/* Glowing animated background that intensifies on hover */}
             <div className="absolute -inset-1.5 bg-gradient-to-r from-pink-500 to-[#1E3A8A] rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-            
+
             <div className="relative bg-white px-8 py-10 sm:py-12 rounded-2xl ring-1 ring-border shadow-2xl overflow-hidden">
               {/* Subtle inner gradient decoration */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#1E3A8A]/10 rounded-full blur-3xl" />
-              
+
               <p className="text-[#0F172A] font-bold text-xl sm:text-2xl leading-relaxed relative z-10">
                 Start your journey with Medinet today — because together, we deliver <br className="hidden sm:block mt-2" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-[#1E3A8A] font-extrabold text-3xl sm:text-4xl mt-3 inline-block drop-shadow-sm">

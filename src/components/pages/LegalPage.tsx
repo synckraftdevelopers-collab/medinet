@@ -1,5 +1,6 @@
 import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
 import React from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { 
   ShieldCheck, 
@@ -37,6 +38,8 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Privacy Policy",
           badge: "Your Privacy Matters",
+          heroImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2000&auto=format&fit=crop",
+          contentImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop",
           icon: ShieldCheck,
           color: "from-[#2563EB] to-[#1D4ED8]",
           textColor: "text-[#2563EB]",
@@ -73,6 +76,8 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Terms & Conditions",
           badge: "Website Usage Guidelines",
+          heroImage: "https://images.unsplash.com/photo-1554774853-719586f82d77?q=80&w=2000&auto=format&fit=crop",
+          contentImage: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop",
           icon: FileText,
           color: "from-indigo-500 to-purple-600",
           textColor: "text-indigo-600",
@@ -110,6 +115,8 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Disclaimer",
           badge: "Important Information",
+          heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2000&auto=format&fit=crop",
+          contentImage: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop",
           icon: AlertTriangle,
           color: "from-amber-500 to-orange-600",
           textColor: "text-amber-600",
@@ -143,6 +150,8 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Cookie Policy",
           badge: "Enhancing Your Browsing Experience",
+          heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+          contentImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
           icon: Cookie,
           color: "from-teal-500 to-teal-700",
           textColor: "text-teal-600",
@@ -178,6 +187,8 @@ export default function LegalPage({ type }: LegalPageProps) {
         return {
           title: "Copyright Notice",
           badge: "Intellectual Property Rights",
+          heroImage: "https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?q=80&w=2000&auto=format&fit=crop",
+          contentImage: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop",
           icon: Copyright,
           color: "from-slate-600 to-slate-800",
           textColor: "text-body",
@@ -221,65 +232,132 @@ export default function LegalPage({ type }: LegalPageProps) {
   const Icon = config.icon;
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-20 bg-white min-h-screen flex flex-col">
+    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pt-[80px] bg-white flex flex-col flex-1 w-full relative">
       
       {/* Page Header */}
-      <section className={`bg-gradient-to-b from-[#FFFFFF] via-[#F8FAFC] to-[#EFF6FF] border-b ${config.borderTheme} py-20 lg:py-28 relative overflow-hidden`}>
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className={`absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-gradient-to-br ${config.color} opacity-5`} />
-          <div className={`absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px] bg-gradient-to-br ${config.color} opacity-5`} />
-        </div>
+      <section className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-6">
+        <motion.div 
+          variants={fadeUp} 
+          className="relative w-full h-[320px] sm:h-[360px] lg:h-[420px] rounded-[24px] overflow-hidden shadow-[0_20px_40px_rgba(11,31,77,0.15)] flex flex-col items-center justify-center text-center"
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={config.heroImage} 
+              alt={config.title} 
+              fill 
+              className="object-cover" 
+              priority
+            />
+          </div>
+          
+          {/* Dark Navy Overlay (45%) */}
+          <div className="absolute inset-0 bg-[#0B1F4D]/45 z-10" />
+          
+          {/* Animated Floating Elements */}
+          <motion.div 
+            animate={{ y: [0, -15, 0], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-10 right-[20%] w-32 h-32 bg-[#38BDF8] rounded-full blur-[80px] z-10"
+          />
+          <motion.div 
+            animate={{ y: [0, 20, 0], opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-10 right-[10%] w-40 h-40 bg-[#0D9488] rounded-full blur-[90px] z-10"
+          />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
-          <motion.div variants={fadeUp} className="max-w-4xl mx-auto flex flex-col items-center">
-            
-            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${config.color} flex items-center justify-center shadow-lg mb-6`}>
-              <Icon className="w-8 h-8 text-white" />
+          <div className="relative z-20 px-6 sm:px-12 flex flex-col items-center justify-center text-center max-w-3xl mx-auto h-full">
+            <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center shadow-lg mb-4 sm:mb-6 border border-white/20`}>
+              <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
             </div>
 
-            <span className="utility-badge-blue mb-5 relative z-10">
-              <span className="utility-dot"></span>
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-medium text-xs sm:text-sm mb-3 sm:mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]"></span>
               {config.badge}
             </span>
             
-            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#0F172A] tracking-tight leading-[1.15] relative z-10 inline-block mb-6`}>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-[1.15] mb-2 sm:mb-4 drop-shadow-lg">
               {config.title}
             </h1>
             
-            <p className="mt-4 text-base sm:text-lg text-[#334155] leading-relaxed relative z-10 max-w-2xl">
+            <p className="text-sm sm:text-base lg:text-lg text-white/90 leading-relaxed drop-shadow-md max-w-2xl mx-auto">
               Medinet Pharmaceutical Marketing Company is committed to providing clear, transparent, and accurate information regarding our policies and guidelines.
             </p>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Main Content */}
-      <section className="py-20 bg-white flex-1">
+      <section className="pt-8 pb-16 bg-white w-full">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={fadeUp} className={`${config.bgTheme} p-8 sm:p-12 rounded-3xl border ${config.borderTheme} shadow-sm`}>
+          {/* Content Container */}
+          <motion.div 
+            variants={fadeUp} 
+            className={`w-full ${config.bgTheme} p-8 sm:p-12 lg:p-16 rounded-[24px] border ${config.borderTheme} shadow-sm`}
+          >
             {config.content}
           </motion.div>
         </div>
       </section>
 
       {/* Legal Commitment (Footer Note) */}
-      <section className="py-16 bg-gradient-to-b from-[#F8FAFC] to-[#EFF6FF] text-center border-t border-border relative overflow-hidden mt-auto">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
-          <div className="absolute w-[60%] h-[60%] rounded-full blur-[150px] bg-[#2563EB] opacity-10" />
+      <section className="relative w-full py-20 mt-auto overflow-hidden bg-[#0B1F4D]">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div 
+            animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-[20%] -left-[10%] w-[500px] h-[500px] rounded-full bg-[#EC4899] blur-[150px]"
+          />
+          <motion.div 
+            animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.3, 0.15] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute -bottom-[20%] -right-[10%] w-[600px] h-[600px] rounded-full bg-[#38BDF8] blur-[150px]"
+          />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
         </div>
-        <div className="max-w-3xl mx-auto px-4 relative z-10">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg mx-auto mb-6">
-            <Scale className="w-8 h-8 text-white" />
-          </div>
-          <h2 className="text-2xl lg:text-3xl font-display font-bold text-[#0F172A] tracking-tight mb-4">
-            Legal Commitment
-          </h2>
-          <p className="text-[#334155] leading-relaxed text-lg mb-6">
-            At Medinet Pharmaceutical Marketing Company, we are committed to maintaining transparency, protecting user privacy, respecting intellectual property rights, and ensuring compliance with all applicable legal and regulatory requirements.
-          </p>
-          <p className="text-[#2563EB] font-bold text-xl">
-            Reliable Care, Every Time.
-          </p>
+
+        <div className="max-w-4xl mx-auto px-4 relative z-10 flex flex-col items-center text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="group relative p-8 sm:p-12 rounded-[32px] bg-white/[0.03] backdrop-blur-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:bg-white/[0.05] transition-all duration-500 overflow-hidden"
+          >
+            {/* Inner Border Glow on Hover */}
+            <div className="absolute inset-0 rounded-[32px] border border-transparent group-hover:border-white/20 transition-colors duration-500 pointer-events-none" />
+            
+            {/* Floating Icon */}
+            <motion.div 
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-20 h-20 mx-auto mb-8 flex items-center justify-center"
+            >
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#EC4899] to-[#38BDF8] blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="relative w-full h-full rounded-2xl bg-gradient-to-tr from-[#EC4899] to-[#38BDF8] p-[2px]">
+                <div className="w-full h-full rounded-2xl bg-[#0B1F4D] flex items-center justify-center">
+                  <Scale className="w-10 h-10 text-white" />
+                </div>
+              </div>
+            </motion.div>
+
+            <h2 className="text-3xl lg:text-4xl font-display font-extrabold text-white tracking-tight mb-6">
+              Legal Commitment
+            </h2>
+            
+            <p className="text-blue-100/80 leading-relaxed text-lg sm:text-xl max-w-2xl mx-auto font-light mb-8">
+              At Medinet Pharmaceutical Marketing Company, we are strictly committed to maintaining transparency, protecting user privacy, respecting intellectual property rights, and ensuring full compliance with all applicable legal and regulatory requirements.
+            </p>
+
+            {/* Glowing Gradient Text */}
+            <div className="inline-block relative">
+              <p className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#38BDF8] animate-gradient-x bg-[length:200%_auto]">
+                Reliable Care, Every Time.
+              </p>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-1 rounded-full bg-gradient-to-r from-[#EC4899] to-[#38BDF8]" />
+            </div>
+          </motion.div>
         </div>
       </section>
 

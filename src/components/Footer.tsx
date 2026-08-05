@@ -171,7 +171,7 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 1: Company */}
           <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex flex-col items-center md:items-start text-center md:text-left gap-6 w-full">
-            <h4 className="text-[13px] leading-none font-bold text-white uppercase tracking-[0.15em] mb-2 opacity-90 hidden md:block">
+            <h4 className="text-[16px] leading-none font-[900] text-white uppercase tracking-[0.2em] mb-4 drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] hidden md:block">
               Company
             </h4>
 
@@ -212,7 +212,7 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 2: Corporate Links */}
           <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex flex-col items-center md:items-start text-center md:text-left w-full">
-            <h4 className="text-[13px] leading-none font-bold text-white uppercase tracking-[0.15em] mb-8 opacity-90">
+            <h4 className="text-[16px] leading-none font-[900] text-white uppercase tracking-[0.2em] mb-8 drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]">
               Corporate
             </h4>
             <ul className="flex flex-col items-center md:items-start gap-[18px] w-full">
@@ -240,7 +240,7 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 3: Therapeutics */}
           <motion.div custom={3} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex flex-col items-center md:items-start text-center md:text-left w-full">
-            <h4 className="text-[13px] leading-none font-bold text-white uppercase tracking-[0.15em] mb-8 opacity-90">
+            <h4 className="text-[16px] leading-none font-[900] text-white uppercase tracking-[0.2em] mb-8 drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]">
               Therapeutics
             </h4>
             <ul className="flex flex-col items-center md:items-start gap-[18px] w-full">
@@ -274,7 +274,7 @@ function Footer({ navigate, showToast }: FooterProps) {
 
           {/* Column 4: Global Support */}
           <motion.div custom={4} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex flex-col items-center md:items-start text-center md:text-left w-full">
-            <h4 className="text-[13px] leading-none font-bold text-white uppercase tracking-[0.15em] mb-8 opacity-90">
+            <h4 className="text-[16px] leading-none font-[900] text-white uppercase tracking-[0.2em] mb-8 drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]">
               Global Support
             </h4>
             <ul className="flex flex-col items-center md:items-start gap-[20px] w-full">

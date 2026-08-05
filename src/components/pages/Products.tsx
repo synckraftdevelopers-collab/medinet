@@ -323,7 +323,7 @@ export default function Products({ params, showToast }: ProductsProps) {
               <span className="bg-gradient-to-r from-heading to-secondary text-transparent bg-clip-text">Products</span> Directory
             </h1>
             <p className="mt-4 text-body leading-relaxed max-w-[720px] text-sm sm:text-base mx-auto md:mx-0">
-              Explore our comprehensive collection of therapeutic formulations. Every product is audited, verified, bioequivalent, and licensed for wholesale export.
+              Explore our comprehensive collection of therapeutic formulations. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EC4899] via-[#DB2777] to-[#0B1F4D] font-bold">Every product</span> is audited, verified, bioequivalent, and licensed for wholesale export.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 md:self-end mx-auto md:mx-0 w-full sm:w-auto">

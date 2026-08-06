@@ -31,7 +31,8 @@ import {
   Droplet,
   Loader2,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  ChevronDown
 } from "lucide-react";
 
 interface ProductsProps {
@@ -67,6 +68,7 @@ export default function Products({ params, showToast }: ProductsProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
   // Enquiry Form State
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
@@ -106,13 +108,6 @@ export default function Products({ params, showToast }: ProductsProps) {
       if (prod) {
         setSelectedProduct(prod);
       }
-    }
-
-    if (params.section || params.scrollTo) {
-      const targetId = params.section || params.scrollTo;
-      setTimeout(() => {
-        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 50);
     }
   }, [params]);
 
@@ -364,7 +359,7 @@ export default function Products({ params, showToast }: ProductsProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Sidebar Filters */}
-            <aside className="lg:col-span-3 text-left bg-gradient-to-b from-white to-background border border-border p-6 rounded-3xl shadow-sm">
+            <aside className="hidden lg:block lg:col-span-3 text-left bg-gradient-to-b from-white to-background border border-border p-6 rounded-3xl shadow-sm">
               <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
                 <Filter className="w-5 h-5 text-secondary" />
                 <h3 className="font-mono font-bold text-heading text-xs uppercase tracking-widest">
@@ -420,15 +415,64 @@ export default function Products({ params, showToast }: ProductsProps) {
             <main className="lg:col-span-9">
               {/* Search Control */}
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8">
-                <div className="relative w-full sm:max-w-md">
-                  <input
-                    type="text"
-                    placeholder="Search brand, formula or key ingredient..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-11 pr-4 py-3 bg-white border border-border focus:border-secondary focus:ring-[4px] focus:ring-secondary/10 rounded-xl text-sm focus:outline-none text-heading transition-all placeholder:text-muted shadow-sm"
-                  />
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
+                <div className="flex items-stretch gap-3 w-full sm:max-w-md relative">
+                  {/* Search Bar - 80-85% width on mobile */}
+                  <div className="relative flex-[4] sm:flex-1">
+                    <input
+                      type="text"
+                      placeholder="Search brand, formula or key ingredient..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full h-full min-h-[44px] pl-11 pr-4 py-3 bg-white border border-border focus:border-secondary focus:ring-[4px] focus:ring-secondary/10 rounded-xl text-sm focus:outline-none text-heading transition-all placeholder:text-muted shadow-sm"
+                    />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
+                  </div>
+                  
+                  {/* Mobile Dropdown Button (Hidden on lg) */}
+                  <div className="relative flex-[1] lg:hidden">
+                    <button
+                      onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+                      className="w-full h-full min-h-[44px] bg-white border border-border focus:border-secondary focus:ring-[4px] focus:ring-secondary/10 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                    >
+                      <Filter className="w-4 h-4 text-secondary" />
+                      <ChevronDown className="w-3 h-3 text-secondary" />
+                    </button>
+                    
+                    <AnimatePresence>
+                      {isMobileDropdownOpen && (
+                        <>
+                          <div className="fixed inset-0 z-40" onClick={() => setIsMobileDropdownOpen(false)}></div>
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            className="absolute right-0 top-[calc(100%+8px)] w-[240px] max-h-[50vh] overflow-y-auto bg-white border border-border rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] z-50 p-2"
+                          >
+                            <button
+                              onClick={() => { setSelectedCategory("all"); setIsMobileDropdownOpen(false); }}
+                              className={`w-full text-left px-3 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer rounded-lg ${selectedCategory === "all" ? "bg-secondary/10 text-secondary" : "text-body hover:bg-secondary/5 hover:text-secondary"}`}
+                            >
+                              <span>All Formulations</span>
+                              <span className="text-[10px] text-muted">{PRODUCTS.length}</span>
+                            </button>
+                            {THERAPEUTIC_CATEGORIES.map((cat) => {
+                              const count = PRODUCTS.filter((p) => p.category === cat.id).length;
+                              return (
+                                <button
+                                  key={cat.id}
+                                  onClick={() => { setSelectedCategory(cat.id); setIsMobileDropdownOpen(false); }}
+                                  className={`w-full text-left px-3 py-2.5 text-xs font-bold transition-all duration-300 flex items-center justify-between cursor-pointer rounded-lg ${selectedCategory === cat.id ? "bg-secondary/10 text-secondary" : "text-body hover:bg-secondary/5 hover:text-secondary"}`}
+                                >
+                                  <span className="line-clamp-1 pr-2">{cat.name}</span>
+                                  <span className="text-[10px] text-muted">{count}</span>
+                                </button>
+                              );
+                            })}
+                          </motion.div>
+                        </>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
               </div>
 

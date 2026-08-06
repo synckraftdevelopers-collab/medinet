@@ -109,7 +109,7 @@ export default function Home({ navigate }: HomeProps) {
         {/* Background Laboratory Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2000&auto=format&fit=crop"
             alt="Pharmaceutical Laboratory"
             fill
             className="object-cover opacity-[0.03]"
@@ -256,7 +256,7 @@ export default function Home({ navigate }: HomeProps) {
                   {/* Premium Hero Image Mockup */}
                   <div className="relative w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm group/image">
                     <Image 
-                      src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop"
+                      src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop"
                       alt="Pharmaceutical Research"
                       fill
                       className="object-cover group-hover/image:scale-105 transition-transform duration-700"
@@ -467,7 +467,7 @@ export default function Home({ navigate }: HomeProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
             {[
               { title: "Quality Assured", desc: "Strict GMP adherence & validation.", icon: ShieldCheck, image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=600&auto=format&fit=crop" },
-              { title: "Research Driven", desc: "Bioequivalent therapeutic solutions.", icon: FlaskConical, image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600&auto=format&fit=crop" },
+              { title: "Research Driven", desc: "Bioequivalent therapeutic solutions.", icon: FlaskConical, image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=600&auto=format&fit=crop" },
               { title: "Regulatory Compliant", desc: "Meeting global FDA & EU standards.", icon: FileText, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop" },
               { title: "Patient Focused", desc: "Improving health access worldwide.", icon: HeartPulse, image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&auto=format&fit=crop" }
             ].map((feature, idx) => (

@@ -94,16 +94,22 @@ export function useRoute() {
       currentRouteRef.current = nextRoute;
       setCurrentRoute(nextRoute);
 
-      // Handle smooth scrolling to target sections or top without jumping
+      if (!isSameRoute) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      } else if (!targetSection) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
       if (targetSection) {
-        setTimeout(() => {
+        const tryScroll = (attempts = 0) => {
           const element = document.getElementById(targetSection);
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "start" });
+          } else if (attempts < 10) {
+            setTimeout(() => tryScroll(attempts + 1), 100);
           }
-        }, 120);
-      } else {
-        window.scrollTo({ top: 0, behavior: isSameRoute ? "smooth" : "instant" });
+        };
+        setTimeout(() => tryScroll(0), 50);
       }
     }
 

@@ -253,6 +253,17 @@ export const PRODUCTS: Product[] = [
     dosageForm: "Ointment",
     strength: "5% w/w",
     packaging: "15g Tube"
+  },
+  {
+    id: "zymus-br",
+    name: "Zymus BR",
+    genericName: "Trypsin + Bromelain + Rutoside Trihydrate",
+    category: "pain-management",
+    description: "Advanced formulation providing potent analgesic and anti-inflammatory action.",
+    indications: ["Inflammation", "Edema", "Post-operative recovery"],
+    dosageForm: "Tablet",
+    strength: "Standard",
+    packaging: "10 x 10 Alu-Alu pack"
   }
 ];
 
@@ -299,40 +310,6 @@ export const PIPELINE: PipelineProduct[] = [
   }
 ];
 
-export const LEADERSHIP: Leader[] = [
-  {
-    id: "mr-harish-k",
-    name: "Mr. Harish K",
-    role: "Founder & Chief Executive Officer (CEO)",
-    qualification: "Founder",
-    bio: "Since founding the company, my vision has been to build an organization that provides safe, effective, and affordable healthcare solutions while upholding the highest standards of ethics and professionalism.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1600&auto=format&fit=crop"
-  },
-  {
-    id: "jane-smith",
-    name: "Jane Smith",
-    role: "Chief Operating Officer",
-    qualification: "M.Sc, MBA",
-    bio: "Expert in operations and supply chain management across global pharmaceutical markets.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop"
-  },
-  {
-    id: "dr-robert-chen",
-    name: "Dr. Robert Chen",
-    role: "Head of Research & Development",
-    qualification: "Ph.D, M.Pharm",
-    bio: "Leading innovator in formulation development with multiple patents in drug delivery systems.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop"
-  },
-  {
-    id: "sarah-williams",
-    name: "Sarah Williams",
-    role: "VP Quality Assurance",
-    qualification: "M.Pharm, CQE",
-    bio: "Dedicated to ensuring the highest standards of quality, compliance, and regulatory adherence.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&h=400&auto=format&fit=crop"
-  }
-];
 
 export const NEWS_ITEMS: NewsItem[] = [
   {
@@ -575,5 +552,40 @@ export const FAQS: FaqItem[] = [
   {
     question: "Are Medinet products available directly to individual consumers or retail buyers?",
     answer: "No, as an enterprise pharmaceutical marketing company, Medinet does not sell prescription formulations directly to individual consumers. Our formulations are distributed exclusively through licensed medical institutions, pharmacies, registered government suppliers, and authorized commercial drug distributors."
+  }
+];
+
+export const LEADERSHIP: Leader[] = [
+  {
+    id: "l1",
+    name: "Dr. Vikram Sharma",
+    role: "Founder & Managing Director",
+    qualification: "Ph.D. in Pharmaceutical Sciences",
+    bio: "With over 30 years of experience in the pharmaceutical industry, Dr. Sharma leads Medinet with a vision to deliver world-class healthcare solutions globally.",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "l2",
+    name: "Aarti Desai",
+    role: "Chief Operating Officer",
+    qualification: "MBA, B.Pharm",
+    bio: "Aarti spearheads our operational strategies, ensuring seamless supply chain management and international regulatory compliance across 18+ countries.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "l3",
+    name: "Dr. Rajesh Iyer",
+    role: "Head of R&D",
+    qualification: "M.D., Pharmacology",
+    bio: "Dr. Iyer drives innovation at our Thane research center, overseeing the development of our premium neuro and cardiovascular pipelines.",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "l4",
+    name: "Priya Menon",
+    role: "Director of Marketing",
+    qualification: "MBA, Marketing",
+    bio: "Priya brings dynamic marketing strategies that have consistently positioned our flagship brands as market leaders in a highly competitive landscape.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop"
   }
 ];

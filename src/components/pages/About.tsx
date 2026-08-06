@@ -391,6 +391,62 @@ export default function About() {
         </div>
       </section>
 
+      {/* Vision Section */}
+      <section className="py-20 bg-background border-b border-border relative overflow-hidden">
+        <div className="absolute left-0 top-0 w-[50%] h-full z-0 opacity-[0.03] pointer-events-none">
+           <Image src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1600&auto=format&fit=crop" alt="Company Vision" fill className="object-cover" />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row-reverse gap-12 lg:gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:w-1/3 lg:sticky lg:top-32"
+            >
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-alt-bg border border-border shadow-sm mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                </span>
+                <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-secondary uppercase">
+                  Our Future
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary tracking-tight leading-[1.2] mb-6">
+                Our <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">Vision</span>
+              </h2>
+              <div className="w-20 h-1 rounded-full bg-gradient-to-r from-secondary to-transparent mb-8"></div>
+
+              <p className="text-body text-base md:text-lg leading-relaxed">
+                To be a globally recognized pharmaceutical leader, empowering lives by making innovative, high-quality, and affordable healthcare solutions accessible to every community.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="lg:w-2/3"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(13,148,136,0.1)] border border-border p-8 sm:p-12 bg-white flex flex-col justify-center min-h-[300px]">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(13,148,136,0.05),transparent_80%)] pointer-events-none"></div>
+                <Eye className="w-16 h-16 text-secondary mb-8" />
+                <h3 className="text-2xl sm:text-3xl font-display font-bold text-primary mb-6 leading-tight">
+                  Shaping the Future of Global Healthcare
+                </h3>
+                <p className="text-lg text-body leading-relaxed">
+                  We envision a world where geography and economics no longer dictate the quality of care. By continuously advancing our formulation technologies and expanding our global footprint, Medinet aims to set new benchmarks in patient outcomes, sustainable practices, and therapeutic excellence.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Values Section */}
       <section className="py-20 bg-background border-b border-border relative overflow-hidden">
         {/* Background Company Culture Image */}
@@ -546,7 +602,7 @@ export default function About() {
             <div className="grid grid-cols-1 lg:grid-cols-12">
               <motion.div
                 variants={fadeLeft}
-                className="lg:col-span-5 relative min-h-[400px] lg:min-h-full bg-background"
+                className="lg:col-span-5 relative min-h-[400px] h-full w-full bg-background"
               >
                 <Image
                   src={LEADERSHIP[0].image}
@@ -833,8 +889,67 @@ export default function About() {
         </div>
       </section>
 
-
+      <LeadershipSection />
     </motion.div>
+  );
+}
+
+{/* Leadership Team Section */}
+function LeadershipSection() {
+  return (
+    <section className="py-24 bg-alt-bg border-b border-border relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-[11px] font-bold tracking-widest uppercase mb-6">
+            <Users className="w-3.5 h-3.5" />
+            Our People
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-heading tracking-tight leading-[1.15] mb-6">
+            Leadership <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Team</span>
+          </h2>
+          <p className="text-body text-base lg:text-lg leading-relaxed">
+            Guided by experience and driven by innovation, our leadership team brings decades of pharmaceutical expertise to Medinet's global operations.
+          </p>
+        </div>
+
+        <motion.div 
+          variants={staggerContainer} 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true }} 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {LEADERSHIP.map((leader) => (
+            <motion.div 
+              key={leader.id}
+              variants={fadeUp} 
+              className="group utility-card p-0 overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-card-hover border-border/80"
+            >
+              <div className="relative h-64 w-full bg-background overflow-hidden">
+                <Image 
+                  src={leader.image} 
+                  alt={leader.name} 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F4D]/80 via-[#0B1F4D]/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+              </div>
+              <div className="p-6 relative bg-white">
+                <div className="absolute -top-10 right-6 bg-white p-2 rounded-full shadow-lg border border-border group-hover:scale-110 transition-transform duration-300">
+                  <a href="#" className="text-[#0077b5] hover:text-[#005582] transition-colors" aria-label={`LinkedIn of ${leader.name}`}>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  </a>
+                </div>
+                <h3 className="font-display font-bold text-lg text-primary mb-1">{leader.name}</h3>
+                <p className="text-secondary text-xs font-bold uppercase tracking-wider mb-2">{leader.role}</p>
+                <p className="text-[10px] text-muted font-mono mb-4">{leader.qualification}</p>
+                <p className="text-sm text-body leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all duration-300">{leader.bio}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 }
 

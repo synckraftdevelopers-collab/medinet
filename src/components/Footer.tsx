@@ -282,16 +282,16 @@ function Footer({ navigate, showToast }: FooterProps) {
                   <div className="w-[44px] h-[44px] rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-[1.08] group-hover:rotate-[5deg] group-hover:shadow-[0_0_15px_rgba(236,72,153,0.5)] group-hover:border-[#EC4899]">
                     <MapPin className="w-[20px] h-[20px] text-[#F9A8D4] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <span className="text-[15px] text-[rgba(255,255,255,0.85)] group-hover:text-[#FCE7F3] transition-colors duration-300 leading-[1.6] text-left pt-[10px] max-w-[200px]">
-                    Bandra-Kurla Complex (BKC), Mumbai, 400051, India
-                  </span>
+                  <a href="https://maps.google.com/?q=Medinet+Pharmaceutical+Marketing+Company,+Mumbai" target="_blank" rel="noopener noreferrer" className="text-[15px] text-[rgba(255,255,255,0.85)] group-hover:text-[#FCE7F3] transition-colors duration-300 leading-[1.6] text-left pt-[10px] max-w-[200px] hover:underline underline-offset-4 decoration-[#EC4899]/50 block">
+                    123 Healthcare Avenue, Mumbai, Maharashtra 400001
+                  </a>
                 </li>
                 <li className="flex items-start gap-[16px] group w-full justify-center md:justify-start">
                   <div className="w-[44px] h-[44px] rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-[1.08] group-hover:rotate-[5deg] group-hover:shadow-[0_0_15px_rgba(236,72,153,0.5)] group-hover:border-[#EC4899]">
                     <Phone className="w-[20px] h-[20px] text-[#F9A8D4] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <a href="tel:+912249823300" className="text-[15px] text-[rgba(255,255,255,0.85)] group-hover:text-[#FCE7F3] transition-colors duration-300 relative pb-0.5 text-left pt-[10px]">
-                    +91-22-4982-3300
+                  <a href="tel:+919876543210" className="text-[15px] text-[rgba(255,255,255,0.85)] group-hover:text-[#FCE7F3] transition-colors duration-300 relative pb-0.5 text-left pt-[10px]">
+                    +91 98765 43210
                     <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EC4899] transition-all duration-500 group-hover:w-full opacity-60"></span>
                   </a>
                 </li>
@@ -299,8 +299,8 @@ function Footer({ navigate, showToast }: FooterProps) {
                   <div className="w-[44px] h-[44px] rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-[1.08] group-hover:rotate-[5deg] group-hover:shadow-[0_0_15px_rgba(236,72,153,0.5)] group-hover:border-[#EC4899]">
                     <Mail className="w-[20px] h-[20px] text-[#F9A8D4] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <a href="mailto:corporate@medinetpharma.com" className="text-[15px] text-[rgba(255,255,255,0.85)] group-hover:text-[#FCE7F3] transition-colors duration-300 relative pb-0.5 break-all text-left pt-[10px]">
-                    corporate@medinetpharma.com
+                  <a href="mailto:contact@medinetpharma.com" className="text-[15px] text-[rgba(255,255,255,0.85)] group-hover:text-[#FCE7F3] transition-colors duration-300 relative pb-0.5 break-all text-left pt-[10px]">
+                    contact@medinetpharma.com
                     <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EC4899] transition-all duration-500 group-hover:w-full opacity-60"></span>
                   </a>
                 </li>

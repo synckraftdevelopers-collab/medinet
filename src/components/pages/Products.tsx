@@ -32,7 +32,8 @@ import {
   Loader2,
   CheckCircle2,
   AlertCircle,
-  ChevronDown
+  ChevronDown,
+  Package
 } from "lucide-react";
 
 interface ProductsProps {
@@ -490,7 +491,7 @@ export default function Products({ params, showToast }: ProductsProps) {
                       <div className="relative h-[200px] sm:h-[220px] bg-white -mt-6 -mx-6 sm:-mt-7 sm:-mx-7 mb-5 shrink-0 border-b border-border/40 z-0 flex items-center justify-center rounded-t-[20px] overflow-hidden">
                         <div className="relative w-full h-full p-4 sm:p-5">
                           <Image
-                            src={`/products/${p.name}.png`}
+                            src={p.image || `/products/${p.name}.png`}
                             alt={`${p.name} packaging`}
                             fill
                             className="object-contain group-hover:scale-110 transition-transform duration-500"
@@ -519,11 +520,23 @@ export default function Products({ params, showToast }: ProductsProps) {
                         </p>
                       </div>
 
-                      <div className="mt-6 pt-5 border-t border-border flex items-center justify-between text-xs font-mono shrink-0">
-                        <span className="text-muted">{p.packaging}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center justify-center gap-1.5 w-[110px] h-9 bg-gradient-to-r from-white to-slate-50 border border-blue-200 rounded-full text-[10px] font-bold text-heading uppercase tracking-wider shadow-sm group-hover:from-blue-600 group-hover:to-blue-500 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn">
-                            DETAILS <ArrowRight className="w-3.5 h-3.5 text-secondary group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
+                      <div className="mt-auto pt-5 border-t border-border flex flex-col gap-3 text-xs font-mono shrink-0">
+                        <div className="flex items-center gap-2 text-muted">
+                          <Package className="w-3.5 h-3.5 shrink-0" />
+                          <span className="line-clamp-2">{p.packaging}</span>
+                        </div>
+                        <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openProductEnquiry(p);
+                            }}
+                            className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 h-9 bg-gradient-to-r from-secondary to-primary text-white border border-transparent rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm hover:shadow-[0_8px_20px_rgba(37,99,235,0.25)] transition-all duration-250 z-20 relative px-1"
+                          >
+                            ENQUIRY <Mail className="w-3.5 h-3.5 shrink-0" />
+                          </button>
+                          <span className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 h-9 bg-gradient-to-r from-white to-slate-50 border border-blue-200 rounded-full text-[10px] font-bold text-heading uppercase tracking-wider shadow-sm group-hover:from-blue-600 group-hover:to-blue-500 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-all duration-250 group/btn px-1">
+                            DETAILS <ArrowRight className="w-3.5 h-3.5 shrink-0 text-secondary group-hover:text-white group-hover:translate-x-1 transition-transform duration-250" />
                           </span>
                         </div>
                       </div>
@@ -833,8 +846,21 @@ export default function Products({ params, showToast }: ProductsProps) {
                   {/* Animated Gradient Top Border */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0A192F] via-[#2563EB] to-[#38BDF8] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
 
+                  {/* Original Product Packshot */}
+                  <div className="relative h-[160px] bg-white -mt-5 -mx-5 mb-4 shrink-0 border-b border-border/40 z-10 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-full h-full p-1 sm:p-2">
+                      <Image
+                        src={`/products/${encodeURIComponent(brand.name)}.png`}
+                        alt={`${brand.name} packaging`}
+                        fill
+                        className="object-contain scale-[4.5] group-hover:scale-[5] transition-transform duration-500 origin-center drop-shadow-md"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+
                   {/* Circular Placeholder Logo */}
-                  <div className="relative mb-5 mt-2">
+                  <div className="relative mb-5 mt-2 z-20">
                     {/* Soft Glow */}
                     <div className="absolute inset-0 bg-[#2563EB]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-all duration-500 z-0"></div>
 

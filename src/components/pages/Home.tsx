@@ -62,9 +62,45 @@ const iconMap: Record<string, any> = {
   HeartHandshake,
 };
 
+const MARQUEE_QUOTES = [
+  "Better Health Begins with Better Care, Trusted Medicines, and a Commitment to Every Life We Touch.",
+  "Every Medicine We Deliver Carries Hope, Healing, and Trust.",
+  "Healthy Lives Begin with Quality Healthcare and Trusted Innovation.",
+  "Where Science, Care, and Quality Come Together for Better Health."
+];
+
+const HighlightedQuote = ({ text }: { text: string }) => {
+  const wordsToHighlight = ["Health", "Care", "Trusted", "Medicines", "Quality", "Healthcare", "Life", "Hope", "Healing"];
+  const regex = new RegExp(`\\b(${wordsToHighlight.join('|')})\\b`, 'gi');
+  const parts = text.split(regex);
+  
+  return (
+    <span className="mx-6 text-sm sm:text-base md:text-[17px] text-body font-medium tracking-wide whitespace-nowrap relative group-hover:text-body/90 transition-colors duration-300">
+      {parts.map((part, i) => {
+        if (wordsToHighlight.some(w => w.toLowerCase() === part.toLowerCase())) {
+          return (
+            <span key={i} className="font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(29,78,216,0.15)] relative">
+              {part}
+            </span>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </span>
+  );
+};
+
 export default function Home({ navigate }: HomeProps) {
   const featuredProducts = PRODUCTS.slice(0, 4);
   const latestNews = NEWS_ITEMS.slice(0, 3);
+  const [isTickerPaused, setIsTickerPaused] = React.useState(false);
+  const tickerTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handleTickerInteraction = () => {
+    setIsTickerPaused(true);
+    if (tickerTimeoutRef.current) clearTimeout(tickerTimeoutRef.current);
+    tickerTimeoutRef.current = setTimeout(() => setIsTickerPaused(false), 600);
+  };
 
   return (
     <div className="pt-20">
@@ -186,6 +222,23 @@ export default function Home({ navigate }: HomeProps) {
                   </button>
                 </motion.div>
               </motion.div>
+
+              {/* Premium Certification Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="flex items-center gap-6 mt-8 justify-center lg:justify-start grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              >
+                <div className="flex items-center gap-2">
+                  <Award className="w-5 h-5 text-secondary" />
+                  <span className="text-xs font-bold font-mono tracking-wider text-body">WHO-GMP CERTIFIED</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-secondary" />
+                  <span className="text-xs font-bold font-mono tracking-wider text-body">ISO 9001:2015</span>
+                </div>
+              </motion.div>
             </div>
 
             {/* Hero Visual Card / Glassmorphism */}
@@ -199,6 +252,23 @@ export default function Home({ navigate }: HomeProps) {
                 <div className="bg-white/70 backdrop-blur-xl border border-white/60 rounded-3xl p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] relative overflow-hidden group hover:shadow-[0_30px_60px_-15px_rgba(29, 78, 216,0.15)] transition-all duration-500">
                   {/* Subtle inner glow */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl group-hover:bg-secondary/20 transition-all duration-500"></div>
+
+                  {/* Premium Hero Image Mockup */}
+                  <div className="relative w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm group/image">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop"
+                      alt="Pharmaceutical Research"
+                      fill
+                      className="object-cover group-hover/image:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+                        <FlaskConical className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-white font-bold text-sm tracking-wide drop-shadow-md">Advanced R&D Facility</span>
+                    </div>
+                  </div>
 
                   <div className="flex items-center gap-4 mb-6 relative z-10">
                     <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg p-3 transform group-hover:rotate-6 transition-transform duration-300">
@@ -277,6 +347,52 @@ export default function Home({ navigate }: HomeProps) {
             </button>
           </motion.div>
         </div>
+
+        {/* Premium Animated Quote Marquee */}
+        <div 
+          className={`absolute bottom-0 left-0 w-full bg-white/40 backdrop-blur-md border-t border-white/30 z-20 overflow-hidden cursor-pointer py-3.5 transition-colors duration-500 hover:bg-white/60 group`}
+          onClick={handleTickerInteraction}
+          onTouchStart={handleTickerInteraction}
+        >
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes smooth-marquee {
+              0% { transform: translateX(0%); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee-smooth {
+              animation: smooth-marquee 60s linear infinite;
+              will-change: transform;
+            }
+            .group:hover .animate-marquee-smooth {
+              animation-play-state: paused !important;
+            }
+          `}} />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-50 pointer-events-none"></div>
+          
+          <div 
+            className="relative w-full flex items-center" 
+            style={{ 
+              maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)', 
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' 
+            }}
+          >
+            <div 
+              className="animate-marquee-smooth flex items-center w-max"
+              style={{ animationPlayState: isTickerPaused ? 'paused' : '' }}
+            >
+              {/* Render quotes twice for seamless infinite loop */}
+              {[...MARQUEE_QUOTES, ...MARQUEE_QUOTES].map((quote, idx) => (
+                <React.Fragment key={idx}>
+                  <div className="flex items-center gap-3">
+                    <Quote className="w-4 h-4 text-secondary/60 rotate-180 shrink-0 ml-4" />
+                    <HighlightedQuote text={quote} />
+                  </div>
+                  <span className="text-secondary/40 mx-2 text-[10px]">●</span>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Corporate Overview Section */}
@@ -350,10 +466,10 @@ export default function Home({ navigate }: HomeProps) {
           {/* Premium 4-Card Feature Row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
             {[
-              { title: "Quality Assured", desc: "Strict GMP adherence & validation.", icon: ShieldCheck },
-              { title: "Research Driven", desc: "Bioequivalent therapeutic solutions.", icon: FlaskConical },
-              { title: "Regulatory Compliant", desc: "Meeting global FDA & EU standards.", icon: FileText },
-              { title: "Patient Focused", desc: "Improving health access worldwide.", icon: HeartPulse }
+              { title: "Quality Assured", desc: "Strict GMP adherence & validation.", icon: ShieldCheck, image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=600&auto=format&fit=crop" },
+              { title: "Research Driven", desc: "Bioequivalent therapeutic solutions.", icon: FlaskConical, image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600&auto=format&fit=crop" },
+              { title: "Regulatory Compliant", desc: "Meeting global FDA & EU standards.", icon: FileText, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop" },
+              { title: "Patient Focused", desc: "Improving health access worldwide.", icon: HeartPulse, image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&auto=format&fit=crop" }
             ].map((feature, idx) => (
               <motion.div
                 key={idx}
@@ -366,7 +482,18 @@ export default function Home({ navigate }: HomeProps) {
                 {/* Floating gradient blob inside card */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl z-0 pointer-events-none group-hover:bg-secondary/10 transition-colors duration-500"></div>
 
-                <div className="relative mb-6 z-10">
+                <div className="relative w-full h-32 mb-6 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                   <Image 
+                     src={feature.image} 
+                     alt={feature.title}
+                     fill
+                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                     className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"
+                   />
+                   <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
+                </div>
+
+                <div className="relative mb-6 z-10 -mt-12">
                   <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <motion.div
                     animate={{ y: [0, -4, 0] }}

@@ -833,19 +833,6 @@ export default function Products({ params, showToast }: ProductsProps) {
                   {/* Animated Gradient Top Border */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0A192F] via-[#2563EB] to-[#38BDF8] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
 
-                  {/* Original Product Packshot */}
-                  <div className="relative h-[160px] bg-white -mt-5 -mx-5 mb-4 shrink-0 border-b border-border/40 z-10 flex items-center justify-center">
-                    <div className="relative w-full h-full p-1 sm:p-2">
-                      <Image
-                        src={`/products/${encodeURIComponent(brand.name)}.png`}
-                        alt={`${brand.name} packaging`}
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-
                   {/* Circular Placeholder Logo */}
                   <div className="relative mb-5 mt-2">
                     {/* Soft Glow */}

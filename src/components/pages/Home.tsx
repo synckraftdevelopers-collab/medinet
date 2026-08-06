@@ -1,4 +1,5 @@
 import { PremiumFeatureIcon } from '../PremiumFeatureIcon';
+import { GlobalPresence } from '../GlobalPresence';
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -736,6 +737,17 @@ export default function Home({ navigate }: HomeProps) {
                 className="bg-white rounded-3xl border-t-4 border-t-secondary p-6 sm:p-8 h-full flex flex-col justify-between group hover:border-t-accent hover:-translate-y-2 transition-all duration-500 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.12)] cursor-pointer"
               >
                 <div>
+                  <div className="relative h-[200px] -mt-6 -mx-6 sm:-mt-8 sm:-mx-8 mb-6 bg-white shrink-0 border-b border-border/40 flex items-center justify-center overflow-hidden rounded-t-[20px]">
+                    <div className="relative w-full h-full p-4">
+                      <Image
+                        src={`/products/${product.name}.png`}
+                        alt={`${product.name} packaging`}
+                        fill
+                        className="object-contain group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
                   <div className="flex items-center justify-between mb-6">
                     <span className="utility-badge-blue bg-alt-bg">
                       {product.dosageForm}
@@ -1067,6 +1079,9 @@ export default function Home({ navigate }: HomeProps) {
           </div>
         </div>
       </section>
+
+      {/* Global Presence Section */}
+      <GlobalPresence />
 
       {/* Corporate Trust Statement Section */}
       <section className="py-20 md:py-32 bg-gradient-to-b from-white to-[#F8FCFF] relative overflow-hidden border-b border-border">

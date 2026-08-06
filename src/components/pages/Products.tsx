@@ -443,13 +443,13 @@ export default function Products({ params, showToast }: ProductsProps) {
                       onClick={() => setSelectedProduct(p)}
                     >
                       {/* Original Product Packshot */}
-                      <div className="relative h-[160px] sm:h-[180px] bg-white -mt-6 -mx-6 sm:-mt-7 sm:-mx-7 mb-5 shrink-0 border-b border-border/40 z-0 flex items-center justify-center">
-                        <div className="relative w-full h-full p-1 sm:p-2">
+                      <div className="relative h-[200px] sm:h-[220px] bg-white -mt-6 -mx-6 sm:-mt-7 sm:-mx-7 mb-5 shrink-0 border-b border-border/40 z-0 flex items-center justify-center rounded-t-[20px] overflow-hidden">
+                        <div className="relative w-full h-full p-4 sm:p-5">
                           <Image
-                            src={`/products/${encodeURIComponent(p.name)}.png`}
+                            src={`/products/${p.name}.png`}
                             alt={`${p.name} packaging`}
                             fill
-                            className="object-contain group-hover:scale-105 transition-transform duration-500"
+                            className="object-contain group-hover:scale-110 transition-transform duration-500"
                             loading="lazy"
                           />
                         </div>

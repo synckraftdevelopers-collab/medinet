@@ -105,7 +105,7 @@ export default function Home({ navigate }: HomeProps) {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#EFF6FF] border-b border-border overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-start bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#EFF6FF] border-b border-border overflow-hidden">
         {/* Background Laboratory Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -152,8 +152,8 @@ export default function Home({ navigate }: HomeProps) {
           ></motion.div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-12 md:pb-24 z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
             {/* Hero Text */}
             <div className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
               <motion.div
@@ -181,9 +181,9 @@ export default function Home({ navigate }: HomeProps) {
                 </motion.div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
-                  <span className="text-heading">Reliable Care,</span> <br />
+                  <span className="text-heading">RELIABLE CARE,</span> <br />
                   <span className="relative inline-block">
-                    <span className="relative z-10 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent drop-shadow-sm">Every Time.</span>
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent drop-shadow-sm">EVERY TIME.</span>
                     <motion.span
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}

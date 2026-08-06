@@ -869,12 +869,12 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
             <div className="flex-1 flex items-center justify-end gap-1.5 sm:gap-3 xl:gap-4 h-full">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="h-[36px] lg:h-[40px] px-2 lg:px-3 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] flex items-center justify-center gap-1.5 text-xs font-mono font-medium shrink-0 my-auto"
+                className="w-[48px] h-[48px] md:w-auto md:h-[36px] lg:h-[40px] md:px-2 lg:px-3 rounded-xl text-body hover:text-secondary hover:bg-secondary/5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] flex items-center justify-center gap-1.5 text-xs font-mono font-medium shrink-0 my-auto"
                 aria-label="Search products"
                 aria-haspopup="dialog"
                 title="Search Products (Ctrl+K)"
               >
-                <Search className="w-4 h-4 text-body hover:text-secondary transition-colors" />
+                <Search className="w-5 h-5 md:w-[18px] md:h-[18px] text-body hover:text-secondary transition-colors" />
                 <span className="hidden xl:inline-block font-semibold">SEARCH</span>
               </button>
 
@@ -891,17 +891,17 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                     setIsEnquiryOpen(true);
                   }
                 }}
-                className="utility-button-primary hidden md:inline-flex h-[36px] lg:h-[40px] px-4 xl:px-5 my-auto items-center justify-center gap-1.5 shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-2 rounded-xl"
+                className="utility-button-primary flex md:inline-flex w-[48px] h-[48px] md:w-auto md:h-[36px] lg:h-[40px] !p-0 md:!px-4 xl:!px-5 !gap-0 md:!gap-1.5 my-auto items-center justify-center shrink-0 text-xs font-mono tracking-wider font-semibold shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-2 rounded-xl"
               >
-                <PhoneCall className="w-3.5 h-3.5" />
-                INQUIRE NOW
+                <PhoneCall className="w-5 h-5 md:w-4 md:h-4 text-[#F9A8D4]" />
+                <span className="hidden md:inline">INQUIRE NOW</span>
               </button>
 
               {/* Mobile Burger Menu Button */}
               <button
                 id="mobile-burger-button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#CBD5E1] text-[#0F172A] hover:text-secondary transition-all duration-[300ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] active:scale-[0.95] shrink-0"
+                className="w-[48px] h-[48px] lg:hidden flex items-center justify-center rounded-[12px] bg-transparent hover:bg-[#EFF6FF] border border-transparent hover:border-[#CBD5E1] text-[#0F172A] hover:text-secondary transition-all duration-[200ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] active:scale-[0.95] shrink-0 touch-manipulation my-auto"
                 aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-navigation-drawer"
@@ -920,8 +920,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="lg:hidden fixed inset-0 z-[9998] bg-[#0F172A]/80"
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="lg:hidden fixed inset-0 z-[9998] bg-[#0F172A]/80 touch-none"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
             />
@@ -933,8 +933,8 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
               initial={{ x: "100%", opacity: 0 }}
               animate={{ x: "0%", opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
-              className="lg:hidden fixed inset-0 w-full h-[100dvh] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-2xl will-change-transform"
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="lg:hidden fixed inset-0 w-full h-[100dvh] bg-[#FFFFFF] z-[9999] flex flex-col overflow-hidden shadow-2xl will-change-transform touch-none"
               role="dialog"
               aria-modal="true"
               id="mobile-navigation-drawer"
@@ -976,7 +976,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                         key={item.route || item.label}
                         initial={{ opacity: 0, y: 10, x: 10 }}
                         animate={{ opacity: 1, y: 0, x: 0 }}
-                        transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }}
+                        transition={{ duration: 0.15, delay: index * 0.015, ease: "easeOut" }}
                         onClick={() => {
                           setIsMobileMenuOpen(false);
                           if (item.route) navigate(item.route);
@@ -1000,7 +1000,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   } else if (item.id === "products") {
                     const isActive = currentRoute === "products";
                     return (
-                      <motion.div key="products-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
+                      <motion.div key="products-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.15, delay: index * 0.015, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "products" ? null : "products")}
                           className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] ${isActive
@@ -1065,7 +1065,7 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
                   } else if (item.id === "legal") {
                     const isActive = ["privacy-policy", "terms", "cookies", "disclaimer", "copyright-notice"].includes(currentRoute);
                     return (
-                      <motion.div key="legal-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.25, delay: index * 0.02, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
+                      <motion.div key="legal-accordion" initial={{ opacity: 0, y: 10, x: 10 }} animate={{ opacity: 1, y: 0, x: 0 }} transition={{ duration: 0.15, delay: index * 0.015, ease: "easeOut" }} className="relative shrink-0 flex flex-col font-sans">
                         <button
                           onClick={() => setActiveMobileAccordion(activeMobileAccordion === "legal" ? null : "legal")}
                           className={`w-full flex items-center justify-between px-5 min-h-[60px] rounded-2xl transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] ${isActive

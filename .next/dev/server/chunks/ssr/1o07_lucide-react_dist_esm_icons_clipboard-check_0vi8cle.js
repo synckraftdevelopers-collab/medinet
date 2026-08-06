@@ -1,0 +1,60 @@
+module.exports = [
+"[project]/OneDrive/Desktop/MediNet/node_modules/lucide-react/dist/esm/icons/clipboard-check.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "__iconNode",
+    ()=>__iconNode,
+    "default",
+    ()=>ClipboardCheck
+]);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Desktop$2f$MediNet$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$createLucideIcon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Desktop/MediNet/node_modules/lucide-react/dist/esm/createLucideIcon.js [app-ssr] (ecmascript)");
+;
+const __iconNode = [
+    [
+        "rect",
+        {
+            width: "8",
+            height: "4",
+            x: "8",
+            y: "2",
+            rx: "1",
+            ry: "1",
+            key: "tgr4d6"
+        }
+    ],
+    [
+        "path",
+        {
+            d: "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
+            key: "116196"
+        }
+    ],
+    [
+        "path",
+        {
+            d: "m9 14 2 2 4-4",
+            key: "df797q"
+        }
+    ]
+];
+const ClipboardCheck = (0, __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Desktop$2f$MediNet$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$createLucideIcon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])("clipboard-check", __iconNode);
+;
+}),
+"[project]/OneDrive/Desktop/MediNet/node_modules/lucide-react/dist/esm/icons/clipboard-check.js [app-ssr] (ecmascript) <export default as ClipboardCheck>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ClipboardCheck",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Desktop$2f$MediNet$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clipboard$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$OneDrive$2f$Desktop$2f$MediNet$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clipboard$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/OneDrive/Desktop/MediNet/node_modules/lucide-react/dist/esm/icons/clipboard-check.js [app-ssr] (ecmascript)");
+}),
+];
+
+//# sourceMappingURL=1o07_lucide-react_dist_esm_icons_clipboard-check_0vi8cle.js.map

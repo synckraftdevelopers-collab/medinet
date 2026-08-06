@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
 
   /* Premium Pharmaceutical Colors */
   --color-primary: #0B1F4D;
@@ -47,7 +46,7 @@
     scroll-behavior: smooth !important;
     scroll-padding-top: 110px !important;
     overflow-x: hidden;
-    width: 100vw;
+    width: 100%;
   }
 
   /* Global scroll offset for all sections to prevent sticky header overlap */
@@ -62,7 +61,7 @@
   body {
     @apply font-sans bg-background text-body antialiased selection:bg-secondary selection:text-white;
     overflow-x: hidden;
-    width: 100vw;
+    width: 100%;
   }
 
   /* Typography Hierarchy, Responsive Font Scaling, Line-Height & Letter Spacing */

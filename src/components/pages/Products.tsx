@@ -836,7 +836,6 @@ export default function Products({ params, showToast }: ProductsProps) {
               { name: "ZEFTRON", label: "Premium Brand", icon: Activity },
               { name: "ZEFRAX-IV", label: "Premium Brand", icon: Pill }
             ].map((brand, idx) => {
-              const Icon = brand.icon;
               return (
                 <motion.div
                   key={idx}
@@ -847,30 +846,16 @@ export default function Products({ params, showToast }: ProductsProps) {
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0A192F] via-[#2563EB] to-[#38BDF8] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
 
                   {/* Original Product Packshot */}
-                  <div className="relative h-[160px] bg-white -mt-5 -mx-5 mb-4 shrink-0 border-b border-border/40 z-10 flex items-center justify-center overflow-hidden">
-                    <div className="relative w-full h-full p-1 sm:p-2">
+                  <div className="relative w-full h-[160px] bg-white -mt-5 -mx-5 mb-4 shrink-0 border-b border-border/40 z-10 flex items-center justify-center overflow-hidden rounded-t-[20px]">
+                    <div className="relative w-full h-full p-2 sm:p-4">
                       <Image
-                        src={`/products/${encodeURIComponent(brand.name)}.png`}
+                        src={`/products/${brand.name}.png`}
                         alt={`${brand.name} packaging`}
                         fill
-                        className="object-contain scale-[4.5] group-hover:scale-[5] transition-transform duration-500 origin-center drop-shadow-md"
+                        className="object-contain group-hover:scale-110 transition-transform duration-500 origin-center drop-shadow-md"
                         loading="lazy"
                       />
                     </div>
-                  </div>
-
-                  {/* Circular Placeholder Logo */}
-                  <div className="relative mb-5 mt-2 z-20">
-                    {/* Soft Glow */}
-                    <div className="absolute inset-0 bg-[#2563EB]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 scale-150 transition-all duration-500 z-0"></div>
-
-                    <motion.div
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
-                      className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#F8FAFC] to-[#F1F5F9] border border-border shadow-sm flex items-center justify-center z-10 group-hover:border-[#2563EB]/40 transition-colors duration-300"
-                    >
-                      <Icon className="w-6 h-6 text-[#475569] group-hover:text-[#2563EB] transition-colors duration-300" />
-                    </motion.div>
                   </div>
 
                   {/* Brand Name */}

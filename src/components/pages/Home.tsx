@@ -152,7 +152,7 @@ export default function Home({ navigate }: HomeProps) {
           ></motion.div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-12 md:pb-24 z-10 w-full">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:pt-6 md:pb-24 z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
             {/* Hero Text */}
             <div className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
@@ -171,7 +171,7 @@ export default function Home({ navigate }: HomeProps) {
                   transition={{ delay: 0.2, duration: 0.5 }}
                   className="flex justify-center lg:justify-start"
                 >
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-secondary/20 text-secondary text-xs font-bold tracking-widest uppercase shadow-sm mb-6">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-secondary/20 text-secondary text-xs font-bold tracking-widest uppercase shadow-sm mb-3">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
@@ -256,7 +256,7 @@ export default function Home({ navigate }: HomeProps) {
                   {/* Premium Hero Image Mockup */}
                   <div className="relative w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm group/image">
                     <Image 
-                      src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop"
+                      src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
                       alt="Pharmaceutical Research"
                       fill
                       className="object-cover group-hover/image:scale-105 transition-transform duration-700"
@@ -482,15 +482,16 @@ export default function Home({ navigate }: HomeProps) {
                 {/* Floating gradient blob inside card */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl z-0 pointer-events-none group-hover:bg-secondary/10 transition-colors duration-500"></div>
 
-                <div className="relative w-full h-32 mb-6 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                <div className="relative w-full h-32 mb-6 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-lg transition-all duration-500 ring-1 ring-black/5 group-hover:ring-secondary/50">
                    <Image 
                      src={feature.image} 
                      alt={feature.title}
                      fill
                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                     className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-90"
+                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                    />
-                   <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
+                   <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-90 group-hover:opacity-0 transition-opacity duration-500"></div>
+                   <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary/30 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
 
                 <div className="relative mb-6 z-10 -mt-12">

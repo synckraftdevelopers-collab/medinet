@@ -5,8 +5,8 @@ import { GlobalPresence } from '../GlobalPresence';
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from "react";
-import { motion } from "motion/react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring, useInView } from "motion/react";
 import { PRODUCTS, THERAPEUTIC_CATEGORIES, NEWS_ITEMS, BRAND_INFO } from "../../data";
 import SectionHeader from "../SectionHeader";
 import Image from "next/image";
@@ -79,9 +79,14 @@ const HighlightedQuote = ({ text }: { text: string }) => {
       {parts.map((part, i) => {
         if (wordsToHighlight.some(w => w.toLowerCase() === part.toLowerCase())) {
           return (
-            <span key={i} className="font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(29,78,216,0.15)] relative">
+            <motion.span 
+              key={i}
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              className="font-extrabold bg-gradient-to-r from-primary via-accent to-secondary bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(29,78,216,0.15)] relative inline-block"
+            >
               {part}
-            </span>
+            </motion.span>
           );
         }
         return <span key={i}>{part}</span>;
@@ -98,16 +103,30 @@ export default function Home({ navigate }: HomeProps) {
 
   const handleTickerInteraction = () => {
     setIsTickerPaused(true);
-    if (tickerTimeoutRef.current) clearTimeout(tickerTimeoutRef.current);
-    tickerTimeoutRef.current = setTimeout(() => setIsTickerPaused(false), 600);
+    if (tickerTimeoutRef.current) {
+      clearTimeout(tickerTimeoutRef.current);
+    }
+    tickerTimeoutRef.current = setTimeout(() => {
+      setIsTickerPaused(false);
+    }, 2000);
   };
 
   return (
-    <div className="pt-20">
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="pt-20"
+    >
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-start bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#EFF6FF] border-b border-border overflow-hidden">
         {/* Background Laboratory Image */}
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.15 }}
+          transition={{ duration: 25, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+          className="absolute inset-0 z-0"
+        >
           <Image
             src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2000&auto=format&fit=crop"
             alt="Pharmaceutical Laboratory"
@@ -115,7 +134,7 @@ export default function Home({ navigate }: HomeProps) {
             className="object-cover opacity-[0.03]"
             priority
           />
-        </div>
+        </motion.div>
         
         {/* Soft Animated Gradient & Particle Background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(16,185,129,0.05)_0%,transparent_50%),radial-gradient(circle_at_80%_70%,rgba(29, 78, 216,0.05)_0%,transparent_50%)] pointer-events-none"></div>
@@ -180,18 +199,57 @@ export default function Home({ navigate }: HomeProps) {
                   </span>
                 </motion.div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
-                  <span className="text-heading">RELIABLE CARE,</span> <br />
+                <motion.h1 
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.05, delayChildren: 0.2 }
+                    }
+                  }}
+                  className="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] mb-6"
+                >
+                  <span className="text-heading inline-block py-2 -my-2">
+                    {"RELIABLE CARE,".split("").map((char, index) => (
+                      <motion.span 
+                        key={index} 
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                        }}
+                        className="inline-block relative"
+                        style={{ animation: 'float-letter 2.5s ease-in-out infinite', animationDelay: `${index * 0.05 + 1}s` }}
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </motion.span>
+                    ))}
+                  </span> <br />
                   <span className="relative inline-block">
-                    <span className="relative z-10 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent drop-shadow-sm">EVERY TIME.</span>
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent drop-shadow-sm inline-block py-2 -my-2">
+                      {"EVERY TIME.".split("").map((char, index) => (
+                        <motion.span 
+                          key={index} 
+                          variants={{
+                            hidden: { opacity: 0, y: 20 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                          }}
+                          className="inline-block relative"
+                          style={{ animation: 'float-letter 2.5s ease-in-out infinite', animationDelay: `${(index + 14) * 0.05 + 1}s` }}
+                        >
+                          {char === " " ? "\u00A0" : char}
+                        </motion.span>
+                      ))}
+                    </span>
                     <motion.span
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+                      transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
                       className="absolute -bottom-2 left-0 w-full h-2 rounded-full bg-gradient-to-r from-secondary to-accent origin-left"
                     ></motion.span>
                   </span>
-                </h1>
+                </motion.h1>
                 <p className="text-base sm:text-lg text-body font-semibold mb-2">
                   Delivering trusted pharmaceutical solutions through quality, innovation, and ethical marketing.
                 </p>
@@ -201,25 +259,32 @@ export default function Home({ navigate }: HomeProps) {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
+                  transition={{ delay: 1.4, duration: 0.6 }}
                   className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 pt-2 w-full max-w-md mx-auto lg:mx-0"
                 >
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => navigate("products", { section: "formulations" })}
-                    className="relative overflow-hidden group/btn1 px-8 py-4 bg-primary text-white rounded-xl font-bold text-sm tracking-wide shadow-[0_8px_20px_rgba(10, 25, 47,0.25)] hover:shadow-[0_12px_28px_rgba(10, 25, 47,0.35)] transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2"
+                    className="relative overflow-hidden group/btn1 px-8 py-4 bg-primary text-white rounded-xl font-bold text-sm tracking-wide shadow-[0_8px_20px_rgba(10,25,47,0.25)] hover:shadow-[0_12px_28px_rgba(10,25,47,0.35)] transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-hover to-secondary opacity-0 group-hover/btn1:opacity-100 transition-opacity duration-300"></div>
+                    {/* Ripple/Glow effect */}
+                    <div className="absolute inset-0 rounded-xl ring-2 ring-white/20 scale-105 opacity-0 group-hover/btn1:opacity-100 group-hover/btn1:animate-ping transition-all duration-700 pointer-events-none"></div>
                     <span className="relative z-10 flex items-center gap-2">
                       EXPLORE OUR PRODUCTS
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn1:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn1:translate-x-1.5" />
                     </span>
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => navigate("contact")}
-                    className="group/btn2 px-8 py-4 bg-white text-heading border border-border rounded-xl font-bold text-sm tracking-wide shadow-sm hover:shadow-md hover:border-secondary hover:text-secondary transition-all duration-300 hover:-translate-y-1 flex items-center justify-center"
+                    className="group/btn2 px-8 py-4 bg-white text-heading border border-border rounded-xl font-bold text-sm tracking-wide shadow-sm hover:shadow-md hover:border-secondary hover:text-secondary transition-all duration-300 flex items-center justify-center relative overflow-hidden"
                   >
-                    CONTACT US
-                  </button>
+                    <div className="absolute inset-0 bg-secondary/5 opacity-0 group-hover/btn2:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10">CONTACT US</span>
+                  </motion.button>
                 </motion.div>
               </motion.div>
 
@@ -366,19 +431,22 @@ export default function Home({ navigate }: HomeProps) {
             .group:hover .animate-marquee-smooth {
               animation-play-state: paused !important;
             }
+            @keyframes float-letter {
+              0%, 100% { top: 0px; }
+              50% { top: -6px; }
+            }
           `}} />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-50 pointer-events-none"></div>
           
           <div 
-            className="relative w-full flex items-center" 
+            className="relative w-full flex items-center group cursor-pointer" 
             style={{ 
               maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)', 
               WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' 
             }}
           >
             <div 
-              className="animate-marquee-smooth flex items-center w-max"
-              style={{ animationPlayState: isTickerPaused ? 'paused' : '' }}
+              className={`animate-marquee-smooth flex items-center w-max group-hover:[animation-play-state:paused] ${isTickerPaused ? '[animation-play-state:paused]' : ''}`}
             >
               {/* Render quotes twice for seamless infinite loop */}
               {[...MARQUEE_QUOTES, ...MARQUEE_QUOTES].map((quote, idx) => (
@@ -477,10 +545,18 @@ export default function Home({ navigate }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + (idx * 0.15), duration: 0.7, ease: "easeOut" }}
-                className="group relative bg-white/70 backdrop-blur-xl rounded-[24px] border border-border p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29, 78, 216,0.08)] hover:border-secondary/30 hover:-translate-y-[8px] transition-all duration-300 h-full flex flex-col items-center text-center overflow-hidden"
+                className="group relative bg-white/70 backdrop-blur-xl rounded-[24px] border border-border p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(29,78,216,0.15)] hover:border-transparent hover:ring-2 hover:ring-secondary/50 hover:-translate-y-[8px] transition-all duration-300 h-full flex flex-col items-center text-center overflow-hidden"
               >
+                {/* Shine Animation */}
+                <motion.div
+                  initial={{ x: "-150%" }}
+                  whileHover={{ x: "250%" }}
+                  transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.5 }}
+                  className="absolute inset-y-0 -left-[50%] w-[100%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] z-20 pointer-events-none"
+                ></motion.div>
+                
                 {/* Floating gradient blob inside card */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl z-0 pointer-events-none group-hover:bg-secondary/10 transition-colors duration-500"></div>
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl z-0 pointer-events-none group-hover:bg-gradient-to-r group-hover:from-secondary/20 group-hover:to-primary/20 transition-all duration-500"></div>
 
                 <div className="relative w-full h-32 mb-6 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-lg transition-all duration-500 ring-1 ring-black/5 group-hover:ring-secondary/50">
                    <Image 
@@ -1464,6 +1540,6 @@ export default function Home({ navigate }: HomeProps) {
           </div>
         </motion.div>
       </section>
-    </div>
+    </motion.div>
   );
 }

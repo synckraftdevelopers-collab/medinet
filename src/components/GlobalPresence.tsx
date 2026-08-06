@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import { Globe, Users, Handshake, Pill } from "lucide-react";
 import Image from "next/image";
 
@@ -22,6 +22,24 @@ const COUNTRIES = [
   { name: "Vietnam", x: 79, y: 48 },
   { name: "Australia", x: 85, y: 75 },
 ];
+
+function CountUp({ to, suffix }: { to: number, suffix: string }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => {
+    const val = Math.round(latest);
+    return val + suffix;
+  });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, to, { duration: 2, ease: "easeOut" });
+    }
+  }, [isInView, count, to]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+}
 
 const STATS = [
   { title: "Countries", count: "18+", icon: Globe },
@@ -201,7 +219,10 @@ export function GlobalPresence() {
                   <stat.icon className="w-7 h-7 text-[#EC4899] relative z-10 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <h3 className="font-display font-extrabold text-3xl md:text-4xl text-[#0B1F4D] mb-3 tracking-tight group-hover:text-[#EC4899] transition-colors duration-300">
-                  {stat.count}
+                  <CountUp 
+                    to={parseInt(stat.count.replace(/[^0-9]/g, ''))} 
+                    suffix={stat.count.replace(/[0-9]/g, '')} 
+                  />
                 </h3>
                 <p className="text-xs font-mono font-bold tracking-[0.15em] text-[#475569] uppercase group-hover:text-[#0B1F4D] transition-colors duration-300">
                   {stat.title}

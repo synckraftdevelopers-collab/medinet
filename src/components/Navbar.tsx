@@ -556,10 +556,9 @@ function Navbar({ currentRoute, navigate }: NavbarProps) {
         </div>
       )}
 
-      {/* Main Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${isScrolled
-          ? "bg-white/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,.06)] border-b border-[#E2E8F0] h-[72px] md:h-[80px] lg:h-[88px]"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out ${isScrolled
+          ? "bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-b border-white/20 h-[72px] md:h-[80px] lg:h-[88px]"
           : "bg-transparent h-[80px] md:h-[88px] lg:h-[96px]"
           }`}
         aria-label="Main Navigation"

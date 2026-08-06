@@ -72,7 +72,7 @@ self.__SERVER_FILES_MANIFEST={
       "qualities": [
         75
       ],
-      "unoptimized": true,
+      "unoptimized": false,
       "customCacheHandler": false
     },
     "devIndicators": {
@@ -101,7 +101,6 @@ self.__SERVER_FILES_MANIFEST={
     "compiler": {},
     "expireTime": 31536000,
     "staticPageGenerationTimeout": 60,
-    "output": "export",
     "modularizeImports": {
       "@mui/icons-material": {
         "transform": "@mui/icons-material/{{member}}"
@@ -311,7 +310,7 @@ self.__SERVER_FILES_MANIFEST={
     "turbopack": {
       "root": "C:\\Users\\HP"
     },
-    "distDirRoot": "dist"
+    "distDirRoot": ".next"
   },
   "appDir": "C:\\Users\\HP\\OneDrive\\Desktop\\MediNet",
   "relativeAppDir": "OneDrive\\Desktop\\MediNet",

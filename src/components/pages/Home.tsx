@@ -219,14 +219,17 @@ export default function Home({ navigate }: HomeProps) {
                           hidden: { opacity: 0, y: 20 },
                           visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                         }}
-                        className="inline-block relative"
+                        className="inline-block"
                         style={{ animation: 'float-letter 2.5s ease-in-out infinite', animationDelay: `${index * 0.05 + 1}s` }}
                       >
                         {char === " " ? "\u00A0" : char}
                       </motion.span>
                     ))}
                   </span> <br />
-                  <span className="relative inline-block">
+                  <span 
+                    className="relative inline-block"
+                    style={{ animation: 'float-letter 2.5s ease-in-out infinite', animationDelay: '1.5s' }}
+                  >
                     <span className="relative z-10 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent drop-shadow-sm inline-block py-2 -my-2">
                       {"EVERY TIME.".split("").map((char, index) => (
                         <motion.span 
@@ -235,8 +238,7 @@ export default function Home({ navigate }: HomeProps) {
                             hidden: { opacity: 0, y: 20 },
                             visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                           }}
-                          className="inline-block relative"
-                          style={{ animation: 'float-letter 2.5s ease-in-out infinite', animationDelay: `${(index + 14) * 0.05 + 1}s` }}
+                          className="inline-block"
                         >
                           {char === " " ? "\u00A0" : char}
                         </motion.span>
@@ -432,8 +434,8 @@ export default function Home({ navigate }: HomeProps) {
               animation-play-state: paused !important;
             }
             @keyframes float-letter {
-              0%, 100% { top: 0px; }
-              50% { top: -6px; }
+              0%, 100% { transform: translateY(0px); }
+              50% { transform: translateY(-6px); }
             }
           `}} />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-50 pointer-events-none"></div>
